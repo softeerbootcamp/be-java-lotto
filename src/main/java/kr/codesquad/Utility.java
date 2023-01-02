@@ -19,11 +19,9 @@ public class Utility {
     }
 
     public static int generateBonusNumber(ArrayList<Integer> random6Number){
-
-        ArrayList<Integer> lotteryNumbers = new ArrayList<int>();
         Random random = new Random();
         int temp = random.nextInt()%45 + 1;
-        while(lotteryNumbers.contains(temp)){
+        while(random6Number.contains(temp)){
             temp = random.nextInt()%45 + 1;
         }
         return temp;
