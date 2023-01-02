@@ -18,4 +18,8 @@ public class Lotto {
         this.numberList.addAll(lottoNum);
     }
 
+    public void showLotto() {
+        System.out.println(numberList);
+    }
+
 }

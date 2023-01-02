@@ -14,6 +14,9 @@ public class Main {
         for(int i=0;i<money/1000;i++) {
             allLotto.add(new Lotto());
         }
+        for(int i=0;i<allLotto.size();i++) {
+            allLotto.get(i).showLotto();
+        }
 
 
     }
