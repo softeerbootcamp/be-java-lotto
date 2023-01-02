@@ -21,4 +21,9 @@ public class LottoService {
         outputView.printBoughtLottoCount(count);
         outputView.printLottoNumbers(lotto.generateLotto(count));
     }
+
+    public void inputWinningNumber() throws IOException{
+        outputView.printWinningNumberText();
+        inputView.inputWinningNumbers();
+    }
 }
