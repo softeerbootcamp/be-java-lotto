@@ -7,7 +7,7 @@ import java.util.Random;
 public class Utility {
 
     public static ArrayList generateRandomSixNumbers(){
-        ArrayList<Integer> lotteryNumbers = new ArrayList<int>();
+        ArrayList<Integer> lotteryNumbers = new ArrayList<Integer>();
         Random random = new Random();
         while(lotteryNumbers.size() != 6){
             int temp = random.nextInt() % 45 + 1;
@@ -18,4 +18,14 @@ public class Utility {
         return lotteryNumbers;
     }
 
+    public static int generateBonusNumber(ArrayList<Integer> random6Number){
+
+        ArrayList<Integer> lotteryNumbers = new ArrayList<int>();
+        Random random = new Random();
+        int temp = random.nextInt()%45 + 1;
+        while(lotteryNumbers.contains(temp)){
+            temp = random.nextInt()%45 + 1;
+        }
+        return temp;
+    }
 }
