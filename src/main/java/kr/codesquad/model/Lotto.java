@@ -9,6 +9,19 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int compare(Lotto other) {
+        int cnt = 0;
+        return (int)numbers.stream()
+                .filter(other::contains)
+                .count();
+    }
+
+    public boolean contains(int number) {
+        if (numbers.contains(number))
+            return true;
+        return false;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
