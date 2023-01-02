@@ -3,6 +3,8 @@ package kr.codesquad;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InputView {
     private BufferedReader br;
@@ -13,5 +15,17 @@ public class InputView {
     public long inputMoney() throws IOException {
         long money = Long.parseLong(br.readLine());
         return money;
+    }
+    public List<Integer> inputWinningNumbers() throws IOException{
+        String[] input = br.readLine().split(", ");
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < input.length; i++) {
+            list.add(Integer.parseInt(input[i]));
+        }
+        for (Integer integer : list) {
+            System.out.print(integer+" ");
+        }
+        System.out.println();
+        return list;
     }
 }
