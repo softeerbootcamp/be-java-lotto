@@ -32,6 +32,8 @@ public class LottoController {
         Lotto winningLotto = InputView.readWinningLotto();
 
         Map<Integer, Integer> result = caculateResult(lottos, winningLotto);
+        double profitRate = caculateProfitRate(result, money);
+        OutputView.printResult(result, profitRate);
     }
 
     private Map<Integer, Integer> caculateResult(List<Lotto> lottos, Lotto winningLotto) {
@@ -48,5 +50,17 @@ public class LottoController {
         });
 
         return result;
+    }
+
+    private double caculateProfitRate(Map<Integer, Integer> result, int money) {
+        double profit = 0;
+        for (int i = 3; i <= 6; i++){
+            profit += (double)i * result.get(i);
+        }
+
+        if (profit < money) {
+            return -(100 - profit / money * 100);
+        }
+        return profit / money * 100;
     }
 }
