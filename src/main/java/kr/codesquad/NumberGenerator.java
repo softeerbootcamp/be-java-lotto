@@ -14,7 +14,7 @@ public class NumberGenerator {
     }
     public List<Integer> numberGenerate() {
         Collections.shuffle(kindOfNumbers);
-        List<Integer> list = kindOfNumbers.subList(0, 6);
+        List<Integer> list = new ArrayList<>(kindOfNumbers.subList(0, 6));
         return list;
     }
 }
