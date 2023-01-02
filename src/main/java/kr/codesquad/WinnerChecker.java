@@ -7,9 +7,7 @@ import java.util.stream.Collectors;
 
 public class WinnerChecker {
 
-  private static final int[] winningNumberCount = {3, 4, 5, 6};
-
-  public Map<Integer, Integer> check(
+  public WinningResult check(
       List<LottoNumbers> numbersList,
       LottoNumbers winningNumber
   ) {
@@ -21,7 +19,7 @@ public class WinnerChecker {
                .filter(map::containsKey)
                .forEach(matchCount -> map.put(matchCount, map.get(matchCount) + 1));
 
-    return map;
+    return WinningResult.from(map);
   }
 
 }
