@@ -52,7 +52,7 @@ public class Main {
         */
         System.out.println("당첨 통계\n" + "---------");
 
-        //각 줄 별로
+        //todo: 각 Row 별 일치 값 갯수 compare, 더 나은 방식은 없나
         for (int i = 0; i < num; i++) {
             Row row = rows.get(i);
             row.compare(answers);
@@ -61,32 +61,21 @@ public class Main {
         /**
          * 수익률 계산
          */
-        calculate();
+        Statistic statistic = new Statistic();
+        statistic.calculateRate(rows);
 
     }
-
-
-    /**
-     * 수익률 계산
-     */
-    private static void calculate() {
-
-
-    }
-
-    //로또 6은 1 ~ 45의 숫자중에 6개
 
     /**
      * 유사난수로 1~45의 숫자 중 6개씩 생성된 줄만큼 입력
      *
      */
     private static void receiveRandomLotto(Row row) {
-        List<Integer> values = row.values;
         int min = 1;
         int max = 45;
         for (int i = 0; i < COLUMN; i++) {
             int random = (int) ((Math.random() * (max - min)) + min);
-            values.add(random);
+            row.addValue(random);
         }
         row.shuffle();
     }
