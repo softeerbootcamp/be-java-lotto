@@ -1,17 +1,13 @@
 package kr.codesquad.LottoService;
 
-import kr.codesquad.InputService.InputServiceImpl;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoServiceImpl implements LottoService{
     private ArrayList<ArrayList<Integer>> lottos;
     private long[] winningNumbersCount = new long[7];
-    private long[] winningMoney = {0, 0, 0, 5000, 50000, 1500000, 2000000000};
+    private static final long[] winningMoney = {0, 0, 0, 5000, 50000, 1500000, 2000000000};
 
     public ArrayList<ArrayList<Integer>> getLottos() {
         return lottos;

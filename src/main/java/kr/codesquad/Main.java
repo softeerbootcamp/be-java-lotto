@@ -1,23 +1,21 @@
 package kr.codesquad;
 
-import kr.codesquad.InputService.InputService;
-import kr.codesquad.InputService.InputServiceImpl;
 import kr.codesquad.LottoService.LottoService;
 import kr.codesquad.LottoService.LottoServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
-        InputService inputService = new InputServiceImpl();
+        Console console = new Console();
         LottoService lottoService = new LottoServiceImpl();
 
-        inputService.inputMoney();
-        inputService.printLottoCount();
-        lottoService.setLottoNumbers(inputService.getLottoCount());
+        console.inputMoney();
+        console.printLottoCount();
+        lottoService.setLottoNumbers(console.getLottoCount());
         lottoService.printLottos();
 
-        inputService.inputWinningNumber();
-        lottoService.setWinningNumbers(inputService.getWinningNumberList());
+        console.inputWinningNumber();
+        lottoService.setWinningNumbers(console.getWinningNumberList());
         lottoService.printWinningLottos();
-        lottoService.calculateEarningRate(inputService.getLottoCount());
+        lottoService.calculateEarningRate(console.getLottoCount());
     }
 }

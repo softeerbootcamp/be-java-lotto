@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : 인터페이스에서 변경한 메서드 이름 적용">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : inputService, inputServiceImpl을 Console 클래스로 교체">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/InputService/InputServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/InputService/InputServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/InputService/InputService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/InputService/InputServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Console.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
     </list>
@@ -105,7 +104,7 @@
       <updated>1672210428730</updated>
       <workItem from="1672210432725" duration="156000" />
       <workItem from="1672640664852" duration="2996000" />
-      <workItem from="1672644019169" duration="22361000" />
+      <workItem from="1672644019169" duration="23072000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1672642544349</created>
@@ -170,7 +169,28 @@
       <option name="project" value="LOCAL" />
       <updated>1672695059838</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="refactor : 인터페이스에서 변경한 메서드 이름 적용">
+      <created>1672695225873</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1672695225873</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat : printWinningLottos, setWinningNumbers, calculateEarningRate 메서드 구현">
+      <created>1672695311294</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1672695311294</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat : 변경된 메서드명 적용 및 구현된 setWinningNumbers, calculateEarningRate 메서드 추가">
+      <created>1672695509631</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1672695509631</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +217,9 @@
     <MESSAGE value="feat : main 함수 구현" />
     <MESSAGE value="feat : input 인터페이스 메서드 이름 변경" />
     <MESSAGE value="refactor : 인터페이스에서 변경한 메서드 이름 적용" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor : 인터페이스에서 변경한 메서드 이름 적용" />
+    <MESSAGE value="feat : printWinningLottos, setWinningNumbers, calculateEarningRate 메서드 구현" />
+    <MESSAGE value="feat : 변경된 메서드명 적용 및 구현된 setWinningNumbers, calculateEarningRate 메서드 추가" />
+    <MESSAGE value="refactor : inputService, inputServiceImpl을 Console 클래스로 교체" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : inputService, inputServiceImpl을 Console 클래스로 교체" />
   </component>
 </project>
