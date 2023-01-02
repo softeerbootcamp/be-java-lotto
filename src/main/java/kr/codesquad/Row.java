@@ -20,7 +20,6 @@ public class Row {
      * @param answers
      */
     public void compare(int[] answers) {
-
         for (int answer : answers) {
             compare2(answer);
         }
@@ -30,5 +29,21 @@ public class Row {
         if (values.contains(answer)) {
             result++;
         }
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
+    }
+
+    public List<Integer> getValues() {
+        return values;
+    }
+
+    public void setValues(List<Integer> values) {
+        this.values = values;
     }
 }
