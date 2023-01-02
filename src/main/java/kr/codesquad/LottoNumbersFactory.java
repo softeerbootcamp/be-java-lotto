@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoNumbersFactory {
 
@@ -24,6 +25,12 @@ public class LottoNumbersFactory {
                                         .collect(Collectors.toList());
 
     return LottoNumbers.from(resultList);
+  }
+
+  public List<LottoNumbers> generateList(int count) {
+    return IntStream.range(0, count)
+                    .mapToObj(i -> generate())
+                    .collect(Collectors.toList());
   }
 
 }
