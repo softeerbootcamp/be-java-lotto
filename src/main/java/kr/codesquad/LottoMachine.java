@@ -12,9 +12,6 @@ public class LottoMachine {
 
     private final BufferedReader br;
 
-    private List<List<Integer>> lottoList;
-    private int money;
-
     public LottoMachine(int priceOfLotto) {
         this.numSet = new HashSet<>(45);
         for (int idx = 1; idx <= 45; idx++) numSet.add(idx);
@@ -22,23 +19,22 @@ public class LottoMachine {
         this.br = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public List<List<Integer>> buy(int total) {
-        int cnt = total / priceOfLotto;
-        this.money = cnt * priceOfLotto;
+    public LottoTicket buy(int total) {
+        int lottoCnt = total / priceOfLotto;
 
-        List<List<Integer>> lottoList = new ArrayList<>(cnt);
-        for (int idx = 0; idx < cnt; idx++) {
+        List<List<Integer>> lottoList = new ArrayList<>(lottoCnt);
+        for (int idx = 0; idx < lottoCnt; idx++) {
             lottoList.add(shuffle());
         }
-        this.lottoList = lottoList;
-        return this.lottoList;
+
+        return new LottoTicket(lottoList, lottoCnt * priceOfLotto);
     }
 
 
-    public void checkWin(List<List<Integer>> lottoList) {
+    public void checkWin(LottoTicket lottoTicket) {
         Set<Integer> winNumSet = this.getWinNumberSet();
-        Map<Rank, Integer> rankStatus = new HashMap<>(lottoList.size());
-        for (List<Integer> lotto: lottoList) {
+        Map<Rank, Integer> rankStatus = new HashMap<>(lottoTicket.getLottoList().size());
+        for (List<Integer> lotto: lottoTicket.getLottoList()) {
             int winNumber = this.calcTargetedNumberCount(lotto, winNumSet);
             Rank rank = Rank.valueOf(winNumber);
             if (rank == null) continue;
