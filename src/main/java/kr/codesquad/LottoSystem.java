@@ -30,7 +30,7 @@ public class LottoSystem {
     public void getWin(){
         sc = new Scanner(System.in);
         System.out.println("\n당첨 번호를 입력해주세요.");
-        String[] s = sc.nextLine().replaceAll(" ",  "").split(", ");
+        String[] s = sc.nextLine().replaceAll(" ",  "").split(",");
         int[] temp = Stream.of(s).mapToInt(Integer::parseInt).toArray();;
         win = new Lotto(temp);
     }
