@@ -16,7 +16,7 @@ public class LottoController {
     }
 
     public void start() {
-        OutputView.printStartMessage();
+        OutputView.printMoneyReadMessage();
         int money = InputView.readMoney();
 
         int lottoCount = money / 1000;
@@ -25,5 +25,7 @@ public class LottoController {
         List<Lotto> lottos = lottoMachine.createLottos(lottoCount);
 
         OutputView.printLottos(lottos);
+
+        OutputView.printWinningLottoReadMessage();
     }
 }

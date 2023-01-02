@@ -6,7 +6,7 @@ import java.util.List;
 
 public class OutputView {
 
-    public static void printStartMessage() {
+    public static void printMoneyReadMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
@@ -18,5 +18,9 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         lottos.forEach(lotto -> sb.append(lotto.toString()));
         System.out.println(sb);
+    }
+
+    public static void printWinningLottoReadMessage() {
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 }
