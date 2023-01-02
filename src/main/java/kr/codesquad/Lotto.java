@@ -7,8 +7,9 @@ public class Lotto {
     private List<List<Integer>> numbers;
     private NumberGenerator numberGenerator;
 
-    Lotto() {
+    Lotto(NumberGenerator numberGenerator) {
         this.numbers = new ArrayList<>();
+        this.numberGenerator = numberGenerator;
     }
     public long calculateCount(long money) {
         return money / 1000;
