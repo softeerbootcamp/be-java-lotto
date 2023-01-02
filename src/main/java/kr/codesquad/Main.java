@@ -1,14 +1,21 @@
 package kr.codesquad;
 
-import java.util.Scanner;
+import kr.codesquad.InputService.InputService;
+import kr.codesquad.InputService.InputServiceImpl;
+import kr.codesquad.LottoService.LottoService;
+import kr.codesquad.LottoService.LottoServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
-    }
+        InputService inputService = new InputServiceImpl();
+        LottoService lottoService = new LottoServiceImpl();
 
-    private static String getInput(){
-        System.out.println("구입금액을 입력해 주세요.");
-        Scanner sc = new Scanner(System.in);
-        return sc.next();
+        inputService.getInputMoney();
+        inputService.printLottoCount();
+        lottoService.setLottoNumbers(inputService.getLottoCount());
+        lottoService.printLottos();
+
+        inputService.getWonNumber();
+        lottoService.printWonLottos();
     }
 }
