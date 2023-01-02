@@ -8,9 +8,7 @@ public class Lotto {
 
     public Lotto() {
         ArrayList<Integer> allNumber = new ArrayList<>();
-        for(int i=1;i<=45;i++) {
-            allNumber.add(i);
-        }
+        for(int i=1;i<=45;i++) allNumber.add(i);
         Collections.shuffle(allNumber);
         ArrayList<Integer> lottoNum = new ArrayList<>();
         lottoNum.addAll(allNumber.subList(0, 6));
