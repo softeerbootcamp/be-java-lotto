@@ -8,7 +8,6 @@ public class Utility {
     public static ArrayList<Integer> generateRandomSixNumbers(){
         ArrayList<Integer> oneTo45 = new ArrayList<>();
         ArrayList<Integer> lotteryNumbers = new ArrayList<Integer>();
-        Random random = new Random();
         for(int i = 1; i<=45; i++){
             oneTo45.add(i);
         }

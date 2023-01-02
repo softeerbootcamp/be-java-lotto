@@ -17,6 +17,7 @@ public class Main {
         for(int i =0; i<n_lotto; i++){
             lottos.add(new Lotto());
         }
+        System.out.println(String.format("%d개를 구매했습니다.", lottos.size()));
         return lottos;
     }
 
