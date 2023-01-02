@@ -27,5 +27,8 @@ public class LottoController {
         OutputView.printLottos(lottos);
 
         OutputView.printWinningLottoReadMessage();
+        Lotto winningLotto = InputView.readWinningLotto();
+
+
     }
 }
