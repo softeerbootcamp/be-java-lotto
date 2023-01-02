@@ -13,6 +13,8 @@ public class LottoController {
 
         User user = makeUser(purchaseAmount, purchaseTickets);
 
+        PrintView.generatedLottos(user);
+
 
     }
 
