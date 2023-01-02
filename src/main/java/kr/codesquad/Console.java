@@ -15,7 +15,7 @@ public class Console {
     return Integer.parseInt(commandLineInput());
   }
 
-  public LottoNumbers inputWinningNumbers() {
+  public Lotto inputWinningNumbers() {
     String s = commandLineInput();
     System.out.println();
     String[] split = s.split(", ");
@@ -25,7 +25,7 @@ public class Console {
                                .boxed()
                                .collect(Collectors.toList());
 
-    return LottoNumbers.from(list);
+    return Lotto.from(list);
   }
 
   public void printInputAmount() {
@@ -40,7 +40,7 @@ public class Console {
     System.out.println("당첨 번호를 입력해 주세요");
   }
 
-  public void printLottoNumbersList(List<LottoNumbers> numbersList) {
+  public void printLottoNumbersList(List<Lotto> numbersList) {
     numbersList.forEach(System.out::println);
     System.out.println();
   }

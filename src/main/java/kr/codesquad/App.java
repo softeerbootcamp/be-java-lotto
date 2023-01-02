@@ -6,16 +6,16 @@ public class App implements Runnable {
 
   private final Console console;
   private final WinnerChecker winnerChecker;
-  private final LottoNumbersFactory lottoNumbersFactory;
+  private final LottoFactory lottoFactory;
 
   public App(
       Console console,
       WinnerChecker winnerChecker,
-      LottoNumbersFactory lottoNumbersFactory
+      LottoFactory lottoFactory
   ) {
     this.console = console;
     this.winnerChecker = winnerChecker;
-    this.lottoNumbersFactory = lottoNumbersFactory;
+    this.lottoFactory = lottoFactory;
   }
 
   public static final int LOTTO_PRICE = 1_000;
@@ -26,11 +26,11 @@ public class App implements Runnable {
     int purchaseAmount = console.inputPurchaseAmount();
     int purchaseCount = purchaseAmount / LOTTO_PRICE;
     console.printPurchaseCount(purchaseCount);
-    List<LottoNumbers> numbersList = lottoNumbersFactory.generateList(purchaseCount);
+    List<Lotto> numbersList = lottoFactory.generateList(purchaseCount);
 
     console.printLottoNumbersList(numbersList);
     console.printInputWinningNumber();
-    LottoNumbers winningNumber = console.inputWinningNumbers();
+    Lotto winningNumber = console.inputWinningNumbers();
 
     WinningResult winningResult = winnerChecker.check(numbersList, winningNumber);
     console.printWinningResult(winningResult);

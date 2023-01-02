@@ -6,14 +6,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LottoNumbersFactory {
+public class LottoFactory {
 
   private static final int LOTTO_NUMBER_BOUND = 45;
   private static final int LOTTO_NUMBER_COUNT = 6;
 
   private final RandomNumberFactory randomNumberFactory = new RandomNumberFactory(LOTTO_NUMBER_BOUND);
 
-  public LottoNumbers generate() {
+  public Lotto generate() {
     Set<Integer> resultSet = new HashSet<>();
 
     while (resultSet.size() < LOTTO_NUMBER_COUNT) {
@@ -24,10 +24,10 @@ public class LottoNumbersFactory {
                                         .sorted()
                                         .collect(Collectors.toList());
 
-    return LottoNumbers.from(resultList);
+    return Lotto.from(resultList);
   }
 
-  public List<LottoNumbers> generateList(int count) {
+  public List<Lotto> generateList(int count) {
     return IntStream.range(0, count)
                     .mapToObj(i -> generate())
                     .collect(Collectors.toList());
