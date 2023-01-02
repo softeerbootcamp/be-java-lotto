@@ -1,7 +1,10 @@
 package kr.codesquad;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-    }
+
+  public static void main(String[] args) {
+    App app = new App(new Console(), new WinnerChecker(), new LottoNumbersFactory());
+    app.run();
+  }
+
 }
