@@ -9,6 +9,12 @@ import java.util.List;
 
 public class LottoController {
 
+    private final LottoMachine lottoMachine;
+
+    public LottoController() {
+        this.lottoMachine = new LottoMachine();
+    }
+
     public void start() {
         OutputView.printStartMessage();
         int money = InputView.readMoney();
@@ -16,6 +22,6 @@ public class LottoController {
         int lottoCount = money / 1000;
         OutputView.printLottoCount(lottoCount);
 
-        List<Lotto> lottos = LottoMachine.createLottos(lottoCount);
+        List<Lotto> lottos = lottoMachine.createLottos(lottoCount);
     }
 }
