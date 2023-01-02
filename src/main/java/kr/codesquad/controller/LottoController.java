@@ -4,17 +4,19 @@ import kr.codesquad.model.User;
 import kr.codesquad.view.PrintView;
 import kr.codesquad.view.ReceiveView;
 
+import java.util.List;
+
 public class LottoController {
     public static final int TICKET_PER_PRICE = 1000;
 
     public void play() {
         int purchaseAmount = enterPurchaseAmount();
         int purchaseTickets = purchaseToTickets(purchaseAmount);
-
         User user = makeUser(purchaseAmount, purchaseTickets);
-
         PrintView.generatedLottos(user);
+        PrintView.enterWinningNumber();
 
+        List<Integer> winningNumbers = ReceiveView.enterWinningNumbers();
 
     }
 
@@ -31,6 +33,6 @@ public class LottoController {
 
     private static int enterPurchaseAmount() {
         PrintView.enterPurchaseAmount();
-        return ReceiveView.EnterPurchaseAmount();
+        return ReceiveView.enterPurchaseAmount();
     }
 }

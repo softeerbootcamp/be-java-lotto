@@ -20,4 +20,8 @@ public class PrintView {
         }
     }
 
+    public static void enterWinningNumber() {
+        System.out.println(CommonMessage.ENTER_WINNING_NUMBER);
+    }
+
 }
