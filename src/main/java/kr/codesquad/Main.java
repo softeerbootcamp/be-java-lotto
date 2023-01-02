@@ -12,6 +12,7 @@ public class Main {
 
         requestInput();
         setAmount();
+        generateLottos();
 
     }
 
@@ -24,6 +25,18 @@ public class Main {
     public static void setAmount() {
         amount = total_price / LOTTO_PRICE;
         System.out.println(amount + "개를 구매했습니다.");
+    }
+
+    public static void generateLottos() {
+        for(int i = 0; i < amount; i++) {
+            LottoNumber lotto = generateRandomLotto();
+            lottoNumbers.add(lotto);
+            System.out.println(lotto.getLotto().toString());
+        }
+    }
+    public static LottoNumber generateRandomLotto() {
+        LottoNumber lotto = new LottoNumber();
+        return lotto;
     }
 
 }
