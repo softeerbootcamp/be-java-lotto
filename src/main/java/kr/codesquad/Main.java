@@ -57,7 +57,6 @@ public class Main {
             Row row = rows.get(i);
             row.compare(answers);
         }
-        System.out.println("helo");
         /**
          * 수익률 계산
          */

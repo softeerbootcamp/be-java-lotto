@@ -22,9 +22,13 @@ public class Row {
     public void compare(int[] answers) {
 
         for (int answer : answers) {
-            if (values.contains(answer)) {
-                result++;
-            }
+            compare2(answer);
+        }
+    }
+
+    public void compare2(int answer) {
+        if (values.contains(answer)) {
+            result++;
         }
     }
 }
