@@ -49,19 +49,18 @@ public class Main {
 
 
     //check the result of each lottery
-    private static Integer containNum(ArrayList<Integer> tempList){
-        int hitNum = 0;
-        for(int j = 0 ; j < 6 ; j++){
-            if(tempList.contains(Integer.parseInt(resultNums.get(j))))
-                hitNum++;
-        }
-        return hitNum;
+    private static int containNum(int target, ArrayList<Integer> tempList){
+        if (tempList.contains(target))
+            return 1;
+        return 0;
     }
 
 
     //count each rank of result
     private static void getHitStatistics(ArrayList<Integer> tempList) {
-            int hitNum = containNum(tempList);
+            int hitNum = 0;
+            for(int i = 0; i < 6; i++)
+                hitNum += containNum(Integer.parseInt(resultNums.get(i)), tempList);
             hitNums.put(hitNum, hitNums.getOrDefault(hitNum, 0) + 1);
     }
 
