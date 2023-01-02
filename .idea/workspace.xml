@@ -80,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672210428730</updated>
       <workItem from="1672210432725" duration="156000" />
-      <workItem from="1672642675382" duration="8345000" />
+      <workItem from="1672642675382" duration="9439000" />
     </task>
     <servers />
   </component>
@@ -97,20 +97,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java</url>
-          <line>50</line>
-          <properties class="kr.codesquad.Main" method="findSameNumber">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

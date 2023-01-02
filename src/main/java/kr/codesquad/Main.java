@@ -9,6 +9,8 @@ public class Main {
     private static ArrayList<LottoNumber> lottoNumbers = new ArrayList<>();
     private static ArrayList<Integer> winLotto = new ArrayList<>();
 
+    private static int[] sameCnt = new int[6];
+
     public static void main(String[] args) {
 
         requestInput();
@@ -45,6 +47,16 @@ public class Main {
         System.out.println("당첨번호를 입력해 주세요.");
         Scanner sc = new Scanner(System.in);
         for(int i = 0; i < 6; i++) { winLotto.add(sc.nextInt()); }
+    }
+
+    public static void findSameNumber() {
+        for (int i = 0; i < amount; i++) {
+           ArrayList<Integer> tempLotto = lottoNumbers.get(i).getLotto();
+           ArrayList<Integer> tempWin = winLotto;
+           tempLotto.retainAll(tempWin);
+           int same = tempLotto.size();
+           sameCnt[same]++;
+        }
     }
 
 }
