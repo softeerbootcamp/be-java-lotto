@@ -15,4 +15,11 @@ public class OutputView {
         }
         System.out.print(list.get(list.size() - 1));
     }
+    public void printLottoNumbers(List<List<Integer>> numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            System.out.print("[");
+            printNumbers(numbers.get(i));
+            System.out.println("]");
+        }
+    }
 }
