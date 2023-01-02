@@ -1,20 +1,24 @@
 package kr.codesquad;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class Utility {
 
-    public static ArrayList generateRandomSixNumbers(){
+    public static ArrayList<Integer> generateRandomSixNumbers(){
+        ArrayList<Integer> oneTo45 = new ArrayList<>();
         ArrayList<Integer> lotteryNumbers = new ArrayList<Integer>();
         Random random = new Random();
-        while(lotteryNumbers.size() != 6){
-            int temp = random.nextInt() % 45 + 1;
-            if (!lotteryNumbers.contains(temp)){
-                lotteryNumbers.add(temp);
-            }
+        for(int i = 1; i<=45; i++){
+            oneTo45.add(i);
         }
+
+        Collections.shuffle(oneTo45);
+
+        for(int i =0; i<6; i++){
+            lotteryNumbers.add(oneTo45.get(i));
+        }
+        Collections.sort(lotteryNumbers);
         return lotteryNumbers;
     }
 
