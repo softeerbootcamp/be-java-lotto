@@ -34,7 +34,6 @@ public class LottoSystem {
         System.out.println("\n당첨 번호를 입력해주세요.");
         String[] s = sc.nextLine().replaceAll(" ", "").split(",");
         winNums = Stream.of(s).mapToInt(Integer::parseInt).toArray();
-        //win = new Lotto(temp);
     }
 
     public void getResult() {
