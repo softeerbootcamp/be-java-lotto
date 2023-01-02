@@ -1,10 +1,7 @@
 package kr.codesquad;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 class My_lotto{
     private int lotto_cnt;
@@ -63,7 +60,15 @@ public class Main {
         cnt = ret_lotto_cnt(money);
         System.out.printf("%d개를 구매했습니다.\n",cnt);
         My_lotto myLotto = new My_lotto(cnt);
-        System.out.printf("");
+        // todo list 2 까지 해결
+        System.out.printf("당첨 번호를 입력해 주세요.");
+        Scanner s2 = new Scanner(System.in);
+        String str = s2.nextLine();
+        String[] strArr= str.split(",");
+        int[] ans = new int[6];
+        for(int i=0;i<6;i++){
+            ans[i] = Integer.parseInt(strArr[i]);
+        }
 
 
     }
