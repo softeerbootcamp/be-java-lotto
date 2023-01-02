@@ -20,7 +20,7 @@ public class Main{
         System.out.println("당첨 번호를 입력해주세요");
 
         Scanner sc2 = new Scanner(System.in);
-        
+
         String jackPotString = sc2.nextLine();
         lotto.getJackPotNumbers(jackPotString);
 
@@ -28,5 +28,11 @@ public class Main{
         System.out.println("----------");
 
         lotto.checkJackPots();
+
+        Rank[] ranks = Rank.values();
+        for(Rank rank : ranks)
+        {
+            System.out.println(rank.getCountOfMatch() + "개 일치 (" + rank.getWinningMoney() + "원) - " + + lotto.counts[rank.getCountOfMatch() - 3] + "개");
+        }
     }
 }

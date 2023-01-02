@@ -1,32 +1,48 @@
 package main.java.kr.codesquad;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class Lotto implements LottoInterface{
+public class Lotto implements LottoInterface {
     private ArrayList<Integer> numberList;
     private ArrayList<Integer> lottoList;
     private ArrayList<Integer> jackpotNumbers;
-    private ArrayList<Integer> jackpotCount;
+    int[] counts = new int[4];
+
     public Lotto() {
         numberList = new ArrayList<>();
         lottoList = new ArrayList<>();
         jackpotNumbers = new ArrayList<>();
-        jackpotCount = new ArrayList<>();
-        for(int i=1;i<=45;i++)
-        {
+        for (int i = 1; i <= 45; i++) {
             numberList.add(i);
         }
+        for(int i=0;i<4;i++)
+        {
+            counts[i] = 0;
+        }
+    }
+
+    int checkDuplicate(int num, int idx)
+    {
+        if(lottoList.subList(6 * (idx/6), lottoList.size()).contains(num))
+        {
+            return 0;
+        }
+        lottoList.add(num);
+        return 1;
     }
 
     @Override
     public void makeLottoList(int count)
     {
         Collections.shuffle(numberList);
+        Random random = new Random();
 
-        for(int i=0;i<count;i++)
+        int idx = 0;
+        while(idx < count*6)
         {
-            int start = new Random().nextInt(39);
-            lottoList.addAll(numberList.subList(start, start+6));
+            int num = random.nextInt(44) + 1;
+            idx += checkDuplicate(num ,idx);
         }
     }
 
@@ -43,23 +59,36 @@ public class Lotto implements LottoInterface{
 
     @Override
     public void getJackPotNumbers(String st) {
-        StringTokenizer stringTokenizer = new StringTokenizer(st," ");
+        StringTokenizer stringTokenizer = new StringTokenizer(st,", ");
         while(stringTokenizer.hasMoreTokens())
         {
-            jackpotNumbers.add(stringTokenizer.nextToken().charAt(0)-'0');
-        }
-    }
-
-    public void checkJackPots()
-    {
-        for(int i=0;i<lottoList.size()/6;i++)
-        {
-            getJackPots(lottoList.subList(i,i+6));
+            jackpotNumbers.add(Integer.parseInt(stringTokenizer.nextToken()));
         }
     }
 
     @Override
+    public void checkJackPots()
+    {
+        for(int i=0;i<lottoList.size();i+=6)
+        {
+            getJackPots(lottoList.subList(i,i+6));
+        }
+    }
+    public int doesContain(boolean flag)
+    {
+        if(flag)
+        {
+            return 1;
+        }
+        return 0;
+    }
     public void getJackPots(List<Integer> list) {
-        jackpotNumbers.forEach((elem)->{});
+        AtomicInteger cnt = new AtomicInteger();
+        jackpotNumbers.forEach((elem)->{cnt.addAndGet(doesContain(list.contains(elem)));});
+
+        if(Integer.parseInt(cnt.toString()) >= 3)
+        {
+            counts[Integer.parseInt(cnt.toString())-3]++;
+        }
     }
 }
