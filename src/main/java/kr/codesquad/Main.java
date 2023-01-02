@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
         requestInput();
+        setAmount();
 
     }
 
@@ -18,6 +19,11 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("구입금액을 입력해 주세요.");
         total_price = sc.nextInt();
+    }
+
+    public static void setAmount() {
+        amount = total_price / LOTTO_PRICE;
+        System.out.println(amount + "개를 구매했습니다.");
     }
 
 }
