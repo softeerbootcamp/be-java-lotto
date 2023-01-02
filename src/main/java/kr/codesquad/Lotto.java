@@ -15,15 +15,15 @@ public class Lotto {
             nums.add(n.get(i));
         Collections.sort(nums);
     }
-    Lotto(int[] n){
-        nums = new ArrayList<Integer>();
-        for(int i=0; i<6; i++)
-            nums.add(n[i]);
-    }
-    public int checkWin(Lotto win) {
+//    Lotto(int[] n){
+//        nums = new ArrayList<Integer>();
+//        for(int i=0; i<6; i++)
+//            nums.add(n[i]);
+//    }
+    public int checkWin(int[] win) {
         int cnt = 0;
-        for (int i = 0; i < win.nums.size(); i++) {
-            cnt += nums.contains(win.nums.get(i)) ? 1 : 0;
+        for (int i = 0; i < 6; i++) {
+            cnt += nums.contains(win[i]) ? 1 : 0;
         }
         return cnt;
     }
