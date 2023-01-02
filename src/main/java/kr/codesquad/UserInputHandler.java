@@ -7,7 +7,7 @@ public class UserInputHandler {
         Scanner s1 = new Scanner(System.in);
         int money =0;
         while(true){
-            System.out.print("얼마치 로또를 구매하실지 입력해 주세요 : ");
+            System.out.print("구입금액을 입력해 주세요.");
             try {
                 money = s1.nextInt();
                 if(money % 1000 != 0 || money < 0){
