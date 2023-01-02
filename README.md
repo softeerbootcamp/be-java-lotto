@@ -9,7 +9,7 @@
 * [동영상으로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://youtube.com/watch?v=lFinZfu3QO0&si=EnSIkaIECMiOmarE)
 
 ## 기능 리스트 
-- [ ] 로또번호 생성 기능  - NumberGenerator#numberGenerate()
+- [x] 로또번호 생성 기능  - NumberGenerator#numberGenerate()
 - [ ] 로또 금액 입력 받는 기능  - InputView#InputMoney() 
 - [ ] 입력받은 금액으로 구매가능한 로또 갯수 계산 기능 - Lotto#calculateCount()
 - [ ] 구매한 로또 개수 출력 기능 - OutputView#printLottoCount()
