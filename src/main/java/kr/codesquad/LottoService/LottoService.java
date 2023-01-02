@@ -8,7 +8,11 @@ public interface LottoService {
 
     void printLottos();
 
-    void printWonLottos();
+    void printWinningLottos();
+
+    void setWinningNumbers(ArrayList<Integer> wonNumberList);
+
+    void calculateEarningRate(long lottoCount);
 
 
     ArrayList<ArrayList<Integer>> getLottos();
