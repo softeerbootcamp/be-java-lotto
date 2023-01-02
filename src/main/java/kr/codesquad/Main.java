@@ -10,12 +10,14 @@ public class Main {
         InputService inputService = new InputServiceImpl();
         LottoService lottoService = new LottoServiceImpl();
 
-        inputService.getInputMoney();
+        inputService.inputMoney();
         inputService.printLottoCount();
         lottoService.setLottoNumbers(inputService.getLottoCount());
         lottoService.printLottos();
 
-        inputService.getWonNumber();
-        lottoService.printWonLottos();
+        inputService.inputWinningNumber();
+        lottoService.setWinningNumbers(inputService.getWinningNumberList());
+        lottoService.printWinningLottos();
+        lottoService.calculateEarningRate(inputService.getLottoCount());
     }
 }
