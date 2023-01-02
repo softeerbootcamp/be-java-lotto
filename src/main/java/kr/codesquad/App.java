@@ -2,6 +2,13 @@ package kr.codesquad;
 
 import java.util.List;
 
+import kr.codesquad.domain.earningRate.EarningRate;
+import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.lotto.LottoFactory;
+import kr.codesquad.domain.winningResult.WinnerChecker;
+import kr.codesquad.domain.winningResult.WinningResult;
+import kr.codesquad.io.Console;
+
 public class App implements Runnable {
 
   private final Console console;

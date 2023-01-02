@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.domain.winningResult;
 
 import java.util.Map;
 import java.util.stream.Collectors;

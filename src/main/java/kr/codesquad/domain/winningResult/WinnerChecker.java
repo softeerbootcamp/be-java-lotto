@@ -1,10 +1,12 @@
-package kr.codesquad;
+package kr.codesquad.domain.winningResult;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import kr.codesquad.domain.lotto.Lotto;
 
 public class WinnerChecker {
 

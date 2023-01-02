@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.io;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,10 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import kr.codesquad.domain.earningRate.EarningRate;
+import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.winningResult.WinningResult;
 
 public class Console {
 

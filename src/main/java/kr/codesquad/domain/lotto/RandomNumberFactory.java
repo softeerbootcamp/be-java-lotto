@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.domain.lotto;
 
 import java.util.Random;
 
