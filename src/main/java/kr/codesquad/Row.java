@@ -1,0 +1,30 @@
+package kr.codesquad;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+public class Row {
+
+    int result;
+    List<Integer> values = new ArrayList<>();
+
+    public void shuffle() {
+        Collections.shuffle(values);
+    }
+
+    /**
+     * 각 list 별 정답과 일치하는 갯수 반환
+     *
+     * @param answers
+     */
+    public void compare(int[] answers) {
+
+        for (int answer : answers) {
+            if (values.contains(answer)) {
+                result++;
+            }
+        }
+    }
+}

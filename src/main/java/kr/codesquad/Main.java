@@ -4,13 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
     private static final int SINGLE_PRICE = 1000; //로또 한 장의 가격은 1000원이다.
-    private static final int LOTTO_LIMIT = 6;
+    private static final int COLUMN = 6;
 
     public static void main(String[] args) throws IOException {
         /**
@@ -29,11 +28,12 @@ public class Main {
          */
         //구입 금액에 해당하는 로또를 발급해야 한다.
 
-        List<Integer>[] lists = new List[num];
-//        Arrays.setAll(outer, element -> new ArrayList<>()); java8 이상 고려해볼만
-        for (List<Integer> list : lists) {
-            list = new ArrayList<>();
-            recevieRandomLotto(list);
+        List<Row> rows = new ArrayList<>();
+
+        for (int i = 0; i < num; i++) {
+            Row row = new Row();
+            recevieRandomLotto(row);
+            rows.add(row);
         }
 
         /**
@@ -41,24 +41,23 @@ public class Main {
          */
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        int[] answers = new int[LOTTO_LIMIT];
+        int[] answers = new int[COLUMN];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < LOTTO_LIMIT; i++) {
+        for (int i = 0; i < COLUMN; i++) {
             answers[i] = Integer.parseInt(st.nextToken());
         }
 
         /**
         * 당첨 통계 내기
         */
-
         System.out.println("당첨 통계\n" + "---------");
-        int[] reults = new int[LOTTO_LIMIT];
 
-        for (int i = 0; i < LOTTO_LIMIT; i++) {
-            List<Integer> list = lists[i];
-//            reults[i] = compareLotto(list, answers);
+        //각 줄 별로
+        for (int i = 0; i < num; i++) {
+            Row row = rows.get(i);
+            row.compare(answers);
         }
-
+        System.out.println("helo");
         /**
          * 수익률 계산
          */
@@ -66,21 +65,6 @@ public class Main {
 
     }
 
-    /**
-     * 각 list 별 정답과 일치하는 갯수 반환
-     *
-     * @param list
-     * @param answers
-     */
-    //todo: depth 1을 유지하며 각 줄 별로 일치 갯수 반환 contains -> true/false 반환
-    private static void compareLotto(List<Integer> list, int[] answers) {
-//        int result;
-//        for (int i = 0; i < LOTTO_LIMIT; i++) {
-//            list[i] = list.contains(answers[i]);
-//        }
-//
-//        return result;
-    }
 
     /**
      * 수익률 계산
@@ -95,22 +79,16 @@ public class Main {
     /**
      * 유사난수로 1~45의 숫자 중 6개씩 생성된 줄만큼 입력
      *
-     * @param list
      */
-    private static void recevieRandomLotto(List<Integer> list) {
+    private static void recevieRandomLotto(Row row) {
+        List<Integer> values = row.values;
         int min = 1;
         int max = 45;
-        for (int i = 0; i < LOTTO_LIMIT; i++) {
+        for (int i = 0; i < COLUMN; i++) {
             int random = (int) ((Math.random() * (max - min)) + min);
-            list.add(random);
+            values.add(random);
         }
-        Collections.shuffle(list);
-
-        System.out.print("[ ");
-        for (int i = 0; i < LOTTO_LIMIT; i++) {
-            System.out.print(list.get(i) + " ");
-        }
-        System.out.println("]");
+        row.shuffle();
     }
 
 }
