@@ -1,11 +1,11 @@
 package kr.codesquad.controller;
 
+import kr.codesquad.model.Lotto;
+import kr.codesquad.model.LottoMachine;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class LottoController {
 
@@ -15,5 +15,7 @@ public class LottoController {
 
         int lottoCount = money / 1000;
         OutputView.printLottoCount(lottoCount);
+
+        List<Lotto> lottos = LottoMachine.createLottos(lottoCount);
     }
 }
