@@ -56,7 +56,7 @@ public class Main {
     }
 
 
-    //count each rank of result
+    //count each rank of each result
     private static void getHitStatistics(ArrayList<Integer> tempList) {
             int hitNum = 0;
             for(int i = 0; i < 6; i++)
