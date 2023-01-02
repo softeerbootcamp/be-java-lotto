@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
-    private static final int NUMBER_SIZE=6;
-    private static final int START_NUMBER=1;
-    private static final int END_NUMBER=45;
-    private final List<Integer> numbers;
+    protected static final int NUMBER_SIZE=6;
+    protected static final int START_NUMBER=1;
+    protected static final int END_NUMBER=45;
+    protected List<Integer> numbers;
 
     public Lotto() {
         this.numbers = makeLotto();
