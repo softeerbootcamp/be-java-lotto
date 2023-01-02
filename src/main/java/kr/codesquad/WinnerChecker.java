@@ -13,9 +13,8 @@ public class WinnerChecker {
       List<LottoNumbers> numbersList,
       LottoNumbers winningNumber
   ) {
-    Map<Integer, Integer> map = Arrays.stream(winningNumberCount)
-                                      .boxed()
-                                      .collect(Collectors.toMap(j -> j, j -> 0, (a, b) -> b));
+    Map<Integer, Integer> map = Arrays.stream(WinningAmount.values())
+                                      .collect(Collectors.toMap(WinningAmount::getCorrectCount, w -> 0, (a, b) -> b));
 
     numbersList.stream()
                .mapToInt(winningNumber::countMatch)
