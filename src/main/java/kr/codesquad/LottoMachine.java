@@ -73,10 +73,11 @@ public class LottoMachine {
     }
 
     private void printResult(Map<Rank, Integer> rankStatus, int money) {
+        System.out.println("\n당첨 통계\n---------");
         int totalPrice = 0;
         List<Rank> rankList = List.of(Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST);
         for (Rank rank: rankList) {
-            int targetedCnt = rankStatus.containsKey(rank) ? rankStatus.get(rank) : 0;
+            int targetedCnt = rankStatus.getOrDefault(rank, 0);
             totalPrice += rank.getWinningMoney() * targetedCnt;
             System.out.println(rank.getCountOfMatch() + "개 일치 (" + rank.getWinningMoney() + "원) - "
                     + targetedCnt + "개");
