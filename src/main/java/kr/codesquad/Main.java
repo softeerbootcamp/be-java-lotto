@@ -11,7 +11,9 @@ class My_lotto{
         setLotto_cnt(lotto_cnt);
         this.my_lottos = setMy_lottos(this.lotto_cnt);
     }
-
+    public ArrayList<One_lotto> getMy_lottos(){
+        return this.my_lottos;
+    }
     public void setLotto_cnt(int lotto_cnt) {
         this.lotto_cnt = lotto_cnt;
     }
@@ -24,9 +26,9 @@ class My_lotto{
         }
         for (int j=0;j<lotto_cnt;j++) {
             Collections.shuffle(numList);
-            int[] lottoNums = new int[6];
+            ArrayList<Integer> lottoNums = new ArrayList<>(6);
             for (int i = 0; i < 6; i++) {
-                lottoNums[i] = numList.get(i);
+                lottoNums.add(numList.get(i));
             }
             One_lotto tmplotto = new One_lotto(lottoNums);
             my_lottos.add(tmplotto);
@@ -35,23 +37,51 @@ class My_lotto{
     }
 }
 class One_lotto{
-    private int[] numbers;
-    public One_lotto(int[] numbers) {
+    private ArrayList<Integer> numbers;
+    public One_lotto(ArrayList<Integer> numbers) {
         setNumbers(numbers);
     }
-
-    public void setNumbers(int[] numbers) {
+    public ArrayList<Integer> getNumbers(){return this.numbers;}
+    public void setNumbers(ArrayList<Integer> numbers) {
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 }
 public class Main {
 
     public static final int LOTTO_PRICE = 1000;
-
+    public static final int LOTTO_CNT = 6;
+    public static final int[] JACKPOT_CNT = {0,0,0,0};
     // todo list 1
     public static int ret_lotto_cnt(int money){
         return money/LOTTO_PRICE;
     }
+    public static void ret_jackpot_cnts(ArrayList<Integer> my, ArrayList<Integer> jk){
+        int cnt=0;
+        for (int i=0;i<LOTTO_CNT;i++) {
+            if(my.contains(jk.get(i))){
+                cnt++;
+            }
+        }
+        if(cnt>=3) JACKPOT_CNT[cnt-3]++;
+    }
+    public static void finding_jackpot(My_lotto myLotto, ArrayList<Integer> jackpot_num){
+        for (One_lotto o:myLotto.getMy_lottos()
+             ) {
+            ArrayList<Integer> my_lotto_one = o.getNumbers();
+            ret_jackpot_cnts(my_lotto_one,jackpot_num);
+        }
+    }
+    public static float calculate_profit(int[] jackpots, int money){
+        float prof,sum=0;
+        int[] prizes = {5000,50000,1500000,2000000000};
+        for (int i=0;i< jackpots.length;i++) {
+            sum += prizes[i] * jackpots[i];
+        }
+        prof = (sum-money)/money;
+        return prof;
+    }
+
     public static void main(String[] args) {
         int money,cnt;
         System.out.println("구입 금액을 입력해 주세요.");
@@ -61,15 +91,18 @@ public class Main {
         System.out.printf("%d개를 구매했습니다.\n",cnt);
         My_lotto myLotto = new My_lotto(cnt);
         // todo list 2 까지 해결
-        System.out.printf("당첨 번호를 입력해 주세요.");
+        System.out.printf("당첨 번호를 입력해 주세요.\n");
         Scanner s2 = new Scanner(System.in);
         String str = s2.nextLine();
         String[] strArr= str.split(",");
-        int[] ans = new int[6];
-        for(int i=0;i<6;i++){
-            ans[i] = Integer.parseInt(strArr[i]);
+        ArrayList<Integer> jackpot_num = new ArrayList<>(LOTTO_CNT);
+        for(int i=0;i<LOTTO_CNT;i++){
+            jackpot_num.add(Integer.parseInt(strArr[i]));
         }
-
-
+        Collections.sort(jackpot_num);
+        finding_jackpot(myLotto,jackpot_num);
+        System.out.printf("총 수익률은 : %f",calculate_profit(JACKPOT_CNT,money)*100);
+        System.out.print("%");
+        System.out.println("입니다.");
     }
 }
