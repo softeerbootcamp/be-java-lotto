@@ -32,7 +32,7 @@ public class Main {
 
         for (int i = 0; i < num; i++) {
             Row row = new Row();
-            recevieRandomLotto(row);
+            receiveRandomLotto(row);
             rows.add(row);
         }
 
@@ -57,6 +57,7 @@ public class Main {
             Row row = rows.get(i);
             row.compare(answers);
         }
+
         /**
          * 수익률 계산
          */
@@ -79,7 +80,7 @@ public class Main {
      * 유사난수로 1~45의 숫자 중 6개씩 생성된 줄만큼 입력
      *
      */
-    private static void recevieRandomLotto(Row row) {
+    private static void receiveRandomLotto(Row row) {
         List<Integer> values = row.values;
         int min = 1;
         int max = 45;
