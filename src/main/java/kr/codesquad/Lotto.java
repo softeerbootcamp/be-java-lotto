@@ -1,11 +1,16 @@
 package kr.codesquad;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    private List<Integer> numbers;
+    private List<List<Integer>> numbers;
 
-    public long calculateCount(long money) {
-        return money / 10;
+    Lotto() {
+        this.numbers = new ArrayList<>();
     }
+    public long calculateCount(long money) {
+        return money / 1000;
+    }
+
 }
