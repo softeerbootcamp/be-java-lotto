@@ -27,6 +27,7 @@ class My_lotto{
         for (int j=0;j<lotto_cnt;j++) {
             Collections.shuffle(numList);
             ArrayList<Integer> lottoNums = new ArrayList<>(6);
+            // 분리하자
             for (int i = 0; i < 6; i++) {
                 lottoNums.add(numList.get(i));
             }
@@ -60,6 +61,7 @@ public class Main {
     public static void ret_jackpot_cnts(ArrayList<Integer> my, ArrayList<Integer> jk){
         int cnt=0;
         for (int i=0;i<LOTTO_CNT;i++) {
+            //  분리 하자
             if(my.contains(jk.get(i))){
                 cnt++;
             }
@@ -101,7 +103,6 @@ public class Main {
         cnt = ret_lotto_cnt(money);
         System.out.printf("%d개를 구매했습니다.\n",cnt);
         My_lotto myLotto = new My_lotto(cnt);
-        // todo list 2 까지 해결
         setJackpotNum();
         finding_jackpot(myLotto,JACKPOT_NUM);
         System.out.printf("총 수익률은 : %f",calculate_profit(JACKPOT_CNT,money)*100);
