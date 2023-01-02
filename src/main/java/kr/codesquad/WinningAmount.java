@@ -20,6 +20,26 @@ public enum WinningAmount {
     this.price = price;
   }
 
+  public static Optional<WinningAmount> from(int count) {
+    WinningAmount result = null;
+    switch (count) {
+      case 3:
+        result = THREE;
+        break;
+      case 4:
+        result = FOUR;
+        break;
+      case 5:
+        result = FIVE;
+        break;
+      case 6:
+        result = SIX;
+        break;
+    }
+
+    return Optional.ofNullable(result);
+  }
+
   public int getCorrectCount() {
     return correctCount;
   }

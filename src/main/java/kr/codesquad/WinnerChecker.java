@@ -3,6 +3,7 @@ package kr.codesquad;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class WinnerChecker {
@@ -11,13 +12,16 @@ public class WinnerChecker {
       List<LottoNumbers> numbersList,
       LottoNumbers winningNumber
   ) {
-    Map<Integer, Integer> map = Arrays.stream(WinningAmount.values())
-                                      .collect(Collectors.toMap(WinningAmount::getCorrectCount, w -> 0, (a, b) -> b));
+    Map<WinningAmount, Integer> map = Arrays.stream(WinningAmount.values())
+                                            .collect(Collectors.toMap(w -> w, w -> 0, (a, b) -> b));
 
     numbersList.stream()
                .mapToInt(winningNumber::countMatch)
+               .mapToObj(WinningAmount::from)
+               .filter(Optional::isPresent)
+               .map(Optional::get)
                .filter(map::containsKey)
-               .forEach(matchCount -> map.put(matchCount, map.get(matchCount) + 1));
+               .forEach(winningAmount -> map.put(winningAmount, map.get(winningAmount) + 1));
 
     return WinningResult.from(map);
   }
