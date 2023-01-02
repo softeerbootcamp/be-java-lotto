@@ -11,7 +11,7 @@
 ## 기능 리스트 
 - [x] 로또번호 생성 기능  - NumberGenerator#numberGenerate()
 - [x] 로또 금액 입력 받는 기능  - InputView#InputMoney() 
-- [ ] 입력받은 금액으로 구매가능한 로또 갯수 계산 기능 - Lotto#calculateCount()
+- [x] 입력받은 금액으로 구매가능한 로또 갯수 계산 기능 - Lotto#calculateCount()
 - [ ] 구매한 로또 개수 출력 기능 - OutputView#printLottoCount()
 - [ ] 구매한 로또 번호 출력 기능 - OutputView#printLottoNumbers()
 - [ ] 당첨번호 입력 텍스트 출력 기능 - OutputView#printWinningNumberText()
