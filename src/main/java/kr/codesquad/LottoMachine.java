@@ -47,4 +47,12 @@ public class LottoMachine {
             throw new RuntimeException(e);
         }
     }
+
+    private int calcTargetedNumberCount(List<Integer> lotto, Set<Integer> winNumSet) {
+        int winNumCnt = 0;
+        for (Integer winNum: winNumSet) {
+            if (lotto.contains(winNum)) winNumCnt++;
+        }
+        return winNumCnt;
+    }
 }
