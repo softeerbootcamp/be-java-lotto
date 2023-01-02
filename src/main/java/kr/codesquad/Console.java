@@ -17,6 +17,7 @@ public class Console {
 
   public LottoNumbers inputWinningNumbers() {
     String s = commandLineInput();
+    System.out.println();
     String[] split = s.split(", ");
 
     List<Integer> list = Arrays.stream(split)
@@ -41,6 +42,17 @@ public class Console {
 
   public void printLottoNumbersList(List<LottoNumbers> numbersList) {
     numbersList.forEach(System.out::println);
+    System.out.println();
+  }
+
+  public void printWinningResult(WinningResult result) {
+    System.out.println("당첨 통계");
+    System.out.println("---------");
+    System.out.println(result.getStatistics());
+  }
+
+  public void printEarningRate(EarningRate earningRate) {
+    System.out.println("총 수익률은 " + earningRate.toString() + "입니다");
   }
 
   private String commandLineInput() {
