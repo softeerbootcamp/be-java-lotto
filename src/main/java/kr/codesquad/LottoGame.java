@@ -11,7 +11,7 @@ public class LottoGame {
     private final static int LOTTO_PRICE = 1000;
     private final static int LOTTO_NUMBER_COUNT = 6;
 
-    private static ArrayList<Integer> result;
+    private static ArrayList<Integer> result = new ArrayList<>(LOTTO_NUMBER_COUNT);
     private static int firstWin = 0;
     private static int secondWin = 0;
     private static int thirdWin = 0;
@@ -29,7 +29,6 @@ public class LottoGame {
     }
 
     public LottoGame() {
-        result = new ArrayList<>(LOTTO_NUMBER_COUNT);
         lottoNumbers = new ArrayList<>();
         for (int i = 1; i <= 45; i++) {
             lottoNumbers.add(i);
@@ -44,7 +43,6 @@ public class LottoGame {
                 matchNum += 1;
             }
         }
-        result.set(matchNum, result.get(matchNum) + 1);
         if (matchNum == LOTTO_NUMBER_COUNT) {
             firstWin += 1;
         }
@@ -69,7 +67,7 @@ public class LottoGame {
         double output = fourthWin * 5000 + thirdWin * 50000 + secondWin * 1500000 + firstWin * 2000000000;
         double input = purchaseAmount * 1000;
 
-        System.out.println(String.format("%.2f", ((output - input) / input) * 100) + "%");
+        System.out.println(String.format("%.2f",((output - input) / input) * 100)+"%");
     }
 
     public void compareLotto(List<Lotto> purchasedLottoList, Lotto winningLotto) {
