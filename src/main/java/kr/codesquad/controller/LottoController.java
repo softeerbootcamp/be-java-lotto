@@ -13,6 +13,7 @@ public class LottoController {
         OutputView.printStartMessage();
         int money = InputView.readMoney();
 
-        
+        int lottoCount = money / 1000;
+        OutputView.printLottoCount(lottoCount);
     }
 }
