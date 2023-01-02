@@ -12,6 +12,7 @@ public class WinningResult {
   public String getStatistics() {
     return map.keySet()
               .stream()
+              .sorted()
               .map(this::getWinningAmountStatics)
               .collect(Collectors.joining());
   }
