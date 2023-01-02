@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import java.util.Optional;
+
 public enum WinningAmount {
 
   THREE(3, 5000),
@@ -8,11 +10,11 @@ public enum WinningAmount {
   SIX(6, 2000000000);
 
   private final int correctCount;
-  private final double price;
+  private final int price;
 
   WinningAmount(
       int correctCount,
-      double price
+      int price
   ) {
     this.correctCount = correctCount;
     this.price = price;
@@ -22,7 +24,7 @@ public enum WinningAmount {
     return correctCount;
   }
 
-  public double getPrice() {
+  public int getPrice() {
     return price;
   }
 }
