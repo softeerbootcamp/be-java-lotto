@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(){
         lottoNums = Utility.generateRandomSixNumbers();
+        System.out.println(lottoNums);
     }
 
     public int getRightCount(ArrayList<Integer> prize_nums){
@@ -19,19 +20,8 @@ public class Lotto {
     }
 
     public static int getMoneyByCount(int correct_count){
-        if(correct_count == 6){
-            return 2000000000;
-        }
-        if(correct_count == 5){
-            return 1500000;
-        }
-        if(correct_count == 4){
-            return 50000;
-        }
-        if(correct_count == 3) {
-            return 5000;
-        }
-        return 0;
+        int[] result = {0,0,0,5000,50000,1500000, 2000000000};
+        return result[correct_count];
     }
 
 }
