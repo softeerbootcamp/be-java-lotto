@@ -36,7 +36,7 @@ public class LottoMachine {
     }
 
 
-    public void checkWin(LottoTicket lottoTicket) {
+    public void checkWin(LottoTicket lottoTicket) throws IOException {
         List<Integer> winNumberList = this.getWinNumberList();
         List<Integer> rankList = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
         for (List<Integer> lotto: lottoTicket.getLottoList()) {
@@ -55,16 +55,12 @@ public class LottoMachine {
         return numberList.subList(0, 6);
     }
 
-    private List<Integer> getWinNumberList() {
+    private List<Integer> getWinNumberList() throws IOException {
         System.out.println("\n당첨 번호를 입력하세요.");
         List<Integer> winNumSet = new ArrayList<>(6);
-        try {
-            String[] winNumArr  = br.readLine().split(" ");
-            for (String winNum: winNumArr) winNumSet.add(Integer.parseInt(winNum));
-            return winNumSet;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        String[] winNumArr  = br.readLine().replaceAll(" ", "").split(",");
+        for (String winNum: winNumArr) winNumSet.add(Integer.parseInt(winNum));
+        return winNumSet;
     }
 
     private int calcTargetedNumberCount(List<Integer> lotto, List<Integer> winNumSet) {
