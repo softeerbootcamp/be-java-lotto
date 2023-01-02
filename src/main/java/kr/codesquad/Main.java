@@ -44,8 +44,8 @@ class Lotto{
 
     public Lotto() {
         lottoes = new ArrayList<>();
-        //inputs= new ArrayList<>();
-        inputs= new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        inputs= new ArrayList<>();
+        //inputs= new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
     }
 
     public void make_shuffle(){
@@ -64,10 +64,11 @@ class Lotto{
      */
     public void make_auto_lotto(int cost) {
         cnt = cost/1000; // 총 로또 개수
+        System.out.println("총"+cnt+"개를 구매했습니다.");
         for(int i=0;i<cnt;i++){
             make_shuffle();
         }
-        //get_input();
+        get_input();
 
         get_same_cnt();
     }
@@ -76,6 +77,7 @@ class Lotto{
      * 당첨 번호 입력 받기
      */
     public void get_input(){
+        System.out.println("당첨 번호를 입력해주세요.");
         Scanner sc = new Scanner(System.in);
         for(int i=0;i<6;i++){
             int num = sc.nextInt();
@@ -102,7 +104,7 @@ class Lotto{
             res=is_same(lotto,inputs.get(i),res);
         }
 
-        System.out.println(res);
+        //System.out.println(res);
         if(res <3) return;
 
         if(res==3) match3++;
@@ -123,10 +125,10 @@ class Lotto{
             cmp_for_cnt(lottoes.get(i));
         }
 
-        System.out.println(match3);
-        System.out.println(match4);
-        System.out.println(match5);
-        System.out.println(match6);
+//        System.out.println(match3);
+//        System.out.println(match4);
+//        System.out.println(match5);
+//        System.out.println(match6);
 
     }
 }
@@ -135,7 +137,10 @@ public abstract class Main {
 
     public static void main(String[] args) {
         Lotto lotto = new Lotto();
-        lotto.make_auto_lotto(14000);
+        System.out.println("구입금액을 입력해주세요. ");
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        lotto.make_auto_lotto(num);
     }
 
 
