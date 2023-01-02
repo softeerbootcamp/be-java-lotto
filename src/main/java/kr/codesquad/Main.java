@@ -9,13 +9,17 @@ public class Main {
     static List<List<Integer>> lottoList = new ArrayList<>();
 
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요.");
-
-        Scanner sc = new Scanner(System.in);
-        int count = sc.nextInt() / 1000;
+        int count = getLottoCount();
         System.out.println(count + "개를 구매했습니다.");
 
         shuffle(count);
+    }
+
+    public static int getLottoCount() {
+        System.out.println("구입금액을 입력해 주세요.");
+
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt() / 1000;
     }
 
     public static void shuffle(int count) {
