@@ -1,7 +1,11 @@
 package kr.codesquad;
+import java.util.*;
+
+import static kr.codesquad.LottoService.buyLotto;
 
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        LottoService.start();
     }
 }
