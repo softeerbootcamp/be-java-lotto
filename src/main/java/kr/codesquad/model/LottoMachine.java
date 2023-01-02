@@ -6,12 +6,6 @@ import java.util.List;
 
 public class LottoMachine {
 
-    private final LottoNumberGenerator lottoNumberGenerator;
-
-    public LottoMachine() {
-        this.lottoNumberGenerator = new LottoNumberGenerator();
-    }
-
     public List<Lotto> createLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
 
@@ -23,7 +17,7 @@ public class LottoMachine {
     }
 
     private Lotto createLotto() {
-        List<Integer> numbers = lottoNumberGenerator.generate();
+        List<Integer> numbers = LottoNumberGenerator.generate();
         Collections.sort(numbers);
 
         return new Lotto(numbers);
