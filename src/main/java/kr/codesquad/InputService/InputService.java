@@ -1,14 +1,13 @@
 package kr.codesquad.InputService;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public interface InputService {
-    void getInputMoney();
+    void inputMoney();
     void printLottoCount();
 
-    void getWonNumber();
+    void inputWinningNumber();
 
-    ArrayList<Integer> getWonNumberList();
+    ArrayList<Integer> getWinningNumberList();
     long getLottoCount();
 }
