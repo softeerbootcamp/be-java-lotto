@@ -1,7 +1,6 @@
 package kr.codesquad;
 
 import java.util.List;
-import java.util.Map;
 
 public class App implements Runnable {
 
@@ -33,10 +32,11 @@ public class App implements Runnable {
     console.printInputWinningNumber();
     LottoNumbers winningNumber = console.inputWinningNumbers();
 
-    Map<Integer, Integer> check = winnerChecker.check(numbersList, winningNumber);
+    WinningResult winningResult = winnerChecker.check(numbersList, winningNumber);
+    console.printWinningResult(winningResult);
 
-    System.out.println(check.toString());
-
+    EarningRate earningRate = EarningRate.of(winningResult.getTotalWinningMoney(), purchaseAmount);
+    console.printEarningRate(earningRate);
   }
 
 }
