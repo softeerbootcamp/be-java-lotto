@@ -36,6 +36,11 @@ public class Main {
             rows.add(row);
         }
 
+        for (Row row : rows) {
+            List<Integer> values = row.getValues();
+//            row.printValues();
+        }
+
         /**
          * 당첨번호 입력
          */
@@ -61,8 +66,13 @@ public class Main {
         /**
          * 수익률 계산
          */
-        Statistic statistic = new Statistic();
-        statistic.calculateRate(rows);
+        Statistic statistic = new Statistic(COLUMN);
+        for (Row row : rows) {
+            statistic.calculateOutput(row);
+        }
+        statistic.calculateRate(input);
+
+        statistic.printStatistics();
 
     }
 
