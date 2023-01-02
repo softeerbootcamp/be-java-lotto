@@ -1,6 +1,8 @@
 package kr.codesquad;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LottoNumbers {
 
@@ -18,5 +20,11 @@ public class LottoNumbers {
     return numbers.toString();
   }
 
+  public int countMatch(LottoNumbers target) {
+    Set<Integer> set = new HashSet<>(target.numbers);
+    return (int)this.numbers.stream()
+                            .filter(set::contains)
+                            .count();
+  }
 
 }
