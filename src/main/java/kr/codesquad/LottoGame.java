@@ -39,9 +39,7 @@ public class LottoGame {
 
         int matchNum = 0;
         for (int num : purchasedLotto.getNumbers()) {
-            if (winningLotto.getNumbers().contains(num)) {
-                matchNum += 1;
-            }
+            matchNum = setMatchNum(winningLotto, matchNum, num);
         }
         if (matchNum == LOTTO_NUMBER_COUNT) {
             firstWin += 1;
@@ -55,6 +53,13 @@ public class LottoGame {
         if (matchNum == LOTTO_NUMBER_COUNT - 3) {
             fourthWin += 1;
         }
+    }
+
+    private static int setMatchNum(Lotto winningLotto, int matchNum, int num) {
+        if (winningLotto.getNumbers().contains(num)) {
+            matchNum += 1;
+        }
+        return matchNum;
     }
 
     public void printResult(int purchaseAmount) {
