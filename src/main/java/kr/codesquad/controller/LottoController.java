@@ -23,5 +23,7 @@ public class LottoController {
         OutputView.printLottoCount(lottoCount);
 
         List<Lotto> lottos = lottoMachine.createLottos(lottoCount);
+
+        OutputView.printLottos(lottos);
     }
 }
