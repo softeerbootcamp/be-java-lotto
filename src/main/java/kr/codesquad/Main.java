@@ -27,15 +27,13 @@ public class Main {
     }
 
     //generate random numbers of lotto
-    private static void lottoGenerate(int repNum) {
-        for(int i = 0 ; i < repNum; i++){
-            Collections.shuffle(allNums);
-            ArrayList<Integer> tempList = new ArrayList<Integer>();
-            for(int j = 0;  j < 6; j++)
-                tempList.add(allNums.get(j));
-            System.out.println(tempList);
-            lottoList.add(tempList);
-        }
+    private static void lottoGenerate() {
+        Collections.shuffle(allNums);
+        ArrayList<Integer> tempList = new ArrayList<Integer>();
+        for(int j = 0;  j < 6; j++)
+            tempList.add(allNums.get(j));
+        System.out.println(tempList);
+        lottoList.add(tempList);
     }
 
     //print result of all lotteries
@@ -62,13 +60,9 @@ public class Main {
 
 
     //count each rank of result
-    private static void getHitStatistics(int repNum) {
-        for (int i = 0; i < repNum; i++) {
-            int hitNum = containNum(lottoList.get(i));
-            if (hitNum >= 3) {
-                hitNums.put(hitNum, hitNums.getOrDefault(hitNum, 0) + 1);
-            }
-        }
+    private static void getHitStatistics(ArrayList<Integer> tempList) {
+            int hitNum = containNum(tempList);
+            hitNums.put(hitNum, hitNums.getOrDefault(hitNum, 0) + 1);
     }
 
 
@@ -94,14 +88,18 @@ public class Main {
 
     public static void main(String[] args) {
         initMethod();
-        lottoGenerate(enterPurchasePrice());
+        enterPurchasePrice();
+        for(int i = 0 ; i < numOfLotto; i++){
+            lottoGenerate();
+        }
         try{
             enterResultNumbers();
         }catch (RuntimeException e){
             System.out.println(e.getMessage());
             System.exit(0);
         }
-        getHitStatistics(numOfLotto);
+        for(int i = 0; i < numOfLotto; i++)
+            getHitStatistics(lottoList.get(i));
         printResult(purchasedPrice);
     }
 
