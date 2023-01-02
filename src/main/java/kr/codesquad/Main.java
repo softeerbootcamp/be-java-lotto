@@ -15,6 +15,10 @@ public class Main {
 
         shuffle(count);
         inputWinNum();
+
+        for(int i = 0;i < count;i++) {
+            int winCount = countWin(i);
+        }
     }
 
     public static int getLottoCount() {
@@ -29,9 +33,10 @@ public class Main {
 
         for(int i = 0;i < count;i++) {
             Collections.shuffle(numList);
-            lottoList.add(numList.subList(0, 6));
+            List<Integer> subList = new ArrayList<>(numList.subList(0, 6));
+            lottoList.add(subList);
             Collections.sort(lottoList.get(i));
-            System.out.println(lottoList.get(i).toString());
+            System.out.println(lottoList.get(i));
         }
     }
 
@@ -39,9 +44,22 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("당첨 번호를 입력해 주세요.");
         String winNum = sc.nextLine();
-        String[] temp = winNum.split(",");
+        String[] temp = winNum.split(", ");
 
         winNumList = new ArrayList<>();
         for(int i = 0;i < 6;i++) winNumList.add(Integer.parseInt(temp[i]));
+    }
+
+    public static int countWin(int index) {
+        int winCount = 0;
+
+        if(lottoList.get(index).contains(winNumList.get(0))) winCount++;
+        if(lottoList.get(index).contains(winNumList.get(1))) winCount++;
+        if(lottoList.get(index).contains(winNumList.get(2))) winCount++;
+        if(lottoList.get(index).contains(winNumList.get(3))) winCount++;
+        if(lottoList.get(index).contains(winNumList.get(4))) winCount++;
+        if(lottoList.get(index).contains(winNumList.get(5))) winCount++;
+
+        return winCount;
     }
 }
