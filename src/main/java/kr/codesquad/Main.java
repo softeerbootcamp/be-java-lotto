@@ -95,7 +95,12 @@ public class Main {
     public static void main(String[] args) {
         initMethod();
         lottoGenerate(enterPurchasePrice());
-        enterResultNumbers();
+        try{
+            enterResultNumbers();
+        }catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            System.exit(0);
+        }
         getHitStatistics(numOfLotto);
         printResult(purchasedPrice);
     }
