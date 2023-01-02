@@ -8,26 +8,43 @@ import java.util.*;
 public class LottoMachine {
 
     private final Set<Integer> numSet;
-    private final int price;
+    private final int priceOfLotto;
 
     private final BufferedReader br;
 
-    public LottoMachine(int price) {
+    private List<List<Integer>> lottoList;
+    private int money;
+
+    public LottoMachine(int priceOfLotto) {
         this.numSet = new HashSet<>(45);
         for (int idx = 1; idx <= 45; idx++) numSet.add(idx);
-        this.price = price;
+        this.priceOfLotto = priceOfLotto;
         this.br = new BufferedReader(new InputStreamReader(System.in));
     }
 
     public List<List<Integer>> buy(int total) {
-        int cnt = total / price;
+        int cnt = total / priceOfLotto;
+        this.money = cnt * priceOfLotto;
 
         List<List<Integer>> lottoList = new ArrayList<>(cnt);
         for (int idx = 0; idx < cnt; idx++) {
             lottoList.add(shuffle());
         }
+        this.lottoList = lottoList;
+        return this.lottoList;
+    }
 
-        return lottoList;
+
+    public void checkWin(List<List<Integer>> lottoList) {
+        Set<Integer> winNumSet = this.getWinNumberSet();
+        Map<Rank, Integer> rankStatus = new HashMap<>(lottoList.size());
+        for (List<Integer> lotto: lottoList) {
+            int winNumber = this.calcTargetedNumberCount(lotto, winNumSet);
+            Rank rank = Rank.valueOf(winNumber);
+            if (rank == null) continue;
+            int totalCnt = rankStatus.containsKey(rank) ? rankStatus.get(rank) + 1 : 1;
+            rankStatus.put(rank, totalCnt);
+        }
     }
 
     private List<Integer> shuffle() {
