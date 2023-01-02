@@ -22,10 +22,6 @@ public class InputView {
         for (int i = 0; i < input.length; i++) {
             list.add(Integer.parseInt(input[i]));
         }
-        for (Integer integer : list) {
-            System.out.print(integer+" ");
-        }
-        System.out.println();
         return list;
     }
 }
