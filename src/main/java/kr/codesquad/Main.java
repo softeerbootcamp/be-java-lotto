@@ -10,7 +10,7 @@ public class Main {
 
     // todo list 1
     public static int ret_lotto_cnt(int money){
-        return money%1000;
+        return money%LOTTO_PRICE;
     }
 
 }
