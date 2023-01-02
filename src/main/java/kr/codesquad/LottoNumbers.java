@@ -14,4 +14,9 @@ public class LottoNumbers {
     return new LottoNumbers(numbers);
   }
 
+  public String toString() {
+    return numbers.toString();
+  }
+
+
 }
