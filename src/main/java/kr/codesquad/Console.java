@@ -1,0 +1,54 @@
+package kr.codesquad;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Console {
+
+  private final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+  public int inputPurchaseAmount() {
+    return Integer.parseInt(commandLineInput());
+  }
+
+  public LottoNumbers inputWinningNumbers() {
+    String s = commandLineInput();
+    String[] split = s.split(", ");
+
+    List<Integer> list = Arrays.stream(split)
+                               .mapToInt(Integer::parseInt)
+                               .boxed()
+                               .collect(Collectors.toList());
+
+    return LottoNumbers.from(list);
+  }
+
+  public void printInputAmount() {
+    System.out.println("구입 금액을 입력해 주세요");
+  }
+
+  public void printPurchaseCount(int purchaseCount) {
+    System.out.println(purchaseCount + "개를 구입했습니다. ");
+  }
+
+  public void printInputWinningNumber() {
+    System.out.println("당첨 번호를 입력해 주세요");
+  }
+
+  public void printLottoNumbersList(List<LottoNumbers> numbersList) {
+    numbersList.forEach(System.out::println);
+  }
+
+  private String commandLineInput() {
+    try {
+      return br.readLine();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+}
