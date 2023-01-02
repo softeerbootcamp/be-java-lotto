@@ -16,6 +16,13 @@ public class WinningResult {
               .collect(Collectors.joining());
   }
 
+  public long getTotalWinningMoney() {
+    return map.keySet()
+              .stream()
+              .mapToLong(winningAmount -> (long)winningAmount.getPrice() * map.get(winningAmount))
+              .sum();
+  }
+
   private WinningResult(Map<WinningAmount, Integer> map) {
     this.map = map;
   }
