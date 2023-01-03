@@ -25,5 +25,9 @@ public class LottoService {
         outputView.printWinningNumberText();
         lotto.setWinningNumbers(inputView.inputWinningNumbers());
     }
-    
+    public void calculateTotal() {
+        lotto.calculateTotalResult();
+        outputView.printTotalText(lotto.getResultIndex(), lotto.getResult());
+        outputView.printEarnedRate(lotto.calculateEarningRate());
+    }
 }
