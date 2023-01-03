@@ -1,29 +1,34 @@
 package kr.codesquad;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoStat {
 
     private long total_money;
-    private int[] winnings = {0,0,0,0,0,0,0};
+    private Map<Prize, Integer> winnings;
     private List<Lotto> lottos;
     private List<Integer> winningNums;
-    public LottoStat(List<Lotto> lottos, List<Integer> winningNums){
+    private int winningBonus;
+
+    public LottoStat(List<Lotto> lottos, List<Integer> winningNums, int bonus){
         this.lottos = lottos;
         this.winningNums = winningNums;
+        winningBonus = bonus;
         System.out.println(winningNums);
-
+        winnings = new HashMap<>();
         calcResult();
     }
 
     public void calcResult() {
-        for(int i =0; i<winnings.length; i++){
-            winnings[i] = 0;
+        for(Prize prize : Prize.values()){
+            winnings.put(prize, 0);
         }
         for(Lotto lotto : lottos){
-            int count = lotto.getRightCount(winningNums);
-            winnings[count] ++;
-            total_money += Lotto.getMoneyByCount(count);
+            Prize prize = lotto.getRightPrize(winningNums, winningBonus);
+            winnings.put(prize, winnings.get(prize)+1);
+            total_money += prize.getMoney();
         }
     }
 
@@ -33,7 +38,8 @@ public class LottoStat {
         System.out.println(String.format("3개 일치 (5000원)- %d개", winnings[3]));
         System.out.println(String.format("4개 일치 (50000원)- %d개", winnings[4]));
         System.out.println(String.format("5개 일치 (15000원)- %d개", winnings[5]));
-        System.out.println(String.format("6개 일치 (2000000원)- %d개", winnings[6]));
+        System.out.println(String.format("5개 일치, 보너스 볼 일치(30000000원) - %d개", winnings[6]));
+        System.out.println(String.format("6개 일치 (2000000원)- %d개", winnings[7]));
         double roi = (double)(total_money - lottos.size() * 1000L) / (lottos.size() * 1000) * 100;
         System.out.println(String.format("총 수익률은 %.2f%입니다.", roi));
     }
