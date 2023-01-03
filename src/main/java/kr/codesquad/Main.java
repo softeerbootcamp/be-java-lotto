@@ -1,5 +1,7 @@
 package kr.codesquad;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -16,10 +18,15 @@ public class Main {
         for(Integer i = 0; i < buyNum; i++)
         {
             Collections.shuffle(Numbers);
-            for(int j = 0; j < 6; j++) {
-                Lottos.get(i).add(Numbers.get(j));
-            }
+            allocateZeroToSix(i, Numbers);
             Collections.sort(Lottos.get(i));
+        }
+    }
+
+    static public void allocateZeroToSix(int idx, ArrayList<Integer> Numbers)
+    {
+        for(int j = 0; j < 6; j++) {
+            Lottos.get(idx).add(Numbers.get(j));
         }
     }
 
@@ -75,6 +82,7 @@ public class Main {
 
         System.out.println("구입 금액을 입력하세요");
         buyNum = sc.nextInt() / 1000;
+        System.out.printf("구매 개수 : %d\n", buyNum);
         for(int i = 0; i < buyNum; i++)
         {
             Lottos.add(new ArrayList<Integer>());
