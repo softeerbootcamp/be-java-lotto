@@ -9,14 +9,14 @@ import static kr.codesquad.Lotto_Info.LOTTO_PRICE;
 
 class My_lotto{
     private int lotto_cnt;
-    private ArrayList<One_lotto> my_lottos;
+    private ArrayList<Empty_lotto> my_lottos;
     private ArrayList<Integer> all_lotto_num;
     public My_lotto(int lotto_cnt) {
         setLotto_cnt(lotto_cnt);
         setAll_lotto_num();
         this.my_lottos = setMy_lottos(this.lotto_cnt);
     }
-    public ArrayList<One_lotto> getMy_lottos(){
+    public ArrayList<Empty_lotto> getMy_lottos(){
         return this.my_lottos;
     }
     public void setLotto_cnt(int lotto_cnt) {
@@ -39,10 +39,10 @@ class My_lotto{
         return lottoNums;
     }
 
-    public ArrayList<One_lotto> setMy_lottos(int lotto_cnt) {
+    public ArrayList<Empty_lotto> setMy_lottos(int lotto_cnt) {
         my_lottos = new ArrayList<>(lotto_cnt);
         for (int j=0;j<lotto_cnt;j++) {
-            One_lotto tmplotto = new One_lotto(retRand_lotto_num());
+            Empty_lotto tmplotto = new Empty_lotto(retRand_lotto_num());
             my_lottos.add(tmplotto);
             tmplotto.printNumbers();
         }
@@ -50,20 +50,7 @@ class My_lotto{
         return my_lottos;
     }
 }
-class One_lotto{
-    private ArrayList<Integer> numbers;
-    public One_lotto(ArrayList<Integer> numbers) {
-        setNumbers(numbers);
-    }
-    public ArrayList<Integer> getNumbers(){return this.numbers;}
-    public void setNumbers(ArrayList<Integer> numbers) {
-        Collections.sort(numbers);
-        this.numbers = numbers;
-    }
-    public void printNumbers(){
-        System.out.println(this.numbers);
-    }
-}
+
 public class Main {
     // todo list 1
     public static int ret_lotto_cnt(int money){

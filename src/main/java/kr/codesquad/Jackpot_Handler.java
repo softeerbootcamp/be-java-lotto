@@ -35,7 +35,7 @@ public class Jackpot_Handler {
     }
 
     public static void finding_jackpot(My_lotto myLotto, ArrayList<Integer> jackpot_num){
-        for (One_lotto o:myLotto.getMy_lottos()
+        for (Empty_lotto o:myLotto.getMy_lottos()
         ) {
             ArrayList<Integer> my_lotto_one = o.getNumbers();
             ret_jackpot_cnts(my_lotto_one,jackpot_num);
