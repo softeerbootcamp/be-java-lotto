@@ -50,6 +50,8 @@ public class LottoSystem {
 
         for(int i = 0; i < lottoCount; i++) {
             int winNumCount = countWinNum(lotto, winNumList, i);
+            List<Integer> result = new ArrayList<>(List.of(0, 0, 0, 0));
+            setResult(result, winNumCount);
         }
     }
 
@@ -65,5 +67,12 @@ public class LottoSystem {
         if(lottoList.get(index).contains(winNumList.get(5))) winNumCount++;
 
         return winNumCount;
+    }
+
+    public void setResult(List<Integer> result, int winNumCount) {
+        if(winNumCount == 3) result.set(0, result.get(0) + 1);
+        if(winNumCount == 4) result.set(1, result.get(1) + 1);
+        if(winNumCount == 5) result.set(2, result.get(2) + 1);
+        if(winNumCount == 6) result.set(3, result.get(3) + 1);
     }
 }
