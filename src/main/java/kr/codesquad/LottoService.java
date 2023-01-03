@@ -1,6 +1,8 @@
 package kr.codesquad;
 import java.util.*;
 import java.math.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 class Lotto{
     private static int bonus = -1;
@@ -39,13 +41,12 @@ public class LottoService {
     private static BigInteger money;   //구입한 가격
     private static BigDecimal earn = new BigDecimal("-100");    //수익
     private static int lotto_amount;   //구입한 로또 갯수
-    //private static int[] sameNumber = new int[7];    //당첨 통계 (일치 갯수)
     public enum Price{
-        FIRST(6, 2000000000),
-        BONUS(5, 30000000),
-        SECOND(5, 1500000),
+        FOURTH(3, 5000),
         THIRD(4, 50000),
-        FOURTH(3, 5000);
+        SECOND(5, 1500000),
+        BONUS(5, 30000000),
+        FIRST(6, 2000000000);
         private int countOfMatch;   //일치 개수
         private double winningMoney;   //상금
         public int getCountOfMatch() {
@@ -75,7 +76,6 @@ public class LottoService {
         }
     }
     static Map<Price, Integer> winnerCount = new HashMap<>();
-    //private static final double[] price = {0,0,0,5000,50000,1500000,2000000000};
     static List<Lotto> lottoList = new ArrayList<>();   //구입한 로또 저장소
     static List<Integer> lottoNum = new ArrayList<>();  //로또 번호 1~45
     static Lotto winLotto;
@@ -142,6 +142,14 @@ public class LottoService {
         int bonus = sc.nextInt();
         Lotto.setBonus(bonus);  //보너스 번호 할당
     }
+    static void updateWinnerCount(Price price){
+        int value = winnerCount.get(price)+1;
+        winnerCount.put(price, value);
+    }
+
+    static void updateEarn(Price price){
+        earn = earn.add(new BigDecimal((price.getWinningMoney()/money.intValue())*100));
+    }
     private static void calcResult(){
         List<Integer> winList = Arrays.asList(winLotto.num);
         for (Lotto lotto : lottoList) {
@@ -149,19 +157,24 @@ public class LottoService {
             lottoNum.retainAll(winList);
             int countOfMatch = lottoNum.size(); //일치 갯수
             Price price = Price.valueOf(countOfMatch, lotto.bonusMatch());
-            winnerCount.put(price, winnerCount.get(price)+1);
-            earn = earn.add(new BigDecimal((price.getWinningMoney()/money.doubleValue())*100));
+            if (price == null) continue;
+            updateWinnerCount(price);
+            updateEarn(price);
         }
     }
 
+    static void bonusPrint(Price price){
+        if (price == Price.BONUS)
+            System.out.print(", 보너스 볼 일치");
+    }
     private static void printResult(){
         System.out.println("\n당첨 통계\n---------");
-        for (int i=3; i<=6; i++)
-            System.out.println(i+"개 일치 ("+(int)price[i]+")- "+sameNumber[i]+"개");
+        //보너스를 어떻게 표시하지? indent depth 1로
+        for (Price price:Price.values()){
+            System.out.print(price.getCountOfMatch()+"개 일치");
+            bonusPrint(price);
+            System.out.println(" ("+(int)price.getWinningMoney()+")- "+winnerCount.get(price)+"개");
+        }
         System.out.println("총 수익률은 "+earn.setScale(2,RoundingMode.FLOOR)+"%입니다.");
     }
 }
-
-/*
-100원으로 500원 만들면 수익률 500%? 400%?
- */
