@@ -48,11 +48,13 @@ public class LottoSystem {
         List<Integer> winNumList = new ArrayList<>();
         for(int i = 0;i < 6;i++) winNumList.add(Integer.parseInt(temp[i]));
 
+        List<Integer> result = new ArrayList<>(List.of(0, 0, 0, 0));
         for(int i = 0; i < lottoCount; i++) {
             int winNumCount = countWinNum(lotto, winNumList, i);
-            List<Integer> result = new ArrayList<>(List.of(0, 0, 0, 0));
             setResult(result, winNumCount);
         }
+
+        printResult(result);
     }
 
     public int countWinNum(Lotto lotto, List<Integer> winNumList, int index) {
@@ -74,5 +76,21 @@ public class LottoSystem {
         if(winNumCount == 4) result.set(1, result.get(1) + 1);
         if(winNumCount == 5) result.set(2, result.get(2) + 1);
         if(winNumCount == 6) result.set(3, result.get(3) + 1);
+    }
+
+    public void printResult(List<Integer> result) {
+        System.out.println("당첨 통계");
+        System.out.println("---------");
+
+        System.out.println("3개 일치 (5000원)- " + result.get(0) + "개");
+        System.out.println("4개 일치 (50000원)- " + result.get(1) + "개");
+        System.out.println("5개 일치 (1500000원)- " + result.get(2) + "개");
+        System.out.println("6개 일치 (2000000000원)- " + result.get(3) + "개");
+
+        List<Integer> price = List.of(5000, 50000, 1500000, 2000000000);
+        long resultPrice = (long) result.get(0) * price.get(0) + (long) result.get(1) * price.get(1) +
+                (long) result.get(2) * price.get(2) + (long) result.get(3) * price.get(3);
+        long expense = lottoCount * 1000L;
+        System.out.println("총 수익률은 " + (resultPrice - expense) / expense + "%입니다.");
     }
 }
