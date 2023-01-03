@@ -3,6 +3,7 @@ package kr.codesquad.LottoService;
 import kr.codesquad.Rank;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     Rank getMatchRank(Set<Integer> wonNumberList, int bonusNumber) {
