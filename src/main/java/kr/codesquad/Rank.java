@@ -29,7 +29,7 @@ public enum Rank {
     public int getMoney() {
         return money;
     }
-    public Rank getRankByScore(int score) {
+    public static Rank getRankByScore(int score) {
         return RANK_CASH.get(score);
     }
 }
