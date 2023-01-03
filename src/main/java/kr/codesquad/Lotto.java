@@ -58,7 +58,7 @@ public class Lotto {
     public void calculateTotalResult() {
         for (int i = 0; i < numbers.size(); i++) {
             int count = containsNumberCount(i);
-            updateResult(count);
+            updateScore(count);
         }
     }
     private int containsNumberCount(int index) {
@@ -79,11 +79,6 @@ public class Lotto {
         if (count < 3) return;
         Rank rank = Rank.getRankByScore(count);
         score.put(rank, score.get(rank) + 1);
-    }
-    private void updateResult(int count) {
-        if (count < 3) return;
-        int winningMoney = resultIndex.get(count);
-        result.put(winningMoney, result.get(winningMoney) + 1);
     }
     public double calculateEarningRate() {
         double earnMoney = calculateEarnedMoney();
