@@ -13,9 +13,10 @@ import kr.codesquad.domain.winningResult.WinningResult;
 
 public class Console {
 
-  private final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+  private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
   public int inputPurchaseAmount() {
+    System.out.println("구입 금액을 입력해 주세요");
     return Integer.parseInt(commandLineInput());
   }
 
@@ -30,10 +31,6 @@ public class Console {
                                .collect(Collectors.toList());
 
     return Lotto.from(list);
-  }
-
-  public void printInputAmount() {
-    System.out.println("구입 금액을 입력해 주세요");
   }
 
   public void printPurchaseCount(int purchaseCount) {
