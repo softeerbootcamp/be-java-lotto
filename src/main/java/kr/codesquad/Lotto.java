@@ -29,6 +29,7 @@ public class Lotto {
         result.put(1500000, 0);
         result.put(2000000000, 0);
         bonusBall = 0;
+        score = new HashMap<>();
         score.put(Rank.FIRST, 0);
         score.put(Rank.SECOND, 0);
         score.put(Rank.THIRD, 0);
@@ -91,8 +92,8 @@ public class Lotto {
     }
     private long calculateEarnedMoney() {
         long earnMoney = 0;
-        for (Integer key : result.keySet()) {
-            earnMoney += key * result.get(key);
+        for (Rank rank : score.keySet()) {
+            earnMoney += rank.getMoney() * score.get(rank);
         }
         return earnMoney;
     }
