@@ -5,12 +5,13 @@ import static kr.codesquad.domain.winningResult.WinningAmount.*;
 import java.util.Optional;
 
 import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.lotto.WinningLotto;
 
 public class WinningAmountFactory {
 
   public static Optional<WinningAmount> generate(
       Lotto target,
-      Lotto winner
+      WinningLotto winner
   ) {
     WinningAmount result = null;
 
