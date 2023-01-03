@@ -69,9 +69,9 @@ public class LottoSystem {
 
     public void setResult(List<Integer> result, int winNumCount) {
         if(winNumCount == 3) result.set(0, result.get(0) + 1);
-        if(winNumCount == 4) result.set(1, result.get(1) + 1);
-        if(winNumCount == 5) result.set(2, result.get(2) + 1);
-        if(winNumCount == 6) result.set(3, result.get(3) + 1);
+        else if(winNumCount == 4) result.set(1, result.get(1) + 1);
+        else if(winNumCount == 5) result.set(2, result.get(2) + 1);
+        else if(winNumCount == 6) result.set(3, result.get(3) + 1);
     }
 
     public void printResult(List<Integer> result) {
