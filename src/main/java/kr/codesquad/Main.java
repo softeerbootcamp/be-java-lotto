@@ -23,8 +23,9 @@ public class Main {
     public static void main(String[] args) {
         start();
         My_lotto myLotto = new My_lotto(cnt);
-        setJackpotNum();
-        finding_jackpot(myLotto,JACKPOT_NUM);
-        Calculator.print_and_calculation(JACKPOT_CNT, money);
+        Jackpot_Handler jh = new Jackpot_Handler();
+        jh.setJackpotNum();
+        jh.finding_jackpot(myLotto);
+        Calculator.print_and_calculation(jh.JACKPOT_CNT, money);
     }
 }

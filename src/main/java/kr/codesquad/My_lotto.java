@@ -10,7 +10,7 @@ public class My_lotto {
     public My_lotto(int lotto_cnt) {
         setLotto_cnt(lotto_cnt);
         setAll_lotto_num();
-        this.my_lottos = setMy_lottos(this.lotto_cnt);
+        setMy_lottos();
     }
     public ArrayList<Empty_lotto> getMy_lottos(){
         return this.my_lottos;
@@ -35,14 +35,12 @@ public class My_lotto {
         return lottoNums;
     }
 
-    public ArrayList<Empty_lotto> setMy_lottos(int lotto_cnt) {
+    public void setMy_lottos() {
         my_lottos = new ArrayList<>(lotto_cnt);
         for (int j=0;j<lotto_cnt;j++) {
             Empty_lotto tmplotto = new Empty_lotto(retRand_lotto_num());
             my_lottos.add(tmplotto);
             tmplotto.printNumbers();
         }
-
-        return my_lottos;
     }
 }
