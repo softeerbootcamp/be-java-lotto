@@ -3,7 +3,7 @@ package kr.codesquad;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Rank{
+public enum Rank {
     FIFTH(3, 5000, false),
     FORTH(4, 50000, false),
     THIRD(5, 1500000, false),
@@ -12,7 +12,8 @@ public enum Rank{
     private int score;
     private int money;
     private boolean bonus;
-    Rank(int score, int money, boolean bonus){
+
+    Rank(int score, int money, boolean bonus) {
         this.score = score;
         this.money = money;
         this.bonus = bonus;
@@ -25,6 +26,7 @@ public enum Rank{
     public int getMoney() {
         return money;
     }
+
     public static Rank getRankByScoreAndBonus(int score, boolean bonus) {
         if (score < 3) return null;
         Rank rank = null;
@@ -33,6 +35,7 @@ public enum Rank{
         }
         return rank;
     }
+
     private static Rank findRank(int score, boolean bonus, Rank value, Rank rank) {
         if (value.score == score && value.bonus == bonus) {
             return value;

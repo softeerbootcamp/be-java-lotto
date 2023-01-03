@@ -10,13 +10,15 @@ public class InputView {
     private BufferedReader br;
 
     InputView() {
-         br = new BufferedReader(new InputStreamReader(System.in));
+        br = new BufferedReader(new InputStreamReader(System.in));
     }
+
     public long inputMoney() throws IOException {
         long money = Long.parseLong(br.readLine());
         return money;
     }
-    public List<Integer> inputWinningNumbers() throws IOException{
+
+    public List<Integer> inputWinningNumbers() throws IOException {
         String[] input = br.readLine().split(", ");
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < input.length; i++) {
@@ -24,6 +26,7 @@ public class InputView {
         }
         return list;
     }
+
     public int inputBonusNumber() throws IOException {
         return Integer.parseInt(br.readLine());
     }

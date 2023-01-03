@@ -21,12 +21,13 @@ public class LottoService {
         outputView.printLottoNumbers(lotto.generateLotto(count));
     }
 
-    public void inputWinningNumber() throws IOException{
+    public void inputWinningNumber() throws IOException {
         outputView.printWinningNumberText();
         lotto.setWinningNumbers(inputView.inputWinningNumbers());
         outputView.printBonusBallText();
         lotto.updateBonusBall(inputView.inputBonusNumber());
     }
+
     public void calculateTotal() {
         lotto.calculateTotalResult();
         outputView.printTotalText(lotto.getScore());
