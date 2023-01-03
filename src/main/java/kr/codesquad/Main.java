@@ -25,8 +25,10 @@ public class Main {
         start();
         MyLotto myLotto = new MyLotto(cnt);
         Jackpot_Handler jh = new Jackpot_Handler();
+        Utility ut = new Utility();
+
         jh.setJackpotNum();
         jh.findingEachLottoJackpots(myLotto);
-        Calculator.print_and_calculation(jh.JACKPOT_CNT, money);
+        ut.printProfit(jh.JACKPOT_CNT, money);
     }
 }
