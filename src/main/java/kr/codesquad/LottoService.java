@@ -16,7 +16,9 @@ class Lotto{
         this(lottoNum);
         this.winLotto = winLotto;
     }
-
+    public boolean bonusMatch(){
+        return Arrays.asList(num).contains(bonus);
+    }
     public static int getBonus() {
         return bonus;
     }
@@ -56,6 +58,18 @@ public class LottoService {
         Price(int countOfMatch, double winningMoney){
             this.countOfMatch = countOfMatch;
             this.winningMoney = winningMoney;
+        }
+
+        public static Price valueOf(int countOfMatch, boolean matchBonus){
+            Price[] prices = values();
+            for (Price price: prices){
+                if (countOfMatch == SECOND.countOfMatch)   //2등 or 보너스
+                    return matchBonus?BONUS:SECOND;
+
+                if (price.countOfMatch == countOfMatch)
+                    return price;
+            }
+            return null;
         }
     }
 
@@ -128,9 +142,10 @@ public class LottoService {
         for (Lotto lotto : lottoList) {
             List<Integer> lottoNum = new ArrayList<Integer>(Arrays.asList(lotto.num));
             lottoNum.retainAll(winList);
-            int same = lottoNum.size();
-            sameNumber[same]++;
-            earn = earn.add(new BigDecimal((price[same]/money.doubleValue())*100));
+            int countOfMatch = lottoNum.size(); //일치 갯수
+            sameNumber[countOfMatch]++; //이걸 어떻게 일치 개수랑 상금이랑 묶을 수 있을까?
+            Price price = Price.valueOf(countOfMatch, lotto.bonusMatch());
+            earn = earn.add(new BigDecimal((price.getWinningMoney()/money.doubleValue())*100));
         }
     }
 
