@@ -1,18 +1,22 @@
 package kr.codesquad.view;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class ReceiveView {
 
     private static final String WIN_LOTTO_SEPARATE = ",";
 
-    public static int enterPurchaseAmount(){
+
+    public static int enterPurchaseAmount() {
+        return enterInt();
+    }
+
+    public static int enterBonusBall() {
+        return enterInt();
+    }
+    private static int enterInt(){
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }

@@ -48,4 +48,9 @@ public class PrintView {
         }
     }
 
+    public static void enterBonusBall() {
+        System.out.println(CommonMessage.ENTER_BONUS_BALL);
+    }
+
+
 }
