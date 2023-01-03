@@ -27,7 +27,7 @@ public class LottoService {
     }
     public void calculateTotal() {
         lotto.calculateTotalResult();
-        outputView.printTotalText(lotto.getResultIndex(), lotto.getResult());
+        outputView.printTotalText(lotto.getScore());
         outputView.printEarnedRate(lotto.calculateEarningRate());
     }
 }
