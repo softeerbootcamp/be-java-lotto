@@ -56,6 +56,7 @@ enum LottoStatus{
     }
 
     private String StatusString; // 상태메시지
+    private int WinningAmout; // 당첨금액
 
     public String getStatusString() {
         return StatusString;
@@ -73,6 +74,5 @@ enum LottoStatus{
         WinningAmout = winningAmout;
     }
 
-    private int WinningAmout; // 당첨금액
 
 }
