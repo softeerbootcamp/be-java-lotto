@@ -38,7 +38,28 @@ public class LottoService {
     private static BigDecimal earn = new BigDecimal("-100");    //수익
     private static int lotto_amount;   //구입한 로또 갯수
     private static int[] sameNumber = new int[7];    //당첨 통계 (일치 갯수)
-    private static final double[] price = {0,0,0,5000,50000,1500000,2000000000};
+    public enum Price{
+        FIRST(6, 2000000000),
+        BONUS(5, 30000000),
+        SECOND(5, 1500000),
+        THIRD(4, 50000),
+        FOURTH(3, 5000);
+        private int countOfMatch;   //일치 개수
+        private double winningMoney;   //상금
+        public int getCountOfMatch() {
+            return countOfMatch;
+        }
+
+        public double getWinningMoney() {
+            return winningMoney;
+        }
+        Price(int countOfMatch, double winningMoney){
+            this.countOfMatch = countOfMatch;
+            this.winningMoney = winningMoney;
+        }
+    }
+
+    //private static final double[] price = {0,0,0,5000,50000,1500000,2000000000};
     static List<Lotto> lottoList = new ArrayList<>();   //구입한 로또 저장소
     static List<Integer> lottoNum = new ArrayList<>();  //로또 번호 1~45
     static Lotto winLotto;
@@ -109,7 +130,7 @@ public class LottoService {
             lottoNum.retainAll(winList);
             int same = lottoNum.size();
             sameNumber[same]++;
-            earn = earn.add(new BigDecimal((price[same]/money.intValue())*100));
+            earn = earn.add(new BigDecimal((price[same]/money.doubleValue())*100));
         }
     }
 
