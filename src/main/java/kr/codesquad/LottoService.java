@@ -3,6 +3,7 @@ import java.util.*;
 import java.math.*;
 
 class Lotto{
+    private static int bonus = -1;
     Integer[] num = new Integer[6];
     Lotto(int[] lottoNum){
         for (int i=0; i<6; i++)
@@ -10,6 +11,13 @@ class Lotto{
         Arrays.sort(num);
     }
 
+    public static int getBonus() {
+        return bonus;
+    }
+
+    public static void setBonus(int bonus) {
+        Lotto.bonus = bonus;
+    }
 
     public void print() {
         System.out.print("[");
@@ -27,7 +35,6 @@ public class LottoService {
     private static final double[] price = {0,0,0,5000,50000,1500000,2000000000};
     static List<Lotto> lottoList = new ArrayList<>();   //구입한 로또 저장소
     static List<Integer> lottoNum = new ArrayList<>();  //로또 번호 1~45
-
     static List<Integer> winNum = new ArrayList<>();    //로또 당첨 번호
     public static void start(){
         initLottoNum();
@@ -44,9 +51,13 @@ public class LottoService {
 
     public static void setMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        Scanner sc = new Scanner(System.in);
-        BigInteger money = sc.nextBigInteger();
-        LottoService.money = money;
+        try{
+            Scanner sc = new Scanner(System.in);
+            BigInteger money = sc.nextBigInteger();
+            LottoService.money = money;
+        } catch (Exception e){
+            System.out.println("error");
+        }
     }
 
     public static void buyLotto() {
@@ -78,8 +89,14 @@ public class LottoService {
             int num = Integer.parseInt(winStrArr[i].trim());
             winNum.add(num);
         }
+        getBonusNum();
     }
-
+    private static void getBonusNum(){
+        System.out.println("\n보너스 볼을 입력해 주세요.");    //, 처리 필요 -> string 활용
+        Scanner sc = new Scanner(System.in);
+        int bonus = sc.nextInt();
+        Lotto.setBonus(bonus);  //보너스 번호 할당
+    }
     private static void calcResult(){
         for (Lotto lotto : lottoList) {
             List<Integer> lottoNum = new ArrayList<Integer>(Arrays.asList(lotto.num));
@@ -97,3 +114,7 @@ public class LottoService {
         System.out.println("총 수익률은 "+earn.setScale(2,RoundingMode.FLOOR)+"%입니다.");
     }
 }
+
+/*
+100원으로 500원 만들면 수익률 500%? 400%?
+ */
