@@ -29,7 +29,7 @@ public class LottoMachine {
     }
 
 
-    public void checkWin(LottoTicket lottoTicket) {
+    public void checkWin(LottoTicket lottoTicket) throws IOException {
         this.lottoCheck.check(lottoTicket);
     }
 }
