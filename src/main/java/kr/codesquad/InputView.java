@@ -24,4 +24,7 @@ public class InputView {
         }
         return list;
     }
+    public int inputBonusNumber() throws IOException {
+        return Integer.parseInt(br.readLine());
+    }
 }
