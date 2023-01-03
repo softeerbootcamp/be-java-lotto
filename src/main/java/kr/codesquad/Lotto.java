@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lotto {
-    private List<Integer> nums;
+    private final List<Integer> nums;
     private static final int LOTTO_NUM_MAX = 45;
     private static final int LOTTO_NUM_CNT = 6;
 
