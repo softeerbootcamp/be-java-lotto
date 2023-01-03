@@ -1,8 +1,7 @@
 package kr.codesquad.view;
 
-import kr.codesquad.model.Lotto;
+import kr.codesquad.model.UserLotto;
 
-import java.util.List;
 import java.util.Map;
 
 public class OutputView {
@@ -15,9 +14,10 @@ public class OutputView {
         System.out.println(lottoCount+"개를 구매했습니다.");
     }
 
-    public void printLottos(List<Lotto> lottos) {
+    public void printUserLotto(UserLotto userLotto) {
         StringBuilder sb = new StringBuilder();
-        lottos.forEach(lotto -> sb.append(lotto.toString()));
+        userLotto.getLottos()
+                .forEach(lotto -> sb.append(lotto.toString()));
         System.out.println(sb);
     }
 

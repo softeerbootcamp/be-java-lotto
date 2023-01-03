@@ -29,7 +29,7 @@ public class LottoController {
 
         UserLotto userLotto = createUserLotto(lottoCount);
 
-        //outputView.printLottos(lottos);
+        outputView.printUserLotto(userLotto);
 
         outputView.printWinningLottoReadMessage();
         WinningLotto winningLotto = createWinningLotto();
@@ -41,7 +41,7 @@ public class LottoController {
 
     private UserLotto createUserLotto(int lottoCount) {
         List<Lotto> lottos = lottoMachine.createLottos(lottoCount);
-        new UserLotto(lottos);
+        return new UserLotto(lottos);
     }
 
     private WinningLotto createWinningLotto() {
