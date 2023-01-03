@@ -19,6 +19,7 @@ public class LottoSystem {
 
     public Lotto buyLotto() {
         System.out.println("구입금액을 입력해 주세요.");
+        Scanner sc = new Scanner(System.in);
         lottoCount = sc.nextInt() / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");
 
