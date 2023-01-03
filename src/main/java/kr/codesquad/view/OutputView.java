@@ -1,38 +1,72 @@
 package kr.codesquad.view;
 
-import kr.codesquad.model.Lotto;
+import kr.codesquad.model.Rank;
+import kr.codesquad.model.UserLotto;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public static void printMoneyReadMessage() {
+    public void printMoneyReadMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public static void printLottoCount(int lottoCount) {
-        System.out.println(lottoCount+"개를 구매했습니다.");
+    public void printLottoCount(int lottoCount) {
+        System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
-    public static void printLottos(List<Lotto> lottos) {
+    public void printUserLotto(UserLotto userLotto) {
         StringBuilder sb = new StringBuilder();
-        lottos.forEach(lotto -> sb.append(lotto.toString()));
+        userLotto.getLottos()
+                .forEach(lotto -> sb.append(lotto.toString()));
         System.out.println(sb);
     }
 
-    public static void printWinningLottoReadMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+    public void printWinningLottoReadMessage() {
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
     }
 
-    public static void printResult(Map<Integer, Integer> result, double profitRate) {
-        System.out.println("당첨 통계\n----------");
+    public void printBonusNumberReadMessage() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+    }
 
-        System.out.println("3개 일치 (5000원)- " + result.get(3) + "개");
-        System.out.println("4개 일치 (50000원)- " + result.get(4) + "개");
-        System.out.println("5개 일치 (1500000원)- " + result.get(5) + "개");
-        System.out.println("6개 일치 (2000000000원)- " + result.get(6) + "개");
+    public void printResult(Map<Rank, Integer> result, double profitRate) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("당첨 통계\n----------\n");
 
-        System.out.println("총 수익률은 " + String.format("%.2f", profitRate) + "%입니다.");
+        List<Rank> ranks = Arrays.stream(Rank.values()).collect(Collectors.toList());
+        Collections.sort(ranks, Collections.reverseOrder());
+
+        printWinningResult(sb, ranks, result);
+        printProfitRate(sb, profitRate);
+
+        System.out.println(sb);
+    }
+
+    private void printWinningResult(StringBuilder sb, List<Rank> ranks, Map<Rank, Integer> result) {
+        ranks.stream()
+                .filter(rank -> rank != Rank.NOTHING)
+                .forEach(rank -> {
+                    sb.append(rank.getCount())
+                            .append("개 일치");
+                    if (rank == Rank.SECOND) {
+                        sb.append(", 보너스 볼 일치");
+                    }
+                    sb.append(" (")
+                            .append(rank.getPrize())
+                            .append("원)- ")
+                            .append(result.getOrDefault(rank, 0))
+                            .append("개\n");
+                });
+    }
+
+    private void printProfitRate(StringBuilder sb, double profitRate) {
+        sb.append("총 수익률은 ")
+                .append(String.format("%.2f", profitRate))
+                .append("%입니다.");
     }
 }

@@ -1,61 +1,68 @@
 package kr.codesquad.controller;
 
-import kr.codesquad.model.Lotto;
-import kr.codesquad.model.LottoMachine;
+import kr.codesquad.model.*;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoController {
 
     private final LottoMachine lottoMachine;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public LottoController() {
         this.lottoMachine = new LottoMachine();
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void start() {
-        OutputView.printMoneyReadMessage();
-        int money = InputView.readMoney();
+        int money = createLottoMoney();
 
         int lottoCount = money / 1000;
-        OutputView.printLottoCount(lottoCount);
+        outputView.printLottoCount(lottoCount);
 
+        UserLotto userLotto = createUserLotto(lottoCount);
+        outputView.printUserLotto(userLotto);
+
+        WinningLotto winningLotto = createWinningLotto();
+
+        Map<Rank, Integer> result = calculateResult(userLotto, winningLotto);
+        double profitRate = calculateProfitRate(result, money);
+        outputView.printResult(result, profitRate);
+    }
+
+    private int createLottoMoney() {
+        outputView.printMoneyReadMessage();
+        return inputView.readMoney();
+    }
+
+    private UserLotto createUserLotto(int lottoCount) {
         List<Lotto> lottos = lottoMachine.createLottos(lottoCount);
-
-        OutputView.printLottos(lottos);
-
-        OutputView.printWinningLottoReadMessage();
-        Lotto winningLotto = InputView.readWinningLotto();
-
-        Map<Integer, Integer> result = caculateResult(lottos, winningLotto);
-        double profitRate = caculateProfitRate(result, money);
-        OutputView.printResult(result, profitRate);
+        return new UserLotto(lottos);
     }
 
-    private Map<Integer, Integer> caculateResult(List<Lotto> lottos, Lotto winningLotto) {
-        Map<Integer, Integer> result = new HashMap<>();
-        for (int i = 3; i <= 6; i++){
-            result.put(i, 0);
-        }
+    private WinningLotto createWinningLotto() {
+        outputView.printWinningLottoReadMessage();
+        Lotto winningLotto = inputView.readWinningLotto();
 
-        lottos.forEach(lotto -> {
-                int sameCount = lotto.compare(winningLotto);
-                if (result.containsKey(sameCount)) {
-                    result.put(sameCount, result.get(sameCount)+1);
-                }
-        });
+        outputView.printBonusNumberReadMessage();
+        int bonusNumber = inputView.readBonusNumber();
 
-        return result;
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 
-    private double caculateProfitRate(Map<Integer, Integer> result, int money) {
+    private Map<Rank, Integer> calculateResult(UserLotto userLotto, WinningLotto winningLotto) {
+        return userLotto.compare(winningLotto);
+    }
+
+    private double calculateProfitRate(Map<Rank, Integer> result, int money) {
         double profit = 0;
-        for (int i = 3; i <= 6; i++){
-            profit += (double)i * result.get(i);
+        for (Rank rank : result.keySet()) {
+            profit += rank.getPrize() * result.get(rank);
         }
 
         if (profit < money) {
