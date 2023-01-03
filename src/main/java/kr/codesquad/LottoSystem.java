@@ -77,11 +77,12 @@ public class LottoSystem {
         return lottoList.get(index).contains(bonusNum);
     }
 
-    public void setResult(List<Integer> result, int winNumCount) {
-        if(winNumCount == 3) result.set(0, result.get(0) + 1);
-        else if(winNumCount == 4) result.set(1, result.get(1) + 1);
-        else if(winNumCount == 5) result.set(2, result.get(2) + 1);
-        else if(winNumCount == 6) result.set(3, result.get(3) + 1);
+    public void setResult(List<Integer> result, int winNumCount, boolean isBonus) {
+        if(winNumCount == Rank.FIFTH.getCountOfMatch()) result.set(0, result.get(0) + 1);
+        if(winNumCount == Rank.FOURTH.getCountOfMatch()) result.set(1, result.get(1) + 1);
+        if(winNumCount == Rank.THIRD.getCountOfMatch()) result.set(2, result.get(2) + 1);
+        if(winNumCount == Rank.SECOND.getCountOfMatch() && isBonus) result.set(3, result.get(3) + 1);
+        if(winNumCount == Rank.FIRST.getCountOfMatch()) result.set(4, result.get(4) + 1);
     }
 
     public void printResult(List<Integer> result) {
