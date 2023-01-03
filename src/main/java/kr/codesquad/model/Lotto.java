@@ -8,6 +8,7 @@ public class Lotto {
     protected static final int NUMBER_SIZE=6;
     protected static final int START_NUMBER=1;
     protected static final int END_NUMBER=45;
+    public static final int TICKET_PER_PRICE = 1000;
     protected List<Integer> numbers;
 
     public Lotto() {

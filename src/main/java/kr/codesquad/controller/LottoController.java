@@ -1,5 +1,6 @@
 package kr.codesquad.controller;
 
+import kr.codesquad.model.Lotto;
 import kr.codesquad.model.User;
 import kr.codesquad.model.WinningLotto;
 import kr.codesquad.model.WinningStatic;
@@ -9,7 +10,7 @@ import kr.codesquad.view.ReceiveView;
 import java.util.List;
 
 public class LottoController {
-    public static final int TICKET_PER_PRICE = 1000;
+
 
     public void play() {
         User user = getUserWithPurchase();
@@ -61,7 +62,7 @@ public class LottoController {
     }
 
     private static int purchaseToTickets(int purchaseAmount) {
-        int purchaseTickets = purchaseAmount / TICKET_PER_PRICE;
+        int purchaseTickets = purchaseAmount / Lotto.TICKET_PER_PRICE;
         PrintView.resultPurchaseAmount(purchaseTickets);
         return purchaseTickets;
     }
