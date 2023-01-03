@@ -29,12 +29,22 @@ public class Console {
         return lotto;
     }
 
+    public int inputBonusNum() {
+        printInputBonusNum();
+        int bonus = sc.nextInt();
+        return bonus;
+    }
+
     public void printInputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
     public void printInputWinNum() {
         System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public void printInputBonusNum() {
+        System.out.println("보너스 볼을 입력해 주세요.");
     }
 
     public void printAmount(int amount) {
