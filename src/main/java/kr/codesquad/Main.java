@@ -6,15 +6,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
         User person = new User();
 
         System.out.println("구입 금액을 입력하세요");
         person.setCash(sc.nextInt());
         person.CalculateBuyNum();
-        person.MakeRandomLottoTickets();
         System.out.printf("구매 개수는 %d개입니다.\n", person.getBuyNum());
+        person.MakeRandomLottoTickets();
 
         for(int i = 0; i < person.getBuyNum(); i++)
         {
