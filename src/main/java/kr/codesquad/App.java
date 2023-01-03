@@ -1,27 +1,26 @@
 package kr.codesquad;
 
-import kr.codesquad.LottoService.Lotto;
-import kr.codesquad.LottoService.LottoService;
+import kr.codesquad.LottoService.LottoStore;
 
 public class App {
     private final Console console;
-    private final LottoService lottoService;
+    private final LottoStore lottoStore;
 
-    public App(Console console, LottoService lottoService) {
+    public App(Console console, LottoStore lottoStore) {
         this.console = console;
-        this.lottoService = lottoService;
+        this.lottoStore = lottoStore;
     }
 
     public void run() {
         console.inputMoney();
         console.printLottoCount();
-        lottoService.setLottoNumbers(console.getLottoCount());
-        lottoService.printLottos();
+        lottoStore.setAutomaticLotto(console.getLottoCount());
+        console.printLottos(lottoStore.getLottos());
 
         console.inputWinningNumber();
         console.inputBonusNumber();
-        lottoService.setWinningNumbers(console.getWinningNumberList(), console.getBonusNumber());
-        lottoService.printWinningLottos();
-        lottoService.calculateEarningRate(console.getLottoCount());
+        lottoStore.setWinningNumbers(console.getWinningNumberList(), console.getBonusNumber());
+        console.printWinningLottos(lottoStore.getWinningLottos());
+        lottoStore.calculateEarningRate(console.getLottoCount());
     }
 }
