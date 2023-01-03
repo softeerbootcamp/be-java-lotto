@@ -9,7 +9,7 @@ public class Calculator {
         System.out.println("\n당첨통계\n---------");
         for(Prizes pr:Prizes.values()){
             pr.print_message(jk[flag]);
-            sum+=pr.print_prize()*jk[flag];
+            sum+=pr.getValue()*jk[flag];
             flag++;
         }
         prof = (sum-money)/money;
