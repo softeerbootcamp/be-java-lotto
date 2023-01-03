@@ -9,4 +9,8 @@ public class Lotto {
     public Lotto(List<List<Integer>> lottoList) {
         this.lottoList = lottoList;
     }
+
+    public List<List<Integer>> getLottoList() {
+        return this.lottoList;
+    }
 }
