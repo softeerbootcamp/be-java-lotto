@@ -1,7 +1,7 @@
 package kr.codesquad;
 
 public enum Prize {
-    FIRST(2000000000), SECOND(1500000), THIRD(50000), FORTH(5000), NOTHING(0);
+    FIRST(2000000000), SECOND(3000000), THIRD(1500000), FORTH(50000), FIFTH(5000), NOTHING(0);
     private int money;
 
     Prize(int initMoney){
