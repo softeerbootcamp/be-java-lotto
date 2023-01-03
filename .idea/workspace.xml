@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="update .gitignore">
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Rank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Row.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Statistic.java" afterDir="false" />
-    </list>
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment=".gitignore 원상복귀" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +81,21 @@
       <option name="project" value="LOCAL" />
       <updated>1672709330063</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: Rank enum 생성, 클래스 formatting, 간단한 오타 수정">
+      <created>1672711035527</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672711035527</updated>
+    </task>
+    <task id="LOCAL-00003" summary=".gitignore 원상복귀">
+      <created>1672711101756</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672711101756</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,7 +114,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="update .gitignore" />
+    <MESSAGE value="feat: Rank enum 생성, 클래스 formatting, 간단한 오타 수정" />
+    <MESSAGE value=".gitignore 원상복귀" />
+    <option name="LAST_COMMIT_MESSAGE" value=".gitignore 원상복귀" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_lotto$Main.ic" NAME="Main Coverage Results" MODIFIED="1672668300793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -38,7 +38,7 @@ public class Main {
 
         for (Row row : rows) {
             List<Integer> values = row.getValues();
-//            row.printValues();
+            System.out.println(values);
         }
 
         /**
