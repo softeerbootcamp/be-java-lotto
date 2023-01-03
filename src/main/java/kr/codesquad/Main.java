@@ -7,8 +7,6 @@ class My_lotto{
     private int lotto_cnt;
     private ArrayList<One_lotto> my_lottos;
     private ArrayList<Integer> all_lotto_num;
-    private ArrayList<Integer> rand_lotto_num;
-
     public My_lotto(int lotto_cnt) {
         setLotto_cnt(lotto_cnt);
         setAll_lotto_num();
@@ -72,15 +70,17 @@ public class Main {
     public static int ret_lotto_cnt(int money){
         return money/LOTTO_PRICE;
     }
-    public static int plus_if_contains(int cnt,int i, ArrayList<Integer> my, ArrayList<Integer> jk){
+    public static int plus_if_contains(int i, ArrayList<Integer> my, ArrayList<Integer> jk){
         if(my.contains(jk.get(i))){
             return 1;
-        }return 0;
+        }else{
+            return 0;
+        }
     }
     public static void ret_jackpot_cnts(ArrayList<Integer> my, ArrayList<Integer> jk){
         int cnt=0;
         for (int i=0;i<LOTTO_CNT;i++) {
-            cnt+=plus_if_contains(cnt,i,my,jk);
+            cnt+=plus_if_contains(i,my,jk);
         }
         if(cnt>=3) JACKPOT_CNT[cnt-3]++;
     }
@@ -98,11 +98,14 @@ public class Main {
             System.out.printf("%d개 일치 : (%d)- %d개\n",i+3,prizes[i],jk[i]);
         }
     }
+
+
     public static float calculate_profit(int[] jackpots, int money){
         float prof,sum=0;
         int[] prizes = {5000,50000,1500000,2000000000};
         for (int i=0;i< jackpots.length;i++) {
             sum += prizes[i] * jackpots[i];
+
         }
         print_calculation(jackpots,prizes);
         prof = (sum-money)/money;
