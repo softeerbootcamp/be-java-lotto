@@ -4,7 +4,7 @@ import java.util.function.Function;
 
 public enum Prize {
     FIRST(6, 2000000000, count -> count * 2000000000),
-    SECOND(5, 30000000, count -> count * 30000000),
+    SECOND(5, 30000000, count -> count * 30000000),  // 보너스
     THIRD(5, 1500000, count -> count * 1500000),
     FOURTH(4, 50000, count -> count * 50000),
     FIFTH(3, 5000, count -> count * 5000),
@@ -28,11 +28,19 @@ public enum Prize {
         this.prizeTotal = prizeTotal;
     }
 
-    public static Prize valueOf(int countOfMatch) {
+    public static Prize valueOf(int countOfMatch, final boolean bonus) {
         final Prize[] prizes = values();
 
         if (countOfMatch < LEAST_MATCH_COUNT) {
             return MISS;
+        }
+
+        if (SECOND.matchCount(countOfMatch) && bonus) {
+            return SECOND;
+        }
+
+        if (SECOND.matchCount(countOfMatch) && !bonus) {
+            return THIRD;
         }
 
         for(Prize prize : prizes) {

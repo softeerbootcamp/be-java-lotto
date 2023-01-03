@@ -3,17 +3,17 @@ package kr.codesquad;
 import kr.codesquad.sequence.LottosGenerator;
 import kr.codesquad.sequence.ShuffleSequenceGenerator;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LottoProcedure {
     final static int LEAST_MATCH = 3;  // 로또 상금 수령을 위한 동일해야하는 최소 숫자의 개수
 
     final static int LOTTO_LENGTH = 6;  // 로또 번호 조합의 길이
+
+    static boolean matchBonus = false;
 
     static int[] matches = new int[7];  // 몇 개의 로또 번호가 일치하는지. matches[3] -> 3개의 번호가 일치하는 경우를 셈
     static final int[] PRICES = new int[] {0, 0, 0, 5000, 50000, 1500000, 2000000000};  // TODO: ENUM으로 대체
@@ -86,16 +86,22 @@ public class LottoProcedure {
         return matches;
     }
 
-    int matchLotto (Lotto actual, Lotto predicted) {
+    int matchLotto (Lotto actual, Lotto created) {  // 실제 당첨번호(입력), 생성된 번호
         int cnt = 0;
-
+        matchBonus = false;
         // TODO: 보너스도 계산하기
 
         // 정렬된 로또 번호 기준으로, 실제 로또 번호와 비교
-        for(Integer num : predicted.getLotto()) {
+        for(Integer num : created.getLotto()) {
             cnt += actual.contains(num) ? 1:0;
         }
-        
+
+        // 보너스 조건 - 5개가 맞고 보너스 번호도 맞을 때
+        if(cnt == 5 && created.contains(bonus)) {
+            // 보너스이면 -> 2등
+            matchBonus = true;
+        }
+
         return cnt;  // 동일한 번호의 갯수
     }
 
@@ -108,7 +114,7 @@ public class LottoProcedure {
 
         // TODO: matches -> List로,
         for (int i = LEAST_MATCH; i <= LOTTO_LENGTH; ++i) {  // 최소 3개 이상, 6개 이하 매치
-            Prize prize = Prize.valueOf(matches[i] > 0?i:0);
+            Prize prize = Prize.valueOf(matches[i] > 0?i:0, matchBonus);
             prizeTotal += prize.calculatePrize(matches[i]); // 상금 총액
 
             System.out.println(i + "개 일치 (" + prize.getWinningMoney() + "원)- " + prize.getCountOfMatch() + "개");
