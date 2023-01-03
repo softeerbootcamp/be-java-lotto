@@ -3,7 +3,7 @@ package kr.codesquad.model;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
 
 public enum Result {
     NOT_MATCH(0, 0),
@@ -59,5 +59,19 @@ public enum Result {
             hashSet.add(integer);
         }
         return hashSet;
+    }
+
+    public static List<Result> notIncludeNotMatch() {
+        return Arrays.stream(values())
+                .filter(value -> !value.isMatch(NOT_MATCH.matchCount))
+                .collect(Collectors.toList());
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getReward() {
+        return reward;
     }
 }

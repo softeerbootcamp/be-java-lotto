@@ -1,10 +1,8 @@
 package kr.codesquad.model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -38,5 +36,12 @@ class ResultTest {
         //then
         Integer matchCount = user.getResultMatch().get(Result.MATCH_SIX);
         assertThat(matchCount).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("0개일치가 포함되지 않는 Result전체 가져오기")
+    void notIncludeZero() {
+        List<Result> results = Result.notIncludeNotMatch();
+        assertFalse(results.contains(Result.NOT_MATCH));
     }
 }
