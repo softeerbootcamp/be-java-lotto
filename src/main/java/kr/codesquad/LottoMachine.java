@@ -28,11 +28,13 @@ public class LottoMachine {
         ArrayList<Integer> Result = new ArrayList<Integer>();
         for(int i = 0; i < 5; i++)
         {
+            // 초기값 설정
             Result.add(0);
         }
 
         for(int i = 0; i < Tickets.size(); i++)
         {
+            // 각 번호를 당첨 번호와 비교
             CompareTicketWithWinNum(Tickets.get((i)), Result);
         }
         return Result;
@@ -40,9 +42,12 @@ public class LottoMachine {
 
     private void CompareTicketWithWinNum(ArrayList<Integer> Ticket, ArrayList<Integer> Result)
     {
+        // 당첨 번호와 같은 숫자의 수
         int count = CountValidNums(Ticket);
+        // 보너스 번호가 있는지 없는지
         boolean isBonus = JudgeBonus(Ticket);
 
+        // 위 두 정보를 이용하여 순위 결정
         String rank = DecideRank(count, isBonus);
 
         if(rank.equals("Out of rank")) return;

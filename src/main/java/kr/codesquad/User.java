@@ -33,7 +33,9 @@ public class User {
     public void MakeRandomLottoTickets() {
         for(Integer i = 0; i < buyNum; i++)
         {
+            // 임의의 6개의 번호 입력 후
             lottoTickets.add(GetRandomSixNums());
+            // 오름차순으로 정렬
             Collections.sort(lottoTickets.get(i));
         }
     }
@@ -42,10 +44,12 @@ public class User {
     {
         ArrayList<Integer> ret = new ArrayList<Integer>();
 
+        // 1부터 45까지의 정수를 담고 있는 arraylist
         ArrayList<Integer> Numbers = new ArrayList<Integer>();
         for(Integer i = 1; i <= 45; i++) Numbers.add(i);
         Collections.shuffle(Numbers);
 
+        // 앞 6자리 추출
         for(int i = 0; i < 6; i++) {
             ret.add(Numbers.get(i));
         }
@@ -55,6 +59,7 @@ public class User {
 
     public void CalculateBuyNum()
     {
+        // 구매 개수 구하기
         buyNum = cash / 1000;
     }
 
@@ -68,12 +73,11 @@ public class User {
         {
             System.out.printf("%s, (%d)- %d개\n", stat.getStatusValue1(), stat.getStatusValue2(), Result.get(stat.ordinal()));
         }
-
-//        System.out.printf("3개 일치 (5000원)- %d개\n", Result.get(0));
-//        System.out.printf("4개 일치 (50000원)- %d개\n", Result.get(1));
-//        System.out.printf("5개 일치 (1500000원)- %d개\n", Result.get(2));
-//        System.out.printf("5개 일치, 보너스 볼 일치(30000000원)- %d개\n", Result.get(3));
-//        System.out.printf("6개 일치 (2000000000원)- %d개\n", Result.get(4));
+//          System.out.printf("3개 일치 (5000원)- %d개\n", Result.get(0));
+//          System.out.printf("4개 일치 (50000원)- %d개\n", Result.get(1));
+//          System.out.printf("5개 일치 (1500000원)- %d개\n", Result.get(2));
+//          System.out.printf("5개 일치, 보너스 볼 일치(30000000원)- %d개\n", Result.get(3));
+//          System.out.printf("6개 일치 (2000000000원)- %d개\n", Result.get(4));
 
         float rate = (float)(5000*Result.get(0) + 50000*Result.get(1) + 1500000*Result.get(2) +
                 30000000*Result.get(3) +2000000000*Result.get(4) - buyNum*1000) / (float) (buyNum*1000) * 100;

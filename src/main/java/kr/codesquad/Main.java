@@ -13,7 +13,7 @@ public class Main {
         person.setCash(sc.nextInt());
         person.CalculateBuyNum();
         System.out.printf("구매 개수는 %d개입니다.\n", person.getBuyNum());
-        person.MakeRandomLottoTickets();
+        person.MakeRandomLottoTickets(); // 구매 개수만큼의 랜덤한 로또 번호 생성
 
         for(int i = 0; i < person.getBuyNum(); i++)
         {
@@ -29,10 +29,10 @@ public class Main {
         {
             winNums.add(sc.nextInt());
         }
-        lottoMachine.setWinNums(winNums);
+        lottoMachine.setWinNums(winNums); // 로또 추첨기에 당첨 번호 넘기기
 
         System.out.println("보너스 볼을 입력해주세요");
-        lottoMachine.setBonusBall(sc.nextInt());
+        lottoMachine.setBonusBall(sc.nextInt()); // 로또 추첨기에 보너스 번호 넘기기
 
         ArrayList<Integer> result = lottoMachine.GetResult(person.getLottoTickets());
         person.PrintResult(result);
@@ -40,6 +40,7 @@ public class Main {
 }
 
 enum LottoStatus{
+    // 등수별 해당 등수가 되기 위한 정보 문자열과, 당첨 금액 정보를 담고 있는 열거체
     Fifth("3개 일치", 5000),
     Fourth("4개 일치", 50000),
     Third("5개 일치", 1500000),
