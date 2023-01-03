@@ -39,7 +39,7 @@ public class LottoService {
     private static BigInteger money;   //구입한 가격
     private static BigDecimal earn = new BigDecimal("-100");    //수익
     private static int lotto_amount;   //구입한 로또 갯수
-    private static int[] sameNumber = new int[7];    //당첨 통계 (일치 갯수)
+    //private static int[] sameNumber = new int[7];    //당첨 통계 (일치 갯수)
     public enum Price{
         FIRST(6, 2000000000),
         BONUS(5, 30000000),
@@ -55,11 +55,13 @@ public class LottoService {
         public double getWinningMoney() {
             return winningMoney;
         }
+
         Price(int countOfMatch, double winningMoney){
             this.countOfMatch = countOfMatch;
             this.winningMoney = winningMoney;
         }
 
+        //if문 없애야함.. indent 제한..
         public static Price valueOf(int countOfMatch, boolean matchBonus){
             Price[] prices = values();
             for (Price price: prices){
@@ -72,22 +74,25 @@ public class LottoService {
             return null;
         }
     }
-
+    static Map<Price, Integer> winnerCount = new HashMap<>();
     //private static final double[] price = {0,0,0,5000,50000,1500000,2000000000};
     static List<Lotto> lottoList = new ArrayList<>();   //구입한 로또 저장소
     static List<Integer> lottoNum = new ArrayList<>();  //로또 번호 1~45
     static Lotto winLotto;
     public static void start(){
-        initLottoNum();
+        init();
         setMoney();
         buyLotto();
         setWinNum();
         calcResult();
         printResult();
     }
-    public static void initLottoNum(){
+    public static void init(){
         for (int i=1; i<=45; i++)
             lottoNum.add(i);
+        for (Price price:Price.values()){
+            winnerCount.put(price,0);
+        }
     }
 
     public static void setMoney() {
@@ -143,8 +148,8 @@ public class LottoService {
             List<Integer> lottoNum = new ArrayList<Integer>(Arrays.asList(lotto.num));
             lottoNum.retainAll(winList);
             int countOfMatch = lottoNum.size(); //일치 갯수
-            sameNumber[countOfMatch]++; //이걸 어떻게 일치 개수랑 상금이랑 묶을 수 있을까?
             Price price = Price.valueOf(countOfMatch, lotto.bonusMatch());
+            winnerCount.put(price, winnerCount.get(price)+1);
             earn = earn.add(new BigDecimal((price.getWinningMoney()/money.doubleValue())*100));
         }
     }
