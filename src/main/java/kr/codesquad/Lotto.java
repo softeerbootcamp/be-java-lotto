@@ -47,4 +47,27 @@ public class Lotto {
     public void setWinningNumbers(List<Integer> list) {
         winningNumbers = list;
     }
+    public void calculateTotalResult() {
+        for (int i = 0; i < numbers.size(); i++) {
+            int count = containsNumberCount(i);
+            updateResult(count);
+        }
+    }
+    private int containsNumberCount(int index) {
+        List<Integer> list = numbers.get(index);
+        int count = 0;
+        //TODO 해결 해야함
+        for (Integer winningNumber : winningNumbers) {
+            if (list.contains(winningNumber)) {
+                count++;
+            }
+        }
+        return count;
+    }
+    private void updateResult(int count) {
+        if (count < 3) return;
+        int winningMoney = resultIndex.get(count);
+        result.put(winningMoney, result.get(winningMoney) + 1);
+    }
+    
 }
