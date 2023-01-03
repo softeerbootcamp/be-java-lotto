@@ -12,18 +12,19 @@ public class LottoCheckImpl implements LottoCheck {
     public LottoCheckImpl() {
         this.br = new BufferedReader(new InputStreamReader(System.in));
     }
+
     @Override
-    public void check(LottoTicket lottoTicket) throws IOException {
+    public LottoResult check(LottoTicket lottoTicket) throws IOException {
         List<Integer> winNumberList = this.getWinNumberList();
         Map<Rank, Integer> rankStatus = new HashMap<>(Rank.getInitRankStatus());
         for (List<Integer> lotto: lottoTicket.getLottoList()) {
-            Set<Integer> lottoSet = new HashSet<>(lotto);
-            Rank rank = this.calcTargetedNumberCount(lottoSet, winNumberList);
+            Rank rank = this.calcTargetedNumberCount(new HashSet<>(lotto), winNumberList);
             if (rank == null) continue;
             int totalCnt = rankStatus.getOrDefault(rank, rank.ordinal());
             rankStatus.put(rank, totalCnt + 1);
         }
-        this.printResult(rankStatus, lottoTicket.getMoney());
+        double rate = this.calcRate(rankStatus, lottoTicket.getMoney());
+        return new LottoResult(rankStatus, rate);
     }
 
     private List<Integer> getWinNumberList() throws IOException {
@@ -47,15 +48,11 @@ public class LottoCheckImpl implements LottoCheck {
         return Rank.valueOf(winNumCnt, isBonus);
     }
 
-    private void printResult(Map<Rank, Integer> rankStatus, int money) {
-        System.out.println("\n당첨 통계\n---------");
-        int totalPrice = 0;
+    private double calcRate(Map<Rank, Integer> rankStatus, int money) {
+        int totalMoney = 0;
         for (Rank rank: Rank.values()) {
-            totalPrice += rank.getWinningMoney() * rankStatus.get(rank);
-            String stringOfBonus = rank.isBonus() ? ", 보너스 볼 일치" : "";
-            System.out.println(rank.getCountOfMatch() + "개 일치" + stringOfBonus + "(" + rank.getWinningMoney() + "원) - " + rankStatus.get(rank) + "개");
+            totalMoney += rank.getWinningMoney() * rankStatus.get(rank);
         }
-        double rate = (((double) totalPrice - money) / (double) money) * 100;
-        System.out.println("총 수익률은 " + String.format("%.2f", rate) + "%입니다.");
+        return (((double) totalMoney - money) / (double) money) * 100;
     }
 }

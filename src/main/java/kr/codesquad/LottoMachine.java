@@ -30,6 +30,15 @@ public class LottoMachine {
 
 
     public void checkWin(LottoTicket lottoTicket) throws IOException {
-        this.lottoCheck.check(lottoTicket);
+        LottoResult lottoResult = this.lottoCheck.check(lottoTicket);
+        this.printResult(lottoResult);
+    }
+
+    private void printResult(LottoResult lottoResult) {
+        for (Rank rank: Rank.values()) {
+            String stringOfBonus = rank.isBonus() ? ", 보너스 볼 일치" : "";
+            System.out.println(rank.getCountOfMatch() + "개 일치" + stringOfBonus + "(" + rank.getWinningMoney() + "원) - " + lottoResult.getRankStatus().get(rank) + "개");
+        }
+        System.out.println("총 수익률은 " + String.format("%.2f", lottoResult.getRate()) + "%입니다.");
     }
 }
