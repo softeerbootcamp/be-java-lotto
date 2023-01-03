@@ -7,13 +7,17 @@ public enum Rank {
     FOURTH(4, 50000),
     FIFTH(3, 5000);
 
-    private int countOfMatch;
-    private int winningMoney;
+    private final int countOfMatch;
+    private final int winningMoney;
 
     Rank(int countOfMatch, int winningMoney) {
         this.countOfMatch = countOfMatch;
         this.winningMoney = winningMoney;
     }
+//
+//    public int getMoney(int countOfMatch) {
+//
+//    }
 
     public int getCountOfMatch() {
         return countOfMatch;

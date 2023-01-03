@@ -28,10 +28,10 @@ public class Statistic {
     }
 
     public int calculateOutput(Row row) {
-        int result = row.getMatch();
+        int match = row.getMatch();
 
-        Integer value = scoreBoard.get(result);
-        counts[result]++;
+        Integer value = scoreBoard.get(match);
+        counts[match]++;
         this.output += value;
         return value;
     }
