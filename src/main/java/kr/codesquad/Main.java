@@ -5,9 +5,7 @@ import java.util.*;
 
 public class Main {
 
-    private static ArrayList<ArrayList<Integer>> lottoList;
     private static ArrayList<Integer> allNums;
-    private static ArrayList<String> resultNums;
     private static HashMap<Integer, Integer> hitNums;
     private static Integer[] fee = {5000, 50000, 1500000, 2000000000};
     private static int hitPrice = 0;
@@ -17,9 +15,7 @@ public class Main {
 
     //initial method
     private static void initMethod(){
-        lottoList = new ArrayList<ArrayList<Integer>>();
         hitNums = new HashMap<>();
-        resultNums = new ArrayList<>();
         allNums = new ArrayList<>();
         scan = new Scanner(System.in);
         for(int i = 1; i < 46; i++)
@@ -27,13 +23,13 @@ public class Main {
     }
 
     //generate random numbers of lotto
-    private static void lottoGenerate() {
+    private static ArrayList<Integer> lottoGenerate() {
         Collections.shuffle(allNums);
         ArrayList<Integer> tempList = new ArrayList<Integer>();
         for(int j = 0;  j < 6; j++)
             tempList.add(allNums.get(j));
         System.out.println(tempList);
-        lottoList.add(tempList);
+        return tempList;
     }
 
     //print result of all lotteries
@@ -57,10 +53,10 @@ public class Main {
 
 
     //count each rank of each result
-    private static void getHitStatistics(ArrayList<Integer> tempList) {
+    private static void getHitStatistics(ArrayList<Integer> resultNums, ArrayList<Integer> tempList) {
             int hitNum = 0;
             for(int i = 0; i < 6; i++)
-                hitNum += containNum(Integer.parseInt(resultNums.get(i)), tempList);
+                hitNum += containNum(resultNums.get(i), tempList);
             hitNums.put(hitNum, hitNums.getOrDefault(hitNum, 0) + 1);
     }
 
@@ -76,29 +72,32 @@ public class Main {
     }
 
     //enter numbers of result
-    private static void enterResultNumbers(){
+    private static ArrayList<Integer> enterResultNumbers(){
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String numStr = scan.nextLine();
         List<String> split = Arrays.asList(numStr.split(","));
+        ArrayList<Integer> tempList = new ArrayList<Integer>();
         if(split.size() != 6)
             throw new RuntimeException("올바르지 않은 입력입니다");
-        resultNums.addAll(split);
+        split.forEach(item->tempList.add(Integer.parseInt(item)));
+        return tempList;
     }
 
     public static void main(String[] args) {
         initMethod();
         enterPurchasePrice();
+
+        Lotto randomLotto = new Lotto();
+        Lotto myLotto = new Lotto();
+
         for(int i = 0 ; i < numOfLotto; i++){
-            lottoGenerate();
+            randomLotto.addLotto(lottoGenerate());
         }
-        try{
-            enterResultNumbers();
-        }catch (RuntimeException e){
-            System.out.println(e.getMessage());
-            System.exit(0);
-        }
+
+        myLotto.addLotto(enterResultNumbers());
+
         for(int i = 0; i < numOfLotto; i++)
-            getHitStatistics(lottoList.get(i));
+            getHitStatistics(myLotto.getLottoList().get(0), randomLotto.getLottoList().get(i));
         printResult(purchasedPrice);
     }
 
