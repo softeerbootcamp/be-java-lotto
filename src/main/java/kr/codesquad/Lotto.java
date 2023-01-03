@@ -44,4 +44,7 @@ public class Lotto {
         }
         return numbers;
     }
+    public void setWinningNumbers(List<Integer> list) {
+        winningNumbers = list;
+    }
 }
