@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +14,11 @@ public class Lotto {
     List<Integer> lotto;
 
     public Lotto() {
+        this(choiceNumbers());
+    }
 
+    public Lotto(List<Integer> lottoNumbers) {
+        this.lotto = new ArrayList<>(new ArrayList<>(lottoNumbers));
     }
 
     private static List<Integer> choiceNumbers() {

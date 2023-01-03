@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import kr.codesquad.domain.Lotto;
+
 import java.util.*;
 
 public class Main {
