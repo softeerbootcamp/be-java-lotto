@@ -3,6 +3,9 @@ package kr.codesquad;
 import java.util.ArrayList;
 import java.util.List;
 
+import static kr.codesquad.UserInputHandler.getOneNumber;
+import static kr.codesquad.UserInputHandler.getSixNumber;
+
 public class LottoGame {
     private List<Lotto> lottos;
     private LottoStat lottoStat;
@@ -24,7 +27,7 @@ public class LottoGame {
     }
 
     protected void getWinning(){
-        List<Integer> winningNumbers = UserInputHandler.getSixNumber();
+        List<Integer> winningNumbers = getSixNumber();
         bonusNo = UserInputHandler.getBonusNumber(winningNumbers);
         winning = new Lotto(winningNumbers);
     }
@@ -44,8 +47,14 @@ public class LottoGame {
     }
 
     protected int buyManualLotto(int max_lotto, List<Lotto> lottos){
-        List<Lotto> lottoList = UserInputHandler.buyManualLotto(max_lotto);
-        lottos.addAll(lottoList);
-        return lottoList.size();
+        int n_lotto = getOneNumber(0, max_lotto);
+        List<Lotto> manualLotto = new ArrayList<>();
+        for(int i =0; i<n_lotto; i++){
+            List<Integer> sixNumber = getSixNumber();
+            manualLotto.add(new Lotto(sixNumber));
+        }
+        lottos.addAll(manualLotto);
+        return manualLotto.size();
     }
+
 }

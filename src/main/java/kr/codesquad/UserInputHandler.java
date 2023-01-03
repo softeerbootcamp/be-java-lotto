@@ -20,16 +20,6 @@ public class UserInputHandler {
         return money;
     }
 
-    public static List<Lotto> buyManualLotto(int maxManualLotto){
-        int n_lotto = getOneNumber(0, maxManualLotto);
-        List<Lotto> manualLotto = new ArrayList<>();
-        for(int i =0; i<n_lotto; i++){
-            List<Integer> sixNumber = getSixNumber();
-            manualLotto.add(new Lotto(sixNumber));
-        }
-        return manualLotto;
-    }
-
     public static List<Integer> getSixNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         Scanner s1 = new Scanner(System.in);
