@@ -51,27 +51,28 @@ enum LottoStatus{
 
     LottoStatus(String val1, int val2)
     {
-        setStatusValue1(val1);
-        setStatusValue2(val2);
+        setStatusString(val1);
+        setWinningAmout(val2);
     }
 
-    private String StatusValue1; // 상태메시지
-    private int StatusValue2; // 당첨금액
+    private String StatusString; // 상태메시지
 
-    public String getStatusValue1() {
-        return StatusValue1;
+    public String getStatusString() {
+        return StatusString;
     }
 
-    public void setStatusValue1(String statusValue1) {
-        StatusValue1 = statusValue1;
+    public void setStatusString(String statusString) {
+        StatusString = statusString;
     }
 
-    public int getStatusValue2() {
-        return StatusValue2;
+    public int getWinningAmout() {
+        return WinningAmout;
     }
 
-    public void setStatusValue2(int statusValue2) {
-        StatusValue2 = statusValue2;
+    public void setWinningAmout(int winningAmout) {
+        WinningAmout = winningAmout;
     }
+
+    private int WinningAmout; // 당첨금액
 
 }
