@@ -1,6 +1,5 @@
 package kr.codesquad.LottoService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface LottoService {
@@ -10,10 +9,9 @@ public interface LottoService {
 
     void printWinningLottos();
 
-    void setWinningNumbers(ArrayList<Integer> wonNumberList);
 
     void calculateEarningRate(long lottoCount);
 
+    void setWinningNumbers(List<Integer> wonNumberList);
 
-    ArrayList<ArrayList<Integer>> getLottos();
 }

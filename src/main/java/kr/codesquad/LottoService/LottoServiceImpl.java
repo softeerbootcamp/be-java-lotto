@@ -5,13 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoServiceImpl implements LottoService{
-    private ArrayList<ArrayList<Integer>> lottos;
+    private List<List<Integer>> lottos;
     private long[] winningNumbersCount = new long[7];
     private static final long[] winningMoney = {0, 0, 0, 5000, 50000, 1500000, 2000000000};
-
-    public ArrayList<ArrayList<Integer>> getLottos() {
-        return lottos;
-    }
 
     @Override
     public void setLottoNumbers(long lottoCount) {
@@ -28,7 +24,7 @@ public class LottoServiceImpl implements LottoService{
 
     @Override
     public void printLottos() {
-        for (ArrayList<Integer> lotto : lottos) {
+        for (List<Integer> lotto : lottos) {
             System.out.println(lotto);
         }
     }
@@ -43,13 +39,14 @@ public class LottoServiceImpl implements LottoService{
         }
     }
 
+
     public int countMatchNumber(ArrayList<Integer> lotto, ArrayList<Integer> wonNumberList) {
         return (int)lotto.stream().filter(wonNumberList::contains).count();
     }
 
-    public void setWinningNumbers(ArrayList<Integer> wonNumberList){
-        for (ArrayList<Integer> lotto : lottos) {
-            winningNumbersCount[countMatchNumber(lotto, wonNumberList)]++;
+    public void setWinningNumbers(List<Integer> wonNumberList){
+        for (List<Integer> lotto : lottos) {
+            winningNumbersCount[countMatchNumber((ArrayList<Integer>) lotto, (ArrayList<Integer>) wonNumberList)]++;
         }
     }
 

@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : inputService, inputServiceImpl을 Console 클래스로 교체">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : Arraylist 참조변수 List로 변경">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/InputService/InputService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/InputService/InputServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +103,7 @@
       <updated>1672210428730</updated>
       <workItem from="1672210432725" duration="156000" />
       <workItem from="1672640664852" duration="2996000" />
-      <workItem from="1672644019169" duration="23072000" />
+      <workItem from="1672644019169" duration="26231000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1672642544349</created>
@@ -190,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672695509631</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="refactor : inputService, inputServiceImpl을 Console 클래스로 교체">
+      <created>1672696056098</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1672696056098</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +226,7 @@
     <MESSAGE value="feat : printWinningLottos, setWinningNumbers, calculateEarningRate 메서드 구현" />
     <MESSAGE value="feat : 변경된 메서드명 적용 및 구현된 setWinningNumbers, calculateEarningRate 메서드 추가" />
     <MESSAGE value="refactor : inputService, inputServiceImpl을 Console 클래스로 교체" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor : inputService, inputServiceImpl을 Console 클래스로 교체" />
+    <MESSAGE value="refactor : Arraylist 참조변수 List로 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : Arraylist 참조변수 List로 변경" />
   </component>
 </project>
