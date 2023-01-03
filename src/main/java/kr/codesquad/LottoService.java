@@ -6,6 +6,11 @@ public class LottoService {
 
     public static final int LOTTO_NUM_BOUND = 45;
     public static final int LOTTO_NUM_COUNT = 6;
+    public static final Map<WinningCount, Integer> lottoResult = new HashMap<>();
+
+    public Map<WinningCount, Integer> getLottoResult() {
+        return lottoResult;
+    }
 
     public List<Lotto> makeLottoList(int amount) {
         List<Lotto> lottoList = new ArrayList<>();
@@ -34,12 +39,36 @@ public class LottoService {
         return randNum;
     }
 
-    public int[] lottoResult( List<Lotto> lottoList, Lotto winNum) {
-        int[] correctCnt = new int[7];
-        for (int i = 0; i < lottoList.size(); i++) {
-            correctCnt[lottoList.get(i).correctNumCnt(winNum)]++;
+    public void makeLottoResult(List<Lotto> lottoList, Lotto winNum) {
+        for(Lotto lotto : lottoList) {
+            makeLottoResultCount(lotto, winNum);
         }
-        return correctCnt;
     }
+    public void makeLottoResultCount(Lotto lottoNumbers, Lotto winNum) {
+        int correctCnt = lottoNumbers.correctNumCnt(winNum);
+        WinningCount winningCount = findWinningCount(correctCnt);
+        if(winningCount != null) {
+            addWinningCount(winningCount);
+        }
+    }
+
+    private static WinningCount findWinningCount(int correctCnt) {
+        WinningCount winningCount = Arrays.stream(WinningCount.values())
+                .filter(count -> count.getCount() == correctCnt)
+                .findFirst()
+                .orElse(null);
+        return winningCount;
+    }
+
+    private static void addWinningCount(WinningCount winningCount) {
+        if(lottoResult.containsKey(winningCount)) {
+            lottoResult.put(winningCount, lottoResult.get(winningCount) + 1);
+        }
+        if(!lottoResult.containsKey(winningCount)) {
+            lottoResult.put(winningCount, 1);
+        }
+
+    }
+
 
 }

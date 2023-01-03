@@ -13,4 +13,7 @@ public class Lotto {
         return temp.size();
     }
 
+    public List<Integer> getNumberList() {
+        return numberList;
+    }
 }

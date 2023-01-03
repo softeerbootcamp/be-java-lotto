@@ -3,6 +3,7 @@ package kr.codesquad;
 import kr.codesquad.io.Console;
 
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     private static Console console = new Console();
@@ -15,9 +16,9 @@ public class Main {
         console.printAmount(lottoAmount);
         List<Lotto> allLotto = lottoService.makeLottoList(lottoAmount);
         console.printLottoNum(allLotto);
-        Lotto winNum = console.inputWinNum();
-        int[] correctCnt = lottoService.lottoResult(allLotto, winNum);
-        console.printLottoResult(money, correctCnt);
+        lottoService.makeLottoResult(allLotto, console.inputWinNum());
+        Map<WinningCount, Integer> lottoResult = lottoService.getLottoResult();
+        console.printLottoResult(money, lottoResult);
     }
 
 }
