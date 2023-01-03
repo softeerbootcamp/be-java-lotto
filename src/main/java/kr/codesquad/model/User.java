@@ -1,21 +1,19 @@
 package kr.codesquad.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class User {
 
     private final int purchaseAmount;
-    private final int purchaseTickets;
+    private final int purchaseTicketCount;
     private final List<Lotto> lottos;
     private WinningStatic winningStatic = new WinningStatic();
 
-    public User(int purchaseAmount, int purchaseTickets) {
+    public User(int purchaseAmount, int purchaseTicketCount) {
         this.purchaseAmount = purchaseAmount;
-        this.purchaseTickets = purchaseTickets;
-        this.lottos=generateLottos(purchaseTickets);
+        this.purchaseTicketCount = purchaseTicketCount;
+        this.lottos=generateLottos(purchaseTicketCount);
     }
 
 
