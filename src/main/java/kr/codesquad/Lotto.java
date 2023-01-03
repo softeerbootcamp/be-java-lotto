@@ -2,12 +2,13 @@ package kr.codesquad;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Lotto {
-    ArrayList<ArrayList<Integer>> lottoBuyList = new ArrayList<ArrayList<Integer>>(); // 로또 구매 목록
-    ArrayList<Integer> lottoBuy = new ArrayList<>(); // 로또 구매 1장
-    ArrayList<Integer> numberList = new ArrayList<Integer>(); // 1 ~ 45로 이루어진 리스트
-    ArrayList<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
+    List<List<Integer>> lottoBuyList = new ArrayList<>(); // 로또 구매 목록
+    List<Integer> lottoBuy = new ArrayList<>(); // 로또 구매 1장
+    List<Integer> numberList = new ArrayList<Integer>(); // 1 ~ 45로 이루어진 리스트
+    List<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
     int scoreList[] = {0, 0, 0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
     Lotto(){
         // 로또 번호 1 ~ 45를 저장할 리스트 생성
@@ -42,12 +43,12 @@ public class Lotto {
         }
     }
 
-    public int compareValue(ArrayList<Integer> lottoNumList, int value){
+    public int compareValue(List<Integer> lottoNumList, int value){
         if(lottoNumList.contains(value)) return 1;
         return 0;
     }
 
-    public int getScore(ArrayList<Integer> lottoNumList){
+    public int getScore(List<Integer> lottoNumList){
         int score = 0;
         for(int i = 0;i<6;i++) {
             score += compareValue(lottoNumList, winLottoNum.get(i));
