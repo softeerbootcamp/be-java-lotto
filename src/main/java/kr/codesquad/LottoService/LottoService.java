@@ -12,6 +12,6 @@ public interface LottoService {
 
     void calculateEarningRate(long lottoCount);
 
-    void setWinningNumbers(List<Integer> wonNumberList);
+    void setWinningNumbers(List<Integer> wonNumberList, int bonusNumber);
 
 }

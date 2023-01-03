@@ -14,7 +14,8 @@ public class Main {
         lottoService.printLottos();
 
         console.inputWinningNumber();
-        lottoService.setWinningNumbers(console.getWinningNumberList());
+        console.inputBonusNumber();
+        lottoService.setWinningNumbers(console.getWinningNumberList(), console.getBonusNumber());
         lottoService.printWinningLottos();
         lottoService.calculateEarningRate(console.getLottoCount());
     }

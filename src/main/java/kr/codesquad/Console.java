@@ -9,6 +9,12 @@ public class Console {
     private long lottoCount;
 
     private List<Integer> winningNumberList;
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    private int bonusNumber;
     public void inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         Scanner sc = new Scanner(System.in);
@@ -24,6 +30,12 @@ public class Console {
         Scanner sc = new Scanner(System.in);
         String wonNumbers = sc.nextLine().replaceAll(" ", "");
         winningNumberList = Arrays.stream(wonNumbers.split(",")).map(Integer::valueOf).collect(Collectors.toList());
+    }
+
+    public void inputBonusNumber() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+        Scanner sc = new Scanner(System.in);
+        bonusNumber = sc.nextInt();
     }
 
     public List<Integer> getWinningNumberList() {

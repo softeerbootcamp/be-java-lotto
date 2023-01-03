@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : Rank enum 구현">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : import Rank">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Rank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Rank.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,8 +45,8 @@
       <list>
         <option value="package-info" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -203,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672713871364</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feat : import Rank">
+      <created>1672715655509</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1672715655509</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +247,7 @@
     <MESSAGE value="refactor : inputService, inputServiceImpl을 Console 클래스로 교체" />
     <MESSAGE value="refactor : Arraylist 참조변수 List로 변경" />
     <MESSAGE value="feat : Rank enum 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : Rank enum 구현" />
+    <MESSAGE value="feat : import Rank" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : import Rank" />
   </component>
 </project>

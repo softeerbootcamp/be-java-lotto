@@ -42,13 +42,14 @@ public class LottoServiceImpl implements LottoService{
     }
 
 
-    public int countMatchNumber(ArrayList<Integer> lotto, ArrayList<Integer> wonNumberList) {
-        return (int)lotto.stream().filter(wonNumberList::contains).count();
+    public int countMatchNumber(List<Integer> lotto, List<Integer> wonNumberList, int bonusNumber) {
+        int matchNumberCount =  (int)lotto.stream().filter(wonNumberList::contains).count();
+        return matchNumberCount;
     }
 
-    public void setWinningNumbers(List<Integer> wonNumberList){
+    public void setWinningNumbers(List<Integer> wonNumberList, int bonusNumber){
         for (List<Integer> lotto : lottos) {
-            winningNumbersCount[countMatchNumber((ArrayList<Integer>) lotto, (ArrayList<Integer>) wonNumberList)]++;
+            winningNumbersCount[countMatchNumber(lotto, wonNumberList, bonusNumber)]++;
         }
     }
 
