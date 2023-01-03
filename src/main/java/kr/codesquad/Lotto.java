@@ -1,65 +1,47 @@
-package main.java.kr.codesquad;
+package kr.codesquad;
 
 import java.util.*;
 
-public class Lotto implements LottoInterface{
-    private ArrayList<Integer> numberList;
-    private ArrayList<Integer> lottoList;
-    private ArrayList<Integer> jackpotNumbers;
-    private ArrayList<Integer> jackpotCount;
-    public Lotto() {
-        numberList = new ArrayList<>();
+public class Lotto {
+    public Lotto()
+    {
+        matchesBonus = false;
+        matchCount = 0;
         lottoList = new ArrayList<>();
-        jackpotNumbers = new ArrayList<>();
-        jackpotCount = new ArrayList<>();
-        for(int i=1;i<=45;i++)
-        {
-            numberList.add(i);
-        }
     }
-
-    @Override
-    public void makeLottoList(int count)
+    public Lotto(List<Integer> list)
     {
-        Collections.shuffle(numberList);
-
-        for(int i=0;i<count;i++)
-        {
-            int start = new Random().nextInt(39);
-            lottoList.addAll(numberList.subList(start, start+6));
-        }
+        matchesBonus = false;
+        matchCount = 0;
+        lottoList = new ArrayList<>(list);
     }
 
-    @Override
-    public void printLottoList(int count) {
-        int idx = 0;
-        while(idx < count)
-        {
-            int start = idx * 6;
-            System.out.println(lottoList.subList(start, start+6));
-            idx++;
-        }
-    }
+    List<Integer> lottoList;
+    private int matchCount;
+    boolean matchesBonus;
 
-    @Override
-    public void getJackPotNumbers(String st) {
-        StringTokenizer stringTokenizer = new StringTokenizer(st," ");
-        while(stringTokenizer.hasMoreTokens())
-        {
-            jackpotNumbers.add(stringTokenizer.nextToken().charAt(0)-'0');
-        }
-    }
-
-    public void checkJackPots()
+    public List<Integer> getLottoList()
     {
-        for(int i=0;i<lottoList.size()/6;i++)
-        {
-            getJackPots(lottoList.subList(i,i+6));
-        }
+        return lottoList;
     }
 
-    @Override
-    public void getJackPots(List<Integer> list) {
-        jackpotNumbers.forEach((elem)->{});
+    public boolean getMatchesBonus()
+    {
+        return matchesBonus;
+    }
+
+    public int getMatchCount()
+    {
+        return matchCount;
+    }
+
+    public void setMatchesBonus(boolean matches)
+    {
+        matchesBonus = matches;
+    }
+
+    public void setMatchCount(int count)
+    {
+        matchCount = count;
     }
 }
