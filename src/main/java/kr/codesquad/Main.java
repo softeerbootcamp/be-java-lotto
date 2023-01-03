@@ -23,11 +23,13 @@ public class Main {
         LottoMachine lottoMachine = new LottoMachine();
 
         System.out.println();
-        System.out.println("당첨 번호를 입력해주세요");
+        System.out.println("당첨 번호를 입력해주세요"); sc.nextLine();
+        String winNumberString = sc.nextLine();
+        String splitedWinNum[] = winNumberString.split(", ");
         ArrayList<Integer> winNums = new ArrayList<Integer>();
         for(int i = 0; i < 6; i++)
         {
-            winNums.add(sc.nextInt());
+            winNums.add(Integer.parseInt(splitedWinNum[i]));
         }
         lottoMachine.setWinNums(winNums); // 로또 추첨기에 당첨 번호 넘기기
 
