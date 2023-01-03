@@ -108,11 +108,11 @@ public class Lotto {
 
     private void printLastScore(int price) {
         System.out.println("\n당첨 통계\n----------");
-        System.out.println("3개 일치 (5000원) - " + scoreList[3] + "개");
-        System.out.println("4개 일치 (50000원) - " + scoreList[4] + "개");
-        System.out.println("5개 일치 (1500000원) - " + scoreList[5] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치(30000000원) - " + bonusBallScoreCount + "개");
-        System.out.println("6개 일치 (2000000000원) - " + scoreList[6] + "개");
+        System.out.println("3개 일치 (" + Rank.FIFTH.getWinningMoney() + "원) - " + scoreList[3] + "개");
+        System.out.println("4개 일치 (" + Rank.FOURTH.getWinningMoney() + "원) - " + scoreList[4] + "개");
+        System.out.println("5개 일치 (" + Rank.THIRD.getWinningMoney() + "원) - " + scoreList[5] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치(" + Rank.SECOND.getWinningMoney() + "원) - " + bonusBallScoreCount + "개");
+        System.out.println("6개 일치 (" + Rank.FIRST.getWinningMoney() + "원) - " + scoreList[6] + "개");
         printRate(price);
     }
 }
