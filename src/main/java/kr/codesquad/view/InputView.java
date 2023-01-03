@@ -26,6 +26,7 @@ public class InputView {
     }
 
     public int readBonusNumber() {
-        return 0;
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
     }
 }
