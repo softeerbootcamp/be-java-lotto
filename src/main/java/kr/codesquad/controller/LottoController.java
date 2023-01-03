@@ -17,11 +17,15 @@ public class LottoController {
 
     private static int amount;
 
+    private static int[] sameCnt = new int[7];
+
     public void run() {
         totalPrice = requestMoney();
         amount = totalPrice / LOTTO_PRICE;
         Lottos lottos = purchaseLotto(amount);
         WinLotto winLotto  = makeWinLotto();
+        findSameNumber(lottos, winLotto);
+        getResult();
     }
 
     private int requestMoney() {
@@ -48,6 +52,33 @@ public class LottoController {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
         return new Lotto(newList);
+    }
+
+    public static void findSameNumber(
+            Lottos lottos,
+            WinLotto winLotto)
+    {
+        for (int i = 0; i < amount; i++) {
+            List<Integer> tempLotto = lottos.getLottoList().get(i).getLotto();
+            List<Integer> tempWin = winLotto.getWinLotto().getLotto();
+            tempLotto.retainAll(tempWin);
+            int same = tempLotto.size();
+            sameCnt[same]++;
+        }
+    }
+
+    public static void getResult() {
+        int[] price = {5000, 50000, 1500000, 2000000000};
+        double sum = 0;
+        for (int i = 3; i <= 6; i++) {
+            sum += price[i - 3] * sameCnt[i];
+        }
+        OutputView.showResultStatistics();
+        OutputView.showResult(
+                sum,
+                sameCnt,
+                totalPrice
+        );
     }
 
 }
