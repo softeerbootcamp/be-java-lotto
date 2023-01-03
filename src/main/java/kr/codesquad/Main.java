@@ -3,6 +3,8 @@ package kr.codesquad;
 
 import java.util.*;
 
+import static kr.codesquad.Calculator.calculate_profit;
+
 class My_lotto{
     private int lotto_cnt;
     private ArrayList<One_lotto> my_lottos;
@@ -92,25 +94,10 @@ public class Main {
             ret_jackpot_cnts(my_lotto_one,jackpot_num);
         }
     }
-    public static void print_calculation(int[] jk,int[] prizes){
-        System.out.println("\n당첨통계\n---------");
-        for(int i=0;i<JACKPOT_CNT.length;i++){
-            System.out.printf("%d개 일치 : (%d)- %d개\n",i+3,prizes[i],jk[i]);
-        }
-    }
 
 
-    public static float calculate_profit(int[] jackpots, int money){
-        float prof,sum=0;
-        int[] prizes = {5000,50000,1500000,2000000000};
-        for (int i=0;i< jackpots.length;i++) {
-            sum += prizes[i] * jackpots[i];
 
-        }
-        print_calculation(jackpots,prizes);
-        prof = (sum-money)/money;
-        return prof;
-    }
+
     public static void setJackpotNum(){
         System.out.printf("당첨 번호를 입력해 주세요.\n");
         Scanner s2 = new Scanner(System.in);
@@ -131,7 +118,7 @@ public class Main {
         My_lotto myLotto = new My_lotto(cnt);
         setJackpotNum();
         finding_jackpot(myLotto,JACKPOT_NUM);
-        System.out.printf("총 수익률은 : %f%%입니다\n",calculate_profit(JACKPOT_CNT,money)*100);
+        System.out.printf("총 수익률은 : %f%%입니다\n",Calculator.calculate_profit(JACKPOT_CNT,money)*100);
 
     }
 }
