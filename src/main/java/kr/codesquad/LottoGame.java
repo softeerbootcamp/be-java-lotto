@@ -19,17 +19,9 @@ public class LottoGame {
 		}
 	}
 
-	public void compareEachLotto(Lotto purchasedLotto, Lotto winningLotto, int bonusBall, LottoResult lottoResult) {
-		int matchNum = 0;
-		for (int num : purchasedLotto.getNumbers()) {
-			matchNum = setMatchNum(winningLotto, matchNum, num);
-		}
-		if (matchNum == LottoMatchType.FIVE_MATCH.getMatchCount() && purchasedLotto.getNumbers().contains(bonusBall)) {
-			System.out.println(matchNum + purchasedLotto.toString());
-			lottoResult.updateResult(LottoMatchType.BONUS_MATCH.getMatchCount(), 1);
-			return;
-		}
-		lottoResult.updateResult(matchNum, 1);
+	public void compareEachLotto(Lotto purchasedLotto, WinningLotto winningLotto, LottoResult lottoResult) {
+		LottoMatchType lottoMatchType = winningLotto.matchLotto(purchasedLotto);
+		lottoResult.updateResult(lottoMatchType.getMatchCount(), 1);
 	}
 
 	public int setMatchNum(Lotto winningLotto, int matchNum, int num) {
@@ -40,11 +32,11 @@ public class LottoGame {
 		return matchNum;
 	}
 
-	public LottoResult checkMyLotto(List<Lotto> purchasedLottoList, Lotto winningLotto, int bonusBall) {
+	public LottoResult checkMyLotto(List<Lotto> purchasedLottoList, WinningLotto winningLotto) {
 		LottoResult lottoResult = new LottoResult();
 		for (Lotto lotto : purchasedLottoList) {
 			System.out.println(lotto);
-			compareEachLotto(lotto, winningLotto, bonusBall, lottoResult);
+			compareEachLotto(lotto, winningLotto, lottoResult);
 		}
 
 		return lottoResult;
@@ -55,7 +47,7 @@ public class LottoGame {
 		List<Integer> newLottoNumbers = new ArrayList<>(lottoNumbers.subList(0, LOTTO_NUMBER_COUNT));
 		Collections.sort(newLottoNumbers);
 
-		return Lotto.newOne(newLottoNumbers);
+		return Lotto.of(newLottoNumbers);
 	}
 
 	public int getPurchaseAmount() {
@@ -91,7 +83,7 @@ public class LottoGame {
 		return scanner.nextInt();
 	}
 
-	public Lotto createWinningLottery() {
+	public WinningLotto createWinningLottery() {
 		System.out.println("당첨 번호를 입력해주세요");
 		Scanner scanner = new Scanner(System.in);
 		String numbers = scanner.nextLine();
@@ -100,6 +92,6 @@ public class LottoGame {
 			lottoNumbers.add(Integer.parseInt(number));
 		}
 
-		return Lotto.newOne(lottoNumbers);
+		return WinningLotto.of(Lotto.of(lottoNumbers), getBonusBall());
 	}
 }
