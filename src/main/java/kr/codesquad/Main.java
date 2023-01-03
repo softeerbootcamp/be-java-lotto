@@ -49,12 +49,13 @@ public class Main {
         int[] answers = new int[COLUMN];
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < COLUMN; i++) {
+
             answers[i] = Integer.parseInt(st.nextToken());
         }
 
         /**
-        * 당첨 통계 내기
-        */
+         * 당첨 통계 내기
+         */
         System.out.println("당첨 통계\n" + "---------");
 
         //todo: 각 Row 별 일치 값 갯수 compare, 더 나은 방식은 없나
@@ -78,7 +79,6 @@ public class Main {
 
     /**
      * 유사난수로 1~45의 숫자 중 6개씩 생성된 줄만큼 입력
-     *
      */
     private static void receiveRandomLotto(Row row) {
         int min = 1;

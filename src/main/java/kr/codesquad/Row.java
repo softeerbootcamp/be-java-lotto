@@ -15,7 +15,6 @@ public class Row {
 
     /**
      * 각 list 별 정답과 일치하는 갯수 반환
-     *
      */
     public void compare(int[] answers) {
         for (int answer : answers) {

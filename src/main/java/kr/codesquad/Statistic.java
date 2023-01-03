@@ -1,8 +1,6 @@
 package kr.codesquad;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Statistic {
@@ -42,7 +40,7 @@ public class Statistic {
         System.out.println("당첨 통계\n" + "---------");
 
         for (int i = 3; i <= 6; i++) {
-            System.out.println(i + "개 일치 ("+scoreBoard.get(i) + "원)- " + counts[i]+"개");
+            System.out.println(i + "개 일치 (" + scoreBoard.get(i) + "원)- " + counts[i] + "개");
         }
         System.out.println("총 수익률은 " + rate + "% 입니다.");
 
