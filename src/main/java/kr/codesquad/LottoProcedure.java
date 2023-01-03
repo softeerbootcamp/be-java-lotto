@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LottoProcedure {
@@ -15,7 +16,7 @@ public class LottoProcedure {
     final static int LOTTO_LENGTH = 6;  // 로또 번호 조합의 길이
 
     static int[] matches = new int[7];  // 몇 개의 로또 번호가 일치하는지. matches[3] -> 3개의 번호가 일치하는 경우를 셈
-    static final int[] PRICES = new int[] {0, 0, 0, 5000, 50000, 1500000, 2000000000};
+    static final int[] PRICES = new int[] {0, 0, 0, 5000, 50000, 1500000, 2000000000};  // TODO: ENUM으로 대체
 
     private Lotto actualSequence;
     private List<Lotto> createdSequence;
@@ -55,11 +56,12 @@ public class LottoProcedure {
 
         System.out.println(money.numOfTickets + " 개를 구매했습니다.\n");
     }
+
     public void takeInput() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        sc.next();
+        // sc.next();
         // TODO: game의 입력, parsing 부분으로
         String str = sc.nextLine();
 
@@ -73,11 +75,9 @@ public class LottoProcedure {
 
         this.bonus = sc.nextInt();
 
-
     }
 
     int[] matchLottoSequences(List<Lotto> created, Lotto actual) {
-        // TODO: game의 함수로
         for(Lotto lotto: created) {
             int cnt = matchLotto(actual, lotto);  // 실제 당첨번호와 생성된 로또 번호 1대1 매칭 통해 대응되는 수의 쌍 개수 반환
             matches[cnt] += 1;
@@ -89,26 +89,33 @@ public class LottoProcedure {
     int matchLotto (Lotto actual, Lotto predicted) {
         int cnt = 0;
 
+        // TODO: 보너스도 계산하기
+
         // 정렬된 로또 번호 기준으로, 실제 로또 번호와 비교
         for(Integer num : predicted.getLotto()) {
             cnt += actual.contains(num) ? 1:0;
         }
-
-        return cnt;
+        
+        return cnt;  // 동일한 번호의 갯수
     }
 
-    void printStatistics() {  // TODO: 게임의 함수로
+    void printStatistics() {
         int prizeTotal = 0;
+
         System.out.println("\n당첨 통계");
         System.out.println("---------");
 
+
+        // TODO: matches -> List로,
         for (int i = LEAST_MATCH; i <= LOTTO_LENGTH; ++i) {  // 최소 3개 이상, 6개 이하 매치
-            // TODO: PRICES -> Enumeration으로 대치
-            prizeTotal += (long) PRICES[i] * matches[i]; // 상금 총액
-            System.out.println(i + "개 일치 (" + PRICES[i] + "원)- " + matches[i] + "개");
+            Prize prize = Prize.valueOf(matches[i] > 0?i:0);
+            prizeTotal += prize.calculatePrize(matches[i]); // 상금 총액
+
+            System.out.println(i + "개 일치 (" + prize.getWinningMoney() + "원)- " + prize.getCountOfMatch() + "개");
         }
 
         double returnRate = money.returnRate(prizeTotal);
+
         System.out.println("총 수익률은 " + String.format("%.2f", returnRate) + "%입니다.)");
     }
 }
