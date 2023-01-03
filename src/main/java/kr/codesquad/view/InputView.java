@@ -16,9 +16,8 @@ public class InputView {
 
     public Lotto readWinningLotto() {
         Scanner scanner = new Scanner(System.in);
-        String numbersStr = scanner.next();
-        numbersStr = numbersStr.replaceAll("[^0-9]", "");
-        List<Integer> numbers = Arrays.stream(numbersStr.split(""))
+        String[] numbersStr = scanner.nextLine().split(", ");
+        List<Integer> numbers = Arrays.stream(numbersStr)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
