@@ -23,19 +23,19 @@ public enum Rank {
         return winningMoney;
     }
 
-    public static Rank valueOf(int countOfMatch, boolean matchBonus) {
+    public static int valueOf(int countOfMatch, boolean matchBonus) {
         Rank[] ranks = values();
         for (Rank rank : ranks) {
             if (countOfMatch == SECOND.countOfMatch) {
-                return matchBonus ? SECOND : THIRD;
+                return matchBonus ? SECOND.getWinningMoney() : THIRD.getWinningMoney();
             }
 
             if (rank.countOfMatch == countOfMatch) {
-                return rank;
+                return rank.getWinningMoney();
             }
         }
 
-        return null;
+        return 0;
     }
 
 }

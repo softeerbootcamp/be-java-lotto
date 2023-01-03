@@ -54,7 +54,7 @@ public class Lotto {
         boolean isWinBonus = false;
         int score = countScore(lottoNumList);
         if(score == 5) bonusBallScoreCount += checkBonusBall(lottoNumList, bonusBall, isWinBonus);
-        if(score >= 3) countTotalWinPrice(score, isWinBonus);
+        countTotalWinPrice(score, isWinBonus);
         return score;
     }
 
@@ -76,7 +76,7 @@ public class Lotto {
     }
 
     private void countTotalWinPrice(int score, boolean isWinBonus) {
-        totalWinPrice += Rank.valueOf(score, isWinBonus).getWinningMoney();
+        totalWinPrice += Rank.valueOf(score, isWinBonus);
     }
 
     public void statistics(List<List<Integer>> lottoBuyList, int price) {
