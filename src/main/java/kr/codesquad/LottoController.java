@@ -11,8 +11,9 @@ import static kr.codesquad.LottoService.COLUMN;
 public class LottoController {
 
     private static final int SINGLE_PRICE = 1000; //로또 한 장의 가격은 1000원이다.
-    private int inputMoney;
     private LottoService lottoService;
+
+    private int inputMoney;
     private BufferedReader br;
     private List<Row> rows;
 

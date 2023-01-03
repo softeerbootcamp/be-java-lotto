@@ -6,7 +6,7 @@ import java.util.List;
 public class Row {
 
     private int match;
-    private List<Integer> values = new ArrayList<>();
+    private final List<Integer> values = new ArrayList<>();
     private boolean isBonus;
 
     /**

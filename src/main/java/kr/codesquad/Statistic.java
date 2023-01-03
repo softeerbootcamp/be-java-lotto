@@ -27,9 +27,9 @@ public class Statistic {
 
     public void calculateOutput(Row row) {
         int match = row.getMatch();
-        int money = Rank.getMoney(match);
         boolean matchBonus = row.isBonus();
         if (match >= 3) {
+            int money = Rank.getMoney(match, matchBonus);
             Rank rank = Rank.valueOf(match, matchBonus);
             int cnt = counts.get(rank);
             counts.put(rank, ++cnt);

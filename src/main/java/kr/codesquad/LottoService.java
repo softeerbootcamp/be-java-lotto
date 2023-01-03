@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LottoService {
 
-    private final List<Integer> numberList;
+    private final List<Integer> numberList; //1~45까지의 숫자 list
     static final int COLUMN = 6;
 
     public LottoService() {
@@ -21,11 +21,8 @@ public class LottoService {
      */
     public List<Row> receiveRandomRows(int num) {
         List<Row> rows = new ArrayList<>();
-
-
         for (int i = 0; i < num; i++) {
             Collections.shuffle(numberList);
-
             Row row = new Row();
             List<Integer> tempt = numberList.subList(0, COLUMN);
             Collections.sort(tempt);
@@ -36,10 +33,8 @@ public class LottoService {
     }
 
     public void compareLotto(List<Row> rows, int[] answers, int bonusNumber) {
-        int rowSize = rows.size();
         for (Row row : rows) {
             row.compare(answers, bonusNumber);
         }
-
     }
 }
