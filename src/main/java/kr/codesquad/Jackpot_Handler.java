@@ -22,7 +22,7 @@ public class Jackpot_Handler {
             return 0;
         }
     }
-    public static void ret_jackpot_cnts(ArrayList<Integer> my, ArrayList<Integer> jk){
+    public static void jackpot_cnts(ArrayList<Integer> my, ArrayList<Integer> jk){
         int cnt=0;
         for (int i=0;i<LOTTO_CNT.getValue();i++) {
             cnt+=ret1_if_contains(i,my,jk);
@@ -38,7 +38,7 @@ public class Jackpot_Handler {
         for (Empty_lotto o:myLotto.getMy_lottos()
         ) {
             ArrayList<Integer> my_lotto_one = o.getNumbers();
-            ret_jackpot_cnts(my_lotto_one,jackpot_num);
+            jackpot_cnts(my_lotto_one,jackpot_num);
         }
     }
 
