@@ -19,7 +19,7 @@ public class WinningLotto {
 
 	public LottoMatchType matchLotto(Lotto lotto) {
 		List<Integer> lottoNumbers = new ArrayList<>(lotto.getNumbers());
-		lottoNumbers.removeAll(winningLotto.getNumbers());
+		lottoNumbers.removeAll(winningLotto.getNumbers()); // set으로 바꾸면 시간복잡도가 줄어듦
 
 		LottoMatchType lottoMatchType = LottoMatchType.getLottoMatchTypeByMatchCount(
 			winningLotto.getNumbersSize() - lottoNumbers.size());
