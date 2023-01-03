@@ -62,9 +62,15 @@ public class Lotto {
     }
     public void calculateTotalResult() {
         for (int i = 0; i < numbers.size(); i++) {
-            int count = containsNumberCount(i);
-            updateScore(count);
+            Rank rank = calculateRank(i);
+            updateScore(rank);
         }
+    }
+    private Rank calculateRank(int index) {
+        List<Integer> lotto = numbers.get(index);
+        int count = containsNumberCount(lotto);
+        boolean bonus = isContainsBonusBall(lotto);
+        return Rank.getRankByScoreAndBonus(count, bonus);
     }
     private int containsNumberCount(List<Integer> lotto) {
         int count = 0;
@@ -79,10 +85,12 @@ public class Lotto {
         }
         return 0;
     }
-    private void updateScore(int count) {
-        if (count < 3) return;
-        Rank rank = Rank.getRankByScore(count);
+    private void updateScore(Rank rank) {
+        if (rank == null) return;
         score.put(rank, score.get(rank) + 1);
+    }
+    private boolean isContainsBonusBall(List<Integer> lotto) {
+        return lotto.contains(bonusBall);
     }
     public double calculateEarningRate() {
         double earnMoney = calculateEarnedMoney();
