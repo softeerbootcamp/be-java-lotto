@@ -24,7 +24,7 @@ public class Console {
         Lotto lotto = new Lotto();
         String[] strList = winNumInput.split(", ");
         for (int i = 0; i < strList.length; i++) {
-            lotto.numberList.add(Integer.parseInt(strList[i]));
+            lotto.getNumberList().add(Integer.parseInt(strList[i]));
         }
         return lotto;
     }
@@ -53,7 +53,7 @@ public class Console {
 
     public void printLottoNum(List<Lotto> lottoList) {
         for (int i = 0; i < lottoList.size(); i++) {
-            System.out.println(lottoList.get(i).numberList);
+            System.out.println(lottoList.get(i).getNumberList());
         }
         System.out.println();
     }
