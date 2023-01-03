@@ -25,25 +25,30 @@ public class LottoMachine {
 
     public ArrayList<Integer> GetResult(ArrayList<ArrayList<Integer>> Tickets)
     {
-        ArrayList<Integer> ret = new ArrayList<Integer>();
+        ArrayList<Integer> Result = new ArrayList<Integer>();
         for(int i = 0; i < 5; i++)
         {
-            ret.add(0);
+            Result.add(0);
         }
+
         for(int i = 0; i < Tickets.size(); i++)
         {
-            int count = 0;
-            boolean notBonus = true;
-            count = CountValidNums(Tickets.get(i));
-            if(Tickets.get(i).contains(bonusBall)) notBonus = false;
-
-            if(count == 3)              ret.set(0, ret.get(0)+1);
-            if(count == 4)              ret.set(1, ret.get(1)+1);
-            if(count == 5 && notBonus)  ret.set(2, ret.get(2)+1);
-            if(count == 5 && !notBonus) ret.set(3, ret.get(3)+1);
-            if(count == 6)              ret.set(4, ret.get(4)+1);
+            CompareTicketWithWinNum(Tickets.get((i)), Result);
         }
-        return ret;
+        return Result;
+    }
+
+    private void CompareTicketWithWinNum(ArrayList<Integer> Ticket, ArrayList<Integer> Result)
+    {
+        int count = CountValidNums(Ticket);
+        boolean isBonus = JudgeBonus(Ticket);
+
+        String rank = DecideRank(count, isBonus);
+
+        if(rank.equals("Out of rank")) return;
+
+        int EnumIdx = LottoStatus.valueOf(rank).ordinal();
+        Result.set(EnumIdx, Result.get(EnumIdx)+1);
     }
 
     private int CountValidNums(ArrayList<Integer> Ticket)
@@ -54,5 +59,22 @@ public class LottoMachine {
             if(Ticket.contains(winNums.get(j))) ret++;
         }
         return ret;
+    }
+
+    private boolean JudgeBonus(ArrayList<Integer> Ticket)
+    {
+        if(Ticket.contains(bonusBall))
+            return true;
+        return false;
+    }
+
+    private String DecideRank(int c, boolean isBonus)
+    {
+        if(c == 3)              return "Fifth";
+        if(c == 4)              return "Fourth";
+        if(c == 5 && !isBonus)  return "Third";
+        if(c == 5 && isBonus)   return "Second";
+        if(c == 6)              return "First";
+        return "Out of rank";
     }
 }

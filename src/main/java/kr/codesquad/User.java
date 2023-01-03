@@ -2,39 +2,6 @@ package kr.codesquad;
 import java.util.ArrayList;
 import java.util.Collections;
 
-enum LottoStatus{
-    Fifth("3개 일치", 5000),
-    Fourth("4개 일치", 50000),
-    Third("5개 일치", 1500000),
-    Second("5개 일치, 보너스 볼 일치", 30000000),
-    First("6개 일치", 2000000000);
-
-    LottoStatus(String val1, int val2)
-    {
-        setStatusValue1(val1);
-        setStatusValue2(val2);
-    }
-
-    private String StatusValue1; // 상태메시지
-    private int StatusValue2; // 당첨금액
-
-    public String getStatusValue1() {
-        return StatusValue1;
-    }
-
-    public void setStatusValue1(String statusValue1) {
-        StatusValue1 = statusValue1;
-    }
-
-    public int getStatusValue2() {
-        return StatusValue2;
-    }
-
-    public void setStatusValue2(int statusValue2) {
-        StatusValue2 = statusValue2;
-    }
-
-}
 
 public class User {
 
