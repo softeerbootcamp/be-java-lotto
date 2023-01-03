@@ -18,32 +18,32 @@ public class LottoGame {
         printResult();
     }
 
-    public void printResult(){
+    protected void printResult(){
         lottoStat = new LottoStat(lottos, winning, bonusNo);
         lottoStat.printResult();
     }
 
-    public void getWinning(){
+    protected void getWinning(){
         List<Integer> winningNumbers = UserInputHandler.getSixNumber();
         bonusNo = UserInputHandler.getBonusNumber(winningNumbers);
         winning = new Lotto(winningNumbers);
     }
 
 
-    public void buyLottos(){
+    protected void buyLottos(){
         int n_lotto = UserInputHandler.getMoney() / 1000;
         int n_left_lotto = n_lotto - buyManualLotto(n_lotto, lottos);
         buyAutoLotto(n_left_lotto, lottos);
     }
 
-    public void buyAutoLotto(int n_lotto, List<Lotto> lottos){
+    protected void buyAutoLotto(int n_lotto, List<Lotto> lottos){
         for(int i =0; i<n_lotto; i++){
             lottos.add(new Lotto());
         }
         System.out.println(String.format("%d개를 구매했습니다.", lottos.size()));
     }
 
-    public int buyManualLotto(int max_lotto, List<Lotto> lottos){
+    protected int buyManualLotto(int max_lotto, List<Lotto> lottos){
         List<Lotto> lottoList = UserInputHandler.buyManualLotto(max_lotto);
         lottos.addAll(lottoList);
         return lottoList.size();
