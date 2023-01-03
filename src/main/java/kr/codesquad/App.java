@@ -29,7 +29,6 @@ public class App implements Runnable {
     console.printPurchaseCount(lottos.size());
 
     console.printLottoNumbersList(lottos);
-    console.printInputWinningNumber();
     Lotto winningNumber = console.inputWinningNumbers();
 
     WinningResult winningResult = new WinningResult();

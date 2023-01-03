@@ -21,6 +21,8 @@ public class Console {
   }
 
   public Lotto inputWinningNumbers() {
+    System.out.println("당첨 번호를 입력해 주세요");
+
     String s = commandLineInput();
     System.out.println();
     String[] split = s.split(", ");
@@ -35,10 +37,6 @@ public class Console {
 
   public void printPurchaseCount(int purchaseCount) {
     System.out.println(purchaseCount + "개를 구입했습니다. ");
-  }
-
-  public void printInputWinningNumber() {
-    System.out.println("당첨 번호를 입력해 주세요");
   }
 
   public void printLottoNumbersList(List<Lotto> numbersList) {
