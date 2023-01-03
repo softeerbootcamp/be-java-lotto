@@ -21,19 +21,19 @@ class Lotto{
     public boolean bonusMatch(){
         return Arrays.asList(num).contains(bonus);
     }
-    public static int getBonus() {
-        return bonus;
-    }
 
     public static void setBonus(int bonus) {
+        if (bonus <= 0 || bonus > 45){
+            System.out.println("Wrong Bonus Number");
+            System.exit(1);
+        }
         Lotto.bonus = bonus;
     }
 
     public void print() {
         System.out.print("[");
-        for (int i=0; i<5; i++){
+        for (int i=0; i<5; i++)
             System.out.print(num[i] + ", ");
-        }
         System.out.println(num[5]+"]");
     }
 }
@@ -65,14 +65,19 @@ public class LottoService {
         //if문 없애야함.. indent 제한..
         public static Price valueOf(int countOfMatch, boolean matchBonus){
             Price[] prices = values();
-            for (Price price: prices){
-                if (countOfMatch == SECOND.countOfMatch)   //2등 or 보너스
-                    return matchBonus?BONUS:SECOND;
+            Price rtnPrice = null;
+            for (Price price: prices)
+                rtnPrice = calcPrice(rtnPrice, price, countOfMatch, matchBonus);
+            return rtnPrice;
+        }
 
-                if (price.countOfMatch == countOfMatch)
-                    return price;
-            }
-            return null;
+        private static Price calcPrice(Price rtnPrice, Price price, int countOfMatch, boolean matchBonus){
+            if (rtnPrice != null) return rtnPrice;
+            if (countOfMatch == SECOND.countOfMatch)   //2등 or 보너스
+                rtnPrice = matchBonus?BONUS:SECOND;
+            if (price.countOfMatch == countOfMatch)
+                rtnPrice = price;
+            return rtnPrice;
         }
     }
     static Map<Price, Integer> winnerCount = new HashMap<>();
