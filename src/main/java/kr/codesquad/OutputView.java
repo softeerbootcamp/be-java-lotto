@@ -43,4 +43,7 @@ public class OutputView {
         }
         System.out.println("총 수익률은 " + (Math.floor(rate * 100) / 100) + "%입니다.");
     }
+    public void printBonusBallText() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+    }
 }
