@@ -2,6 +2,7 @@ package kr.codesquad.controller;
 
 import kr.codesquad.model.Lotto;
 import kr.codesquad.model.LottoMachine;
+import kr.codesquad.model.Rank;
 import kr.codesquad.model.WinningLotto;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
@@ -36,7 +37,7 @@ public class LottoController {
         outputView.printWinningLottoReadMessage();
         WinningLotto winningLotto = createWinningLotto();
 
-        Map<Integer, Integer> result = caculateResult(lottos, winningLotto);
+        Map<Rank, Integer> result = caculateResult(lottos, winningLotto);
         //double profitRate = caculateProfitRate(result, money);
         //outputView.printResult(result, profitRate);를
     }
@@ -48,23 +49,18 @@ public class LottoController {
         return new WinningLotto(winningLotto, bonusNumber);
     }
 
-    private Map<Integer, Integer> caculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
-        Map<Integer, Integer> result = new HashMap<>();
-//        for (int i = 3; i <= 6; i++){
-//            result.put(i, 0);
-//        }
-//
+    private Map<Rank, Integer> caculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
+        Map<Rank, Integer> result = new HashMap<>();
+
 //        lottos.forEach(lotto -> {
-//                int sameCount = lotto.compare(winningLotto);
-//                if (result.containsKey(sameCount)) {
-//                    result.put(sameCount, result.get(sameCount)+1);
-//                }
+//                Rank rank = lotto.compare(winningLotto);
+//                result.put(rank, result.getOrDefault(rank, 0));
 //        });
 
         return result;
     }
 
-    private double caculateProfitRate(Map<Integer, Integer> result, int money) {
+    private double caculateProfitRate(Map<Rank, Integer> result, int money) {
         double profit = 0;
         for (int i = 3; i <= 6; i++){
             profit += (double)i * result.get(i);
