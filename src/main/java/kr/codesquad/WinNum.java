@@ -8,8 +8,10 @@ public class WinNum {
 
     public WinNum(String numStr) {
         String[] strList = numStr.split(", ");
-        for(int i=0;i<strList.length;i++) {
+        for (int i = 0; i < strList.length; i++) {
             this.num.add(Integer.parseInt(strList[i]));
         }
     }
+
+
 }
