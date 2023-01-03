@@ -8,8 +8,12 @@ public class Lotto {
 
     private List<Integer> numbers;
 
-    public Lotto(List<Integer> lotto) {
+    private Lotto(List<Integer> lotto) {
         numbers = lotto;
+    }
+
+    public static Lotto newOne(List<Integer> lotto) {
+        return new Lotto(lotto);
     }
 
     public List<Integer> getNumbers() {

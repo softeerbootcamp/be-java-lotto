@@ -12,20 +12,25 @@ public class LottoGame {
     public List<Integer> lottoNumbers;
 
     public LottoGame() {
-        result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0));
+        result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0));
         lottoNumbers = new ArrayList<>();
         for (int i = 1; i <= 45; i++) {
             lottoNumbers.add(i);
         }
     }
 
-    public void confirmLotto(Lotto purchasedLotto, Lotto winningLotto) {
+    public void confirmLotto(Lotto purchasedLotto, Lotto winningLotto, int bonusBall) {
 
         int matchNum = 0;
         for (int num : purchasedLotto.getNumbers()) {
             matchNum = setMatchNum(winningLotto, matchNum, num);
         }
-
+        if (matchNum == 5) {
+            if (purchasedLotto.getNumbers().contains(bonusBall)) {
+                result.set(0, result.get(7) + 1);
+                result.set(matchNum, result.get(7) - 1);
+            }
+        }
         result.set(matchNum, result.get(matchNum) + 1);
     }
 
@@ -39,20 +44,25 @@ public class LottoGame {
     public void printResult(int purchaseAmount) {
         System.out.println("당첨 통계");
         System.out.println("-----");
-        System.out.println("3개 일치 (5000원) - " + result.get(3));
-        System.out.println("4개 일치 (50000원) - " + result.get(4));
-        System.out.println("5개 일치 (1500000원) - " + result.get(5));
-        System.out.println("6개 일치 (2000000000원) - " + result.get(6));
-        double output = result.get(3) * 5000 + result.get(4) * 50000 + result.get(5) * 1500000 + result.get(6) * 2000000000;
-        double input = purchaseAmount * 1000;
+        System.out.println("3개 일치 (5000원) - " + result.get(LottoMatchType.THREE_MATCH.getMatchCount()));
+        System.out.println("4개 일치 (50000원) - " + result.get(LottoMatchType.FOUR_MATCH.getMatchCount()));
+        System.out.println("5개 일치 (1500000원) - " + result.get(LottoMatchType.FIVE_MATCH.getMatchCount()));
+        System.out.println("5개 일치, 보너스 볼 일치(30000000원) - " + result.get(0));
+        System.out.println("6개 일치 (2000000000원) - " + result.get(LottoMatchType.SIX_MATCH.getMatchCount()));
+        double output = result.get(LottoMatchType.THREE_MATCH.getMatchCount()) * LottoMatchType.THREE_MATCH.getMoney()
+                + result.get(LottoMatchType.FOUR_MATCH.getMatchCount()) * LottoMatchType.FOUR_MATCH.getMoney()
+                + result.get(LottoMatchType.FIVE_MATCH.getMatchCount()) * LottoMatchType.FIVE_MATCH.getMoney()
+                + result.get(LottoMatchType.SIX_MATCH.getMatchCount()) * LottoMatchType.SIX_MATCH.getMoney()
+                + result.get(LottoMatchType.BONUS_MATCH.getMatchCount()) * LottoMatchType.BONUS_MATCH.getMoney();
+        double input = purchaseAmount * LOTTO_PRICE;
 
         System.out.println(String.format("%.2f", ((output - input) / input) * 100) + "%");
     }
 
-    public void checkMyLotto(List<Lotto> purchasedLottoList, Lotto winningLotto) {
-        for (int i = 0; i < purchasedLottoList.size(); i++) {
-            System.out.println(purchasedLottoList.get(i));
-            confirmLotto(purchasedLottoList.get(i), winningLotto);
+    public void checkMyLotto(List<Lotto> purchasedLottoList, Lotto winningLotto, int bonusBall) {
+        for (Lotto lotto : purchasedLottoList) {
+            System.out.println(lotto);
+            confirmLotto(lotto, winningLotto, bonusBall);
         }
         printResult(purchasedLottoList.size());
     }
@@ -61,7 +71,7 @@ public class LottoGame {
         Collections.shuffle(lottoNumbers);
         List<Integer> newLottoNumbers = new ArrayList<>(lottoNumbers.subList(0, LOTTO_NUMBER_COUNT));
         Collections.sort(newLottoNumbers);
-        return new Lotto(newLottoNumbers);
+        return Lotto.newOne(newLottoNumbers);
     }
 
     public int getPurchaseAmount() {
@@ -90,6 +100,7 @@ public class LottoGame {
     }
 
     public int getBonusBall() {
+        System.out.println("보너스 볼을 입력해주세요.");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
@@ -103,6 +114,6 @@ public class LottoGame {
             lottoNumbers.add(Integer.parseInt(number));
         }
 
-        return new Lotto(lottoNumbers);
+        return Lotto.newOne(lottoNumbers);
     }
 }
