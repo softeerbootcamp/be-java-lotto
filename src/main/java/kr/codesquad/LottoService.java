@@ -37,49 +37,12 @@ class Lotto{
         System.out.println(num[5]+"]");
     }
 }
+
 public class LottoService {
     private static BigInteger money;   //구입한 가격
     private static BigDecimal earn = new BigDecimal("-100");    //수익
     private static int lotto_amount;   //구입한 로또 갯수
-    public enum Price{
-        FOURTH(3, 5000),
-        THIRD(4, 50000),
-        SECOND(5, 1500000),
-        BONUS(5, 30000000),
-        FIRST(6, 2000000000);
-        private int countOfMatch;   //일치 개수
-        private double winningMoney;   //상금
-        public int getCountOfMatch() {
-            return countOfMatch;
-        }
 
-        public double getWinningMoney() {
-            return winningMoney;
-        }
-
-        Price(int countOfMatch, double winningMoney){
-            this.countOfMatch = countOfMatch;
-            this.winningMoney = winningMoney;
-        }
-
-        //if문 없애야함.. indent 제한..
-        public static Price valueOf(int countOfMatch, boolean matchBonus){
-            Price[] prices = values();
-            Price rtnPrice = null;
-            for (Price price: prices)
-                rtnPrice = calcPrice(rtnPrice, price, countOfMatch, matchBonus);
-            return rtnPrice;
-        }
-
-        private static Price calcPrice(Price rtnPrice, Price price, int countOfMatch, boolean matchBonus){
-            if (rtnPrice != null) return rtnPrice;
-            if (countOfMatch == SECOND.countOfMatch)   //2등 or 보너스
-                rtnPrice = matchBonus?BONUS:SECOND;
-            if (price.countOfMatch == countOfMatch)
-                rtnPrice = price;
-            return rtnPrice;
-        }
-    }
     static Map<Price, Integer> winnerCount = new HashMap<>();
     static List<Lotto> lottoList = new ArrayList<>();   //구입한 로또 저장소
     static List<Integer> lottoNum = new ArrayList<>();  //로또 번호 1~45
