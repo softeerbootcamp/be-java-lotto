@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="fix(Lotto): getPrize Function returns (integer count) -&gt; (prize obj)">
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Lotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Lotto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoStat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoStat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : using Utility not inline if statement">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/UserInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/UserInputHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -88,7 +87,21 @@
       <option name="project" value="LOCAL" />
       <updated>1672711518337</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat(CustomException): custom exception for printing what's wrong">
+      <created>1672713857026</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672713857026</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactor : using Utility not inline if statement">
+      <created>1672713892054</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672713892054</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,6 +120,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix(Lotto): getPrize Function returns (integer count) -&gt; (prize obj)" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(Lotto): getPrize Function returns (integer count) -&gt; (prize obj)" />
+    <MESSAGE value="feat(CustomException): custom exception for printing what's wrong" />
+    <MESSAGE value="refactor : using Utility not inline if statement" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : using Utility not inline if statement" />
   </component>
 </project>

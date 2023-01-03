@@ -10,8 +10,7 @@ public class UserInputHandler {
     public static int getOneNumber( int lower_bound, int upper_bound){
         Scanner s1 = new Scanner(System.in);
         String userInputStr = s1.nextLine();
-        int num = Utility.parseIntWithRange(userInputStr, lower_bound, upper_bound);
-        return num;
+        return Utility.parseIntWithRange(userInputStr, lower_bound, upper_bound);
     }
     public static int getMoney(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -24,9 +23,9 @@ public class UserInputHandler {
     public static ArrayList<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         Scanner s1 = new Scanner(System.in);
-        List<String> nums = List.of(s1.nextLine().split(","));
+        List<String> str_split = List.of(s1.nextLine().split(","));
         ArrayList<Integer> winningNumber = new ArrayList<>();
-        for(String num : nums){
+        for(String num : str_split){
             winningNumber.add(Utility.parseIntWithRange(num.trim(), 1, 45));
         }
         if(winningNumber.size() != 6)
