@@ -24,4 +24,17 @@ public class CalculateMatch {
         return 0;
     }
 
+    private void getHitStatistics(ArrayList<Integer> randomLotto) {
+        int hitNum = 0;
+        for(int i = 0; i < 6; i++) {
+            hitNum += containNum(myLottoList.get(i), randomLotto);
+        }
+        if(hitNum == 5 && containNum(this.bonusNum, randomLotto) == 1){
+            hitNums.put(BONUM_NUM, hitNums.getOrDefault(BONUM_NUM, 0) + 1);
+            return;
+        }
+        hitNums.put(hitNum, hitNums.getOrDefault(hitNum, 0) + 1);
+    }
+
+
 }
