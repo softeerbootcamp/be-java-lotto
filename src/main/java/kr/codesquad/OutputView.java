@@ -35,7 +35,6 @@ public class OutputView {
         }
     }
     public void printEarnedRate(double rate) {
-        System.out.println(rate);
         if (rate < 0) {
             System.out.println("총 수익률은 " + (Math.ceil(rate * 100) / 100) + "%입니다.");
             return;
