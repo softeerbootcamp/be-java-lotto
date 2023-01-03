@@ -36,12 +36,12 @@ public class PrintView {
     }
 
     private static void resultProfit(User user) {
-        String profit = String.format("%.1f", user.getProfit());
+        String profit = String.format("%.1f", user.getWinningStatic().getProfit());
         System.out.println("총 수익률은 "+profit+"%입니다.");
     }
 
     private static void resultWinningStatic(User user) {
-        HashMap<Result, Integer> resultMatch = user.getResultMatch();
+        HashMap<Result, Integer> resultMatch = user.getWinningStatic().getResultMatch();
         for (Result result : Result.notIncludeNotMatch()) {
             System.out.printf("%d개 일치: (%d원)",result.getMatchCount(),result.getReward());
             System.out.printf("- %d개\n", resultMatch.get(result));

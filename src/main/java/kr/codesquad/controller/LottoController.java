@@ -26,7 +26,7 @@ public class LottoController {
     private static void computeResult(User user, WinningLotto winningLotto) {
         WinningStatic.computeResult(user, winningLotto);
         double profit = WinningStatic.computeProfit(user);
-        user.updateProfit(profit);
+        user.getWinningStatic().updateProfit(profit);
     }
 
     private static WinningLotto getWinningLotto() {

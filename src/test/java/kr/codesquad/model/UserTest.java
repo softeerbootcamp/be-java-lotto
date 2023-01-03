@@ -22,18 +22,5 @@ class UserTest {
         assertThat(user.getLottos().size()).isEqualTo(purchaseTickets);
     }
 
-    @Test
-    @DisplayName("User 생성시 resultMap 정상생성 테스트")
-    public void checkResultMatchMap() {
-        //given
-        int purchaseMoney = 10000;
-        int purchaseTickets = 10;
-        //when
-        User user = new User(purchaseMoney, purchaseTickets);
-        HashMap<Result, Integer> resultMatch = user.getResultMatch();
-        //then
-        for (Result result : Result.values()) {
-            assertTrue(resultMatch.containsKey(result));
-        }
-    }
+
 }

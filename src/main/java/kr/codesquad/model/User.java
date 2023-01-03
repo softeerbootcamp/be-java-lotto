@@ -10,34 +10,15 @@ public class User {
     private final int purchaseAmount;
     private final int purchaseTickets;
     private final List<Lotto> lottos;
-
-    private double profit;
-
-    private HashMap<Result, Integer> resultMatch = new HashMap<>();
+    private WinningStatic winningStatic = new WinningStatic();
 
     public User(int purchaseAmount, int purchaseTickets) {
         this.purchaseAmount = purchaseAmount;
         this.purchaseTickets = purchaseTickets;
         this.lottos=generateLottos(purchaseTickets);
-        this.profit=0;
-        initialResult();
     }
 
-    public void updateProfit(Double profit) {
-        this.profit = profit;
-    }
 
-    protected void updateResult(int matchCount) {
-        Result result = Result.getResult(matchCount);
-        Integer winCount = resultMatch.get(result);
-        resultMatch.put(result, winCount + 1);
-    }
-
-    private void initialResult() {
-        for (Result result : Result.values()) {
-            resultMatch.put(result, 0);
-        }
-    }
 
     private List<Lotto> generateLottos(int purchaseTickets) {
         List<Lotto> lottoList = new ArrayList<>();
@@ -51,20 +32,13 @@ public class User {
         return purchaseAmount;
     }
 
-    public int getPurchaseTickets() {
-        return purchaseTickets;
-    }
 
     public List<Lotto> getLottos() {
         return lottos;
     }
 
-    public HashMap<Result, Integer> getResultMatch() {
-        return resultMatch;
-    }
 
-
-    public double getProfit() {
-        return profit;
+    public WinningStatic getWinningStatic() {
+        return winningStatic;
     }
 }

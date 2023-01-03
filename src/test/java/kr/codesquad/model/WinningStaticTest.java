@@ -3,6 +3,7 @@ package kr.codesquad.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +23,22 @@ class WinningStaticTest {
         //when
         WinningStatic.computeResult(user, winningLotto);
         //then
-        Integer matchCount = user.getResultMatch().get(Result.MATCH_SIX);
+        Integer matchCount = user.getWinningStatic().getResultMatch().get(Result.MATCH_SIX);
         assertThat(matchCount).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("resultMatch 초기 정상생성 테스트")
+    public void checkResultMatchMap() {
+        //given
+        int purchaseMoney = 10000;
+        int purchaseTickets = 10;
+        //when
+        User user = new User(purchaseMoney, purchaseTickets);
+        HashMap<Result, Integer> resultMatch = user.getWinningStatic().getResultMatch();
+        //then
+        for (Result result : Result.values()) {
+            assertTrue(resultMatch.containsKey(result));
+        }
     }
 }
