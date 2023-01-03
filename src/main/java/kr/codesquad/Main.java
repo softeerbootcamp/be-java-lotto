@@ -10,6 +10,7 @@ public class Main {
         List<Lotto> purchasedLottoList = lottoGame.purchaseLottoList();
         Lotto winningLotto = lottoGame.createWinningLottery();
         int bonusBall = lottoGame.getBonusBall();
-        lottoGame.checkMyLotto(purchasedLottoList, winningLotto, bonusBall);
+        LottoResult lottoResult = lottoGame.checkMyLotto(purchasedLottoList, winningLotto, bonusBall);
+        lottoResult.printResult(purchasedLottoList.size());
     }
 }
