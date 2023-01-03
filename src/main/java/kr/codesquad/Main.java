@@ -1,147 +1,128 @@
 package kr.codesquad;
 
-
-/**
- * 메소드의 indent(인덴트, 들여쓰기) depth를 1단계로 구현한다.
- *
- * if문을 사용하는 경우 depth가 1단계 증가한다. if문 안에 while문을 사용한다면 depth는 2단계가 된다.
- *
- * else를 사용하지 마라.
- *
- * 메소드의 크기가 최대 10라인을 넘지 않도록 구현한다.
- *
- * method가 한 가지 일만 하도록 최대한 작게 만들어라.
- *
- * ArrayList를 사용해서 구현한다.
- */
-
-/**
- * 로또 자동 생성은 Collections.shuffle() 메소드 활용한다.
- *
- * Collections.sort() 메소드를 활용해 정렬 가능하다.
- *
- * ArrayList의 contains() 메소드를 활용하면 어떤 값이 존재하는지 유무를 판단할 수 있다.
- */
-
 import java.util.*;
-
-/**
- * 1. 로또 자동 생성하고 전역 변수로 저장 -> 2. 당첨 번호 입력 받기 -> 3. 전역 변수와 비교해서 3개,4,개,5개, 6개 일치되는지 확인
- * -> 4. 수익률 계산
- */
 
 class Lotto{
 
-    private List<List<Integer>> lottoes;
-    private ArrayList<Integer> inputs;
+  private List<List<Integer>> lottos;
+  private ArrayList<Integer> inputs;
+  private int lottoCnt;
+  List<Integer> numList;
+  int match3=0;
+  int match4=0;
+  int match5=0;
+  int match6=0;
 
-    private int cnt;
+  public Lotto() {
+    lottos = new ArrayList<>();
+    inputs = new ArrayList<>();
+    numList = new ArrayList<>();
+    for(int j=1;j<46;j++) numList.add(j);
+    match3=0;
+    match4=0;
+    match5=0;
+    match6=0;
+  }
 
-    int match3=0;
-    int match4=0;
-    int match5=0;
-    int match6=0;
+  public void start(){
+    //1. 당첨 금액 입력 받기
+    Integer amountOfMoney = getAmountOfMoney();
+    //2. 전체 복권 개수 계산해서 변수에 저장
+    getLottoCount(amountOfMoney);
+    //3. 셔플로 복권 만들기
+    getLottos();
+    //4. 사용자로부터 복권 입력 받기
+    getLottoInput();
+    //5. 비교
+    compareLottos(lottos,inputs);
+    //6. 결과 출력
+    printResult();
+  }
 
-    public Lotto() {
-        lottoes = new ArrayList<>();
-        inputs= new ArrayList<>();
-        //inputs= new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+  public Integer getAmountOfMoney(){
+    System.out.println("구입금액을 입력해주세요. ");
+    Scanner sc = new Scanner(System.in);
+    int amountOfMoney = sc.nextInt();
+    return amountOfMoney;
+  }
+
+  public void getLottoCount(int amountOfMoney){
+    lottoCnt = amountOfMoney/1000; // 총 로또 개수
+    System.out.println("총"+lottoCnt+"개를 구매했습니다.");
+  }
+
+
+  public void getLottos(){
+    for(int i=0;i<lottoCnt;i++){
+      getLottoByShuffle();
     }
+    System.out.println(lottos);
+  }
 
-    public void make_shuffle(){
-        List<Integer> numList = new ArrayList<>();
-        for(int j=1;j<46;j++) numList.add(j);
-        Collections.shuffle(numList); //1에서 46까지를 셔플
-        numList = numList.subList(0,6); //6개만
-        Collections.sort(numList);
-        //System.out.println(numList);
-        lottoes.add(numList);
+  public void getLottoByShuffle(){
+    Collections.shuffle(numList); //1에서 46까지를 셔플
+    List<Integer> shuffledNumList =  new ArrayList<>(numList.subList(0,6));
+    Collections.sort(shuffledNumList);
+    lottos.add(shuffledNumList);
+  }
+
+  public void getLottoInput(){
+    System.out.println("당첨 번호를 입력해주세요.");
+    Scanner sc = new Scanner(System.in);
+    String inputNumbers = sc.nextLine();
+    for(String input : inputNumbers.split(", ")){
+      inputs.add(Integer.valueOf(input));
     }
+    //System.out.println(inputs);
+  }
 
-    /**
-     * 구입한 로또 후보들
-     * @param cost
-     */
-    public void make_auto_lotto(int cost) {
-        cnt = cost/1000; // 총 로또 개수
-        System.out.println("총"+cnt+"개를 구매했습니다.");
-        for(int i=0;i<cnt;i++){
-            make_shuffle();
-        }
-        get_input();
-
-        get_same_cnt();
+  public void compareLottos(List<List<Integer>> lottoLists, List<Integer> inputList){
+    for(int i=0;i<lottoCnt;i++){
+      System.out.println(lottoLists.get(i));
+      getMatchCount(lottoLists.get(i), inputList);//각 로또마다 매치 개수 구하기
     }
+  }
 
-    /**
-     * 당첨 번호 입력 받기
-     */
-    public void get_input(){
-        System.out.println("당첨 번호를 입력해주세요.");
-        Scanner sc = new Scanner(System.in);
-        for(int i=0;i<6;i++){
-            int num = sc.nextInt();
-            inputs.add(num);
-        }
-        Collections.sort(inputs);
-        //System.out.println(inputs);
+  public void getMatchCount(List<Integer> lotto, List<Integer> input){
+    //현재 하나의 로또에 대해서 매치 개수 구하는 것임
+    int matchCnt = 0;
+    for(int num : lotto){
+      matchCnt = calcMatchCount(input,num,matchCnt);
     }
+    System.out.println(matchCnt);
+    if(matchCnt == 3) match3++;
+    else if(matchCnt ==4) match4++;
+    else if(matchCnt == 5) match5++;
+    else if(matchCnt ==6) match6++;
 
-    public int is_same(List<Integer> lotto, int num, int res){
-        if(lotto.contains(num)) res++;
+  }
 
-        return res;
-    }
+  public int calcMatchCount(List<Integer> list, Integer num, int resMatchCnt){
+    if(list.contains(num)) resMatchCnt++;
+    return resMatchCnt;
+  }
+  public void printResult(){
+    System.out.println("당첨 통계");
+    System.out.println("-----");
+    System.out.println("3개 일치 (5000원) - " + match3);
+    System.out.println("4개 일치 (50000원) - " + match4);
+    System.out.println("5개 일치 (1500000원) - " + match5);
+    System.out.println("6개 일치 (2000000000원) - " + match6);
 
-    /**
-     * 비교 과정 구현
-     * @param
-     * @return
-     */
-    public void cmp_for_cnt(List<Integer> lotto){
-        int res =0;
-        for(int i=0;i<6;i++){
-            res=is_same(lotto,inputs.get(i),res);
-        }
+    double sumOfWin = match3 * 5000 + match4 * 50000 + match5 * 1500000 + match6 * 2000000000;
+    double cost = lottoCnt*1000;
 
-        //System.out.println(res);
-        if(res <3) return;
+    System.out.println(String.format("%.2f",((sumOfWin - cost) / cost) * 100)+"%");
 
-        if(res==3) match3++;
-        else if(res ==4) match4++;
-        else if(res ==5) match5++;
-        else if(res ==6) match6++;
+  }
 
-    }
-
-    /**
-     * 최종 비교 결과 얻기
-     */
-
-    public void get_same_cnt(){
-
-        for(int i=0;i<cnt;i++){
-            //System.out.println(lottoes.get(i));
-            cmp_for_cnt(lottoes.get(i));
-        }
-
-//        System.out.println(match3);
-//        System.out.println(match4);
-//        System.out.println(match5);
-//        System.out.println(match6);
-
-    }
 }
 
 public abstract class Main {
 
-    public static void main(String[] args) {
-        Lotto lotto = new Lotto();
-        System.out.println("구입금액을 입력해주세요. ");
-        Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        lotto.make_auto_lotto(num);
-    }
-
+  public static void main(String[] args) {
+    Lotto lotto = new Lotto();
+    lotto.start();
+  }
 
 }
