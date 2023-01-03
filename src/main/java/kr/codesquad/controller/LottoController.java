@@ -36,7 +36,7 @@ public class LottoController {
         outputView.printWinningLottoReadMessage();
         WinningLotto winningLotto = createWinningLotto();
 
-        //Map<Integer, Integer> result = caculateResult(lottos, winningLotto);
+        Map<Integer, Integer> result = caculateResult(lottos, winningLotto);
         //double profitRate = caculateProfitRate(result, money);
         //outputView.printResult(result, profitRate);를
     }
@@ -48,18 +48,18 @@ public class LottoController {
         return new WinningLotto(winningLotto, bonusNumber);
     }
 
-    private Map<Integer, Integer> caculateResult(List<Lotto> lottos, Lotto winningLotto) {
+    private Map<Integer, Integer> caculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
         Map<Integer, Integer> result = new HashMap<>();
-        for (int i = 3; i <= 6; i++){
-            result.put(i, 0);
-        }
-
-        lottos.forEach(lotto -> {
-                int sameCount = lotto.compare(winningLotto);
-                if (result.containsKey(sameCount)) {
-                    result.put(sameCount, result.get(sameCount)+1);
-                }
-        });
+//        for (int i = 3; i <= 6; i++){
+//            result.put(i, 0);
+//        }
+//
+//        lottos.forEach(lotto -> {
+//                int sameCount = lotto.compare(winningLotto);
+//                if (result.containsKey(sameCount)) {
+//                    result.put(sameCount, result.get(sameCount)+1);
+//                }
+//        });
 
         return result;
     }
