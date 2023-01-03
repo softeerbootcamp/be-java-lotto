@@ -39,21 +39,28 @@ public class LottoService {
         return randNum;
     }
 
-    public Map<WinningCount, Integer> makeLottoResult(List<Lotto> lottoList, Lotto winNum) {
-        for(Lotto lotto : lottoList) {
-            makeLottoResultCount(lotto, winNum);
+    public Map<WinningCount, Integer> makeLottoResult(List<Lotto> lottoList, Lotto winNum, int bonusNum) {
+        for (Lotto lotto : lottoList) {
+            makeLottoResultCount(lotto, winNum, bonusNum);
         }
         return getLottoResult();
     }
-    public void makeLottoResultCount(Lotto lottoNumbers, Lotto winNum) {
-        int correctCnt = lottoNumbers.correctNumCnt(winNum);
-        WinningCount winningCount = findWinningCount(correctCnt);
-        if(winningCount != null) {
+
+    public void makeLottoResultCount(Lotto lottoNumbers, Lotto winNum, int bonusNum) {
+        int correctCnt = correctNumCnt(lottoNumbers, winNum, bonusNum);
+        WinningCount winningCount = findWinningCount(correctCnt, bonusNum);
+        if (winningCount != null) {
             addWinningCount(winningCount);
         }
     }
 
-    private static WinningCount findWinningCount(int correctCnt) {
+    public int correctNumCnt(Lotto lottoNumbers, Lotto winNum, int bonusNum) {
+        List<Integer> temp = lottoNumbers.getNumberList();
+        temp.retainAll(winNum.getNumberList());
+        return temp.size();
+    }
+
+    private static WinningCount findWinningCount(int correctCnt, int bonusNum) {
         WinningCount winningCount = Arrays.stream(WinningCount.values())
                 .filter(count -> count.getCount() == correctCnt)
                 .findFirst()
