@@ -26,15 +26,19 @@ public class App implements Runnable {
     int purchaseMoney = console.inputPurchaseMoney();
     List<Lotto> lottos = purchaseLotto(purchaseMoney);
 
-    console.printLottoNumbersList(lottos);
     Lotto winningNumber = console.inputWinningNumbers();
-
-    WinningResult winningResult = new WinningResult();
-    winningResult.calculateResult(lottos, winningNumber);
+    WinningResult winningResult = WinningResult.createResult(lottos, winningNumber);
     console.printWinningResult(winningResult);
 
-    EarningRate earningRate = EarningRate.of(winningResult.getTotalWinningMoney(), purchaseAmount);
+    EarningRate earningRate = EarningRate.of(winningResult.getTotalWinningMoney(), purchaseMoney);
     console.printEarningRate(earningRate);
+  }
+
+  private List<Lotto> purchaseLotto(int money) {
+    List<Lotto> lottos = lottoShop.purchase(money);
+    console.printPurchaseCount(lottos.size());
+    console.printLottoNumbersList(lottos);
+    return lottos;
   }
 
 }
