@@ -40,8 +40,6 @@ public class User {
 
     private int cash; // 구매 금액
     private int buyNum; // 구매 개수
-
-
     private ArrayList<ArrayList<Integer>> lottoTickets = new ArrayList<ArrayList<Integer>>();
 
     public int getCash() {
@@ -98,11 +96,17 @@ public class User {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("-------------");
-        System.out.printf("3개 일치 (5000원)- %d개\n", Result.get(0));
-        System.out.printf("4개 일치 (50000원)- %d개\n", Result.get(1));
-        System.out.printf("5개 일치 (1500000원)- %d개\n", Result.get(2));
-        System.out.printf("5개 일치, 보너스 볼 일치(30000000원)- %d개\n", Result.get(3));
-        System.out.printf("6개 일치 (2000000000원)- %d개\n", Result.get(4));
+
+        for(LottoStatus stat : LottoStatus.values())
+        {
+            System.out.printf("%s, (%d)- %d개\n", stat.getStatusValue1(), stat.getStatusValue2(), Result.get(stat.ordinal()));
+        }
+
+//        System.out.printf("3개 일치 (5000원)- %d개\n", Result.get(0));
+//        System.out.printf("4개 일치 (50000원)- %d개\n", Result.get(1));
+//        System.out.printf("5개 일치 (1500000원)- %d개\n", Result.get(2));
+//        System.out.printf("5개 일치, 보너스 볼 일치(30000000원)- %d개\n", Result.get(3));
+//        System.out.printf("6개 일치 (2000000000원)- %d개\n", Result.get(4));
 
         float rate = (float)(5000*Result.get(0) + 50000*Result.get(1) + 1500000*Result.get(2) +
                 30000000*Result.get(3) +2000000000*Result.get(4) - buyNum*1000) / (float) (buyNum*1000) * 100;
