@@ -34,7 +34,7 @@ public class LottoStat {
         System.out.println(String.format("4개 일치 (50000원)- %d개", winnings[4]));
         System.out.println(String.format("5개 일치 (15000원)- %d개", winnings[5]));
         System.out.println(String.format("6개 일치 (2000000원)- %d개", winnings[6]));
-        double roi = (double)(total_money - lottos.size() * 1000) / (lottos.size() * 1000) * 100;
+        double roi = (double)(total_money - lottos.size() * 1000L) / (lottos.size() * 1000) * 100;
         System.out.println(String.format("총 수익률은 %.2f%입니다.", roi));
     }
 
