@@ -22,10 +22,10 @@ public class Lotto {
         this.lottoNums = lottoNums;
     }
 
-    public Prize getPrize(Lotto prize_nums, int bonus){
+    public Prize getPrize(Lotto prizeNums, int bonus){
         int count = 0;
         for(Integer expect_no : lottoNums){
-            count = countUpIfContains(prize_nums.lottoNums, expect_no, count);
+            count = countUpIfContains(prizeNums.lottoNums, expect_no, count);
         }
         if(count == 5 && lottoNums.contains(bonus)){
             return SECOND;

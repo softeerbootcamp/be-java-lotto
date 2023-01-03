@@ -40,9 +40,9 @@ public class Utility {
     }
 
     public static List<Integer> stringToIntList(String target){
-        List<String> str_split = List.of(target.split(","));
+        List<String> strSplit = List.of(target.split(","));
         List<Integer> numbers = new ArrayList<>();
-        for(String num : str_split){
+        for(String num : strSplit){
             numbers.add(Utility.parseIntWithRange(num.trim(), 1, 45));
         }
         return numbers;

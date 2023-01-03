@@ -8,7 +8,7 @@ import static kr.codesquad.Prize.*;
 
 public class LottoStat {
 
-    private long total_money;
+    private long totalMoney;
     private Map<Prize, Integer> winnings;
     private List<Lotto> lottos;
     private Lotto winningNums;
@@ -29,7 +29,7 @@ public class LottoStat {
         for(Lotto lotto : lottos){
             Prize prize = lotto.getPrize(winningNums, winningBonus);
             winnings.put(prize, winnings.get(prize)+1);
-            total_money += prize.getMoney();
+            totalMoney += prize.getMoney();
         }
     }
 
@@ -41,7 +41,7 @@ public class LottoStat {
         System.out.println(String.format("5개 일치 (15000원)- %d개", winnings.get(THIRD) ));
         System.out.println(String.format("5개 일치, 보너스 볼 일치(30000000원) - %d개", winnings.get(SECOND) ));
         System.out.println(String.format("6개 일치 (2000000000)- %d개", winnings.get(FIRST) ));
-        double roi = (double)(total_money - lottos.size() * 1000L) / (lottos.size() * 1000) * 100;
+        double roi = (double)(totalMoney - lottos.size() * 1000L) / (lottos.size() * 1000) * 100;
         System.out.println(String.format("총 수익률은 %.2f", roi) + "%입니다.");
     }
 
