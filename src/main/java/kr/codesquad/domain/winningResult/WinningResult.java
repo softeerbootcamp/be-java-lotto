@@ -14,24 +14,6 @@ public class WinningResult {
 
   private static final String DISPLAY_FORM = "%d 개 일치 (%d 원)- %d\n";
 
-  public WinningResult() {
-    this.map = Arrays.stream(WinningAmount.values())
-                     .collect(Collectors.toMap(w -> w, w -> 0, (a, b) -> b));
-  }
-
-  public void calculateResult(
-      List<Lotto> lottos,
-      Lotto winningLotto
-  ) {
-    lottos.stream()
-          .mapToInt(winningLotto::countMatch)
-          .mapToObj(WinningAmount::from)
-          .filter(Optional::isPresent)
-          .map(Optional::get)
-          .filter(map::containsKey)
-          .forEach(winningAmount -> map.put(winningAmount, map.get(winningAmount) + 1));
-  }
-
   public String getStatistics() {
     return map.keySet()
               .stream()
@@ -45,6 +27,33 @@ public class WinningResult {
               .stream()
               .mapToLong(winningAmount -> (long)winningAmount.getPrice() * map.get(winningAmount))
               .sum();
+  }
+
+  public static WinningResult createResult(
+      List<Lotto> lottos,
+      Lotto winningLotto
+  ) {
+    WinningResult winningResult = new WinningResult();
+    winningResult.calculateResult(lottos, winningLotto);
+    return winningResult;
+  }
+
+  private WinningResult() {
+    this.map = Arrays.stream(WinningAmount.values())
+                     .collect(Collectors.toMap(w -> w, w -> 0, (a, b) -> b));
+  }
+
+  private void calculateResult(
+      List<Lotto> lottos,
+      Lotto winningLotto
+  ) {
+    lottos.stream()
+          .mapToInt(winningLotto::countMatch)
+          .mapToObj(WinningAmount::from)
+          .filter(Optional::isPresent)
+          .map(Optional::get)
+          .filter(map::containsKey)
+          .forEach(winningAmount -> map.put(winningAmount, map.get(winningAmount) + 1));
   }
 
   private String getWinningAmountStatics(WinningAmount winningAmount) {
