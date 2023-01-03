@@ -1,8 +1,6 @@
 package kr.codesquad;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class LottoIssueImpl implements LottoIssue {
 
@@ -14,19 +12,21 @@ public class LottoIssueImpl implements LottoIssue {
     }
 
     @Override
-    public List<List<Integer>> issue(int cnt) {
-        List<List<Integer>> lottoList = new ArrayList<>(cnt);
+    public List<Lotto> issue(int cnt) {
+        List<Lotto> lottoList = new ArrayList<>(cnt);
+
         for (int idx = 0; idx < cnt; idx++) {
-            lottoList.add(shuffle());
+            Lotto lotto = new Lotto(shuffle());
+            lottoList.add(lotto);
         }
-        System.out.println(cnt + "개를 구매했습니다.");
-        lottoList.forEach(System.out::println);
+
+        lottoList.forEach(Lotto::print);
         return lottoList;
     }
 
-    private List<Integer> shuffle() {
+    private Set<Integer> shuffle() {
         List<Integer> numberList = new ArrayList<>(numList);
         Collections.shuffle(numberList);
-        return numberList.subList(0, 6);
+        return new HashSet<>(numberList.subList(0, 6));
     }
 }

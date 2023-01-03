@@ -3,6 +3,7 @@ package kr.codesquad;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
@@ -24,14 +25,28 @@ public class LottoMachine {
         int money = Integer.parseInt(br.readLine());
         int lottoCnt = money / priceOfLotto;
 
-        List<List<Integer>> lottoList = this.lottoIssue.issue(lottoCnt);
+        List<Lotto> lottoList = this.lottoIssue.issue(lottoCnt);
+        System.out.println(lottoList.size() + "개를 구매했습니다.");
         return new LottoTicket(lottoList, lottoCnt * priceOfLotto);
     }
 
 
     public void checkWin(LottoTicket lottoTicket) throws IOException {
-        LottoResult lottoResult = this.lottoCheck.check(lottoTicket);
+        WinningLotto winningLotto = this.getWinningLotto();
+        LottoResult lottoResult = this.lottoCheck.check(lottoTicket, winningLotto);
         this.printResult(lottoResult);
+    }
+
+    private WinningLotto getWinningLotto() throws IOException {
+        System.out.println("\n당첨 번호를 입력하세요.");
+        List<Integer> winningNumberList = new ArrayList<>(6);
+        String[] winNumArr  = br.readLine().replaceAll(" ", "").split(",");
+        for (String winNum: winNumArr) winningNumberList.add(Integer.parseInt(winNum));
+
+        System.out.println("보너스 번호를 입력하세요.");
+        int bonus = Integer.parseInt(br.readLine());
+
+        return new WinningLotto(winningNumberList, bonus);
     }
 
     private void printResult(LottoResult lottoResult) {
