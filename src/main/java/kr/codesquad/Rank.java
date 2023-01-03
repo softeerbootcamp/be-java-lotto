@@ -3,7 +3,7 @@ package kr.codesquad;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Rank {
+public enum Rank{
     FIFTH(3, 5000),
     FORTH(4, 50000),
     THIRD(5, 1500000),

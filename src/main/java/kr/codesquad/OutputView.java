@@ -26,13 +26,12 @@ public class OutputView {
     public void printWinningNumberText() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
-    public void printTotalText(Map<Integer, Integer> resultIndex, Map<Integer, Integer> result) {
+    public void printTotalText(Map<Rank, Integer> score) {
         System.out.println("당첨 통계");
         System.out.println("---------");
 
-        for (Integer key : resultIndex.keySet()) {
-            int index = resultIndex.get(key);
-            System.out.println(key+"개 일치 (" + index + "원)- " + result.get(index) +"개");
+        for (Rank rank : Rank.values()) {
+            System.out.println(rank.getScore() + "개 일치 (" + rank.getMoney() + "원)- " + score.get(rank) +"개");
         }
     }
     public void printEarnedRate(double rate) {

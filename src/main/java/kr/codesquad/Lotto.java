@@ -43,6 +43,11 @@ public class Lotto {
     public Map<Integer, Integer> getResultIndex() {
         return resultIndex;
     }
+
+    public Map<Rank, Integer> getScore() {
+        return score;
+    }
+
     public long calculateCount(long money) {
         return money / 1000;
     }
@@ -87,7 +92,7 @@ public class Lotto {
     }
     private long calculateEarnedMoney() {
         long earnMoney = 0;
-        for (Rank rank : score.keySet()) {
+        for (Rank rank : Rank.values()) {
             earnMoney += rank.getMoney() * score.get(rank);
         }
         return earnMoney;
