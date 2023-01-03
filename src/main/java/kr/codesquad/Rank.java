@@ -14,10 +14,17 @@ public enum Rank {
         this.countOfMatch = countOfMatch;
         this.winningMoney = winningMoney;
     }
-//
-//    public int getMoney(int countOfMatch) {
-//
-//    }
+
+    public static int getMoney(int countOfMatch) {
+        Rank[] ranks = Rank.values();
+        for (Rank rank : ranks) {
+            if (rank.countOfMatch == countOfMatch) {
+                //bonus 구현 필요, depth1 유지 필요
+                return rank.winningMoney;
+            }
+        }
+        return 0;
+    }
 
     public int getCountOfMatch() {
         return countOfMatch;

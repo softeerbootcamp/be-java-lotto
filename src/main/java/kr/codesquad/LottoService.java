@@ -39,8 +39,6 @@ public class LottoService {
      * 유사난수로 1~45의 숫자 중 6개씩 생성된 줄만큼 입력
      * 랜덤 로또 생성
      */
-    //todo: Collections.shuffle 이용해서 난수 생성으로 수정 -> subList로 가져온 다음 Collections.sort() 사용
-
     public void compareLotto(List<Row> rows, int[] answers) {
         int num = rows.size();
         for (int i = 0; i < num; i++) {
