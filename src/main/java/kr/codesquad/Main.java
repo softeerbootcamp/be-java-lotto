@@ -63,7 +63,7 @@ public class Main {
         for(int i = 0 ; i < user.getNumOfLotto(); i++)
             randomLotto.addRandomLotto();
         //당첨 번호 입력
-        myLotto.addMyLotto(userInput.enterResultNumbers());
+        myLotto.addLotto(userInput.enterResultNumbers());
         //보너스 번호 입력
         userInput.enterBonusNum();
 
@@ -73,7 +73,6 @@ public class Main {
         calculateMatch.printResult(user.getPurchasedPrice());
 
     }
-
 
     public static void main(String[] args) {
         initMethod();

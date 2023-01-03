@@ -26,7 +26,7 @@ public class Lotto {
     }
 
     //insert number into lotto list
-    public void addMyLotto(ArrayList<Integer> lottoNums){
+    public void addLotto(ArrayList<Integer> lottoNums){
         lottoList.add(lottoNums);
     }
 
