@@ -10,4 +10,14 @@ public class Lotto {
     private static int type;
     private static Scanner scan;
 
+    public Lotto(){
+    }
+
+    public void addLotto(ArrayList<Integer> lottoNums){
+        lottoList.add(lottoNums);
+    }
+
+    public ArrayList<ArrayList<Integer>> getLottoList(){
+        return lottoList;
+    }
 }
