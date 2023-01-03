@@ -20,7 +20,7 @@ public class App {
         console.inputWinningNumber();
         console.inputBonusNumber();
         lottoStore.setWinningNumbers(console.getWinningNumberList(), console.getBonusNumber());
-        console.printWinningLottos(lottoStore.getWinningLottos());
+        console.printWinningLottos(lottoStore.getwinningLottoMap());
         lottoStore.calculateEarningRate(console.getLottoCount());
     }
 }

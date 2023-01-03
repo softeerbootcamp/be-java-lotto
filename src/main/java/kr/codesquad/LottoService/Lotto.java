@@ -15,8 +15,8 @@ public class Lotto {
         Collections.sort(this.numbers);
     }
 
-    Rank getMatchRank(Set<Integer> wonNumberList, int bonusNumber) {
-        int matchNumberCount =  (int)numbers.stream().filter(wonNumberList::contains).count();
+    Rank getMatchRank(Set<Integer> winningNumberSet, int bonusNumber) {
+        int matchNumberCount =  (int)numbers.stream().filter(winningNumberSet::contains).count();
         if (matchNumberCount == Rank.FIRST.getCountOfMatch())
             return Rank.FIRST;
         if (matchNumberCount == Rank.SECOND.getCountOfMatch() || matchNumberCount == Rank.THIRD.getCountOfMatch())

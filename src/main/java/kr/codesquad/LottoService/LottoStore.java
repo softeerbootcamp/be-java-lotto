@@ -7,22 +7,22 @@ import java.util.*;
 
 public class LottoStore {
     private final LottoFactory lottoFactory;
-    private List<Lotto> lottos;
-    private Map<String, Integer> winningLottos;
+    private List<Lotto> lottoList;
+    private Map<String, Integer> winningLottoMap;
 
-    public LottoStore(LottoFactory lottoFactory, List<Lotto> lottos, Map<String, Integer> winningLottos) {
+    public LottoStore(LottoFactory lottoFactory, List<Lotto> lottoList, Map<String, Integer> winningLottoMap) {
         this.lottoFactory = lottoFactory;
-        this.lottos = lottos;
-        this.winningLottos = winningLottos;
+        this.lottoList = lottoList;
+        this.winningLottoMap = winningLottoMap;
         for (Rank rank : Rank.values()){
-            winningLottos.put(rank.toString(), 0);
+            winningLottoMap.put(rank.toString(), 0);
         }
     }
 
     public void setAutomaticLotto(long automaticLottoCount) {
         for (long i = 0; i < automaticLottoCount; i++) {
             Lotto currLotto = lottoFactory.generateLotto("automatic");
-            lottos.add(currLotto);
+            lottoList.add(currLotto);
         }
     }
 
@@ -30,26 +30,26 @@ public class LottoStore {
 
     }
 
-    public Map<String, Integer> getWinningLottos() {
-        return winningLottos;
+    public Map<String, Integer> getwinningLottoMap() {
+        return winningLottoMap;
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return lottoList;
     }
 
     public void setWinningNumbers(List<Integer> wonNumberList, int bonusNumber){
         Set<Integer> wonNumberSet = new HashSet<>(wonNumberList);
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoList) {
             String currRank = lotto.getMatchRank(wonNumberSet, bonusNumber).toString();
-            winningLottos.put(currRank, winningLottos.get(currRank) + 1);
+            winningLottoMap.put(currRank, winningLottoMap.get(currRank) + 1);
         }
     }
 
     public void calculateEarningRate(long lottoCount){
         long earningSum = 0;
         for (Rank rank :Rank.values()){
-            earningSum += (long) rank.getWinningMoney() / 1000 * winningLottos.get(rank.toString());
+            earningSum += (long) rank.getWinningMoney() / 1000 * winningLottoMap.get(rank.toString());
         }
         float earningRate = 0;
         if (lottoCount != 0) {
