@@ -32,7 +32,7 @@ public class LottoSystem {
         LottoOutput.printLottos(lottos);
     }
 
-    public void calWinner(Rank rank){
+    private void calWinner(Rank rank){
         if(!isNull(rank)) result.put(rank, result.get(rank)+1);
     }
     public void getResult(){
@@ -50,7 +50,7 @@ public class LottoSystem {
         }
     }
 
-    public void calMoneyAndRate(){
+    private void calMoneyAndRate(){
         earnMoney = 0;
         result.forEach((r, c) -> earnMoney += r.getPrize() * (long)c);
         rate = (earnMoney - money) / (double) money * 100;
