@@ -1,9 +1,10 @@
 package kr.codesquad;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WinNum {
-    public ArrayList<Integer> num = new ArrayList<>();
+    public List<Integer> num = new ArrayList<>();
 
     public WinNum(String numStr) {
         String[] strList = numStr.split(", ");

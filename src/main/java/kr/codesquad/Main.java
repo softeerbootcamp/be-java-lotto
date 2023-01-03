@@ -1,21 +1,24 @@
 package kr.codesquad;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static Scanner sc = new Scanner(System.in);
     public static int money;
-    public static ArrayList<Lotto> allLotto = new ArrayList<>();
+    public static List<Lotto> allLotto = new ArrayList<>();
     public static String winNumInput;
     public static WinNum winNum;
     public static int[] correctCnt = new int[7];
+    public static int[] reward = {0, 0, 0, 5000, 50000, 1500000, 2000000000};
     public static void main(String[] args) {
         inputMoney();
         makeLottoNum();
         showLottoNum();
         inputWinNum();
         lottoResult();
+        showLottoResult();
     }
 
     static void inputMoney() {
@@ -31,7 +34,7 @@ public class Main {
     }
     static void showLottoNum() {
         for(int i=0;i<allLotto.size();i++) {
-            allLotto.get(i).showLotto();
+            System.out.println(allLotto.get(i).numberList);
         }
         System.out.println();
     }
@@ -46,5 +49,15 @@ public class Main {
             correctCnt[allLotto.get(i).correctNumCnt(winNum)]++;
         }
         System.out.println();
+    }
+    static void showLottoResult() {
+        System.out.println("당첨 통계\n---------");
+        int rewardSum = 0;
+        for (int i=3;i<=6;i++) {
+            System.out.println(i + "개 일치 (" + reward[i] + ") - " + correctCnt[i] + "개");
+            rewardSum += reward[i] * correctCnt[i];
+        }
+        double ans = (((double) (rewardSum - money)) / (double) money) * 100.0;
+        System.out.println("총 수익률은 " + Math.floor(ans * 100) / 100.0 + "%입니다.");
     }
 }
