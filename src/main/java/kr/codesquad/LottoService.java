@@ -1,5 +1,8 @@
 package kr.codesquad;
 
+import kr.codesquad.view.InputView;
+import kr.codesquad.view.OutputView;
+
 import java.io.IOException;
 
 public class LottoService {
@@ -21,13 +24,16 @@ public class LottoService {
         outputView.printLottoNumbers(lotto.generateLotto(count));
     }
 
-    public void inputWinningNumber() throws IOException{
+    public void inputWinningNumber() throws IOException {
         outputView.printWinningNumberText();
         lotto.setWinningNumbers(inputView.inputWinningNumbers());
+        outputView.printBonusBallText();
+        lotto.updateBonusBall(inputView.inputBonusNumber());
     }
+
     public void calculateTotal() {
         lotto.calculateTotalResult();
-        outputView.printTotalText(lotto.getResultIndex(), lotto.getResult());
+        outputView.printTotalText(lotto.getScore());
         outputView.printEarnedRate(lotto.calculateEarningRate());
     }
 }
