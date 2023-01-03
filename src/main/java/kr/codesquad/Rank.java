@@ -2,7 +2,7 @@ package kr.codesquad;
 
 public enum Rank {
     FIRST(6, 2000000000),
-    SECOND(5, 30000000),
+    SECOND(5, 30000000), //todo: 보너스 볼 구현
     THIRD(5, 1500000),
     FOURTH(4, 50000),
     FIFTH(3, 5000);
@@ -15,15 +15,30 @@ public enum Rank {
         this.winningMoney = winningMoney;
     }
 
+    //todo: bonus 구현 필요, depth1 유지 필요
     public static int getMoney(int countOfMatch) {
         Rank[] ranks = Rank.values();
         for (Rank rank : ranks) {
             if (rank.countOfMatch == countOfMatch) {
-                //bonus 구현 필요, depth1 유지 필요
                 return rank.winningMoney;
             }
         }
         return 0;
+    }
+
+    public static Rank valueOf(int countOfMatch, boolean matchBonus) {
+        Rank[] ranks = values();
+        for (Rank rank : ranks) {
+            if (countOfMatch == SECOND.countOfMatch) {
+                return matchBonus ? SECOND : THIRD;
+            }
+
+            if (rank.countOfMatch == countOfMatch) {
+                return rank;
+            }
+        }
+
+        return null;
     }
 
     public int getCountOfMatch() {

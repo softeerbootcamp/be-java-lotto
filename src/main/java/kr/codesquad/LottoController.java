@@ -14,25 +14,20 @@ public class LottoController {
     private int inputMoney;
     private LottoService lottoService;
     private BufferedReader br;
-    private int num;
     private List<Row> rows;
-    private int[] answers;
 
-
-    public void start() throws IOException {
+    public void receiveInput() throws IOException {
         System.out.println("구입 금액을 입력해 주세요.");
         br = new BufferedReader(new InputStreamReader(System.in));
         inputMoney = Integer.parseInt(br.readLine());
-    }
-
-    public List<Row> receiveInput() {
         //로또 구입 금액을 입력하면
-        num = inputMoney / SINGLE_PRICE;
+        int num = inputMoney / SINGLE_PRICE;
         System.out.println(num + "개를 구매했습니다.");
 
         lottoService = new LottoService();
         rows = lottoService.receiveRandomRows(num);
-        return rows;
+
+        printRows(rows);
     }
 
     public void printRows(List<Row> rows) {
@@ -42,22 +37,25 @@ public class LottoController {
         }
     }
 
+
     public void inputAnswers() throws IOException {
         System.out.println("당첨 번호를 입력해 주세요.");
-        answers = new int[COLUMN];
+        int[] answers = new int[COLUMN];
         br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < COLUMN; i++) {
             answers[i] = Integer.parseInt(st.nextToken());
         }
-        getPrintStatistics();
+        System.out.println("보너스 볼을 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(br.readLine());
+        getPrintStatistics(answers, bonusNumber);
     }
 
     /**
      * 당첨 통계 내기
      */
-    private void getPrintStatistics() {
-        lottoService.compareLotto(rows, answers);
+    private void getPrintStatistics(int[] answers, int bonusNumber) {
+        lottoService.compareLotto(rows, answers, bonusNumber);
 
         Statistic statistic = new Statistic(COLUMN);
         for (Row row : rows) {

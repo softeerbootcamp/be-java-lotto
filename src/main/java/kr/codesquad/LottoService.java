@@ -35,15 +35,11 @@ public class LottoService {
         return rows;
     }
 
-    /**
-     * 유사난수로 1~45의 숫자 중 6개씩 생성된 줄만큼 입력
-     * 랜덤 로또 생성
-     */
-    public void compareLotto(List<Row> rows, int[] answers) {
-        int num = rows.size();
-        for (int i = 0; i < num; i++) {
-            Row row = rows.get(i);
-            row.compare(answers);
+    public void compareLotto(List<Row> rows, int[] answers, int bonusNumber) {
+        int rowSize = rows.size();
+        for (Row row : rows) {
+            row.compare(answers, bonusNumber);
         }
+
     }
 }

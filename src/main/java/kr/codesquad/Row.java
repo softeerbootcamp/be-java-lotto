@@ -7,20 +7,27 @@ public class Row {
 
     private int match;
     private List<Integer> values = new ArrayList<>();
+    private boolean isBonus;
 
     /**
      * 각 list 별 정답과 일치하는 갯수 반환
      */
-    public void compare(int[] answers) {
+    public void compare(int[] answers, int bonusNumber) {
+
         for (int answer : answers) {
-            compare2(answer);
+            compareNumber(answer);
+        }
+        compareBonusNumber(bonusNumber);
+    }
+
+    public void compareNumber(int answer) {
+        if (this.values.contains(answer)) {
+            match++;
         }
     }
 
-    public void compare2(int answer) {
-        if (values.contains(answer)) {
-            match++;
-        }
+    public void compareBonusNumber(int bonusNumber) {
+        this.isBonus = this.values.contains(bonusNumber);
     }
 
     public void addValues(List<Integer> num) {
@@ -35,4 +42,7 @@ public class Row {
         return values;
     }
 
+    public boolean isBonus() {
+        return isBonus;
+    }
 }
