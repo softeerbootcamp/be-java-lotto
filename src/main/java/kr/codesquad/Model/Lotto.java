@@ -1,24 +1,35 @@
 package kr.codesquad.Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class Lotto {
-    Scanner sc = new Scanner(System.in);
-    private final List<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
-    private int bonusBall = 0;
-    private int totalWinPrice = 0;
-    private static int[] scoreList = new int[7]; // 3개~6개 맞췄는지 저장할 점수 리스트
-    private int bonusBallScoreCount = 0;
+    private List<Integer> lottoNumbers;
+    int bonusBall;
     public Lotto(){
+        lottoNumbers = new ArrayList<>();
+        bonusBall = 0;
+    }
 
+    public Lotto(List<Integer> lottoNumList){
+        bonusBall = 0;
+        lottoNumbers = lottoNumList;
+    }
+
+    public List<Integer> getLottoNumbers() {
+        return lottoNumbers;
+    }
+
+    public void sortNumbers(){
+        Collections.sort(lottoNumbers);
     }
 
     public void setWinLottoNum(){
         // 당첨 번호 입력 받기
         System.out.println("\n지난 주 당첨 번호를 입력해 주세요");
-        String[] winLottoNumString = sc.nextLine().split(", ");
+        //String[] winLottoNumString = sc.nextLine().split(", ");
         for(int i = 0;i<6;i++){
             winLottoNum.add(Integer.parseInt(winLottoNumString[i]));
         }
