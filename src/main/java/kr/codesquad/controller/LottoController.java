@@ -1,6 +1,5 @@
 package kr.codesquad.controller;
 
-import kr.codesquad.model.Result;
 import kr.codesquad.model.User;
 import kr.codesquad.model.WinningLotto;
 import kr.codesquad.model.WinningStatic;
@@ -23,17 +22,30 @@ public class LottoController {
         PrintView.resultStatic(user);
     }
 
-    private static void computeResult(User user, WinningLotto winningLotto) {
+    private void computeResult(User user, WinningLotto winningLotto) {
         WinningStatic.computeResult(user, winningLotto);
         double profit = WinningStatic.computeProfit(user);
         user.getWinningStatic().updateProfit(profit);
     }
 
     private static WinningLotto getWinningLotto() {
+        List<Integer> winningNumbers = getSixWinningNumbers();
+        int bonusBall = getBonusBall();
+
+        WinningLotto winningLotto = new WinningLotto(winningNumbers,bonusBall);
+        return winningLotto;
+    }
+
+    private static int getBonusBall() {
+        PrintView.enterBonusBall();
+        int bonusBall = ReceiveView.enterBonusBall();
+        return bonusBall;
+    }
+
+    private static List<Integer> getSixWinningNumbers() {
         PrintView.enterWinningNumber();
         List<Integer> winningNumbers = ReceiveView.enterWinningNumbers();
-        WinningLotto winningLotto = new WinningLotto(winningNumbers);
-        return winningLotto;
+        return winningNumbers;
     }
 
     private User getUserWithPurchase() {

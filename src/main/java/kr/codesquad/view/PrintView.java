@@ -43,8 +43,16 @@ public class PrintView {
     private static void resultWinningStatic(User user) {
         HashMap<Result, Integer> resultMatch = user.getWinningStatic().getResultMatch();
         for (Result result : Result.notIncludeNotMatch()) {
-            System.out.printf("%d개 일치: (%d원)",result.getMatchCount(),result.getReward());
+            System.out.printf("%d개 일치", result.getMatchCount());
+            printBonus(result);
+            System.out.printf(" (%d원)", result.getReward());
             System.out.printf("- %d개\n", resultMatch.get(result));
+        }
+    }
+
+    private static void printBonus(Result result) {
+        if (result.isBonus()) {
+            System.out.print(CommonMessage.MATCH_BONUS_BALL);
         }
     }
 
