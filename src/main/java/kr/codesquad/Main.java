@@ -26,7 +26,7 @@ public class Main {
         MyLotto myLotto = new MyLotto(cnt);
         Jackpot_Handler jh = new Jackpot_Handler();
         jh.setJackpotNum();
-        jh.findingJackpot(myLotto);
+        jh.findingEachLottoJackpots(myLotto);
         Calculator.print_and_calculation(jh.JACKPOT_CNT, money);
     }
 }
