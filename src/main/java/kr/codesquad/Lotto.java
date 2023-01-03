@@ -35,5 +35,8 @@ public class Lotto {
         return count;
     }
 
+    public String toString(){
+        return lottoNums.toString();
+    }
 
 }
