@@ -18,4 +18,8 @@ public enum Rank {
     public int getCountOfMatch() {
         return countOfMatch;
     }
+
+    public int getWinningMoney() {
+        return winningMoney;
+    }
 }
