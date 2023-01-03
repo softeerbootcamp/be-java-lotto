@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.Model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,24 +12,19 @@ public class User {
     private List<Integer> lottoBuy = new ArrayList<>(); // 로또 구매 1장
     private List<Integer> numberList = new ArrayList<Integer>(); // 1 ~ 45로 이루어진 리스트
 
-    User(){
+    public User(){
         // 로또 번호 1 ~ 45를 저장할 리스트 생성
         for(int n = 1;n<=45;n++){
             numberList.add(n);
         }
     }
 
+    public void setPriceAndCount(int p){
+        price = p;
+        count = p/1000;
+    }
     public int getPrice(){ return price; }
     public int getCount(){ return count; }
-
-    public void inputPrice(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("구입금액을 입력해 주세요.");
-        price = sc.nextInt();
-        count = price/1000;
-        // 구입 개수 출력
-        System.out.println(count + "개를 구매했습니다.");
-    }
 
     // 자동 생성 로또
     public void createLottoNumber(){

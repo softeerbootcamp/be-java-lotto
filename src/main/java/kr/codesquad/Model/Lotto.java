@@ -1,7 +1,6 @@
-package kr.codesquad;
+package kr.codesquad.Model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +11,7 @@ public class Lotto {
     private int totalWinPrice = 0;
     private static int[] scoreList = new int[7]; // 3개~6개 맞췄는지 저장할 점수 리스트
     private int bonusBallScoreCount = 0;
-    Lotto(){
+    public Lotto(){
 
     }
 
