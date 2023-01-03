@@ -12,13 +12,14 @@ import static kr.codesquad.LottoService.COLUMN;
 public class LottoView {
     private final LottoController lottoController;
 
+    private final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
     public LottoView() {
         this.lottoController = new LottoController();
     }
 
     public void home() throws IOException {
         System.out.println("구입 금액을 입력해 주세요.");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int inputMoney = Integer.parseInt(br.readLine());
         List<Row> rows = lottoController.receiveInput(inputMoney);
 
@@ -35,9 +36,8 @@ public class LottoView {
     }
 
     public void getAnswers() throws IOException{
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         int[] answers = new int[COLUMN];
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < COLUMN; i++) {
             answers[i] = Integer.parseInt(st.nextToken());
