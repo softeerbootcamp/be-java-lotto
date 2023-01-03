@@ -22,12 +22,17 @@ public class LottoSystem {
     public static final int COST = 1000;
 
     public void makeLottos(){
+        money = LottoInput.enterMoney();
         getLottos();
-        getWinningNums();
         LottoOutput.printLottos(lottos);
+        getWinningNums();
+    }
+    public void getResult(){
+        getRank();
+        calMoneyAndRate();
+        LottoOutput.printResult(result, rate);
     }
     private void getLottos() {
-        money = LottoInput.enterMoney();
         for (int i = 0; i < money / COST; i++) {
             Lotto l = new Lotto();
             lottos.add(l);
@@ -41,11 +46,6 @@ public class LottoSystem {
 
     private void calWinner(Rank rank){
         if(!isNull(rank)) result.put(rank, result.get(rank)+1);
-    }
-    public void getResult(){
-        getRank();
-        calMoneyAndRate();
-        LottoOutput.printResult(result, rate);
     }
 
     private void getRank() {
