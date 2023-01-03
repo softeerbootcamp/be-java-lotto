@@ -9,25 +9,12 @@ public class Lotto {
     private List<List<Integer>> numbers;
     private NumberGenerator numberGenerator;
     private List<Integer> winningNumbers;
-    private Map<Integer, Integer> result;
-    private Map<Integer, Integer> resultIndex;
     private int bonusBall;
     private Map<Rank, Integer> score;
 
     Lotto(NumberGenerator numberGenerator) {
         this.numbers = new ArrayList<>();
         this.numberGenerator = numberGenerator;
-        result = new HashMap<>();
-        resultIndex = new HashMap<>();
-        resultIndex.put(3, 5000);
-        resultIndex.put(4, 50000);
-        resultIndex.put(5, 1500000);
-        resultIndex.put(6, 2000000000);
-
-        result.put(5000, 0);
-        result.put(50000, 0);
-        result.put(1500000, 0);
-        result.put(2000000000, 0);
         bonusBall = 0;
         score = new HashMap<>();
         score.put(Rank.FIRST, 0);
@@ -36,14 +23,6 @@ public class Lotto {
         score.put(Rank.FORTH, 0);
         score.put(Rank.FIFTH, 0);
     }
-    public Map<Integer, Integer> getResult() {
-        return result;
-    }
-
-    public Map<Integer, Integer> getResultIndex() {
-        return resultIndex;
-    }
-
     public Map<Rank, Integer> getScore() {
         return score;
     }
