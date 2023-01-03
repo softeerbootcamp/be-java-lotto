@@ -1,9 +1,6 @@
 package kr.codesquad.controller;
 
-import kr.codesquad.model.Lotto;
-import kr.codesquad.model.LottoMachine;
-import kr.codesquad.model.Rank;
-import kr.codesquad.model.WinningLotto;
+import kr.codesquad.model.*;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 
@@ -30,16 +27,21 @@ public class LottoController {
         int lottoCount = money / 1000;
         outputView.printLottoCount(lottoCount);
 
-        List<Lotto> lottos = lottoMachine.createLottos(lottoCount);
+        UserLotto userLotto = createUserLotto(lottoCount);
 
-        outputView.printLottos(lottos);
+        //outputView.printLottos(lottos);
 
         outputView.printWinningLottoReadMessage();
         WinningLotto winningLotto = createWinningLotto();
 
-        Map<Rank, Integer> result = caculateResult(lottos, winningLotto);
+        //Map<Rank, Integer> result = caculateResult(lottos, winningLotto);
         //double profitRate = caculateProfitRate(result, money);
-        //outputView.printResult(result, profitRate);를
+        //outputView.printResult(result, profitRate);
+    }
+
+    private UserLotto createUserLotto(int lottoCount) {
+        List<Lotto> lottos = lottoMachine.createLottos(lottoCount);
+        new UserLotto(lottos);
     }
 
     private WinningLotto createWinningLotto() {
