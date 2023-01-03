@@ -5,10 +5,16 @@ import java.math.*;
 class Lotto{
     private static int bonus = -1;
     Integer[] num = new Integer[6];
+    boolean winLotto = false;
     Lotto(int[] lottoNum){
         for (int i=0; i<6; i++)
             num[i] = lottoNum[i];
         Arrays.sort(num);
+    }
+
+    Lotto(int[] lottoNum, boolean winLotto){
+        this(lottoNum);
+        this.winLotto = winLotto;
     }
 
     public static int getBonus() {
@@ -35,7 +41,7 @@ public class LottoService {
     private static final double[] price = {0,0,0,5000,50000,1500000,2000000000};
     static List<Lotto> lottoList = new ArrayList<>();   //구입한 로또 저장소
     static List<Integer> lottoNum = new ArrayList<>();  //로또 번호 1~45
-    static List<Integer> winNum = new ArrayList<>();    //로또 당첨 번호
+    static Lotto winLotto;
     public static void start(){
         initLottoNum();
         setMoney();
@@ -82,13 +88,12 @@ public class LottoService {
     private static void setWinNum(){
         System.out.println("\n당첨 번호를 입력해 주세요.");    //, 처리 필요 -> string 활용
         Scanner sc = new Scanner(System.in);
-        winNum.clear();
+        int[] winNum = new int[6];
         String winStr = sc.nextLine();
         String[] winStrArr = winStr.split(",");
-        for (int i=0; i<6; i++){
-            int num = Integer.parseInt(winStrArr[i].trim());
-            winNum.add(num);
-        }
+        for (int i=0; i<6; i++)
+            winNum[i] = Integer.parseInt(winStrArr[i].trim());
+        winLotto  = new Lotto(winNum, true);
         setBonusNum();
     }
     private static void setBonusNum(){
@@ -98,9 +103,10 @@ public class LottoService {
         Lotto.setBonus(bonus);  //보너스 번호 할당
     }
     private static void calcResult(){
+        List<Integer> winList = Arrays.asList(winLotto.num);
         for (Lotto lotto : lottoList) {
             List<Integer> lottoNum = new ArrayList<Integer>(Arrays.asList(lotto.num));
-            lottoNum.retainAll(winNum);
+            lottoNum.retainAll(winList);
             int same = lottoNum.size();
             sameNumber[same]++;
             earn = earn.add(new BigDecimal((price[same]/money.intValue())*100));
