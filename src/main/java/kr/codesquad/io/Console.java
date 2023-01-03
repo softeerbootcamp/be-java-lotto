@@ -63,25 +63,25 @@ public class Console {
 
         Arrays.stream(WinningCount.values())
                 .forEach(winningCount -> {
-                printLottoResultByWinningCount(lottoResult, winningCount);
+                    printLottoResultByWinningCount(lottoResult, winningCount);
 
-        });
+                });
         printProfit(lottoResult, money);
     }
 
     public void printLottoResultByWinningCount(Map<WinningCount, Integer> lottoResult, WinningCount winningCount) {
+        String bonus = (winningCount.getIsBonus()) ? ", 보너스 볼 일치" : "";
         if (lottoResult.containsKey(winningCount)) {
-            System.out.println(winningCount.getCount() + "개 일치 (" + winningCount.getPrice() + ") - " + lottoResult.get(winningCount) + "개");
+            System.out.println(winningCount.getCount() + "개 일치" + bonus + "(" + winningCount.getPrice() + ") - " + lottoResult.get(winningCount) + "개");
         }
         if (!lottoResult.containsKey(winningCount)) {
-            System.out.println(winningCount.getCount() + "개 일치 (" + winningCount.getPrice() + ") - " + "0개");
-
+            System.out.println(winningCount.getCount() + "개 일치" + bonus + "(" + winningCount.getPrice() + ") - " + "0개");
         }
     }
 
     public void printProfit(Map<WinningCount, Integer> lottoResult, int money) {
         int rewardSum = 0;
-        for(Map.Entry<WinningCount, Integer> lotto : lottoResult.entrySet()) {
+        for (Map.Entry<WinningCount, Integer> lotto : lottoResult.entrySet()) {
             rewardSum += lotto.getKey().getPrice() * lotto.getValue();
         }
 

@@ -46,37 +46,37 @@ public class LottoService {
         return getLottoResult();
     }
 
-    public void makeLottoResultCount(Lotto lottoNumbers, Lotto winNum, int bonusNum) {
-        int correctCnt = correctNumCnt(lottoNumbers, winNum, bonusNum);
-        WinningCount winningCount = findWinningCount(correctCnt, bonusNum);
-        if (winningCount != null) {
-            addWinningCount(winningCount);
-        }
-    }
-
-    public int correctNumCnt(Lotto lottoNumbers, Lotto winNum, int bonusNum) {
-        List<Integer> temp = lottoNumbers.getNumberList();
-        winNum.getNumberList().add(bonusNum);
-        temp.retainAll(winNum.getNumberList());
-        return temp.size();
-    }
-
-    private static WinningCount findWinningCount(int correctCnt, int bonusNum) {
+    private static WinningCount findWinningCount(int correctCnt, boolean isBonusInclude) {
         WinningCount winningCount = Arrays.stream(WinningCount.values())
-                .filter(count -> count.getCount() == correctCnt)
+                .filter(count -> (count.getCount() == correctCnt && count.getIsBonus() == isBonusInclude))
                 .findFirst()
                 .orElse(null);
         return winningCount;
     }
 
     private static void addWinningCount(WinningCount winningCount) {
-        if(lottoResult.containsKey(winningCount)) {
+        if (lottoResult.containsKey(winningCount)) {
             lottoResult.put(winningCount, lottoResult.get(winningCount) + 1);
         }
-        if(!lottoResult.containsKey(winningCount)) {
+        if (!lottoResult.containsKey(winningCount)) {
             lottoResult.put(winningCount, 1);
         }
 
+    }
+
+    public void makeLottoResultCount(Lotto lottoNumbers, Lotto winNum, int bonusNum) {
+        int correctCnt = correctNumCnt(lottoNumbers, winNum);
+        boolean isBonusInclude = correctCnt == 5 && lottoNumbers.getNumberList().contains(bonusNum);
+        WinningCount winningCount = findWinningCount(correctCnt, isBonusInclude);
+        if (winningCount != null) {
+            addWinningCount(winningCount);
+        }
+    }
+
+    public int correctNumCnt(Lotto lottoNumbers, Lotto winNum) {
+        List<Integer> temp = new ArrayList<>(lottoNumbers.getNumberList());
+        temp.retainAll(winNum.getNumberList());
+        return temp.size();
     }
 
 
