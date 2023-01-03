@@ -5,19 +5,22 @@ import java.util.List;
 import java.util.Scanner;
 public class UserInputHandler {
 
+    // lower bound and upper_bound are included in available range
     public static int getOneNumber( int lower_bound, int upper_bound){
         Scanner s1 = new Scanner(System.in);
-
-        int money;
-        money = s1.nextInt();
-        if(money % 1000 != 0 || money < lower_bound || money > upper_bound){
+        int userinput;
+        userinput = s1.nextInt();
+        if(userinput < lower_bound || userinput > upper_bound){
             throw new IllegalArgumentException();
         }
-        return money;
+        return userinput;
     }
     public static int getMoney(){
         System.out.println("구입금액을 입력해 주세요.");
-        return getOneNumber(0, Integer.MAX_VALUE);
+        int money = getOneNumber(0, Integer.MAX_VALUE);
+        if (money % 1000 != 0)
+            throw new IllegalArgumentException();
+        return money;
     }
 
     public static ArrayList<Integer> getWinningNumbers() {
@@ -31,5 +34,13 @@ public class UserInputHandler {
         if(winningNumber.size() != 6)
             throw new IllegalArgumentException();
         return winningNumber;
+    }
+
+    public static int getBonusNumber(List<Integer> winningNumbers) {
+        System.out.println("보너스 볼을 입력해 주세요.");
+        int bonus = getOneNumber(1, 45);
+        if(winningNumbers.contains(bonus))
+            throw new IllegalArgumentException();
+        return bonus;
     }
 }
