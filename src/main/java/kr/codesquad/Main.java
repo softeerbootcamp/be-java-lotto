@@ -1,12 +1,13 @@
 package kr.codesquad;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static Scanner sc = new Scanner(System.in);
     public static int money;
-    public static ArrayList<Lotto> allLotto = new ArrayList<>();
+    public static List<Lotto> allLotto = new ArrayList<>();
     public static String winNumInput;
     public static WinNum winNum;
     public static int[] correctCnt = new int[7];

@@ -2,22 +2,23 @@ package kr.codesquad;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Lotto {
-    public ArrayList<Integer> numberList = new ArrayList<>();
+    public List<Integer> numberList = new ArrayList<>();
 
     public Lotto() {
-        ArrayList<Integer> allNumber = new ArrayList<>();
+        List<Integer> allNumber = new ArrayList<>();
         for(int i=1;i<=45;i++) allNumber.add(i);
         Collections.shuffle(allNumber);
-        ArrayList<Integer> lottoNum = new ArrayList<>();
+        List<Integer> lottoNum = new ArrayList<>();
         lottoNum.addAll(allNumber.subList(0, 6));
         Collections.sort(lottoNum);
         this.numberList.addAll(lottoNum);
     }
 
     public int correctNumCnt(WinNum winNum) {
-        ArrayList<Integer> temp = (ArrayList<Integer>) this.numberList.clone();
+        List<Integer> temp = (ArrayList<Integer>) this.numberList;
         temp.retainAll(winNum.num);
         return temp.size();
     }
