@@ -11,9 +11,9 @@ public class WinningLotto {
     }
 
     public Rank compare(Lotto otherLotto) {
-        int sameCount = lotto.compare(otherLotto);
+        int sameCount = otherLotto.compare(lotto);
         boolean isBonus = otherLotto.contains(bonusNumber);
 
-        return Rank.FIRST;
+        return Rank.find(sameCount, isBonus);
     }
 }
