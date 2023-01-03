@@ -3,10 +3,10 @@ package kr.codesquad;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Empty_lotto {
+public class EmptyLotto {
     private ArrayList<Integer> numbers;
 
-    public Empty_lotto(ArrayList<Integer> numbers) {
+    public EmptyLotto(ArrayList<Integer> numbers) {
         setNumbers(numbers);
     }
 
