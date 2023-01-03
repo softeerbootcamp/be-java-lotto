@@ -9,9 +9,9 @@ public class Lotto {
     public static final int LOTTO_NUM_COUNT = 6;
     public List<Integer> numberList = new ArrayList<>();
 
-    public int correctNumCnt(WinNum winNum) {
+    public int correctNumCnt(Lotto winNum) {
         List<Integer> temp = this.numberList;
-        temp.retainAll(winNum.num);
+        temp.retainAll(winNum.numberList);
         return temp.size();
     }
 
@@ -42,7 +42,7 @@ public class Lotto {
         return randNum;
     }
 
-    public int[] lottoResult(WinNum winNum, List<Lotto> lottoList) {
+    public int[] lottoResult(Lotto winNum, List<Lotto> lottoList) {
         int[] correctCnt = new int[7];
         for (int i = 0; i < lottoList.size(); i++) {
             correctCnt[lottoList.get(i).correctNumCnt(winNum)]++;

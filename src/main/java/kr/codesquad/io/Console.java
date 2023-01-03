@@ -1,7 +1,6 @@
 package kr.codesquad.io;
 
 import kr.codesquad.Lotto;
-import kr.codesquad.WinNum;
 
 import java.util.List;
 import java.util.Scanner;
@@ -16,11 +15,16 @@ public class Console {
         return money;
     }
 
-    public WinNum inputWinNum() {
+    public Lotto inputWinNum() {
         printInputWinNum();
         sc.nextLine();
         String winNumInput = sc.nextLine();
-        return new WinNum(winNumInput);
+        Lotto lotto = new Lotto();
+        String[] strList = winNumInput.split(", ");
+        for (int i = 0; i < strList.length; i++) {
+            lotto.numberList.add(Integer.parseInt(strList[i]));
+        }
+        return lotto;
     }
 
     public void printInputMoney() {

@@ -15,7 +15,7 @@ public class Main {
         console.printAmount(lottoAmount);
         List<Lotto> allLotto = lotto.makeLottoNum(lottoAmount);
         console.printLottoNum(allLotto);
-        WinNum winNum = console.inputWinNum();
+        Lotto winNum = console.inputWinNum();
         int[] correctCnt = lotto.lottoResult(winNum, allLotto);
         console.printLottoResult(money, correctCnt);
     }
