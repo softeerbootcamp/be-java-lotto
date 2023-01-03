@@ -8,7 +8,8 @@ public class Main {
         int n_lotto = UserInputHandler.getMoney() / 1000;
         List<Lotto> lottos = generateLottos(n_lotto);
         List<Integer> winningNumbers = UserInputHandler.getWinningNumbers();
-        LottoStat lottoStat = new LottoStat(lottos, winningNumbers);
+        int bonus = UserInputHandler.getBonusNumber(winningNumbers);
+        LottoStat lottoStat = new LottoStat(lottos, winningNumbers, bonus);
         lottoStat.printResult();
     }
 
