@@ -22,21 +22,7 @@ class ResultTest {
         assertThat(result).isEqualTo(fourMatchResult);
     }
 
-    @Test
-    @DisplayName("당첨번호 결과 로직 테스트")
-    void computeResult() {
-        //given
-        User user = new User(10000, 10);
 
-            //첫번째 자동으로 생성된 로또번호와 같게 당첨번호를 설정
-        List<Integer> winLotto = user.getLottos().get(0).getNumbers();
-        WinningLotto winningLotto = new WinningLotto(winLotto);
-        //when
-        Result.computeResult(user, winningLotto);
-        //then
-        Integer matchCount = user.getResultMatch().get(Result.MATCH_SIX);
-        assertThat(matchCount).isEqualTo(1);
-    }
 
     @Test
     @DisplayName("0개일치가 포함되지 않는 Result전체 가져오기")
