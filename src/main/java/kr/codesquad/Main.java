@@ -1,18 +1,20 @@
 package kr.codesquad;
 
-import java.util.Scanner;
+import java.util.List;
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         int n_lotto = UserInputHandler.getMoney() / 1000;
-        ArrayList<Lotto> lottos = generateLottos(n_lotto);
-        ArrayList<Integer> winningNumbers = UserInputHandler.getWinningNumbers();
-        LottoStat lottoStat = new LottoStat(lottos, winningNumbers);
+        List<Lotto> lottos = generateLottos(n_lotto);
+        List<Integer> winningNumbers = UserInputHandler.getWinningNumbers();
+        int bonus = UserInputHandler.getBonusNumber(winningNumbers);
+        Lotto winning = new Lotto(winningNumbers);
+        LottoStat lottoStat = new LottoStat(lottos, winning, bonus);
         lottoStat.printResult();
     }
 
-    public static ArrayList<Lotto> generateLottos(int n_lotto){
+    public static List<Lotto> generateLottos(int n_lotto){
         ArrayList<Lotto> lottos = new ArrayList<>();
         for(int i =0; i<n_lotto; i++){
             lottos.add(new Lotto());

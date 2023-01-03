@@ -1,13 +1,14 @@
 package kr.codesquad;
 
-import java.lang.reflect.Array;
+import kr.codesquad.Exceptions.CustomException;
+
 import java.util.*;
 
 public class Utility {
 
-    public static ArrayList<Integer> generateRandomSixNumbers(){
-        ArrayList<Integer> oneTo45 = new ArrayList<>();
-        ArrayList<Integer> lotteryNumbers = new ArrayList<>();
+    public static List<Integer> generateRandomSixNumbers(){
+        List<Integer> oneTo45 = new ArrayList<>();
+        List<Integer> lotteryNumbers = new ArrayList<>();
         for(int i = 1; i<=45; i++)
             oneTo45.add(i);
         Collections.shuffle(oneTo45);
@@ -17,11 +18,33 @@ public class Utility {
         return lotteryNumbers;
     }
 
-    public static int generateBonusNumber(ArrayList<Integer> random6Number){
+    public static int generateBonusNumber(List<Integer> random6Number){
         Random random = new Random();
         int temp = random.nextInt()%45 + 1;
         while(random6Number.contains(temp))
             temp = random.nextInt()%45 + 1;
         return temp;
+    }
+
+    public static boolean isDuplicated(List<Integer> integerList){
+        Set<Integer> set = new HashSet<>(integerList);
+        return set.size() != integerList.size();
+    }
+
+    public static int parseIntWithRange(String target, int lowerBound, int upperBound){
+        int temp = Integer.parseInt(target);
+        if(temp < lowerBound || temp > upperBound){
+            throw new CustomException(String.format("%s가 [%d, %d] 범위에 있어야 합니다.", target, lowerBound, upperBound));
+        }
+        return temp;
+    }
+
+    public static List<Integer> stringToIntList(String target){
+        List<String> strSplit = List.of(target.split(","));
+        List<Integer> numbers = new ArrayList<>();
+        for(String num : strSplit){
+            numbers.add(Utility.parseIntWithRange(num.trim(), 1, 45));
+        }
+        return numbers;
     }
 }
