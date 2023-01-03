@@ -11,5 +11,6 @@ public class Main {
         LottoService lottoService = new LottoService(new InputView(), new OutputView(), new Lotto(new NumberGenerator()));
         lottoService.buyLotto();
         lottoService.inputWinningNumber();
+        lottoService.calculateTotal();
     }
 }
