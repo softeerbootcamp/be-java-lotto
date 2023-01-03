@@ -9,6 +9,7 @@ public class Main {
         LottoGame lottoGame = new LottoGame();
         List<Lotto> purchasedLottoList = lottoGame.purchaseLottoList();
         Lotto winningLotto = lottoGame.createWinningLottery();
-        lottoGame.checkMyLotto(purchasedLottoList, winningLotto);
+        int bonusBall = lottoGame.getBonusBall();
+        lottoGame.checkMyLotto(purchasedLottoList, winningLotto, bonusBall);
     }
 }
