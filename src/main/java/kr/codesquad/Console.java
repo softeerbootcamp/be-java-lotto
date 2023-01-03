@@ -54,8 +54,10 @@ public class Console {
         System.out.println("당첨 통계");
         System.out.println("---------");
         for (Rank rank : Rank.values()){
-            String line = String.format("%d개 일치 (%d원)- %d개", rank.getCountOfMatch(), rank.getWinningMoney(), winningLottos.get(rank.toString()));
-            System.out.println(line);
+            if (rank.toString().equals("ETC")) continue;
+            System.out.printf("%d개 일치 (%d원)- %d개", rank.getCountOfMatch(),
+                    rank.getWinningMoney(), winningLottos.get(rank.toString()));
+            System.out.println();
         }
     }
 
