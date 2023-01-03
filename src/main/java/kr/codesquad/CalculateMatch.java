@@ -5,18 +5,10 @@ import java.util.HashMap;
 
 public class CalculateMatch {
 
-    private ArrayList<ArrayList<Integer>> randomLottoList;
-    private ArrayList<Integer> myLottoList;
-    private static HashMap<Integer, Integer> hitNums = new HashMap<>();
-    private static int bonusNum;
-    private static int BONUM_NUM = 777;
-    private static Fee[] feeList = {Fee.FIRST, Fee.SECOND, Fee.THIRD, Fee.FOURTH, Fee.FIFTH};
+    private HashMap<Integer, Integer> hitNums = new HashMap<>();  //맞은 번호의 개수와 횟수
+    private static int BONUM_NUM = 777;  //보너스 번호 (dummy)
+    private Prize[] prizeList = {Prize.FIRST, Prize.SECOND, Prize.THIRD, Prize.FOURTH, Prize.FIFTH};
 
-    public CalculateMatch(ArrayList<ArrayList<Integer>> randomLottoList, ArrayList<Integer> myLottoList, int bonusNum) {
-        this.randomLottoList = randomLottoList;
-        this.myLottoList = myLottoList;
-        this.bonusNum = bonusNum;
-    }
 
     private int containNum(int target, ArrayList<Integer> tempList){
         if (tempList.contains(target))
@@ -24,30 +16,35 @@ public class CalculateMatch {
         return 0;
     }
 
-    private void getHitStatistics(ArrayList<Integer> randomLotto) {
+    //맞은 숫자의 개수와 그 횟수를 계산
+    private void getHitStatistics(ArrayList<Integer> randomLotto, ArrayList<Integer> myLotto,  int bonusNum) {
         int hitNum = 0;
         for(int i = 0; i < 6; i++) {
-            hitNum += containNum(myLottoList.get(i), randomLotto);
+            hitNum += containNum(myLotto.get(i), randomLotto);
         }
-        if(hitNum == 5 && containNum(this.bonusNum, randomLotto) == 1){
+        if(hitNum == 5 && containNum(bonusNum, randomLotto) == 1){  //2등 보너스볼일 경우
             hitNums.put(BONUM_NUM, hitNums.getOrDefault(BONUM_NUM, 0) + 1);
             return;
         }
         hitNums.put(hitNum, hitNums.getOrDefault(hitNum, 0) + 1);
     }
 
-    public void startCalculate(int numOfLotto){
+
+    public void startCalculate(Lotto randomLotto, Lotto myLotto, int numOfLotto, int bonusNum){
+        ArrayList<ArrayList<Integer>> randomLottoList = randomLotto.getLottoList();
+        ArrayList<Integer> myLottoList = myLotto.getLottoList().get(0);
         for(int i = 0; i < numOfLotto; i++)
-            getHitStatistics(randomLottoList.get(i));
+            getHitStatistics(randomLottoList.get(i),myLottoList, bonusNum);
     }
 
     //print result of all lotteries
     public void printResult(int purchasedPrice) {
-        int hitPrice = 0;
-        for(int rank = 4; rank >= 0; rank--){
-            int hitNum = hitNums.getOrDefault(feeList[rank].getNumOfItem(), 0);
-            System.out.printf("%s - %d개\n", feeList[rank].getScript(), hitNum);
-            hitPrice += hitNum * feeList[rank].getPrice();
+        int hitPrice = 0; //당첨금
+        //5등부터 1등까지 출력
+        for(int rank = 5; rank >= 1; rank--){
+            int hitNum = hitNums.getOrDefault(prizeList[rank-1].getNumOfItem(), 0); //당첨 횟수
+            System.out.printf("%s - %d개\n", prizeList[rank-1].getScript(), hitNum);
+            hitPrice += hitNum * prizeList[rank-1].getPrice();
         }
         int profit = hitPrice - purchasedPrice;
         System.out.printf("총 수익률은 %.2f%%입니다.\n", (float)profit/purchasedPrice*100);
