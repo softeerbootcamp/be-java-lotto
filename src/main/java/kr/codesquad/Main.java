@@ -37,12 +37,6 @@ class Lotto{
   List<Integer> numList;
 
   Map<Rank, Integer> rankMap = new EnumMap<>(Rank.class);
-  int match3;
-  int match4;
-  int match5;
-
-  int secondWin;
-  int match6;
 
   public void initialMap(){
     Rank[] ranks = Rank.values();
@@ -64,11 +58,6 @@ class Lotto{
     numList = new ArrayList<>();
     for(int j=1;j<46;j++) numList.add(j);
     initialMap();
-    match3=0;
-    match4=0;
-    match5=0;
-    secondWin=0;
-    match6=0;
   }
 
   public void start(){
@@ -131,7 +120,6 @@ class Lotto{
     System.out.println("보너스 볼을 입력해주세요. ");
     Scanner sc = new Scanner(System.in);
     int bonusBall = sc.nextInt();
-    //inputs.add(bonusBall);
     return bonusBall;
   }
 
@@ -148,8 +136,8 @@ class Lotto{
   }
 
   public void updateRankMap(Rank rank){
-    int oldVal = this.rankMap.get(rank);
-    rankMap.put(rank,oldVal++);
+    int oldVal = rankMap.get(rank);
+    rankMap.put(rank,++oldVal);
   }
 
   public void getMatchCount(List<Integer> lotto, List<Integer> input){
@@ -168,17 +156,23 @@ class Lotto{
     if(list.contains(num)) resMatchCnt++;
     return resMatchCnt;
   }
+
+  public void calcRate(){
+    double sumOfWin = rankMap.get(Rank.FIFTH) * Rank.FIFTH.getWinningMoney() + rankMap.get(Rank.FOURTH) * Rank.FOURTH.getWinningMoney()
+                    + rankMap.get(Rank.THIRD) * Rank.THIRD.getWinningMoney()+rankMap.get(Rank.SECOND)*Rank.SECOND.getWinningMoney()
+                    + rankMap.get(Rank.FIRST) * Rank.FIRST.getWinningMoney();
+    double cost = lottoCnt*1000;
+    System.out.println("총 수익률은 "+String.format("%.2f",((sumOfWin - cost) / cost) * 100)+"% 입니다");
+  }
   public void printResult(){
     System.out.println("당첨 통계");
     System.out.println("-----");
-    System.out.println("3개 일치 (5000원) - " + match3);
-    System.out.println("4개 일치 (50000원) - " + match4);
-    System.out.println("5개 일치 (1500000원) - " + match5);
-    System.out.println("5개 일치, 보너스 볼 일치 (30000000원) - " + secondWin);
-    System.out.println("6개 일치 (2000000000원) - " + match6);
-    double sumOfWin = match3 * 5000 + match4 * 50000 + match5 * 1500000 + match6 * 2000000000;
-    double cost = lottoCnt*1000;
-    System.out.println(String.format("%.2f",((sumOfWin - cost) / cost) * 100)+"%");
+    System.out.println("3개 일치 (5000원) - " + rankMap.get(Rank.FIFTH));
+    System.out.println("4개 일치 (50000원) - " + rankMap.get(Rank.FOURTH));
+    System.out.println("5개 일치 (1500000원) - " + rankMap.get(Rank.THIRD));
+    System.out.println("5개 일치, 보너스 볼 일치 (30000000원) - " + rankMap.get(Rank.SECOND));
+    System.out.println("6개 일치 (2000000000원) - " + rankMap.get(Rank.FIRST));
+    calcRate();
   }
 
 }
