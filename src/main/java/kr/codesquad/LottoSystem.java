@@ -52,7 +52,8 @@ public class LottoSystem {
         winNumList.add(sc.nextInt());
 
         List<Integer> result = new ArrayList<>(List.of(0, 0, 0, 0, 0));
-        for(int i = 0; i < lottoCount; i++) setResult(result, countWinNum(lotto, winNumList, i));
+        for(int i = 0; i < lottoCount; i++)
+            setResult(result, countWinNum(lotto, winNumList, i), checkBonus(lotto, winNumList.get(6), i));
 
         printResult(result);
     }
