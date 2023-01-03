@@ -18,4 +18,10 @@ public class CalculateMatch {
         this.bonusNum = bonusNum;
     }
 
+    private int containNum(int target, ArrayList<Integer> tempList){
+        if (tempList.contains(target))
+            return 1;
+        return 0;
+    }
+
 }
