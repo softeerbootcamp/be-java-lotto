@@ -74,6 +74,11 @@ public class Lotto {
         }
         return 0;
     }
+    private void updateScore(int count) {
+        if (count < 3) return;
+        Rank rank = Rank.getRankByScore(count);
+        score.put(rank, score.get(rank) + 1);
+    }
     private void updateResult(int count) {
         if (count < 3) return;
         int winningMoney = resultIndex.get(count);
