@@ -27,9 +27,13 @@ public class LottoSystem {
             Lotto l = new Lotto();
             lottos.add(l);
         }
+        getWinningNums();
+        LottoOutput.printLottos(lottos);
+    }
+
+    private void getWinningNums() {
         winNums = LottoInput.enterWin();
         bonus = LottoInput.enterBonus();
-        LottoOutput.printLottos(lottos);
     }
 
     private void calWinner(Rank rank){
