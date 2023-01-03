@@ -3,6 +3,7 @@ package kr.codesquad;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -32,6 +33,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return lotto.toString();
+        return lotto.stream().sorted().collect(Collectors.toList()).toString();
     }
 }
