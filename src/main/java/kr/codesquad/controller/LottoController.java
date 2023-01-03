@@ -2,6 +2,7 @@ package kr.codesquad.controller;
 
 import kr.codesquad.model.Lotto;
 import kr.codesquad.model.LottoMachine;
+import kr.codesquad.model.WinningLotto;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 
@@ -33,11 +34,18 @@ public class LottoController {
         outputView.printLottos(lottos);
 
         outputView.printWinningLottoReadMessage();
-        Lotto winningLotto = inputView.readWinningLotto();
+        WinningLotto winningLotto = createWinningLotto();
 
-        Map<Integer, Integer> result = caculateResult(lottos, winningLotto);
-        double profitRate = caculateProfitRate(result, money);
-        outputView.printResult(result, profitRate);
+        //Map<Integer, Integer> result = caculateResult(lottos, winningLotto);
+        //double profitRate = caculateProfitRate(result, money);
+        //outputView.printResult(result, profitRate);를
+    }
+
+    private WinningLotto createWinningLotto() {
+        Lotto winningLotto = inputView.readWinningLotto();
+        int bonusNumber = inputView.readBonusNumber();
+
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 
     private Map<Integer, Integer> caculateResult(List<Lotto> lottos, Lotto winningLotto) {

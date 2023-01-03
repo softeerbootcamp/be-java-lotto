@@ -24,4 +24,8 @@ public class InputView {
 
         return new Lotto(numbers);
     }
+
+    public int readBonusNumber() {
+        return 0;
+    }
 }
