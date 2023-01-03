@@ -17,6 +17,16 @@ public class Lotto {
 
     }
 
+    private static List<Integer> choiceNumbers() {
+        List<Integer> numbers = generateNumbers();
+        Collections.shuffle(numbers);
+
+        return numbers.subList(0, LOTTO_SIZE)
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
     private static List<Integer> generateNumbers() {
         return IntStream.range(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER + 1)
                 .boxed()
