@@ -42,17 +42,13 @@ public class LottoSystem {
     public void checkLotto(Lotto lotto) {
         System.out.println("당첨 번호를 입력해 주세요.");
         Scanner sc = new Scanner(System.in);
-        String winNum = sc.nextLine();
-        String[] temp = winNum.split(", ");
+        String[] winNum = sc.nextLine().split(", ");
 
         List<Integer> winNumList = new ArrayList<>();
-        for(int i = 0;i < 6;i++) winNumList.add(Integer.parseInt(temp[i]));
+        for(int i = 0;i < 6;i++) winNumList.add(Integer.parseInt(winNum[i]));
 
         List<Integer> result = new ArrayList<>(List.of(0, 0, 0, 0));
-        for(int i = 0; i < lottoCount; i++) {
-            int winNumCount = countWinNum(lotto, winNumList, i);
-            setResult(result, winNumCount);
-        }
+        for(int i = 0; i < lottoCount; i++) setResult(result, countWinNum(lotto, winNumList, i));
 
         printResult(result);
     }
@@ -91,6 +87,6 @@ public class LottoSystem {
         long resultPrice = (long) result.get(0) * price.get(0) + (long) result.get(1) * price.get(1) +
                 (long) result.get(2) * price.get(2) + (long) result.get(3) * price.get(3);
         long expense = lottoCount * 1000L;
-        System.out.println("총 수익률은 " + (resultPrice - expense) / expense + "%입니다.");
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", (float) (resultPrice - expense) / expense);
     }
 }
