@@ -10,15 +10,18 @@ public class Console {
 
     private List<Integer> winningNumberList;
 
+    private static final int LOTTO_PRICE =1000;
+
     public int getBonusNumber() {
         return bonusNumber;
     }
 
     private int bonusNumber;
+
     public void inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         Scanner sc = new Scanner(System.in);
-        lottoCount = Long.parseLong(sc.next())/1000;
+        lottoCount = Long.parseLong(sc.next()) / LOTTO_PRICE;
     }
 
     public void printLottoCount() {
