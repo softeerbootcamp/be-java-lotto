@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Row {
 
-    private int result;
+    private int match;
     private List<Integer> values = new ArrayList<>();
 
     public void shuffle() {
@@ -24,7 +24,7 @@ public class Row {
 
     public void compare2(int answer) {
         if (values.contains(answer)) {
-            result++;
+            match++;
         }
     }
 
@@ -32,8 +32,8 @@ public class Row {
         values.add(num);
     }
 
-    public int getResult() {
-        return result;
+    public int getMatch() {
+        return match;
     }
 
     public List<Integer> getValues() {
