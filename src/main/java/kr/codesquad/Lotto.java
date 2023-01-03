@@ -2,6 +2,8 @@ package kr.codesquad;
 
 import java.util.List;
 
+import static kr.codesquad.Prize.*;
+
 public class Lotto {
     private final List<Integer> lottoNums;
 
@@ -25,8 +27,8 @@ public class Lotto {
     }
 
     public static int getMoneyByCount(int correct_count){
-        int[] result = {0,0,0,5000,50000,1500000, 2000000000};
-        return result[correct_count];
+        Prize[] result = {NOTHING, NOTHING, NOTHING, FORTH, THIRD, SECOND, FIRST};
+        return result[correct_count].getMoney();
     }
 
 }
