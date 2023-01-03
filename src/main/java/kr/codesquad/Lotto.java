@@ -13,10 +13,10 @@ public class Lotto {
         System.out.println(lottoNums);
     }
 
-    public Prize getRightPrize(List<Integer> prize_nums, int bonus){
+    public Prize getPrize(List<Integer> prize_nums, int bonus){
         int count = 0;
         for(Integer expect_no : lottoNums){
-            count = countUpIfContain(prize_nums, expect_no, count);
+            count = countUpIfContains(prize_nums, expect_no, count);
         }
         if(count == 5 && lottoNums.contains(bonus)){
             return SECOND;
@@ -24,8 +24,8 @@ public class Lotto {
         return prizes[count];
     }
 
-    public int countUpIfContain(List<Integer> prize_nums, int expect_no, int count){
-        if(prize_nums.contains(expect_no))
+    public int countUpIfContains(List<Integer> arr, int target, int count){
+        if(arr.contains(target))
             count += 1;
         return count;
     }

@@ -28,7 +28,7 @@ public class LottoStat {
             winnings.put(prize, 0);
         }
         for(Lotto lotto : lottos){
-            Prize prize = lotto.getRightPrize(winningNums, winningBonus);
+            Prize prize = lotto.getPrize(winningNums, winningBonus);
             winnings.put(prize, winnings.get(prize)+1);
             total_money += prize.getMoney();
         }
