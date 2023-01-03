@@ -10,8 +10,8 @@ public class Lotto {
     private List<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
     private List<Integer> lastWinLottoNum = new ArrayList<>(); // 지난 주 당첨 번호
     private int bonusBall = 0;
-    private boolean isWinBonus;
-    private int scoreList[] = {0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
+    private int totalWinPrice = 0;
+    private int scoreList[] = {0, 0, 0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
     private int bonusBallScoreCount = 0;
     Lotto(){
 
@@ -49,12 +49,22 @@ public class Lotto {
         return 0;
     }
 
+    public int checkBonusBall(List<Integer> lottoNumList, int value, boolean isWinBonus){
+        if(lottoNumList.contains(value)) {
+            isWinBonus = true;
+            return 1;
+        }
+        return 0;
+    }
+
     public int getScore(List<Integer> lottoNumList){
         int score = 0;
+        boolean isWinBonus = false;
         for(int i = 0;i<6;i++) {
             score += compareValue(lottoNumList, winLottoNum.get(i));
         }
-        if(score == 5) bonusBallScoreCount += compareValue(lottoNumList, bonusBall);
+        if(score == 5) bonusBallScoreCount += checkBonusBall(lottoNumList, bonusBall, isWinBonus);
+        countTotalWinPrice(score, isWinBonus);
         return score;
     }
 
@@ -78,8 +88,6 @@ public class Lotto {
     }
 
     public void printRate(int price){
-        int totalWinPrice = scoreList[3] * 5000 + scoreList[4] * 50000 +
-                scoreList[5] * 1500000 + scoreList[6] * 2000000000;
         // 수익률 계산 = 딴 돈 / 낸 돈  백분율
         double winRate = (double)totalWinPrice / price * 100;
         // 손해일 경우 - 100
@@ -87,6 +95,10 @@ public class Lotto {
         if(totalWinPrice < price) winRate -= 100.0;
 
         System.out.println("총 수익률은 " + String.format("%.2f",winRate) + "%입니다.");
+    }
+
+    private void countTotalWinPrice(int score, boolean isWinBonus) {
+        totalWinPrice += score * Rank.valueOf(score, isWinBonus).getWinningMoney();
     }
 
     public void statistics(List<List<Integer>> lottoBuyList, int price){
