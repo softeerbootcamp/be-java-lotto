@@ -1,25 +1,59 @@
 package kr.codesquad.controller;
 
+import kr.codesquad.model.Lotto;
 import kr.codesquad.model.User;
 import kr.codesquad.model.WinningLotto;
+import kr.codesquad.model.WinningStatic;
 import kr.codesquad.view.PrintView;
 import kr.codesquad.view.ReceiveView;
 
 import java.util.List;
 
 public class LottoController {
-    public static final int TICKET_PER_PRICE = 1000;
+
 
     public void play() {
+        User user = getUserWithPurchase();
+        PrintView.generatedLottos(user);
+
+        WinningLotto winningLotto = getWinningLotto();
+
+        computeResult(user, winningLotto);
+
+        PrintView.resultStatic(user);
+    }
+
+    private void computeResult(User user, WinningLotto winningLotto) {
+        WinningStatic.computeResult(user, winningLotto);
+        double profit = WinningStatic.computeProfit(user);
+        user.getWinningStatic().updateProfit(profit);
+    }
+
+    private static WinningLotto getWinningLotto() {
+        List<Integer> winningNumbers = getSixWinningNumbers();
+        int bonusBall = getBonusBall();
+
+        WinningLotto winningLotto = new WinningLotto(winningNumbers,bonusBall);
+        return winningLotto;
+    }
+
+    private static int getBonusBall() {
+        PrintView.enterBonusBall();
+        int bonusBall = ReceiveView.enterBonusBall();
+        return bonusBall;
+    }
+
+    private static List<Integer> getSixWinningNumbers() {
+        PrintView.enterWinningNumber();
+        List<Integer> winningNumbers = ReceiveView.enterWinningNumbers();
+        return winningNumbers;
+    }
+
+    private User getUserWithPurchase() {
         int purchaseAmount = enterPurchaseAmount();
         int purchaseTickets = purchaseToTickets(purchaseAmount);
         User user = makeUser(purchaseAmount, purchaseTickets);
-        PrintView.generatedLottos(user);
-        PrintView.enterWinningNumber();
-
-        List<Integer> winningNumbers = ReceiveView.enterWinningNumbers();
-        WinningLotto winningLotto = new WinningLotto(winningNumbers);
-
+        return user;
     }
 
     private User makeUser(int purchaseAmount, int purchaseTickets) {
@@ -28,7 +62,7 @@ public class LottoController {
     }
 
     private static int purchaseToTickets(int purchaseAmount) {
-        int purchaseTickets = purchaseAmount / TICKET_PER_PRICE;
+        int purchaseTickets = purchaseAmount / Lotto.TICKET_PER_PRICE;
         PrintView.resultPurchaseAmount(purchaseTickets);
         return purchaseTickets;
     }

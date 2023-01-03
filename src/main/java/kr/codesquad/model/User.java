@@ -6,14 +6,17 @@ import java.util.List;
 public class User {
 
     private final int purchaseAmount;
-    private final int purchaseTickets;
+    private final int purchaseTicketCount;
     private final List<Lotto> lottos;
+    private WinningStatic winningStatic = new WinningStatic();
 
-    public User(int purchaseAmount, int purchaseTickets) {
+    public User(int purchaseAmount, int purchaseTicketCount) {
         this.purchaseAmount = purchaseAmount;
-        this.purchaseTickets = purchaseTickets;
-        this.lottos=generateLottos(purchaseTickets);
+        this.purchaseTicketCount = purchaseTicketCount;
+        this.lottos=generateLottos(purchaseTicketCount);
     }
+
+
 
     private List<Lotto> generateLottos(int purchaseTickets) {
         List<Lotto> lottoList = new ArrayList<>();
@@ -27,11 +30,13 @@ public class User {
         return purchaseAmount;
     }
 
-    public int getPurchaseTickets() {
-        return purchaseTickets;
-    }
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+
+    public WinningStatic getWinningStatic() {
+        return winningStatic;
     }
 }
