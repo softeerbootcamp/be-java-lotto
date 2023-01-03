@@ -66,8 +66,7 @@ public class Lotto {
             updateScore(count);
         }
     }
-    private int containsNumberCount(int index) {
-        List<Integer> lotto = numbers.get(index);
+    private int containsNumberCount(List<Integer> lotto) {
         int count = 0;
         for (Integer winningNumber : winningNumbers) {
             count += compareSame(lotto, winningNumber);
