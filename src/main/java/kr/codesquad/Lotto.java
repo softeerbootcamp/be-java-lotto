@@ -65,15 +65,6 @@ public class Lotto {
         scoreList[5] -= bonusBallScoreCount;
     }
 
-    public void printScore(int price){
-        System.out.println("\n당첨 통계\n----------");
-        System.out.println("3개 일치 (5000원) - " + scoreList[3] + "개");
-        System.out.println("4개 일치 (50000원) - " + scoreList[4] + "개");
-        System.out.println("5개 일치 (1500000원) - " + scoreList[5] + "개");
-        System.out.println("6개 일치 (2000000000원) - " + scoreList[6] + "개");
-        printRate(price);
-    }
-
     public void printRate(int price){
         // 수익률 계산 = 딴 돈 / 낸 돈  백분율
         double winRate = (double)totalWinPrice / price * 100;
@@ -87,7 +78,7 @@ public class Lotto {
         totalWinPrice += Rank.valueOf(score, isWinBonus).getWinningMoney();
     }
 
-    public void statistics(List<List<Integer>> lottoBuyList, int price){
+    public void statistics(List<List<Integer>> lottoBuyList, int price) {
         for(int i = 0;i<lottoBuyList.size();i++){
             int score = getScore(lottoBuyList.get(i));
             addScoreList(scoreList, score);
@@ -96,17 +87,7 @@ public class Lotto {
         printScore(price);
     }
 
-
-    public void lastStatistics(List<List<Integer>> lottoBuyList, int price) {
-        for(int i = 0;i<lottoBuyList.size();i++){
-            int score = getScore(lottoBuyList.get(i));
-            addScoreList(scoreList, score);
-        }
-        // 맞춘 개수와 수익률 출력
-        printLastScore(price);
-    }
-
-    private void printLastScore(int price) {
+    private void printScore(int price) {
         System.out.println("\n당첨 통계\n----------");
         System.out.println("3개 일치 (" + Rank.FIFTH.getWinningMoney() + "원) - " + scoreList[3] + "개");
         System.out.println("4개 일치 (" + Rank.FOURTH.getWinningMoney() + "원) - " + scoreList[4] + "개");
