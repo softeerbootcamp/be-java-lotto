@@ -8,7 +8,6 @@ public class LottoService {
     private OutputView outputView;
     private Lotto lotto;
 
-
     public LottoService(InputView inputView, OutputView outputView, Lotto lotto) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -24,6 +23,7 @@ public class LottoService {
 
     public void inputWinningNumber() throws IOException{
         outputView.printWinningNumberText();
-        inputView.inputWinningNumbers();
+        lotto.setWinningNumbers(inputView.inputWinningNumbers());
     }
+    
 }
