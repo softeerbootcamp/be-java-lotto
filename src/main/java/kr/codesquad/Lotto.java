@@ -18,7 +18,7 @@ public class Lotto {
         for(Integer expect_no : lottoNums){
             count = countUpIfContain(prize_nums, expect_no, count);
         }
-        if(count == 5 && prize_nums.contains(bonus)){
+        if(count == 5 && lottoNums.contains(bonus)){
             return SECOND;
         }
         return prizes[count];
