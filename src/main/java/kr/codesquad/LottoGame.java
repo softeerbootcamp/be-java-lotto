@@ -49,6 +49,10 @@ public class LottoGame {
         System.out.println("5개 일치 (1500000원) - " + result.get(LottoMatchType.FIVE_MATCH.getMatchCount()));
         System.out.println("5개 일치, 보너스 볼 일치(30000000원) - " + result.get(0));
         System.out.println("6개 일치 (2000000000원) - " + result.get(LottoMatchType.SIX_MATCH.getMatchCount()));
+        printEarningRate(purchaseAmount);
+    }
+
+    public void printEarningRate(int purchaseAmount) {
         double output = result.get(LottoMatchType.THREE_MATCH.getMatchCount()) * LottoMatchType.THREE_MATCH.getMoney()
                 + result.get(LottoMatchType.FOUR_MATCH.getMatchCount()) * LottoMatchType.FOUR_MATCH.getMoney()
                 + result.get(LottoMatchType.FIVE_MATCH.getMatchCount()) * LottoMatchType.FIVE_MATCH.getMoney()
