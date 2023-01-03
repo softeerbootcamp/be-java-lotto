@@ -53,6 +53,12 @@ public class Main {
         return tempList;
     }
 
+    private static void enterBonusNum(){
+        System.out.println("보너스볼을 입력해 주세요.");
+        bonus = scan.nextInt();
+    }
+
+
     public static void main(String[] args) {
         initMethod();
         enterPurchasePrice();
@@ -65,6 +71,7 @@ public class Main {
         }
 
         myLotto.addLotto(enterResultNumbers());
+        enterBonusNum();
 
         ArrayList<ArrayList<Integer>> randomLottoList = randomLotto.getLottoList();
         ArrayList<Integer> myLottoList = myLotto.getLottoList().get(0);
