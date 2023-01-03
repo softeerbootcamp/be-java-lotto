@@ -2,6 +2,32 @@ package kr.codesquad;
 
 import java.util.*;
 
+enum Rank{
+
+  FIRST(6,2000000000),
+  SECOND(5,30000000),
+  THIRD(5,1500000),
+  FOURTH(4,50000),
+  FIFTH(3,500);
+
+  private int countOfMatch;
+  private int winningMoney;
+
+  private Rank(int countOfMatch, int winningMoney){
+    this.countOfMatch = countOfMatch;
+    this.winningMoney= winningMoney;
+  }
+
+  public int getCountOfMatch(){
+    return countOfMatch;
+  }
+
+  public int getWinningMoney(){
+    return winningMoney;
+  }
+
+}
+
 class Lotto{
 
   private List<List<Integer>> lottos;
@@ -9,6 +35,8 @@ class Lotto{
   private int lottoCnt;
   private int bonusBall;
   List<Integer> numList;
+
+  Map<Rank, Integer> rankMap = new EnumMap<>(Rank.class);
   int match3;
   int match4;
   int match5;
@@ -16,11 +44,19 @@ class Lotto{
   int secondWin;
   int match6;
 
+  public void initialMap(){
+    Rank[] ranks = Rank.values();
+    for(Rank rank : ranks){
+      rankMap.put(rank,0);
+    }
+  }
+
   public Lotto() {
     lottos = new ArrayList<>();
     inputs = new ArrayList<>();
     numList = new ArrayList<>();
     for(int j=1;j<46;j++) numList.add(j);
+    initialMap();
     match3=0;
     match4=0;
     match5=0;
@@ -103,6 +139,25 @@ class Lotto{
     return false;
   }
 
+  public void updateRankMap(Rank rank){
+    int oldVal = this.rankMap.get(rank);
+    rankMap.put(rank,oldVal++);
+  }
+
+  public void getRankByCountOfMatch(Rank rank,int countOfMatch){
+    if(rank.getCountOfMatch() == countOfMatch){
+      updateRankMap(rank);
+    }
+  }
+
+  public void getWhichRank(int countOfMatch){
+    Rank[] ranks = Rank.values();
+    for(Rank rank : ranks){
+      getRankByCountOfMatch(rank, countOfMatch);
+    }
+
+  }
+
   public void getMatchCount(List<Integer> lotto, List<Integer> input){
     int matchCnt = 0;
     boolean isBonus = isBonusInLotto(lotto);
@@ -127,12 +182,9 @@ class Lotto{
     System.out.println("5개 일치 (1500000원) - " + match5);
     System.out.println("5개 일치, 보너스 볼 일치 (30000000원) - " + secondWin);
     System.out.println("6개 일치 (2000000000원) - " + match6);
-
     double sumOfWin = match3 * 5000 + match4 * 50000 + match5 * 1500000 + match6 * 2000000000;
     double cost = lottoCnt*1000;
-
     System.out.println(String.format("%.2f",((sumOfWin - cost) / cost) * 100)+"%");
-
   }
 
 }
