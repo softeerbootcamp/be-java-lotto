@@ -26,7 +26,6 @@ public class Statistic {
         boolean matchBonus = row.isBonus();
         if (match >= 3) {
             int money = Rank.getMoney(match, matchBonus);
-//            Rank rank = Rank.valueOf(match, matchBonus);
             int cnt = counts.get(money);
             counts.put(money, ++cnt);
             this.output += money;

@@ -10,32 +10,26 @@ import static kr.codesquad.LottoService.COLUMN;
 
 public class LottoController {
 
-    private static final int SINGLE_PRICE = 1000; //로또 한 장의 가격은 1000원이다.
-    private LottoService lottoService;
+    public static final int SINGLE_PRICE = 1000; //로또 한 장의 가격은 1000원이다.
+    private final LottoService lottoService;
 
     private int inputMoney;
     private BufferedReader br;
     private List<Row> rows;
 
-    public void receiveInput() throws IOException {
-        System.out.println("구입 금액을 입력해 주세요.");
-        br = new BufferedReader(new InputStreamReader(System.in));
-        inputMoney = Integer.parseInt(br.readLine());
+    public LottoController() {
+        this.lottoService = new LottoService();
+    }
+
+
+    public List<Row> receiveInput(int inputMoney) {
         //로또 구입 금액을 입력하면
         int num = inputMoney / SINGLE_PRICE;
         System.out.println(num + "개를 구매했습니다.");
-
-        lottoService = new LottoService();
+        this.inputMoney = inputMoney;
         rows = lottoService.receiveRandomRows(num);
 
-        printRows(rows);
-    }
-
-    public void printRows(List<Row> rows) {
-        for (Row row : rows) {
-            List<Integer> values = row.getValues();
-            System.out.println(values);
-        }
+        return rows;
     }
 
 
@@ -55,7 +49,7 @@ public class LottoController {
     /**
      * 당첨 통계 내기
      */
-    private void getPrintStatistics(int[] answers, int bonusNumber) {
+    public void getPrintStatistics(int[] answers, int bonusNumber) {
         lottoService.compareLotto(rows, answers, bonusNumber);
 
         Statistic statistic = new Statistic();

@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor: Enum 메서드 depth 1 만족할수있도록 수정중 (미완)">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor: Enum 메서드 depth 1 만족할수있도록 수정&#10;&#10;예시 코드로 주어진 valueOf() 의 depth를 1로 낮추되 전체적인 구조를 망가뜨리지 않도록 수정하였습니다.&#10;수정 결과, Enum 중 하나를 반화하는 valueOf() 대신 금액을 반환하는 하나의 메서드로 처리하였습니다.&#10;하지만 그 과정에서 Rank를 금액 기준으로 count 등 처리를 하다보니 winningMoney 필드에 대한 의존도가 높아져 만약 동일한 금액의 Enum이 추가되면 문제가 발생할 위협이 있습니다.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Rank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Rank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Statistic.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672731259316</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="refactor: Enum 메서드 depth 1 만족할수있도록 수정&#10;&#10;예시 코드로 주어진 valueOf() 의 depth를 1로 낮추되 전체적인 구조를 망가뜨리지 않도록 수정하였습니다.&#10;수정 결과, Enum 중 하나를 반화하는 valueOf() 대신 금액을 반환하는 하나의 메서드로 처리하였습니다.&#10;하지만 그 과정에서 Rank를 금액 기준으로 count 등 처리를 하다보니 winningMoney 필드에 대한 의존도가 높아져 만약 동일한 금액의 Enum이 추가되면 문제가 발생할 위협이 있습니다.">
+      <created>1672734191273</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1672734191273</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,7 +205,8 @@
     <MESSAGE value="feat: bonus 기능 추가" />
     <MESSAGE value="fix: 당첨 통계 reverse order로 출력" />
     <MESSAGE value="refactor: Enum 메서드 depth 1 만족할수있도록 수정중 (미완)" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: Enum 메서드 depth 1 만족할수있도록 수정중 (미완)" />
+    <MESSAGE value="refactor: Enum 메서드 depth 1 만족할수있도록 수정&#10;&#10;예시 코드로 주어진 valueOf() 의 depth를 1로 낮추되 전체적인 구조를 망가뜨리지 않도록 수정하였습니다.&#10;수정 결과, Enum 중 하나를 반화하는 valueOf() 대신 금액을 반환하는 하나의 메서드로 처리하였습니다.&#10;하지만 그 과정에서 Rank를 금액 기준으로 count 등 처리를 하다보니 winningMoney 필드에 대한 의존도가 높아져 만약 동일한 금액의 Enum이 추가되면 문제가 발생할 위협이 있습니다." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: Enum 메서드 depth 1 만족할수있도록 수정&#10;&#10;예시 코드로 주어진 valueOf() 의 depth를 1로 낮추되 전체적인 구조를 망가뜨리지 않도록 수정하였습니다.&#10;수정 결과, Enum 중 하나를 반화하는 valueOf() 대신 금액을 반환하는 하나의 메서드로 처리하였습니다.&#10;하지만 그 과정에서 Rank를 금액 기준으로 count 등 처리를 하다보니 winningMoney 필드에 대한 의존도가 높아져 만약 동일한 금액의 Enum이 추가되면 문제가 발생할 위협이 있습니다." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_lotto$Main.ic" NAME="Main Coverage Results" MODIFIED="1672722343647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
