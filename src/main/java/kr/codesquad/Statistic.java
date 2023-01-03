@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,14 +41,11 @@ public class Statistic {
         System.out.println("당첨 통계\n" + "---------");
 
         Rank[] ranks = Rank.values();
+        Arrays.sort(ranks, Collections.reverseOrder());
         for (Rank rank : ranks) {
             System.out.println(rank.getCountOfMatch() + "개 일치 (" + rank.getWinningMoney() + "원)- " + counts.get(rank) + "개");
 
         }
-        for (int i = 3; i <= 6; i++) {
-        }
         System.out.println("총 수익률은 " + String.format("%.2f", rate) + "% 입니다.");
-
-
     }
 }
