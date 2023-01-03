@@ -37,6 +37,7 @@ public class Lotto {
 
     public boolean checkBonusBall(List<Integer> lottoNumList, int value, int score) {
         if(lottoNumList.contains(value)){
+            // 보너스 볼 당첨일 경우 이미 5개가 맞는지 확인
             return checkBonusBallScore(lottoNumList, score);
         }
         return false;
@@ -51,15 +52,16 @@ public class Lotto {
 
     public boolean checkBonusBallScore(List<Integer> lottoNumList, int score){
         if(score != 5) return false;
+        // 5개가 당첨이 되었고 보너스 볼 당첨이므로 count + 1 해주고
         bonusBallScoreCount += 1;
+        // 5개 당첨자랑은 다르게 보너스 볼 추가 당첨이므로 5개 당첨자 수 - 1 해서 맞춰줌
         scoreList[5]--;
-        System.out.println(bonusBallScoreCount);
         return true;
     }
 
     public int getScore(List<Integer> lottoNumList){
         int score = countScore(lottoNumList);
-        //if(score == 5) bonusBallScoreCount += checkBonusBall(lottoNumList, bonusBall, isWinBonus);
+        // 5개 당첨 + 보너스 볼 당첨됐는지 확인 > 확인 결과에 따라 총 상금 갱신
         countTotalWinPrice(score, checkBonusBall(lottoNumList, bonusBall, score));
         addScoreList(score);
         return score;
