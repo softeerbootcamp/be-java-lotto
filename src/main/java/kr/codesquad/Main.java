@@ -7,6 +7,7 @@ class Lotto{
   private List<List<Integer>> lottos;
   private ArrayList<Integer> inputs;
   private int lottoCnt;
+  private int bonusBall;
   List<Integer> numList;
   int match3=0;
   int match4=0;
@@ -31,8 +32,11 @@ class Lotto{
     getLottoCount(amountOfMoney);
     //3. 셔플로 복권 만들기
     getLottos();
-    //4. 사용자로부터 복권 입력 받기
+    //4. 사용자로부터 복권 입력 - 지난 주 당첨 번호- 받기
     getLottoInput();
+    //5. 보너스 볼 입력 받기
+    this.bonusBall = getBonusLottoInput();
+    System.out.println(this.bonusBall);
     //5. 비교
     compareLottos(lottos,inputs);
     //6. 결과 출력
@@ -74,6 +78,13 @@ class Lotto{
       inputs.add(Integer.valueOf(input));
     }
     //System.out.println(inputs);
+  }
+
+  public Integer getBonusLottoInput() {
+    System.out.println("보너스 볼을 입력해주세요. ");
+    Scanner sc = new Scanner(System.in);
+    int bonusBall = sc.nextInt();
+    return bonusBall;
   }
 
   public void compareLottos(List<List<Integer>> lottoLists, List<Integer> inputList){
