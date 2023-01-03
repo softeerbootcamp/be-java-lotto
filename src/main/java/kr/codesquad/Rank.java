@@ -1,21 +1,22 @@
 package kr.codesquad;
 
 public enum Rank {
-    FIRST(6, 2000000000, 0),
-    SECOND(5, 30000000, 0),
-    THIRD(5, 1500000, 0),
-    FOURTH(4, 50000, 0),
-    FIFTH(3, 5000, 0);
+    FIRST(6, 2000000000, false),
+    SECOND(5, 30000000, true),
+    THIRD(5, 1500000, false),
+    FOURTH(4, 50000, false),
+    FIFTH(3, 5000, false),
+    ETC(0, 0, false);
 
-    private int countOfMatch;
-    private int winningMoney;
+    private final int countOfMatch;
+    private final int winningMoney;
+    private final boolean bonus;
 
-    private int winningCount;
 
-    Rank(int countOfMatch, int winningMoney, int winningCount) {
+    Rank(int countOfMatch, int winningMoney, boolean bonus) {
         this.countOfMatch = countOfMatch;
         this.winningMoney = winningMoney;
-        this.winningCount = winningCount;
+        this.bonus = bonus;
     }
 
     public int getCountOfMatch() {
@@ -25,11 +26,9 @@ public enum Rank {
     public int getWinningMoney() {
         return winningMoney;
     }
-    public int getWinningCount() {
-        return winningCount;
-    }
-    public void setWinningCount(int winningCount) {
-        this.winningCount = winningCount;
+
+    public boolean isBonus() {
+        return bonus;
     }
 }
 
