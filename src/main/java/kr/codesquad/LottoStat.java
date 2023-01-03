@@ -18,7 +18,6 @@ public class LottoStat {
         this.lottos = lottos;
         this.winningNums = winningNums;
         winningBonus = bonus;
-        System.out.println(winningNums);
         winnings = new HashMap<>();
         calcResult();
     }

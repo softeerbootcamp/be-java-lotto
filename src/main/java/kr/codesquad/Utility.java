@@ -27,7 +27,7 @@ public class Utility {
     }
 
     public static boolean isDuplicated(List<Integer> integerList){
-        Set<Integer> set = new HashSet(integerList);
+        Set<Integer> set = new HashSet<>(integerList);
         return set.size() != integerList.size();
     }
 
