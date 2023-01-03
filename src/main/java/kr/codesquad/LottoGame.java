@@ -89,6 +89,11 @@ public class LottoGame {
         return lottoList;
     }
 
+    public int getBonusBall() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
+
     public Lotto createWinningLottery() {
         System.out.println("당첨 번호를 입력해주세요");
         Scanner scanner = new Scanner(System.in);
