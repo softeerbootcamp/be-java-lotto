@@ -35,12 +35,11 @@ public class Lotto {
         return 0;
     }
 
-    public int checkBonusBall(List<Integer> lottoNumList, int value, boolean isWinBonus){
-        if(lottoNumList.contains(value)) {
-            isWinBonus = true;
-            return 1;
+    public boolean checkBonusBall(List<Integer> lottoNumList, int value, int score) {
+        if(lottoNumList.contains(value)){
+            return checkBonusBallScore(lottoNumList, score);
         }
-        return 0;
+        return false;
     }
 
     public int countScore(List<Integer> lottoNumList){
@@ -50,20 +49,27 @@ public class Lotto {
         return score;
     }
 
+    public boolean checkBonusBallScore(List<Integer> lottoNumList, int score){
+        if(score != 5) return false;
+        bonusBallScoreCount += 1;
+        scoreList[5]--;
+        System.out.println(bonusBallScoreCount);
+        return true;
+    }
+
     public int getScore(List<Integer> lottoNumList){
-        boolean isWinBonus = false;
         int score = countScore(lottoNumList);
-        if(score == 5) bonusBallScoreCount += checkBonusBall(lottoNumList, bonusBall, isWinBonus);
-        countTotalWinPrice(score, isWinBonus);
+        //if(score == 5) bonusBallScoreCount += checkBonusBall(lottoNumList, bonusBall, isWinBonus);
+        countTotalWinPrice(score, checkBonusBall(lottoNumList, bonusBall, score));
+        addScoreList(score);
         return score;
     }
 
-    public void addScoreList(int scoreList[], int score) {
+    public void addScoreList(int score) {
         if (score == 3) scoreList[3]++;
         if (score == 4) scoreList[4]++;
         if (score == 5) scoreList[5]++;
         if (score == 6) scoreList[6]++;
-        scoreList[5] -= bonusBallScoreCount;
     }
 
     public void printRate(int price){
@@ -81,8 +87,7 @@ public class Lotto {
 
     public void statistics(List<List<Integer>> lottoBuyList, int price) {
         for(int i = 0;i<lottoBuyList.size();i++){
-            int score = getScore(lottoBuyList.get(i));
-            addScoreList(scoreList, score);
+            getScore(lottoBuyList.get(i));
         }
         // 맞춘 개수와 수익률 출력
         printScore(price);
