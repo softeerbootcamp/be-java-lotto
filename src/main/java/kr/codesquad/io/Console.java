@@ -15,7 +15,7 @@ public class Console {
 
   private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-  public int inputPurchaseAmount() {
+  public int inputPurchaseMoney() {
     System.out.println("구입 금액을 입력해 주세요");
     return Integer.parseInt(commandLineInput());
   }
