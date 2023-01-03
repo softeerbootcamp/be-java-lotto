@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import static java.util.Objects.isNull;
+
 public enum Rank {
     FIRST(6, 2000000000, "6개 일치"),
     SECOND(5, 30000000, "5개 일치, 보너스 볼 일치"),
@@ -24,16 +26,17 @@ public enum Rank {
     }
     public String getWords(){ return words; }
     public static Rank valueOf(int cnt, boolean bonus) {
-        if(cnt < 3) return null;
         Rank[] ranks = values();
         Rank value = null;
         for (Rank rank : ranks) {
-            value = ranking(rank, cnt, bonus);
+            value = ranking(rank, value, cnt, bonus);
         }
-
         return value;
     }
-    public static Rank ranking(Rank rank, int cnt, boolean bonus){
+    public static Rank ranking(Rank rank, Rank value, int cnt, boolean bonus){
+        if(!isNull(value)) {
+            return value;
+        }
         if (cnt == SECOND.cnt) {
             return bonus ? SECOND : THIRD;
         }
