@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,5 +20,20 @@ class UserTest {
         User user = new User(purchaseMoney, purchaseTickets);
         //then
         assertThat(user.getLottos().size()).isEqualTo(purchaseTickets);
+    }
+
+    @Test
+    @DisplayName("User 생성시 resultMap 정상생성 테스트")
+    public void checkResultMatchMap() {
+        //given
+        int purchaseMoney = 10000;
+        int purchaseTickets = 10;
+        //when
+        User user = new User(purchaseMoney, purchaseTickets);
+        HashMap<Result, Integer> resultMatch = user.getResultMatch();
+        //then
+        for (Result result : Result.values()) {
+            assertTrue(resultMatch.containsKey(result));
+        }
     }
 }

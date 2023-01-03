@@ -1,6 +1,7 @@
 package kr.codesquad.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class User {
@@ -9,10 +10,25 @@ public class User {
     private final int purchaseTickets;
     private final List<Lotto> lottos;
 
+    private HashMap<Result, Integer> resultMatch = new HashMap<>();
+
     public User(int purchaseAmount, int purchaseTickets) {
         this.purchaseAmount = purchaseAmount;
         this.purchaseTickets = purchaseTickets;
         this.lottos=generateLottos(purchaseTickets);
+        initialResult();
+    }
+
+    protected void updateResult(int matchCount) {
+        Result result = Result.getResult(matchCount);
+        Integer winCount = resultMatch.get(result);
+        resultMatch.put(result, winCount + 1);
+    }
+
+    private void initialResult() {
+        for (Result result : Result.values()) {
+            resultMatch.put(result, 0);
+        }
     }
 
     private List<Lotto> generateLottos(int purchaseTickets) {
@@ -33,5 +49,9 @@ public class User {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public HashMap<Result, Integer> getResultMatch() {
+        return resultMatch;
     }
 }
