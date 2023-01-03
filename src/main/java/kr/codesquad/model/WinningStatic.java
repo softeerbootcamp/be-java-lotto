@@ -2,6 +2,7 @@ package kr.codesquad.model;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 public class WinningStatic {
 
@@ -32,5 +33,16 @@ public class WinningStatic {
             hashSet.add(integer);
         }
         return hashSet;
+    }
+
+    public static double computeProfit(User user) {
+        int totalReward = 0;
+        for (Map.Entry<Result, Integer> perResult : user.getResultMatch().entrySet()) {
+            Integer winCount = perResult.getValue();
+            int reward = perResult.getKey().getReward();
+            totalReward += (reward * winCount);
+        }
+
+        return (totalReward-user.getPurchaseAmount()) / (double) user.getPurchaseAmount() * 100;
     }
 }

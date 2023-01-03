@@ -3,6 +3,7 @@ package kr.codesquad.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class User {
 
@@ -10,13 +11,20 @@ public class User {
     private final int purchaseTickets;
     private final List<Lotto> lottos;
 
+    private double profit;
+
     private HashMap<Result, Integer> resultMatch = new HashMap<>();
 
     public User(int purchaseAmount, int purchaseTickets) {
         this.purchaseAmount = purchaseAmount;
         this.purchaseTickets = purchaseTickets;
         this.lottos=generateLottos(purchaseTickets);
+        this.profit=0;
         initialResult();
+    }
+
+    public void updateProfit(Double profit) {
+        this.profit = profit;
     }
 
     protected void updateResult(int matchCount) {
@@ -53,5 +61,10 @@ public class User {
 
     public HashMap<Result, Integer> getResultMatch() {
         return resultMatch;
+    }
+
+
+    public double getProfit() {
+        return profit;
     }
 }
