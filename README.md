@@ -7,3 +7,17 @@
 * [텍스트와 이미지로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://github.com/code-squad/codesquad-docs/blob/master/codereview/README.md)
 
 * [동영상으로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://youtube.com/watch?v=lFinZfu3QO0&si=EnSIkaIECMiOmarE)
+
+## 기능 리스트 
+- [x] 로또번호 생성 기능  - NumberGenerator#numberGenerate()
+- [x] 로또 금액 입력 받는 기능  - InputView#InputMoney() 
+- [x] 입력받은 금액으로 구매가능한 로또 갯수 계산 기능 - Lotto#calculateCount()
+- [x] 구매한 로또 개수 출력 기능 - OutputView#printLottoCount()
+- [x] 구매한 로또 번호 출력 기능 - OutputView#printLottoNumbers()
+- [x] 당첨번호 입력 텍스트 출력 기능 - OutputView#printWinningNumberText()
+- [x] 당첨번호 입력 기능 - InputView#inputWinningNumbers()
+- [ ] 당첨 통계 출력 기능 - LottoService#printTotal()
+  - [x] 로또 통계 텍스트 출력 기능 - OutputView#printTotalText()
+    - [x] 얻은 수익 계산 기능 - OutputView#printEarnedRate()
+  - [ ] 일치 개수 계산기능 - Lotto#calculateContainsCount()
+  - [ ] 수익률 계산 기능 - Lotto#calculateRateOfReturn()
