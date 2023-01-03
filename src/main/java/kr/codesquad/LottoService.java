@@ -39,10 +39,11 @@ public class LottoService {
         return randNum;
     }
 
-    public void makeLottoResult(List<Lotto> lottoList, Lotto winNum) {
+    public Map<WinningCount, Integer> makeLottoResult(List<Lotto> lottoList, Lotto winNum) {
         for(Lotto lotto : lottoList) {
             makeLottoResultCount(lotto, winNum);
         }
+        return getLottoResult();
     }
     public void makeLottoResultCount(Lotto lottoNumbers, Lotto winNum) {
         int correctCnt = lottoNumbers.correctNumCnt(winNum);
