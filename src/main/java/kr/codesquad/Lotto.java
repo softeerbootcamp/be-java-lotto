@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import kr.codesquad.enums.Rank;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

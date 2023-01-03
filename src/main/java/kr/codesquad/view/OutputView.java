@@ -1,4 +1,6 @@
-package kr.codesquad;
+package kr.codesquad.view;
+
+import kr.codesquad.enums.Rank;
 
 import java.util.List;
 import java.util.Map;
