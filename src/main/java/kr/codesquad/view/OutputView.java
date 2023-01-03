@@ -30,6 +30,10 @@ public class OutputView {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
+    public void printBonusNumberReadMessage() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+    }
+
     public void printResult(Map<Rank, Integer> result, double profitRate) {
         System.out.println("당첨 통계\n----------");
 

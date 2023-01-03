@@ -30,7 +30,6 @@ public class LottoController {
 
         outputView.printUserLotto(userLotto);
 
-        outputView.printWinningLottoReadMessage();
         WinningLotto winningLotto = createWinningLotto();
 
         Map<Rank, Integer> result = calculateResult(userLotto, winningLotto);
@@ -44,7 +43,10 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto() {
+        outputView.printWinningLottoReadMessage();
         Lotto winningLotto = inputView.readWinningLotto();
+
+        outputView.printBonusNumberReadMessage();
         int bonusNumber = inputView.readBonusNumber();
 
         return new WinningLotto(winningLotto, bonusNumber);
