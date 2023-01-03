@@ -10,7 +10,6 @@ public class LottoSystem {
     private List<Integer> winNums;
     private int bonus;
     List<Lotto> lottos = new ArrayList<>();
-    public static final int COST = 1000;
     private Map<Rank, Integer> result = new LinkedHashMap<>(){
         {
             put(Rank.FIFTH, 0);
@@ -20,6 +19,7 @@ public class LottoSystem {
             put(Rank.FIRST, 0);
         }
     };
+    public static final int COST = 1000;
 
     public void getLottos() {
         money = LottoInput.enterMoney();
@@ -36,15 +36,20 @@ public class LottoSystem {
         if(!isNull(rank)) result.put(rank, result.get(rank)+1);
     }
     public void getResult(){
+        getRank();
+        calMoneyAndRate();
+        LottoOutput.printResult(result, rate);
+    }
+
+    private void getRank() {
         for (int i = 0; i < money / COST; i++) {
             int cnt = lottos.get(i).checkWin(winNums);
             boolean boolBonus = lottos.get(i).checkBonus(bonus);
             Rank rank = Rank.valueOf(cnt, boolBonus);
             calWinner(rank);
         }
-        calMoneyAndRate();
-        LottoOutput.printResult(result, rate);
     }
+
     public void calMoneyAndRate(){
         earnMoney = 0;
         result.forEach((r, c) -> earnMoney += r.getPrize() * (long)c);
