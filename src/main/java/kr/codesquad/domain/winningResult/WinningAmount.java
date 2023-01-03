@@ -20,10 +20,6 @@ public enum WinningAmount {
     this.price = price;
   }
 
-  public int getCorrectCount() {
-    return correctCount;
-  }
-
   public int getPrice() {
     return price;
   }
