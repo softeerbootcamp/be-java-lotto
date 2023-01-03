@@ -51,10 +51,10 @@ public class LottoStore {
         for (Rank rank :Rank.values()){
             earningSum += (long) rank.getWinningMoney() / 1000 * winningLottos.get(rank.toString());
         }
-        float earingRate = 0;
+        float earningRate = 0;
         if (lottoCount != 0) {
-            earingRate = (earningSum - lottoCount)/(float)lottoCount * 100;
+            earningRate = (earningSum - lottoCount)/(float)lottoCount * 100;
         }
-        System.out.printf("총 수익률은 %.2f%%입니다.", Math.ceil(earingRate * 100)/100);
+        System.out.printf("총 수익률은 %.2f%%입니다.", Math.ceil(earningRate * 100)/100);
     }
 }
