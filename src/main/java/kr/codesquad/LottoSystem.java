@@ -87,6 +87,6 @@ public class LottoSystem {
         long resultPrice = (long) result.get(0) * price.get(0) + (long) result.get(1) * price.get(1) +
                 (long) result.get(2) * price.get(2) + (long) result.get(3) * price.get(3);
         long expense = lottoCount * 1000L;
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", (float) (resultPrice - expense) / expense);
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", (float) (resultPrice - expense) / expense * 100);
     }
 }
