@@ -1,5 +1,8 @@
 package kr.codesquad;
 
+import kr.codesquad.sequence.LottosGenerator;
+import kr.codesquad.sequence.ShuffleSequenceGenerator;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -17,6 +20,8 @@ public class Main {
     static List<Integer> range_1_to_10 = IntStream.range(1,10).boxed().collect(Collectors.toList());
     static List<Integer> range_1_to_20 = IntStream.range(1,20).boxed().collect(Collectors.toList());
     static List<Integer> range_1_to_25 = IntStream.range(1,25).boxed().collect(Collectors.toList());
+
+    // TODO: WinningPrize Enum으로 바꾸기
     static final int[] PRICES = new int[] {0, 0, 0, 5000, 50000, 1500000, 2000000000};
 
     static int[] matches = new int[7];  // 몇 개의 로또 번호가 일치하는지. matches[3] -> 3개의 번호가 일치하는 경우를 셈
@@ -42,6 +47,17 @@ public class Main {
         return cnt;
     }
 
+    static int matchLotto (Lotto actual, Lotto predicted) {
+        int cnt = 0;
+
+        // 정렬된 로또 번호 기준으로, 실제 로또 번호와 비교
+        for(Integer num : predicted.getLotto()) {
+            cnt += actual.contains(num) ? 1:0;
+        }
+
+        return cnt;
+    }
+
     static double returnRate(long prizeTotal) {
         double priceReturn = (prizeTotal/ (double) amount) * 100;
 
@@ -52,7 +68,7 @@ public class Main {
         return priceReturn;
     }
 
-    static void printStatistics(int[] matches) {
+    static void printStatistics(int[] matches) {  // TODO: 게임의 함수로
         long prizeTotal = 0;
         System.out.println("\n당첨 통계");
         System.out.println("---------");
@@ -77,8 +93,19 @@ public class Main {
     }
 
     static int[] matchLottoSequences(List<List<Integer>> generatedSequences, List<Integer> actual) {
+        // TODO: game의 함수로
         for(List<Integer> generatedSequence: generatedSequences) {
             int cnt = matchLotto(actual, generatedSequence);  // 실제 당첨번호와 생성된 로또 번호 1대1 매칭 통해 대응되는 수의 쌍 개수 반환
+            matches[cnt] += 1;
+        }
+
+        return matches;
+    }
+
+    static int[] matchLottoSequences(List<Lotto> lottos, Lotto actual) {
+        // TODO: game의 함수로
+        for(Lotto lotto: lottos) {
+            int cnt = matchLotto(actual, lotto);  // 실제 당첨번호와 생성된 로또 번호 1대1 매칭 통해 대응되는 수의 쌍 개수 반환
             matches[cnt] += 1;
         }
 
@@ -88,6 +115,12 @@ public class Main {
     static void printSequences(List<List<Integer>> sequences) {
         for (List<Integer> sequence : sequences) {
             System.out.println(sequence);
+        }
+    }
+
+    static void printSequences(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.toString());
         }
     }
 
@@ -101,6 +134,7 @@ public class Main {
     }
 
     static List<Integer> takeAndParseLottoSequences() {
+        // TODO: game 메서드로
         Scanner sc = new Scanner(System.in);
 
         sc.nextLine();
@@ -118,14 +152,28 @@ public class Main {
         System.out.println(numOfTickets + " 개를 구매했습니다.");
 
         // 랜덤 로또 번호 생성
-        List<List<Integer>> generatedSequences = generateRandomLottoSequences(numOfTickets);
+        LottosGenerator generator = new ShuffleSequenceGenerator();
+        // List<List<Integer>> generatedSequences = generateRandomLottoSequences(numOfTickets);
+
+        List<Lotto> generatedSequences = generator.generate(new Money(amount));
+
+        /*List<List<Integer>> generatedSequences = new ArrayList<>();
+        generatedSequences.add(new ArrayList<>(Arrays.asList(1, 3, 5, 14, 22, 45)));*/
+
         printSequences(generatedSequences);
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
 
-        List<Integer> actual = takeAndParseLottoSequences();
+        // TODO: game의 입력, parsing 부분으로
+        List<Integer> actual = takeAndParseLottoSequences(); // 실제 로또 번호
 
-        matches = matchLottoSequences(generatedSequences, actual);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("보너스 볼을 입력해 주세요.");
+        int bonus = sc.nextInt();
+
+        Lotto actualLotto = new ActualLottoSequence(actual, bonus);
+
+        matches = matchLottoSequences(generatedSequences, actualLotto);  // 실제 로또 번호와 생성된 로또 번호 비교
 
         printStatistics(matches);
     }
