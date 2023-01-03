@@ -44,6 +44,7 @@ public class LottoView {
         }
         System.out.println("보너스 볼을 입력해 주세요.");
         int bonusNumber = Integer.parseInt(br.readLine());
-        lottoController.getPrintStatistics(answers, bonusNumber);
+        Statistic statistic = lottoController.getPrintStatistics(answers, bonusNumber);
+        statistic.printStatistics();
     }
 }

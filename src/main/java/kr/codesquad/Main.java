@@ -9,7 +9,7 @@ public class Main {
          */
         LottoView lottoView = new LottoView();
         lottoView.home();
-        /**®
+        /**
          * 당첨번호 입력 -> 서비스 레벨에서 compare해서 각 Row마다 match 갯수 저장
          * 통계 결과를 출력
          */

@@ -1,12 +1,6 @@
 package kr.codesquad;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
-import java.util.StringTokenizer;
-
-import static kr.codesquad.LottoService.COLUMN;
 
 public class LottoController {
 
@@ -14,7 +8,6 @@ public class LottoController {
     private final LottoService lottoService;
 
     private int inputMoney;
-    private BufferedReader br;
     private List<Row> rows;
 
     public LottoController() {
@@ -24,32 +17,18 @@ public class LottoController {
 
     public List<Row> receiveInput(int inputMoney) {
         //로또 구입 금액을 입력하면
-        int num = inputMoney / SINGLE_PRICE;
-        System.out.println(num + "개를 구매했습니다.");
         this.inputMoney = inputMoney;
+
+        int num = inputMoney / SINGLE_PRICE;
         rows = lottoService.receiveRandomRows(num);
 
         return rows;
     }
 
-
-    public void inputAnswers() throws IOException {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        int[] answers = new int[COLUMN];
-        br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < COLUMN; i++) {
-            answers[i] = Integer.parseInt(st.nextToken());
-        }
-        System.out.println("보너스 볼을 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(br.readLine());
-        getPrintStatistics(answers, bonusNumber);
-    }
-
     /**
      * 당첨 통계 내기
      */
-    public void getPrintStatistics(int[] answers, int bonusNumber) {
+    public Statistic getPrintStatistics(int[] answers, int bonusNumber) {
         lottoService.compareLotto(rows, answers, bonusNumber);
 
         Statistic statistic = new Statistic();
@@ -57,6 +36,6 @@ public class LottoController {
             statistic.calculateOutput(row);
         }
         statistic.calculateRate(inputMoney);
-        statistic.printStatistics();
+        return statistic;
     }
 }
