@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import kr.codesquad.Exceptions.CustomException;
+
 import java.util.*;
 
 public class Utility {
@@ -21,6 +23,19 @@ public class Utility {
         int temp = random.nextInt()%45 + 1;
         while(random6Number.contains(temp))
             temp = random.nextInt()%45 + 1;
+        return temp;
+    }
+
+    public static boolean isDuplicated(List<Integer> integerList){
+        Set<Integer> set = new HashSet(integerList);
+        return set.size() != integerList.size();
+    }
+
+    public static int parseIntWithRange(String target, int lowerBound, int upperBound){
+        int temp = Integer.parseInt(target);
+        if(temp < lowerBound || temp > upperBound){
+            throw new CustomException(String.format("%s, %d, %d 두숫자를 포함한 범위에 있어야 합니다.", target, lowerBound, upperBound));
+        }
         return temp;
     }
 }
