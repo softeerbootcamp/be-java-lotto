@@ -11,6 +11,7 @@ public class Lotto {
     private List<Integer> winningNumbers;
     private Map<Integer, Integer> result;
     private Map<Integer, Integer> resultIndex;
+    private int bonusBall;
 
     Lotto(NumberGenerator numberGenerator) {
         this.numbers = new ArrayList<>();
@@ -26,7 +27,7 @@ public class Lotto {
         result.put(50000, 0);
         result.put(1500000, 0);
         result.put(2000000000, 0);
-
+        bonusBall = 0;
     }
     public Map<Integer, Integer> getResult() {
         return result;
@@ -83,5 +84,8 @@ public class Lotto {
             earnMoney += key * result.get(key);
         }
         return earnMoney;
+    }
+    public void updateBonusBall(int bonusBall) {
+        this.bonusBall = bonusBall;
     }
 }
