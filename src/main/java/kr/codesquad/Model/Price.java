@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.Model;
 
 public enum Price {
     FOURTH(3, 5000),

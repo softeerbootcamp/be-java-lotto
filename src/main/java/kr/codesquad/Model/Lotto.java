@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.Model;
 
 import java.util.Arrays;
 
