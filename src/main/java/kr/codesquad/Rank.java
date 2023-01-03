@@ -21,17 +21,22 @@ public enum Rank {
         return prize;
     }
     public static Rank valueOf(int cnt, boolean bonus) {
+        if(cnt < 3) return null;
         Rank[] ranks = values();
+        Rank value = null;
         for (Rank rank : ranks) {
-            if (cnt == SECOND.cnt) {
-                return bonus ? SECOND : THIRD;
-            }
-
-            if (rank.cnt == cnt) {
-                return rank;
-            }
+            value = ranking(rank, cnt, bonus);
         }
 
+        return value;
+    }
+    public static Rank ranking(Rank rank, int cnt, boolean bonus){
+        if (cnt == SECOND.cnt) {
+            return bonus ? SECOND : THIRD;
+        }
+        if (rank.cnt == cnt) {
+            return rank;
+        }
         return null;
     }
 }
