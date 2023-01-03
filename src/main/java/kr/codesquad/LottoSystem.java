@@ -36,4 +36,14 @@ public class LottoSystem {
 
         return lottoList;
     }
+
+    public void checkLotto(Lotto lotto) {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        Scanner sc = new Scanner(System.in);
+        String winNum = sc.nextLine();
+        String[] temp = winNum.split(", ");
+
+        List<Integer> winNumList = new ArrayList<>();
+        for(int i = 0;i < 6;i++) winNumList.add(Integer.parseInt(temp[i]));
+    }
 }
