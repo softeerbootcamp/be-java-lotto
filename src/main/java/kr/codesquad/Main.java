@@ -11,10 +11,6 @@ public class Main {
         user.inputPrice();
         // count 만큼의 로또 번호 생성 및 출력
         user.createLottoNumber();
-        // 당첨 번호 입력 받기
-        //lotto.setWinLottoNum();
-        // 당첨 통계
-        //lotto.statistics(user.getLottoBuyList(), user.getPrice());
         // 지난 주 당첨 번호 입력 받기
         lotto.setWinLottoNum();
         lotto.inputBonusBall();

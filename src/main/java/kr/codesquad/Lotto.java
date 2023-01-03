@@ -13,12 +13,9 @@ public class Lotto {
     private int scoreList[] = {0, 0, 0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
     private int bonusBallScoreCount = 0;
     Lotto(){
-
     }
 
     public void setWinLottoNum(){
-        // 입력 버퍼 비우기
-        //sc.nextLine();
         // 당첨 번호 입력 받기
         System.out.println("\n지난 주 당첨 번호를 입력해 주세요");
         String[] winLottoNumString = sc.nextLine().split(", ");
@@ -46,12 +43,16 @@ public class Lotto {
         return 0;
     }
 
-    public int getScore(List<Integer> lottoNumList){
+    public int countScore(List<Integer> lottoNumList){
         int score = 0;
-        boolean isWinBonus = false;
-        for(int i = 0;i<6;i++) {
+        for(int i = 0;i<6;i++)
             score += compareValue(lottoNumList, winLottoNum.get(i));
-        }
+        return score;
+    }
+
+    public int getScore(List<Integer> lottoNumList){
+        boolean isWinBonus = false;
+        int score = countScore(lottoNumList);
         if(score == 5) bonusBallScoreCount += checkBonusBall(lottoNumList, bonusBall, isWinBonus);
         if(score >= 3) countTotalWinPrice(score, isWinBonus);
         return score;
