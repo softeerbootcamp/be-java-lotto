@@ -1,8 +1,13 @@
 package kr.codesquad;
+import java.util.List;
 import java.util.Map;
 
 public class LottoOutput {
-
+    public static void printLottos(List<Lotto> lottos){
+        for(Lotto lotto : lottos){
+            lotto.printLotto();
+        }
+    }
     public static void printResult(Map<Rank, Integer> result, double rate){
         System.out.println("\n당첨 통계");
         System.out.println("---------");
