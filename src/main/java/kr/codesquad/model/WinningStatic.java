@@ -20,8 +20,8 @@ public class WinningStatic {
         this.profit = profit;
     }
 
-    public void updateResult(int matchCount) {
-        Result result = Result.getResult(matchCount);
+    public void updateResult(int matchCount, boolean bonus) {
+        Result result = Result.getResult(matchCount, bonus);
         Integer winCount = resultMatch.get(result);
         resultMatch.put(result, winCount + 1);
     }
@@ -33,18 +33,35 @@ public class WinningStatic {
     }
 
     public static void computeResult(User user,WinningLotto winningLotto) {
-        HashSet<Integer> winLottoSet = listToHashSet(winningLotto.numbers);
+        HashSet<Integer> winLottoSet = listToHashSet(winningLotto.getNumbers());
         for (Lotto usersLotto : user.getLottos()) {
-            perComputeResult(user, winLottoSet, usersLotto);
+            int matchCount = perComputeResult(user, winLottoSet, usersLotto);
+
+            boolean bonus=false;
+            bonus = isBonusInMatchFive(winningLotto, usersLotto, matchCount);
+
+            user.getWinningStatic().updateResult(matchCount,bonus);
         }
     }
 
-    private static void perComputeResult(User user, HashSet<Integer> winLottoSet, Lotto usersLotto) {
+    private static boolean isBonusInMatchFive(WinningLotto winningLotto, Lotto usersLotto, int matchCount) {
+        if (isContainBonus(winningLotto, usersLotto) && matchCount == 5) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isContainBonus(WinningLotto winningLotto, Lotto usersLotto) {
+        return usersLotto.getNumbers().contains(winningLotto.getBonusBall());
+    }
+
+    private static int  perComputeResult(User user, HashSet<Integer> winLottoSet, Lotto usersLotto) {
         Integer matchCount = 0;
         for (Integer lottoNumber : usersLotto.getNumbers()) {
             matchCount+=matchCountPlus(winLottoSet, lottoNumber);
         }
-        user.getWinningStatic().updateResult(matchCount);
+        return matchCount;
+
     }
 
     private static int matchCountPlus(HashSet<Integer> winLottoSet, Integer lottoNumber) {

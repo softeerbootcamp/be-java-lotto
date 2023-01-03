@@ -17,7 +17,7 @@ class ResultTest {
         Result fourMatchResult = Result.MATCH_FOUR;
         int matchCount=4;
         //when
-        Result result = Result.getResult(matchCount);
+        Result result = Result.getResult(matchCount,false);
         //then
         assertThat(result).isEqualTo(fourMatchResult);
     }

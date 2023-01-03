@@ -19,7 +19,8 @@ class WinningStaticTest {
 
         //첫번째 자동으로 생성된 로또번호와 같게 당첨번호를 설정
         List<Integer> winLotto = user.getLottos().get(0).getNumbers();
-        WinningLotto winningLotto = new WinningLotto(winLotto);
+        int bonusBall = 12;
+        WinningLotto winningLotto = new WinningLotto(winLotto,bonusBall);
         //when
         WinningStatic.computeResult(user, winningLotto);
         //then
