@@ -12,8 +12,6 @@ public class WinningResult {
 
   private final Map<WinningAmount, Integer> map;
 
-  private static final String DISPLAY_FORM = "%d 개 일치 (%d 원)- %d\n";
-
   public String getStatistics() {
     return map.keySet()
               .stream()
@@ -48,8 +46,7 @@ public class WinningResult {
       Lotto winningLotto
   ) {
     lottos.stream()
-          .mapToInt(winningLotto::countMatch)
-          .mapToObj(WinningAmount::from)
+          .map(lotto -> WinningAmountFactory.generate(lotto, winningLotto))
           .filter(Optional::isPresent)
           .map(Optional::get)
           .filter(map::containsKey)
@@ -57,8 +54,7 @@ public class WinningResult {
   }
 
   private String getWinningAmountStatics(WinningAmount winningAmount) {
-    return String.format(
-        DISPLAY_FORM, winningAmount.getCorrectCount(), winningAmount.getPrice(), map.get(winningAmount));
+    return winningAmount.toString() + String.format(" %d개\n", map.get(winningAmount));
   }
 
 }

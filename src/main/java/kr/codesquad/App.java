@@ -26,8 +26,8 @@ public class App implements Runnable {
     int purchaseMoney = console.inputPurchaseMoney();
     List<Lotto> lottos = purchaseLotto(purchaseMoney);
 
-    Lotto winningNumber = console.inputWinningNumbers();
-    WinningResult winningResult = WinningResult.createResult(lottos, winningNumber);
+    Lotto winningLotto = inputWinningLotto();
+    WinningResult winningResult = WinningResult.createResult(lottos, winningLotto);
     console.printWinningResult(winningResult);
 
     EarningRate earningRate = EarningRate.of(winningResult.getTotalWinningMoney(), purchaseMoney);
@@ -39,6 +39,12 @@ public class App implements Runnable {
     console.printPurchaseCount(lottos.size());
     console.printLottoNumbersList(lottos);
     return lottos;
+  }
+
+  private Lotto inputWinningLotto() {
+    List<Integer> winningNumber = console.inputWinningNumbers();
+    int bonusNumber = console.inputBonusNumber();
+    return Lotto.of(winningNumber, bonusNumber);
   }
 
 }
