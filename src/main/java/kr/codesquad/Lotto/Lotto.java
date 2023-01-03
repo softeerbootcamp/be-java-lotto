@@ -1,10 +1,9 @@
-package kr.codesquad;
+package kr.codesquad.Lotto;
 
 import kr.codesquad.Exceptions.CustomException;
+import kr.codesquad.Utility;
 
 import java.util.List;
-
-import static kr.codesquad.Prize.*;
 
 public class Lotto {
     private final List<Integer> lottoNums;

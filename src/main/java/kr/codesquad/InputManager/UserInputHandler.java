@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.InputManager;
 
 import kr.codesquad.Exceptions.CustomException;
 

@@ -1,10 +1,10 @@
-package kr.codesquad;
+package kr.codesquad.Lotto;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static kr.codesquad.Prize.*;
+import static kr.codesquad.Lotto.Prize.*;
 
 public class LottoStat {
 

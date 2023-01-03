@@ -1,10 +1,15 @@
 package kr.codesquad;
 
+import kr.codesquad.InputManager.UserInputHandler;
+import kr.codesquad.InputManager.UserInputHandlerImpl;
+import kr.codesquad.Lotto.Lotto;
+import kr.codesquad.Lotto.LottoStat;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class LottoGame {
+public class MainLottoGame {
     private List<Lotto> lottos;
     private LottoStat lottoStat;
 
@@ -14,7 +19,7 @@ public class LottoGame {
     private int bonusNo;
     private UserInputHandler inputHandler;
 
-    public LottoGame() {
+    public MainLottoGame() {
         lottos = new ArrayList<>();
         inputHandler = new UserInputHandlerImpl();
     }
@@ -69,4 +74,9 @@ public class LottoGame {
         }
     }
 
+
+    public static void main(String[] args) {
+        MainLottoGame mainLottoGame = new MainLottoGame();
+        mainLottoGame.start();
+    }
 }

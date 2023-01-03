@@ -1,6 +1,7 @@
-package kr.codesquad;
+package kr.codesquad.InputManager;
 
 import kr.codesquad.Exceptions.CustomException;
+import kr.codesquad.Utility;
 
 import java.util.List;
 import java.util.Scanner;
