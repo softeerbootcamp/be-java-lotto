@@ -8,11 +8,12 @@ import java.util.List;
 
 public class LottoFactory{
     private List<Integer> numbers;
-    private int LOTTO_SIZE = 6;
+    private static final int LOTTO_SIZE = 6;
+    private static final int LOTTO_LAST_NUMBER = 45;
 
     public LottoFactory() {
         numbers = new ArrayList<>();
-        for (int number = 1; number <= 45; number++) {
+        for (int number = 1; number <= LOTTO_LAST_NUMBER; number++) {
             numbers.add(number);
         }
     }

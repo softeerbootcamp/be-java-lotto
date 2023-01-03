@@ -1,11 +1,11 @@
 package kr.codesquad;
 
 public enum Rank {
-    FIRST(6, 2000000000, false),
-    SECOND(5, 30000000, true),
-    THIRD(5, 1500000, false),
-    FOURTH(4, 50000, false),
     FIFTH(3, 5000, false),
+    FOURTH(4, 50000, false),
+    THIRD(5, 1500000, false),
+    SECOND(5, 30000000, true),
+    FIRST(6, 2000000000, false),
     ETC(0, 0, false);
 
     private final int countOfMatch;
@@ -17,6 +17,21 @@ public enum Rank {
         this.countOfMatch = countOfMatch;
         this.winningMoney = winningMoney;
         this.bonus = bonus;
+    }
+
+    public static Rank valueOf(int countOfMatch, boolean matchBonus) {
+        Rank[] ranks = values();
+        for (Rank rank : ranks) {
+            if (countOfMatch == SECOND.countOfMatch) {
+                return matchBonus ? SECOND : THIRD;
+            }
+
+            if (rank.countOfMatch == countOfMatch) {
+                return rank;
+            }
+        }
+
+        return null;
     }
 
     public int getCountOfMatch() {

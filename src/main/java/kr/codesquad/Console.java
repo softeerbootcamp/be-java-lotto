@@ -1,7 +1,6 @@
 package kr.codesquad;
 
 import kr.codesquad.LottoService.Lotto;
-import kr.codesquad.LottoService.LottoStore;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +13,7 @@ public class Console {
 
     private List<Integer> winningNumberList;
 
-    private static final int LOTTO_PRICE =1000;
+    private static final int LOTTO_PRICE=1000;
 
     public int getBonusNumber() {
         return bonusNumber;
@@ -50,14 +49,14 @@ public class Console {
         bonusNumber = sc.nextInt();
     }
 
-    public void printWinningLottos(Map<String, Integer> winningLottos) {
+    public void printWinningLottos(Map<Rank, Integer> winningLottoMap) {
         System.out.println("당첨 통계");
         System.out.println("---------");
         for (Rank rank : Rank.values()){
-            if (rank.toString().equals("ETC")) continue;
-            System.out.printf("%d개 일치 (%d원)- %d개", rank.getCountOfMatch(),
-                    rank.getWinningMoney(), winningLottos.get(rank.toString()));
-            System.out.println();
+            if (rank == Rank.ETC) continue;
+            System.out.printf("%d개 일치", rank.getCountOfMatch());
+            if (rank == Rank.SECOND) System.out.print(", 보너스 볼 일치");
+            System.out.printf(" (%d원)- %d개\n",rank.getWinningMoney(), winningLottoMap.get(rank));
         }
     }
 
