@@ -1,6 +1,6 @@
 package kr.codesquad;
 
-public enum Prizes {
+public enum Prizes_Info {
         THREE(5000){
             public void print_message(int flag) {
                 System.out.printf("3개 일치 (5000원) -%d개\n",flag);
@@ -28,7 +28,7 @@ public enum Prizes {
 
         };
     private int value;
-    Prizes(int value) {
+    Prizes_Info(int value) {
         this.value = value;
     }
     public int getValue() {
