@@ -1,7 +1,6 @@
 package kr.codesquad;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class LottoGame {
 
@@ -15,15 +14,6 @@ public class LottoGame {
     private static int fourthWin = 0;
 
     public List<Integer> lottoNumbers;
-
-    public void start() {
-        double purchaseAmount = getPurchaseAmount();
-        int purchaseLottoCount = getLottoCount(purchaseAmount);
-        List<Lotto> purchasedLottoList = purchaseLottoList();
-        Lotto winningLotto = createWinningLottery();
-        compareLotto(purchasedLottoList, winningLotto);
-        printResult(purchaseLottoCount);
-    }
 
     public LottoGame() {
         result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0));
@@ -57,17 +47,18 @@ public class LottoGame {
         System.out.println("4개 일치 (50000원) - " + result.get(4));
         System.out.println("5개 일치 (1500000원) - " + result.get(5));
         System.out.println("6개 일치 (2000000000원) - " + result.get(6));
-        double output = fourthWin * 5000 + thirdWin * 50000 + secondWin * 1500000 + firstWin * 2000000000;
+        double output = result.get(3) * 5000 + result.get(4) * 50000 + result.get(5) * 1500000 + result.get(6) * 2000000000;
         double input = purchaseAmount * 1000;
 
         System.out.println(String.format("%.2f", ((output - input) / input) * 100) + "%");
     }
 
-    public void compareLotto(List<Lotto> purchasedLottoList, Lotto winningLotto) {
+    public void checkMyLotto(List<Lotto> purchasedLottoList, Lotto winningLotto) {
         for (int i = 0; i < purchasedLottoList.size(); i++) {
             System.out.println(purchasedLottoList.get(i));
             confirmLotto(purchasedLottoList.get(i), winningLotto);
         }
+        printResult(purchasedLottoList.size());
     }
 
     public Lotto getNewLotto() {
