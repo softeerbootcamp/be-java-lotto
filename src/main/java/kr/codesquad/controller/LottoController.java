@@ -1,5 +1,6 @@
 package kr.codesquad.controller;
 
+import kr.codesquad.model.Result;
 import kr.codesquad.model.User;
 import kr.codesquad.model.WinningLotto;
 import kr.codesquad.view.PrintView;
@@ -19,6 +20,9 @@ public class LottoController {
 
         List<Integer> winningNumbers = ReceiveView.enterWinningNumbers();
         WinningLotto winningLotto = new WinningLotto(winningNumbers);
+
+        Result.computeResult(user,winningLotto);
+        PrintView.resultStatic(user);
 
     }
 
