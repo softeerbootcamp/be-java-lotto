@@ -27,7 +27,7 @@ public class Utility {
         int flag = 0;
         System.out.println("\n당첨통계\n---------");
         for (Prizes_Info pr : Prizes_Info.values()) {
-            pr.print_message(jk[flag]);
+            pr.printPrizeByFlag(jk[flag]);
             sum += pr.getValue() * jk[flag];
             flag++;
         }

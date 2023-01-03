@@ -2,29 +2,30 @@ package kr.codesquad;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 import static kr.codesquad.Lotto_Info.LOTTO_SIZE;
 
 public class Jackpot_Handler {
     public static final int[] JACKPOT_CNT = {0,0,0,0,0};
-    public static ArrayList<Integer> JACKPOT_NUM;
+    public static List<Integer> JACKPOT_NUM;
     public static int JACKPOT_BONUS_NUM=0;
     public static boolean JACKPOT_BONUS_CORRECT = false;
 
-    public static boolean isJackpotBonusCorrect(ArrayList<Integer> my) {
+    public static boolean isJackpotBonusCorrect(List<Integer> my) {
         if(my.contains(JACKPOT_BONUS_NUM)){
             return true;
         }else return false;
     }
-    public int isMyLottoContainsJackpots(int i, ArrayList<Integer> my, ArrayList<Integer> jk){
+    public int isMyLottoContainsJackpots(int i,List<Integer> my, List<Integer> jk){
         if(my.contains(jk.get(i))){
             return 1;
         }else{
             return 0;
         }
     }
-    public void countingJackpots(ArrayList<Integer> my, ArrayList<Integer> jk){
+    public void countingJackpots(List<Integer> my, List<Integer> jk){
         int cnt=0;
         for (int i = 0; i< LOTTO_SIZE.getValue(); i++) {
             cnt+= isMyLottoContainsJackpots(i,my,jk);
@@ -36,10 +37,10 @@ public class Jackpot_Handler {
         };
     }
 
-    public void findingEachLottoJackpots(MyLotto myLotto){
-        for (EmptyLotto o:myLotto.getMy_lottos()
+    public void findingEachLottoJackpots(generateMyLottoByCount generateMyLottoByCount){
+        for (EmptyLotto o: generateMyLottoByCount.getLottos()
         ) {
-            ArrayList<Integer> my_lotto_one = o.getNumbers();
+            List<Integer> my_lotto_one = o.getNumbers();
             countingJackpots(my_lotto_one,JACKPOT_NUM);
         }
     }

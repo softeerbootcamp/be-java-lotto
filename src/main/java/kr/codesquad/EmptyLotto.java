@@ -2,15 +2,16 @@ package kr.codesquad;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class EmptyLotto {
-    private ArrayList<Integer> numbers;
+    private List<Integer> numbers;
 
     public EmptyLotto(ArrayList<Integer> numbers) {
         setNumbers(numbers);
     }
 
-    public ArrayList<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
         return this.numbers;
     }
 
