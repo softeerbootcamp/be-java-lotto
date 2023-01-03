@@ -8,16 +8,15 @@ public class Main {
     private static int amount;
     private static ArrayList<LottoNumber> lottoNumbers = new ArrayList<>();
     private static ArrayList<Integer> winLotto = new ArrayList<>();
-
-    private static int[] sameCnt = new int[6];
+    private static int[] sameCnt = new int[7];
 
     public static void main(String[] args) {
-
         requestInput();
         setAmount();
         generateLottos();
         setWinNumber();
-
+        findSameNumber();
+        getResult();
     }
 
     public static void requestInput() {
@@ -35,9 +34,10 @@ public class Main {
         for(int i = 0; i < amount; i++) {
             LottoNumber lotto = generateRandomLotto();
             lottoNumbers.add(lotto);
-            //System.out.println(lotto.getLotto().toString());
+            System.out.println(lotto.getLotto().toString());
         }
     }
+
     public static LottoNumber generateRandomLotto() {
         LottoNumber lotto = new LottoNumber();
         return lotto;
@@ -50,13 +50,29 @@ public class Main {
     }
 
     public static void findSameNumber() {
-        for (int i = 0; i < amount; i++) {
+        for(int i = 0; i < amount; i++) {
            ArrayList<Integer> tempLotto = lottoNumbers.get(i).getLotto();
            ArrayList<Integer> tempWin = winLotto;
            tempLotto.retainAll(tempWin);
            int same = tempLotto.size();
            sameCnt[same]++;
         }
+    }
+
+    public static void getResult() {
+        int[] price = {5000, 50000, 1500000, 2000000000};
+        double sum = 0;
+        for(int i = 3; i <= 6; i++) { sum += price[i-3] * sameCnt[i]; }
+        System.out.println("당첨 통계\n---------");
+        showResult(sum);
+    }
+
+    public static void showResult(double sum) {
+        System.out.println(3 + "개 일치 " + "(" + 5000 +"원)" + " - " + sameCnt[3] + "개");
+        System.out.println(4 + "개 일치 " + "(" + 50000 +"원)" + " - " + sameCnt[4] + "개");
+        System.out.println(5 + "개 일치 " + "(" + 1500000 +"원)" + " - " + sameCnt[5] + "개");
+        System.out.println(6 + "개 일치 " + "(" + 2000000000 +"원)" + " - " + sameCnt[6] + "개");
+        System.out.printf("총 수익률은 %.2f%% 입니다.",((sum - total_price) / total_price * 100));
     }
 
 }
