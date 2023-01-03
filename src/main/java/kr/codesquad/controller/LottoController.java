@@ -35,7 +35,7 @@ public class LottoController {
 
         Map<Rank, Integer> result = calculateResult(userLotto, winningLotto);
         double profitRate = calculateProfitRate(result, money);
-        //outputView.printResult(result, profitRate);
+        outputView.printResult(result, profitRate);
     }
 
     private UserLotto createUserLotto(int lottoCount) {

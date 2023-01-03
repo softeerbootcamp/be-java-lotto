@@ -1,8 +1,13 @@
 package kr.codesquad.view;
 
+import kr.codesquad.model.Rank;
 import kr.codesquad.model.UserLotto;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -11,7 +16,7 @@ public class OutputView {
     }
 
     public void printLottoCount(int lottoCount) {
-        System.out.println(lottoCount+"개를 구매했습니다.");
+        System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
     public void printUserLotto(UserLotto userLotto) {
@@ -25,14 +30,31 @@ public class OutputView {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public void printResult(Map<Integer, Integer> result, double profitRate) {
+    public void printResult(Map<Rank, Integer> result, double profitRate) {
         System.out.println("당첨 통계\n----------");
 
-        System.out.println("3개 일치 (5000원)- " + result.get(3) + "개");
-        System.out.println("4개 일치 (50000원)- " + result.get(4) + "개");
-        System.out.println("5개 일치 (1500000원)- " + result.get(5) + "개");
-        System.out.println("6개 일치 (2000000000원)- " + result.get(6) + "개");
+        StringBuilder sb = new StringBuilder();
+        List<Rank> ranks = Arrays.stream(Rank.values()).collect(Collectors.toList());
+        Collections.sort(ranks, Collections.reverseOrder());
 
-        System.out.println("총 수익률은 " + String.format("%.2f", profitRate) + "%입니다.");
+        ranks.stream()
+                .filter(rank -> rank != Rank.NOTHING)
+                .forEach(rank -> {
+                    sb.append(rank.getCount())
+                            .append("개 일치");
+                    if (rank == Rank.SECOND) {
+                        sb.append(", 보너스 볼 일치");
+                    }
+                    sb.append(" (")
+                            .append(rank.getPrize())
+                            .append("원)- ")
+                            .append(result.getOrDefault(rank, 0))
+                            .append("개\n");
+                });
+        sb.append("총 수익률은 ")
+                .append(String.format("%.2f", profitRate))
+                .append("%입니다.");
+
+        System.out.println(sb);
     }
 }
