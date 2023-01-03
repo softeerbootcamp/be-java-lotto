@@ -20,14 +20,10 @@ public class UserInputHandler {
         return money;
     }
 
-    public static ArrayList<Integer> getWinningNumbers() {
+    public static List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         Scanner s1 = new Scanner(System.in);
-        List<String> str_split = List.of(s1.nextLine().split(","));
-        ArrayList<Integer> winningNumber = new ArrayList<>();
-        for(String num : str_split){
-            winningNumber.add(Utility.parseIntWithRange(num.trim(), 1, 45));
-        }
+        List<Integer> winningNumber = Utility.stringToIntList(s1.nextLine());
         if(winningNumber.size() != 6)
             throw new CustomException("당첨 번호가 6개의 숫자가 아닙니다.");
         if(Utility.isDuplicated(winningNumber))

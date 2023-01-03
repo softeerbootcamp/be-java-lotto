@@ -38,4 +38,13 @@ public class Utility {
         }
         return temp;
     }
+
+    public static List<Integer> stringToIntList(String target){
+        List<String> str_split = List.of(target.split(","));
+        List<Integer> numbers = new ArrayList<>();
+        for(String num : str_split){
+            numbers.add(Utility.parseIntWithRange(num.trim(), 1, 45));
+        }
+        return numbers;
+    }
 }
