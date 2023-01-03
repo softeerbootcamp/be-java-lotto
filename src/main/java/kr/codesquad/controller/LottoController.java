@@ -12,28 +12,32 @@ import java.util.Map;
 public class LottoController {
 
     private final LottoMachine lottoMachine;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public LottoController() {
         this.lottoMachine = new LottoMachine();
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void start() {
-        OutputView.printMoneyReadMessage();
-        int money = InputView.readMoney();
+        outputView.printMoneyReadMessage();
+        int money = inputView.readMoney();
 
         int lottoCount = money / 1000;
-        OutputView.printLottoCount(lottoCount);
+        outputView.printLottoCount(lottoCount);
 
         List<Lotto> lottos = lottoMachine.createLottos(lottoCount);
 
-        OutputView.printLottos(lottos);
+        outputView.printLottos(lottos);
 
-        OutputView.printWinningLottoReadMessage();
-        Lotto winningLotto = InputView.readWinningLotto();
+        outputView.printWinningLottoReadMessage();
+        Lotto winningLotto = inputView.readWinningLotto();
 
         Map<Integer, Integer> result = caculateResult(lottos, winningLotto);
         double profitRate = caculateProfitRate(result, money);
-        OutputView.printResult(result, profitRate);
+        outputView.printResult(result, profitRate);
     }
 
     private Map<Integer, Integer> caculateResult(List<Lotto> lottos, Lotto winningLotto) {

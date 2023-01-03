@@ -9,12 +9,12 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
-    public static int readMoney() {
+    public int readMoney() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
 
-    public static Lotto readWinningLotto() {
+    public Lotto readWinningLotto() {
         Scanner scanner = new Scanner(System.in);
         String numbersStr = scanner.next();
         numbersStr = numbersStr.replaceAll("[^0-9]", "");
