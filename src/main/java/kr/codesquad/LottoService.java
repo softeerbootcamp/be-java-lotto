@@ -24,8 +24,6 @@ public class LottoService {
     private static BigDecimal earn = new BigDecimal("-100");    //수익
     private static int lotto_amount;   //구입한 로또 갯수
     private static int[] sameNumber = new int[7];    //당첨 통계 (일치 갯수)
-    //private static final BigInteger[] price = {new BigInteger("0"),new BigInteger("0"),new BigInteger("0"),
-      //      new BigInteger("5000"),new BigInteger("50000"),new BigInteger("1500000"),new BigInteger("2000000000")};
     private static final double[] price = {0,0,0,5000,50000,1500000,2000000000};
     static List<Lotto> lottoList = new ArrayList<>();   //구입한 로또 저장소
     static List<Integer> lottoNum = new ArrayList<>();  //로또 번호 1~45
