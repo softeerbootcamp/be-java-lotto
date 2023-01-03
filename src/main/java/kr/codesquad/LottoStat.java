@@ -2,14 +2,15 @@ package kr.codesquad;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class LottoStat {
 
     private long total_money;
     private int[] winnings = {0,0,0,0,0,0,0};
-    private ArrayList<Lotto> lottos;
-    private ArrayList<Integer> winningNums;
-    public LottoStat(ArrayList<Lotto> lottos, ArrayList<Integer> winningNums){
+    private List<Lotto> lottos;
+    private List<Integer> winningNums;
+    public LottoStat(List<Lotto> lottos, List<Integer> winningNums){
         this.lottos = lottos;
         this.winningNums = winningNums;
         System.out.println(winningNums);

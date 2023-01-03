@@ -1,16 +1,17 @@
 package kr.codesquad;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Lotto {
-    private final ArrayList<Integer> lottoNums;
+    private final List<Integer> lottoNums;
 
     public Lotto(){
         lottoNums = Utility.generateRandomSixNumbers();
         System.out.println(lottoNums);
     }
 
-    public int getRightCount(ArrayList<Integer> prize_nums){
+    public int getRightCount(List<Integer> prize_nums){
         int count = 0;
         for(Integer expect_no : lottoNums){
             count = countUpIfContain(prize_nums, expect_no, count);
@@ -18,7 +19,7 @@ public class Lotto {
         return count;
     }
 
-    public int countUpIfContain(ArrayList<Integer> prize_nums, int expect_no, int count){
+    public int countUpIfContain(List<Integer> prize_nums, int expect_no, int count){
         if(prize_nums.contains(expect_no))
             count += 1;
         return count;

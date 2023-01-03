@@ -5,9 +5,9 @@ import java.util.*;
 
 public class Utility {
 
-    public static ArrayList<Integer> generateRandomSixNumbers(){
-        ArrayList<Integer> oneTo45 = new ArrayList<>();
-        ArrayList<Integer> lotteryNumbers = new ArrayList<>();
+    public static List<Integer> generateRandomSixNumbers(){
+        List<Integer> oneTo45 = new ArrayList<>();
+        List<Integer> lotteryNumbers = new ArrayList<>();
         for(int i = 1; i<=45; i++)
             oneTo45.add(i);
         Collections.shuffle(oneTo45);
