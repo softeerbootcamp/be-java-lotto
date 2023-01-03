@@ -6,16 +6,16 @@ public enum Prize {
 
     private int money;
 
-    Prize(int initMoney){
+    Prize(int initMoney) {
         money = initMoney;
     }
 
-    public int getMoney(){
+    public int getMoney() {
         return money;
     }
 
-    public static Prize getPrize(int fitCount, boolean isBonusCorrect){
-        if(fitCount == 5 && isBonusCorrect)
+    public static Prize getPrize(int fitCount, boolean isBonusCorrect) {
+        if (fitCount == 5 && isBonusCorrect)
             return SECOND;
         return prizes[fitCount];
     }
