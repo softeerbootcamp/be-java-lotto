@@ -6,7 +6,7 @@ public class Main {
     private static final int LOTTO_PRICE = 1000;
     private static int total_price;
     private static int amount;
-    private static List<LottoNumber> lottoNumbers = new ArrayList<>();
+    private static List<Lotto> lottoNumbers = new ArrayList<>();
     private static List<Integer> winLotto = new ArrayList<>();
     private static int[] sameCnt = new int[7];
 
@@ -32,7 +32,7 @@ public class Main {
 
     public static void generateLottos() {
         for (int i = 0; i < amount; i++) {
-            LottoNumber lotto = new LottoNumber();
+            Lotto lotto = new Lotto();
             lottoNumbers.add(lotto);
             System.out.println(lotto.getLotto().toString());
         }
