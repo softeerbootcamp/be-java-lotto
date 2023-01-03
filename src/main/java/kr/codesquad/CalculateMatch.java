@@ -41,4 +41,16 @@ public class CalculateMatch {
             getHitStatistics(randomLottoList.get(i));
     }
 
+    //print result of all lotteries
+    public void printResult(int purchasedPrice) {
+        int hitPrice = 0;
+        for(int rank = 4; rank >= 0; rank--){
+            int hitNum = hitNums.getOrDefault(feeList[rank].getNumOfItem(), 0);
+            System.out.printf("%s - %d개\n", feeList[rank].getScript(), hitNum);
+            hitPrice += hitNum * feeList[rank].getPrice();
+        }
+        int profit = hitPrice - purchasedPrice;
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", (float)profit/purchasedPrice*100);
+    }
+
 }
