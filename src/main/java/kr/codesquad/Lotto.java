@@ -5,6 +5,7 @@ import java.util.List;
 import static kr.codesquad.Prize.*;
 
 public class Lotto {
+    private static final Prize[] prizes = {NOTHING, NOTHING, NOTHING, FIFTH, FORTH, THIRD, FIRST};
     private final List<Integer> lottoNums;
 
     public Lotto(){
@@ -12,12 +13,15 @@ public class Lotto {
         System.out.println(lottoNums);
     }
 
-    public int getRightCount(List<Integer> prize_nums){
+    public Prize getRightPrize(List<Integer> prize_nums, int bonus){
         int count = 0;
         for(Integer expect_no : lottoNums){
             count = countUpIfContain(prize_nums, expect_no, count);
         }
-        return count;
+        if(count == 5 && prize_nums.contains(bonus)){
+            return SECOND;
+        }
+        return prizes[count];
     }
 
     public int countUpIfContain(List<Integer> prize_nums, int expect_no, int count){
@@ -26,9 +30,5 @@ public class Lotto {
         return count;
     }
 
-    public static int getMoneyByCount(int correct_count){
-        Prize[] result = {NOTHING, NOTHING, NOTHING, FORTH, THIRD, SECOND, FIRST};
-        return result[correct_count].getMoney();
-    }
 
 }
