@@ -17,7 +17,7 @@ public class LottoCheckImpl implements LottoCheck {
         List<Integer> winNumberList = this.getWinNumberList();
         Map<Rank, Integer> rankStatus = new HashMap<>(Rank.getInitRankStatus());
         for (List<Integer> lotto: lottoTicket.getLottoList()) {
-            int winNumber = this.calcTargetedNumberCount(lotto, winNumberList);
+            int winNumber = this.calcTargetedNumberCount(new HashSet<>(lotto), winNumberList);
             boolean isBonus = this.hasBonusNumber(lotto, -1);
             Rank rank = Rank.valueOf(winNumber, isBonus);
             int totalCnt = rankStatus.getOrDefault(rank, winNumber);
@@ -34,7 +34,7 @@ public class LottoCheckImpl implements LottoCheck {
         return winNumList;
     }
 
-    private int calcTargetedNumberCount(List<Integer> lotto, List<Integer> winNumList) {
+    private int calcTargetedNumberCount(Set<Integer> lotto, List<Integer> winNumList) {
         int winNumCnt = 0;
         for (Integer winNum: winNumList) {
             if (lotto.contains(winNum)) winNumCnt++;
