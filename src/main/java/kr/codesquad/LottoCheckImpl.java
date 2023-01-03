@@ -3,9 +3,7 @@ package kr.codesquad;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class LottoCheckImpl implements LottoCheck {
 
@@ -17,13 +15,15 @@ public class LottoCheckImpl implements LottoCheck {
     @Override
     public void check(LottoTicket lottoTicket) throws IOException {
         List<Integer> winNumberList = this.getWinNumberList();
-        List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0));
+        Map<Rank, Integer> rankStatus = new HashMap<>(Rank.getInitRankStatus());
         for (List<Integer> lotto: lottoTicket.getLottoList()) {
             int winNumber = this.calcTargetedNumberCount(lotto, winNumberList);
-            int totalCnt = result.get(winNumber) + 1;
-            result.set(winNumber, totalCnt);
+            boolean isBonus = this.hasBonusNumber(lotto, -1);
+            Rank rank = Rank.valueOf(winNumber, isBonus);
+            int totalCnt = rankStatus.getOrDefault(rank, winNumber);
+            rankStatus.put(rank, totalCnt + 1);
         }
-        this.printResult(result, lottoTicket.getMoney());
+        this.printResult(rankStatus, lottoTicket.getMoney());
     }
 
     private List<Integer> getWinNumberList() throws IOException {
@@ -42,14 +42,18 @@ public class LottoCheckImpl implements LottoCheck {
         return winNumCnt;
     }
 
-    private void printResult(List<Integer> rankStatus, int money) {
+    private void printResult(Map<Rank, Integer> rankStatus, int money) {
         System.out.println("\n당첨 통계\n---------");
         int totalPrice = 0;
-        for (int idx = 3; idx < 7; idx++) {
-            totalPrice += moneyOfLottoList.get(idx) * rankStatus.get(idx);
-            System.out.println(idx + "개 일치 (" + moneyOfLottoList.get(idx) + "원) - " + rankStatus.get(idx) + "개");
+        for (Rank rank: Rank.values()) {
+            totalPrice += rank.ordinal() * rankStatus.get(rank);
+            System.out.println(rank.getCountOfMatch() + "개 일치 (" + rank.getWinningMoney() + "원) - " + rankStatus.get(rank) + "개");
         }
         double rate = (((double) totalPrice - money) / (double) money) * 100;
         System.out.println("총 수익률은 " + String.format("%.2f", rate) + "%입니다.");
+    }
+
+    private boolean hasBonusNumber(List<Integer> lotto, int bonusNumber) {
+        return false;
     }
 }
