@@ -39,7 +39,8 @@ public class LottoCheckImpl implements LottoCheck {
 
     private Rank calcTargetedNumberCount(Set<Integer> lotto, List<Integer> winNumList) {
         int winNumCnt = 0;
-        for (Integer winNum: winNumList) {
+        for (int idx = 0; idx < 6; idx++) {
+            Integer winNum = winNumList.get(idx);
             if (lotto.contains(winNum)) winNumCnt++;
         }
         boolean isBonus = lotto.contains(winNumList.get(6));
