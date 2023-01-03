@@ -9,4 +9,11 @@ public class WinningLotto {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
+
+    public Rank compare(Lotto otherLotto) {
+        int sameCount = lotto.compare(otherLotto);
+        boolean isBonus = otherLotto.contains(bonusNumber);
+
+        return Rank.FIRST;
+    }
 }

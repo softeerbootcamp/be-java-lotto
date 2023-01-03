@@ -4,7 +4,6 @@ import kr.codesquad.model.*;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +33,7 @@ public class LottoController {
         outputView.printWinningLottoReadMessage();
         WinningLotto winningLotto = createWinningLotto();
 
-        //Map<Rank, Integer> result = caculateResult(lottos, winningLotto);
+        Map<Rank, Integer> result = caculateResult(userLotto, winningLotto);
         //double profitRate = caculateProfitRate(result, money);
         //outputView.printResult(result, profitRate);
     }
@@ -51,21 +50,14 @@ public class LottoController {
         return new WinningLotto(winningLotto, bonusNumber);
     }
 
-    private Map<Rank, Integer> caculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
-        Map<Rank, Integer> result = new HashMap<>();
-
-//        lottos.forEach(lotto -> {
-//                Rank rank = lotto.compare(winningLotto);
-//                result.put(rank, result.getOrDefault(rank, 0));
-//        });
-
-        return result;
+    private Map<Rank, Integer> caculateResult(UserLotto userLotto, WinningLotto winningLotto) {
+        return userLotto.compare(winningLotto);
     }
 
     private double caculateProfitRate(Map<Rank, Integer> result, int money) {
         double profit = 0;
-        for (int i = 3; i <= 6; i++){
-            profit += (double)i * result.get(i);
+        for (int i = 3; i <= 6; i++) {
+            profit += (double) i * result.get(i);
         }
 
         if (profit < money) {
