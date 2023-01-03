@@ -9,9 +9,10 @@ public class Lotto {
     Scanner sc = new Scanner(System.in);
     private List<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
     private List<Integer> lastWinLottoNum = new ArrayList<>(); // 지난 주 당첨 번호
-    private int bonusBall;
+    private int bonusBall = 0;
     private boolean isWinBonus;
-    private int scoreList[] = {0, 0, 0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
+    private int scoreList[] = {0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
+    private int bonusBallScoreCount = 0;
     Lotto(){
 
     }
@@ -34,7 +35,7 @@ public class Lotto {
         System.out.println("\n지난 주 당첨 번호를 입력해 주세요");
         String[] winLottoNumString = sc.nextLine().split(", ");
         for(int i = 0;i<6;i++){
-            winLottoNum.add(Integer.parseInt(winLottoNumString[i]));
+            lastWinLottoNum.add(Integer.parseInt(winLottoNumString[i]));
         }
         inputBonusBall();
     }
@@ -53,14 +54,18 @@ public class Lotto {
         for(int i = 0;i<6;i++) {
             score += compareValue(lottoNumList, winLottoNum.get(i));
         }
+        if(score == 5) bonusBallScoreCount += compareValue(lottoNumList, bonusBall);
         return score;
     }
 
     public void addScoreList(int scoreList[], int score) {
+        Rank rank;
+
         if (score == 3) scoreList[3]++;
         if (score == 4) scoreList[4]++;
         if (score == 5) scoreList[5]++;
         if (score == 6) scoreList[6]++;
+        scoreList[5] -= bonusBallScoreCount;
     }
 
     public void printScore(int price){
@@ -84,12 +89,32 @@ public class Lotto {
         System.out.println("총 수익률은 " + String.format("%.2f",winRate) + "%입니다.");
     }
 
-    public void statistics(List<List<Integer>> lottoBuyList){
+    public void statistics(List<List<Integer>> lottoBuyList, int price){
         for(int i = 0;i<lottoBuyList.size();i++){
             int score = getScore(lottoBuyList.get(i));
             addScoreList(scoreList, score);
         }
+        // 맞춘 개수와 수익률 출력
+        printScore(price);
     }
 
 
+    public void lastStatistics(List<List<Integer>> lottoBuyList, int price) {
+        for(int i = 0;i<lottoBuyList.size();i++){
+            int score = getScore(lottoBuyList.get(i));
+            addScoreList(scoreList, score);
+        }
+        // 맞춘 개수와 수익률 출력
+        printLastScore(price);
+    }
+
+    private void printLastScore(int price) {
+        System.out.println("\n당첨 통계\n----------");
+        System.out.println("3개 일치 (5000원) - " + scoreList[3] + "개");
+        System.out.println("4개 일치 (50000원) - " + scoreList[4] + "개");
+        System.out.println("5개 일치 (1500000원) - " + scoreList[5] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치(30000000원) - " + bonusBallScoreCount + "개");
+        System.out.println("6개 일치 (2000000000원) - " + scoreList[6] + "개");
+        printRate(price);
+    }
 }
