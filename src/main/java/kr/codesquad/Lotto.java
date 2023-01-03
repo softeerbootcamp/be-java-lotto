@@ -6,14 +6,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Lotto {
-    List<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
-    int scoreList[] = {0, 0, 0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
+    Scanner sc = new Scanner(System.in);
+    private List<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
+    private List<Integer> lastWinLottoNum = new ArrayList<>(); // 지난 주 당첨 번호
+    private int bonusBall;
+    private boolean isWinBonus;
+    private int scoreList[] = {0, 0, 0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
     Lotto(){
 
     }
 
     public void setWinLottoNum(){
-        Scanner sc = new Scanner(System.in);
         // 입력 버퍼 비우기
         sc.nextLine();
         // 당첨 번호 입력 받기
@@ -22,6 +25,22 @@ public class Lotto {
         for(int i = 0;i<6;i++){
             winLottoNum.add(Integer.parseInt(winLottoNumString[i]));
         }
+    }
+
+    public void setLastWinLottoNum(){
+        // 입력 버퍼 비우기
+        sc.nextLine();
+        // 당첨 번호 입력 받기
+        System.out.println("\n지난 주 당첨 번호를 입력해 주세요");
+        String[] winLottoNumString = sc.nextLine().split(", ");
+        for(int i = 0;i<6;i++){
+            winLottoNum.add(Integer.parseInt(winLottoNumString[i]));
+        }
+        inputBonusBall();
+    }
+
+    public void inputBonusBall(){
+        bonusBall = sc.nextInt();
     }
 
     public int compareValue(List<Integer> lottoNumList, int value){

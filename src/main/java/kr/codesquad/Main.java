@@ -17,9 +17,9 @@ public class Main {
         lotto.setWinLottoNum();
         // 당첨 통계
         // 맞춘 개수(통계) 구하기
-        lotto.statistics(user.lottoBuyList);
+        lotto.statistics(user.getLottoBuyList());
         // 맞춘 개수와 수익률 출력
-        lotto.printScore(user.price);
+        lotto.printScore(user.getPrice());
 
     }
 }

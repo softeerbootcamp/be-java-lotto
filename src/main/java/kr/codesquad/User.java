@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class User {
-    int price;
-    int count;
-    List<List<Integer>> lottoBuyList = new ArrayList<>(); // 로또 구매 목록
-    List<Integer> lottoBuy = new ArrayList<>(); // 로또 구매 1장
-    List<Integer> numberList = new ArrayList<Integer>(); // 1 ~ 45로 이루어진 리스트
+    private int price;
+    private int count;
+    private List<List<Integer>> lottoBuyList = new ArrayList<>(); // 로또 구매 목록
+    private List<Integer> lottoBuy = new ArrayList<>(); // 로또 구매 1장
+    private List<Integer> numberList = new ArrayList<Integer>(); // 1 ~ 45로 이루어진 리스트
 
     User(){
         // 로또 번호 1 ~ 45를 저장할 리스트 생성
@@ -18,6 +18,9 @@ public class User {
             numberList.add(n);
         }
     }
+
+    public int getPrice(){ return price; }
+    public int getCount(){ return count; }
 
     public void inputPrice(){
         Scanner sc = new Scanner(System.in);
@@ -53,6 +56,7 @@ public class User {
         }
     }
 
-
-
+    public List<List<Integer>> getLottoBuyList() {
+        return lottoBuyList;
+    }
 }
