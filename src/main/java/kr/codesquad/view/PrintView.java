@@ -31,6 +31,16 @@ public class PrintView {
         System.out.println(CommonMessage.RESULT_STATIC);
         System.out.println(CommonMessage.HYPHEN);
 
+        resultWinningStatic(user);
+        resultProfit(user);
+    }
+
+    private static void resultProfit(User user) {
+        String profit = String.format("%.1f", user.getProfit());
+        System.out.println("총 수익률은 "+profit+"%입니다.");
+    }
+
+    private static void resultWinningStatic(User user) {
         HashMap<Result, Integer> resultMatch = user.getResultMatch();
         for (Result result : Result.notIncludeNotMatch()) {
             System.out.printf("%d개 일치: (%d원)",result.getMatchCount(),result.getReward());

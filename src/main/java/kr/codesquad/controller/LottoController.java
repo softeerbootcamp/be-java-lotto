@@ -13,18 +13,34 @@ public class LottoController {
     public static final int TICKET_PER_PRICE = 1000;
 
     public void play() {
+        User user = getUserWithPurchase();
+        PrintView.generatedLottos(user);
+
+        WinningLotto winningLotto = getWinningLotto();
+
+        computeResult(user, winningLotto);
+
+        PrintView.resultStatic(user);
+    }
+
+    private static void computeResult(User user, WinningLotto winningLotto) {
+        WinningStatic.computeResult(user, winningLotto);
+        double profit = WinningStatic.computeProfit(user);
+        user.updateProfit(profit);
+    }
+
+    private static WinningLotto getWinningLotto() {
+        PrintView.enterWinningNumber();
+        List<Integer> winningNumbers = ReceiveView.enterWinningNumbers();
+        WinningLotto winningLotto = new WinningLotto(winningNumbers);
+        return winningLotto;
+    }
+
+    private User getUserWithPurchase() {
         int purchaseAmount = enterPurchaseAmount();
         int purchaseTickets = purchaseToTickets(purchaseAmount);
         User user = makeUser(purchaseAmount, purchaseTickets);
-        PrintView.generatedLottos(user);
-        PrintView.enterWinningNumber();
-
-        List<Integer> winningNumbers = ReceiveView.enterWinningNumbers();
-        WinningLotto winningLotto = new WinningLotto(winningNumbers);
-
-        WinningStatic.computeResult(user,winningLotto);
-        PrintView.resultStatic(user);
-
+        return user;
     }
 
     private User makeUser(int purchaseAmount, int purchaseTickets) {
