@@ -24,14 +24,6 @@ public class LottoGame {
 		lottoResult.updateResult(lottoMatchType.getMatchCount(), 1);
 	}
 
-	public int setMatchNum(Lotto winningLotto, int matchNum, int num) {
-		if (winningLotto.getNumbers().contains(num)) {
-			matchNum += 1;
-		}
-
-		return matchNum;
-	}
-
 	public LottoResult checkMyLotto(List<Lotto> purchasedLottoList, WinningLotto winningLotto) {
 		LottoResult lottoResult = new LottoResult();
 		for (Lotto lotto : purchasedLottoList) {
