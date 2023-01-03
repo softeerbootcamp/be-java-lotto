@@ -1,6 +1,6 @@
 package kr.codesquad;
 
-public enum Fee {
+public enum Prize {
 
     FIRST(6,2000000000, "6개 일치 (2000000000원)"),
     SECOND(777,30000000, "5개 일치, 보너스 볼 일치 (30000000원)"),
@@ -8,11 +8,11 @@ public enum Fee {
     FOURTH(4,50000, "4개 일치 (50000원)"),
     FIFTH(3,5000, "3개 일치 (5000원)");
 
-    private Integer numOfItem;
-    private Integer price;
-    private String script;
+    private Integer numOfItem; //맞은 숫자 개수
+    private Integer price;  //상금
+    private String script;  //스크립트
 
-    private Fee(Integer numOfItem, Integer price, String script){
+    private Prize(Integer numOfItem, Integer price, String script){
         this.price = price;
         this.numOfItem = numOfItem;
         this.script = script;
