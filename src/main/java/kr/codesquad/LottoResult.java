@@ -2,15 +2,16 @@ package kr.codesquad;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class LottoResult {
-	private final ArrayList<Integer> result;
+	private final List<Integer> result;
 
 	public LottoResult() {
 		result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0));
 	}
 
-	public ArrayList<Integer> getResult() {
+	public List<Integer> getResult() {
 		return result;
 	}
 
