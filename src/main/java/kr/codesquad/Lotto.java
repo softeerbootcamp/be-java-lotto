@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Lotto {
-    ArrayList<ArrayList<Integer>> lottoBuyList = new ArrayList<ArrayList<Integer>>();
-    ArrayList<Integer> lottoBuy = new ArrayList<>();
-    ArrayList<Integer> numberList = new ArrayList<Integer>();
-    ArrayList<Integer> winLottoNum = new ArrayList<>();
-    int scoreList[] = {0, 0, 0, 0, 0, 0, 0};
+    ArrayList<ArrayList<Integer>> lottoBuyList = new ArrayList<ArrayList<Integer>>(); // 로또 구매 목록
+    ArrayList<Integer> lottoBuy = new ArrayList<>(); // 로또 구매 1장
+    ArrayList<Integer> numberList = new ArrayList<Integer>(); // 1 ~ 45로 이루어진 리스트
+    ArrayList<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
+    int scoreList[] = {0, 0, 0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
     Lotto(){
         // 로또 번호 1 ~ 45를 저장할 리스트 생성
         for(int n = 1;n<=45;n++){
@@ -49,7 +49,7 @@ public class Lotto {
 
     public int getScore(ArrayList<Integer> lottoNumList){
         int score = 0;
-        for(int i = 0;i<6;i++){
+        for(int i = 0;i<6;i++) {
             score += compareValue(lottoNumList, winLottoNum.get(i));
         }
         return score;
