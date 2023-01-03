@@ -5,31 +5,28 @@ import java.util.List;
 import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.lotto.LottoFactory;
+import kr.codesquad.domain.lotto.LottoShop;
 import kr.codesquad.domain.winningResult.WinningResult;
 import kr.codesquad.io.Console;
 
 public class App implements Runnable {
 
   private final Console console;
-  private final LottoFactory lottoFactory;
+  private final LottoShop lottoShop;
 
   public App(
       Console console,
-      LottoFactory lottoFactory
+      LottoShop lottoShop
   ) {
     this.console = console;
-    this.lottoFactory = lottoFactory;
+    this.lottoShop = lottoShop;
   }
-
-  public static final int LOTTO_PRICE = 1_000;
 
   @Override
   public void run() {
-    console.printInputAmount();
     int purchaseAmount = console.inputPurchaseAmount();
-    int purchaseCount = purchaseAmount / LOTTO_PRICE;
-    console.printPurchaseCount(purchaseCount);
-    List<Lotto> lottos = lottoFactory.generateList(purchaseCount);
+    List<Lotto> lottos = lottoShop.purchase(purchaseAmount);
+    console.printPurchaseCount(lottos.size());
 
     console.printLottoNumbersList(lottos);
     console.printInputWinningNumber();

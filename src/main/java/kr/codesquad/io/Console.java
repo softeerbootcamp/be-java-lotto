@@ -9,32 +9,36 @@ import java.util.stream.Collectors;
 
 import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
-import kr.codesquad.domain.winningLotto.WinningResult;
+import kr.codesquad.domain.winningResult.WinningResult;
 
 public class Console {
 
   private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-  public int inputPurchaseMoney() {
+  public int inputPurchaseAmount() {
     System.out.println("구입 금액을 입력해 주세요");
     return Integer.parseInt(commandLineInput());
   }
 
-  public List<Integer> inputWinningNumbers() {
-    System.out.println("당첨 번호를 입력해 주세요");
-
+  public Lotto inputWinningNumbers() {
     String s = commandLineInput();
     System.out.println();
     String[] split = s.split(", ");
 
-    return Arrays.stream(split)
-                 .mapToInt(Integer::parseInt)
-                 .boxed()
-                 .collect(Collectors.toList());
+    List<Integer> list = Arrays.stream(split)
+                               .mapToInt(Integer::parseInt)
+                               .boxed()
+                               .collect(Collectors.toList());
+
+    return Lotto.from(list);
   }
 
   public void printPurchaseCount(int purchaseCount) {
     System.out.println(purchaseCount + "개를 구입했습니다. ");
+  }
+
+  public void printInputWinningNumber() {
+    System.out.println("당첨 번호를 입력해 주세요");
   }
 
   public void printLottoNumbersList(List<Lotto> numbersList) {
@@ -50,11 +54,6 @@ public class Console {
 
   public void printEarningRate(EarningRate earningRate) {
     System.out.println("총 수익률은 " + earningRate.toString() + "입니다");
-  }
-
-  public int inputBonusNumber() {
-    System.out.println("보너스 번호를 입력해 주세요");
-    return Integer.parseInt(commandLineInput());
   }
 
   private String commandLineInput() {
