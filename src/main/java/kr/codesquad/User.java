@@ -111,6 +111,6 @@ public class User {
         float rate = (float)(5000*Result.get(0) + 50000*Result.get(1) + 1500000*Result.get(2) +
                 30000000*Result.get(3) +2000000000*Result.get(4) - buyNum*1000) / (float) (buyNum*1000) * 100;
 
-        System.out.printf("총 수익률은 %f퍼센트 입니다.\n", rate);
+        System.out.printf("총 수익률은 %.2f%% 입니다.\n", rate);
     }
 }
