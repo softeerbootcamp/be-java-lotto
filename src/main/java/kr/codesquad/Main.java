@@ -16,7 +16,8 @@ public class Main {
         // 당첨 통계
         //lotto.statistics(user.getLottoBuyList(), user.getPrice());
         // 지난 주 당첨 번호 입력 받기
-        lotto.setLastWinLottoNum();
+        lotto.setWinLottoNum();
+        lotto.inputBonusBall();
         // 지난 주 당첨 통계
         lotto.lastStatistics(user.getLottoBuyList(), user.getPrice());
     }

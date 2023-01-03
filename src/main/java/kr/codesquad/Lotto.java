@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class Lotto {
     Scanner sc = new Scanner(System.in);
     private List<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
-    private List<Integer> lastWinLottoNum = new ArrayList<>(); // 지난 주 당첨 번호
     private int bonusBall = 0;
     private int totalWinPrice = 0;
     private int scoreList[] = {0, 0, 0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
@@ -19,28 +18,18 @@ public class Lotto {
 
     public void setWinLottoNum(){
         // 입력 버퍼 비우기
-        sc.nextLine();
+        //sc.nextLine();
         // 당첨 번호 입력 받기
-        System.out.println("\n당첨 번호를 입력해 주세요");
+        System.out.println("\n지난 주 당첨 번호를 입력해 주세요");
         String[] winLottoNumString = sc.nextLine().split(", ");
         for(int i = 0;i<6;i++){
             winLottoNum.add(Integer.parseInt(winLottoNumString[i]));
         }
     }
 
-    public void setLastWinLottoNum(){
-        // 입력 버퍼 비우기
-        sc.nextLine();
-        // 당첨 번호 입력 받기
-        System.out.println("\n지난 주 당첨 번호를 입력해 주세요");
-        String[] winLottoNumString = sc.nextLine().split(", ");
-        for(int i = 0;i<6;i++){
-            lastWinLottoNum.add(Integer.parseInt(winLottoNumString[i]));
-        }
-        inputBonusBall();
-    }
 
     public void inputBonusBall(){
+        System.out.println("보너스 볼을 입력해 주세요.");
         bonusBall = sc.nextInt();
     }
 
@@ -64,13 +53,11 @@ public class Lotto {
             score += compareValue(lottoNumList, winLottoNum.get(i));
         }
         if(score == 5) bonusBallScoreCount += checkBonusBall(lottoNumList, bonusBall, isWinBonus);
-        countTotalWinPrice(score, isWinBonus);
+        if(score >= 3) countTotalWinPrice(score, isWinBonus);
         return score;
     }
 
     public void addScoreList(int scoreList[], int score) {
-        Rank rank;
-
         if (score == 3) scoreList[3]++;
         if (score == 4) scoreList[4]++;
         if (score == 5) scoreList[5]++;
@@ -93,12 +80,11 @@ public class Lotto {
         // 손해일 경우 - 100
         // 기존의 30퍼센트 = -70퍼센트
         if(totalWinPrice < price) winRate -= 100.0;
-
         System.out.println("총 수익률은 " + String.format("%.2f",winRate) + "%입니다.");
     }
 
     private void countTotalWinPrice(int score, boolean isWinBonus) {
-        totalWinPrice += score * Rank.valueOf(score, isWinBonus).getWinningMoney();
+        totalWinPrice += Rank.valueOf(score, isWinBonus).getWinningMoney();
     }
 
     public void statistics(List<List<Integer>> lottoBuyList, int price){
