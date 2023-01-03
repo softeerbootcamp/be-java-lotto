@@ -30,12 +30,13 @@ public class Console {
     public void printInputWinNum() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
+
     public void printAmount(int amount) {
         System.out.println(amount + "개를 구입했습니다. ");
     }
 
     public void printLottoNum(List<Lotto> lottoList) {
-        for(int i=0;i<lottoList.size();i++) {
+        for (int i = 0; i < lottoList.size(); i++) {
             System.out.println(lottoList.get(i).numberList);
         }
         System.out.println();
@@ -44,7 +45,7 @@ public class Console {
     public void printLottoResult(int money, int[] correctCnt) {
         System.out.println("\n당첨 통계\n---------");
         int rewardSum = 0;
-        for (int i=3;i<=6;i++) {
+        for (int i = 3; i <= 6; i++) {
             System.out.println(i + "개 일치 (" + reward[i] + ") - " + correctCnt[i] + "개");
             rewardSum += reward[i] * correctCnt[i];
         }

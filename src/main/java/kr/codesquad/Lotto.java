@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
-    public List<Integer> numberList = new ArrayList<>();
     public static final int LOTTO_NUM_BOUND = 45;
     public static final int LOTTO_NUM_COUNT = 6;
+    public List<Integer> numberList = new ArrayList<>();
 
     public int correctNumCnt(WinNum winNum) {
         List<Integer> temp = this.numberList;
@@ -17,7 +17,7 @@ public class Lotto {
 
     public List<Lotto> makeLottoNum(int amount) {
         List<Lotto> lottoList = new ArrayList<>();
-        for(int i=0;i<amount;i++) {
+        for (int i = 0; i < amount; i++) {
             Lotto lotto = makeRandomLotto();
             lottoList.add(lotto);
         }
@@ -32,7 +32,7 @@ public class Lotto {
 
     private List<Integer> makeRandomNum() {
         List<Integer> allNumber = new ArrayList<>();
-        for(int i=1;i<=LOTTO_NUM_BOUND;i++) {
+        for (int i = 1; i <= LOTTO_NUM_BOUND; i++) {
             allNumber.add(i);
         }
         Collections.shuffle(allNumber);
@@ -43,8 +43,8 @@ public class Lotto {
     }
 
     public int[] lottoResult(WinNum winNum, List<Lotto> lottoList) {
-        int [] correctCnt = new int[7];
-        for(int i=0;i<lottoList.size();i++) {
+        int[] correctCnt = new int[7];
+        for (int i = 0; i < lottoList.size(); i++) {
             correctCnt[lottoList.get(i).correctNumCnt(winNum)]++;
         }
         return correctCnt;

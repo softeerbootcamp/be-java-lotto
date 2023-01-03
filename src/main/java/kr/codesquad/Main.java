@@ -2,7 +2,6 @@ package kr.codesquad;
 
 import kr.codesquad.io.Console;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
