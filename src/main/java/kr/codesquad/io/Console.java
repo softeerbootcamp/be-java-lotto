@@ -1,13 +1,15 @@
 package kr.codesquad.io;
 
 import kr.codesquad.Lotto;
+import kr.codesquad.WinningCount;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Console {
     public static Scanner sc = new Scanner(System.in);
-    public static int[] reward = {0, 0, 0, 5000, 50000, 1500000, 2000000000};
 
     public int inputMoney() {
         printInputMoney();
@@ -46,13 +48,33 @@ public class Console {
         System.out.println();
     }
 
-    public void printLottoResult(int money, int[] correctCnt) {
+    public void printLottoResult(int money, Map<WinningCount, Integer> lottoResult) {
         System.out.println("\n당첨 통계\n---------");
-        int rewardSum = 0;
-        for (int i = 3; i <= 6; i++) {
-            System.out.println(i + "개 일치 (" + reward[i] + ") - " + correctCnt[i] + "개");
-            rewardSum += reward[i] * correctCnt[i];
+
+        Arrays.stream(WinningCount.values())
+                .forEach(winningCount -> {
+                printLottoResultByWinningCount(lottoResult, winningCount);
+
+        });
+        printProfit(lottoResult, money);
+    }
+
+    public void printLottoResultByWinningCount(Map<WinningCount, Integer> lottoResult, WinningCount winningCount) {
+        if (lottoResult.containsKey(winningCount)) {
+            System.out.println(winningCount.getCount() + "개 일치 (" + winningCount.getPrice() + ") - " + lottoResult.get(winningCount) + "개");
         }
+        if (!lottoResult.containsKey(winningCount)) {
+            System.out.println(winningCount.getCount() + "개 일치 (" + winningCount.getPrice() + ") - " + "0개");
+
+        }
+    }
+
+    public void printProfit(Map<WinningCount, Integer> lottoResult, int money) {
+        int rewardSum = 0;
+        for(Map.Entry<WinningCount, Integer> lotto : lottoResult.entrySet()) {
+            rewardSum += lotto.getKey().getPrice() * lotto.getValue();
+        }
+
         double ans = (((double) (rewardSum - money)) / (double) money) * 100.0;
         System.out.println("총 수익률은 " + Math.floor(ans * 100) / 100.0 + "%입니다.");
     }
