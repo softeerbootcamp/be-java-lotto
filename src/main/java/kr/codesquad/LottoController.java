@@ -57,7 +57,6 @@ public class LottoController {
      * 당첨 통계 내기
      */
     private void getPrintStatistics() {
-        System.out.println("당첨 통계\n" + "---------");
         lottoService.compareLotto(rows, answers);
 
         Statistic statistic = new Statistic(COLUMN);

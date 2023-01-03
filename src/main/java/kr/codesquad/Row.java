@@ -1,17 +1,12 @@
 package kr.codesquad;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Row {
 
     private int match;
     private List<Integer> values = new ArrayList<>();
-
-    public void shuffle() {
-        Collections.shuffle(values);
-    }
 
     /**
      * 각 list 별 정답과 일치하는 갯수 반환
@@ -28,8 +23,8 @@ public class Row {
         }
     }
 
-    public void addValue(int num) {
-        values.add(num);
+    public void addValues(List<Integer> num) {
+        values.addAll(num);
     }
 
     public int getMatch() {

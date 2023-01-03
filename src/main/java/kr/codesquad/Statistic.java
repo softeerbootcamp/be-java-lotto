@@ -42,7 +42,7 @@ public class Statistic {
         for (int i = 3; i <= 6; i++) {
             System.out.println(i + "개 일치 (" + scoreBoard.get(i) + "원)- " + counts[i] + "개");
         }
-        System.out.println("총 수익률은 " + String.format("%.2f",rate) + "% 입니다.");
+        System.out.println("총 수익률은 " + String.format("%.2f", rate) + "% 입니다.");
 
 
     }
