@@ -24,6 +24,8 @@ public class LottoService {
     public void inputWinningNumber() throws IOException{
         outputView.printWinningNumberText();
         lotto.setWinningNumbers(inputView.inputWinningNumbers());
+        outputView.printBonusBallText();
+        lotto.updateBonusBall(inputView.inputBonusNumber());
     }
     public void calculateTotal() {
         lotto.calculateTotalResult();
