@@ -1,5 +1,6 @@
 package kr.codesquad;
 
+import kr.codesquad.controller.LottoController;
 import kr.codesquad.domain.Lotto;
 
 import java.util.*;
@@ -13,12 +14,8 @@ public class Main {
     private static int[] sameCnt = new int[7];
 
     public static void main(String[] args) {
-        requestInput();
-        setAmount();
-        generateLottos();
-        setWinNumber();
-        findSameNumber();
-        getResult();
+        LottoController lottoController = new LottoController();
+        lottoController.run();
     }
 
     public static void requestInput() {
