@@ -69,5 +69,16 @@ public class Lotto {
         int winningMoney = resultIndex.get(count);
         result.put(winningMoney, result.get(winningMoney) + 1);
     }
-    
+    public double calculateEarningRate() {
+        double earnMoney = calculateEarnedMoney();
+        double spendMoney = numbers.size() * 1000;
+        return (earnMoney - spendMoney) / spendMoney * 100;
+    }
+    private long calculateEarnedMoney() {
+        long earnMoney = 0;
+        for (Integer key : result.keySet()) {
+            earnMoney += key * result.get(key);
+        }
+        return earnMoney;
+    }
 }
