@@ -40,7 +40,7 @@ public class LottoService {
         initLottoNum();
         setMoney();
         buyLotto();
-        getWinNum();
+        setWinNum();
         calcResult();
         printResult();
     }
@@ -79,7 +79,7 @@ public class LottoService {
         return number;
     }
 
-    private static void getWinNum(){
+    private static void setWinNum(){
         System.out.println("\n당첨 번호를 입력해 주세요.");    //, 처리 필요 -> string 활용
         Scanner sc = new Scanner(System.in);
         winNum.clear();
@@ -89,9 +89,9 @@ public class LottoService {
             int num = Integer.parseInt(winStrArr[i].trim());
             winNum.add(num);
         }
-        getBonusNum();
+        setBonusNum();
     }
-    private static void getBonusNum(){
+    private static void setBonusNum(){
         System.out.println("\n보너스 볼을 입력해 주세요.");    //, 처리 필요 -> string 활용
         Scanner sc = new Scanner(System.in);
         int bonus = sc.nextInt();
