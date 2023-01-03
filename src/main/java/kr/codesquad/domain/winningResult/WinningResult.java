@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.lotto.WinningLotto;
 
 public class WinningResult {
 
@@ -29,7 +30,7 @@ public class WinningResult {
 
   public static WinningResult createResult(
       List<Lotto> lottos,
-      Lotto winningLotto
+      WinningLotto winningLotto
   ) {
     WinningResult winningResult = new WinningResult();
     winningResult.calculateResult(lottos, winningLotto);
@@ -43,7 +44,7 @@ public class WinningResult {
 
   private void calculateResult(
       List<Lotto> lottos,
-      Lotto winningLotto
+      WinningLotto winningLotto
   ) {
     lottos.stream()
           .map(lotto -> WinningAmountFactory.generate(lotto, winningLotto))
