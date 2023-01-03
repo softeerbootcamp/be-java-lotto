@@ -25,12 +25,12 @@ public class LottoGame {
         for (int num : purchasedLotto.getNumbers()) {
             matchNum = setMatchNum(winningLotto, matchNum, num);
         }
-        if (matchNum == 5) {
-            if (purchasedLotto.getNumbers().contains(bonusBall)) {
-                result.set(0, result.get(7) + 1);
-                result.set(matchNum, result.get(7) - 1);
-            }
+        if (matchNum == LottoMatchType.FIVE_MATCH.getMatchCount() && purchasedLotto.getNumbers().contains(bonusBall)) {
+            System.out.println(matchNum+ purchasedLotto.toString());
+            result.set(LottoMatchType.BONUS_MATCH.getMatchCount(), result.get(LottoMatchType.BONUS_MATCH.getMatchCount()) + 1);
+            return;
         }
+
         result.set(matchNum, result.get(matchNum) + 1);
     }
 
@@ -47,7 +47,7 @@ public class LottoGame {
         System.out.println("3개 일치 (5000원) - " + result.get(LottoMatchType.THREE_MATCH.getMatchCount()));
         System.out.println("4개 일치 (50000원) - " + result.get(LottoMatchType.FOUR_MATCH.getMatchCount()));
         System.out.println("5개 일치 (1500000원) - " + result.get(LottoMatchType.FIVE_MATCH.getMatchCount()));
-        System.out.println("5개 일치, 보너스 볼 일치(30000000원) - " + result.get(0));
+        System.out.println("5개 일치, 보너스 볼 일치(30000000원) - " + result.get(LottoMatchType.BONUS_MATCH.getMatchCount()));
         System.out.println("6개 일치 (2000000000원) - " + result.get(LottoMatchType.SIX_MATCH.getMatchCount()));
         printEarningRate(purchaseAmount);
     }
