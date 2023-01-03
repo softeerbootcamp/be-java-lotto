@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import java.util.*;
+
 public enum Rank {
     FIRST(6, 2000000000),
     SECOND(5, 30000000),
@@ -23,19 +25,17 @@ public enum Rank {
         return winningMoney;
     }
 
+    public static final Map<Integer, List<Integer>> map = new HashMap<>();
+    static{
+        map.put(FIRST.getCountOfMatch(), List.of(FIRST.winningMoney));
+        map.put(SECOND.getCountOfMatch(), List.of(SECOND.winningMoney, THIRD.winningMoney));
+        map.put(FOURTH.getCountOfMatch(), List.of(FOURTH.winningMoney));
+        map.put(FIFTH.getCountOfMatch(), List.of(FIFTH.winningMoney));
+    }
+
     public static int valueOf(int countOfMatch, boolean matchBonus) {
-        Rank[] ranks = values();
-        for (Rank rank : ranks) {
-            if (countOfMatch == SECOND.countOfMatch) {
-                return matchBonus ? SECOND.getWinningMoney() : THIRD.getWinningMoney();
-            }
-
-            if (rank.countOfMatch == countOfMatch) {
-                return rank.getWinningMoney();
-            }
-        }
-
-        return 0;
+        if(map.get(countOfMatch) == null) return 0;
+        return countOfMatch == SECOND.countOfMatch && !matchBonus? map.get(countOfMatch).get(1) : map.get(countOfMatch).get(0);
     }
 
 }
