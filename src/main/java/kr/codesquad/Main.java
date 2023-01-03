@@ -71,11 +71,9 @@ class Lotto{
     getLottoInput();
     //5. 보너스 볼 입력 받기
     this.bonusBall = getBonusLottoInput();
-    System.out.println(this.bonusBall);
-    System.out.println(inputs);
     //5. 비교
     compareLottos(lottos,inputs);
-    printMap();
+    //printMap();
     //6. 결과 출력
     printResult();
   }
@@ -125,7 +123,7 @@ class Lotto{
 
   public void compareLottos(List<List<Integer>> lottoLists, List<Integer> inputList){
     for(int i=0;i<lottoCnt;i++){
-      System.out.println(lottoLists.get(i));
+      //System.out.println(lottoLists.get(i));
       getMatchCount(lottoLists.get(i), inputList);//각 로또마다 매치 개수 구하기
     }
   }
@@ -144,7 +142,6 @@ class Lotto{
     int matchCnt = 0;
     boolean isBonus = isBonusInLotto(lotto);
     for(int num : input) matchCnt = calcMatchCount(lotto,num,matchCnt);//하나의 로또에 대해 사용자의 각 숫자 중 몇 개가 일치되는 것인지 카운트
-    System.out.println(matchCnt);
     if(matchCnt == 3) updateRankMap(Rank.FIFTH);
     else if(matchCnt ==4) updateRankMap(Rank.FOURTH);
     else if(matchCnt ==5 && isBonus) updateRankMap(Rank.SECOND);
@@ -159,7 +156,7 @@ class Lotto{
 
   public void calcRate(){
     double sumOfWin = rankMap.get(Rank.FIFTH) * Rank.FIFTH.getWinningMoney() + rankMap.get(Rank.FOURTH) * Rank.FOURTH.getWinningMoney()
-                    + rankMap.get(Rank.THIRD) * Rank.THIRD.getWinningMoney()+rankMap.get(Rank.SECOND)*Rank.SECOND.getWinningMoney()
+                    + rankMap.get(Rank.THIRD) * Rank.THIRD.getWinningMoney() + rankMap.get(Rank.SECOND) * Rank.SECOND.getWinningMoney()
                     + rankMap.get(Rank.FIRST) * Rank.FIRST.getWinningMoney();
     double cost = lottoCnt*1000;
     System.out.println("총 수익률은 "+String.format("%.2f",((sumOfWin - cost) / cost) * 100)+"% 입니다");
