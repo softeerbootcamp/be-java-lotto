@@ -13,10 +13,17 @@ public class Lotto {
         System.out.println(lottoNums);
     }
 
-    public Prize getPrize(List<Integer> prize_nums, int bonus){
+    public Lotto(List<Integer> lottoNums){
+        if(lottoNums.size() != 6){
+            throw new IllegalArgumentException();
+        }
+        this.lottoNums = lottoNums;
+    }
+
+    public Prize getPrize(Lotto prize_nums, int bonus){
         int count = 0;
         for(Integer expect_no : lottoNums){
-            count = countUpIfContains(prize_nums, expect_no, count);
+            count = countUpIfContains(prize_nums.lottoNums, expect_no, count);
         }
         if(count == 5 && lottoNums.contains(bonus)){
             return SECOND;

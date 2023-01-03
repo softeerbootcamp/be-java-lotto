@@ -11,10 +11,10 @@ public class LottoStat {
     private long total_money;
     private Map<Prize, Integer> winnings;
     private List<Lotto> lottos;
-    private List<Integer> winningNums;
+    private Lotto winningNums;
     private int winningBonus;
 
-    public LottoStat(List<Lotto> lottos, List<Integer> winningNums, int bonus){
+    public LottoStat(List<Lotto> lottos, Lotto winningNums, int bonus){
         this.lottos = lottos;
         this.winningNums = winningNums;
         winningBonus = bonus;

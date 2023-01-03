@@ -9,7 +9,8 @@ public class Main {
         List<Lotto> lottos = generateLottos(n_lotto);
         List<Integer> winningNumbers = UserInputHandler.getWinningNumbers();
         int bonus = UserInputHandler.getBonusNumber(winningNumbers);
-        LottoStat lottoStat = new LottoStat(lottos, winningNumbers, bonus);
+        Lotto winning = new Lotto(winningNumbers);
+        LottoStat lottoStat = new LottoStat(lottos, winning, bonus);
         lottoStat.printResult();
     }
 
