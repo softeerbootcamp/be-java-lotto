@@ -34,7 +34,7 @@ public class Utility {
     public static int parseIntWithRange(String target, int lowerBound, int upperBound){
         int temp = Integer.parseInt(target);
         if(temp < lowerBound || temp > upperBound){
-            throw new CustomException(String.format("%s, %d, %d 두숫자를 포함한 범위에 있어야 합니다.", target, lowerBound, upperBound));
+            throw new CustomException(String.format("%s가 [%d, %d] 범위에 있어야 합니다.", target, lowerBound, upperBound));
         }
         return temp;
     }

@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import kr.codesquad.Exceptions.CustomException;
+
 import java.util.List;
 
 import static kr.codesquad.Prize.*;
@@ -15,7 +17,7 @@ public class Lotto {
 
     public Lotto(List<Integer> lottoNums){
         if(lottoNums.size() != 6){
-            throw new IllegalArgumentException();
+            throw new CustomException("로또 번호가 6자리가 아닙니다.");
         }
         this.lottoNums = lottoNums;
     }
