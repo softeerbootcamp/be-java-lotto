@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor: 당첨 통계 View 단에서 출력될 수 있도록 간단히 수정함.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Statistic.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,11 +19,22 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2JX36oPCnvQiefE3cZVtAUCgNFD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -42,6 +47,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -75,9 +82,149 @@
       <updated>1672210428730</updated>
       <workItem from="1672210432725" duration="156000" />
     </task>
+    <task id="LOCAL-00001" summary="update .gitignore">
+      <created>1672709330063</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672709330063</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: Rank enum 생성, 클래스 formatting, 간단한 오타 수정">
+      <created>1672711035527</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672711035527</updated>
+    </task>
+    <task id="LOCAL-00003" summary=".gitignore 원상복귀">
+      <created>1672711101756</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672711101756</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: Row values print 기능 추가">
+      <created>1672711471964</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672711471964</updated>
+    </task>
+    <task id="LOCAL-00005" summary="refactor: Row class 필드명 result -&gt; match 수정, 수익률 소수점 두자리 출력">
+      <created>1672712315487</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672712315487</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix: 오타 수정, Rank enum 필드값 final 처리">
+      <created>1672713079777</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1672713079777</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactor: 컨트롤러와 서비스 레벨을 두어 계층적으로 처리하도록 구조 수정">
+      <created>1672716983297</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1672716983297</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix: 랜덤 로또번호 발급방식 shuffle()과 sort()를 활용하는 걸로 수정">
+      <created>1672722082818</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1672722082818</updated>
+    </task>
+    <task id="LOCAL-00009" summary="refactor: enum을 적용하여 전체 값 조회 및 통계치 계산">
+      <created>1672723126638</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1672723126638</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: bonus 기능 추가">
+      <created>1672726066242</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1672726066242</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix: 당첨 통계 reverse order로 출력">
+      <created>1672726285377</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1672726285377</updated>
+    </task>
+    <task id="LOCAL-00012" summary="refactor: Enum 메서드 depth 1 만족할수있도록 수정중 (미완)">
+      <created>1672731259316</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1672731259316</updated>
+    </task>
+    <task id="LOCAL-00013" summary="refactor: Enum 메서드 depth 1 만족할수있도록 수정&#10;&#10;예시 코드로 주어진 valueOf() 의 depth를 1로 낮추되 전체적인 구조를 망가뜨리지 않도록 수정하였습니다.&#10;수정 결과, Enum 중 하나를 반화하는 valueOf() 대신 금액을 반환하는 하나의 메서드로 처리하였습니다.&#10;하지만 그 과정에서 Rank를 금액 기준으로 count 등 처리를 하다보니 winningMoney 필드에 대한 의존도가 높아져 만약 동일한 금액의 Enum이 추가되면 문제가 발생할 위협이 있습니다.">
+      <created>1672734191273</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1672734191273</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: 입출력을 담당하는 View 추가&#10;&#10;View를 추가하여 입출력을 처리하고, Controller에 해당 값을 넘겨주고,&#10;Controller가 Service를 호출하여 결과값을 View에 다시 반환하여 출력하는 형태로 수정함.&#10;&#10;이를 위해 View는 Controller를, Controller는 Service를 생성자 주입하여 변경되지 않도록 함.&#10;&#10;View와 Controller 기능이 아직 깔끔히 분리되지 못하여 추가적으로 refactoring 에정.">
+      <created>1672736066502</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1672736066502</updated>
+    </task>
+    <task id="LOCAL-00015" summary="refactor: 당첨 통계 View 단에서 출력될 수 있도록 간단히 수정함.">
+      <created>1672736908881</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1672736908881</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update .gitignore" />
+    <MESSAGE value="feat: Rank enum 생성, 클래스 formatting, 간단한 오타 수정" />
+    <MESSAGE value=".gitignore 원상복귀" />
+    <MESSAGE value="feat: Row values print 기능 추가" />
+    <MESSAGE value="refactor: Row class 필드명 result -&gt; match 수정, 수익률 소수점 두자리 출력" />
+    <MESSAGE value="fix: 오타 수정, Rank enum 필드값 final 처리" />
+    <MESSAGE value="refactor: 컨트롤러와 서비스 레벨을 두어 계층적으로 처리하도록 구조 수정" />
+    <MESSAGE value="fix: 랜덤 로또번호 발급방식 shuffle()과 sort()를 활용하는 걸로 수정" />
+    <MESSAGE value="refactor: enum을 적용하여 전체 값 조회 및 통계치 계산" />
+    <MESSAGE value="feat: bonus 기능 추가" />
+    <MESSAGE value="fix: 당첨 통계 reverse order로 출력" />
+    <MESSAGE value="refactor: Enum 메서드 depth 1 만족할수있도록 수정중 (미완)" />
+    <MESSAGE value="refactor: Enum 메서드 depth 1 만족할수있도록 수정&#10;&#10;예시 코드로 주어진 valueOf() 의 depth를 1로 낮추되 전체적인 구조를 망가뜨리지 않도록 수정하였습니다.&#10;수정 결과, Enum 중 하나를 반화하는 valueOf() 대신 금액을 반환하는 하나의 메서드로 처리하였습니다.&#10;하지만 그 과정에서 Rank를 금액 기준으로 count 등 처리를 하다보니 winningMoney 필드에 대한 의존도가 높아져 만약 동일한 금액의 Enum이 추가되면 문제가 발생할 위협이 있습니다." />
+    <MESSAGE value="feat: 입출력을 담당하는 View 추가&#10;&#10;View를 추가하여 입출력을 처리하고, Controller에 해당 값을 넘겨주고,&#10;Controller가 Service를 호출하여 결과값을 View에 다시 반환하여 출력하는 형태로 수정함.&#10;&#10;이를 위해 View는 Controller를, Controller는 Service를 생성자 주입하여 변경되지 않도록 함.&#10;&#10;View와 Controller 기능이 아직 깔끔히 분리되지 못하여 추가적으로 refactoring 에정." />
+    <MESSAGE value="refactor: 당첨 통계 View 단에서 출력될 수 있도록 간단히 수정함." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: 당첨 통계 View 단에서 출력될 수 있도록 간단히 수정함." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/java_lotto$Main.ic" NAME="Main Coverage Results" MODIFIED="1672722343647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>kr.codesquad.*</FILTER>
+    </SUITE>
   </component>
 </project>

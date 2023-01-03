@@ -1,51 +1,52 @@
 package kr.codesquad;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Statistic {
     private double rate;
     private double output = 0;
-    private final Map<Integer, Integer> scoreBoard = new HashMap<>();
-    private final int[] counts;
-
-    public Statistic(int column) {
-        counts = new int[column + 1];
-
-        //enum 처리예정
-        this.scoreBoard.put(0, 0);
-        this.scoreBoard.put(1, 0);
-        this.scoreBoard.put(2, 0);
-        this.scoreBoard.put(3, 5000);
-        this.scoreBoard.put(4, 50000);
-        this.scoreBoard.put(5, 1500000);
-        this.scoreBoard.put(6, 2000000000);
+    private final Map<Integer, Integer> counts = new HashMap<>();
+    public Statistic() {
+        counts.put(Rank.FIRST.getWinningMoney(), 0);
+        counts.put(Rank.SECOND.getWinningMoney(), 0);
+        counts.put(Rank.THIRD.getWinningMoney(), 0);
+        counts.put(Rank.FOURTH.getWinningMoney(), 0);
+        counts.put(Rank.FIFTH.getWinningMoney(), 0);
     }
 
-    // (수익금 - 넣은 금액 ) / 100
     public void calculateRate(int input) {
         this.rate = ((output - input) / input) * 100;
     }
 
-    public int calculateOutput(Row row) {
-        int result = row.getResult();
-
-        Integer value = scoreBoard.get(result);
-        counts[result]++;
-        this.output += value;
-        return value;
+    public void calculateOutput(Row row) {
+        int match = row.getMatch();
+        boolean matchBonus = row.isBonus();
+        if (match >= 3) {
+            int money = Rank.getMoney(match, matchBonus);
+            int cnt = counts.get(money);
+            counts.put(money, ++cnt);
+            this.output += money;
+        }
     }
 
     public void printStatistics() {
         System.out.println("당첨 통계\n" + "---------");
-
-        for (int i = 3; i <= 6; i++) {
-            System.out.println(i + "개 일치 ("+scoreBoard.get(i) + "원)- " + counts[i]+"개");
+        Rank[] ranks = Rank.values();
+        Arrays.sort(ranks, Collections.reverseOrder());
+        for (Rank rank : ranks) {
+            System.out.print(rank.getCountOfMatch() + "개 일치");
+            isBonusRank(rank);
+            System.out.println(" ("+ rank.getWinningMoney() + "원)- " + counts.get(rank.getWinningMoney()) + "개");
         }
-        System.out.println("총 수익률은 " + rate + "% 입니다.");
+        System.out.println("총 수익률은 " + String.format("%.2f", rate) + "% 입니다.");
+    }
 
-
+    public void isBonusRank(Rank rank) {
+        if (rank.getWinningMoney() == Rank.SECOND.getWinningMoney()) {
+            System.out.print(", 보너스 볼 일치");
+        }
     }
 }
