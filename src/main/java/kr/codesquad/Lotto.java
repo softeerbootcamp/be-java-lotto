@@ -7,12 +7,13 @@ import java.util.Scanner;
 
 public class Lotto {
     Scanner sc = new Scanner(System.in);
-    private List<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
+    private final List<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
     private int bonusBall = 0;
     private int totalWinPrice = 0;
-    private int scoreList[] = {0, 0, 0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
+    private static int[] scoreList = new int[7]; // 3개~6개 맞췄는지 저장할 점수 리스트
     private int bonusBallScoreCount = 0;
     Lotto(){
+
     }
 
     public void setWinLottoNum(){
@@ -88,8 +89,8 @@ public class Lotto {
     }
 
     public void statistics(List<List<Integer>> lottoBuyList, int price) {
-        for(int i = 0;i<lottoBuyList.size();i++){
-            getScore(lottoBuyList.get(i));
+        for (List<Integer> lottoBuy : lottoBuyList) {
+            getScore(lottoBuy);
         }
         // 맞춘 개수와 수익률 출력
         printScore(price);
