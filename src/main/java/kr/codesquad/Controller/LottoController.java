@@ -38,8 +38,8 @@ public class LottoController {
         // 구매한 로또 번호 출력
         Output.printLottoBuyList(user.getLottoBuyList());
         // 지난 주 당첨 번호 입력 받기
-        lotto.setWinLottoNum();
-        lotto.inputBonusBall();
+        winLottoNum = Input.inputWinLottoNum();
+        winLottoNum.setBonusBall(Input.inputBonusBall());
         // 지난 주 당첨 통계
         //lotto.statistics(user.getLottoBuyList(), user.getPrice());
     }

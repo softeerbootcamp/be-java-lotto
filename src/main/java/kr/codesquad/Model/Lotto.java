@@ -26,20 +26,15 @@ public class Lotto {
         Collections.sort(lottoNumbers);
     }
 
-    public void setWinLottoNum(){
-        // 당첨 번호 입력 받기
-        System.out.println("\n지난 주 당첨 번호를 입력해 주세요");
-        //String[] winLottoNumString = sc.nextLine().split(", ");
-        for(int i = 0;i<6;i++){
-            winLottoNum.add(Integer.parseInt(winLottoNumString[i]));
-        }
+    public void addLottoNum(int num){
+        lottoNumbers.add(num);
+    }
+
+    public void setBonusBall(int b){
+        bonusBall = b;
     }
 
 
-    public void inputBonusBall(){
-        System.out.println("보너스 볼을 입력해 주세요.");
-        bonusBall = sc.nextInt();
-    }
 
     public int compareValue(List<Integer> lottoNumList, int value){
         if(lottoNumList.contains(value)) return 1;
