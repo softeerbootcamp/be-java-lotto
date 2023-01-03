@@ -7,17 +7,18 @@ import java.util.Scanner;
 
 public class LottoSystem {
     private final List<Integer> numList;
+    private final Scanner sc;
 
     private static int lottoCount;
 
     public LottoSystem() {
         this.numList = new ArrayList<>();
         for(int i = 1;i <= 45;i++) this.numList.add(i);
+        sc = new Scanner(System.in);
     }
 
     public Lotto buyLotto() {
         System.out.println("구입금액을 입력해 주세요.");
-        Scanner sc = new Scanner(System.in);
         lottoCount = sc.nextInt() / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");
 
@@ -41,14 +42,12 @@ public class LottoSystem {
 
     public void checkLotto(Lotto lotto) {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        Scanner sc = new Scanner(System.in);
         String[] winNum = sc.nextLine().split(", ");
 
         List<Integer> winNumList = new ArrayList<>();
         for(int i = 0;i < 6;i++) winNumList.add(Integer.parseInt(winNum[i]));
 
         System.out.println("보너스 볼을 입력해 주세요.");
-        sc = new Scanner(System.in);
         winNumList.add(sc.nextInt());
 
         List<Integer> result = new ArrayList<>(List.of(0, 0, 0, 0, 0));
