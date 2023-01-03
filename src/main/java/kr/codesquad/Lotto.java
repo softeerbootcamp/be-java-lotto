@@ -54,15 +54,18 @@ public class Lotto {
         }
     }
     private int containsNumberCount(int index) {
-        List<Integer> list = numbers.get(index);
+        List<Integer> lotto = numbers.get(index);
         int count = 0;
-        //TODO 해결 해야함
         for (Integer winningNumber : winningNumbers) {
-            if (list.contains(winningNumber)) {
-                count++;
-            }
+            count += compareSame(lotto, winningNumber);
         }
         return count;
+    }
+    private int compareSame(List<Integer> lotto, int winningNumber) {
+        if (lotto.contains(winningNumber)) {
+            return 1;
+        }
+        return 0;
     }
     private void updateResult(int count) {
         if (count < 3) return;
