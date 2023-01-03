@@ -21,14 +21,17 @@ public class LottoSystem {
     };
     public static final int COST = 1000;
 
-    public void getLottos() {
+    public void makeLottos(){
+        getLottos();
+        getWinningNums();
+        LottoOutput.printLottos(lottos);
+    }
+    private void getLottos() {
         money = LottoInput.enterMoney();
         for (int i = 0; i < money / COST; i++) {
             Lotto l = new Lotto();
             lottos.add(l);
         }
-        getWinningNums();
-        LottoOutput.printLottos(lottos);
     }
 
     private void getWinningNums() {
