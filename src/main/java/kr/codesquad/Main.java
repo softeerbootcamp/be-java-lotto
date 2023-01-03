@@ -26,9 +26,10 @@ public class Main {
         Utility ut = new Utility();
 
         buyLottoByMoney();
-        generateMyLottoByCount gm = new generateMyLottoByCount(cnt);
+        generateMyLottoByCount gm = new generateMyLottoByCount();
+        gm.generate(cnt);
         jh.setJackpotNum();
-        jh.findingEachLottoJackpots(gm);
-        ut.printProfit(jh.JACKPOT_CNT, money);
+        jh.searchJackpotsInMyLottoList(gm);
+        ut.printProfit(jh.PRIZE_CNT, money);
     }
 }

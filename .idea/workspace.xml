@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/EmptyLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/EmptyLotto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Jackpot_Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Jackpot_Handler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/MyLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/generateMyLottoByCount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Prizes_Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Prizes_Info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/generateMyLottoByCount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/generateMyLottoByCount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +104,7 @@
       <workItem from="1672210432725" duration="156000" />
       <workItem from="1672642153535" duration="4115000" />
       <workItem from="1672646622277" duration="6789000" />
-      <workItem from="1672662103062" duration="20221000" />
+      <workItem from="1672662103062" duration="21968000" />
     </task>
     <servers />
   </component>
