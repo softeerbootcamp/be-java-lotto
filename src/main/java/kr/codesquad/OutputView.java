@@ -1,6 +1,7 @@
 package kr.codesquad;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public void printInputMoneyText() {
@@ -25,8 +26,15 @@ public class OutputView {
     public void printWinningNumberText() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
+    public void printTotalText(Map<Integer, Integer> resultIndex, Map<Integer, Integer> result) {
+        System.out.println("당첨 통계");
+        System.out.println("---------");
 
-    
+        for (Integer key : resultIndex.keySet()) {
+            int index = resultIndex.get(key);
+            System.out.println(key+"개 일치 (" + index + "원)- " + result.get(index) +"개");
+        }
+    }
     public void printEarnedRate(double rate) {
         System.out.println(rate);
         if (rate < 0) {

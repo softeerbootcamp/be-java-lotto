@@ -17,7 +17,7 @@
 - [x] 당첨번호 입력 텍스트 출력 기능 - OutputView#printWinningNumberText()
 - [x] 당첨번호 입력 기능 - InputView#inputWinningNumbers()
 - [ ] 당첨 통계 출력 기능 - LottoService#printTotal()
-  - [ ] 로또 통계 텍스트 출력 기능 - OutputView#printTotalText()
+  - [x] 로또 통계 텍스트 출력 기능 - OutputView#printTotalText()
     - [x] 얻은 수익 계산 기능 - OutputView#printEarnedRate()
   - [ ] 일치 개수 계산기능 - Lotto#calculateContainsCount()
   - [ ] 수익률 계산 기능 - Lotto#calculateRateOfReturn()
