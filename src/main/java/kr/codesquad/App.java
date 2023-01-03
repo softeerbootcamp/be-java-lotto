@@ -5,23 +5,19 @@ import java.util.List;
 import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.lotto.LottoFactory;
-import kr.codesquad.domain.winningResult.WinnerChecker;
 import kr.codesquad.domain.winningResult.WinningResult;
 import kr.codesquad.io.Console;
 
 public class App implements Runnable {
 
   private final Console console;
-  private final WinnerChecker winnerChecker;
   private final LottoFactory lottoFactory;
 
   public App(
       Console console,
-      WinnerChecker winnerChecker,
       LottoFactory lottoFactory
   ) {
     this.console = console;
-    this.winnerChecker = winnerChecker;
     this.lottoFactory = lottoFactory;
   }
 
@@ -33,13 +29,14 @@ public class App implements Runnable {
     int purchaseAmount = console.inputPurchaseAmount();
     int purchaseCount = purchaseAmount / LOTTO_PRICE;
     console.printPurchaseCount(purchaseCount);
-    List<Lotto> numbersList = lottoFactory.generateList(purchaseCount);
+    List<Lotto> lottos = lottoFactory.generateList(purchaseCount);
 
-    console.printLottoNumbersList(numbersList);
+    console.printLottoNumbersList(lottos);
     console.printInputWinningNumber();
     Lotto winningNumber = console.inputWinningNumbers();
 
-    WinningResult winningResult = winnerChecker.check(numbersList, winningNumber);
+    WinningResult winningResult = new WinningResult();
+    winningResult.calculateResult(lottos, winningNumber);
     console.printWinningResult(winningResult);
 
     EarningRate earningRate = EarningRate.of(winningResult.getTotalWinningMoney(), purchaseAmount);
