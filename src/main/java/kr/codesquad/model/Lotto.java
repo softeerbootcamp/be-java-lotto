@@ -10,8 +10,8 @@ public class Lotto {
     }
 
     public int compare(Lotto other) {
-        return (int) numbers.stream()
-                .filter(numbers::contains)
+        return (int)numbers.stream()
+                .filter(other::contains)
                 .count();
     }
 
