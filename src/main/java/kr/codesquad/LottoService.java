@@ -23,7 +23,7 @@ public class LottoService {
 
     public Lotto makeRandomLotto() {
         Lotto lotto = new Lotto();
-        lotto.numberList.addAll(makeRandomNum());
+        lotto.getNumberList().addAll(makeRandomNum());
         return lotto;
     }
 
@@ -56,6 +56,7 @@ public class LottoService {
 
     public int correctNumCnt(Lotto lottoNumbers, Lotto winNum, int bonusNum) {
         List<Integer> temp = lottoNumbers.getNumberList();
+        winNum.getNumberList().add(bonusNum);
         temp.retainAll(winNum.getNumberList());
         return temp.size();
     }
