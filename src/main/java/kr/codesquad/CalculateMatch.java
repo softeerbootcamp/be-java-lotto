@@ -36,5 +36,9 @@ public class CalculateMatch {
         hitNums.put(hitNum, hitNums.getOrDefault(hitNum, 0) + 1);
     }
 
+    public void startCalculate(int numOfLotto){
+        for(int i = 0; i < numOfLotto; i++)
+            getHitStatistics(randomLottoList.get(i));
+    }
 
 }
