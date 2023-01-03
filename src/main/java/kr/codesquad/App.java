@@ -4,45 +4,43 @@ import java.util.List;
 
 import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
-import kr.codesquad.domain.lotto.LottoShop;
-import kr.codesquad.domain.lotto.LottoShopPurchaseResult;
-import kr.codesquad.domain.winningLotto.WinningLotto;
-import kr.codesquad.domain.winningLotto.WinningResult;
+import kr.codesquad.domain.lotto.LottoFactory;
+import kr.codesquad.domain.winningResult.WinningResult;
 import kr.codesquad.io.Console;
 
 public class App implements Runnable {
 
-  private static final Console console = new Console();
-  private static final LottoShop lottoShop = new LottoShop();
+  private final Console console;
+  private final LottoFactory lottoFactory;
+
+  public App(
+      Console console,
+      LottoFactory lottoFactory
+  ) {
+    this.console = console;
+    this.lottoFactory = lottoFactory;
+  }
+
+  public static final int LOTTO_PRICE = 1_000;
 
   @Override
   public void run() {
-    LottoShopPurchaseResult response = purchaseLotto();
-    console.printPurchaseResult(response);
+    console.printInputAmount();
+    int purchaseAmount = console.inputPurchaseAmount();
+    int purchaseCount = purchaseAmount / LOTTO_PRICE;
+    console.printPurchaseCount(purchaseCount);
+    List<Lotto> lottos = lottoFactory.generateList(purchaseCount);
 
-    WinningLotto winningLotto = inputWinningLotto();
-    WinningResult winningResult = WinningResult.createResult(response.getAllLotto(), winningLotto);
+    console.printLottoNumbersList(lottos);
+    console.printInputWinningNumber();
+    Lotto winningNumber = console.inputWinningNumbers();
+
+    WinningResult winningResult = new WinningResult();
+    winningResult.calculateResult(lottos, winningNumber);
     console.printWinningResult(winningResult);
 
-    EarningRate earningRate = EarningRate.of(winningResult.getTotalWinningMoney(), response.getTotalPrice());
+    EarningRate earningRate = EarningRate.of(winningResult.getTotalWinningMoney(), purchaseAmount);
     console.printEarningRate(earningRate);
-  }
-
-  private LottoShopPurchaseResult purchaseLotto() {
-    int purchaseMoney = console.inputPurchaseMoney();
-    int manualLottoCount = console.inputManualLottoPurchaseCount();
-
-    int totalLottoCount = purchaseMoney / Lotto.LOTTO_PRICE;
-    int autoLottoCount = totalLottoCount - manualLottoCount;
-
-    return lottoShop.purchase(autoLottoCount, manualLottoCount);
-  }
-
-  private WinningLotto inputWinningLotto() {
-    List<Integer> winningNumbers = console.inputWinningNumbers();
-    Lotto winningLottoNumbers = Lotto.from(winningNumbers);
-    int bonusNumber = console.inputBonusNumber();
-    return new WinningLotto(winningLottoNumbers, bonusNumber);
   }
 
 }
