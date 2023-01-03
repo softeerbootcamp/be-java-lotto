@@ -7,21 +7,24 @@ public class My_lotto {
     private int lotto_cnt;
     private ArrayList<Empty_lotto> my_lottos;
     private ArrayList<Integer> all_lotto_num;
+
     public My_lotto(int lotto_cnt) {
         setLotto_cnt(lotto_cnt);
         setAll_lotto_num();
         setMy_lottos();
     }
-    public ArrayList<Empty_lotto> getMy_lottos(){
+
+    public ArrayList<Empty_lotto> getMy_lottos() {
         return this.my_lottos;
     }
+
     public void setLotto_cnt(int lotto_cnt) {
         this.lotto_cnt = lotto_cnt;
     }
 
     public void setAll_lotto_num() {
         this.all_lotto_num = new ArrayList<>();
-        for(int i=1;i <= 45;i++){
+        for (int i = 1; i <= 45; i++) {
             this.all_lotto_num.add(i);
         }
     }
@@ -37,7 +40,7 @@ public class My_lotto {
 
     public void setMy_lottos() {
         my_lottos = new ArrayList<>(lotto_cnt);
-        for (int j=0;j<lotto_cnt;j++) {
+        for (int j = 0; j < lotto_cnt; j++) {
             Empty_lotto tmplotto = new Empty_lotto(retRand_lotto_num());
             my_lottos.add(tmplotto);
             tmplotto.printNumbers();
