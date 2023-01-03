@@ -11,7 +11,7 @@ public class Lotto {
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_SIZE = 6;
 
-    List<Integer> lotto = new ArrayList<>();
+    List<Integer> lotto;
 
     public Lotto() {
 
@@ -34,7 +34,7 @@ public class Lotto {
     }
 
     public List<Integer> getLotto() {
-        return lotto;
+        return new ArrayList<>(new ArrayList<>(lotto));
     }
 
 }
