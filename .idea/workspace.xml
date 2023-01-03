@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day1 - lotto1 (error handling)">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day2 - (6) 특정 문자가 ArrayList안에 들어있는지 판독하는 메소드 생성">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/CalculateMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/CalculateMatch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,14 +35,49 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="step2" />
+                    <option name="lastUsedInstant" value="1672723109" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="i5046821854" />
+                    <option name="lastUsedInstant" value="1672723108" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2JX36oPCnvQiefE3cZVtAUCgNFD" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -51,6 +86,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/Users/rentalhub/things/be-java-lotto",
     "node.js.detected.package.eslint": "true",
@@ -105,7 +141,42 @@
       <option name="project" value="LOCAL" />
       <updated>1672648930633</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="day2 - (2) Lotto 클래스 생성자/Getter/Setter">
+      <created>1672724129227</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672724129227</updated>
+    </task>
+    <task id="LOCAL-00004" summary="day2 - (3) Main에서 Lotto클래스 주입하여 사용하도록 코드 리팩토링">
+      <created>1672724691227</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672724691227</updated>
+    </task>
+    <task id="LOCAL-00005" summary="day2 - (4) 로또 당첨 시 각 등수의 상금, 맞춘 번호의 개수를 나타내는 Enum 정의">
+      <created>1672724880903</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672724880903</updated>
+    </task>
+    <task id="LOCAL-00006" summary="day2 - (5) 당첨 여부 판독, 당첨금 확인의 로직을 담당하는 CalculateMatch 클래스 생성">
+      <created>1672724957879</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1672724957879</updated>
+    </task>
+    <task id="LOCAL-00007" summary="day2 - (6) 특정 문자가 ArrayList안에 들어있는지 판독하는 메소드 생성">
+      <created>1672725150234</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1672725150234</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +185,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="day1 - lotto1" />
     <MESSAGE value="day1 - lotto1 (error handling)" />
-    <option name="LAST_COMMIT_MESSAGE" value="day1 - lotto1 (error handling)" />
+    <MESSAGE value="day2 - (2) Lotto 클래스 생성자/Getter/Setter" />
+    <MESSAGE value="day2 - (3) Main에서 Lotto클래스 주입하여 사용하도록 코드 리팩토링" />
+    <MESSAGE value="day2 - (4) 로또 당첨 시 각 등수의 상금, 맞춘 번호의 개수를 나타내는 Enum 정의" />
+    <MESSAGE value="day2 - (5) 당첨 여부 판독, 당첨금 확인의 로직을 담당하는 CalculateMatch 클래스 생성" />
+    <MESSAGE value="day2 - (6) 특정 문자가 ArrayList안에 들어있는지 판독하는 메소드 생성" />
+    <option name="LAST_COMMIT_MESSAGE" value="day2 - (6) 특정 문자가 ArrayList안에 들어있는지 판독하는 메소드 생성" />
   </component>
 </project>
