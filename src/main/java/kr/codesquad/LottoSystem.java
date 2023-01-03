@@ -40,14 +40,18 @@ public class LottoSystem {
     }
 
     public void checkLotto(Lotto lotto) {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         Scanner sc = new Scanner(System.in);
         String[] winNum = sc.nextLine().split(", ");
 
         List<Integer> winNumList = new ArrayList<>();
         for(int i = 0;i < 6;i++) winNumList.add(Integer.parseInt(winNum[i]));
 
-        List<Integer> result = new ArrayList<>(List.of(0, 0, 0, 0));
+        System.out.println("보너스 볼을 입력해 주세요.");
+        sc = new Scanner(System.in);
+        winNumList.add(sc.nextInt());
+
+        List<Integer> result = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         for(int i = 0; i < lottoCount; i++) setResult(result, countWinNum(lotto, winNumList, i));
 
         printResult(result);
