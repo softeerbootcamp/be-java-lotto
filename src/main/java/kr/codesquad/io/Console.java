@@ -13,13 +13,16 @@ import kr.codesquad.domain.winningResult.WinningResult;
 
 public class Console {
 
-  private final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+  private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-  public int inputPurchaseAmount() {
+  public int inputPurchaseMoney() {
+    System.out.println("구입 금액을 입력해 주세요");
     return Integer.parseInt(commandLineInput());
   }
 
   public Lotto inputWinningNumbers() {
+    System.out.println("당첨 번호를 입력해 주세요");
+
     String s = commandLineInput();
     System.out.println();
     String[] split = s.split(", ");
@@ -32,16 +35,8 @@ public class Console {
     return Lotto.from(list);
   }
 
-  public void printInputAmount() {
-    System.out.println("구입 금액을 입력해 주세요");
-  }
-
   public void printPurchaseCount(int purchaseCount) {
     System.out.println(purchaseCount + "개를 구입했습니다. ");
-  }
-
-  public void printInputWinningNumber() {
-    System.out.println("당첨 번호를 입력해 주세요");
   }
 
   public void printLottoNumbersList(List<Lotto> numbersList) {
