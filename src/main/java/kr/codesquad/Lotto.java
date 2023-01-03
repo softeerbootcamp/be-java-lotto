@@ -14,7 +14,7 @@ public class Lotto {
     private int bonusBall;
     private Map<Rank, Integer> score;
 
-    Lotto(NumberGenerator numberGenerator) {
+    public Lotto(NumberGenerator numberGenerator) {
         this.numbers = new ArrayList<>();
         this.numberGenerator = numberGenerator;
         bonusBall = 0;

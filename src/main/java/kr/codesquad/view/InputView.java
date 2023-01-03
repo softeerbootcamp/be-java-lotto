@@ -9,7 +9,7 @@ import java.util.List;
 public class InputView {
     private BufferedReader br;
 
-    InputView() {
+    public InputView() {
         br = new BufferedReader(new InputStreamReader(System.in));
     }
 
