@@ -21,16 +21,15 @@ public class LottoSystem {
         }
     };
 
-
     public void getLottos() {
         money = LottoInput.enterMoney();
         for (int i = 0; i < money / COST; i++) {
             Lotto l = new Lotto();
             lottos.add(l);
-            l.printLotto();
         }
         winNums = LottoInput.enterWin();
         bonus = LottoInput.enterBonus();
+        LottoOutput.printLottos(lottos);
     }
 
     public void calWinner(Rank rank){
