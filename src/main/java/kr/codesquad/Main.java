@@ -3,7 +3,7 @@ package kr.codesquad;
 
 import java.util.*;
 
-import static kr.codesquad.Calculator.calculate_profit;
+import static kr.codesquad.Calculator.*;
 
 class My_lotto{
     private int lotto_cnt;
@@ -66,7 +66,7 @@ public class Main {
 
     public static final int LOTTO_PRICE = 1000;
     public static final int LOTTO_CNT = 6;
-    public static final int[] JACKPOT_CNT = {0,0,0,0};
+    public static final int[] JACKPOT_CNT = {0,0,0,0,0};
     public static ArrayList<Integer> JACKPOT_NUM;
     // todo list 1
     public static int ret_lotto_cnt(int money){
@@ -118,7 +118,6 @@ public class Main {
         My_lotto myLotto = new My_lotto(cnt);
         setJackpotNum();
         finding_jackpot(myLotto,JACKPOT_NUM);
-        System.out.printf("총 수익률은 : %f%%입니다\n",Calculator.calculate_profit(JACKPOT_CNT,money)*100);
-
+        Calculator.print_and_calculation(JACKPOT_CNT,money);
     }
 }

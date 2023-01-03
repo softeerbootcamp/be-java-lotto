@@ -1,25 +1,18 @@
 package kr.codesquad;
 
-import static kr.codesquad.Main.JACKPOT_CNT;
-
 public class Calculator {
     public Calculator() {
     }
-    public static float calculate_profit(int[] jackpots, int money){
-        float prof,sum=0;
-        int[] prizes = {5000,50000,1500000,2000000000};
-        for (int i=0;i< jackpots.length;i++) {
-            sum += prizes[i] * jackpots[i];
-
-        }
-        print_calculation(jackpots,prizes);
-        prof = (sum-money)/money;
-        return prof;
-    }
-    public static void print_calculation(int[] jk,int[] prizes){
+    public static void print_and_calculation(int[] jk,int money){
+        float prof;
+        int flag=0,sum=0;
         System.out.println("\n당첨통계\n---------");
-        for(int i=0;i<JACKPOT_CNT.length;i++){
-            System.out.printf("%d개 일치 : (%d)- %d개\n",i+3,prizes[i],jk[i]);
+        for(Prizes pr:Prizes.values()){
+            pr.print_message(jk[flag]);
+            sum+=pr.print_prize()*jk[flag];
+            flag++;
         }
+        prof = (sum-money)/money;
+        System.out.printf("총 수익률은 : %f%%입니다\n",prof*100);
     }
 }
