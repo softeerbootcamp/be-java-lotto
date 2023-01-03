@@ -3,41 +3,22 @@ package kr.codesquad;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class Lotto {
-    List<List<Integer>> lottoBuyList = new ArrayList<>(); // 로또 구매 목록
-    List<Integer> lottoBuy = new ArrayList<>(); // 로또 구매 1장
-    List<Integer> numberList = new ArrayList<Integer>(); // 1 ~ 45로 이루어진 리스트
     List<Integer> winLottoNum = new ArrayList<>(); // 당첨 번호
     int scoreList[] = {0, 0, 0, 0, 0, 0, 0}; // 3개~6개 맞췄는지 저장할 점수 리스트
     Lotto(){
-        // 로또 번호 1 ~ 45를 저장할 리스트 생성
-        for(int n = 1;n<=45;n++){
-            numberList.add(n);
-        }
-    }
-    public void createLottoNumber(int count){
-        for(int i = 0;i<count;i++){
-            // 번호 섞기
-            Collections.shuffle(numberList);
-            lottoBuy = new ArrayList<>(numberList.subList(0,6));
 
-            // 번호 정렬
-            Collections.sort(lottoBuy);
-
-            // 로또 구매 리스트에 추가
-            lottoBuyList.add(lottoBuy);
-        }
     }
 
-    public void printLottoBuyList(){
-        for(int i = 0;i<lottoBuyList.size();i++){
-            // 출력
-            System.out.println(lottoBuyList.get(i));
-        }
-    }
-
-    public void setWinLottoNum(String[] winLottoNumString){
+    public void setWinLottoNum(){
+        Scanner sc = new Scanner(System.in);
+        // 입력 버퍼 비우기
+        sc.nextLine();
+        // 당첨 번호 입력 받기
+        System.out.println("\n당첨 번호를 입력해 주세요");
+        String[] winLottoNumString = sc.nextLine().split(", ");
         for(int i = 0;i<6;i++){
             winLottoNum.add(Integer.parseInt(winLottoNumString[i]));
         }
@@ -63,11 +44,13 @@ public class Lotto {
         if (score == 6) scoreList[6]++;
     }
 
-    public void printScore(){
+    public void printScore(int price){
+        System.out.println("\n당첨 통계\n----------");
         System.out.println("3개 일치 (5000원) - " + scoreList[3] + "개");
         System.out.println("4개 일치 (50000원) - " + scoreList[4] + "개");
         System.out.println("5개 일치 (1500000원) - " + scoreList[5] + "개");
         System.out.println("6개 일치 (2000000000원) - " + scoreList[6] + "개");
+        printRate(price);
     }
 
     public void printRate(int price){
@@ -82,7 +65,7 @@ public class Lotto {
         System.out.println("총 수익률은 " + String.format("%.2f",winRate) + "%입니다.");
     }
 
-    public void statistics(){
+    public void statistics(List<List<Integer>> lottoBuyList){
         for(int i = 0;i<lottoBuyList.size();i++){
             int score = getScore(lottoBuyList.get(i));
             addScoreList(scoreList, score);
