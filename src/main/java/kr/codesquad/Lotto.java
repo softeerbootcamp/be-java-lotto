@@ -16,19 +16,10 @@ public class Lotto {
         this.numberList.addAll(lottoNum);
     }
 
-    public void showLotto() {
-        System.out.println(this.numberList);
-    }
-
     public int correctNumCnt(WinNum winNum) {
-        int cnt = 0;
-        if(this.numberList.contains(winNum.num.get(0))) cnt++;
-        if(this.numberList.contains(winNum.num.get(1))) cnt++;
-        if(this.numberList.contains(winNum.num.get(2))) cnt++;
-        if(this.numberList.contains(winNum.num.get(3))) cnt++;
-        if(this.numberList.contains(winNum.num.get(4))) cnt++;
-        if(this.numberList.contains(winNum.num.get(5))) cnt++;
-        return cnt;
+        ArrayList<Integer> temp = (ArrayList<Integer>) this.numberList.clone();
+        temp.retainAll(winNum.num);
+        return temp.size();
     }
 
 }
