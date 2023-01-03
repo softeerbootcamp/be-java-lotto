@@ -3,6 +3,8 @@ package kr.codesquad;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Lotto {
     private static final int LOTTO_MAX_NUMBER = 45;
@@ -12,15 +14,13 @@ public class Lotto {
     List<Integer> lotto = new ArrayList<>();
 
     public Lotto() {
-        List<Integer> nums = new ArrayList<>();
-        for (int i = LOTTO_MIN_NUMBER; i <= LOTTO_MAX_NUMBER; i++) {
-            nums.add(i);
-        }
-        Collections.shuffle(nums);
-        for (int i = 0; i < LOTTO_SIZE; i++) {
-            lotto.add(nums.get(i));
-        }
-        Collections.sort(lotto);
+
+    }
+
+    private static List<Integer> generateNumbers() {
+        return IntStream.range(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER + 1)
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     public List<Integer> getLotto() {
