@@ -178,6 +178,7 @@ public abstract class Main {
 
   public static void main(String[] args) {
     Lotto lotto = new Lotto();
+    User user = new User();
     lotto.start();
   }
 
