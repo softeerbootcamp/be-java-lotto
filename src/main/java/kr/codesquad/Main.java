@@ -1,11 +1,10 @@
 package kr.codesquad;
-import java.util.*;
-
-import static kr.codesquad.LottoService.buyLotto;
+import kr.codesquad.Controller.LottoController;
+import kr.codesquad.Model.LottoService;
 
 public class Main {
-
     public static void main(String[] args) {
-        LottoService.start();
+        LottoController lottoController = new LottoController();
+        lottoController.start();
     }
 }
