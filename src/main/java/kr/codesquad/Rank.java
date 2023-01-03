@@ -1,4 +1,4 @@
-package main.java.kr.codesquad;
+package kr.codesquad;
 
 public enum Rank {
     FIFTH(3, 5000),
