@@ -31,6 +31,7 @@ public enum Rank {
             return SECOND;
 
         return Arrays.stream(values())
+                .filter(rank -> rank != Rank.SECOND)
                 .filter(rank -> rank.count == sameCount)
                 .findFirst()
                 .orElse(NOTHING);
