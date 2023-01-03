@@ -6,16 +6,13 @@ import java.util.*;
 public class Main {
 
     private static ArrayList<Integer> allNums;
-    private static HashMap<Integer, Integer> hitNums;
-    private static Integer[] fee = {5000, 50000, 1500000, 2000000000};
-    private static int hitPrice = 0;
     private static int purchasedPrice = 0;
     private static int numOfLotto = 0;
     private static Scanner scan;
+    private static int bonus = 0;
 
     //initial method
     private static void initMethod(){
-        hitNums = new HashMap<>();
         allNums = new ArrayList<>();
         scan = new Scanner(System.in);
         for(int i = 1; i < 46; i++)
@@ -32,33 +29,6 @@ public class Main {
         return tempList;
     }
 
-    //print result of all lotteries
-    private static void printResult(int purchasedPrice) {
-        for(int i = 3; i < 7; i++){
-            int hitNum = hitNums.getOrDefault(i, 0);
-            System.out.printf("%d개 일치 (%d원) - %d개\n", i, fee[i-3], hitNum);
-            hitPrice = hitNum * fee[i-3];
-        }
-        int profit = hitPrice - purchasedPrice;
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", (float)profit/purchasedPrice*100);
-    }
-
-
-    //check the result of each lottery
-    private static int containNum(int target, ArrayList<Integer> tempList){
-        if (tempList.contains(target))
-            return 1;
-        return 0;
-    }
-
-
-    //count each rank of each result
-    private static void getHitStatistics(ArrayList<Integer> resultNums, ArrayList<Integer> tempList) {
-            int hitNum = 0;
-            for(int i = 0; i < 6; i++)
-                hitNum += containNum(resultNums.get(i), tempList);
-            hitNums.put(hitNum, hitNums.getOrDefault(hitNum, 0) + 1);
-    }
 
 
     //enter the total price of purchasing
@@ -96,9 +66,12 @@ public class Main {
 
         myLotto.addLotto(enterResultNumbers());
 
-        for(int i = 0; i < numOfLotto; i++)
-            getHitStatistics(myLotto.getLottoList().get(0), randomLotto.getLottoList().get(i));
-        printResult(purchasedPrice);
+        ArrayList<ArrayList<Integer>> randomLottoList = randomLotto.getLottoList();
+        ArrayList<Integer> myLottoList = myLotto.getLottoList().get(0);
+        CalculateMatch calculateMatch = new CalculateMatch(randomLottoList, myLottoList, bonus);
+
+        calculateMatch.startCalculate(numOfLotto);
+        calculateMatch.printResult(purchasedPrice);
     }
 
 
