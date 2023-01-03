@@ -13,6 +13,8 @@ public class Input {
 
     public static Lotto inputWinLottoNum() {
         Lotto winLottoNum = new Lotto();
+        // 개행 제거
+        sc.nextLine();
         // 당첨 번호 입력 받기
         System.out.println("\n지난 주 당첨 번호를 입력해 주세요");
         String[] winLottoNumString = sc.nextLine().split(", ");
