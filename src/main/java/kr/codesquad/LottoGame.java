@@ -64,21 +64,20 @@ public class LottoGame {
         return new Lotto(newLottoNumbers);
     }
 
-    public double getPurchaseAmount() {
+    public int getPurchaseAmount() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("구입금액을 입력해 주세요.");
-        return scanner.nextDouble();
+        return scanner.nextInt();
     }
 
-    public int getLottoCount(double purchaseAmount) {
-        int lottoCount = (int) (purchaseAmount / LOTTO_PRICE);
+    public int getLottoCount(int purchaseAmount) {
+        int lottoCount = purchaseAmount / LOTTO_PRICE;
         System.out.println(lottoCount + "개를 구입하였습니다.");
-
         return lottoCount;
     }
 
     public ArrayList<Lotto> purchaseLottoList() {
-        double purchaseAmount = getPurchaseAmount();
+        int purchaseAmount = getPurchaseAmount();
         int lottoCount = getLottoCount(purchaseAmount);
 
         ArrayList<Lotto> lottoList = new ArrayList<Lotto>();
