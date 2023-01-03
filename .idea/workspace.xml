@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="fix: 당첨 통계 reverse order로 출력">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor: Enum 메서드 depth 1 만족할수있도록 수정중 (미완)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Rank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Rank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Row.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Statistic.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672726285377</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="refactor: Enum 메서드 depth 1 만족할수있도록 수정중 (미완)">
+      <created>1672731259316</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1672731259316</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,7 +196,8 @@
     <MESSAGE value="refactor: enum을 적용하여 전체 값 조회 및 통계치 계산" />
     <MESSAGE value="feat: bonus 기능 추가" />
     <MESSAGE value="fix: 당첨 통계 reverse order로 출력" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: 당첨 통계 reverse order로 출력" />
+    <MESSAGE value="refactor: Enum 메서드 depth 1 만족할수있도록 수정중 (미완)" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: Enum 메서드 depth 1 만족할수있도록 수정중 (미완)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_lotto$Main.ic" NAME="Main Coverage Results" MODIFIED="1672722343647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

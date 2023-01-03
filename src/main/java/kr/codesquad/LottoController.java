@@ -58,7 +58,7 @@ public class LottoController {
     private void getPrintStatistics(int[] answers, int bonusNumber) {
         lottoService.compareLotto(rows, answers, bonusNumber);
 
-        Statistic statistic = new Statistic(COLUMN);
+        Statistic statistic = new Statistic();
         for (Row row : rows) {
             statistic.calculateOutput(row);
         }
