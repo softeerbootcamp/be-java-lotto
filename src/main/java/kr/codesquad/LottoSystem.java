@@ -71,6 +71,12 @@ public class LottoSystem {
         return winNumCount;
     }
 
+    public boolean checkBonus(Lotto lotto, int bonusNum, int index) {
+        List<List<Integer>> lottoList = lotto.getLottoList();
+
+        return lottoList.get(index).contains(bonusNum);
+    }
+
     public void setResult(List<Integer> result, int winNumCount) {
         if(winNumCount == 3) result.set(0, result.get(0) + 1);
         else if(winNumCount == 4) result.set(1, result.get(1) + 1);
