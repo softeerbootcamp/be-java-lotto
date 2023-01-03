@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     public void printWinningLottoReadMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
     }
 
     public void printBonusNumberReadMessage() {
@@ -35,12 +35,19 @@ public class OutputView {
     }
 
     public void printResult(Map<Rank, Integer> result, double profitRate) {
-        System.out.println("당첨 통계\n----------");
-
         StringBuilder sb = new StringBuilder();
+        sb.append("당첨 통계\n----------\n");
+
         List<Rank> ranks = Arrays.stream(Rank.values()).collect(Collectors.toList());
         Collections.sort(ranks, Collections.reverseOrder());
 
+        printWinningResult(sb, ranks, result);
+        printProfitRate(sb, profitRate);
+
+        System.out.println(sb);
+    }
+
+    private void printWinningResult(StringBuilder sb, List<Rank> ranks, Map<Rank, Integer> result) {
         ranks.stream()
                 .filter(rank -> rank != Rank.NOTHING)
                 .forEach(rank -> {
@@ -55,10 +62,11 @@ public class OutputView {
                             .append(result.getOrDefault(rank, 0))
                             .append("개\n");
                 });
+    }
+
+    private void printProfitRate(StringBuilder sb, double profitRate) {
         sb.append("총 수익률은 ")
                 .append(String.format("%.2f", profitRate))
                 .append("%입니다.");
-
-        System.out.println(sb);
     }
 }
