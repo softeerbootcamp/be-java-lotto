@@ -8,10 +8,6 @@ public class LottoGame {
     private final static int LOTTO_NUMBER_COUNT = 6;
 
     private static ArrayList<Integer> result;
-    private static int firstWin = 0;
-    private static int secondWin = 0;
-    private static int thirdWin = 0;
-    private static int fourthWin = 0;
 
     public List<Integer> lottoNumbers;
 
