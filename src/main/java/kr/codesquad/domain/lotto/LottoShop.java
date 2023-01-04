@@ -5,6 +5,8 @@ import java.util.List;
 import kr.codesquad.domain.lotto.factory.LottoAutoFactory;
 import kr.codesquad.domain.lotto.factory.LottoManualFactory;
 
+import kr.codesquad.domain.lotto.factory.LottoFactory;
+
 public class LottoShop {
 
   private static final LottoAutoFactory lottoAutoFactory = new LottoAutoFactory();
