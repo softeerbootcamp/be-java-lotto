@@ -18,15 +18,12 @@ public class LottoController {
 
     private static int amount;
 
-    private static int[] sameCnt = new int[7];
-
     public void run() {
         totalPrice = requestMoney();
         amount = totalPrice / LOTTO_PRICE;
         Lottos lottos = purchaseLotto(amount);
         WinLotto winLotto  = makeWinLotto();
         calculateResult(lottos, winLotto);
-        getResult();
     }
 
     private int requestMoney() {
@@ -44,6 +41,8 @@ public class LottoController {
     private WinLotto makeWinLotto() {
         OutputView.showRequestWinNumber();
         Lotto winLotto = getWinLotto();
+
+        OutputView.showRequestBonusball();
         int bonusBall = Integer.parseInt(InputView.inputBonusBall());
         return new WinLotto(winLotto, bonusBall);
     }
@@ -56,34 +55,6 @@ public class LottoController {
         return new Lotto(newList);
     }
 
-    public static void findSameNumber(
-            Lottos lottos,
-            WinLotto winLotto
-    )
-    {
-        for (int i = 0; i < amount; i++) {
-            List<Integer> tempLotto = lottos.getLottoList().get(i).getLotto();
-            List<Integer> tempWin = winLotto.getWinLotto().getLotto();
-            tempLotto.retainAll(tempWin);
-            int same = tempLotto.size();
-            sameCnt[same]++;
-        }
-    }
-
-    public static void getResult() {
-        int[] price = {5000, 50000, 1500000, 2000000000};
-        double sum = 0;
-        for (int i = 3; i <= 6; i++) {
-            sum += price[i - 3] * sameCnt[i];
-        }
-        OutputView.showResultStatistics();
-        OutputView.showResult(
-                sum,
-                sameCnt,
-                totalPrice
-        );
-    }
-
     private void calculateResult(
             Lottos lottos,
             WinLotto winLotto)
@@ -92,8 +63,15 @@ public class LottoController {
 
         Result result = new Result();
         result.addMatchCount(lottos, winLotto);
-
         OutputView.showLottoListResult(result);
+
+        double sum = result.getProfit();
+        printTotalProfit(sum);
+
+    }
+
+    private void printTotalProfit(double sum) {
+        OutputView.showProfitResult(sum, totalPrice);
     }
 
 }

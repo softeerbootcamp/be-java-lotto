@@ -19,5 +19,15 @@ public class Result {
             result.put(rank, result.get(rank) + 1);
         }
     }
+    public double getProfit() {
+        double sum = 0;
+
+        for (Rank rank : Rank.values()) {
+            int prizeMoney = rank.getWinningAmount();
+            sum += prizeMoney * result.get(rank);
+        }
+
+        return sum;
+    }
 
 }
