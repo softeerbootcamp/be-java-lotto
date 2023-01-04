@@ -36,4 +36,12 @@ public class ResultLotto implements LottoTmpl {
     public ArrayList<ArrayList<Integer>> getLottoList() {
         return lottoList;
     }
+
+    //보너스 번호 입력
+    public void enterBonusNum(){
+        System.out.println("보너스볼을 입력해 주세요.");
+        Scanner scan = new Scanner(System.in);
+        int givenBonusNum = scan.nextInt();
+        this.bonumsNum = givenBonusNum;
+    }
 }
