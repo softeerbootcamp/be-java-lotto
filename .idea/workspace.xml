@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day3 - (19) 디자인패턴을 MVC 패턴으로 수정하고, 메인 컨트롤러로서 LottoSystem을 추가하여 서비스의 기본적 흐름을 통제함. 또한 Util을 통하여 연산으로서만 사용되는 메소드를 구현">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day3 - (20) 코드 리팩토링, 오탈자 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/UserConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/UserConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/CalculateMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/MatchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/utils/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/utils/Util.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +138,7 @@
       <workItem from="1672809074576" duration="4573000" />
       <workItem from="1672817659467" duration="1284000" />
       <workItem from="1672818950266" duration="98000" />
-      <workItem from="1672819055767" duration="2002000" />
+      <workItem from="1672819055767" duration="2904000" />
     </task>
     <task id="LOCAL-00001" summary="day1 - lotto1">
       <created>1672648436251</created>
@@ -305,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672820404322</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="day3 - (20) 코드 리팩토링, 오탈자 수정">
+      <created>1672821133595</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1672821133595</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,13 +357,14 @@
     <MESSAGE value="day3 - (17) 디버깅 및 디렉토리 구조 수정" />
     <MESSAGE value="day3 - (18) 인터페이스로 구현했던 Lotto의 템플릿을 상속 형태로 재구성" />
     <MESSAGE value="day3 - (19) 디자인패턴을 MVC 패턴으로 수정하고, 메인 컨트롤러로서 LottoSystem을 추가하여 서비스의 기본적 흐름을 통제함. 또한 Util을 통하여 연산으로서만 사용되는 메소드를 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value="day3 - (19) 디자인패턴을 MVC 패턴으로 수정하고, 메인 컨트롤러로서 LottoSystem을 추가하여 서비스의 기본적 흐름을 통제함. 또한 Util을 통하여 연산으로서만 사용되는 메소드를 구현" />
+    <MESSAGE value="day3 - (20) 코드 리팩토링, 오탈자 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="day3 - (20) 코드 리팩토링, 오탈자 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/kr/codesquad/controller/CalculateMatcher.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/kr/codesquad/controller/MatchController.java</url>
           <line>47</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>

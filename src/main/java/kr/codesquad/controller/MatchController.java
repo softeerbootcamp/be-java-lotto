@@ -3,12 +3,13 @@ package kr.codesquad.controller;
 import kr.codesquad.model.Prize;
 import kr.codesquad.templates.Lotto;
 import kr.codesquad.model.lottoImpl.ResultLotto;
-import kr.codesquad.utils.Util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CalculateMatcher {
+import static kr.codesquad.utils.Util.containNum;
+
+public class MatchController {
 
     private HashMap<Integer, Integer> hitNums = new HashMap<>();  //맞은 번호의 개수와 횟수
     private static int BONUM_NUM = 777;  //보너스 번호 (dummy)
@@ -19,8 +20,8 @@ public class CalculateMatcher {
     private void getHitStatistics(ArrayList<Integer> randomLotto, ArrayList<Integer> LottoResult,  int bonusNum) {
         int hitNum = 0;
         for(int i = 0; i < 6; i++)
-            hitNum += Util.containNum(LottoResult.get(i), randomLotto);
-        if(hitNum == 5 && Util.containNum(bonusNum, randomLotto) == 1){  //2등 보너스볼일 경우
+            hitNum += containNum(LottoResult.get(i), randomLotto);
+        if(hitNum == 5 && containNum(bonusNum, randomLotto) == 1){  //2등 보너스볼일 경우
             hitNums.put(BONUM_NUM, hitNums.getOrDefault(BONUM_NUM, 0) + 1);
             return;
         }

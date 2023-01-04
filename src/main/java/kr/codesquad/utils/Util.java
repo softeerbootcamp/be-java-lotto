@@ -17,6 +17,8 @@ public class Util {
         return tempList;
     }
 
+
+    //특정 숫자가 ArrayList 안에 들어있는지 판단
     public static int containNum(int target, ArrayList<Integer> tempList){
         if (tempList.contains(target))
             return 1;

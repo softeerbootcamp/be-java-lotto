@@ -4,24 +4,21 @@ import kr.codesquad.model.UserInfo;
 import kr.codesquad.model.lottoImpl.MyLotto;
 import kr.codesquad.model.lottoImpl.RandomLotto;
 import kr.codesquad.model.lottoImpl.ResultLotto;
-import kr.codesquad.utils.Util;
 import kr.codesquad.view.UserConsole;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import static kr.codesquad.utils.Util.parseString;
 
-public class LottoSystem {
+public class LottoController {
 
     private UserInfo user;
     private UserConsole userConsole;
     private RandomLotto randomLotto = new RandomLotto();
     private MyLotto myLotto = new MyLotto();
     private ResultLotto resultLotto = new ResultLotto();
-    private CalculateMatcher calculateMatcher = new CalculateMatcher();
+    private MatchController matchController = new MatchController();
 
 
-    public LottoSystem(UserInfo userInfo) {
+    public LottoController(UserInfo userInfo) {
         this.user = userInfo;
         this.userConsole = new UserConsole(user);
     }
@@ -55,25 +52,25 @@ public class LottoSystem {
         //수동 로또 생성
         for(int i = 0; i < user.getNumOfLottoSudong(); i++){
             String lottoStr = userConsole.enterSudongLottoList();
-            myLotto.addLotto(Util.parseString(lottoStr));
+            myLotto.addLotto(parseString(lottoStr));
         }
     }
 
     //당첨 번호 생성
     public void generateResults(){
         String givenResult = userConsole.enterResultList();
-        resultLotto.addLotto(Util.parseString(givenResult));
+        resultLotto.addLotto(parseString(givenResult));
         resultLotto.setBonusNum(userConsole.enterBonusNum());
     }
 
 
     //당첨 여부 조회
     public void calculateMatch(){
-        calculateMatcher.startCalculate(randomLotto, myLotto, resultLotto);
+        matchController.startCalculate(randomLotto, myLotto, resultLotto);
     }
 
     //결과 출력
     public void printResult(){
-        calculateMatcher.printResult(user.getPurchasedPrice());
+        matchController.printResult(user.getPurchasedPrice());
     }
 }
