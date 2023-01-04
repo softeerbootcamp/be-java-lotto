@@ -47,7 +47,7 @@ public class WinningResult {
       WinningLotto winningLotto
   ) {
     lottos.stream()
-          .map(lotto -> WinningAmountFactory.generate(lotto, winningLotto))
+          .map(lotto -> WinningAmount.of(lotto, winningLotto))
           .filter(Optional::isPresent)
           .map(Optional::get)
           .filter(map::containsKey)

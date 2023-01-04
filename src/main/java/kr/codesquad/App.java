@@ -43,9 +43,10 @@ public class App implements Runnable {
   }
 
   private WinningLotto inputWinningLotto() {
-    List<Integer> winningNumber = console.inputWinningNumbers();
+    List<Integer> winningNumbers = console.inputWinningNumbers();
+    Lotto winningLottoNumbers = Lotto.from(winningNumbers);
     int bonusNumber = console.inputBonusNumber();
-    return WinningLotto.of(winningNumber, bonusNumber);
+    return new WinningLotto(winningLottoNumbers, bonusNumber);
   }
 
 }
