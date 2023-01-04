@@ -3,6 +3,7 @@ package kr.codesquad.view;
 import kr.codesquad.domain.Lotto;
 import kr.codesquad.domain.Lottos;
 import kr.codesquad.domain.Rank;
+import kr.codesquad.domain.Result;
 
 public class OutputView {
     public static void showRequestTotalPrice() {
@@ -40,6 +41,12 @@ public class OutputView {
         System.out.printf("총 수익률은 %.2f%% 입니다.", ((sum - totalPrice) / totalPrice * 100));
     }
 
+    public static void showLottoListResult(Result result) {
+        for (Rank rank : Rank.getSortedRanks()) {
+            showLottoResult(result.getResult().get(rank), rank);
+        }
+
+    }
     public static void showLottoResult(int lottoCount, Rank rank) {
         String bonusText = "";
         if(rank.isBonus()) {

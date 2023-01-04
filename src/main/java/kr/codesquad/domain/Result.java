@@ -9,6 +9,8 @@ public class Result {
         Arrays.stream(Rank.values()).forEach(rank -> result.put(rank, 0));
     }
 
-
+    public Map<Rank, Integer> getResult() {
+        return new HashMap<>(result);
+    }
 
 }
