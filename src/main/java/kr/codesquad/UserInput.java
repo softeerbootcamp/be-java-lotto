@@ -1,12 +1,11 @@
 package kr.codesquad;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class UserInput {
-    private final BufferedReader br;
+    private final Scanner sc;
 
     public UserInput() {
-        this.br = new BufferedReader(new InputStreamReader(System.in));
+        this.sc = new Scanner(System.in);
     }
 }
