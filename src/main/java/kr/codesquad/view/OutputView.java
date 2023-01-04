@@ -26,7 +26,8 @@ public class OutputView {
     public void printUserLotto(UserLotto userLotto) {
         StringBuilder sb = new StringBuilder();
         userLotto.getLottos()
-                .forEach(lotto -> sb.append(lotto.toString()));
+                .forEach(lotto -> sb.append(lotto.toString())
+                        .append("\n"));
         System.out.println(sb);
     }
 

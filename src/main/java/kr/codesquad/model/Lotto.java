@@ -22,13 +22,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        numbers.forEach(number -> sb.append(number).append(", "));
-        sb.deleteCharAt(sb.length() - 1);
-        sb.deleteCharAt(sb.length() - 1);
-        sb.append("]\n");
-
-        return sb.toString();
+        return numbers.toString();
     }
 }
