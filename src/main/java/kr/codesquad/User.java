@@ -5,8 +5,8 @@ import java.util.*;
 
 public class User extends BaseLotto{
 
-    private ArrayList<Integer> inputs;
-    private int bonusBall;
+    private ArrayList<Integer> inputs; //저번 주 당첨 번호
+    private int bonusBall; //보너스 볼
 
     public User() {
         this.inputs = new ArrayList<>();
