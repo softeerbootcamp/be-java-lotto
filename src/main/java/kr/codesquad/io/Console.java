@@ -1,7 +1,7 @@
 package kr.codesquad.io;
 
-import kr.codesquad.Lotto;
-import kr.codesquad.WinningCount;
+import kr.codesquad.lotto.Lotto;
+import kr.codesquad.winLotto.WinningCount;
 
 import java.util.Arrays;
 import java.util.List;

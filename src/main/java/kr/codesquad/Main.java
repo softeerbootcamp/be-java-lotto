@@ -1,6 +1,10 @@
 package kr.codesquad;
 
 import kr.codesquad.io.Console;
+import kr.codesquad.lotto.Lotto;
+import kr.codesquad.lotto.LottoService;
+import kr.codesquad.winLotto.WinLotto;
+import kr.codesquad.winLotto.WinningCount;
 
 import java.util.List;
 import java.util.Map;

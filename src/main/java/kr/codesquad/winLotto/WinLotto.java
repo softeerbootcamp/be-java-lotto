@@ -1,11 +1,13 @@
-package kr.codesquad;
+package kr.codesquad.winLotto;
+
+import kr.codesquad.lotto.Lotto;
 
 public class WinLotto {
 
     private final Lotto winLotto;
     private final int bonusNum;
 
-    WinLotto(
+    public WinLotto(
             Lotto winLotto,
             int bonusNum
     ) {
