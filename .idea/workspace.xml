@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day3 - (4) 모든 로또 구현체에 대하여 로또리스트를 리턴하는 메소드를 구현">
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/impl/RandomLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/impl/RandomLotto.java" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day3 - (17) 디버깅 및 디렉토리 구조 수정">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/CalculateMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/CalculateMatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/impl/MyLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/lottoImpl/MyLotto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/impl/RandomLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/lottoImpl/RandomLotto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/impl/ResultLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/lottoImpl/ResultLotto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +52,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
       <RecentBranches>
         <option name="branchesForRepo">
@@ -125,6 +132,7 @@
       <updated>1672210428730</updated>
       <workItem from="1672210432725" duration="156000" />
       <workItem from="1672642412678" duration="9416000" />
+      <workItem from="1672809074576" duration="650000" />
     </task>
     <task id="LOCAL-00001" summary="day1 - lotto1">
       <created>1672648436251</created>
@@ -189,11 +197,113 @@
       <option name="project" value="LOCAL" />
       <updated>1672797137544</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="day3 - (5) 기계가 생성하는 로또번호에 대해서 난수를 생성하고 이에 따라 로또 번호를 뽑아내는 메소드 구현">
+      <created>1672797553291</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1672797553291</updated>
+    </task>
+    <task id="LOCAL-00011" summary="day3 - (6) RandomLotto 주석 수정">
+      <created>1672797702652</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1672797702652</updated>
+    </task>
+    <task id="LOCAL-00012" summary="day3 - (7) RandomLotto에서 로또 번호 생성 플로우를 효율적으로 수정">
+      <created>1672797809375</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1672797809375</updated>
+    </task>
+    <task id="LOCAL-00013" summary="day3 - (8) ResultLotto에서 로또 리스트 ArrayList에 값을 저장하는 메소드 구현">
+      <created>1672798007555</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1672798007555</updated>
+    </task>
+    <task id="LOCAL-00014" summary="day3 - (9) MyLotto에서 로또 리스트 ArrayList에 값을 저장하는 메소드 구현">
+      <created>1672798151128</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1672798151128</updated>
+    </task>
+    <task id="LOCAL-00015" summary="day3 - (10) ResultLotto에서 유저에게 인풋을 받고, 이를 addLotto에 넘겨주는 메소드 구현">
+      <created>1672798370253</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1672798370253</updated>
+    </task>
+    <task id="LOCAL-00016" summary="day3 - (11) ResultLotto에서 유저에게 보너스 번호에 대한 인풋을 받는 메소드 구현">
+      <created>1672798529921</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1672798529921</updated>
+    </task>
+    <task id="LOCAL-00017" summary="day3 - (12) MyLotto에서 유저의 인풋을 받아 이를 정수형 배열로 변환하여 ArrayList에 저장하는 로직 구현">
+      <created>1672799010903</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1672799010903</updated>
+    </task>
+    <task id="LOCAL-00018" summary="day3 - (13) 로또의 생성 방식을 수동/자동으로 분류하도록 userinfo와 lotto의 구현체 클래스를 수정">
+      <created>1672800167834</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1672800167835</updated>
+    </task>
+    <task id="LOCAL-00019" summary="day3 - (14) 수동, 자동에 해당하는 로또를 합하여 결과로 주어진 번호와 매칭하여 당첨을 확인하는 메소드 작성">
+      <created>1672800692526</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1672800692526</updated>
+    </task>
+    <task id="LOCAL-00020" summary="day3 - (15) startCalculate에서 수동 생성 로또도 반영하도록 수정">
+      <created>1672800972484</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1672800972484</updated>
+    </task>
+    <task id="LOCAL-00021" summary="day3 - (16) Main함수에서 인풋을 받는 로직을 모두 삭제 (각 로직을 담당하는 클래스를 따로 생성하였으므로)">
+      <created>1672801055798</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1672801055798</updated>
+    </task>
+    <task id="LOCAL-00022" summary="day3 - (17) 디버깅 및 디렉토리 구조 수정">
+      <created>1672803626937</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1672803626937</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="day1 - lotto1" />
@@ -205,6 +315,30 @@
     <MESSAGE value="day2 - (6) 특정 문자가 ArrayList안에 들어있는지 판독하는 메소드 생성" />
     <MESSAGE value="day3 - (1) 모든 로또의 종류를 포괄하여 로또의 기능을 제공하는 인터페이스 구현" />
     <MESSAGE value="day3 - (4) 모든 로또 구현체에 대하여 로또리스트를 리턴하는 메소드를 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value="day3 - (4) 모든 로또 구현체에 대하여 로또리스트를 리턴하는 메소드를 구현" />
+    <MESSAGE value="day3 - (5) 기계가 생성하는 로또번호에 대해서 난수를 생성하고 이에 따라 로또 번호를 뽑아내는 메소드 구현" />
+    <MESSAGE value="day3 - (6) RandomLotto 주석 수정" />
+    <MESSAGE value="day3 - (7) RandomLotto에서 로또 번호 생성 플로우를 효율적으로 수정" />
+    <MESSAGE value="day3 - (8) ResultLotto에서 로또 리스트 ArrayList에 값을 저장하는 메소드 구현" />
+    <MESSAGE value="day3 - (9) MyLotto에서 로또 리스트 ArrayList에 값을 저장하는 메소드 구현" />
+    <MESSAGE value="day3 - (10) ResultLotto에서 유저에게 인풋을 받고, 이를 addLotto에 넘겨주는 메소드 구현" />
+    <MESSAGE value="day3 - (11) ResultLotto에서 유저에게 보너스 번호에 대한 인풋을 받는 메소드 구현" />
+    <MESSAGE value="day3 - (12) MyLotto에서 유저의 인풋을 받아 이를 정수형 배열로 변환하여 ArrayList에 저장하는 로직 구현" />
+    <MESSAGE value="day3 - (13) 로또의 생성 방식을 수동/자동으로 분류하도록 userinfo와 lotto의 구현체 클래스를 수정" />
+    <MESSAGE value="day3 - (14) 수동, 자동에 해당하는 로또를 합하여 결과로 주어진 번호와 매칭하여 당첨을 확인하는 메소드 작성" />
+    <MESSAGE value="day3 - (15) startCalculate에서 수동 생성 로또도 반영하도록 수정" />
+    <MESSAGE value="day3 - (16) Main함수에서 인풋을 받는 로직을 모두 삭제 (각 로직을 담당하는 클래스를 따로 생성하였으므로)" />
+    <MESSAGE value="day3 - (17) 디버깅 및 디렉토리 구조 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="day3 - (17) 디버깅 및 디렉토리 구조 수정" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/kr/codesquad/entities/CalculateMatch.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

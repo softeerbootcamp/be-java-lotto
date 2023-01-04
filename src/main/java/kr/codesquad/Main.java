@@ -2,9 +2,9 @@ package kr.codesquad;
 
 import kr.codesquad.entities.CalculateMatch;
 import kr.codesquad.entities.UserInfo;
-import kr.codesquad.impl.MyLotto;
-import kr.codesquad.impl.RandomLotto;
-import kr.codesquad.impl.ResultLotto;
+import kr.codesquad.entities.lottoImpl.MyLotto;
+import kr.codesquad.entities.lottoImpl.RandomLotto;
+import kr.codesquad.entities.lottoImpl.ResultLotto;
 import kr.codesquad.utils.UserConsole;
 
 public class Main {

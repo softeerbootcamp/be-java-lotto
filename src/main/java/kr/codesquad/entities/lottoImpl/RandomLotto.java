@@ -1,13 +1,12 @@
-package kr.codesquad.impl;
+package kr.codesquad.entities.lottoImpl;
 
-import kr.codesquad.templates.LottoTmpl;
+import kr.codesquad.templates.Lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class RandomLotto implements LottoTmpl {
+public class RandomLotto extends Lotto {
 
-    private ArrayList<ArrayList<Integer>> lottoList = new ArrayList<ArrayList<Integer>>();
     private ArrayList<Integer> allNums = new ArrayList<Integer>();
 
     public RandomLotto(){
@@ -38,15 +37,5 @@ public class RandomLotto implements LottoTmpl {
         addLotto(tempList);
     }
 
-    //생성된 로또 번호를 모든 로또번호를 담은 ArrayList에 Add
-    @Override
-    public void addLotto(ArrayList<Integer> givenList) {
-        lottoList.add(givenList);
-    }
 
-    //로또 리스트를 반환
-    @Override
-    public ArrayList<ArrayList<Integer>> getLottoList() {
-        return lottoList;
-    }
 }

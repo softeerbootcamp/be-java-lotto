@@ -1,12 +1,10 @@
-package kr.codesquad.impl;
+package kr.codesquad.entities.lottoImpl;
 
-import kr.codesquad.templates.LottoTmpl;
+import kr.codesquad.templates.Lotto;
 
 import java.util.*;
 
-public class MyLotto implements LottoTmpl {
-
-    private ArrayList<ArrayList<Integer>> lottoList = new ArrayList<ArrayList<Integer>>();
+public class MyLotto extends Lotto {
 
 
     //인풋 스트링을 정수형 배열로 변환
@@ -29,15 +27,4 @@ public class MyLotto implements LottoTmpl {
         }
     }
 
-    //생성된 로또 번호를 모든 로또번호를 담은 ArrayList에 Add
-    @Override
-    public void addLotto(ArrayList<Integer> givenList) {
-        lottoList.add(givenList);
-    }
-
-    //로또 리스트를 반환
-    @Override
-    public ArrayList<ArrayList<Integer>> getLottoList() {
-        return lottoList;
-    }
 }

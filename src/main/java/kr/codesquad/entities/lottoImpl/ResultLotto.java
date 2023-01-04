@@ -1,16 +1,15 @@
-package kr.codesquad.impl;
+package kr.codesquad.entities.lottoImpl;
 
-import kr.codesquad.templates.LottoTmpl;
+import kr.codesquad.templates.Lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class ResultLotto implements LottoTmpl {
+public class ResultLotto extends Lotto {
 
-    private ArrayList<ArrayList<Integer>> lottoList = new ArrayList<ArrayList<Integer>>();
-    private int bonumsNum;
+    private int bonusNum;
 
 
     //인풋 스트링을 정수형 배열로 변환
@@ -30,29 +29,16 @@ public class ResultLotto implements LottoTmpl {
         String numStr = scan.nextLine();
         addLotto(parseString(numStr));
     }
-
-    //주어진 6개의 숫자 리스트를 로또 리스트 ArrayList에 add
-    @Override
-    public void addLotto(ArrayList<Integer> givenList) {
-        lottoList.add(givenList);
-    }
-
-    //로또 리스트를 리턴
-    @Override
-    public ArrayList<ArrayList<Integer>> getLottoList() {
-        return lottoList;
-    }
-
     //보너스 번호 입력
     public void enterBonusNum(){
         System.out.println("보너스볼을 입력해 주세요.");
         Scanner scan = new Scanner(System.in);
         int givenBonusNum = scan.nextInt();
-        this.bonumsNum = givenBonusNum;
+        this.bonusNum = givenBonusNum;
     }
 
     public int getBonusNum(){
-        return bonumsNum;
+        return bonusNum;
     }
 
 }

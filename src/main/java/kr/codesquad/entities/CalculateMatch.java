@@ -1,8 +1,8 @@
 package kr.codesquad.entities;
 
+import kr.codesquad.templates.Lotto;
 import kr.codesquad.utils.Prize;
-import kr.codesquad.impl.ResultLotto;
-import kr.codesquad.templates.LottoTmpl;
+import kr.codesquad.entities.lottoImpl.ResultLotto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ public class CalculateMatch {
     }
 
     //수동 로또와 자동 리스트를 합하여 리턴
-    public ArrayList<ArrayList<Integer>> mergeLottos(LottoTmpl lotto1, LottoTmpl lotto2){
+    public ArrayList<ArrayList<Integer>> mergeLottos(Lotto lotto1, Lotto lotto2){
         ArrayList<ArrayList<Integer>> lottoList1 = lotto1.getLottoList();
         ArrayList<ArrayList<Integer>> lottoList2 = lotto2.getLottoList();
         lottoList1.addAll(lottoList2);
@@ -41,7 +41,7 @@ public class CalculateMatch {
     }
 
     //모든 로또 리스트에 대해 당첨 여부를 확인
-    public void startCalculate(LottoTmpl randomLotto, LottoTmpl myLotto, ResultLotto resultLotto){
+    public void startCalculate(Lotto randomLotto, Lotto myLotto, ResultLotto resultLotto){
         int repNum = randomLotto.getLottoList().size() + myLotto.getLottoList().size();
         ArrayList<ArrayList<Integer>> randomLottoList = mergeLottos(randomLotto, myLotto);
         ArrayList<Integer> resultLottoList = resultLotto.getLottoList().get(0);
