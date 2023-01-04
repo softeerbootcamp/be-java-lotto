@@ -29,7 +29,7 @@ public class UserInput {
         return inputHandler.getIntegerInput();
     }
 
-    public List<EmptyLotto> userManualInput() throws CustomException {
+    public List<EmptyLotto> userInputManual() throws CustomException {
         System.out.printf("수동으로 구매할 번호를 입력해 주세요\n");
         List<EmptyLotto> userLottoList = new ArrayList<>();
         for (int i = 0; i < userLotto.getUserManualLottoCount(); i++) {
@@ -39,6 +39,13 @@ public class UserInput {
         }
         return userLottoList;
     }
-
-
+    public List<Integer> userInputJackpotNum() throws CustomException {
+        System.out.printf("당첨 번호를 입력해 주세요.\n");
+        String[] userInputString = inputHandler.getStringInput().split(",");
+        List<Integer> userInputJackpotNum = new ArrayList<>();
+        for (String num:userInputString){
+            userInputJackpotNum.add(Integer.parseInt(num));
+        }
+        return userInputJackpotNum;
+    }
 }
