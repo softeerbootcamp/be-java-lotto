@@ -1,16 +1,17 @@
 package kr.codesquad.lotto.issue;
 
 import kr.codesquad.lotto.Lotto;
+import kr.codesquad.lotto.LottoNumber;
 
 import java.util.*;
 
 public class AutoLottoIssueStrategy implements LottoIssueStrategy {
 
-    private final List<Integer> numList;
+    private final List<LottoNumber> numList;
 
     public AutoLottoIssueStrategy() {
         this.numList = new ArrayList<>(45);
-        for (int idx = 1; idx <= 45; idx++) numList.add(idx);
+        for (int idx = 1; idx <= 45; idx++) numList.add(new LottoNumber(idx));
     }
 
     @Override
@@ -25,8 +26,8 @@ public class AutoLottoIssueStrategy implements LottoIssueStrategy {
         return lottoList;
     }
 
-    private Set<Integer> shuffle() {
-        List<Integer> numberList = new ArrayList<>(numList);
+    private Set<LottoNumber> shuffle() {
+        List<LottoNumber> numberList = new ArrayList<>(numList);
         Collections.shuffle(numberList);
         return new HashSet<>(numberList.subList(0, 6));
     }

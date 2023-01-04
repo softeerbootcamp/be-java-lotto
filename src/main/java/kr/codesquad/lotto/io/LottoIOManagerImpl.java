@@ -1,5 +1,6 @@
 package kr.codesquad.lotto.io;
 
+import kr.codesquad.lotto.LottoNumber;
 import kr.codesquad.lotto.LottoResult;
 import kr.codesquad.lotto.Rank;
 
@@ -23,7 +24,7 @@ public class LottoIOManagerImpl implements LottoIOManager {
         try {
             return Integer.parseInt(br.readLine());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException("금액은 숫자만 입력해야합니다.");
         }
     }
 
@@ -33,18 +34,19 @@ public class LottoIOManagerImpl implements LottoIOManager {
         try {
             return Integer.parseInt(br.readLine());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
         }
     }
 
     @Override
-    public Set<Integer> readLottoNumberSet(String message) {
+    public Set<LottoNumber> readLottoNumberSet(String message) {
         if (message.length() != 0) print(message);
         try {
-            Set<Integer> numberSet = new HashSet<>(6);
+            Set<LottoNumber> numberSet = new HashSet<>(6);
             String[] numbersOfString = br.readLine().replaceAll(" ", "").split(",");
             for (String numberOfString: numbersOfString) {
-                numberSet.add(Integer.parseInt(numberOfString));
+                LottoNumber lottoNumber = new LottoNumber(Integer.parseInt(numberOfString));
+                numberSet.add(lottoNumber);
             }
             return numberSet;
         } catch (IOException e) {
@@ -53,12 +55,13 @@ public class LottoIOManagerImpl implements LottoIOManager {
     }
 
     @Override
-    public int readLottoNumber(String message) {
+    public LottoNumber readLottoNumber(String message) {
         print(message);
         try {
-            return Integer.parseInt(br.readLine());
+            int lottoNumber = Integer.parseInt(br.readLine());
+            return new LottoNumber(lottoNumber);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("숫자만 입력 가능합니다.");
         }
     }
 

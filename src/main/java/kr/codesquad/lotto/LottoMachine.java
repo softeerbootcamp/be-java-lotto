@@ -56,8 +56,8 @@ public class LottoMachine {
     }
 
     private WinningLotto getWinningLotto() {
-        List<Integer> winningNumberList = new ArrayList<>(lottoIOManager.readLottoNumberSet("\n당첨 번호를 입력하세요."));
-        int bonus = lottoIOManager.readLottoNumber("보너스 번호를 입력하세요.");
+        List<LottoNumber> winningNumberList = new ArrayList<>(lottoIOManager.readLottoNumberSet("\n당첨 번호를 입력하세요."));
+        LottoNumber bonus = lottoIOManager.readLottoNumber("보너스 번호를 입력하세요.");
 
         return new WinningLotto(winningNumberList, bonus);
     }
