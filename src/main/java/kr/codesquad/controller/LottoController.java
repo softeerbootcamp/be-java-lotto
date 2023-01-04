@@ -23,7 +23,6 @@ public class LottoController {
         totalPrice = requestMoney();
         amount = totalPrice / LOTTO_PRICE;
         Lottos lottos = purchaseLotto(amount);
-        int bonusBall = getBonusBall();
         WinLotto winLotto  = makeWinLotto();
         findSameNumber(lottos, winLotto);
         getResult();
@@ -44,7 +43,8 @@ public class LottoController {
     private WinLotto makeWinLotto() {
         OutputView.showRequestWinNumber();
         Lotto winLotto = getWinLotto();
-        return new WinLotto(winLotto);
+        int bonusBall = Integer.parseInt(InputView.inputBonusBall());
+        return new WinLotto(winLotto, bonusBall);
     }
 
     private Lotto getWinLotto() {
@@ -55,9 +55,6 @@ public class LottoController {
         return new Lotto(newList);
     }
 
-    private int getBonusBall() {
-        return Integer.parseInt(InputView.inputBonusBall());
-    }
     public static void findSameNumber(
             Lottos lottos,
             WinLotto winLotto)
