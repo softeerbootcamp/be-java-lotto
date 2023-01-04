@@ -1,31 +1,29 @@
 package kr.codesquad.lotto;
 
 import kr.codesquad.lotto.check.LottoCheck;
-import kr.codesquad.lotto.check.LottoCheckImpl;
 import kr.codesquad.lotto.issue.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class LottoMachine {
 
+    private final int priceOfLotto;
     private final LottoIssue lottoIssue;
     private final LottoCheck lottoCheck;
-    private final int priceOfLotto;
-    private final BufferedReader br;
-
     private final Map<String, LottoIssueStrategy> issueStrategyMap;
 
-    public LottoMachine(int priceOfLotto) {
+    private final BufferedReader br;
+
+    public LottoMachine(int priceOfLotto, LottoIssue lottoIssue, LottoCheck lottoCheck, Map<String, LottoIssueStrategy> issueStrategyMap, BufferedReader br) {
         this.priceOfLotto = priceOfLotto;
-        this.lottoIssue = new LottoIssueImpl();
-        this.lottoCheck = new LottoCheckImpl();
-        this.br = new BufferedReader(new InputStreamReader(System.in));
-        this.issueStrategyMap = Map.of("AUTO", new AutoLottoIssueStrategy(), "MANUAL", new ManualLottoIssueStrategy());
+        this.lottoIssue = lottoIssue;
+        this.lottoCheck = lottoCheck;
+        this.br = br;
+        this.issueStrategyMap = issueStrategyMap;
     }
 
     public LottoTicket buy() throws IOException {
@@ -42,8 +40,11 @@ public class LottoMachine {
 
     private List<Lotto> issueLotto(int lottoCnt) throws IOException {
         List<Lotto> manualLottoList = this.lottoIssue.issue(issueStrategyMap.get("MANUAL"), lottoCnt);
-        List<Lotto> autoLottoList = this.lottoIssue.issue(issueStrategyMap.get("AUTO"), lottoCnt - manualLottoList.size());
+        int autoLottoCnt = lottoCnt - manualLottoList.size();
+
+        List<Lotto> autoLottoList = this.lottoIssue.issue(issueStrategyMap.get("AUTO"), autoLottoCnt);
         manualLottoList.addAll(autoLottoList);
+
         return manualLottoList;
     }
 
