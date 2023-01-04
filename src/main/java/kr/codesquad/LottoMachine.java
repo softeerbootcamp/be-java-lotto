@@ -13,11 +13,15 @@ public class LottoMachine {
     private final int priceOfLotto;
     private final BufferedReader br;
 
+    private final LottoIssueStrategy lottoIssueStrategy;
+
     public LottoMachine(int priceOfLotto) {
         this.priceOfLotto = priceOfLotto;
         this.lottoIssue = new LottoIssueImpl();
         this.lottoCheck = new LottoCheckImpl();
         this.br = new BufferedReader(new InputStreamReader(System.in));
+
+        this.lottoIssueStrategy = new AutoLottoIssueStrategy();
     }
 
     public LottoTicket buy() throws IOException {
@@ -25,7 +29,7 @@ public class LottoMachine {
         int money = Integer.parseInt(br.readLine());
         int lottoCnt = money / priceOfLotto;
 
-        List<Lotto> lottoList = this.lottoIssue.issue(lottoCnt);
+        List<Lotto> lottoList = this.lottoIssue.issue(lottoIssueStrategy, lottoCnt);
         System.out.println(lottoList.size() + "개를 구매했습니다.");
         return new LottoTicket(lottoList, lottoCnt * priceOfLotto);
     }
