@@ -14,8 +14,10 @@ public class Lotto {
     }
 
     public Lotto(List<Integer> lottoNumList){
+        lottoNumbers = new ArrayList<>();
         bonusBall = 0;
-        lottoNumbers = lottoNumList;
+        Collections.sort(lottoNumList);
+        lottoNumbers.addAll(lottoNumList);
     }
     public void setLottoNumbers(List<Integer> ln){
         lottoNumbers = ln;

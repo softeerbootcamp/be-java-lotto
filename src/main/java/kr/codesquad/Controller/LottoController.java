@@ -50,7 +50,6 @@ public class LottoController {
             // 번호 6개 자르고 정렬 후 구매 리스트에 추가
             user.setLottoBuy(new Lotto(numberList.subList(0,6)));
             user.addLottoBuyList(user.getLottoBuy());
-            System.out.println(user.getLottoBuyList().get(1).getLottoNumbers());
         }
     }
 
