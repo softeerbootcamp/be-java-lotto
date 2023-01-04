@@ -10,4 +10,9 @@ public class LottoGame {
         this.lottoBuyList = lottosGenerator.generate(money);
     }
 
+    public List<Lotto> getLottoBuyList(){
+        return lottoBuyList;
+    }
+
+
 }

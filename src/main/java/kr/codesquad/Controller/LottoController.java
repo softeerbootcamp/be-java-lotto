@@ -1,8 +1,6 @@
 package kr.codesquad.Controller;
 
-import kr.codesquad.Model.Lotto;
-import kr.codesquad.Model.Rank;
-import kr.codesquad.Model.User;
+import kr.codesquad.Model.*;
 import kr.codesquad.View.Input;
 import kr.codesquad.View.Output;
 
@@ -29,15 +27,14 @@ public class LottoController {
 
     public void start(){
         // 구입 금액 입력 받고 구입 개수 출력
-        user.setPriceAndCount(Input.inputPrice());
-        Output.printCount(user.getCount());
-        // count 만큼의 로또 번호 생성 및 출력
-        createLottoNumber();
+        Money money = new Money(Input.inputPrice());
+        Output.printCount(money.countLottos());
+        // count 만큼의 로또 번호 생성
+        LottoGame lottoGame = new LottoGame(money);
         // 구매한 로또 번호 출력
-        Output.printLottoBuyList(user.getLottoBuyList());
+        Output.printLottoBuyList(lottoGame);
         // 지난 주 당첨 번호 입력 받기
-        winLottoNum = Input.inputWinLottoNum();
-        winLottoNum.setBonusBall(Input.inputBonusBall());
+        WinningLotto winningLotto = new WinningLotto(Input.inputWinLottoNum(), Input.inputBonusBall());
         // 지난 주 당첨 통계
         statistics(user.getLottoBuyList(), user.getPrice());
     }
@@ -48,7 +45,7 @@ public class LottoController {
             // 번호 섞기
             Collections.shuffle(numberList);
             // 번호 6개 자르고 정렬 후 구매 리스트에 추가
-            user.setLottoBuy(new Lotto(numberList.subList(0,6)));
+            //user.setLottoBuy(new Lotto(numberList.subList(0,6)));
             user.addLottoBuyList(user.getLottoBuy());
         }
     }
@@ -72,7 +69,7 @@ public class LottoController {
     public int countScore(Lotto lottoNumList){
         int score = 0;
         for(int i = 0;i<6;i++)
-            score += compareValue(lottoNumList, winLottoNum.getLottoNumbers().get(i));
+            score += compareValue(lottoNumList, 0);
         return score;
     }
     public int compareValue(Lotto lottoNumList, int value){
@@ -101,6 +98,6 @@ public class LottoController {
     }
 
     private void countTotalWinPrice(int score, boolean isWinBonus) {
-        user.addTotalWinPrice(Rank.valueOf(score, isWinBonus));
+        //user.addTotalWinPrice(Rank.valueOf(score, isWinBonus));
     }
 }

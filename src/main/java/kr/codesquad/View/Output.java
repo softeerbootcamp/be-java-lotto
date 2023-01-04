@@ -1,6 +1,7 @@
 package kr.codesquad.View;
 
 import kr.codesquad.Model.Lotto;
+import kr.codesquad.Model.LottoGame;
 import kr.codesquad.Model.Rank;
 
 import java.util.List;
@@ -13,15 +14,15 @@ public class Output {
     }
 
 
-    public static void printLottoBuyList(List<Lotto> lottoBuyList) {
-        for (Lotto lottoBuy : lottoBuyList) {
+    public static void printLottoBuyList(LottoGame lottoGame) {
+        for (Lotto lottoBuy : lottoGame.getLottoBuyList()) {
             // 출력
             printLottoNumbers(lottoBuy);
         }
     }
 
     public static void printLottoNumbers(Lotto lotto){
-        System.out.println(lotto.getLottoNumbers());
+        System.out.println(lotto.toListInteger());
     }
 
     public static void printScore(int price, int[] scoreList, int bonusBallScoreCount) {
