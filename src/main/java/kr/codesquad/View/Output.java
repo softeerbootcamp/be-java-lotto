@@ -35,14 +35,5 @@ public class Output {
     public static void printRate(LottoResult lottoResult, Money money){
         System.out.println("구입 금액은 " + money.toString() + "원이고, 총 당첨금은 " + lottoResult.getPrize().toString() + "원입니다.");
         System.out.println("총 수익률은 " + String.format("%.2f", money.profitRate(lottoResult.getPrize())) + "%입니다.");
-
-
-
-//        // 수익률 계산 = 딴 돈 / 낸 돈  백분율
-//        double winRate = (double)totalWinPrice / price * 100;
-//        // 손해일 경우 - 100
-//        // 기존의 30퍼센트 = -70퍼센트
-//        if(totalWinPrice < price) winRate -= 100.0;
-//        System.out.println("총 수익률은 " + String.format("%.2f",winRate) + "%입니다.");
     }
 }

@@ -56,25 +56,7 @@ public class Lotto {
         return 0;
     }
 
-    //    public Lotto(List<Integer> lottoNumList){
-//        lotto = new ArrayList<>();
-//        bonusBall = 0;
-//        Collections.sort(lottoNumList);
-//        //lotto.addAll(lottoNumList);
-//    }
-    public List<LottoNumber> getLottoNumbers() {
-        return lotto;
-    }
-
     public void addLottoNum(int num){
         lotto.add(LottoNumber.of(num));
-    }
-
-    public void setBonusBall(int b){
-        bonusBall = b;
-    }
-
-    public int getBonusBall(){
-        return bonusBall;
     }
 }
