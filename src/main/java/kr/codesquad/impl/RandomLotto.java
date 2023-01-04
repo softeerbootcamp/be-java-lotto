@@ -14,15 +14,19 @@ public class RandomLotto implements LottoTmpl {
         generateAllNums();
     }
 
+    //난수 생성 용 ArrayList를 생성
     public void generateAllNums(){
         for(int i = 1; i < 46; i++)
             allNums.add(i);
     }
+
+    //로또 번호 생성 로직 시작
     public void startGeneration(int repNum){
         for(int i = 0 ; i < repNum; i++){
-            generateLotto();
         }
     }
+
+    //6개의 로또 번호를 생성
     public void generateLotto(){
         Collections.shuffle(allNums);
         ArrayList<Integer> tempList = new ArrayList<Integer>();
@@ -30,11 +34,14 @@ public class RandomLotto implements LottoTmpl {
             tempList.add(allNums.get(j));
         System.out.println(tempList);
     }
+
+    //생성된 로또 번호를 모든 로또번호를 담은 ArrayList에 Add
     @Override
     public void addLotto(ArrayList<Integer> givenList) {
         lottoList.add(givenList);
     }
 
+    //로또 리스트를 반
     @Override
     public ArrayList<ArrayList<Integer>> getLottoList() {
         return lottoList;
