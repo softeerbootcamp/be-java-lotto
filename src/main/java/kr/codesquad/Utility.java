@@ -47,4 +47,9 @@ public class Utility {
         }
         return numbers;
     }
+    public static int countUpIfContains(List<Integer> arr, int target, int count) {
+        if (arr.contains(target))
+            count += 1;
+        return count;
+    }
 }

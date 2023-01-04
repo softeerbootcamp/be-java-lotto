@@ -1,5 +1,7 @@
 package kr.codesquad.Lotto;
 
+import kr.codesquad.Utility;
+
 import java.util.List;
 
 public enum Prize {
@@ -20,7 +22,7 @@ public enum Prize {
     public static Prize calcPrize(WinLotto winning, Lotto lotto) {
         int count = 0;
         for (Integer expect_no : lotto.getLottoNums()) {
-            count = countUpIfContains(winning.getLottoNums(), expect_no, count);
+            count = Utility.countUpIfContains(winning.getLottoNums(), expect_no, count);
         }
 
         boolean isBonusCorrect = lotto.getLottoNums().contains(winning.getBonusNo());
@@ -29,9 +31,5 @@ public enum Prize {
         return prizes[count];
     }
 
-    public static int countUpIfContains(List<Integer> arr, int target, int count) {
-        if (arr.contains(target))
-            count += 1;
-        return count;
-    }
+
 }
