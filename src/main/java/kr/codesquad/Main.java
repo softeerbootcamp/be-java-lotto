@@ -1,8 +1,11 @@
 package kr.codesquad;
 
+import kr.codesquad.entities.CalculateMatch;
+import kr.codesquad.entities.UserInfo;
 import kr.codesquad.impl.MyLotto;
 import kr.codesquad.impl.RandomLotto;
 import kr.codesquad.impl.ResultLotto;
+import kr.codesquad.utils.UserConsole;
 
 public class Main {
 
@@ -26,7 +29,6 @@ public class Main {
         resultLotto.enterResultNumbers();
         //보너스 번호 입력
         resultLotto.enterBonusNum();
-
         //당첨 여부 확인
         calculateMatch.startCalculate(randomLotto, myLotto, resultLotto);
         //결과 출력

@@ -22,10 +22,9 @@ public class MyLotto implements LottoTmpl {
     //사용자의 인풋을 받아 이를 로또리스트 배열에 추가
     public void generateLotto(int repNum){
         System.out.println("수동으로 구매할 로또 번호를 입력해주세요.");
+        Scanner scan = new Scanner(System.in);
         for(int i = 0; i < repNum; i++){
-            Scanner scan = new Scanner(System.in);
             String numStr = scan.nextLine();
-            scan.nextLine();
             addLotto(parseString(numStr));
         }
     }
