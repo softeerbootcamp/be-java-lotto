@@ -1,5 +1,6 @@
-package kr.codesquad;
+package kr.codesquad.domain;
 
+import kr.codesquad.NumberGenerator;
 import kr.codesquad.enums.Rank;
 
 import java.util.ArrayList;
