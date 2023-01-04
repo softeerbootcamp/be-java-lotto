@@ -4,6 +4,7 @@ import kr.codesquad.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.lang.RuntimeException;
 
 public class Console {
     static Scanner scanner = new Scanner(System.in);
@@ -13,9 +14,19 @@ public class Console {
         System.out.println("구입 금액을 입력하세요");
     }
 
-    public String scanCashAmount()
+    public int scanCashAmount()
     {
-        return scanner.nextLine();
+        int cash = 0;
+        try
+        {
+            cash = Integer.parseInt(scanner.nextLine());
+        } catch(NumberFormatException e)
+        {
+            System.out.println("유효한 숫자 입력이 아닙니다.");
+            System.out.printf("범위 안에 들어가는 숫자를 입력하세요 : %d ~ %d\n", 0, Integer.MAX_VALUE - (Integer.MAX_VALUE%1000));
+            cash = scanCashAmount();
+        }
+        return cash;
     }
 
     public void printManualTicketCountInstruction()

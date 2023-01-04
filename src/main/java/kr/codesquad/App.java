@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
-
     static Scanner scanner = new Scanner(System.in);
     private Console console;
     private static User user = new User();
@@ -40,7 +39,7 @@ public class App {
     private void setCashInfo()
     {
         console.printCashInstruction();
-        int cash = Integer.parseInt(console.scanCashAmount());
+        int cash = console.scanCashAmount();
         user.setCash(cash);
     }
 
