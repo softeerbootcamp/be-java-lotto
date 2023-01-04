@@ -19,6 +19,14 @@ public class Lotto {
     }
 
 
+
+    public void printTotalLotto() {
+        for (Row row : totalLotto) {
+            List<Integer> values = row.getValues();
+            System.out.println(values);
+        }
+    }
+
     public void compareLotto(WinningNumbers winningNumbers) {
         for (Row row : totalLotto) {
             row.compare(winningNumbers);

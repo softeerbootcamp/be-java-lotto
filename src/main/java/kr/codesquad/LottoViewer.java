@@ -27,15 +27,10 @@ public class LottoViewer {
         int num = Statistic.getRowCountICanBuy(inputMoney);
         System.out.println(num + "개를 구매했습니다.");
         Lotto lotto = lottoController.createLotto(inputMoney);
-        printRows(lotto.getTotalLotto());
+        lotto.printTotalLotto();
         return lotto;
     }
-    public void printRows(List<Row> rows) {
-        for (Row row : rows) {
-            List<Integer> values = row.getValues();
-            System.out.println(values);
-        }
-    }
+
     public void inputResult(Lotto lotto) throws IOException {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
