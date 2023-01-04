@@ -7,16 +7,17 @@ import java.util.Map;
 public class LottoChecker {
     private final List<Integer> winNumList;
     private final int bonusNum;
+    private final Map<Rank, Integer> result = new EnumMap<>(Rank.class);
 
     public LottoChecker() {
         UserInput ui = new UserInput();
         this.winNumList = ui.inputWinNum();
         this.bonusNum = ui.inputBonusNum();
+        for(Rank rank : Rank.values()) this.result.put(rank, 0);
     }
 
     public void checkLotto(Lotto lotto) {
         List<List<Integer>> lottoList = lotto.getLottoList();
-        Map<Rank, Integer> result = new EnumMap<>(Rank.class);
 
         for(List<Integer> eachLottoList : lottoList)
             setResult(result, countWinNum(eachLottoList), checkBonus(eachLottoList));
@@ -39,9 +40,7 @@ public class LottoChecker {
 
     public void setResult(Map<Rank, Integer> result, int winNumCount, boolean isBonus) {
         for(Rank rank : result.keySet()) {
-            if(winNumCount == rank.getCountOfMatch() && !rank.getIsBonus())
-                result.put(rank, result.getOrDefault(rank, 0) + 1);
-            else
+            if(winNumCount == rank.getCountOfMatch() && isBonus == rank.getIsBonus())
                 result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
     }
@@ -52,15 +51,15 @@ public class LottoChecker {
         System.out.println("당첨 통계");
         System.out.println("---------");
 
-        for(Map.Entry<Rank, Integer> e : result.entrySet()) {
-            String resultString =
-                    e.getKey().getIsBonus() ? e.getKey().getCountOfMatch() + "개 일치, 보너스 볼 일치 (" +
-                            e.getKey().getWinningMoney() + "원)- " + e.getValue() + "개" :
-                            e.getKey().getCountOfMatch() + "개 일치 (" +
-                                    e.getKey().getWinningMoney() + "원)- " + e.getValue() + "개";
+        for(Map.Entry<Rank, Integer> resultEntry : result.entrySet()) {
+            String resultString = resultEntry.getKey().getIsBonus() ?
+                    resultEntry.getKey().getCountOfMatch() + "개 일치, 보너스 볼 일치 (" +
+                            resultEntry.getKey().getWinningMoney() + "원)- " + resultEntry.getValue() + "개" :
+                    resultEntry.getKey().getCountOfMatch() + "개 일치 (" +
+                            resultEntry.getKey().getWinningMoney() + "원)- " + resultEntry.getValue() + "개";
 
             System.out.println(resultString);
-            resultPrice += (long) e.getValue() * e.getKey().getWinningMoney();
+            resultPrice += (long) resultEntry.getValue() * resultEntry.getKey().getWinningMoney();
         }
 
         long expense = lottoCount * 1000L;
