@@ -73,7 +73,7 @@ public class LottoIOManagerImpl implements LottoIOManager {
     @Override
     public void printLottoResult(LottoResult lottoResult) {
         for (Rank rank: Rank.values()) {
-            String stringOfBonus = rank.isBonus() ? ", 보너스 볼 일치" : "";
+            String stringOfBonus = rank == Rank.SECOND  ? ", 보너스 볼 일치" : "";
             System.out.println(rank.getCountOfMatch() + "개 일치" + stringOfBonus + "(" + rank.getWinningMoney() + "원) - " + lottoResult.getRankStatus().get(rank) + "개");
         }
         System.out.println("총 수익률은 " + String.format("%.2f", lottoResult.getRate()) + "%입니다.");
