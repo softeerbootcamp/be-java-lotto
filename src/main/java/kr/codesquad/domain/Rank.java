@@ -11,17 +11,19 @@ public enum Rank {
 
     private final int winningAmount;
 
-    private final int rank;
+    private final int count;
 
     private final boolean isBounsBall;
     Rank(
             int winningAmount,
-            int rank,
-            boolean isBounsBall)
+            int count,
+            boolean isBounsBall
+    )
     {
         this.winningAmount = winningAmount;
-        this.rank = rank;
+        this.count = count;
         this.isBounsBall = isBounsBall;
     }
+
 
 }
