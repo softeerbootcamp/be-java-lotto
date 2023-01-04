@@ -1,9 +1,10 @@
 package kr.codesquad;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import kr.codesquad.exception.CustomException;
+import kr.codesquad.exception.ErrorCode;
+
+import java.io.IOException;
+import java.util.*;
 
 public class LottoMachine {
 
@@ -18,9 +19,24 @@ public class LottoMachine {
     }
 
     public Integer getAmountOfMoney(){
-        System.out.println("구입금액을 입력해주세요. ");
-        Scanner sc = new Scanner(System.in);
-        int amountOfMoney = sc.nextInt();
+        int amountOfMoney = 0;
+        do {
+            System.out.print("구입금액을 입력해주세요");
+            try {
+                Scanner sc = new Scanner(System.in);
+                amountOfMoney = sc.nextInt();
+            }catch(InputMismatchException e){
+                System.out.println("유효하지 않은 값입니다. 다시 값을 입력해주세요.");
+                continue; //다시 반복문의 처음으로 돌아가 입력값을 다시 입력받음
+            }catch(Exception e){
+                System.out.println("입력에 에러가 발생했습니다. 다시 값을 입력해주세요");
+                continue;
+            }
+            break; // do-while을 통한 입력 벗어남
+        } while (true);
+
+        if(amountOfMoney < 20000) throw new CustomException(ErrorCode.MONEY_NOT_ENOUGH);
+
         return amountOfMoney;
     }
 
@@ -28,7 +44,7 @@ public class LottoMachine {
         //to-do : 금액에 따른 개수 제한 예외처리
         this.lottoCnt = amountOfMoney/1000; // 총 로또 개수
         this.lottoCnt -= manualLottoCnt;
-        System.out.println("총"+lottoCnt+"개를 자동으로 구매했습니다.");
+        //System.out.println("총"+lottoCnt+"개를 자동으로 구매했습니다.");
         return lottoCnt;
     }
 
@@ -36,7 +52,6 @@ public class LottoMachine {
         for(int i=0;i<lottoCnt;i++){
             getLottoByShuffle();
         }
-        System.out.println(lottos.size());
         return lottos;
     }
 
