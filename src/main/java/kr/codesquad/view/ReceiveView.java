@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class ReceiveView {
 
-    private static final String WIN_LOTTO_SEPARATE = ",";
+    private static final String LOTTO_SEPARATE = ",";
 
 
     public static int enterPurchaseAmount() {
@@ -20,14 +20,14 @@ public class ReceiveView {
         return scanner.nextInt();
     }
 
-    public static List<Integer> enterWinningNumbers() {
+    public static List<Integer> enterManualLottos() {
         Scanner scanner = new Scanner(System.in);
         String inputNumbers = scanner.nextLine();
-        return getWinningNumbers(inputNumbers);
+        return transInputToList(inputNumbers);
     }
 
-    private static List<Integer> getWinningNumbers(String inputNumbers) {
-        return Arrays.stream(inputNumbers.split(WIN_LOTTO_SEPARATE))
+    private static List<Integer> transInputToList(String inputNumbers) {
+        return Arrays.stream(inputNumbers.split(LOTTO_SEPARATE))
                 .mapToInt(Integer::parseInt)
                 .mapToObj(i -> i)
                 .collect(Collectors.toList());
