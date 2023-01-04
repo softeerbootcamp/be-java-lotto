@@ -20,7 +20,7 @@ public class LottoController {
         this.inputMoney = inputMoney;
 
         int num = inputMoney / SINGLE_PRICE;
-        rows = lottoService.receiveRandomRows(num);
+        rows = lottoService.receiveRandomRows(inputMoney);
 
         return rows;
     }

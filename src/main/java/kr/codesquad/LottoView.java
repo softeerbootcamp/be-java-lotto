@@ -12,7 +12,7 @@ import static kr.codesquad.LottoService.COLUMN;
 public class LottoView {
     private final LottoController lottoController;
 
-    private final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public LottoView() {
         this.lottoController = new LottoController();

@@ -6,30 +6,18 @@ import java.util.List;
 
 public class LottoService {
 
-    private final List<Integer> numberList; //1~45까지의 숫자 list
     static final int COLUMN = 6;
+    private final LottoGenerator autoLottoGenerator;
 
     public LottoService() {
-        this.numberList = new ArrayList<>();
-        for (int i = 1; i <= 45; i++) {
-            numberList.add(i);
-        }
+        this.autoLottoGenerator = new AutoLottoGenerator();
     }
 
     /**
      * 각 줄 발급
      */
-    public List<Row> receiveRandomRows(int num) {
-        List<Row> rows = new ArrayList<>();
-        for (int i = 0; i < num; i++) {
-            Collections.shuffle(numberList);
-            Row row = new Row();
-            List<Integer> tempt = numberList.subList(0, COLUMN);
-            Collections.sort(tempt);
-            row.addValues(tempt);
-            rows.add(row);
-        }
-        return rows;
+    public List<Row> receiveRandomRows(int inputMoney) {
+        return autoLottoGenerator.generateRows(inputMoney);
     }
 
     public void compareLotto(List<Row> rows, int[] answers, int bonusNumber) {
