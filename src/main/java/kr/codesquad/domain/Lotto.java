@@ -37,6 +37,16 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
+    public boolean contains(int number) {
+        return lotto.contains(number);
+    }
+
+    private int getMatchCount(Lotto targetLotto) {
+        return (int)lotto.stream()
+                .filter(targetLotto::contains)
+                .count();
+    }
+
     public List<Integer> getLotto() {
         return new ArrayList<>(new ArrayList<>(lotto));
     }
