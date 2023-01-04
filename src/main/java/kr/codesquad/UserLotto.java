@@ -8,11 +8,10 @@ import java.util.*;
 
 public class User extends BaseLotto{
 
-    private ArrayList<Integer> inputs; //저번 주 당첨 번호
     private int bonusBall; //보너스 볼
 
     public User() {
-        this.inputs = new ArrayList<>();
+        //this.inputs = new ArrayList<>();
         this.lottoList=new ArrayList<>();
     }
 
@@ -62,17 +61,6 @@ public class User extends BaseLotto{
         }
 
         return manualLotto;
-    }
-
-    public ArrayList<Integer> getLottoInput(){
-        System.out.println("당첨 번호를 입력해주세요.");
-        Scanner sc = new Scanner(System.in);
-        String inputNumbers = sc.nextLine();
-        if(inputNumbers.split(", ").length != 6) throw new CustomException(ErrorCode.ILLEGAL_LOTTO_NUM_COUNT);
-        for(String input : inputNumbers.split(", ")){
-            inputs.add(Integer.valueOf(input));
-        }
-        return inputs;
     }
 
     public Integer getBonusLottoInput() {
