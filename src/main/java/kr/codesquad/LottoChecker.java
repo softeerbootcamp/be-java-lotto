@@ -46,20 +46,23 @@ public class LottoChecker {
         }
     }
 
-    public void printResult(List<Integer> result, int lottoCount) {
+    public void printResult(Map<Rank, Integer> result, int lottoCount) {
+        long resultPrice = 0;
+
         System.out.println("당첨 통계");
         System.out.println("---------");
-        System.out.println("3개 일치 (5000원)- " + result.get(0) + "개");
-        System.out.println("4개 일치 (50000원)- " + result.get(1) + "개");
-        System.out.println("5개 일치 (1500000원)- " + result.get(2) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30000000원)- " + result.get(3) + "개");
-        System.out.println("6개 일치 (2000000000원)- " + result.get(4) + "개");
 
-        long resultPrice = (long) result.get(0) * Rank.FIFTH.getWinningMoney() +
-                (long) result.get(1) * Rank.FOURTH.getWinningMoney() +
-                (long) result.get(2) * Rank.THIRD.getWinningMoney() +
-                (long) result.get(3) * Rank.SECOND.getWinningMoney() +
-                (long) result.get(4) * Rank.FIRST.getWinningMoney();
+        for(Map.Entry<Rank, Integer> e : result.entrySet()) {
+            String resultString =
+                    e.getKey().getIsBonus() ? e.getKey().getCountOfMatch() + "개 일치, 보너스 볼 일치 (" +
+                            e.getKey().getWinningMoney() + "원)- " + e.getValue() + "개" :
+                            e.getKey().getCountOfMatch() + "개 일치 (" +
+                                    e.getKey().getWinningMoney() + "원)- " + e.getValue() + "개";
+
+            System.out.println(resultString);
+            resultPrice += (long) e.getValue() * e.getKey().getWinningMoney();
+        }
+
         long expense = lottoCount * 1000L;
         System.out.printf("총 수익률은 %.2f%%입니다.\n", (float) (resultPrice - expense) / expense * 100);
     }
