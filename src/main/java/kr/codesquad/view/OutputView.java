@@ -50,13 +50,13 @@ public class OutputView {
                 .sorted(Collections.reverseOrder())
                 .collect(Collectors.toList());
 
-        printWinningResult(sb, ranks, result);
-        printProfitRate(sb, profitRate);
+        makeWinningResultWithStringBuffer(sb, ranks, result);
+        makeProfitRateMessageWithStringBuffer(sb, profitRate);
 
         System.out.println(sb);
     }
 
-    private void printWinningResult(StringBuffer sb, List<Rank> ranks, Map<Rank, Integer> result) {
+    private void makeWinningResultWithStringBuffer(StringBuffer sb, List<Rank> ranks, Map<Rank, Integer> result) {
         ranks.stream()
                 .filter(rank -> rank != Rank.NOTHING)
                 .forEach(rank -> {
@@ -73,7 +73,7 @@ public class OutputView {
                 });
     }
 
-    private void printProfitRate(StringBuffer sb, double profitRate) {
+    private void makeProfitRateMessageWithStringBuffer(StringBuffer sb, double profitRate) {
         sb.append("총 수익률은 ")
                 .append(String.format("%.2f", profitRate))
                 .append("%입니다.");
