@@ -11,7 +11,8 @@ import kr.codesquad.domain.lotto.RandomNumberFactory;
 
 public class LottoAutoFactory implements LottoFactory {
 
-  private final RandomNumberFactory randomNumberFactory = new RandomNumberFactory(LOTTO_NUMBER_BOUND);
+  private final RandomNumberFactory randomNumberFactory
+      = new RandomNumberFactory(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND);
 
   @Override
   public Lotto generate() {
