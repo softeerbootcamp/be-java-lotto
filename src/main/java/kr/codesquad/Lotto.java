@@ -3,6 +3,7 @@ package kr.codesquad;
 import java.util.*;
 
 public class Lotto {
+    public static int PRICE = 1000;
     public Lotto()
     {
         matchesBonus = false;
