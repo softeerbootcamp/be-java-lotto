@@ -19,13 +19,22 @@ public class Console {
         int cash = 0;
         try
         {
-            cash = Integer.parseInt(scanner.nextLine());
+            cash = toInt(scanner.nextLine());
         } catch(NumberFormatException e)
         {
             System.out.println("유효한 숫자 입력이 아닙니다.");
-            System.out.printf("범위 안에 들어가는 숫자를 입력하세요 : %d ~ %d\n", 0, Integer.MAX_VALUE - (Integer.MAX_VALUE%1000));
+            System.out.printf("범위 안에 들어가는 숫자를 1000원 단위로 입력하세요 : %d ~ %d\n", 1000, Integer.MAX_VALUE - (Integer.MAX_VALUE%1000));
+            System.out.println("--------------------");
+            System.out.println("구입 금액을 입력하세요");
             cash = scanCashAmount();
         }
+        return cash;
+    }
+
+    private int toInt(String str) throws NumberFormatException
+    {
+        int cash = Integer.parseInt(str);
+        if(cash <= 0 || cash % 1000 != 0) throw new NumberFormatException();
         return cash;
     }
 
