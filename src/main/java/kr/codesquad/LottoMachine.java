@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class LottoMachine {
 
-    private List<List<Integer>> lottos;
+    private ArrayList<ArrayList<Integer>> lottos;
     private int lottoCnt;
     List<Integer> numList;
 
@@ -24,24 +24,26 @@ public class LottoMachine {
         return amountOfMoney;
     }
 
-    public Integer getLottoCount(int amountOfMoney){
-        lottoCnt = amountOfMoney/1000; // 총 로또 개수
-        System.out.println("총"+lottoCnt+"개를 구매했습니다.");
+    public Integer getLottoCount(int amountOfMoney,int manualLottoCnt){
+        //to-do : 금액에 따른 개수 제한 예외처리
+        this.lottoCnt = amountOfMoney/1000; // 총 로또 개수
+        this.lottoCnt -= manualLottoCnt;
+        System.out.println("총"+lottoCnt+"개를 자동으로 구매했습니다.");
         return lottoCnt;
     }
 
-    public List<List<Integer>> getLottos(){
+    public ArrayList<ArrayList<Integer>> getLottos(){
         for(int i=0;i<lottoCnt;i++){
             getLottoByShuffle();
         }
-        System.out.println(lottos);
-
+        System.out.println(lottos.size());
         return lottos;
     }
 
+
     public void getLottoByShuffle(){
         Collections.shuffle(numList); //1에서 46까지를 셔플
-        List<Integer> shuffledNumList =  new ArrayList<>(numList.subList(0,6));
+        ArrayList<Integer> shuffledNumList =  new ArrayList<>(numList.subList(0,6));
         Collections.sort(shuffledNumList);
         lottos.add(shuffledNumList);
     }
