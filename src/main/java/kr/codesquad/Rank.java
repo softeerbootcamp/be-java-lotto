@@ -37,4 +37,9 @@ public enum Rank {
         }
         return null;
     }
+    @Override
+    public String toString(){
+        if(this == SECOND) return this.cnt + "개 일치, 보너스 볼 일치" + "(" + this.prize + "원)";
+        return this.cnt + "개 일치" + "(" + this.prize + "원)";
+    }
 }
