@@ -68,14 +68,12 @@ public class LottoController {
     }
 
     private double calculateProfitRate(Map<Rank, Integer> result, int money) {
-        double profit = 0;
-        for (Rank rank : result.keySet()) {
-            profit += rank.getPrize() * result.get(rank);
-        }
+        double profit = result.entrySet()
+                .stream()
+                .map(entry ->
+                        entry.getKey().getPrize() * entry.getValue())
+                .reduce(0, Integer::sum);
 
-        if (profit < money) {
-            return -(100 - profit / money * 100);
-        }
-        return profit / money * 100;
+        return (profit - money) / money * 100;
     }
 }
