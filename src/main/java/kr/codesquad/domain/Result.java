@@ -12,4 +12,5 @@ public class Result {
         Arrays.stream(Rank.values()).forEach(rank -> result.put(rank, 0));
     }
 
+
 }

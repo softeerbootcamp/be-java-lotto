@@ -1,5 +1,7 @@
 package kr.codesquad.domain;
 
+import java.util.Arrays;
+
 public enum Rank {
 
     FIRST(2_000_000_000, 6, false),
@@ -14,15 +16,25 @@ public enum Rank {
     private final int count;
 
     private final boolean isBounsBall;
+
     Rank(
             int winningAmount,
             int count,
             boolean isBounsBall
-    )
-    {
+    ) {
         this.winningAmount = winningAmount;
         this.count = count;
         this.isBounsBall = isBounsBall;
+    }
+
+    public static Rank getRank(
+            int matchCount,
+            boolean isBonus
+    ) {
+        return Arrays.stream(values())
+                .filter(rank -> rank.count == matchCount && rank.isBounsBall == isBonus)
+                .findFirst()
+                .orElse(NOTHING);
     }
 
     public int getWinningAmount() {
