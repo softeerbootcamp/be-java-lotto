@@ -6,7 +6,7 @@ import java.math.*;
 public class LottoService { //로또 자판기 클래스
     private BigInteger money;   //구입한 가격
     public BigDecimal earn = new BigDecimal("-100");    //수익
-    private int lotto_amount;   //구입한 로또 갯수
+    private int lottoAmount;   //구입한 로또 갯수
 
     public Map<Price, Integer> winnerCount = new HashMap<>();
     List<Lotto> lottoList = new ArrayList<>();   //구입한 로또 저장소
@@ -26,15 +26,15 @@ public class LottoService { //로또 자판기 클래스
     }
 
     public int buyLotto(){
-        lotto_amount = money.divide(new BigInteger("1000")).intValue();
-        for (int i=0; i<lotto_amount; i++){
+        lottoAmount = money.divide(new BigInteger("1000")).intValue();
+        for (int i=0; i<lottoAmount; i++){
             Collections.shuffle(lottoNum);
             int[] lottoNumArr = setLottoNum(lottoNum);
             Lotto lotto = new Lotto(lottoNumArr);
             lotto.print();
             lottoList.add(lotto);
         }
-        return lotto_amount;
+        return lottoAmount;
     }
 
     private int[] setLottoNum(List<Integer> lottoNum) {
@@ -49,7 +49,7 @@ public class LottoService { //로또 자판기 클래스
         String[] winStrArr = winStr.split(",");
         for (int i=0; i<6; i++)
             winNum[i] = Integer.parseInt(winStrArr[i].trim());
-        winLotto  = new Lotto(winNum, true);
+        winLotto  = new Lotto(winNum);
         setBonusNum();
     }
     private static void setBonusNum(){
