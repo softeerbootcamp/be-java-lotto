@@ -17,7 +17,7 @@ public class Utility {
             this.allLottoNum.add(i);
         }
     }
-    public ArrayList<Integer> retRandLottoNum() {
+    public List<Integer> retRandLottoNum() {
         Collections.shuffle(this.allLottoNum);
         ArrayList<Integer> lottoNums = new ArrayList<>(Lotto_Info.LOTTO_SIZE.getValue());
         for (int i = 0; i < Lotto_Info.LOTTO_SIZE.getValue(); i++) {

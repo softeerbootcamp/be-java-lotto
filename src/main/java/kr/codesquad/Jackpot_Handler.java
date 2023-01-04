@@ -3,7 +3,6 @@ package kr.codesquad;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 import static kr.codesquad.Lotto_Info.LOTTO_SIZE;
 
@@ -41,8 +40,8 @@ public class Jackpot_Handler {
         ;
     }
 
-    public void searchJackpotsInMyLottoList(GenerateMyLottoByCount generateMyLottoByCount) {
-        for (EmptyLotto o : generateMyLottoByCount.getLottoList()
+    public void searchJackpotsInMyLottoList(GenerateMyLottoByCount myLottoByCount) {
+        for (EmptyLotto o : myLottoByCount.getLottoList()
         ) {
             List<Integer> eachLotto = o.getNumbers();
             countingJackpots(eachLotto, JACKPOT_NUM);
@@ -59,9 +58,16 @@ public class Jackpot_Handler {
             JACKPOT_NUM.add(Integer.parseInt(strArr[i]));
         }
         Collections.sort(JACKPOT_NUM);
+
+    }
+
+    public void setBonusNum() throws CustomException {
+        InputHandler inputHandler = new InputHandler();
         System.out.printf("보너스 번호를 입력해 주세요.\n");
         int bonus = inputHandler.getIntegerInput();
+        if (JACKPOT_NUM.contains(bonus)) {
+            throw new CustomException("보너스 번호는 원개 번호들과 중복돠어선 안된다.");
+        }
         JACKPOT_BONUS_NUM = bonus;
-
     }
 }

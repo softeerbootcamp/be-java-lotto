@@ -27,17 +27,16 @@ public class GenerateMyLottoByCount {
     }
     public void generateMyself() throws CustomException {
         InputHandler inputHandler = new InputHandler();
+        Utility ut = new Utility();
+
         System.out.printf("수동으로 구매할 로또 수를 입력해 주세요\n");
-//        Scanner s1 = new Scanner(System.in);
         this.mySelfLottoCounts= inputHandler.getIntegerInput();
         if(mySelfLottoCounts > lottoCounts){
             throw new CustomException("수동으로 구매하려는 갯수가 총 갯수보다 많습니다!!");
         }
         System.out.printf("수동으로 구매할 번호를 입력해 주세요\n");
-        Scanner s2 = new Scanner(System.in);
-        Utility ut = new Utility();
         for (int i=0;i<this.mySelfLottoCounts;i++){
-            String str = s2.nextLine();
+            String str = inputHandler.getStringInput();
             EmptyLotto emptyLotto = new EmptyLotto(ut.transStringToIntegerList(str));
             lottoList.add(emptyLotto);
 
