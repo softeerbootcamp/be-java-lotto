@@ -3,19 +3,16 @@ package kr.codesquad.Model;
 import java.util.Arrays;
 
 public class Lotto {
-    private static int bonus = -1;
-    Integer[] num = new Integer[6];
-    boolean winLotto = false;
+    private static final int LOTTO_NUM_LENGTH = 6;
+    private static final int LOTTO_START_NUM = 1;
+    private static final int LOTTO_END_NUM = 45;
+    private static int bonus = -1;  //  bonus 여부 학인, Lotto 클래스를 상속받은 당첨로또 클래스로 수정예정
+    Integer[] num = new Integer[LOTTO_NUM_LENGTH];
 
     Lotto(int[] lottoNum) {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < LOTTO_NUM_LENGTH; i++)
             num[i] = lottoNum[i];
         Arrays.sort(num);
-    }
-
-    Lotto(int[] lottoNum, boolean winLotto) {
-        this(lottoNum);
-        this.winLotto = winLotto;
     }
 
     public boolean bonusMatch() {
@@ -23,13 +20,14 @@ public class Lotto {
     }
 
     public static void setBonus(int bonus) {
-        if (bonus <= 0 || bonus > 45) {
+        if (bonus < LOTTO_START_NUM || bonus > LOTTO_END_NUM) {
             System.out.println("Wrong Bonus Number");
             System.exit(1);
         }
         Lotto.bonus = bonus;
     }
 
+    //print함수 view로 옮겨야 함.
     public void print() {
         System.out.print("[");
         for (int i = 0; i < 5; i++)
