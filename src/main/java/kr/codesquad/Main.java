@@ -4,7 +4,7 @@ import kr.codesquad.io.Console;
 import kr.codesquad.lotto.Lotto;
 import kr.codesquad.lotto.LottoService;
 import kr.codesquad.winLotto.WinLotto;
-import kr.codesquad.winLotto.WinningCount;
+import kr.codesquad.winLotto.WinCount;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class Main {
         List<Lotto> allLotto = lottoService.makeLottoList(lottoAmount);
         console.printLottoNum(allLotto);
         WinLotto winLotto = new WinLotto(console.inputWinNum(), console.inputBonusNum());
-        Map<WinningCount, Integer> lottoResult = lottoService.makeLottoResult(allLotto, winLotto);
+        Map<WinCount, Integer> lottoResult = lottoService.makeLottoResult(allLotto, winLotto);
         console.printLottoResult(money, lottoResult);
     }
 

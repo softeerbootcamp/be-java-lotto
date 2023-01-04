@@ -1,7 +1,7 @@
 package kr.codesquad.lotto;
 
 import kr.codesquad.winLotto.WinLotto;
-import kr.codesquad.winLotto.WinningCount;
+import kr.codesquad.winLotto.WinCount;
 
 import java.util.*;
 
@@ -10,9 +10,9 @@ public class LottoService {
     public static final int LOTTO_NUM_MIN_BOUND = 1;
     public static final int LOTTO_NUM_MAX_BOUND = 45;
     public static final int LOTTO_NUM_COUNT = 6;
-    public static final Map<WinningCount, Integer> lottoResult = new HashMap<>();
+    public static final Map<WinCount, Integer> lottoResult = new HashMap<>();
 
-    public Map<WinningCount, Integer> getLottoResult() {
+    public Map<WinCount, Integer> getLottoResult() {
         return lottoResult;
     }
 
@@ -43,27 +43,27 @@ public class LottoService {
         return randNum;
     }
 
-    public Map<WinningCount, Integer> makeLottoResult(List<Lotto> lottoList, WinLotto winLotto) {
+    public Map<WinCount, Integer> makeLottoResult(List<Lotto> lottoList, WinLotto winLotto) {
         for (Lotto lotto : lottoList) {
             makeLottoResultCount(lotto, winLotto);
         }
         return getLottoResult();
     }
 
-    private static WinningCount findWinningCount(int correctCnt, boolean isBonusInclude) {
-        WinningCount winningCount = Arrays.stream(WinningCount.values())
+    private static WinCount findWinningCount(int correctCnt, boolean isBonusInclude) {
+        WinCount winCount = Arrays.stream(WinCount.values())
                 .filter(count -> (count.getCount() == correctCnt && count.getIsBonus() == isBonusInclude))
                 .findFirst()
                 .orElse(null);
-        return winningCount;
+        return winCount;
     }
 
-    private static void addWinningCount(WinningCount winningCount) {
-        if (lottoResult.containsKey(winningCount)) {
-            lottoResult.put(winningCount, lottoResult.get(winningCount) + 1);
+    private static void addWinningCount(WinCount winCount) {
+        if (lottoResult.containsKey(winCount)) {
+            lottoResult.put(winCount, lottoResult.get(winCount) + 1);
         }
-        if (!lottoResult.containsKey(winningCount)) {
-            lottoResult.put(winningCount, 1);
+        if (!lottoResult.containsKey(winCount)) {
+            lottoResult.put(winCount, 1);
         }
 
     }
@@ -71,9 +71,9 @@ public class LottoService {
     public void makeLottoResultCount(Lotto lottoNumbers, WinLotto winLotto) {
         int correctCnt = correctNumCnt(lottoNumbers, winLotto);
         boolean isBonusWin = checkBonusWin(lottoNumbers, correctCnt, winLotto);
-        WinningCount winningCount = findWinningCount(correctCnt, isBonusWin);
-        if (winningCount != null) {
-            addWinningCount(winningCount);
+        WinCount winCount = findWinningCount(correctCnt, isBonusWin);
+        if (winCount != null) {
+            addWinningCount(winCount);
         }
     }
 
