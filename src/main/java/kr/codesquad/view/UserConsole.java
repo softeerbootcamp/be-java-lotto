@@ -32,21 +32,18 @@ public class UserConsole {
     public String enterSudongLottoList(){
         System.out.println("수동으로 구매할 로또 번호를 입력해주세요.");
         ArrayList<String> resultList = new ArrayList<>();
-        Scanner scan = new Scanner(System.in);
         String numStr = scan.nextLine();
         return numStr;
     }
 
     public String enterResultList(){
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        Scanner scan = new Scanner(System.in);
         String numStr = scan.nextLine();
         return numStr;
     }
 
     public int enterBonusNum(){
         System.out.println("보너스볼을 입력해 주세요.");
-        Scanner scan = new Scanner(System.in);
         int givenBonusNum = scan.nextInt();
         return givenBonusNum;
     }
