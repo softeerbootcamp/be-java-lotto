@@ -7,15 +7,7 @@ public class ReceiveView {
 
     private static final String LOTTO_SEPARATE = ",";
 
-
-    public static int enterPurchaseAmount() {
-        return enterInt();
-    }
-
-    public static int enterBonusBall() {
-        return enterInt();
-    }
-    private static int enterInt(){
+    public static int enterInt(){
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
