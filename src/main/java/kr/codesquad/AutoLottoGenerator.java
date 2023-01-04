@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class AutoLottoGenerator implements LottoGenerator {
-	private final int LOTTO_NUMBER_COUNT = 6;
 
 	public List<Integer> lottoNumberList;
 

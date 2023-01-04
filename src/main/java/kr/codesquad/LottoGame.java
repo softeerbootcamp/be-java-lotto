@@ -1,14 +1,12 @@
 package kr.codesquad;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class LottoGame {
 
 	private final static int LOTTO_PRICE = 1000;
-	private final static int LOTTO_NUMBER_COUNT = 6;
 
 	public List<Integer> lottoNumbers;
 
@@ -34,14 +32,6 @@ public class LottoGame {
 		return lottoResult;
 	}
 
-	public Lotto getNewLotto() {
-		Collections.shuffle(lottoNumbers);
-		List<Integer> newLottoNumbers = new ArrayList<>(lottoNumbers.subList(0, LOTTO_NUMBER_COUNT));
-		Collections.sort(newLottoNumbers);
-
-		return Lotto.of(newLottoNumbers);
-	}
-
 	public int getPurchaseAmount() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("구입금액을 입력해 주세요.");
@@ -50,22 +40,40 @@ public class LottoGame {
 	}
 
 	public int getLottoCount(int purchaseAmount) {
-		int lottoCount = purchaseAmount / LOTTO_PRICE;
-		System.out.println(lottoCount + "개를 구입하였습니다.");
-
-		return lottoCount;
+		return purchaseAmount / LOTTO_PRICE;
 	}
 
-	public ArrayList<Lotto> purchaseLottoList() {
+	public int getManualLottoCount() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("수동으로 구매할 로또 수 를 입력해 주세요");
+		return scanner.nextInt();
+	}
+
+	public ArrayList<Lotto> buyLottoList() {
+		// 금액 입력받기
 		int purchaseAmount = getPurchaseAmount();
-		int lottoCount = getLottoCount(purchaseAmount);
+		// 수동 개수 입력
+		int manualLottoCount = getManualLottoCount();
+		// 자동 개수
+		int autoLottoCount = getLottoCount(purchaseAmount) - manualLottoCount;
 		ArrayList<Lotto> lottoList = new ArrayList<Lotto>();
-		for (int i = 0; i < lottoCount; i++) {
-			lottoList.add(getNewLotto());
-			System.out.println(lottoList.get(i));
+
+		// 수동
+		generateLottoList(lottoList, manualLottoCount, new ManualLottoGenerator());
+		// 자동
+		generateLottoList(lottoList, autoLottoCount, new AutoLottoGenerator());
+
+		System.out.println("수동으로 " + manualLottoCount + "장 자동으로 " + autoLottoCount + "장 구매했숩니다");
+
+		for (Lotto lotto : lottoList) {
+			System.out.println(lotto);
 		}
 
 		return lottoList;
+	}
+
+	public void generateLottoList(List<Lotto> lottoList, int lottoCount, LottoGenerator lottoGenerator) {
+		lottoList.addAll(lottoGenerator.generate(lottoCount));
 	}
 
 	public int getBonusBall() {
