@@ -1,26 +1,44 @@
 package kr.codesquad.UserMenu;
 
 import kr.codesquad.CustomException;
+import kr.codesquad.EmptyLotto;
 import kr.codesquad.InputHandler;
+import kr.codesquad.Utility;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserInput {
     private InputHandler inputHandler;
     private UserLotto userLotto;
-    public UserInput(){
+    private Utility utility;
+
+    public UserInput() {
         inputHandler = new InputHandler();
         userLotto = new UserLotto();
+        utility = new Utility();
     }
+
     public int userHowManyLotto() throws CustomException {
         System.out.println("구입 금액을 입력해 주세요.");
-        return inputHandler.getIntegerInput()/1000;
+        return inputHandler.getIntegerInput() / 1000;
     }
+
     public int userHowManyManual() throws CustomException {
         System.out.printf("수동으로 구매할 로또 수를 입력해 주세요\n");
-        int manualCount = inputHandler.getIntegerInput();
-        if(manualCount>userLotto.getUserAllLottoCount()){
-            throw new CustomException("수동으로 구매하려는 갯수가 총 갯수보다 많습니다!!");
-        }
-        return manualCount;
+        return inputHandler.getIntegerInput();
     }
+
+    public List<EmptyLotto> userManualInput() throws CustomException {
+        System.out.printf("수동으로 구매할 번호를 입력해 주세요\n");
+        List<EmptyLotto> userLottoList = new ArrayList<>();
+        for (int i = 0; i < userLotto.getUserManualLottoCount(); i++) {
+            EmptyLotto emptyLotto = new EmptyLotto(
+                    utility.transStringToIntegerList(inputHandler.getStringInput()));
+            userLottoList.add(emptyLotto);
+        }
+        return userLottoList;
+    }
+
 
 }
