@@ -2,6 +2,7 @@ package kr.codesquad.view;
 
 import kr.codesquad.domain.Lotto;
 import kr.codesquad.domain.Lottos;
+import kr.codesquad.domain.Rank;
 
 public class OutputView {
     public static void showRequestTotalPrice() {
@@ -37,5 +38,13 @@ public class OutputView {
         System.out.println(5 + "개 일치 " + "(" + 1500000 + "원)" + " - " + sameCnt[5] + "개");
         System.out.println(6 + "개 일치 " + "(" + 2000000000 + "원)" + " - " + sameCnt[6] + "개");
         System.out.printf("총 수익률은 %.2f%% 입니다.", ((sum - totalPrice) / totalPrice * 100));
+    }
+
+    public static void showLottoResult(int lottoCount, Rank rank) {
+        String bonusText = "";
+        if(rank.isBouns()) {
+            bonusText = ", 보너스 볼 일치";
+        }
+        System.out.printf("%d개 일치%s(%d원) - %d개\n", rank.getCount(), bonusText, rank.getWinningAmount(), lottoCount);
     }
 }

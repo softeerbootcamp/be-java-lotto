@@ -12,7 +12,7 @@ public class Lotto {
     private static final int LOTTO_SIZE = 6;
     private static final int BONUS_COUNT = 5;
 
-    List<Integer> lotto;
+    private List<Integer> lotto;
 
     public Lotto() {
         this(choiceNumbers());
