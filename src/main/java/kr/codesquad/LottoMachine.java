@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class LottoMachine extends BaseLotto{
-    List<Integer> numList;
+    private List<Integer> numList;
 
     public LottoMachine() {
         this.lottoList = new ArrayList<>();
@@ -52,7 +52,6 @@ public class LottoMachine extends BaseLotto{
         }
         return lottoList;
     }
-
 
     public void getLottoByShuffle(){
         Collections.shuffle(numList); //1에서 46까지를 셔플
