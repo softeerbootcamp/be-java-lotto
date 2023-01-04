@@ -12,7 +12,7 @@ public class User {
     private final int manualTicketsCount;
     private final int autoTicketsCount;
     private List<Lotto> lottos;
-    private WinningStatic winningStatic = new WinningStatic();
+    private WinningStatistic winningStatistic = new WinningStatistic();
 
     public User(int purchaseAmount, int manualTicketsCount, int autoTicketsCount) {
         this.purchaseAmount = purchaseAmount;
@@ -45,8 +45,8 @@ public class User {
     }
 
 
-    public WinningStatic getWinningStatic() {
-        return winningStatic;
+    public WinningStatistic getWinningStatic() {
+        return winningStatistic;
     }
 
     public int getManualTicketsCount() {

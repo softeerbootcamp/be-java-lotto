@@ -4,7 +4,7 @@ import kr.codesquad.model.lotto.Lotto;
 import kr.codesquad.model.User;
 import kr.codesquad.model.lotto.ManualLotto;
 import kr.codesquad.model.lotto.WinningLotto;
-import kr.codesquad.model.WinningStatic;
+import kr.codesquad.model.WinningStatistic;
 import kr.codesquad.view.PrintView;
 import kr.codesquad.view.ReceiveView;
 
@@ -16,7 +16,7 @@ public class LottoController {
     public void play() {
         User user = getUserWithPurchase();
 
-        //수동구매 입력받은 후 user객체에 로또번호 업데이트
+        //수동구매 입력받은 후 user객제체에 로또번호 업데이트
         updateManualLottos(user);
 
         printBuyLotto(user);
@@ -39,8 +39,8 @@ public class LottoController {
     }
 
     private void computeResult(User user, WinningLotto winningLotto) {
-        WinningStatic.computeResult(user, winningLotto);
-        double profit = WinningStatic.computeProfit(user);
+        WinningStatistic.computeResult(user, winningLotto);
+        double profit = WinningStatistic.computeProfit(user);
         user.getWinningStatic().updateProfit(profit);
     }
 
@@ -54,7 +54,7 @@ public class LottoController {
 
     private int getBonusBall() {
         PrintView.enterBonusBall();
-        int bonusBall = ReceiveView.enterBonusBall();
+        int bonusBall = ReceiveView.enterInt();
         return bonusBall;
     }
 
@@ -90,6 +90,6 @@ public class LottoController {
 
     private int enterPurchaseAmount() {
         PrintView.enterPurchaseAmount();
-        return ReceiveView.enterPurchaseAmount();
+        return ReceiveView.enterInt();
     }
 }
