@@ -3,7 +3,6 @@ package kr.codesquad.Model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 public class Lotto {
     private List<Integer> lottoNumbers;
