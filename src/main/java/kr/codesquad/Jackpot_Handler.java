@@ -41,7 +41,7 @@ public class Jackpot_Handler {
         ;
     }
 
-    public void searchJackpotsInMyLottoList(generateMyLottoByCount generateMyLottoByCount) {
+    public void searchJackpotsInMyLottoList(GenerateMyLottoByCount generateMyLottoByCount) {
         for (EmptyLotto o : generateMyLottoByCount.getLottoList()
         ) {
             List<Integer> eachLotto = o.getNumbers();
@@ -49,10 +49,10 @@ public class Jackpot_Handler {
         }
     }
 
-    public void setJackpotNum() {
+    public void setJackpotNum() throws CustomException {
+        InputHandler inputHandler = new InputHandler();
         System.out.printf("당첨 번호를 입력해 주세요.\n");
-        Scanner s2 = new Scanner(System.in);
-        String str = s2.nextLine();
+        String str = inputHandler.getStringInput();
         String[] strArr = str.split(",");
         JACKPOT_NUM = new ArrayList<>(LOTTO_SIZE.getValue());
         for (int i = 0; i < LOTTO_SIZE.getValue(); i++) {
@@ -60,7 +60,7 @@ public class Jackpot_Handler {
         }
         Collections.sort(JACKPOT_NUM);
         System.out.printf("보너스 번호를 입력해 주세요.\n");
-        int bonus = s2.nextInt();
+        int bonus = inputHandler.getIntegerInput();
         JACKPOT_BONUS_NUM = bonus;
 
     }

@@ -15,8 +15,8 @@ public class Main {
 
     public static void buyLottoByMoney() throws CustomException {
         System.out.println("구입 금액을 입력해 주세요.");
-        Scanner sc = new Scanner(System.in);
-        money = sc.nextInt();
+        InputHandler inputHandler = new InputHandler();
+        money = inputHandler.getIntegerInput();
         if (money % 1000 != 0) {
             throw new CustomException("천원 단위로 입력해 주세요!!");
         }
@@ -29,7 +29,7 @@ public class Main {
         Utility ut = new Utility();
 
         buyLottoByMoney();
-        generateMyLottoByCount gm = new generateMyLottoByCount(cnt);
+        GenerateMyLottoByCount gm = new GenerateMyLottoByCount(cnt);
         gm.generateMyself();
         gm.generateAuto();
         jh.setJackpotNum();
