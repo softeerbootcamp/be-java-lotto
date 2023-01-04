@@ -39,7 +39,7 @@ public class LottoIOManagerImpl implements LottoIOManager {
 
     @Override
     public Set<Integer> readLottoNumberSet(String message) {
-        print(message);
+        if (message.length() != 0) print(message);
         try {
             Set<Integer> numberSet = new HashSet<>(6);
             String[] numbersOfString = br.readLine().replaceAll(" ", "").split(",");

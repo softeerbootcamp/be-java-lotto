@@ -1,9 +1,9 @@
 package kr.codesquad.lotto;
 
 import kr.codesquad.lotto.check.LottoCheck;
+import kr.codesquad.lotto.io.LottoIOManager;
 import kr.codesquad.lotto.issue.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,19 +16,18 @@ public class LottoMachine {
     private final LottoCheck lottoCheck;
     private final Map<String, LottoIssueStrategy> issueStrategyMap;
 
-    private final BufferedReader br;
+    private final LottoIOManager lottoIOManager;
 
-    public LottoMachine(int priceOfLotto, LottoIssue lottoIssue, LottoCheck lottoCheck, Map<String, LottoIssueStrategy> issueStrategyMap, BufferedReader br) {
+    public LottoMachine(int priceOfLotto, LottoIssue lottoIssue, LottoCheck lottoCheck, Map<String, LottoIssueStrategy> issueStrategyMap, LottoIOManager lottoIOManager) {
         this.priceOfLotto = priceOfLotto;
         this.lottoIssue = lottoIssue;
         this.lottoCheck = lottoCheck;
-        this.br = br;
         this.issueStrategyMap = issueStrategyMap;
+        this.lottoIOManager = lottoIOManager;
     }
 
     public LottoTicket buy() throws IOException {
-        System.out.println("구입금액을 입력해 주세요.");
-        int money = Integer.parseInt(br.readLine());
+        int money = lottoIOManager.readPurchasePrice();
         int lottoCnt = money / priceOfLotto;
 
         List<Lotto> lottoList = issueLotto(lottoCnt);
@@ -50,29 +49,16 @@ public class LottoMachine {
     }
 
 
-    public void checkWin(LottoTicket lottoTicket) throws IOException {
+    public void checkWin(LottoTicket lottoTicket) {
         WinningLotto winningLotto = this.getWinningLotto();
         LottoResult lottoResult = this.lottoCheck.check(lottoTicket, winningLotto);
-        this.printResult(lottoResult);
+        lottoIOManager.printLottoResult(lottoResult);
     }
 
-    private WinningLotto getWinningLotto() throws IOException {
-        System.out.println("\n당첨 번호를 입력하세요.");
-        List<Integer> winningNumberList = new ArrayList<>(6);
-        String[] winNumArr  = br.readLine().replaceAll(" ", "").split(",");
-        for (String winNum: winNumArr) winningNumberList.add(Integer.parseInt(winNum));
-
-        System.out.println("보너스 번호를 입력하세요.");
-        int bonus = Integer.parseInt(br.readLine());
+    private WinningLotto getWinningLotto() {
+        List<Integer> winningNumberList = new ArrayList<>(lottoIOManager.readLottoNumberSet("\n당첨 번호를 입력하세요."));
+        int bonus = lottoIOManager.readLottoNumber("보너스 번호를 입력하세요.");
 
         return new WinningLotto(winningNumberList, bonus);
-    }
-
-    private void printResult(LottoResult lottoResult) {
-        for (Rank rank: Rank.values()) {
-            String stringOfBonus = rank.isBonus() ? ", 보너스 볼 일치" : "";
-            System.out.println(rank.getCountOfMatch() + "개 일치" + stringOfBonus + "(" + rank.getWinningMoney() + "원) - " + lottoResult.getRankStatus().get(rank) + "개");
-        }
-        System.out.println("총 수익률은 " + String.format("%.2f", lottoResult.getRate()) + "%입니다.");
     }
 }
