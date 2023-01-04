@@ -18,8 +18,8 @@ public class Lotto {
         Collections.sort(nums);
     }
 
-    public int checkWin(List<Integer> win) {
-        long cnt = win.stream().filter(w -> nums.contains(w)).count();
+    public int Match(Lotto lotto) {
+        long cnt = lotto.nums.stream().filter(w -> nums.contains(w)).count();
         return (int)cnt;
     }
     public boolean checkBonus(int bonus){
