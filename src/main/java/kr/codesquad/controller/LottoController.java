@@ -25,7 +25,7 @@ public class LottoController {
         PrintView.resultStatic(user);
     }
 
-    private static void printBuyLotto(User user) {
+    private void printBuyLotto(User user) {
         PrintView.resultPurchaseAmount(user.getManualTicketsCount(), user.getAutoTicketsCount());
         PrintView.generatedLottos(user);
     }
@@ -44,21 +44,21 @@ public class LottoController {
         user.getWinningStatic().updateProfit(profit);
     }
 
-    private static WinningLotto getWinningLotto() {
+    private WinningLotto getWinningLotto() {
         List<Integer> winningNumbers = getSixWinningNumbers();
         int bonusBall = getBonusBall();
 
-        WinningLotto winningLotto = new WinningLotto(winningNumbers,bonusBall);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusBall);
         return winningLotto;
     }
 
-    private static int getBonusBall() {
+    private int getBonusBall() {
         PrintView.enterBonusBall();
         int bonusBall = ReceiveView.enterBonusBall();
         return bonusBall;
     }
 
-    private static List<Integer> getSixWinningNumbers() {
+    private List<Integer> getSixWinningNumbers() {
         PrintView.enterWinningNumber();
         List<Integer> winningNumbers = ReceiveView.enterManualLottos();
         return winningNumbers;
@@ -82,13 +82,13 @@ public class LottoController {
         return new User(purchaseAmount, manualTicketsCount, autoTicketsCount);
     }
 
-    private static int purchaseAutoTickets(int purchaseAmount, int manualTickets) {
+    private int purchaseAutoTickets(int purchaseAmount, int manualTickets) {
         int change = purchaseAmount - manualTickets * Lotto.TICKET_PER_PRICE;
         int autoTickets = change / Lotto.TICKET_PER_PRICE;
         return autoTickets;
     }
 
-    private static int enterPurchaseAmount() {
+    private int enterPurchaseAmount() {
         PrintView.enterPurchaseAmount();
         return ReceiveView.enterPurchaseAmount();
     }
