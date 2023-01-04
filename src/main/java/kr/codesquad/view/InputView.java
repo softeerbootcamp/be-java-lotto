@@ -14,14 +14,12 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public Lotto readWinningLotto() {
+    public List<Integer> readWinningLotto() {
         Scanner scanner = new Scanner(System.in);
         String[] numbersStr = scanner.nextLine().split(", ");
-        List<Integer> numbers = Arrays.stream(numbersStr)
+        return Arrays.stream(numbersStr)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-
-        return new Lotto(numbers);
     }
 
     public int readBonusNumber() {

@@ -1,17 +1,18 @@
 package kr.codesquad.model;
 
-public class WinningLotto {
+import java.util.List;
 
-    private final Lotto lotto;
+public class WinningLotto extends Lotto {
+
     private final int bonusNumber;
 
-    public WinningLotto(Lotto lotto, int bonusNumber) {
-        this.lotto = lotto;
+    public WinningLotto(List<Integer> numbers, int bonusNumber) {
+        super(numbers);
         this.bonusNumber = bonusNumber;
     }
 
     public Rank compare(Lotto otherLotto) {
-        int sameCount = otherLotto.compare(lotto);
+        int sameCount = otherLotto.compare(super.numbers);
         boolean isBonus = otherLotto.contains(bonusNumber);
 
         return Rank.find(sameCount, isBonus);
