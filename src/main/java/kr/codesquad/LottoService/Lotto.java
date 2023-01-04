@@ -3,6 +3,7 @@ package kr.codesquad.LottoService;
 import kr.codesquad.Rank;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
@@ -25,17 +26,12 @@ public class Lotto {
         return new Lotto(lotto);
     }
 
-    Rank getMatchRank(Set<Integer> winningNumberSet, int bonusNumber) {
-        int matchNumberCount = (int) numbers.stream().filter(winningNumberSet::contains).count();
-        if (matchNumberCount == Rank.FIRST.getCountOfMatch())
-            return Rank.FIRST;
-        if (matchNumberCount == Rank.SECOND.getCountOfMatch() || matchNumberCount == Rank.THIRD.getCountOfMatch())
-            return numbers.contains(bonusNumber) ? Rank.SECOND : Rank.THIRD;
-        if (matchNumberCount == Rank.FOURTH.getCountOfMatch())
-            return Rank.FOURTH;
-        if (matchNumberCount == Rank.FIFTH.getCountOfMatch())
-            return Rank.FIFTH;
-        return Rank.ETC;
+    public static Lotto ofComma(String value) {
+        String[] values = value.split(",");
+        return new Lotto(
+                Arrays.stream(values)
+                        .map(LottoNumber::of)
+                        .collect(Collectors.toSet()));
     }
 
     @Override
