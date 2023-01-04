@@ -2,6 +2,7 @@ package kr.codesquad;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Utility {
     private static ArrayList<Integer> allLottoNum;
@@ -16,7 +17,6 @@ public class Utility {
             this.allLottoNum.add(i);
         }
     }
-
     public ArrayList<Integer> retRandLottoNum() {
         Collections.shuffle(this.allLottoNum);
         ArrayList<Integer> lottoNums = new ArrayList<>(Lotto_Info.LOTTO_SIZE.getValue());
@@ -24,6 +24,14 @@ public class Utility {
             lottoNums.add(this.allLottoNum.get(i));
         }
         return lottoNums;
+    }
+    public List<Integer> transStringToIntegerList(String str){
+        String[] strArr = str.split(",");
+        List<Integer> integerList = new ArrayList<>();
+        for(int i=0;i< strArr.length;i++){
+            integerList.add(Integer.parseInt(strArr[i]));
+        }
+        return integerList;
     }
     public void printProfit(int[] jk, int money) {
         double prof, sum = 0;

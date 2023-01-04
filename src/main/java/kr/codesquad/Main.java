@@ -27,7 +27,7 @@ public class Main {
 
         buyLottoByMoney();
         generateMyLottoByCount gm = new generateMyLottoByCount();
-        gm.generate(cnt);
+        gm.generateAuto(cnt);
         jh.setJackpotNum();
         jh.searchJackpotsInMyLottoList(gm);
         ut.printProfit(jh.PRIZE_CNT, money);
