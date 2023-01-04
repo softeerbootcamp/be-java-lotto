@@ -2,7 +2,6 @@ package kr.codesquad.lotto.issue;
 
 import kr.codesquad.lotto.Lotto;
 
-import java.io.IOException;
 import java.util.*;
 
 public class LottoIssueImpl implements LottoIssue {
@@ -14,7 +13,7 @@ public class LottoIssueImpl implements LottoIssue {
     }
 
     @Override
-    public List<Lotto> issue(int cnt) throws IOException {
+    public List<Lotto> issue(int cnt) {
         List<Lotto> lottoList = this.strategy.issue(cnt);
         lottoList.forEach(Lotto::print);
         return lottoList;

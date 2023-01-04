@@ -4,7 +4,6 @@ import kr.codesquad.lotto.check.LottoCheck;
 import kr.codesquad.lotto.io.LottoIOManager;
 import kr.codesquad.lotto.issue.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +25,7 @@ public class LottoMachine {
         this.lottoIOManager = lottoIOManager;
     }
 
-    public LottoTicket buy() throws IOException {
+    public LottoTicket buy() {
         int money = lottoIOManager.readPurchasePrice();
         int lottoCnt = money / priceOfLotto;
 
@@ -36,7 +35,7 @@ public class LottoMachine {
         return new LottoTicket(lottoList, lottoCnt * priceOfLotto);
     }
 
-    private List<Lotto> issueLotto(int lottoCnt) throws IOException {
+    private List<Lotto> issueLotto(int lottoCnt) {
         lottoIssue.setLottoIssueStrategy(issueStrategyMap.get("MANUAL"));
         List<Lotto> manualLottoList = lottoIssue.issue(lottoCnt);
         int autoLottoCnt = lottoCnt - manualLottoList.size();
