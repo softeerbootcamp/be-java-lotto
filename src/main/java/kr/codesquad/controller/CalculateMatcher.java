@@ -1,31 +1,26 @@
-package kr.codesquad.entities;
+package kr.codesquad.controller;
 
+import kr.codesquad.model.Prize;
 import kr.codesquad.templates.Lotto;
-import kr.codesquad.utils.Prize;
-import kr.codesquad.entities.lottoImpl.ResultLotto;
+import kr.codesquad.model.lottoImpl.ResultLotto;
+import kr.codesquad.utils.Util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CalculateMatch {
+public class CalculateMatcher {
 
     private HashMap<Integer, Integer> hitNums = new HashMap<>();  //맞은 번호의 개수와 횟수
     private static int BONUM_NUM = 777;  //보너스 번호 (dummy)
     private Prize[] prizeList = {Prize.FIRST, Prize.SECOND, Prize.THIRD, Prize.FOURTH, Prize.FIFTH};
 
 
-    private int containNum(int target, ArrayList<Integer> tempList){
-        if (tempList.contains(target))
-            return 1;
-        return 0;
-    }
-
     //맞은 숫자의 개수와 그 횟수를 계산
     private void getHitStatistics(ArrayList<Integer> randomLotto, ArrayList<Integer> LottoResult,  int bonusNum) {
         int hitNum = 0;
         for(int i = 0; i < 6; i++)
-            hitNum += containNum(LottoResult.get(i), randomLotto);
-        if(hitNum == 5 && containNum(bonusNum, randomLotto) == 1){  //2등 보너스볼일 경우
+            hitNum += Util.containNum(LottoResult.get(i), randomLotto);
+        if(hitNum == 5 && Util.containNum(bonusNum, randomLotto) == 1){  //2등 보너스볼일 경우
             hitNums.put(BONUM_NUM, hitNums.getOrDefault(BONUM_NUM, 0) + 1);
             return;
         }
@@ -43,15 +38,13 @@ public class CalculateMatch {
     //모든 로또 리스트에 대해 당첨 여부를 확인
     public void startCalculate(Lotto randomLotto, Lotto myLotto, ResultLotto resultLotto){
         int repNum = randomLotto.getLottoList().size() + myLotto.getLottoList().size();
-        ArrayList<ArrayList<Integer>> randomLottoList = mergeLottos(randomLotto, myLotto);
+        ArrayList<ArrayList<Integer>> randomLottoList = mergeLottos(randomLotto, myLotto); //자동 + 수동 모두 합치기
         ArrayList<Integer> resultLottoList = resultLotto.getLottoList().get(0);
-        for(int i = 0; i < repNum; i++){
-            System.out.println(randomLottoList.get(i));
+        for(int i = 0; i < repNum; i++)
             getHitStatistics(randomLottoList.get(i), resultLottoList, resultLotto.getBonusNum());
-        }
     }
 
-    //print result of all lotteries
+    //print results of all lotteries
     public void printResult(int purchasedPrice) {
         int hitPrice = 0; //당첨금
         //5등부터 1등까지 출력

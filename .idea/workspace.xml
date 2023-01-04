@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day3 - (17) 디버깅 및 디렉토리 구조 수정">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day3 - (18) 인터페이스로 구현했던 Lotto의 템플릿을 상속 형태로 재구성">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/CalculateMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/CalculateMatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/UserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/impl/MyLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/lottoImpl/MyLotto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/impl/RandomLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/lottoImpl/RandomLotto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/impl/ResultLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/lottoImpl/ResultLotto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/CalculateMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/CalculateMatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/model/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/lottoImpl/MyLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/model/lottoImpl/MyLotto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/lottoImpl/RandomLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/model/lottoImpl/RandomLotto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/entities/lottoImpl/ResultLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/model/lottoImpl/ResultLotto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/utils/Prize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/model/Prize.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +103,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="kr.codesquad.templates" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kr.codesquad.Main" />
@@ -132,7 +138,10 @@
       <updated>1672210428730</updated>
       <workItem from="1672210432725" duration="156000" />
       <workItem from="1672642412678" duration="9416000" />
-      <workItem from="1672809074576" duration="650000" />
+      <workItem from="1672809074576" duration="4573000" />
+      <workItem from="1672817659467" duration="1284000" />
+      <workItem from="1672818950266" duration="98000" />
+      <workItem from="1672819055767" duration="991000" />
     </task>
     <task id="LOCAL-00001" summary="day1 - lotto1">
       <created>1672648436251</created>
@@ -288,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672803626937</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="day3 - (18) 인터페이스로 구현했던 Lotto의 템플릿을 상속 형태로 재구성">
+      <created>1672810069827</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1672810069827</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,13 +344,14 @@
     <MESSAGE value="day3 - (15) startCalculate에서 수동 생성 로또도 반영하도록 수정" />
     <MESSAGE value="day3 - (16) Main함수에서 인풋을 받는 로직을 모두 삭제 (각 로직을 담당하는 클래스를 따로 생성하였으므로)" />
     <MESSAGE value="day3 - (17) 디버깅 및 디렉토리 구조 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="day3 - (17) 디버깅 및 디렉토리 구조 수정" />
+    <MESSAGE value="day3 - (18) 인터페이스로 구현했던 Lotto의 템플릿을 상속 형태로 재구성" />
+    <option name="LAST_COMMIT_MESSAGE" value="day3 - (18) 인터페이스로 구현했던 Lotto의 템플릿을 상속 형태로 재구성" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/kr/codesquad/entities/CalculateMatch.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/kr/codesquad/controller/CalculateMatcher.java</url>
           <line>47</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>

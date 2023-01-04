@@ -1,4 +1,4 @@
-package kr.codesquad.utils;
+package kr.codesquad.model;
 
 public enum Prize {
 

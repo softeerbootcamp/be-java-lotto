@@ -1,4 +1,4 @@
-package kr.codesquad.entities;
+package kr.codesquad.model;
 
 public class UserInfo {
 
@@ -9,25 +9,17 @@ public class UserInfo {
     public int getNumOfLottoAuto() {
         return numOfLottoAuto;
     }
-
-    public void setNumOfLottoAuto(int numOfLottoAuto) {
-        this.numOfLottoAuto = numOfLottoAuto;
-    }
-
     public int getNumOfLottoSudong() {
         return numOfLottoSudong;
     }
-
-    public void setNumOfLottoSudong(int numOfLottoSudong) {
-        this.numOfLottoSudong = numOfLottoSudong;
-    }
-
-    public void setPurchasedPrice(int purchasedPrice){
-        this.purchasedPrice = purchasedPrice;
-    }
-
     public int getPurchasedPrice() {
         return purchasedPrice;
     }
 
+    //setter 계산
+    public void insertInfos(int purchasedPrice, int numOfLottoAuto, int numOfLottoSudong) {
+        this.numOfLottoAuto = numOfLottoAuto;
+        this.purchasedPrice = purchasedPrice;
+        this.numOfLottoSudong = numOfLottoSudong;
+    }
 }
