@@ -33,16 +33,17 @@ public class LottoMachine {
 
         List<Lotto> lottoList = issueLotto(lottoCnt);
 
-        lottoList.forEach(Lotto::print);
         System.out.println(lottoList.size() + "개를 구매했습니다.");
         return new LottoTicket(lottoList, lottoCnt * priceOfLotto);
     }
 
     private List<Lotto> issueLotto(int lottoCnt) throws IOException {
-        List<Lotto> manualLottoList = this.lottoIssue.issue(issueStrategyMap.get("MANUAL"), lottoCnt);
+        lottoIssue.setLottoIssueStrategy(issueStrategyMap.get("MANUAL"));
+        List<Lotto> manualLottoList = lottoIssue.issue(lottoCnt);
         int autoLottoCnt = lottoCnt - manualLottoList.size();
 
-        List<Lotto> autoLottoList = this.lottoIssue.issue(issueStrategyMap.get("AUTO"), autoLottoCnt);
+        lottoIssue.setLottoIssueStrategy(issueStrategyMap.get("AUTO"));
+        List<Lotto> autoLottoList = lottoIssue.issue(autoLottoCnt);
         manualLottoList.addAll(autoLottoList);
 
         return manualLottoList;

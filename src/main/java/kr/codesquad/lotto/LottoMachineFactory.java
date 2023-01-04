@@ -3,6 +3,7 @@ package kr.codesquad.lotto;
 import kr.codesquad.lotto.check.LottoCheckImpl;
 import kr.codesquad.lotto.issue.LottoIssueImpl;
 import kr.codesquad.lotto.issue.AutoLottoIssueStrategy;
+import kr.codesquad.lotto.issue.LottoIssueStrategy;
 import kr.codesquad.lotto.issue.ManualLottoIssueStrategy;
 
 import java.io.BufferedReader;
@@ -15,11 +16,13 @@ public final class LottoMachineFactory {
 
     public static LottoMachine createLottoMachine() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Map<String, LottoIssueStrategy> lottoIssueStrategyMap =
+                Map.of("AUTO", new AutoLottoIssueStrategy(), "MANUAL", new ManualLottoIssueStrategy(br));
         return new LottoMachine(
                 priceOfLotto,
-                new LottoIssueImpl(),
+                new LottoIssueImpl(lottoIssueStrategyMap.get("AUTO")),
                 new LottoCheckImpl(),
-                Map.of("AUTO", new AutoLottoIssueStrategy(), "MANUAL", new ManualLottoIssueStrategy(br)),
+                lottoIssueStrategyMap,
                 br);
     }
 }

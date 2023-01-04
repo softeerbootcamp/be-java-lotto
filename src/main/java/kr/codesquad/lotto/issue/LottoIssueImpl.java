@@ -7,8 +7,21 @@ import java.util.*;
 
 public class LottoIssueImpl implements LottoIssue {
 
+    private LottoIssueStrategy strategy;
+
+    public LottoIssueImpl(LottoIssueStrategy strategy) {
+        this.strategy = strategy;
+    }
+
     @Override
-    public List<Lotto> issue(LottoIssueStrategy strategy, int cnt) throws IOException {
-        return strategy.issue(cnt);
+    public List<Lotto> issue(int cnt) throws IOException {
+        List<Lotto> lottoList = this.strategy.issue(cnt);
+        lottoList.forEach(Lotto::print);
+        return lottoList;
+    }
+
+    @Override
+    public void setLottoIssueStrategy(LottoIssueStrategy strategy) {
+        this.strategy = strategy;
     }
 }

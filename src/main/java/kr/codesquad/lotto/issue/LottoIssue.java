@@ -6,5 +6,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface LottoIssue {
-    List<Lotto> issue(LottoIssueStrategy strategy, int cnt) throws IOException;
+    List<Lotto> issue(int cnt) throws IOException;
+    void setLottoIssueStrategy(LottoIssueStrategy strategy);
 }
