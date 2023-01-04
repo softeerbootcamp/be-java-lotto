@@ -29,18 +29,18 @@ public class MainLottoGame {
         printResult();
     }
 
-    protected void printResult() {
+    private void printResult() {
         lottoStat = new LottoStat(lottos, winLotto);
         lottoStat.printResult();
     }
 
-    protected void getWinning() {
+    private void getWinning() {
         List<Integer> winningNumbers = inputHandler.getSixLottoNumber();
         int bonusNo = inputHandler.getBonusNumber(winningNumbers);
         winLotto = new WinLotto(winningNumbers, bonusNo);
     }
 
-    protected void buyLottos() {
+    private void buyLottos() {
         int nTotalLotto = inputHandler.getMoney() / 1000;
         nManualLotto = buyManualLotto(nTotalLotto);
         nAutoLotto = nTotalLotto - nManualLotto;
@@ -49,13 +49,13 @@ public class MainLottoGame {
         printLottos();
     }
 
-    protected void buyAutoLotto(int n_lotto) {
+    private void buyAutoLotto(int n_lotto) {
         for (int i = 0; i < n_lotto; i++) {
             lottos.add(new Lotto());
         }
     }
 
-    protected int buyManualLotto(int max_lotto) {
+    private int buyManualLotto(int max_lotto) {
         int nManualLotto = inputHandler.getManualLottoAmount(max_lotto);
         List<Lotto> manualLotto = new ArrayList<>();
         for (int i = 0; i < nManualLotto; i++) {
@@ -66,7 +66,7 @@ public class MainLottoGame {
         return manualLotto.size();
     }
 
-    protected void printLottos() {
+    private void printLottos() {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
