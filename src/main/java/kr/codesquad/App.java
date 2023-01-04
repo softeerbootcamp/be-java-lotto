@@ -23,15 +23,17 @@ public class App {
         purchaseLotto();
         // 구매 정보를 추첨기에 입력
         setUpLottoMachine();
+        // 결과 출력
         getResult();
     }
 
     private void purchaseLotto()
     {
+        // 구입 금액 입력
         setCashInfo();
-
+        // 수동 로또 정보 입력
         setManualTicketInfo();
-
+        // 자동 로또 추첨
         getAutoTicketInfo();
     }
 
@@ -46,6 +48,7 @@ public class App {
     {
         console.printManualTicketCountInstruction();
         int manualTicketCount = Integer.parseInt(console.scanManualTicketCount());
+        // 구매금액과 수동 개수를 바탕으로 전체 로또 개수와 자동/수동 개수 정보를 유저가 추론하게 함
         user.calculateBuyNum(manualTicketCount);
 
         console.printManualTicketInstruction();
@@ -55,12 +58,15 @@ public class App {
             ArrayList<Integer> Ticket = splitTo6Integers(console.scanManualTicket());
             manualTickets.add(Ticket);
         }
+        // 수동 로또 정보 저장
         user.setManualTickets(manualTickets);
     }
 
     private void getAutoTicketInfo()
     {
-        user.makeRandomLottoTickets(); // 구매 개수만큼의 랜덤한 로또 번호 생성
+        ArrayList<ArrayList<Integer>> Tickets = lottoMachine.getRandomLottoTickets(user.getAutoCount());
+        user.setAutoTickets(Tickets);
+
         console.printManualAndAutoCount(user.getManualCount(), user.getAutoCount());
         console.printAllTickets(user);
     }

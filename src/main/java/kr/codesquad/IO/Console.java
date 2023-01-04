@@ -72,6 +72,7 @@ public class Console {
 
     public String scanWinNums()
     {
+        scanner.nextLine();
         return scanner.nextLine();
     }
 

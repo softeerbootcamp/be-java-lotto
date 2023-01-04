@@ -48,31 +48,13 @@ public class User {
             lottoTickets.add(Tickets.get(i));
         }
     }
-    public void makeRandomLottoTickets() {
-        for(Integer i = 0; i < autoCount; i++)
-        {
-            // 임의의 6개의 번호 입력 후
-            lottoTickets.add(getRandomSixNums());
-            // 오름차순으로 정렬
-            Collections.sort(lottoTickets.get(i));
-        }
-    }
 
-    private ArrayList<Integer> getRandomSixNums()
+    public void setAutoTickets(ArrayList<ArrayList<Integer>> Tickets)
     {
-        ArrayList<Integer> ret = new ArrayList<Integer>();
-
-        // 1부터 45까지의 정수를 담고 있는 arraylist
-        ArrayList<Integer> Numbers = new ArrayList<Integer>();
-        for(Integer i = 1; i <= 45; i++) Numbers.add(i);
-        Collections.shuffle(Numbers);
-
-        // 앞 6자리 추출
-        for(int i = 0; i < 6; i++) {
-            ret.add(Numbers.get(i));
+        for(int i = 0; i < Tickets.size(); i++)
+        {
+            lottoTickets.add(Tickets.get(i));
         }
-
-        return ret;
     }
 
     public void calculateBuyNum(int manuals)

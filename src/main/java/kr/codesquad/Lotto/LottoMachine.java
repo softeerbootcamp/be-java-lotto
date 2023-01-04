@@ -1,6 +1,7 @@
 package kr.codesquad.Lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class LottoMachine {
     private ArrayList<Integer> winNums;
@@ -16,6 +17,39 @@ public class LottoMachine {
 
     public int getBonusBall() {
         return bonusBall;
+    }
+
+    public ArrayList<ArrayList<Integer>> getRandomLottoTickets(int count)
+    {
+        ArrayList<ArrayList<Integer>> Tickets = new ArrayList<ArrayList<Integer>>();
+
+        for(Integer i = 0; i < count; i++)
+        {
+            // 임의의 6개의 번호 입력 후
+            Tickets.add(getRandomSixNums());
+            // 오름차순으로 정렬
+            Collections.sort(Tickets.get(i));
+        }
+
+        return Tickets;
+    }
+
+
+    private ArrayList<Integer> getRandomSixNums()
+    {
+        ArrayList<Integer> ret = new ArrayList<Integer>();
+
+        // 1부터 45까지의 정수를 담고 있는 arraylist
+        ArrayList<Integer> Numbers = new ArrayList<Integer>();
+        for(Integer i = 1; i <= 45; i++) Numbers.add(i);
+        Collections.shuffle(Numbers);
+
+        // 앞 6자리 추출
+        for(int i = 0; i < 6; i++) {
+            ret.add(Numbers.get(i));
+        }
+
+        return ret;
     }
 
     public void setBonusBall(int bonusBall) {
