@@ -17,6 +17,7 @@ public class LottoChecker {
 
     public void checkLotto(Lotto lotto) {
         List<List<Integer>> lottoList = lotto.getLottoList();
+        Map<Rank, Integer> result = new EnumMap<>(Rank.class);
 
         for(List<Integer> eachLottoList : lottoList)
             setResult(result, countWinNum(eachLottoList), checkBonus(eachLottoList));
