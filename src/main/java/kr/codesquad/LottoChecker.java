@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoChecker {
+    private final List<Integer> winNumList;
+    private final int bonusNum;
     private final List<Integer> result;
 
     public LottoChecker() {
+        UserInput ui = new UserInput();
+        this.winNumList = ui.inputWinNum();
+        this.bonusNum = ui.inputBonusNum();
         this.result = new ArrayList<>(List.of(0, 0, 0, 0, 0));
     }
 
