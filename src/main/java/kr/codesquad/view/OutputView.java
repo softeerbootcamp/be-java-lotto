@@ -42,7 +42,7 @@ public class OutputView {
 
     public static void showLottoResult(int lottoCount, Rank rank) {
         String bonusText = "";
-        if(rank.isBouns()) {
+        if(rank.isBonus()) {
             bonusText = ", 보너스 볼 일치";
         }
         System.out.printf("%d개 일치%s(%d원) - %d개\n", rank.getCount(), bonusText, rank.getWinningAmount(), lottoCount);

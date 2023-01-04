@@ -1,6 +1,10 @@
 package kr.codesquad.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Rank {
 
@@ -45,8 +49,14 @@ public enum Rank {
         return count;
     }
 
-    public boolean isBouns() {
+    public boolean isBonus() {
         return isBounsBall;
+    }
+
+    public static List<Rank> getSortedRanks() {
+        return Arrays.stream(values())
+                .sorted(Comparator.comparing(Rank::getWinningAmount))
+                .filter(rank -> rank != NOTHING).collect(Collectors.toList());
     }
 
 }
