@@ -10,7 +10,7 @@ public class Money {
     public int countLotto(){
         return money/MONEY_PER_LOTTO;
     }
-    public double profit(Money prize){
+    public double calProfitRate(Money prize){
         return (prize.money- money) / (double) money * 100;
     }
 }
