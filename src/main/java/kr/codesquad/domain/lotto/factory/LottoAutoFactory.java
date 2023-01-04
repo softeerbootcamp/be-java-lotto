@@ -1,4 +1,4 @@
-package kr.codesquad.domain.lotto;
+package kr.codesquad.domain.lotto.factory;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -6,13 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LottoFactory {
+import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.lotto.RandomNumberFactory;
 
-  private static final int LOTTO_NUMBER_BOUND = 45;
-  private static final int LOTTO_NUMBER_COUNT = 6;
+public class LottoAutoFactory implements LottoFactory {
 
   private final RandomNumberFactory randomNumberFactory = new RandomNumberFactory(LOTTO_NUMBER_BOUND);
 
+  @Override
   public Lotto generate() {
     Set<Integer> numberSet = getRandomNumberSet();
     List<Integer> numberList = new ArrayList<>(numberSet);
@@ -25,7 +26,7 @@ public class LottoFactory {
 
   private Set<Integer> getRandomNumberSet() {
     Set<Integer> numberSet = new HashSet<>();
-    while (numberSet.size() < LottoFactory.LOTTO_NUMBER_COUNT) {
+    while (numberSet.size() < LOTTO_NUMBER_COUNT) {
       numberSet.add(randomNumberFactory.generate());
     }
     return numberSet;
