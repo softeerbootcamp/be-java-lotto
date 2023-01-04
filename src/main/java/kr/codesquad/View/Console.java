@@ -15,7 +15,7 @@ public class Console {
 
     private List<Integer> winningNumberList;
 
-    private static final int LOTTO_PRICE=1000;
+    private static final int LOTTO_PRICE=1_000;
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public int getBonusNumber() {
@@ -37,24 +37,6 @@ public class Console {
     public int inputManualLottoCount() throws IOException {
         System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
         return Integer.parseInt(br.readLine());
-    }
-
-    public void inputManualLottoNumber(int manualLottoCount) throws IOException {
-        System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
-        for (int i = 0; i < manualLottoCount; i++) {
-            splitInputString(br.readLine());
-        }
-    }
-
-    public List<Integer> splitInputString(String line) {
-        List<Integer> ret = Arrays.stream(line.split(",")).map(Integer::valueOf).sorted().collect(Collectors.toList());
-        if (ret.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-        if (ret.get(0) < 1 || ret.get(ret.size() - 1) > 45) {
-            throw new IllegalArgumentException();
-        }
-        return ret;
     }
 
     public void printLottoCount() {
