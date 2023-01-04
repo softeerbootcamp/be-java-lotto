@@ -1,7 +1,7 @@
 package kr.codesquad;
 
 public class Money {
-    private static final int MONEY_PER_LOTTO = 1000;
+    public static final int MONEY_PER_LOTTO = 1000;
     private final int money;
 
     public Money(int money) {
