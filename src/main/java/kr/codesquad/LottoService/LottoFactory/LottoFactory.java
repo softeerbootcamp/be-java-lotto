@@ -11,7 +11,7 @@ public class LottoFactory{
     private static final int LOTTO_SIZE = 6;
     private static final int LOTTO_START_NUMBER = 1;
     private static final int LOTTO_LAST_NUMBER = 45;
-    private static final String ILLEGALARGUMENT_MESSAGE = "유효하지 않은 로또 종류입니다";
+    private static final String ILLEGAL_ARGUMENT_MESSAGE = "유효하지 않은 로또 종류입니다";
     private static final String AUTOMATIC = "automatic";
     private static final String MANUAL = "manual";
     public LottoFactory() {
@@ -29,6 +29,6 @@ public class LottoFactory{
         if (type.equals(MANUAL)) {
             return null;
         }
-        throw new IllegalArgumentException(ILLEGALARGUMENT_MESSAGE);
+        throw new IllegalArgumentException(ILLEGAL_ARGUMENT_MESSAGE);
     }
 }
