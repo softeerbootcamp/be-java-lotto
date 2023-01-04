@@ -12,8 +12,6 @@ public class LottoFactory{
     private static final int LOTTO_START_NUMBER = 1;
     private static final int LOTTO_LAST_NUMBER = 45;
     private static final String ILLEGAL_ARGUMENT_MESSAGE = "유효하지 않은 로또 종류입니다";
-    private static final String AUTOMATIC = "automatic";
-    private static final String MANUAL = "manual";
     public LottoFactory() {
         numbers = new ArrayList<>();
         for (int number = LOTTO_START_NUMBER; number <= LOTTO_LAST_NUMBER; number++) {
@@ -22,11 +20,11 @@ public class LottoFactory{
     }
 
     public Lotto generateLotto(String type) {
-        if (type.equals(AUTOMATIC)) {
+        if (type.equals("automatic")) {
             Collections.shuffle(numbers);
             return new Lotto(new ArrayList<>(numbers.subList(0, LOTTO_SIZE)));
         }
-        if (type.equals(MANUAL)) {
+        if (type.equals("manual")) {
             return null;
         }
         throw new IllegalArgumentException(ILLEGAL_ARGUMENT_MESSAGE);
