@@ -6,7 +6,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
-    public int readMoney() {
+
+    public int readOneNumber() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
@@ -17,10 +18,5 @@ public class InputView {
         return Arrays.stream(numbersStr)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-    }
-
-    public int readBonusNumber() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
     }
 }

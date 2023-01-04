@@ -22,10 +22,13 @@ public class LottoController {
     public void start() {
         int money = createLottoMoney();
 
-        int lottoCount = money / 1000;
-        outputView.printLottoCount(lottoCount);
+        outputView.printManualLottoCountReadMessage();
+        int manualLottoCont = inputView.readOneNumber();
 
-        UserLotto userLotto = createUserLotto(lottoCount);
+        int totalLottoCount = money / 1000;
+        outputView.printLottoCount(totalLottoCount);
+
+        UserLotto userLotto = createUserLotto(totalLottoCount);
         outputView.printUserLotto(userLotto);
 
         WinningLotto winningLotto = createWinningLotto();
@@ -37,7 +40,7 @@ public class LottoController {
 
     private int createLottoMoney() {
         outputView.printMoneyReadMessage();
-        return inputView.readMoney();
+        return inputView.readOneNumber();
     }
 
     private UserLotto createUserLotto(int lottoCount) {
@@ -50,7 +53,7 @@ public class LottoController {
         List<Integer> numbers = inputView.readWinningLotto();
 
         outputView.printBonusNumberReadMessage();
-        int bonusNumber = inputView.readBonusNumber();
+        int bonusNumber = inputView.readOneNumber();
 
         return new WinningLotto(numbers, bonusNumber);
     }
@@ -61,6 +64,9 @@ public class LottoController {
 
     private double calculateProfitRate(Map<Rank, Integer> result, int money) {
         double profit = 0;
+//        result.forEach((rank, value) -> {
+//            profit += rank.getPrize() * value;
+//        });
         for (Rank rank : result.keySet()) {
             profit += rank.getPrize() * result.get(rank);
         }
