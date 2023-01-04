@@ -12,14 +12,12 @@ public class LottoService {
     private InputView inputView;
     private OutputView outputView;
     private Lotto lotto;
-    private WinningLotto winningLotto;
 
 
     public LottoService(InputView inputView, OutputView outputView, Lotto lotto) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lotto = lotto;
-        winningLotto = new WinningLotto();
     }
 
     public void buyLotto() throws IOException {
@@ -33,7 +31,7 @@ public class LottoService {
     public void inputWinningNumber() throws IOException {
         outputView.printWinningNumberText();
         lotto.setWinningNumbers(inputView.inputWinningNumbers());
-        winningLotto.setWinningNumbers(inputView.inputWinningLotto());
+        //winningLotto.setWinningNumbers(inputView.inputWinningLotto());
         outputView.printBonusBallText();
         lotto.updateBonusBall(inputView.inputBonusNumber());
     }
