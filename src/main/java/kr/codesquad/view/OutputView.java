@@ -22,6 +22,10 @@ public class OutputView {
         System.out.println("당첨번호를 입력해 주세요.");
     }
 
+    public static void showRequestBonusball() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+    }
+
     public static void showResultStatistics() {
         System.out.println("당첨 통계");
         System.out.println("---------");
