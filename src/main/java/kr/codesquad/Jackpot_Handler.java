@@ -31,7 +31,9 @@ public class Jackpot_Handler {
         for (int i = 0; i < LOTTO_SIZE.getValue(); i++) {
             cnt += isMyLottoContainsJackpots(i, my, jk);
         }
-        if (cnt >= 5 && isJackpotBonusCorrect(my)) {
+        if (cnt == 5 && isJackpotBonusCorrect(my)) {
+            PRIZE_CNT[cnt - 2]++;
+        } else if (cnt == 6) {
             PRIZE_CNT[cnt - 2]++;
         } else if (cnt >= 3) {
             PRIZE_CNT[cnt - 3]++;
