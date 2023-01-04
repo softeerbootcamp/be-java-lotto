@@ -4,7 +4,8 @@ import java.util.*;
 
 public class LottoService {
 
-    public static final int LOTTO_NUM_BOUND = 45;
+    public static final int LOTTO_NUM_MIN_BOUND = 1;
+    public static final int LOTTO_NUM_MAX_BOUND = 45;
     public static final int LOTTO_NUM_COUNT = 6;
     public static final Map<WinningCount, Integer> lottoResult = new HashMap<>();
 
@@ -29,7 +30,7 @@ public class LottoService {
 
     private List<Integer> makeRandomNum() {
         List<Integer> allNumber = new ArrayList<>();
-        for (int i = 1; i <= LOTTO_NUM_BOUND; i++) {
+        for (int i = LOTTO_NUM_MIN_BOUND; i <= LOTTO_NUM_MAX_BOUND; i++) {
             allNumber.add(i);
         }
         Collections.shuffle(allNumber);
@@ -39,9 +40,9 @@ public class LottoService {
         return randNum;
     }
 
-    public Map<WinningCount, Integer> makeLottoResult(List<Lotto> lottoList, Lotto winNum, int bonusNum) {
+    public Map<WinningCount, Integer> makeLottoResult(List<Lotto> lottoList, WinLotto winLotto) {
         for (Lotto lotto : lottoList) {
-            makeLottoResultCount(lotto, winNum, bonusNum);
+            makeLottoResultCount(lotto, winLotto);
         }
         return getLottoResult();
     }
@@ -64,19 +65,23 @@ public class LottoService {
 
     }
 
-    public void makeLottoResultCount(Lotto lottoNumbers, Lotto winNum, int bonusNum) {
-        int correctCnt = correctNumCnt(lottoNumbers, winNum);
-        boolean isBonusInclude = correctCnt == 5 && lottoNumbers.getNumberList().contains(bonusNum);
+    public void makeLottoResultCount(Lotto lottoNumbers, WinLotto winLotto) {
+        int correctCnt = correctNumCnt(lottoNumbers, winLotto);
+        boolean isBonusInclude = correctCnt == 5 && lottoNumbers.getNumberList().contains(winLotto.getBonusNum());
         WinningCount winningCount = findWinningCount(correctCnt, isBonusInclude);
         if (winningCount != null) {
             addWinningCount(winningCount);
         }
     }
 
-    public int correctNumCnt(Lotto lottoNumbers, Lotto winNum) {
+    public int correctNumCnt(Lotto lottoNumbers, WinLotto winLotto) {
         List<Integer> temp = new ArrayList<>(lottoNumbers.getNumberList());
-        temp.retainAll(winNum.getNumberList());
-        return temp.size();
+        temp.retainAll(winLotto.getWinLotto().getNumberList());
+        int count = temp.size();
+        if(temp.contains(winLotto.getBonusNum()) && temp.size() != LOTTO_NUM_COUNT - 1) {
+            count++;
+        }
+        return count;
     }
 
 
