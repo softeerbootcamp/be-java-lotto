@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     public void printUserLotto(UserLotto userLotto) {
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         userLotto.getLottos()
                 .forEach(lotto -> sb.append(lotto.toString())
                         .append("\n"));
@@ -43,7 +43,7 @@ public class OutputView {
     }
 
     public void printResult(Map<Rank, Integer> result, double profitRate) {
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         sb.append("당첨 통계\n----------\n");
 
         List<Rank> ranks = Arrays.stream(Rank.values())
@@ -56,7 +56,7 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    private void printWinningResult(StringBuilder sb, List<Rank> ranks, Map<Rank, Integer> result) {
+    private void printWinningResult(StringBuffer sb, List<Rank> ranks, Map<Rank, Integer> result) {
         ranks.stream()
                 .filter(rank -> rank != Rank.NOTHING)
                 .forEach(rank -> {
@@ -73,7 +73,7 @@ public class OutputView {
                 });
     }
 
-    private void printProfitRate(StringBuilder sb, double profitRate) {
+    private void printProfitRate(StringBuffer sb, double profitRate) {
         sb.append("총 수익률은 ")
                 .append(String.format("%.2f", profitRate))
                 .append("%입니다.");
