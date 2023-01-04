@@ -20,11 +20,9 @@ public enum Prize {
 
 
     public static Prize calcPrize(WinLotto winning, Lotto lotto) {
-        int count = 0;
-        for (Integer expect_no : lotto.getLottoNums()) {
-            count = Utility.countUpIfContains(winning.getLottoNums(), expect_no, count);
-        }
-
+        int count = (int)lotto.getLottoNums().stream()
+                .filter(num -> winning.getLottoNums().contains(num))
+                .count();
         boolean isBonusCorrect = lotto.getLottoNums().contains(winning.getBonusNo());
         if (count == 5 && isBonusCorrect)
             return SECOND;

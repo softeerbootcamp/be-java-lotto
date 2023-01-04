@@ -12,9 +12,6 @@ import java.util.List;
 
 public class MainLottoGame {
     private List<Lotto> lottos;
-    private LottoStat lottoStat;
-    private int nManualLotto;
-    private int nAutoLotto;
     private WinLotto winLotto;
     private UserInputHandler inputHandler;
 
@@ -29,9 +26,13 @@ public class MainLottoGame {
         printResult();
     }
 
-    private void printResult() {
-        lottoStat = new LottoStat(lottos, winLotto);
-        lottoStat.printResult();
+    private void buyLottos() {
+        int nTotalLotto = inputHandler.getMoney() / 1000;
+        int nManualLotto = buyManualLotto(nTotalLotto);
+        int nAutoLotto = nTotalLotto - nManualLotto;
+        buyAutoLotto(nAutoLotto);
+        System.out.printf("수동으로 %d장 자동으로 %d개를 구매했습니다.%n", nManualLotto, nAutoLotto);
+        printLottos();
     }
 
     private void getWinning() {
@@ -40,14 +41,11 @@ public class MainLottoGame {
         winLotto = new WinLotto(winningNumbers, bonusNo);
     }
 
-    private void buyLottos() {
-        int nTotalLotto = inputHandler.getMoney() / 1000;
-        nManualLotto = buyManualLotto(nTotalLotto);
-        nAutoLotto = nTotalLotto - nManualLotto;
-        buyAutoLotto(nAutoLotto);
-        System.out.println(String.format("수동으로 %d장 자동으로 %d개를 구매했습니다.", nManualLotto, nAutoLotto));
-        printLottos();
+    private void printResult() {
+        LottoStat lottoStat = new LottoStat(lottos, winLotto);
+        lottoStat.printResult();
     }
+
 
     private void buyAutoLotto(int n_lotto) {
         for (int i = 0; i < n_lotto; i++) {

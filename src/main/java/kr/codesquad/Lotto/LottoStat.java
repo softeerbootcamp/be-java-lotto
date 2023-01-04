@@ -20,7 +20,7 @@ public class LottoStat {
         calcResult();
     }
 
-    public void calcResult() {
+    private void calcResult() {
         for (Prize prize : Prize.values()) {
             winnings.put(prize, 0);
         }
