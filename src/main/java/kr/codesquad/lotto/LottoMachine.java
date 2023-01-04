@@ -1,10 +1,9 @@
 package kr.codesquad.lotto;
 
-import kr.codesquad.lotto.check.LottoCheck;
 import kr.codesquad.lotto.io.LottoIOManager;
 import kr.codesquad.lotto.issue.*;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,15 +11,13 @@ public class LottoMachine {
 
     private final int priceOfLotto;
     private final LottoIssue lottoIssue;
-    private final LottoCheck lottoCheck;
     private final Map<String, LottoIssueStrategy> issueStrategyMap;
 
     private final LottoIOManager lottoIOManager;
 
-    public LottoMachine(int priceOfLotto, LottoIssue lottoIssue, LottoCheck lottoCheck, Map<String, LottoIssueStrategy> issueStrategyMap, LottoIOManager lottoIOManager) {
+    public LottoMachine(int priceOfLotto, LottoIssue lottoIssue, Map<String, LottoIssueStrategy> issueStrategyMap, LottoIOManager lottoIOManager) {
         this.priceOfLotto = priceOfLotto;
         this.lottoIssue = lottoIssue;
-        this.lottoCheck = lottoCheck;
         this.issueStrategyMap = issueStrategyMap;
         this.lottoIOManager = lottoIOManager;
     }
@@ -48,16 +45,21 @@ public class LottoMachine {
     }
 
 
-    public void checkWin(LottoTicket lottoTicket) {
-        WinningLotto winningLotto = this.getWinningLotto();
-        LottoResult lottoResult = this.lottoCheck.check(lottoTicket, winningLotto);
-        lottoIOManager.printLottoResult(lottoResult);
+    public Map<Rank, Integer> checkWin(LottoTicket lottoTicket) {
+        WinningLotto winningLotto = getWinningLotto();
+        Map<Rank, Integer> rankStatus = new HashMap<>(Rank.getInitRankStatus());
+        for (Lotto lotto: lottoTicket.getLottoList()) {
+            Rank match = winningLotto.match(lotto);
+            int matchCount = rankStatus.get(match);
+            rankStatus.put(match, matchCount + 1);
+        }
+
+        return rankStatus;
     }
 
     private WinningLotto getWinningLotto() {
-        List<LottoNumber> winningNumberList = new ArrayList<>(lottoIOManager.readLottoNumberSet("\n당첨 번호를 입력하세요."));
+        Lotto winningLotto = new Lotto(lottoIOManager.readLottoNumberSet("\n당첨 번호를 입력하세요."));
         LottoNumber bonus = lottoIOManager.readLottoNumber("보너스 번호를 입력하세요.");
-
-        return new WinningLotto(winningNumberList, bonus);
+        return new WinningLotto(winningLotto, bonus);
     }
 }

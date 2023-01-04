@@ -1,6 +1,5 @@
 package kr.codesquad.lotto;
 
-import kr.codesquad.lotto.check.LottoCheckImpl;
 import kr.codesquad.lotto.io.LottoIOManager;
 import kr.codesquad.lotto.io.LottoIOManagerImpl;
 import kr.codesquad.lotto.issue.LottoIssueImpl;
@@ -21,7 +20,6 @@ public final class LottoMachineFactory {
         return new LottoMachine(
                 priceOfLotto,
                 new LottoIssueImpl(lottoIssueStrategyMap.get("AUTO")),
-                new LottoCheckImpl(),
                 lottoIssueStrategyMap,
                 lottoIOManager);
     }

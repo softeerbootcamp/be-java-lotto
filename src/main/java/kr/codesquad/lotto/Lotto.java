@@ -12,18 +12,18 @@ public class Lotto {
         this.numberSet = numberSet;
     }
 
-    public int targetedCount(WinningLotto winningLotto) {
+    public int countOfMatch(Lotto lotto) {
         int cnt = 0;
 
-        for (LottoNumber winningNumber: winningLotto.getNumberList()) {
-            if (numberSet.contains(winningNumber)) cnt++;
+        for (LottoNumber lottoNumber: numberSet) {
+            if (lotto.contains(lottoNumber)) cnt++;
         }
 
         return cnt;
     }
 
-    public boolean hasBonus(WinningLotto winningLotto) {
-        return numberSet.contains(winningLotto.getBonus());
+    public boolean contains(LottoNumber lottoNumber) {
+        return this.numberSet.contains(lottoNumber);
     }
 
     public void print() {
