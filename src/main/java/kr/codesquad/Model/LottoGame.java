@@ -3,7 +3,7 @@ package kr.codesquad.Model;
 import java.util.List;
 
 public class LottoGame {
-    private List<Lotto> lottoBuyList;
+    private final List<Lotto> lottoBuyList;
 
     public LottoGame(Money money){
         LottosGenerator lottosGenerator = new AutoLottoGenerator();
@@ -15,4 +15,11 @@ public class LottoGame {
     }
 
 
+    public LottoResult match(WinningLotto winningLotto) {
+        DefaultLottoResult result = new DefaultLottoResult();
+        for(Lotto lotto : lottoBuyList){
+            result.putRank(winningLotto.match(lotto));
+        }
+        return result;
+    }
 }

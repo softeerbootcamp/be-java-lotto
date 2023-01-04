@@ -36,18 +36,10 @@ public class LottoController {
         // 지난 주 당첨 번호 입력 받기
         WinningLotto winningLotto = new WinningLotto(Input.inputWinLottoNum(), Input.inputBonusBall());
         // 지난 주 당첨 통계
-        statistics(user.getLottoBuyList(), user.getPrice());
-    }
-
-    // 자동 생성 로또
-    public void createLottoNumber(){
-        for(int i = 0;i<user.getCount();i++){
-            // 번호 섞기
-            Collections.shuffle(numberList);
-            // 번호 6개 자르고 정렬 후 구매 리스트에 추가
-            //user.setLottoBuy(new Lotto(numberList.subList(0,6)));
-            user.addLottoBuyList(user.getLottoBuy());
-        }
+        LottoResult result = lottoGame.match(winningLotto);
+        // 출력
+        Output.printScore(result);
+        // statistics(user.getLottoBuyList(), user.getPrice());
     }
 
     public void statistics(List<Lotto> lottoBuyList, int price) {
@@ -55,8 +47,8 @@ public class LottoController {
             getScore(lottoBuy);
         }
         // 맞춘 개수와 수익률 출력
-        Output.printScore(price, user.getScoreList(), user.getBonusBallScoreCount());
-        Output.printRate(price, user.getTotalWinPrice());
+        //Output.printScore(price, user.getScoreList(), user.getBonusBallScoreCount());
+        //Output.printRate(price, user.getTotalWinPrice());
     }
 
     public int getScore(Lotto lottoNumList){

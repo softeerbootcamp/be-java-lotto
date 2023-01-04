@@ -38,4 +38,8 @@ public enum Rank {
         return countOfMatch == SECOND.countOfMatch && !matchBonus? map.get(countOfMatch).get(1) : map.get(countOfMatch).get(0);
     }
 
+    public Money prize(int countOfMatchLotto) {
+        return new Money(countOfMatchLotto * winningMoney);
+    }
+
 }

@@ -2,6 +2,7 @@ package kr.codesquad.View;
 
 import kr.codesquad.Model.Lotto;
 import kr.codesquad.Model.LottoGame;
+import kr.codesquad.Model.LottoResult;
 import kr.codesquad.Model.Rank;
 
 import java.util.List;
@@ -25,13 +26,13 @@ public class Output {
         System.out.println(lotto.toListInteger());
     }
 
-    public static void printScore(int price, int[] scoreList, int bonusBallScoreCount) {
+    public static void printScore(LottoResult lottoResult) {
         System.out.println("\n당첨 통계\n----------");
-        System.out.println("3개 일치 (" + Rank.FIFTH.getWinningMoney() + "원) - " + scoreList[3] + "개");
-        System.out.println("4개 일치 (" + Rank.FOURTH.getWinningMoney() + "원) - " + scoreList[4] + "개");
-        System.out.println("5개 일치 (" + Rank.THIRD.getWinningMoney() + "원) - " + scoreList[5] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치(" + Rank.SECOND.getWinningMoney() + "원) - " + bonusBallScoreCount + "개");
-        System.out.println("6개 일치 (" + Rank.FIRST.getWinningMoney() + "원) - " + scoreList[6] + "개");
+        System.out.println("3개 일치 (" + Rank.FIFTH.getWinningMoney() + "원) - " + lottoResult.getValue(Rank.FIFTH) + "개");
+        System.out.println("4개 일치 (" + Rank.FOURTH.getWinningMoney() + "원) - " + lottoResult.getValue(Rank.FOURTH) + "개");
+        System.out.println("5개 일치 (" + Rank.THIRD.getWinningMoney() + "원) - " + lottoResult.getValue(Rank.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치(" + Rank.SECOND.getWinningMoney() + "원) - " + lottoResult.getValue(Rank.SECOND) + "개");
+        System.out.println("6개 일치 (" + Rank.FIRST.getWinningMoney() + "원) - " + lottoResult.getValue(Rank.FIRST) + "개");
     }
 
     public static void printRate(int price, int totalWinPrice){
