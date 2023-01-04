@@ -7,6 +7,8 @@ public class User {
 
     private int cash; // 구매 금액
     private int buyNum; // 구매 개수
+    private int autoCount;
+    private int manualCount;
     private ArrayList<ArrayList<Integer>> lottoTickets = new ArrayList<ArrayList<Integer>>();
 
     public int getCash() {
@@ -57,10 +59,12 @@ public class User {
         return ret;
     }
 
-    public void calculateBuyNum()
+    public void calculateBuyNum(int manuals)
     {
         // 구매 개수 구하기
         buyNum = cash / 1000;
+        manualCount = manuals;
+        autoCount = buyNum - manualCount;
     }
 
     public void calculateRateOfRetrun(ArrayList<Integer> Result)

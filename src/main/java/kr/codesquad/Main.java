@@ -15,6 +15,11 @@ public class Main {
         return scanner.nextInt();
     }
 
+    private static int scanManualTicketCount()
+    {
+        return scanner.nextInt();
+    }
+
     private static void printRandomTickets()
     {
         user.makeRandomLottoTickets(); // 구매 개수만큼의 랜덤한 로또 번호 생성
@@ -48,7 +53,11 @@ public class Main {
         System.out.println("구입 금액을 입력하세요");
         int cash = scanCash();
         user.setCash(cash);
-        user.calculateBuyNum();
+
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+        int manualTicketCount = scanManualTicketCount();
+        user.calculateBuyNum(manualTicketCount);
+
         System.out.printf("구매 개수는 %d개입니다.\n", user.getBuyNum());
         printRandomTickets();
 
