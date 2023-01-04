@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : inputService, inputServiceImpl을 Console 클래스로 교체">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : AUTOMATIC, MANUAL 상수 삭제">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoFactory/LottoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoFactory/LottoFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/View/Console.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +87,7 @@
       <module name="java-lotto.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kr.codesquad.*" />
+          <option name="PATTERN" value="kr.codesquad.View.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -290,7 +292,42 @@
       <option name="project" value="LOCAL" />
       <updated>1672738634733</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="refactor : 클래스 내에서 사용한 값들 상수화">
+      <created>1672802391666</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1672802391666</updated>
+    </task>
+    <task id="LOCAL-00028" summary="fix : HUNDRED 값 오류 수정">
+      <created>1672802435183</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1672802435183</updated>
+    </task>
+    <task id="LOCAL-00029" summary="refactor : ILLEGAL_ARGUMENT_MESSAGE 변수명 변경">
+      <created>1672803178099</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1672803178099</updated>
+    </task>
+    <task id="LOCAL-00030" summary="feat : Console에서 input을 받는 방식 변경">
+      <created>1672804521366</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1672804521366</updated>
+    </task>
+    <task id="LOCAL-00031" summary="refactor : AUTOMATIC, MANUAL 상수 삭제">
+      <created>1672819674277</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1672819674277</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,11 +345,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat : InputService 인터페이스 추가" />
-    <MESSAGE value="feat : getInputMoney, printLottoCount, getWonNumber, getWonNumberList 메서드 구현" />
-    <MESSAGE value="feat : LottoService interface 추가" />
-    <MESSAGE value="feat : LottoServiceImpl 메서드 구현(setLottoNumbers, printLottos, printWonLottos)" />
-    <MESSAGE value="feat : main 함수 구현" />
     <MESSAGE value="feat : input 인터페이스 메서드 이름 변경" />
     <MESSAGE value="refactor : 인터페이스에서 변경한 메서드 이름 적용" />
     <MESSAGE value="feat : printWinningLottos, setWinningNumbers, calculateEarningRate 메서드 구현" />
@@ -333,6 +365,11 @@
     <MESSAGE value="feature : LottoStore 클래스 구현" />
     <MESSAGE value="refactor : main 메서드에 구현된 부분들 app으로 넘김" />
     <MESSAGE value="feat : Rank에 bonus 필드 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : Rank에 bonus 필드 추가" />
+    <MESSAGE value="refactor : 클래스 내에서 사용한 값들 상수화" />
+    <MESSAGE value="fix : HUNDRED 값 오류 수정" />
+    <MESSAGE value="refactor : ILLEGAL_ARGUMENT_MESSAGE 변수명 변경" />
+    <MESSAGE value="feat : Console에서 input을 받는 방식 변경" />
+    <MESSAGE value="refactor : AUTOMATIC, MANUAL 상수 삭제" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : AUTOMATIC, MANUAL 상수 삭제" />
   </component>
 </project>
