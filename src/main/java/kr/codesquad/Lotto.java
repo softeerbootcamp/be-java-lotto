@@ -8,17 +8,20 @@ import java.util.stream.Collectors;
 public class Lotto {
 
     final static int LOTTO_LENGTH = 6;  // 로또 번호 조합의 길이
-    // TODO: 보너스 번호?
 
     private Set<Integer> lotto;
 
     public Lotto(Set<Integer> lotto) {
-        // TODO: LOTTO_LENGTH 길이 다르면 Exception
+        if(lotto.size() != 6)
+            throw new IllegalArgumentException("로또 번호가 부족합니다");
+
         this.lotto = lotto;
     }
 
     public Lotto(List<Integer> lotto) {
-        // TODO: LOTTO_LENGTH 길이 다르면 Exception
+        if(lotto.size() != 6)
+            throw new IllegalArgumentException("로또 번호가 부족합니다");
+
         this.lotto = new HashSet<>(lotto);
     }
 
@@ -32,7 +35,7 @@ public class Lotto {
 
     public static void printSequence(List<Lotto> lottoList) {
         for (Lotto lotto : lottoList) {  // 생성된 로또 번호 출력
-            System.out.println(lotto.toString());
+            System.out.println(lotto);
         }
     }
 

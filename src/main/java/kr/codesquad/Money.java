@@ -15,12 +15,12 @@ public class Money {
         this.money = money;
         this.numOfTickets = money / TICKET_PRICE;  // 구매한 로또 수
     }
-    double returnRate(int prizeTotal) {
+    double returnRate(long prizeTotal) {
         /*
          * 수익률을 계산하는 메서드
          */
 
-        double priceReturn = (prizeTotal/ (double) this.money) * 100;
+        double priceReturn = (prizeTotal* 100 / (double) this.money);
 
         if(prizeTotal != 0 && prizeTotal < this.money) {
             priceReturn = 100d - priceReturn;
