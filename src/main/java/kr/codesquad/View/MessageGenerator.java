@@ -12,16 +12,17 @@ public class MessageGenerator {
     private static final String bonusPostfix = ", 보너스 볼 일치";
     private static final String moneyReqMsg = "구입금액을 입력해 주세요.";
     private static final String sameMsg = "%d개 일치";
-    private static final String moneyMsg = "(%d원)-";
+    private static final String moneyMsg = "(%d원) - %d개";
     private static final String buyMsg = "%d개를 구매했습니다.";
 
-    public void getResultMsg(LottoService lottoService){
+    public String getResultMsg(LottoService lottoService){
+        String rtnMsg = "";
         for (Price price:Price.values()){
-            System.out.print(price.getCountOfMatch()+"개 일치");
-            bonusPrint(price);
-            System.out.println(" ("+(int)price.getWinningMoney()+")- "+lottoService.winnerCount.get(price)+"개");
+            rtnMsg += String.format(sameMsg,price.getCountOfMatch());
+            rtnMsg += getBonusPostfix(price);
+            rtnMsg += String.format(moneyMsg,(int)price.getWinningMoney(),lottoService.winnerCount.get(price))+"\n";
         }
-        System.out.println();
+        return rtnMsg;
     }
 
     public String getMoneyReqMsg(){
@@ -42,8 +43,7 @@ public class MessageGenerator {
         return earnMsg;
     }
 
-    private void bonusPrint(Price price){
-        if (price == Price.BONUS)
-            System.out.print(", 보너스 볼 일치");
+    private String getBonusPostfix(Price price){
+        return price == Price.BONUS?bonusPostfix:"";
     }
 }
