@@ -23,6 +23,7 @@ public class RandomLotto implements LottoTmpl {
     //로또 번호 생성 로직 시작
     public void startGeneration(int repNum){
         for(int i = 0 ; i < repNum; i++){
+            generateLotto();
         }
     }
 
@@ -33,6 +34,7 @@ public class RandomLotto implements LottoTmpl {
         for(int j = 0;  j < 6; j++)
             tempList.add(allNums.get(j));
         System.out.println(tempList);
+        addLotto(tempList);
     }
 
     //생성된 로또 번호를 모든 로또번호를 담은 ArrayList에 Add
