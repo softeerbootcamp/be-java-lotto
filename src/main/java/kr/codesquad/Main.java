@@ -48,25 +48,34 @@ class Lotto{
   }
 
   public void start(){
-    //1. 당첨 금액 입력 받기
+    //1. 구입 금액 입력 받기
     Integer amountOfMoney = machine.getAmountOfMoney();
-    //2. 전체 복권 개수 계산해서 변수에 저장
-    Integer lottoCnt = machine.getLottoCount(amountOfMoney);
-    //3. 셔플로 복권 만들기
-    List<List<Integer>> lottos = machine.getLottos();
-    //4. 사용자로부터 복권 입력 - 지난 주 당첨 번호- 받기
+    //2. 수동으로 구매할 로또 수 입력받기
+    int manualLottoCnt = user.getManualLottoCount(amountOfMoney);
+    //2-1. 자동으로 구매할 로또 수 계산해서 저장
+    Integer lottoCnt = machine.getLottoCount(amountOfMoney,manualLottoCnt);
+    int totalCnt = manualLottoCnt+lottoCnt;
+    //3. 최종 로또들 출력
+    //3-1.수동으로 구매한 로또반환
+    ArrayList<ArrayList<Integer>> manualLottos =user.getManualLottos(manualLottoCnt);
+    //3-2.자동으로 구매한 로또 리스트 반환하기
+    ArrayList<ArrayList<Integer>> lottos = machine.getLottos();
+    lottos.addAll(manualLottos);
+    System.out.println(lottos);
+    //4.지난 주 당첨 번호 입력 받기
     List<Integer> inputs = user.getLottoInput();
     //5. 보너스 볼 입력 받기
     Integer bonusBall = user.getBonusLottoInput();
-    //5. 비교
-    compareLottos(lottoCnt,lottos,inputs,bonusBall);
-    //6. 결과 출력
+    //6. 비교
+    compareLottos(totalCnt,lottos,inputs,bonusBall);
+    //7. 결과 출력
     printResult(lottoCnt);
   }
 
 
-  public void compareLottos(int lottoCnt, List<List<Integer>> lottoLists, List<Integer> inputList,int bonusBall){
+  public void compareLottos(int lottoCnt, ArrayList<ArrayList<Integer>> lottoLists, List<Integer> inputList,int bonusBall){
     for(int i=0;i<lottoCnt;i++){
+      System.out.println(lottoLists.get(i));
       getMatchCount(lottoLists.get(i), inputList,bonusBall);//각 로또마다 매치 개수 구하기
     }
   }
@@ -85,6 +94,7 @@ class Lotto{
     int matchCnt = 0;
     boolean isBonus = isBonusInLotto(lotto,bonusBall);
     for(int num : input) matchCnt = calcMatchCount(lotto,num,matchCnt);//하나의 로또에 대해 사용자의 각 숫자 중 몇 개가 일치되는 것인지 카운트
+    System.out.println(matchCnt);
     if(matchCnt == 3) updateRankMap(Rank.FIFTH);
     else if(matchCnt ==4) updateRankMap(Rank.FOURTH);
     else if(matchCnt ==5 && isBonus) updateRankMap(Rank.SECOND);
