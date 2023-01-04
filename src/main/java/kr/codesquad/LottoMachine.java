@@ -32,8 +32,6 @@ public class LottoMachine extends BaseLotto{
             break; // do-while을 통한 입력 벗어남
         } while (true);
 
-        //if(amountOfMoney < 20000) throw new CustomException(ErrorCode.MONEY_NOT_ENOUGH);
-
         return amountOfMoney;
     }
 
