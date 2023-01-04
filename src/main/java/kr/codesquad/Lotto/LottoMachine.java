@@ -1,6 +1,5 @@
-package kr.codesquad;
+package kr.codesquad.Lotto;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class LottoMachine {

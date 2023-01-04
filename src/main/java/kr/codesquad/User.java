@@ -1,4 +1,6 @@
 package kr.codesquad;
+import kr.codesquad.Lotto.LottoStatus;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

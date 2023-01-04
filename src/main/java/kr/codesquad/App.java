@@ -1,6 +1,7 @@
 package kr.codesquad;
 
 import kr.codesquad.IO.Console;
+import kr.codesquad.Lotto.LottoMachine;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,7 +19,9 @@ public class App {
 
     public void play()
     {
+        // 로또 구매
         purchaseLotto();
+        // 구매 정보를 추첨기에 입력
         setUpLottoMachine();
         getResult();
     }
@@ -74,8 +77,7 @@ public class App {
 
     private void getResult()
     {
-        ArrayList<Integer> result = lottoMachine.getResult(user.getLottoTickets());
-        user.calculateRateOfRetrun(result);
+        console.printResult(lottoMachine.getResult(user.getLottoTickets()), user.getBuyNum());
     }
 
     private static ArrayList<Integer> splitTo6Integers(String beforeSplited)

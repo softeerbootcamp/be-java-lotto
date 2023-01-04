@@ -1,4 +1,5 @@
 package kr.codesquad.IO;
+import kr.codesquad.Lotto.LottoStatus;
 import kr.codesquad.User;
 
 import java.util.ArrayList;
@@ -82,5 +83,33 @@ public class Console {
     public int scanBonusBall()
     {
         return scanner.nextInt();
+    }
+
+    public void printResult(ArrayList<Integer> Result, int buyNum)
+    {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("-------------");
+
+        for(LottoStatus stat : LottoStatus.values())
+        {
+            System.out.printf("%s, (%d)- %d개\n", stat.getStatusString(), stat.getWinningAmout(), Result.get(stat.ordinal()));
+        }
+//          System.out.printf("3개 일치 (5000원)- %d개\n", Result.get(0));
+//          System.out.printf("4개 일치 (50000원)- %d개\n", Result.get(1));
+//          System.out.printf("5개 일치 (1500000원)- %d개\n", Result.get(2));
+//          System.out.printf("5개 일치, 보너스 볼 일치(30000000원)- %d개\n", Result.get(3));
+//          System.out.printf("6개 일치 (2000000000원)- %d개\n", Result.get(4));
+
+        float rate = (float)(
+                LottoStatus.Fifth.getWinningAmout()*Result.get(0) +
+                        LottoStatus.Fourth.getWinningAmout()*Result.get(1) +
+                        LottoStatus.Third.getWinningAmout()*Result.get(2) +
+                        LottoStatus.Second.getWinningAmout()*Result.get(3) +
+                        LottoStatus.First.getWinningAmout()*Result.get(4) - buyNum*1000) /
+                (float) (buyNum*1000)
+                * 100;
+
+        System.out.printf("총 수익률은 %.2f%% 입니다.\n", rate);
     }
 }
