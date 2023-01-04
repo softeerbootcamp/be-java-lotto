@@ -45,7 +45,6 @@ public class OutputView {
         for (Rank rank : Rank.getSortedRanks()) {
             showLottoResult(result.getResult().get(rank), rank);
         }
-
     }
     public static void showLottoResult(int lottoCount, Rank rank) {
         String bonusText = "";

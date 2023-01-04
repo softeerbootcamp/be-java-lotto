@@ -2,6 +2,7 @@ package kr.codesquad.controller;
 
 import kr.codesquad.domain.Lotto;
 import kr.codesquad.domain.Lottos;
+import kr.codesquad.domain.Result;
 import kr.codesquad.domain.WinLotto;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
