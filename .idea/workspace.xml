@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="rafactor: 로또 게임에 대한 정보를 담고 있는 Lotto 클래스, 당첨 번호와 보너스 숫자를 가진 WinningNumbers 도메인으로 책임을 분산&#10;&#10;## why&#10;로또 프로그램은 총 두 개의 로직, &#10;[금액 투입 -&gt; 로또 발급]&#10;[당첨번호 투입 -&gt; 통계 출력]&#10;이 필요한데 현재 구조로는 두 로직 사이에 전달되어야 할 데이터를 효과적으로 주고받지 못한다고 생각되었으며, 그 문제점이 도메인이 아닌 LottoService, LottoController를 두고 필요한 로직을 구현하였기 때문이라 생각되었습니다. 따라서 도메인 주도 설계로 전환하고자 노력하였습니다.&#10; &#10;## todo&#10;최대한 getter &amp; setter 및 Collection이 노출되지 않도록 클래스를 더욱 더 세분화할 계획이며, 도메인 주도 모델링으로 바꾸어 나갈 예정입니다.&#10;또한, Rank enum을 참고 자료를 활용하여 방식을 바꾸어 나갈 예정입니다.">
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoViewer.java" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor: 1000원 미만 금액 투입에 대한 예외처리를 Statistic 객체로 이동.&#10;[당첨 번호 입력] -&gt; [통계 출력]&#10;의 과정을 가독성을 위해 &#10;1. 당첨 번호와 입력된 Lotto 비교&#10;2. 통계 생성&#10;으로 나누었습니다.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Rank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Rank.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +209,28 @@
       <option name="project" value="LOCAL" />
       <updated>1672819908607</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="refactor: LottoService 삭제&#10;&#10;## why&#10;불필요한 서비스 계층을 두지 않고 도메인 내에서 문제를 해결하고자 LottoService는 삭제하였으며 Controller에서 도메인에 구현된 메서드를 callback하여 로직을 해결하고자 하였습니다.&#10;이에 따라 전체 구조를&#10;[starter] -&gt; [viewer] &lt;-&gt; [contoller]&#10;로 변경하였습니다.">
+      <created>1672820415832</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1672820415832</updated>
+    </task>
+    <task id="LOCAL-00020" summary="refactor: 구매한 total Lotto 출력 메서드를 Lotto 클래스 내로 옮김.">
+      <created>1672820668437</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1672820668437</updated>
+    </task>
+    <task id="LOCAL-00021" summary="refactor: 1000원 미만 금액 투입에 대한 예외처리를 Statistic 객체로 이동.&#10;[당첨 번호 입력] -&gt; [통계 출력]&#10;의 과정을 가독성을 위해 &#10;1. 당첨 번호와 입력된 Lotto 비교&#10;2. 통계 생성&#10;으로 나누었습니다.">
+      <created>1672822198757</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1672822198757</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +266,10 @@
     <MESSAGE value="rafactor: 로또 생성 기능을 interface한 LottoGenerator와 이를 implements하는 AutoLottoGenerator로 분리 &#10;&#10;## Why?&#10;step3 수동 로또 생성 요구조건을 만족하기 위함과 확장에 용이하도록 역할을 interface로 분리할 필요를 느낌.&#10;## How?&#10;interface를 구현하고 이를 상속받도록 함.&#10;## Anything Else?&#10;DI를 적극적으로 활용하여 Service나 Controller에 집중된 책임을 분산시킬 수 있도록 고려해야 함.&#10;## todo&#10;LottoGenerator를 구현하는 ManualLottoGenerator 생성 예정" />
     <MESSAGE value="rafactor: 도메인 패키지에 구조 변경, 당첨 번호 정보를 가지는 WinningNumbers 클래스 생성, Row 클래스에 createRow static 메서드 추가&#10;&#10;## Why?&#10;우선 당첨 정보가 여러 객체에서 중복적으로 사용되고 있으며, 당첨번호와 보너스 숫자가 분리되어 있어 가독성 및 유지보수가 떨어져 별도의 클래스 필요.&#10;도메인이 많아짐에 따라 도메인을 따로 패키지로 빼는 것이 좋을 것 같다고 판단." />
     <MESSAGE value="rafactor: 로또 게임에 대한 정보를 담고 있는 Lotto 클래스, 당첨 번호와 보너스 숫자를 가진 WinningNumbers 도메인으로 책임을 분산&#10;&#10;## why&#10;로또 프로그램은 총 두 개의 로직, &#10;[금액 투입 -&gt; 로또 발급]&#10;[당첨번호 투입 -&gt; 통계 출력]&#10;이 필요한데 현재 구조로는 두 로직 사이에 전달되어야 할 데이터를 효과적으로 주고받지 못한다고 생각되었으며, 그 문제점이 도메인이 아닌 LottoService, LottoController를 두고 필요한 로직을 구현하였기 때문이라 생각되었습니다. 따라서 도메인 주도 설계로 전환하고자 노력하였습니다.&#10; &#10;## todo&#10;최대한 getter &amp; setter 및 Collection이 노출되지 않도록 클래스를 더욱 더 세분화할 계획이며, 도메인 주도 모델링으로 바꾸어 나갈 예정입니다.&#10;또한, Rank enum을 참고 자료를 활용하여 방식을 바꾸어 나갈 예정입니다." />
-    <option name="LAST_COMMIT_MESSAGE" value="rafactor: 로또 게임에 대한 정보를 담고 있는 Lotto 클래스, 당첨 번호와 보너스 숫자를 가진 WinningNumbers 도메인으로 책임을 분산&#10;&#10;## why&#10;로또 프로그램은 총 두 개의 로직, &#10;[금액 투입 -&gt; 로또 발급]&#10;[당첨번호 투입 -&gt; 통계 출력]&#10;이 필요한데 현재 구조로는 두 로직 사이에 전달되어야 할 데이터를 효과적으로 주고받지 못한다고 생각되었으며, 그 문제점이 도메인이 아닌 LottoService, LottoController를 두고 필요한 로직을 구현하였기 때문이라 생각되었습니다. 따라서 도메인 주도 설계로 전환하고자 노력하였습니다.&#10; &#10;## todo&#10;최대한 getter &amp; setter 및 Collection이 노출되지 않도록 클래스를 더욱 더 세분화할 계획이며, 도메인 주도 모델링으로 바꾸어 나갈 예정입니다.&#10;또한, Rank enum을 참고 자료를 활용하여 방식을 바꾸어 나갈 예정입니다." />
+    <MESSAGE value="refactor: LottoService 삭제&#10;&#10;## why&#10;불필요한 서비스 계층을 두지 않고 도메인 내에서 문제를 해결하고자 LottoService는 삭제하였으며 Controller에서 도메인에 구현된 메서드를 callback하여 로직을 해결하고자 하였습니다.&#10;이에 따라 전체 구조를&#10;[starter] -&gt; [viewer] &lt;-&gt; [contoller]&#10;로 변경하였습니다." />
+    <MESSAGE value="refactor: 구매한 total Lotto 출력 메서드를 Lotto 클래스 내로 옮김." />
+    <MESSAGE value="refactor: 1000원 미만 금액 투입에 대한 예외처리를 Statistic 객체로 이동.&#10;[당첨 번호 입력] -&gt; [통계 출력]&#10;의 과정을 가독성을 위해 &#10;1. 당첨 번호와 입력된 Lotto 비교&#10;2. 통계 생성&#10;으로 나누었습니다." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: 1000원 미만 금액 투입에 대한 예외처리를 Statistic 객체로 이동.&#10;[당첨 번호 입력] -&gt; [통계 출력]&#10;의 과정을 가독성을 위해 &#10;1. 당첨 번호와 입력된 Lotto 비교&#10;2. 통계 생성&#10;으로 나누었습니다." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_lotto$Main.ic" NAME="Main Coverage Results" MODIFIED="1672722343647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

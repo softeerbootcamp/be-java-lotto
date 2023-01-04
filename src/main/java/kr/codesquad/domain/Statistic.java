@@ -3,20 +3,21 @@ package kr.codesquad.domain;
 import java.util.*;
 
 public class Statistic {
-    private double input;
+    private final double input;
     private double output;
     private double rate;
     public static final int SINGLE_PRICE = 1000; //로또 한 장의 가격은 1000원이다.
 
-    private static final Map<Integer, Integer> counts = new HashMap<>();
+    private static final Map<Rank, Integer> counts = new HashMap<>();
 
     public Statistic(int inputMoney) {
         this.input = inputMoney;
-        counts.put(Rank.FIRST.getWinningMoney(), 0);
-        counts.put(Rank.SECOND.getWinningMoney(), 0);
-        counts.put(Rank.THIRD.getWinningMoney(), 0);
-        counts.put(Rank.FOURTH.getWinningMoney(), 0);
-        counts.put(Rank.FIFTH.getWinningMoney(), 0);
+        counts.put(Rank.FIRST, 0);
+        counts.put(Rank.SECOND, 0);
+        counts.put(Rank.THIRD, 0);
+        counts.put(Rank.FOURTH, 0);
+        counts.put(Rank.FIFTH, 0);
+        counts.put(Rank.MISS, 0);
     }
 
     public static int getRowCountICanBuy(int inputMoney) {
@@ -27,12 +28,14 @@ public class Statistic {
     }
 
 
-    public void calculate(List<Row> rows) {
-        for (Row row : rows) {
+    public void calculate(Lotto lotto) {
+        List<Row> totalLotto = lotto.getTotalLotto();
+        for (Row row : totalLotto) {
             calculateOutput(row);
         }
         this.calculateRate();
     }
+
     public void calculateRate() {
         this.rate = ((output - input) / input) * 100;
     }
@@ -40,12 +43,11 @@ public class Statistic {
     public void calculateOutput(Row row) {
         int match = row.getMatch();
         boolean matchBonus = row.isBonus();
-        if (match >= 3) {
-            int money = Rank.getMoney(match, matchBonus);
-            int cnt = counts.get(money);
-            counts.put(money, ++cnt);
-            this.output += money;
-        }
+        Rank rank = Rank.valueOf(match, matchBonus);
+        int cnt = counts.get(rank);
+        counts.put(rank, ++cnt);
+        this.output += rank.getWinningMoney();
+
     }
 
     public void printStatistics() {
@@ -55,7 +57,7 @@ public class Statistic {
         for (Rank rank : ranks) {
             System.out.print(rank.getCountOfMatch() + "개 일치");
             isBonusRank(rank);
-            System.out.println(" ("+ rank.getWinningMoney() + "원)- " + counts.get(rank.getWinningMoney()) + "개");
+            System.out.println(" (" + rank.getWinningMoney() + "원)- " + counts.get(rank) + "개");
         }
         System.out.println("총 수익률은 " + String.format("%.2f", rate) + "% 입니다.");
     }
