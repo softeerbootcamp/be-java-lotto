@@ -1,8 +1,12 @@
-package kr.codesquad.domain.lotto;
+package kr.codesquad.domain.winningLotto;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+
+import kr.codesquad.domain.lotto.Lotto;
 
 public class WinningLotto {
 
@@ -27,6 +31,13 @@ public class WinningLotto {
 
   public boolean isBonusMatch(Lotto target) {
     return target.isContainNumber(this.bonusNumber);
+  }
+
+  public Optional<WinningAmount> check(Lotto target) {
+    return Arrays.stream(WinningAmount.values())
+                 .filter(winningAmount -> countMatch(target) == winningAmount.getCorrectCount())
+                 .filter(winningAmount -> isBonusMatch(target) == winningAmount.isBonusMatch())
+                 .findFirst();
   }
 
 }

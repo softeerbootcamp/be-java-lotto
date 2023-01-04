@@ -1,4 +1,4 @@
-package kr.codesquad.domain.winningResult;
+package kr.codesquad.domain.winningLotto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import kr.codesquad.domain.lotto.Lotto;
-import kr.codesquad.domain.lotto.WinningLotto;
 
 public class WinningResult {
 
@@ -47,7 +46,7 @@ public class WinningResult {
       WinningLotto winningLotto
   ) {
     lottos.stream()
-          .map(lotto -> WinningAmount.of(lotto, winningLotto))
+          .map(winningLotto::check)
           .filter(Optional::isPresent)
           .map(Optional::get)
           .filter(map::containsKey)

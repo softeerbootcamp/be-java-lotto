@@ -5,8 +5,8 @@ import java.util.List;
 import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.lotto.LottoShop;
-import kr.codesquad.domain.lotto.WinningLotto;
-import kr.codesquad.domain.winningResult.WinningResult;
+import kr.codesquad.domain.winningLotto.WinningLotto;
+import kr.codesquad.domain.winningLotto.WinningResult;
 import kr.codesquad.io.Console;
 
 public class App implements Runnable {

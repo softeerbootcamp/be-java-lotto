@@ -1,10 +1,4 @@
-package kr.codesquad.domain.winningResult;
-
-import java.util.Arrays;
-import java.util.Optional;
-
-import kr.codesquad.domain.lotto.Lotto;
-import kr.codesquad.domain.lotto.WinningLotto;
+package kr.codesquad.domain.winningLotto;
 
 public enum WinningAmount {
 
@@ -28,14 +22,12 @@ public enum WinningAmount {
     this.price = price;
   }
 
-  public static Optional<WinningAmount> of(
-      Lotto target,
-      WinningLotto winner
-  ) {
-    return Arrays.stream(WinningAmount.values())
-                 .filter(winningAmount -> winner.countMatch(target) == winningAmount.correctCount)
-                 .filter(winningAmount -> winner.isBonusMatch(target) == winningAmount.bonusMatch)
-                 .findFirst();
+  public int getCorrectCount() {
+    return correctCount;
+  }
+
+  public boolean isBonusMatch() {
+    return bonusMatch;
   }
 
   public int getPrice() {
