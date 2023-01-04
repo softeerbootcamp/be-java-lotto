@@ -28,8 +28,12 @@ public class LottoNumber {
         if (Objects.isNull(value)) {
             throw new IllegalArgumentException();
         }
-
-        return lottoNos.get(Integer.parseInt(value.trim()));
+        try {
+            return lottoNos.get(Integer.parseInt(value.trim()));
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException("로또 인자로는 숫자만 가능합니다.");
+        }
     }
     static LottoNumber of(int number) {
         return new LottoNumber(number);
