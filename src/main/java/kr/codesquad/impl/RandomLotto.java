@@ -43,7 +43,7 @@ public class RandomLotto implements LottoTmpl {
         lottoList.add(givenList);
     }
 
-    //로또 리스트를 반
+    //로또 리스트를 반환
     @Override
     public ArrayList<ArrayList<Integer>> getLottoList() {
         return lottoList;
