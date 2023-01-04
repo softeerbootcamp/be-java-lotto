@@ -16,9 +16,8 @@ public class InputView {
         br = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public long inputMoney() throws IOException {
-        long money = Long.parseLong(br.readLine());
-        return money;
+    public String inputMoney() throws IOException {
+        return br.readLine();
     }
 
     public List<Integer> inputWinningNumbers() throws IOException {

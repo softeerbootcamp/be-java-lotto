@@ -23,10 +23,11 @@ public class LottoService {
     }
 
     public void buyLotto() throws IOException {
+        /*
         outputView.printInputMoneyText();
         long count = lotto.calculateCount(inputView.inputMoney());
         outputView.printBoughtLottoCount(count);
-        outputView.printLottoNumbers(lotto.generateLotto(count));
+        outputView.printLottoNumbers(lotto.generateLotto(count));*/
     }
 
     public void inputWinningNumber() throws IOException {

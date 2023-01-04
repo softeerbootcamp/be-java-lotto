@@ -10,4 +10,7 @@ public class Money {
     public int calculateLottoCount() {
         return money / LOTTO_PRICE;
     }
+    public static int convertStringToMoney(String input) throws NumberFormatException{
+        return Integer.parseInt(input);
+    }
 }
