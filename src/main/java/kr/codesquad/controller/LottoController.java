@@ -25,7 +25,7 @@ public class LottoController {
         amount = totalPrice / LOTTO_PRICE;
         Lottos lottos = purchaseLotto(amount);
         WinLotto winLotto  = makeWinLotto();
-        findSameNumber(lottos, winLotto);
+        calculateResult(lottos, winLotto);
         getResult();
     }
 
@@ -58,7 +58,8 @@ public class LottoController {
 
     public static void findSameNumber(
             Lottos lottos,
-            WinLotto winLotto)
+            WinLotto winLotto
+    )
     {
         for (int i = 0; i < amount; i++) {
             List<Integer> tempLotto = lottos.getLottoList().get(i).getLotto();
@@ -81,6 +82,18 @@ public class LottoController {
                 sameCnt,
                 totalPrice
         );
+    }
+
+    private void calculateResult(
+            Lottos lottos,
+            WinLotto winLotto)
+    {
+        OutputView.showResultStatistics();
+
+        Result result = new Result();
+        result.addMatchCount(lottos, winLotto);
+
+        OutputView.showLottoListResult(result);
     }
 
 }
