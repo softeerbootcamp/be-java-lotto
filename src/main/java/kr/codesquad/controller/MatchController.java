@@ -3,10 +3,12 @@ package kr.codesquad.controller;
 import kr.codesquad.model.Prize;
 import kr.codesquad.templates.Lotto;
 import kr.codesquad.model.lottoImpl.ResultLotto;
+import kr.codesquad.utils.Util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static kr.codesquad.utils.Util.*;
 import static kr.codesquad.utils.Util.containNum;
 
 public class MatchController {
@@ -28,13 +30,6 @@ public class MatchController {
         hitNums.put(hitNum, hitNums.getOrDefault(hitNum, 0) + 1);
     }
 
-    //수동 로또와 자동 리스트를 합하여 리턴
-    public ArrayList<ArrayList<Integer>> mergeLottos(Lotto lotto1, Lotto lotto2){
-        ArrayList<ArrayList<Integer>> lottoList1 = lotto1.getLottoList();
-        ArrayList<ArrayList<Integer>> lottoList2 = lotto2.getLottoList();
-        lottoList1.addAll(lottoList2);
-        return lottoList1;
-    }
 
     //모든 로또 리스트에 대해 당첨 여부를 확인
     public void startCalculate(Lotto randomLotto, Lotto myLotto, ResultLotto resultLotto){

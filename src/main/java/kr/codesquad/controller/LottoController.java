@@ -1,9 +1,9 @@
 package kr.codesquad.controller;
 
 import kr.codesquad.model.UserInfo;
-import kr.codesquad.model.lottoImpl.MyLotto;
 import kr.codesquad.model.lottoImpl.RandomLotto;
 import kr.codesquad.model.lottoImpl.ResultLotto;
+import kr.codesquad.templates.Lotto;
 import kr.codesquad.view.UserConsole;
 
 import static kr.codesquad.utils.Util.parseString;
@@ -13,7 +13,7 @@ public class LottoController {
     private UserInfo user;
     private UserConsole userConsole;
     private RandomLotto randomLotto = new RandomLotto();
-    private MyLotto myLotto = new MyLotto();
+    private Lotto myLotto = new Lotto();
     private ResultLotto resultLotto = new ResultLotto();
     private MatchController matchController = new MatchController();
 
