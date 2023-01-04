@@ -15,11 +15,11 @@ public class LottoChecker {
         this.result = new ArrayList<>(List.of(0, 0, 0, 0, 0));
     }
 
-    public void checkLotto(Lotto lotto, List<Integer> winNumList) {
+    public void checkLotto(Lotto lotto) {
         List<List<Integer>> lottoList = lotto.getLottoList();
 
         for(List<Integer> eachLottoList : lottoList)
-            setResult(result, countWinNum(eachLottoList, winNumList), checkBonus(eachLottoList, winNumList.get(6)));
+            setResult(result, countWinNum(eachLottoList, winNumList), checkBonus(eachLottoList, bonusNum));
 
         printResult(result, lottoList.size());
     }
