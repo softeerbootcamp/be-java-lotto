@@ -8,13 +8,11 @@ import java.util.Map;
 public class LottoChecker {
     private final List<Integer> winNumList;
     private final int bonusNum;
-    private final Map<Rank, Integer> result;
 
     public LottoChecker() {
         UserInput ui = new UserInput();
         this.winNumList = ui.inputWinNum();
         this.bonusNum = ui.inputBonusNum();
-        this.result = new EnumMap<>(Rank.class);
     }
 
     public void checkLotto(Lotto lotto) {
@@ -39,7 +37,7 @@ public class LottoChecker {
         return eachLottoList.contains(bonusNum);
     }
 
-    public void setResult(List<Integer> result, int winNumCount, boolean isBonus) {
+    public void setResult(EnumMap<Rank, Integer> result, int winNumCount, boolean isBonus) {
         if(winNumCount == Rank.FIFTH.getCountOfMatch()) result.set(0, result.get(0) + 1);
         else if(winNumCount == Rank.FOURTH.getCountOfMatch()) result.set(1, result.get(1) + 1);
         else if(winNumCount == Rank.SECOND.getCountOfMatch() && isBonus) result.set(3, result.get(3) + 1);
