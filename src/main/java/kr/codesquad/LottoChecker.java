@@ -11,8 +11,10 @@ public class LottoChecker {
     }
 
     public void checkLotto(Lotto lotto, List<Integer> winNumList) {
-        for(int i = 0; i < lotto.getLottoList().size(); i++)
-            setResult(result, countWinNum(lotto, winNumList, i), checkBonus(lotto, winNumList.get(6), i));
+        List<List<Integer>> lottoList = lotto.getLottoList();
+
+        for(List<Integer> eachLottoNum : lottoList)
+            setResult(result, countWinNum(eachLottoNum, winNumList), checkBonus(eachLottoNum, winNumList.get(6)));
 
         printResult(result);
     }
