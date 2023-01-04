@@ -15,6 +15,10 @@ public class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
+    public void printManualLottoCountReadMessage() {
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+    }
+
     public void printLottoCount(int lottoCount) {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
@@ -38,8 +42,9 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         sb.append("당첨 통계\n----------\n");
 
-        List<Rank> ranks = Arrays.stream(Rank.values()).collect(Collectors.toList());
-        Collections.sort(ranks, Collections.reverseOrder());
+        List<Rank> ranks = Arrays.stream(Rank.values())
+                .sorted(Collections.reverseOrder())
+                .collect(Collectors.toList());
 
         printWinningResult(sb, ranks, result);
         printProfitRate(sb, profitRate);
