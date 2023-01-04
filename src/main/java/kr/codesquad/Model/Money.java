@@ -9,7 +9,11 @@ public class Money {
     public Money sum(Money money){ return new Money(this.money + money.money); }
 
     public double profitRate(Money prize) {
-        return (prize.money * 100) / money;
+        return ((prize.money - money) / (double) money) * 100;
+    }
+
+    public String toString(){
+        return "Money : " + money;
     }
 
 }

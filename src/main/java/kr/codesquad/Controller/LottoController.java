@@ -39,6 +39,7 @@ public class LottoController {
         LottoResult result = lottoGame.match(winningLotto);
         // 출력
         Output.printScore(result);
+        Output.printRate(result, money);
         // statistics(user.getLottoBuyList(), user.getPrice());
     }
 

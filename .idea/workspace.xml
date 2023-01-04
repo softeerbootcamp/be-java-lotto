@@ -7,11 +7,7 @@
     <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Controller/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Controller/LottoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Model/DefaultLottoResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Model/DefaultLottoResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Model/LottoGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Model/LottoGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Model/LottoResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Model/LottoResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Model/Money.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Model/Money.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Model/Rank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Model/Rank.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/View/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/View/Output.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
