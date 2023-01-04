@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class ResultLotto implements LottoTmpl {
 
+    private ArrayList<ArrayList<Integer>> lottoList = new ArrayList<ArrayList<Integer>>();
     private int bonumsNum;
 
     @Override
@@ -14,7 +15,7 @@ public class ResultLotto implements LottoTmpl {
     }
 
     @Override
-    public ArrayList<Integer> getLottoList() {
-        return null;
+    public ArrayList<ArrayList<Integer>> getLottoList() {
+        return lottoList;
     }
 }
