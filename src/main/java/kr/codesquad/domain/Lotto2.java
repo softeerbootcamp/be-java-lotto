@@ -32,4 +32,13 @@ public class Lotto2 {
     public boolean isContainsBonusBall(int bonusBall) {
         return lottoNumbers.contains(bonusBall);
     }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < lottoNumbers.size() - 1; i++) {
+            sb.append(lottoNumbers.get(i) + ", ");
+        }
+        sb.append(lottoNumbers.get(lottoNumbers.size() - 1));
+        return sb.toString();
+    }
 }
