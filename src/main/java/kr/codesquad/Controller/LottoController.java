@@ -18,7 +18,7 @@ public class LottoController {
         lottoPrinter.print(buyLotto(lottoService));
         lottoService.setWinNum(getWinNumber());
         lottoService.calcResult();
-     //   lottoPrinter.printResult(lottoService);
+        lottoPrinter.print(mg.getResultMsg(lottoService));
     }
 
     private BigInteger getInitMoney(){
