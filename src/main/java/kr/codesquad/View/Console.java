@@ -1,6 +1,7 @@
-package kr.codesquad;
+package kr.codesquad.View;
 
 import kr.codesquad.LottoService.Lotto;
+import kr.codesquad.Rank;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,16 +34,15 @@ public class Console {
         lottoCount = Long.parseLong(br.readLine()) / LOTTO_PRICE;
     }
 
-    public int inputManualLottoCount() {
+    public int inputManualLottoCount() throws IOException {
         System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
-        Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+        return Integer.parseInt(br.readLine());
     }
 
-    public void inputManualLottoNumber(int manualLottoCount){
+    public void inputManualLottoNumber(int manualLottoCount) throws IOException {
         System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
         for (int i = 0; i < manualLottoCount; i++) {
-
+            splitInputString(br.readLine());
         }
     }
 
@@ -61,13 +61,13 @@ public class Console {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
-    public void printLottos(List<Lotto> lottos) {
-        for (Lotto lotto : lottos)
+    public void printLottoList(List<Lotto> lottoList) {
+        for (Lotto lotto : lottoList)
             System.out.println(lotto);
     }
 
     public void inputWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         Scanner sc = new Scanner(System.in);
         String wonNumbers = sc.nextLine().replaceAll(" ", "");
         winningNumberList = Arrays.stream(wonNumbers.split(",")).map(Integer::valueOf).collect(Collectors.toList());
