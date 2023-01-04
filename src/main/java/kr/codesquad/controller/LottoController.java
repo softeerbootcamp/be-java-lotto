@@ -4,6 +4,7 @@ import kr.codesquad.model.*;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,12 +25,11 @@ public class LottoController {
 
         outputView.printManualLottoCountReadMessage();
         int manualLottoCount = inputView.readOneNumber();
+        int autoLottoCount = money / 1000 - manualLottoCount;
 
-        int totalLottoCount = money / 1000;
-        int autoLottoCount = totalLottoCount - manualLottoCount;
+        outputView.printUserManualLottoReadMessage();
+        UserLotto userLotto = createUserLotto(manualLottoCount, autoLottoCount);
         outputView.printLottoCount(manualLottoCount, autoLottoCount);
-
-        UserLotto userLotto = createUserLotto(totalLottoCount);
         outputView.printUserLotto(userLotto);
 
         WinningLotto winningLotto = createWinningLotto();
@@ -44,14 +44,18 @@ public class LottoController {
         return inputView.readOneNumber();
     }
 
-    private UserLotto createUserLotto(int lottoCount) {
-        List<Lotto> lottos = lottoMachine.createLottos(lottoCount);
+    private UserLotto createUserLotto(int manualLottoCount, int autoLottoCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int count = 0; count < manualLottoCount; count++) {
+            lottos.add(new Lotto(inputView.readLottoNumbers()));
+        }
+        lottos.addAll(lottoMachine.createLottos(autoLottoCount));
         return new UserLotto(lottos);
     }
 
     private WinningLotto createWinningLotto() {
         outputView.printWinningLottoReadMessage();
-        List<Integer> numbers = inputView.readWinningLotto();
+        List<Integer> numbers = inputView.readLottoNumbers();
 
         outputView.printBonusNumberReadMessage();
         int bonusNumber = inputView.readOneNumber();
@@ -65,9 +69,6 @@ public class LottoController {
 
     private double calculateProfitRate(Map<Rank, Integer> result, int money) {
         double profit = 0;
-//        result.forEach((rank, value) -> {
-//            profit += rank.getPrize() * value;
-//        });
         for (Rank rank : result.keySet()) {
             profit += rank.getPrize() * result.get(rank);
         }
