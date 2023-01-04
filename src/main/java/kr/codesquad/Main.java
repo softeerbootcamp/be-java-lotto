@@ -51,15 +51,15 @@ class Lotto{
     //1. 구입 금액 입력 받기
     Integer amountOfMoney = machine.getAmountOfMoney();
     //2. 수동으로 구매할 로또 수 입력받기
-    int manualLottoCnt = user.getManualLottoCount(amountOfMoney);
+    int manualLottoCnt = user.getLottoCnt(amountOfMoney,0);
     //2-1. 자동으로 구매할 로또 수 계산해서 저장
-    Integer lottoCnt = machine.getLottoCount(amountOfMoney,manualLottoCnt);
+    Integer lottoCnt = machine.getLottoCnt(amountOfMoney,manualLottoCnt);
     int totalCnt = manualLottoCnt+lottoCnt;
     //3. 최종 로또들 출력
     //3-1.수동으로 구매한 로또반환
-    ArrayList<ArrayList<Integer>> manualLottos =user.getManualLottos(manualLottoCnt);
+    ArrayList<ArrayList<Integer>> manualLottos =user.getLottoList();
     //3-2.자동으로 구매한 로또 리스트 반환하기
-    ArrayList<ArrayList<Integer>> lottos = machine.getLottos();
+    ArrayList<ArrayList<Integer>> lottos = machine.getLottoList();
     lottos.addAll(manualLottos);
     System.out.println(lottos);
     //4.지난 주 당첨 번호 입력 받기
