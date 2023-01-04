@@ -1,16 +1,19 @@
 package kr.codesquad;
 
+
 public class WinningLotto {
 
 	private Lotto winningLotto;
 	private LottoNumber bonusBall;
 
 	private WinningLotto(Lotto lotto, LottoNumber bonusBall) {
+
 		this.winningLotto = lotto;
 		this.bonusBall = bonusBall;
 	}
 
 	public static WinningLotto of(Lotto lotto, int bonusBall) {
+
 		return new WinningLotto(lotto, LottoNumber.of(bonusBall));
 	}
 

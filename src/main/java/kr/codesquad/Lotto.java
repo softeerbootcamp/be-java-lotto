@@ -1,11 +1,13 @@
 package kr.codesquad;
 
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Lotto {
 	private final static int NUMBER_COUNT = 6;
+
 
 	private Set<LottoNumber> numbers;
 
@@ -17,6 +19,7 @@ public class Lotto {
 	}
 
 	public static Lotto of(List<Integer> lotto) {
+
 		Set<LottoNumber> lottoNumberList = new HashSet<>();
 		for (int number : lotto) {
 			lottoNumberList.add(LottoNumber.of(number));
