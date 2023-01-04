@@ -20,12 +20,12 @@ public class Lotto {
         this.lottoNums = lottoNums;
     }
 
-    public Prize getPrize(Lotto prizeNums, int bonus) {
+    public Prize getPrize(WinLotto winLotto) {
         int count = 0;
         for (Integer expect_no : lottoNums) {
-            count = countUpIfContains(prizeNums.lottoNums, expect_no, count);
+            count = countUpIfContains(winLotto.getLottoNums(), expect_no, count);
         }
-        return Prize.getPrize(count, lottoNums.contains(bonus));
+        return Prize.getPrize(count, lottoNums.contains(winLotto.getBonusNo()));
     }
 
     public int countUpIfContains(List<Integer> arr, int target, int count) {
@@ -38,4 +38,7 @@ public class Lotto {
         return lottoNums.toString();
     }
 
+    public List<Integer> getLottoNums(){
+        return lottoNums;
+    }
 }

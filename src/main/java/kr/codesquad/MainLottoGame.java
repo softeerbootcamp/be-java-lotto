@@ -4,6 +4,7 @@ import kr.codesquad.InputManager.UserInputHandler;
 import kr.codesquad.InputManager.UserInputHandlerImpl;
 import kr.codesquad.Lotto.Lotto;
 import kr.codesquad.Lotto.LottoStat;
+import kr.codesquad.Lotto.WinLotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,9 @@ import java.util.List;
 public class MainLottoGame {
     private List<Lotto> lottos;
     private LottoStat lottoStat;
-
     private int nManualLotto;
     private int nAutoLotto;
-    private Lotto winning;
-    private int bonusNo;
+    private WinLotto winLotto;
     private UserInputHandler inputHandler;
 
     public MainLottoGame() {
@@ -31,14 +30,14 @@ public class MainLottoGame {
     }
 
     protected void printResult() {
-        lottoStat = new LottoStat(lottos, winning, bonusNo);
+        lottoStat = new LottoStat(lottos, winLotto);
         lottoStat.printResult();
     }
 
     protected void getWinning() {
-        List<Integer> winningNumbers = inputHandler.getSixNumber();
-        bonusNo = inputHandler.getBonusNumber(winningNumbers);
-        winning = new Lotto(winningNumbers);
+        List<Integer> winningNumbers = inputHandler.getSixLottoNumber();
+        int bonusNo = inputHandler.getBonusNumber(winningNumbers);
+        winLotto = new WinLotto(winningNumbers, bonusNo);
     }
 
     protected void buyLottos() {
@@ -57,11 +56,10 @@ public class MainLottoGame {
     }
 
     protected int buyManualLotto(int max_lotto) {
-        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
-        int n_lotto = inputHandler.getOneNumber(0, max_lotto);
+        int nManualLotto = inputHandler.getManualLottoAmount(max_lotto);
         List<Lotto> manualLotto = new ArrayList<>();
-        for (int i = 0; i < n_lotto; i++) {
-            List<Integer> sixNumber = inputHandler.getSixNumber();
+        for (int i = 0; i < nManualLotto; i++) {
+            List<Integer> sixNumber = inputHandler.getSixLottoNumber();
             manualLotto.add(new Lotto(sixNumber));
         }
         lottos.addAll(manualLotto);

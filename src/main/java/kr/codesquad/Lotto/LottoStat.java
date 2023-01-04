@@ -11,13 +11,11 @@ public class LottoStat {
     private long totalMoney;
     private Map<Prize, Integer> winnings;
     private List<Lotto> lottos;
-    private Lotto winningNums;
-    private int winningBonus;
+    private WinLotto winLotto;
 
-    public LottoStat(List<Lotto> lottos, Lotto winningNums, int bonus) {
+    public LottoStat(List<Lotto> lottos, WinLotto winLotto) {
         this.lottos = lottos;
-        this.winningNums = winningNums;
-        winningBonus = bonus;
+        this.winLotto = winLotto;
         winnings = new HashMap<>();
         calcResult();
     }
@@ -27,7 +25,7 @@ public class LottoStat {
             winnings.put(prize, 0);
         }
         for (Lotto lotto : lottos) {
-            Prize prize = lotto.getPrize(winningNums, winningBonus);
+            Prize prize = lotto.getPrize(winLotto);
             winnings.put(prize, winnings.get(prize) + 1);
             totalMoney += prize.getMoney();
         }
