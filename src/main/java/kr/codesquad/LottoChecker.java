@@ -24,15 +24,11 @@ public class LottoChecker {
         printResult(result, lottoList.size());
     }
 
-    public int countWinNum(List<Integer> eachLottoList, List<Integer> winNumList) {
+    public int countWinNum(List<Integer> eachLottoList) {
         int winNumCount = 0;
 
-        if(eachLottoList.contains(winNumList.get(0))) winNumCount++;
-        if(eachLottoList.contains(winNumList.get(1))) winNumCount++;
-        if(eachLottoList.contains(winNumList.get(2))) winNumCount++;
-        if(eachLottoList.contains(winNumList.get(3))) winNumCount++;
-        if(eachLottoList.contains(winNumList.get(4))) winNumCount++;
-        if(eachLottoList.contains(winNumList.get(5))) winNumCount++;
+        for(int winNum : winNumList)
+            winNumCount = eachLottoList.contains(winNum) ? winNumCount + 1 : winNumCount;
 
         return winNumCount;
     }
