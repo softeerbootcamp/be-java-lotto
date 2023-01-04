@@ -67,8 +67,8 @@ public class LottoService {
 
     public void makeLottoResultCount(Lotto lottoNumbers, WinLotto winLotto) {
         int correctCnt = correctNumCnt(lottoNumbers, winLotto);
-        boolean isBonusInclude = correctCnt == 5 && lottoNumbers.getNumberList().contains(winLotto.getBonusNum());
-        WinningCount winningCount = findWinningCount(correctCnt, isBonusInclude);
+        boolean isBonusWin = checkBonusWin(lottoNumbers, correctCnt, winLotto);
+        WinningCount winningCount = findWinningCount(correctCnt, isBonusWin);
         if (winningCount != null) {
             addWinningCount(winningCount);
         }
@@ -77,11 +77,14 @@ public class LottoService {
     public int correctNumCnt(Lotto lottoNumbers, WinLotto winLotto) {
         List<Integer> temp = new ArrayList<>(lottoNumbers.getNumberList());
         temp.retainAll(winLotto.getWinLotto().getNumberList());
-        int count = temp.size();
-        if(temp.contains(winLotto.getBonusNum()) && temp.size() != LOTTO_NUM_COUNT - 1) {
-            count++;
-        }
-        return count;
+        return temp.size();
+    }
+
+    public boolean checkBonusWin(Lotto lottoNumbers, int correctCnt, WinLotto winLotto) {
+          if(correctCnt == LOTTO_NUM_COUNT - 1 && lottoNumbers.getNumberList().contains(winLotto.getBonusNum()))  {
+              return true;
+          }
+          return false;
     }
 
 
