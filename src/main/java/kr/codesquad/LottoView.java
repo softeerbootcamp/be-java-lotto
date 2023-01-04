@@ -1,5 +1,8 @@
 package kr.codesquad;
 
+import kr.codesquad.domain.Row;
+import kr.codesquad.domain.Statistic;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,7 +10,6 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import static kr.codesquad.LottoController.SINGLE_PRICE;
-import static kr.codesquad.LottoService.COLUMN;
 
 public class LottoView {
     private final LottoController lottoController;
@@ -35,11 +37,11 @@ public class LottoView {
         }
     }
 
-    public void getAnswers() throws IOException{
+    public void getAnswers() throws IOException {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        int[] answers = new int[COLUMN];
+        int[] answers = new int[Row.COLUMN];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < COLUMN; i++) {
+        for (int i = 0; i < Row.COLUMN; i++) {
             answers[i] = Integer.parseInt(st.nextToken());
         }
         System.out.println("보너스 볼을 입력해 주세요.");

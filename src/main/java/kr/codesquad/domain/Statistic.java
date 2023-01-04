@@ -1,4 +1,7 @@
-package kr.codesquad;
+package kr.codesquad.domain;
+
+import kr.codesquad.domain.Rank;
+import kr.codesquad.domain.Row;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -6,8 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Statistic {
+    private double input;
+    private double output;
     private double rate;
-    private double output = 0;
+    public static final int SINGLE_PRICE = 1000; //로또 한 장의 가격은 1000원이다.
+
     private final Map<Integer, Integer> counts = new HashMap<>();
     public Statistic() {
         counts.put(Rank.FIRST.getWinningMoney(), 0);
@@ -15,6 +21,10 @@ public class Statistic {
         counts.put(Rank.THIRD.getWinningMoney(), 0);
         counts.put(Rank.FOURTH.getWinningMoney(), 0);
         counts.put(Rank.FIFTH.getWinningMoney(), 0);
+    }
+
+    public static int getRowCountICanBuy(int inputMoney) {
+        return inputMoney / SINGLE_PRICE;
     }
 
     public void calculateRate(int input) {

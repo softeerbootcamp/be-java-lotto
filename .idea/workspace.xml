@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/AutoLottoGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoGenerator.java" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="rafactor: 로또 생성 기능을 interface한 LottoGenerator와 이를 implements하는 AutoLottoGenerator로 분리 &#10;&#10;## Why?&#10;step3 수동 로또 생성 요구조건을 만족하기 위함과 확장에 용이하도록 역할을 interface로 분리할 필요를 느낌.&#10;## How?&#10;interface를 구현하고 이를 상속받도록 함.&#10;## Anything Else?&#10;DI를 적극적으로 활용하여 Service나 Controller에 집중된 책임을 분산시킬 수 있도록 고려해야 함.&#10;## todo&#10;LottoGenerator를 구현하는 ManualLottoGenerator 생성 예정">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/WinningNumbers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/AutoLottoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/AutoLottoGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Rank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Rank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Row.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Statistic.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +30,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -64,7 +67,7 @@
       <module name="java-lotto.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kr.codesquad.Row" />
+          <option name="PATTERN" value="kr.codesquad.domain.Row" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -193,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672736908881</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="rafactor: 로또 생성 기능을 interface한 LottoGenerator와 이를 implements하는 AutoLottoGenerator로 분리 &#10;&#10;## Why?&#10;step3 수동 로또 생성 요구조건을 만족하기 위함과 확장에 용이하도록 역할을 interface로 분리할 필요를 느낌.&#10;## How?&#10;interface를 구현하고 이를 상속받도록 함.&#10;## Anything Else?&#10;DI를 적극적으로 활용하여 Service나 Controller에 집중된 책임을 분산시킬 수 있도록 고려해야 함.&#10;## todo&#10;LottoGenerator를 구현하는 ManualLottoGenerator 생성 예정">
+      <created>1672797487638</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1672797487638</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +236,8 @@
     <MESSAGE value="refactor: Enum 메서드 depth 1 만족할수있도록 수정&#10;&#10;예시 코드로 주어진 valueOf() 의 depth를 1로 낮추되 전체적인 구조를 망가뜨리지 않도록 수정하였습니다.&#10;수정 결과, Enum 중 하나를 반화하는 valueOf() 대신 금액을 반환하는 하나의 메서드로 처리하였습니다.&#10;하지만 그 과정에서 Rank를 금액 기준으로 count 등 처리를 하다보니 winningMoney 필드에 대한 의존도가 높아져 만약 동일한 금액의 Enum이 추가되면 문제가 발생할 위협이 있습니다." />
     <MESSAGE value="feat: 입출력을 담당하는 View 추가&#10;&#10;View를 추가하여 입출력을 처리하고, Controller에 해당 값을 넘겨주고,&#10;Controller가 Service를 호출하여 결과값을 View에 다시 반환하여 출력하는 형태로 수정함.&#10;&#10;이를 위해 View는 Controller를, Controller는 Service를 생성자 주입하여 변경되지 않도록 함.&#10;&#10;View와 Controller 기능이 아직 깔끔히 분리되지 못하여 추가적으로 refactoring 에정." />
     <MESSAGE value="refactor: 당첨 통계 View 단에서 출력될 수 있도록 간단히 수정함." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: 당첨 통계 View 단에서 출력될 수 있도록 간단히 수정함." />
+    <MESSAGE value="rafactor: 로또 생성 기능을 interface한 LottoGenerator와 이를 implements하는 AutoLottoGenerator로 분리 &#10;&#10;## Why?&#10;step3 수동 로또 생성 요구조건을 만족하기 위함과 확장에 용이하도록 역할을 interface로 분리할 필요를 느낌.&#10;## How?&#10;interface를 구현하고 이를 상속받도록 함.&#10;## Anything Else?&#10;DI를 적극적으로 활용하여 Service나 Controller에 집중된 책임을 분산시킬 수 있도록 고려해야 함.&#10;## todo&#10;LottoGenerator를 구현하는 ManualLottoGenerator 생성 예정" />
+    <option name="LAST_COMMIT_MESSAGE" value="rafactor: 로또 생성 기능을 interface한 LottoGenerator와 이를 implements하는 AutoLottoGenerator로 분리 &#10;&#10;## Why?&#10;step3 수동 로또 생성 요구조건을 만족하기 위함과 확장에 용이하도록 역할을 interface로 분리할 필요를 느낌.&#10;## How?&#10;interface를 구현하고 이를 상속받도록 함.&#10;## Anything Else?&#10;DI를 적극적으로 활용하여 Service나 Controller에 집중된 책임을 분산시킬 수 있도록 고려해야 함.&#10;## todo&#10;LottoGenerator를 구현하는 ManualLottoGenerator 생성 예정" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_lotto$Main.ic" NAME="Main Coverage Results" MODIFIED="1672722343647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

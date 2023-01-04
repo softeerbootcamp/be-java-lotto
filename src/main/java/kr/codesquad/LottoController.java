@@ -1,5 +1,8 @@
 package kr.codesquad;
 
+import kr.codesquad.domain.Row;
+import kr.codesquad.domain.Statistic;
+
 import java.util.List;
 
 public class LottoController {
@@ -18,8 +21,6 @@ public class LottoController {
     public List<Row> receiveInput(int inputMoney) {
         //로또 구입 금액을 입력하면
         this.inputMoney = inputMoney;
-
-        int num = inputMoney / SINGLE_PRICE;
         rows = lottoService.receiveRandomRows(inputMoney);
 
         return rows;

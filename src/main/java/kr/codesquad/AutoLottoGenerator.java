@@ -1,5 +1,8 @@
 package kr.codesquad;
 
+import kr.codesquad.domain.Row;
+import kr.codesquad.domain.Statistic;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +14,7 @@ public class AutoLottoGenerator implements LottoGenerator {
     @Override
     public List<Row> generateRows(int inputMoney) {
         List<Row> rows = new ArrayList<>();
-        int num = inputMoney / LottoController.SINGLE_PRICE;
+        int num = Statistic.getRowCountICanBuy(inputMoney);
         for (int i = 0; i < num; i++) {
             rows.add(generateAutoNums());
         }
@@ -21,11 +24,9 @@ public class AutoLottoGenerator implements LottoGenerator {
     public Row generateAutoNums() {
         List<Integer> randomNumberList = createSeed();
         Collections.shuffle(randomNumberList);
-        Row row = new Row();
-        List<Integer> tempt = randomNumberList.subList(0, 6);
-        Collections.sort(tempt);
-        row.addValues(tempt);
-        return row;
+        List<Integer> generatedNums = randomNumberList.subList(0, 6);
+        Collections.sort(generatedNums);
+        return Row.createRow(generatedNums);
     }
 
     private static List<Integer> createSeed() {
