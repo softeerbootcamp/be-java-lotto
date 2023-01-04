@@ -1,6 +1,7 @@
 package kr.codesquad;
 
 import kr.codesquad.domain.Lotto;
+import kr.codesquad.domain.WinningNumbers;
 
 import java.io.IOException;
 
@@ -13,6 +14,7 @@ public class LottoGameStarter {
 
     public void start() throws IOException {
         Lotto lotto = lottoViewer.home();
-        lottoViewer.inputResult(lotto);
+        WinningNumbers winningNumbers = lottoViewer.inputWinningNumbers();
+        lottoViewer.result(lotto, winningNumbers);
     }
 }

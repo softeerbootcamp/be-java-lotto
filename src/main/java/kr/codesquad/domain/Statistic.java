@@ -20,6 +20,9 @@ public class Statistic {
     }
 
     public static int getRowCountICanBuy(int inputMoney) {
+        if (inputMoney < Statistic.SINGLE_PRICE) {
+            throw new IllegalArgumentException("금액 1000미만임.");
+        }
         return inputMoney / SINGLE_PRICE;
     }
 
@@ -61,13 +64,5 @@ public class Statistic {
         if (rank.getWinningMoney() == Rank.SECOND.getWinningMoney()) {
             System.out.print(", 보너스 볼 일치");
         }
-    }
-
-    public double getInput() {
-        return input;
-    }
-
-    public void setInput(int input) {
-        this.input = input;
     }
 }

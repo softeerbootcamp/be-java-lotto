@@ -31,7 +31,7 @@ public class LottoViewer {
         return lotto;
     }
 
-    public void inputResult(Lotto lotto) throws IOException {
+    public WinningNumbers inputWinningNumbers() throws IOException {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -41,13 +41,19 @@ public class LottoViewer {
         }
         System.out.println("보너스 볼을 입력해 주세요.");
         int bonusNumber = Integer.parseInt(br.readLine());
-        WinningNumbers winningNumbers = new WinningNumbers(Row.createRow(answerList), bonusNumber);
-        printResults(lotto, winningNumbers);
+        return new WinningNumbers(Row.createRow(answerList), bonusNumber);
     }
 
-    private void printResults(Lotto lotto, WinningNumbers winningNumbers) {
-        Statistic statistic = lottoController.result(lotto, winningNumbers);
+    /**
+     * Controlling Compare & create Statistics
+     *
+     * @param lotto
+     * @param winningNumbers
+     */
+    public void result(Lotto lotto, WinningNumbers winningNumbers) {
+        lotto.compareLotto(winningNumbers);
+
+        Statistic statistic = lottoController.createStatistics(lotto);
         statistic.printStatistics();
     }
-
 }
