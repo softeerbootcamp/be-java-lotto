@@ -24,9 +24,7 @@ public class Lotto {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
-        numbers.forEach(number -> {
-            sb.append(number).append(", ");
-        });
+        numbers.forEach(number -> sb.append(number).append(", "));
         sb.deleteCharAt(sb.length() - 1);
         sb.deleteCharAt(sb.length() - 1);
         sb.append("]\n");
