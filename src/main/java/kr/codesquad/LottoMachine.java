@@ -6,14 +6,11 @@ import kr.codesquad.exception.ErrorCode;
 import java.io.IOException;
 import java.util.*;
 
-public class LottoMachine {
-
-    private ArrayList<ArrayList<Integer>> lottos;
-    private int lottoCnt;
+public class LottoMachine extends BaseLotto{
     List<Integer> numList;
 
     public LottoMachine() {
-        lottos = new ArrayList<>();
+        this.lottoList = new ArrayList<>();
         numList = new ArrayList<>();
         for(int j=1;j<46;j++) numList.add(j);
     }
@@ -35,24 +32,25 @@ public class LottoMachine {
             break; // do-while을 통한 입력 벗어남
         } while (true);
 
-        if(amountOfMoney < 20000) throw new CustomException(ErrorCode.MONEY_NOT_ENOUGH);
+        //if(amountOfMoney < 20000) throw new CustomException(ErrorCode.MONEY_NOT_ENOUGH);
 
         return amountOfMoney;
     }
 
-    public Integer getLottoCount(int amountOfMoney,int manualLottoCnt){
+    @Override
+    public Integer getLottoCnt(int amountOfMoney,int manualLottoCnt) {
         //to-do : 금액에 따른 개수 제한 예외처리
         this.lottoCnt = amountOfMoney/1000; // 총 로또 개수
         this.lottoCnt -= manualLottoCnt;
-        //System.out.println("총"+lottoCnt+"개를 자동으로 구매했습니다.");
-        return lottoCnt;
+        return this.lottoCnt;
     }
 
-    public ArrayList<ArrayList<Integer>> getLottos(){
+    @Override
+    public ArrayList<ArrayList<Integer>> getLottoList() {
         for(int i=0;i<lottoCnt;i++){
             getLottoByShuffle();
         }
-        return lottos;
+        return lottoList;
     }
 
 
@@ -60,7 +58,7 @@ public class LottoMachine {
         Collections.shuffle(numList); //1에서 46까지를 셔플
         ArrayList<Integer> shuffledNumList =  new ArrayList<>(numList.subList(0,6));
         Collections.sort(shuffledNumList);
-        lottos.add(shuffledNumList);
+        this.lottoList.add(shuffledNumList);
     }
 
 }
