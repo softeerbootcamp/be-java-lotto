@@ -1,11 +1,17 @@
 package kr.codesquad.input;
 
+import kr.codesquad.lotto.LottoNumber;
+
+import java.util.List;
+
 public interface Input {
-    void MoneyInput();
+    int MoneyInput();
 
-    void ManualLottoCountInput();
+    int ManualLottoCountInput();
 
-    void ManualLottoNumbersInput();
+    List<LottoNumber> ManualLottoNumbersInput();
 
-    void JackpotNumberInput();
+    List<LottoNumber> JackpotNumberInput();
+
+    int BonusNumberInput();
 }
