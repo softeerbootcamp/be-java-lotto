@@ -33,7 +33,7 @@ public class LottoChecker {
         return winNumCount;
     }
 
-    public boolean checkBonus(List<Integer> eachLottoList, int bonusNum) {
+    public boolean checkBonus(List<Integer> eachLottoList) {
         return eachLottoList.contains(bonusNum);
     }
 
