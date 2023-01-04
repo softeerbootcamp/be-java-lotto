@@ -26,7 +26,7 @@ public class LottoViewer {
         int inputMoney = Integer.parseInt(br.readLine());
         int num = Statistic.getRowCountICanBuy(inputMoney);
         System.out.println(num + "개를 구매했습니다.");
-        Lotto lotto = lottoController.receiveInput(inputMoney);
+        Lotto lotto = lottoController.createLotto(inputMoney);
         printRows(lotto.getTotalLotto());
         return lotto;
     }
