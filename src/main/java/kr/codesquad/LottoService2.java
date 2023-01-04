@@ -4,6 +4,7 @@ import kr.codesquad.domain.Lotto2;
 import kr.codesquad.domain.LottoResult;
 import kr.codesquad.domain.Money;
 import kr.codesquad.domain.WinningLotto;
+import kr.codesquad.enums.Rank2;
 
 import java.util.List;
 
@@ -20,10 +21,12 @@ public class LottoService2 {
 
     //로또 결과를 알려준다.
     public LottoResult calculateResult(WinningLotto winningLotto) {
+        LottoResult lottoResult = new LottoResult();
         //로또 비교 기능
         for (Lotto2 lotto : lottos) {
-            winningLotto.compareLotto(lotto);
+            Rank2 rank = winningLotto.compareLotto(lotto);
+            lottoResult.increaseCountOfRank(rank);
         }
-        return null;
+        return lottoResult;
     }
 }
