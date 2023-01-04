@@ -20,10 +20,10 @@ public class CalculateMatch {
     }
 
     //맞은 숫자의 개수와 그 횟수를 계산
-    private void getHitStatistics(ArrayList<Integer> randomLotto, ArrayList<Integer> myLotto,  int bonusNum) {
+    private void getHitStatistics(ArrayList<Integer> randomLotto, ArrayList<Integer> LottoResult,  int bonusNum) {
         int hitNum = 0;
         for(int i = 0; i < 6; i++) {
-            hitNum += containNum(myLotto.get(i), randomLotto);
+            hitNum += containNum(LottoResult.get(i), randomLotto);
         }
         if(hitNum == 5 && containNum(bonusNum, randomLotto) == 1){  //2등 보너스볼일 경우
             hitNums.put(BONUM_NUM, hitNums.getOrDefault(BONUM_NUM, 0) + 1);
@@ -41,11 +41,12 @@ public class CalculateMatch {
     }
 
     //모든 로또 리스트에 대해 당첨 여부를 확인
-    public void startCalculate(LottoTmpl randomLotto, LottoTmpl myLotto, ResultLotto resultLotto, int numOfLotto){
+    public void startCalculate(LottoTmpl randomLotto, LottoTmpl myLotto, ResultLotto resultLotto){
         ArrayList<ArrayList<Integer>> randomLottoList = mergeLottos(randomLotto, myLotto);
-        ArrayList<Integer> myLottoList = myLotto.getLottoList().get(0);
-        for(int i = 0; i < numOfLotto; i++)
-            getHitStatistics(randomLottoList.get(i),myLottoList, resultLotto.getBonusNum());
+        ArrayList<Integer> resultLottoList = resultLotto.getLottoList().get(0);
+        int repNum = randomLotto.getLottoList().size() + myLotto.getLottoList().size();
+        for(int i = 0; i < repNum; i++)
+            getHitStatistics(randomLottoList.get(i), resultLottoList, resultLotto.getBonusNum());
     }
 
     //print result of all lotteries
