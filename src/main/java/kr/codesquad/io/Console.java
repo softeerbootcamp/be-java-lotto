@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
-import kr.codesquad.domain.winningResult.WinningResult;
+import kr.codesquad.domain.winningLotto.WinningResult;
 
 public class Console {
 
