@@ -1,18 +1,20 @@
 package kr.codesquad;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoChecker {
     private final List<Integer> winNumList;
     private final int bonusNum;
-    private final List<Integer> result;
+    private final Map<Rank, Integer> result;
 
     public LottoChecker() {
         UserInput ui = new UserInput();
         this.winNumList = ui.inputWinNum();
         this.bonusNum = ui.inputBonusNum();
-        this.result = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        this.result = new EnumMap<>(Rank.class);
     }
 
     public void checkLotto(Lotto lotto) {
