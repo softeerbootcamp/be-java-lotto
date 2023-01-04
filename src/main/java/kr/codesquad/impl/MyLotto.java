@@ -1,6 +1,5 @@
 package kr.codesquad.impl;
 
-import kr.codesquad.Lotto;
 import kr.codesquad.templates.LottoTmpl;
 
 import java.util.*;

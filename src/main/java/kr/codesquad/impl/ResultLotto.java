@@ -50,4 +50,9 @@ public class ResultLotto implements LottoTmpl {
         int givenBonusNum = scan.nextInt();
         this.bonumsNum = givenBonusNum;
     }
+
+    public int getBonusNum(){
+        return bonumsNum;
+    }
+
 }
