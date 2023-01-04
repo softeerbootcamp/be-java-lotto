@@ -18,20 +18,21 @@ public class Row {
         row.addValues(numbers);
         return row;
     }
+
     /**
      * 각 list 별 정답과 일치하는 갯수 반환
      */
-    public void compare(int[] answers, int bonusNumber) {
-
+    public void compare(WinningNumbers winningNumbers) {
+        List<Integer> answers = winningNumbers.getRow().values;
         for (int answer : answers) {
             compareNumber(answer);
         }
-        compareBonusNumber(bonusNumber);
+        compareBonusNumber(winningNumbers.getBonusNum());
     }
 
     public void compareNumber(int answer) {
         if (this.values.contains(answer)) {
-            match++;
+            this.match++;
         }
     }
 

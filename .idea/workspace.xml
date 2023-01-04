@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="rafactor: 로또 생성 기능을 interface한 LottoGenerator와 이를 implements하는 AutoLottoGenerator로 분리 &#10;&#10;## Why?&#10;step3 수동 로또 생성 요구조건을 만족하기 위함과 확장에 용이하도록 역할을 interface로 분리할 필요를 느낌.&#10;## How?&#10;interface를 구현하고 이를 상속받도록 함.&#10;## Anything Else?&#10;DI를 적극적으로 활용하여 Service나 Controller에 집중된 책임을 분산시킬 수 있도록 고려해야 함.&#10;## todo&#10;LottoGenerator를 구현하는 ManualLottoGenerator 생성 예정">
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/WinningNumbers.java" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="rafactor: 도메인 패키지에 구조 변경, 당첨 번호 정보를 가지는 WinningNumbers 클래스 생성, Row 클래스에 createRow static 메서드 추가&#10;&#10;## Why?&#10;우선 당첨 정보가 여러 객체에서 중복적으로 사용되고 있으며, 당첨번호와 보너스 숫자가 분리되어 있어 가독성 및 유지보수가 떨어져 별도의 클래스 필요.&#10;도메인이 많아짐에 따라 도메인을 따로 패키지로 빼는 것이 좋을 것 같다고 판단.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoViewer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Lotto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/AutoLottoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/AutoLottoGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Rank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Rank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Row.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Statistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoGameStarter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Row.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Statistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/WinningNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/WinningNumbers.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672797487638</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="rafactor: 도메인 패키지에 구조 변경, 당첨 번호 정보를 가지는 WinningNumbers 클래스 생성, Row 클래스에 createRow static 메서드 추가&#10;&#10;## Why?&#10;우선 당첨 정보가 여러 객체에서 중복적으로 사용되고 있으며, 당첨번호와 보너스 숫자가 분리되어 있어 가독성 및 유지보수가 떨어져 별도의 클래스 필요.&#10;도메인이 많아짐에 따라 도메인을 따로 패키지로 빼는 것이 좋을 것 같다고 판단.">
+      <created>1672799602561</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1672799602561</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,7 +245,8 @@
     <MESSAGE value="feat: 입출력을 담당하는 View 추가&#10;&#10;View를 추가하여 입출력을 처리하고, Controller에 해당 값을 넘겨주고,&#10;Controller가 Service를 호출하여 결과값을 View에 다시 반환하여 출력하는 형태로 수정함.&#10;&#10;이를 위해 View는 Controller를, Controller는 Service를 생성자 주입하여 변경되지 않도록 함.&#10;&#10;View와 Controller 기능이 아직 깔끔히 분리되지 못하여 추가적으로 refactoring 에정." />
     <MESSAGE value="refactor: 당첨 통계 View 단에서 출력될 수 있도록 간단히 수정함." />
     <MESSAGE value="rafactor: 로또 생성 기능을 interface한 LottoGenerator와 이를 implements하는 AutoLottoGenerator로 분리 &#10;&#10;## Why?&#10;step3 수동 로또 생성 요구조건을 만족하기 위함과 확장에 용이하도록 역할을 interface로 분리할 필요를 느낌.&#10;## How?&#10;interface를 구현하고 이를 상속받도록 함.&#10;## Anything Else?&#10;DI를 적극적으로 활용하여 Service나 Controller에 집중된 책임을 분산시킬 수 있도록 고려해야 함.&#10;## todo&#10;LottoGenerator를 구현하는 ManualLottoGenerator 생성 예정" />
-    <option name="LAST_COMMIT_MESSAGE" value="rafactor: 로또 생성 기능을 interface한 LottoGenerator와 이를 implements하는 AutoLottoGenerator로 분리 &#10;&#10;## Why?&#10;step3 수동 로또 생성 요구조건을 만족하기 위함과 확장에 용이하도록 역할을 interface로 분리할 필요를 느낌.&#10;## How?&#10;interface를 구현하고 이를 상속받도록 함.&#10;## Anything Else?&#10;DI를 적극적으로 활용하여 Service나 Controller에 집중된 책임을 분산시킬 수 있도록 고려해야 함.&#10;## todo&#10;LottoGenerator를 구현하는 ManualLottoGenerator 생성 예정" />
+    <MESSAGE value="rafactor: 도메인 패키지에 구조 변경, 당첨 번호 정보를 가지는 WinningNumbers 클래스 생성, Row 클래스에 createRow static 메서드 추가&#10;&#10;## Why?&#10;우선 당첨 정보가 여러 객체에서 중복적으로 사용되고 있으며, 당첨번호와 보너스 숫자가 분리되어 있어 가독성 및 유지보수가 떨어져 별도의 클래스 필요.&#10;도메인이 많아짐에 따라 도메인을 따로 패키지로 빼는 것이 좋을 것 같다고 판단." />
+    <option name="LAST_COMMIT_MESSAGE" value="rafactor: 도메인 패키지에 구조 변경, 당첨 번호 정보를 가지는 WinningNumbers 클래스 생성, Row 클래스에 createRow static 메서드 추가&#10;&#10;## Why?&#10;우선 당첨 정보가 여러 객체에서 중복적으로 사용되고 있으며, 당첨번호와 보너스 숫자가 분리되어 있어 가독성 및 유지보수가 떨어져 별도의 클래스 필요.&#10;도메인이 많아짐에 따라 도메인을 따로 패키지로 빼는 것이 좋을 것 같다고 판단." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_lotto$Main.ic" NAME="Main Coverage Results" MODIFIED="1672722343647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

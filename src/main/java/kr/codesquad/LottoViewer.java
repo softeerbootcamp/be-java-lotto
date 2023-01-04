@@ -1,52 +1,58 @@
 package kr.codesquad;
 
+import kr.codesquad.domain.Lotto;
 import kr.codesquad.domain.Row;
 import kr.codesquad.domain.Statistic;
+import kr.codesquad.domain.WinningNumbers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import static kr.codesquad.LottoController.SINGLE_PRICE;
+public class LottoViewer {
 
-public class LottoView {
     private final LottoController lottoController;
 
-    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-    public LottoView() {
+    public LottoViewer() {
         this.lottoController = new LottoController();
     }
 
-    public void home() throws IOException {
+    public Lotto home() throws IOException {
         System.out.println("구입 금액을 입력해 주세요.");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int inputMoney = Integer.parseInt(br.readLine());
-        List<Row> rows = lottoController.receiveInput(inputMoney);
-
-        int num = inputMoney / SINGLE_PRICE;
+        int num = Statistic.getRowCountICanBuy(inputMoney);
         System.out.println(num + "개를 구매했습니다.");
-        printRows(rows);
+        Lotto lotto = lottoController.receiveInput(inputMoney);
+        printRows(lotto.getTotalLotto());
+        return lotto;
     }
-
     public void printRows(List<Row> rows) {
         for (Row row : rows) {
             List<Integer> values = row.getValues();
             System.out.println(values);
         }
     }
-
-    public void getAnswers() throws IOException {
+    public void inputResult(Lotto lotto) throws IOException {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        int[] answers = new int[Row.COLUMN];
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        List<Integer> answerList = new ArrayList<>();
         for (int i = 0; i < Row.COLUMN; i++) {
-            answers[i] = Integer.parseInt(st.nextToken());
+            answerList.add(Integer.parseInt(st.nextToken()));
         }
         System.out.println("보너스 볼을 입력해 주세요.");
         int bonusNumber = Integer.parseInt(br.readLine());
-        Statistic statistic = lottoController.getPrintStatistics(answers, bonusNumber);
+        WinningNumbers winningNumbers = new WinningNumbers(Row.createRow(answerList), bonusNumber);
+        printResults(lotto, winningNumbers);
+    }
+
+    private void printResults(Lotto lotto, WinningNumbers winningNumbers) {
+        Statistic statistic = lottoController.result(lotto, winningNumbers);
         statistic.printStatistics();
     }
+
 }

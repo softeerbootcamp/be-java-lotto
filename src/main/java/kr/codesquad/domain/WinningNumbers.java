@@ -8,4 +8,12 @@ public class WinningNumbers {
         this.row = row;
         this.bonusNum = bonusNum;
     }
+
+    public Row getRow() {
+        return row;
+    }
+
+    public int getBonusNum() {
+        return bonusNum;
+    }
 }

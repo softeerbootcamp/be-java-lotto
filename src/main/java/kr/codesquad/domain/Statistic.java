@@ -1,12 +1,6 @@
 package kr.codesquad.domain;
 
-import kr.codesquad.domain.Rank;
-import kr.codesquad.domain.Row;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Statistic {
     private double input;
@@ -14,8 +8,10 @@ public class Statistic {
     private double rate;
     public static final int SINGLE_PRICE = 1000; //로또 한 장의 가격은 1000원이다.
 
-    private final Map<Integer, Integer> counts = new HashMap<>();
-    public Statistic() {
+    private static final Map<Integer, Integer> counts = new HashMap<>();
+
+    public Statistic(int inputMoney) {
+        this.input = inputMoney;
         counts.put(Rank.FIRST.getWinningMoney(), 0);
         counts.put(Rank.SECOND.getWinningMoney(), 0);
         counts.put(Rank.THIRD.getWinningMoney(), 0);
@@ -27,7 +23,14 @@ public class Statistic {
         return inputMoney / SINGLE_PRICE;
     }
 
-    public void calculateRate(int input) {
+
+    public void calculate(List<Row> rows) {
+        for (Row row : rows) {
+            calculateOutput(row);
+        }
+        this.calculateRate();
+    }
+    public void calculateRate() {
         this.rate = ((output - input) / input) * 100;
     }
 
@@ -58,5 +61,13 @@ public class Statistic {
         if (rank.getWinningMoney() == Rank.SECOND.getWinningMoney()) {
             System.out.print(", 보너스 볼 일치");
         }
+    }
+
+    public double getInput() {
+        return input;
+    }
+
+    public void setInput(int input) {
+        this.input = input;
     }
 }
