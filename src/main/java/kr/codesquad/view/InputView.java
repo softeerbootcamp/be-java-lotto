@@ -16,6 +16,10 @@ public class InputView {
                 input().trim().split(",")
         );
     }
+
+    public static String inputBonusBall() {
+        return input();
+    }
     private static String input() {
         return sc.nextLine();
     }
