@@ -7,7 +7,8 @@ public enum Rank {
     SECOND(5, 30000000, "5개 일치, 보너스 볼 일치"),
     THIRD(5, 1500000, "5개 일치"),
     FOURTH(4, 50000, "4개 일치"),
-    FIFTH(3, 5000, "3개 일치");
+    FIFTH(3, 5000, "3개 일치"),
+    MISS(0, 0, "");
 
     private  final int cnt;
     private  final int prize;
@@ -17,9 +18,6 @@ public enum Rank {
         this.cnt = cnt;
         this.prize = prize;
         this.words = words;
-    }
-    public int getCnt(){
-        return cnt;
     }
     public int getPrize(){
         return prize;
