@@ -1,6 +1,5 @@
 package kr.codesquad;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -38,12 +37,13 @@ public class LottoChecker {
         return eachLottoList.contains(bonusNum);
     }
 
-    public void setResult(EnumMap<Rank, Integer> result, int winNumCount, boolean isBonus) {
-        if(winNumCount == Rank.FIFTH.getCountOfMatch()) result.set(0, result.get(0) + 1);
-        else if(winNumCount == Rank.FOURTH.getCountOfMatch()) result.set(1, result.get(1) + 1);
-        else if(winNumCount == Rank.SECOND.getCountOfMatch() && isBonus) result.set(3, result.get(3) + 1);
-        else if(winNumCount == Rank.THIRD.getCountOfMatch()) result.set(2, result.get(2) + 1);
-        else if(winNumCount == Rank.FIRST.getCountOfMatch()) result.set(4, result.get(4) + 1);
+    public void setResult(Map<Rank, Integer> result, int winNumCount, boolean isBonus) {
+        for(Rank rank : result.keySet()) {
+            if(winNumCount == rank.getCountOfMatch() && !rank.getIsBonus())
+                result.put(rank, result.getOrDefault(rank, 0) + 1);
+            else
+                result.put(rank, result.getOrDefault(rank, 0) + 1);
+        }
     }
 
     public void printResult(List<Integer> result, int lottoCount) {
