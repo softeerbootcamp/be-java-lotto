@@ -12,4 +12,7 @@ public class CommonMessage {
 
     public static final String ENTER_BONUS_BALL = "보너스 볼을 입력해 주세요.";
     public static final String MATCH_BONUS_BALL = ", 보너스 볼 일치";
+
+    public static final String ENTER_MANUAL_TICKETS = "수동으로 구매할 로또 수를 입력해 주세요.";
+
 }

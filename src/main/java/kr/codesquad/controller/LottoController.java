@@ -14,6 +14,12 @@ public class LottoController {
 
     public void play() {
         User user = getUserWithPurchase();
+
+
+        //수동구매
+        PrintView.enterManualTickets();
+        int manualTickets = ReceiveView.enterManualTickets();
+
         PrintView.generatedLottos(user);
 
         WinningLotto winningLotto = getWinningLotto();

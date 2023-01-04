@@ -32,4 +32,8 @@ public class ReceiveView {
                 .mapToObj(i -> i)
                 .collect(Collectors.toList());
     }
+
+    public static int enterManualTickets(){
+        return enterInt();
+    }
 }

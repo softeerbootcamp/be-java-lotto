@@ -60,5 +60,9 @@ public class PrintView {
         System.out.println(CommonMessage.ENTER_BONUS_BALL);
     }
 
+    public static void enterManualTickets() {
+        System.out.println(CommonMessage.ENTER_MANUAL_TICKETS);
+    }
+
 
 }
