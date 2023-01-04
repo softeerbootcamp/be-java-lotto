@@ -30,17 +30,17 @@ public class User {
         return lottoTickets;
     }
 
-    public void MakeRandomLottoTickets() {
+    public void makeRandomLottoTickets() {
         for(Integer i = 0; i < buyNum; i++)
         {
             // 임의의 6개의 번호 입력 후
-            lottoTickets.add(GetRandomSixNums());
+            lottoTickets.add(getRandomSixNums());
             // 오름차순으로 정렬
             Collections.sort(lottoTickets.get(i));
         }
     }
 
-    private ArrayList<Integer> GetRandomSixNums()
+    private ArrayList<Integer> getRandomSixNums()
     {
         ArrayList<Integer> ret = new ArrayList<Integer>();
 
@@ -57,13 +57,13 @@ public class User {
         return ret;
     }
 
-    public void CalculateBuyNum()
+    public void calculateBuyNum()
     {
         // 구매 개수 구하기
         buyNum = cash / 1000;
     }
 
-    public void PrintResult(ArrayList<Integer> Result)
+    public void calculateRateOfRetrun(ArrayList<Integer> Result)
     {
         System.out.println();
         System.out.println("당첨 통계");

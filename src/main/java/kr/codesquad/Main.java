@@ -5,39 +5,64 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        User person = new User();
 
-        System.out.println("구입 금액을 입력하세요");
-        person.setCash(sc.nextInt());
-        person.CalculateBuyNum();
-        System.out.printf("구매 개수는 %d개입니다.\n", person.getBuyNum());
-        person.MakeRandomLottoTickets(); // 구매 개수만큼의 랜덤한 로또 번호 생성
+    static Scanner scanner = new Scanner(System.in);;
+    private static User user = new User();
+    private static LottoMachine lottoMachine = new LottoMachine();
 
-        for(int i = 0; i < person.getBuyNum(); i++)
+    private static int scanCash()
+    {
+        return scanner.nextInt();
+    }
+
+    private static void printRandomTickets()
+    {
+        user.makeRandomLottoTickets(); // 구매 개수만큼의 랜덤한 로또 번호 생성
+
+        for(int i = 0; i < user.getBuyNum(); i++)
         {
-            System.out.println(person.getLottoTickets().get(i));
+            System.out.println(user.getLottoTickets().get(i));
         }
-
-        LottoMachine lottoMachine = new LottoMachine();
-
         System.out.println();
-        System.out.println("당첨 번호를 입력해주세요"); sc.nextLine();
-        String winNumberString = sc.nextLine();
+    }
+
+    private static ArrayList<Integer> scanWinNums()
+    {
+        scanner.nextLine();
+        String winNumberString = scanner.nextLine();
         String splitedWinNum[] = winNumberString.split(", ");
         ArrayList<Integer> winNums = new ArrayList<Integer>();
         for(int i = 0; i < 6; i++)
         {
             winNums.add(Integer.parseInt(splitedWinNum[i]));
         }
+        return winNums;
+    }
+
+    private static int scanBonusBall()
+    {
+        return scanner.nextInt();
+    }
+    public static void main(String[] args) {
+
+        System.out.println("구입 금액을 입력하세요");
+        int cash = scanCash();
+        user.setCash(cash);
+        user.calculateBuyNum();
+        System.out.printf("구매 개수는 %d개입니다.\n", user.getBuyNum());
+        printRandomTickets();
+
+        System.out.println("당첨 번호를 입력해주세요");
+        ArrayList<Integer> winNums = scanWinNums();
+
         lottoMachine.setWinNums(winNums); // 로또 추첨기에 당첨 번호 넘기기
 
         System.out.println("보너스 볼을 입력해주세요");
-        lottoMachine.setBonusBall(sc.nextInt()); // 로또 추첨기에 보너스 번호 넘기기
+        int bonus = scanBonusBall();
+        lottoMachine.setBonusBall(bonus); // 로또 추첨기에 보너스 번호 넘기기
 
-        ArrayList<Integer> result = lottoMachine.GetResult(person.getLottoTickets());
-        person.PrintResult(result);
+        ArrayList<Integer> result = lottoMachine.getResult(user.getLottoTickets());
+        user.calculateRateOfRetrun(result);
     }
 }
 
