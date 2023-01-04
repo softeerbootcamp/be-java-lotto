@@ -1,5 +1,8 @@
 package kr.codesquad;
 
+import kr.codesquad.lotto.LottoMachine;
+import kr.codesquad.lotto.LottoTicket;
+
 import java.io.IOException;
 
 public class Main {

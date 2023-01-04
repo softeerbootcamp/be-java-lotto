@@ -1,4 +1,6 @@
-package kr.codesquad;
+package kr.codesquad.lotto.check;
+
+import kr.codesquad.lotto.*;
 
 import java.util.*;
 

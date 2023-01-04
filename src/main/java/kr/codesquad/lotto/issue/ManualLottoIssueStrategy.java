@@ -1,4 +1,6 @@
-package kr.codesquad;
+package kr.codesquad.lotto.issue;
+
+import kr.codesquad.lotto.Lotto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
