@@ -19,10 +19,16 @@ public class UserInput {
     public List<Integer> inputWinNum() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         String[] winNum = sc.nextLine().split(", ");
-        
+
         List<Integer> winNumList = new ArrayList<>();
         for(int i = 0;i < 6;i++) winNumList.add(Integer.parseInt(winNum[i]));
 
+        return winNumList;
+    }
+
+    public List<Integer> inputBonusNum(List<Integer> winNumList) {
+        System.out.println("보너스 볼을 입력해 주세요.");
+        winNumList.add(sc.nextInt());
         return winNumList;
     }
 }
