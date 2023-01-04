@@ -1,4 +1,7 @@
-package kr.codesquad;
+package kr.codesquad.lotto;
+
+import kr.codesquad.winLotto.WinLotto;
+import kr.codesquad.winLotto.WinningCount;
 
 import java.util.*;
 

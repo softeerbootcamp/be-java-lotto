@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.winLotto;
 
 public enum WinningCount {
 
