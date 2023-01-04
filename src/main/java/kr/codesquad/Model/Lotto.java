@@ -2,6 +2,7 @@ package kr.codesquad.Model;
 
 import java.util.Arrays;
 
+<<<<<<< HEAD
 import java.util.List;
 
 public class Lotto {
@@ -18,24 +19,48 @@ public class Lotto {
     }
 
 
+=======
+public class Lotto {
+    private static int bonus = -1;
+    Integer[] num = new Integer[6];
+    boolean winLotto = false;
+
+    Lotto(int[] lottoNum) {
+        for (int i = 0; i < 6; i++)
+            num[i] = lottoNum[i];
+        Arrays.sort(num);
+    }
+
+    Lotto(int[] lottoNum, boolean winLotto) {
+        this(lottoNum);
+        this.winLotto = winLotto;
+    }
+>>>>>>> 1a9bb7d (conflict로 인한 복구)
 
     public boolean bonusMatch() {
         return Arrays.asList(num).contains(bonus);
     }
 
     public static void setBonus(int bonus) {
+<<<<<<< HEAD
 
         if (bonus < LOTTO_START_NUM || bonus > LOTTO_END_NUM) {
 
+=======
+        if (bonus <= 0 || bonus > 45) {
+>>>>>>> 1a9bb7d (conflict로 인한 복구)
             System.out.println("Wrong Bonus Number");
             System.exit(1);
         }
         Lotto.bonus = bonus;
     }
 
+<<<<<<< HEAD
 
     //print함수 view로 옮겨야 함.
 
+=======
+>>>>>>> 1a9bb7d (conflict로 인한 복구)
     public void print() {
         System.out.print("[");
         for (int i = 0; i < 5; i++)
