@@ -2,10 +2,11 @@ package kr.codesquad;
 
 import kr.codesquad.LottoService.Lotto;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.Buffer;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Console {
@@ -14,6 +15,7 @@ public class Console {
     private List<Integer> winningNumberList;
 
     private static final int LOTTO_PRICE=1000;
+    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public int getBonusNumber() {
         return bonusNumber;
@@ -21,10 +23,38 @@ public class Console {
 
     private int bonusNumber;
 
-    public void inputMoney() {
+    public void inputMoney() throws Exception {
         System.out.println("구입금액을 입력해 주세요.");
+        //들어온 값이 1000원 이하이면 에러 출력하기
+        long input = Long.parseLong(br.readLine());
+        if (input < 1000 || input % 1000 != 0) {
+            throw new IllegalArgumentException("적절하지 않은 구입금액입니다.");
+        }
+        lottoCount = Long.parseLong(br.readLine()) / LOTTO_PRICE;
+    }
+
+    public int inputManualLottoCount() {
+        System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
         Scanner sc = new Scanner(System.in);
-        lottoCount = Long.parseLong(sc.next()) / LOTTO_PRICE;
+        return sc.nextInt();
+    }
+
+    public void inputManualLottoNumber(int manualLottoCount){
+        System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
+        for (int i = 0; i < manualLottoCount; i++) {
+
+        }
+    }
+
+    public List<Integer> splitInputString(String line) {
+        List<Integer> ret = Arrays.stream(line.split(",")).map(Integer::valueOf).sorted().collect(Collectors.toList());
+        if (ret.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+        if (ret.get(0) < 1 || ret.get(ret.size() - 1) > 45) {
+            throw new IllegalArgumentException();
+        }
+        return ret;
     }
 
     public void printLottoCount() {
@@ -49,7 +79,7 @@ public class Console {
         bonusNumber = sc.nextInt();
     }
 
-    public void printWinningLottos(Map<Rank, Integer> winningLottoMap) {
+    public void printWinningLottoMap(Map<Rank, Integer> winningLottoMap) {
         System.out.println("당첨 통계");
         System.out.println("---------");
         for (Rank rank : Rank.values()){
@@ -67,4 +97,5 @@ public class Console {
     public long getLottoCount() {
         return lottoCount;
     }
+
 }
