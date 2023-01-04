@@ -1,24 +1,28 @@
 package kr.codesquad.domain.lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class WinningLotto extends Lotto {
+public class WinningLotto {
 
+  private final Lotto lotto;
   private final int bonusNumber;
 
   public WinningLotto(
-      List<Integer> numbers,
+      Lotto lotto,
       int bonusNumber
   ) {
-    super(numbers);
+    this.lotto = lotto;
     this.bonusNumber = bonusNumber;
   }
 
-  public static WinningLotto of(
-      List<Integer> numbers,
-      int bonusNumber
-  ) {
-    return new WinningLotto(numbers, bonusNumber);
+  public int countMatch(Lotto target) {
+    Set<Integer> set = new HashSet<>(target.getNumbers());
+    List<Integer> winnerNumbers = lotto.getNumbers();
+    return (int)winnerNumbers.stream()
+                             .filter(set::contains)
+                             .count();
   }
 
   public boolean isBonusMatch(Lotto target) {
