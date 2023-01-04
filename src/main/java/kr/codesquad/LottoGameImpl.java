@@ -9,6 +9,7 @@ public class LottoGameImpl implements LottoGame{
 
     private User user;
     private LottoMachine machine;
+    private LastLotto lastLotto;
     private Map<Rank, Integer> rankMap = new EnumMap<>(Rank.class);
 
     public void initialMap(){
@@ -18,9 +19,10 @@ public class LottoGameImpl implements LottoGame{
         }
     }
 
-    public LottoGameImpl(LottoMachine machine, User user) {
+    public LottoGameImpl(LottoMachine machine, User user,LastLotto lastLotto) {
         this.machine = machine;
         this.user = user;
+        this.lastLotto = lastLotto;
         initialMap();
     }
 
@@ -41,7 +43,7 @@ public class LottoGameImpl implements LottoGame{
         System.out.println("수동으로 "+manualLottoCnt+"장, 자동으로 "+lottoCnt+"개를 구매했습니다. ");
         printLottos(lottos,totalCnt);
         //4.지난 주 당첨 번호 입력 받기
-        List<Integer> inputs = user.getLottoInput();
+        List<Integer> inputs = lastLotto.getLastLotto();
         //5. 보너스 볼 입력 받기
         Integer bonusBall = user.getBonusLottoInput();
         //6. 비교
