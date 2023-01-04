@@ -19,7 +19,7 @@ public class LottoChecker {
         List<List<Integer>> lottoList = lotto.getLottoList();
 
         for(List<Integer> eachLottoList : lottoList)
-            setResult(result, countWinNum(eachLottoList, winNumList), checkBonus(eachLottoList, bonusNum));
+            setResult(result, countWinNum(eachLottoList), checkBonus(eachLottoList));
 
         printResult(result, lottoList.size());
     }
