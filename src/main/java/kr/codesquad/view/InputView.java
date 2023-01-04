@@ -12,7 +12,7 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public List<Integer> readWinningLotto() {
+    public List<Integer> readLottoNumbers() {
         Scanner scanner = new Scanner(System.in);
         String[] numbersStr = scanner.nextLine().split(", ");
         return Arrays.stream(numbersStr)
