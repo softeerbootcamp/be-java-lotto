@@ -25,5 +25,16 @@ public enum Rank {
         this.isBounsBall = isBounsBall;
     }
 
+    public int getWinningAmount() {
+        return winningAmount;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public boolean isBouns() {
+        return isBounsBall;
+    }
 
 }
