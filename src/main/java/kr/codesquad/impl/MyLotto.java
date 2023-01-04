@@ -26,6 +26,7 @@ public class MyLotto implements LottoTmpl {
         for(int i = 0; i < repNum; i++){
             Scanner scan = new Scanner(System.in);
             String numStr = scan.nextLine();
+            scan.nextLine();
             addLotto(parseString(numStr));
         }
     }
