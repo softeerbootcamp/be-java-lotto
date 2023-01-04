@@ -28,8 +28,7 @@ public class ReceiveView {
 
     private static List<Integer> transInputToList(String inputNumbers) {
         return Arrays.stream(inputNumbers.split(LOTTO_SEPARATE))
-                .mapToInt(Integer::parseInt)
-                .mapToObj(i -> i)
+                .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
