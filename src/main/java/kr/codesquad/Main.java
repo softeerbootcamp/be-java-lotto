@@ -25,7 +25,7 @@ class UserInput {
     }
 
 
-    //당첨 번호 입력
+    //당첨 번호 입력현
     public ArrayList<Integer> enterResultNumbers(){
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String numStr = scan.nextLine();
