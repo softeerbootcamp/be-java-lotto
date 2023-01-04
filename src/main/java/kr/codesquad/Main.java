@@ -2,11 +2,10 @@ package kr.codesquad;
 
 public class Main {
     public static void main(String[] args) {
-        UserInput ui = new UserInput();
-        LottoMachine lm = new LottoMachine(ui.inputMoney());
+        LottoMachine lm = new LottoMachine(1000);
         Lotto lotto = lm.buyLotto();
 
         LottoChecker lc = new LottoChecker();
-        lc.checkLotto(lotto, ui.inputBonusNum(ui.inputWinNum()));
+        lc.checkLotto(lotto);
     }
 }
