@@ -8,7 +8,7 @@ import java.util.*;
 public class LottoStore {
     private final LottoFactory lottoFactory;
     private static final int LOTTO_PRICE=1000;
-    private static final int HUNDRED=1000;
+    private static final int HUNDRED=100;
 
 
     private List<Lotto> lottoList;
