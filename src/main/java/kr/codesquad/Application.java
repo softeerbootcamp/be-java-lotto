@@ -2,6 +2,7 @@ package kr.codesquad;
 
 import kr.codesquad.io.Console;
 import kr.codesquad.lotto.Lotto;
+import kr.codesquad.lotto.LottoPurchase;
 import kr.codesquad.lotto.LottoService;
 import kr.codesquad.winLotto.WinCount;
 import kr.codesquad.winLotto.WinLotto;
@@ -11,26 +12,31 @@ import java.util.Map;
 
 public class Application {
 
-    public static final int LOTTO_PRICE = 1000;
     private final Console console;
+
     private final LottoService lottoService;
 
+    private final LottoPurchase lottoPurchase;
+
+    public static final int LOTTO_PRICE = 1000;
     Application(
             Console console,
-            LottoService lottoService
+            LottoService lottoService,
+            LottoPurchase lottoPurchase
     ) {
         this.console = console;
         this.lottoService = lottoService;
+        this.lottoPurchase = lottoPurchase;
     }
 
     public void start() {
         int money = console.inputMoney();
         int lottoAmount = money / LOTTO_PRICE;
         console.printAmount(lottoAmount);
-        List<Lotto> allLotto = lottoService.makeLottoList(lottoAmount);
-        console.printLottoNum(allLotto);
+        List<Lotto> lottos = lottoPurchase.buyLotto(money);
+        console.printLottoNum(lottos);
         WinLotto winLotto = new WinLotto(console.inputWinNum(), console.inputBonusNum());
-        Map<WinCount, Integer> lottoResult = lottoService.makeLottoResult(allLotto, winLotto);
+        Map<WinCount, Integer> lottoResult = lottoService.makeLottoResult(lottos, winLotto);
         console.printLottoResult(money, lottoResult);
     }
 
