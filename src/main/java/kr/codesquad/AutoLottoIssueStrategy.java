@@ -20,7 +20,6 @@ public class AutoLottoIssueStrategy implements LottoIssueStrategy {
             lottoList.add(lotto);
         }
 
-        lottoList.forEach(Lotto::print);
         return lottoList;
     }
 

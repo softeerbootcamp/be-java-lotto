@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoMachine {
 
@@ -13,15 +14,14 @@ public class LottoMachine {
     private final int priceOfLotto;
     private final BufferedReader br;
 
-    private final LottoIssueStrategy lottoIssueStrategy;
+    private final Map<String, LottoIssueStrategy> issueStrategyMap;
 
     public LottoMachine(int priceOfLotto) {
         this.priceOfLotto = priceOfLotto;
         this.lottoIssue = new LottoIssueImpl();
         this.lottoCheck = new LottoCheckImpl();
         this.br = new BufferedReader(new InputStreamReader(System.in));
-
-        this.lottoIssueStrategy = new AutoLottoIssueStrategy();
+        this.issueStrategyMap = Map.of("AUTO", new AutoLottoIssueStrategy(), "MANUAL", new ManualLottoIssueStrategy());
     }
 
     public LottoTicket buy() throws IOException {
@@ -29,9 +29,18 @@ public class LottoMachine {
         int money = Integer.parseInt(br.readLine());
         int lottoCnt = money / priceOfLotto;
 
-        List<Lotto> lottoList = this.lottoIssue.issue(lottoIssueStrategy, lottoCnt);
+        List<Lotto> lottoList = issueLotto(lottoCnt);
+
+        lottoList.forEach(Lotto::print);
         System.out.println(lottoList.size() + "개를 구매했습니다.");
         return new LottoTicket(lottoList, lottoCnt * priceOfLotto);
+    }
+
+    private List<Lotto> issueLotto(int lottoCnt) throws IOException {
+        List<Lotto> manualLottoList = this.lottoIssue.issue(issueStrategyMap.get("MANUAL"), lottoCnt);
+        List<Lotto> autoLottoList = this.lottoIssue.issue(issueStrategyMap.get("AUTO"), lottoCnt - manualLottoList.size());
+        manualLottoList.addAll(autoLottoList);
+        return manualLottoList;
     }
 
 
