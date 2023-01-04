@@ -1,5 +1,6 @@
 package kr.codesquad.Controller;
 
+
 import kr.codesquad.Model.*;
 import kr.codesquad.View.LottoPrinter;
 import kr.codesquad.View.LottoScanner;
@@ -54,5 +55,6 @@ public class LottoController {
             winnerCalculator.updateWinnerCount(price);
             user.updateEarn(price);
         }
+
     }
 }

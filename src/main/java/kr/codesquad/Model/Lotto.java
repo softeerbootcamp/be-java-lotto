@@ -1,6 +1,7 @@
 package kr.codesquad.Model;
 
 import java.util.Arrays;
+
 import java.util.List;
 
 public class Lotto {
@@ -16,19 +17,25 @@ public class Lotto {
         Arrays.sort(num);
     }
 
+
+
     public boolean bonusMatch() {
         return Arrays.asList(num).contains(bonus);
     }
 
     public static void setBonus(int bonus) {
+
         if (bonus < LOTTO_START_NUM || bonus > LOTTO_END_NUM) {
+
             System.out.println("Wrong Bonus Number");
             System.exit(1);
         }
         Lotto.bonus = bonus;
     }
 
+
     //print함수 view로 옮겨야 함.
+
     public void print() {
         System.out.print("[");
         for (int i = 0; i < 5; i++)

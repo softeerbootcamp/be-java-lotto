@@ -8,6 +8,7 @@ public enum Price {
     FIRST(6, 2000000000);
     private int countOfMatch;   //일치 개수
     private double winningMoney;   //상금
+
     public int getCountOfMatch() {
         return countOfMatch;
     }
