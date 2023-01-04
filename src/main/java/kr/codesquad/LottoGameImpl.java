@@ -38,7 +38,8 @@ public class LottoGameImpl implements LottoGame{
         //3-2.자동으로 구매한 로또 리스트 반환하기
         ArrayList<ArrayList<Integer>> lottos = machine.getLottoList();
         lottos.addAll(manualLottos);
-        System.out.println(lottos);
+        System.out.println("수동으로 "+manualLottoCnt+"장, 자동으로 "+lottoCnt+"개를 구매했습니다. ");
+        printLottos(lottos,totalCnt);
         //4.지난 주 당첨 번호 입력 받기
         List<Integer> inputs = user.getLottoInput();
         //5. 보너스 볼 입력 받기
@@ -47,6 +48,12 @@ public class LottoGameImpl implements LottoGame{
         compareLottos(totalCnt,lottos,inputs,bonusBall);
         //7. 결과 출력
         printResult(lottoCnt);
+    }
+
+    public void printLottos(ArrayList<ArrayList<Integer>> list, int totalCnt){
+        for(int i=0;i<totalCnt;i++){
+            System.out.println(list.get(i));
+        }
     }
 
     public void compareLottos(int lottoCnt, ArrayList<ArrayList<Integer>> lottoLists, List<Integer> inputList,int bonusBall){
@@ -66,16 +73,28 @@ public class LottoGameImpl implements LottoGame{
         rankMap.put(rank,++oldVal);
     }
 
+    public void checkRankForUpdate(Rank rank,int matchCnt){
+        if(rank.getCountOfMatch() == matchCnt){
+            updateRankMap(rank);
+        }
+    }
+
+    public void updateRankByMatchCnt(int matchCnt){
+        Rank[] ranks = Rank.values();
+        for(Rank rank : ranks){
+            checkRankForUpdate(rank, matchCnt);
+        }
+    }
+
     public void getMatchCount(List<Integer> lotto, List<Integer> input,Integer bonusBall){
         int matchCnt = 0;
         boolean isBonus = isBonusInLotto(lotto,bonusBall);
         for(int num : input) matchCnt = calcMatchCount(lotto,num,matchCnt);//하나의 로또에 대해 사용자의 각 숫자 중 몇 개가 일치되는 것인지 카운트
         System.out.println(matchCnt);
-        if(matchCnt == 3) updateRankMap(Rank.FIFTH);
-        else if(matchCnt ==4) updateRankMap(Rank.FOURTH);
+        if(matchCnt != 5 && matchCnt >=3) updateRankByMatchCnt(matchCnt);
         else if(matchCnt ==5 && isBonus) updateRankMap(Rank.SECOND);
         else if(matchCnt == 5) updateRankMap(Rank.THIRD);
-        else if(matchCnt ==6) updateRankMap(Rank.FIRST);
+
     }
 
     public int calcMatchCount(List<Integer> list, Integer num, int resMatchCnt){
