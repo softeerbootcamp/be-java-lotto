@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
-import kr.codesquad.domain.winningResult.WinningResult;
+import kr.codesquad.domain.winningLotto.WinningResult;
 
 public class Console {
 
@@ -20,19 +20,17 @@ public class Console {
     return Integer.parseInt(commandLineInput());
   }
 
-  public Lotto inputWinningNumbers() {
+  public List<Integer> inputWinningNumbers() {
     System.out.println("당첨 번호를 입력해 주세요");
 
     String s = commandLineInput();
     System.out.println();
     String[] split = s.split(", ");
 
-    List<Integer> list = Arrays.stream(split)
-                               .mapToInt(Integer::parseInt)
-                               .boxed()
-                               .collect(Collectors.toList());
-
-    return Lotto.from(list);
+    return Arrays.stream(split)
+                 .mapToInt(Integer::parseInt)
+                 .boxed()
+                 .collect(Collectors.toList());
   }
 
   public void printPurchaseCount(int purchaseCount) {
@@ -52,6 +50,11 @@ public class Console {
 
   public void printEarningRate(EarningRate earningRate) {
     System.out.println("총 수익률은 " + earningRate.toString() + "입니다");
+  }
+
+  public int inputBonusNumber() {
+    System.out.println("보너스 번호를 입력해 주세요");
+    return Integer.parseInt(commandLineInput());
   }
 
   private String commandLineInput() {

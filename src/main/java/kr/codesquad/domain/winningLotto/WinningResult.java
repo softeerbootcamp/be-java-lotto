@@ -1,4 +1,4 @@
-package kr.codesquad.domain.winningResult;
+package kr.codesquad.domain.winningLotto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,8 +11,6 @@ import kr.codesquad.domain.lotto.Lotto;
 public class WinningResult {
 
   private final Map<WinningAmount, Integer> map;
-
-  private static final String DISPLAY_FORM = "%d 개 일치 (%d 원)- %d\n";
 
   public String getStatistics() {
     return map.keySet()
@@ -31,7 +29,7 @@ public class WinningResult {
 
   public static WinningResult createResult(
       List<Lotto> lottos,
-      Lotto winningLotto
+      WinningLotto winningLotto
   ) {
     WinningResult winningResult = new WinningResult();
     winningResult.calculateResult(lottos, winningLotto);
@@ -45,11 +43,10 @@ public class WinningResult {
 
   private void calculateResult(
       List<Lotto> lottos,
-      Lotto winningLotto
+      WinningLotto winningLotto
   ) {
     lottos.stream()
-          .mapToInt(winningLotto::countMatch)
-          .mapToObj(WinningAmount::from)
+          .map(winningLotto::check)
           .filter(Optional::isPresent)
           .map(Optional::get)
           .filter(map::containsKey)
@@ -57,8 +54,7 @@ public class WinningResult {
   }
 
   private String getWinningAmountStatics(WinningAmount winningAmount) {
-    return String.format(
-        DISPLAY_FORM, winningAmount.getCorrectCount(), winningAmount.getPrice(), map.get(winningAmount));
+    return winningAmount.toString() + String.format(" %d개\n", map.get(winningAmount));
   }
 
 }

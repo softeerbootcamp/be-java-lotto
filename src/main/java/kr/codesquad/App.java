@@ -5,7 +5,8 @@ import java.util.List;
 import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.lotto.LottoShop;
-import kr.codesquad.domain.winningResult.WinningResult;
+import kr.codesquad.domain.winningLotto.WinningLotto;
+import kr.codesquad.domain.winningLotto.WinningResult;
 import kr.codesquad.io.Console;
 
 public class App implements Runnable {
@@ -26,8 +27,8 @@ public class App implements Runnable {
     int purchaseMoney = console.inputPurchaseMoney();
     List<Lotto> lottos = purchaseLotto(purchaseMoney);
 
-    Lotto winningNumber = console.inputWinningNumbers();
-    WinningResult winningResult = WinningResult.createResult(lottos, winningNumber);
+    WinningLotto winningLotto = inputWinningLotto();
+    WinningResult winningResult = WinningResult.createResult(lottos, winningLotto);
     console.printWinningResult(winningResult);
 
     EarningRate earningRate = EarningRate.of(winningResult.getTotalWinningMoney(), purchaseMoney);
@@ -39,6 +40,13 @@ public class App implements Runnable {
     console.printPurchaseCount(lottos.size());
     console.printLottoNumbersList(lottos);
     return lottos;
+  }
+
+  private WinningLotto inputWinningLotto() {
+    List<Integer> winningNumbers = console.inputWinningNumbers();
+    Lotto winningLottoNumbers = Lotto.from(winningNumbers);
+    int bonusNumber = console.inputBonusNumber();
+    return new WinningLotto(winningLottoNumbers, bonusNumber);
   }
 
 }

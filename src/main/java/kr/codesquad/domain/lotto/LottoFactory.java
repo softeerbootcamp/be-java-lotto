@@ -1,9 +1,10 @@
 package kr.codesquad.domain.lotto;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class LottoFactory {
 
@@ -13,17 +14,21 @@ public class LottoFactory {
   private final RandomNumberFactory randomNumberFactory = new RandomNumberFactory(LOTTO_NUMBER_BOUND);
 
   public Lotto generate() {
-    Set<Integer> resultSet = new HashSet<>();
+    Set<Integer> numberSet = getRandomNumberSet();
+    List<Integer> numberList = new ArrayList<>(numberSet);
 
-    while (resultSet.size() < LOTTO_NUMBER_COUNT) {
-      resultSet.add(randomNumberFactory.generate());
+    List<Integer> lottoNumbers = numberList.subList(0, LOTTO_NUMBER_COUNT);
+    lottoNumbers.sort(Comparator.naturalOrder());
+
+    return Lotto.from(lottoNumbers);
+  }
+
+  private Set<Integer> getRandomNumberSet() {
+    Set<Integer> numberSet = new HashSet<>();
+    while (numberSet.size() < LottoFactory.LOTTO_NUMBER_COUNT) {
+      numberSet.add(randomNumberFactory.generate());
     }
-
-    List<Integer> resultList = resultSet.stream()
-                                        .sorted()
-                                        .collect(Collectors.toList());
-
-    return Lotto.from(resultList);
+    return numberSet;
   }
 
 }
