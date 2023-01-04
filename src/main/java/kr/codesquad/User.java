@@ -26,14 +26,28 @@ public class User {
     public void setBuyNum(int buyNum) {
         this.buyNum = buyNum;
     }
+    public int getAutoCount() {
+        return autoCount;
+    }
 
+    public int getManualCount() {
+        return manualCount;
+    }
 
     public ArrayList<ArrayList<Integer>> getLottoTickets() {
         return lottoTickets;
     }
 
+    public void setManualTickets(ArrayList<ArrayList<Integer>> Tickets)
+    {
+        for(int i = 0; i < manualCount; i++)
+        {
+            Collections.sort(Tickets.get(i));
+            lottoTickets.add(Tickets.get(i));
+        }
+    }
     public void makeRandomLottoTickets() {
-        for(Integer i = 0; i < buyNum; i++)
+        for(Integer i = 0; i < autoCount; i++)
         {
             // 임의의 6개의 번호 입력 후
             lottoTickets.add(getRandomSixNums());
