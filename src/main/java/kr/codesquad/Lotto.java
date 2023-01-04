@@ -30,6 +30,11 @@ public class Lotto {
         return lotto.contains(lottoNum);
     }
 
+    public static void printSequence(List<Lotto> lottoList) {
+        for (Lotto lotto : lottoList) {  // 생성된 로또 번호 출력
+            System.out.println(lotto.toString());
+        }
+    }
 
     @Override
     public String toString() {

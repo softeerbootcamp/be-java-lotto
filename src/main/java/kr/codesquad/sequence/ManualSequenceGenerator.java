@@ -9,7 +9,7 @@ public class ManualSequenceGenerator implements LottosGenerator {
     private List<Lotto> lottos;
 
     @Override
-    public List<Lotto> generate(Money money) {
+    public List<Lotto> generate(final int ticketsToGenerate) {
         return this.lottos;
     }
 
