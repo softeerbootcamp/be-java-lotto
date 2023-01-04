@@ -1,5 +1,8 @@
 package kr.codesquad.model;
 
+import kr.codesquad.model.lotto.Lotto;
+import kr.codesquad.model.lotto.WinningLotto;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +35,7 @@ public class WinningStatic {
         }
     }
 
-    public static void computeResult(User user,WinningLotto winningLotto) {
+    public static void computeResult(User user, WinningLotto winningLotto) {
         HashSet<Integer> winLottoSet = listToHashSet(winningLotto.getNumbers());
         for (Lotto usersLotto : user.getLottos()) {
             int matchCount = perComputeResult(user, winLottoSet, usersLotto);
