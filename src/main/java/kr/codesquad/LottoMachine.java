@@ -11,11 +11,9 @@ import java.util.List;
 public class LottoMachine {
 
     private List<Lotto2> lottos;
-    private LottoGenerator lottoGenerator;
 
     //로또 금액에 맞는 로또 금액 초기화
     public LottoMachine(Money money, LottoGenerator lottoGenerator) {
-        this.lottoGenerator = lottoGenerator;
         this.lottos = lottoGenerator.generate(money);
     }
 
@@ -28,5 +26,18 @@ public class LottoMachine {
             lottoResult.increaseCountOfRank(rank);
         }
         return lottoResult;
+    }
+
+    public String lottosToString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < lottos.size(); i++) {
+            sb.append("[");
+            sb.append(printLotto(lottos.get(i)));
+            sb.append("]\n");
+        }
+        return sb.toString();
+    }
+    private String printLotto(Lotto2 lotto2) {
+        return lotto2.toString();
     }
 }
