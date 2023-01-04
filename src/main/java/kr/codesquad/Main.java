@@ -16,7 +16,8 @@ public class Main {
         console.printAmount(lottoAmount);
         List<Lotto> allLotto = lottoService.makeLottoList(lottoAmount);
         console.printLottoNum(allLotto);
-        Map<WinningCount, Integer> lottoResult = lottoService.makeLottoResult(allLotto, console.inputWinNum(), console.inputBonusNum());
+        WinLotto winLotto = new WinLotto(console.inputWinNum(), console.inputBonusNum());
+        Map<WinningCount, Integer> lottoResult = lottoService.makeLottoResult(allLotto, winLotto);
         console.printLottoResult(money, lottoResult);
     }
 
