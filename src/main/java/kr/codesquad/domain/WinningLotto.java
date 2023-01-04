@@ -8,13 +8,8 @@ public class WinningLotto {
     private Lotto2 winningLotto;
     private int bonusBall;
 
-    public WinningLotto() {
-        bonusBall = 0;
-    }
-    public void setWinningNumbers(Lotto2 lotto) {
+    public WinningLotto(Lotto2 lotto, int bonusBall) {
         winningLotto = lotto;
-    }
-    public void updateBonusBall(int bonusBall) {
         this.bonusBall = bonusBall;
     }
     public Rank2 compareLotto(Lotto2 lotto) {
