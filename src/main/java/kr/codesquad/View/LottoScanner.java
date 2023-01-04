@@ -1,7 +1,5 @@
 package kr.codesquad.View;
 
-import kr.codesquad.Model.LottoService;
-
 import java.math.BigInteger;
 import java.util.Scanner;
 

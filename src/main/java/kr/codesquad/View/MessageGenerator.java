@@ -1,9 +1,6 @@
 package kr.codesquad.View;
 
-import kr.codesquad.Model.LottoService;
 import kr.codesquad.Model.Price;
-
-import java.math.RoundingMode;
 
 public class MessageGenerator {
     private static final String headerMsg = "당첨 통계\n---------";
