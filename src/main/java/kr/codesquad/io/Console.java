@@ -22,7 +22,10 @@ public class Console {
 
   public List<Integer> inputWinningNumbers() {
     System.out.println("당첨 번호를 입력해 주세요");
+    return inputLottoNumbers();
+  }
 
+  private List<Integer> inputLottoNumbers() {
     String s = commandLineInput();
     System.out.println();
     String[] split = s.split(", ");
