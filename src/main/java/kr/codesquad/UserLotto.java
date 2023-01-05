@@ -29,38 +29,21 @@ public class UserLotto extends BaseLotto{
 
     @Override
     public Integer getLottoCnt(int amountOfMoney, int manualLottoCount) {
-        try {
-            System.out.print("수동으로 구매할 로또 수를 입력해 주세요. ");
-            this.lottoCnt = userConsole.enterInteger();
-            if(this.lottoCnt*1000 > amountOfMoney) throw new CustomException(ErrorCode.MONEY_NOT_ENOUGH);
-        }catch(InputMismatchException e){
-            System.out.println("유효하지 않은 값입니다. 다시 값을 입력해주세요.");
-        }catch(Exception e){
-            System.out.println("입력에 에러가 발생했습니다. 다시 값을 입력해주세요");
-        }
-
+        System.out.print("수동으로 구매할 로또 수를 입력해 주세요. ");
+        this.lottoCnt = userConsole.enterInteger();
+        if(this.lottoCnt*1000 > amountOfMoney) throw new CustomException(ErrorCode.MONEY_NOT_ENOUGH);
         return this.lottoCnt;
     }
 
     public ArrayList<Integer> getManualLotto(){
         String inputNumbers = userConsole.enter6NumbersByString();
-        ArrayList<Integer> manualLotto=new ArrayList<>();
-        try{
-            manualLotto = Utility.getListFromInputBySplit(inputNumbers);
-        }catch(Exception e){
-            System.out.println("입력 양식을 다시 확인해주세요");
-        }
-
+        ArrayList<Integer> manualLotto = Utility.getListFromInputBySplit(inputNumbers);
         return manualLotto;
     }
 
     public Integer getBonusLottoInput() {
-        try{
-            System.out.println("보너스 볼을 입력해주세요. ");
-            this.bonusBall = userConsole.enterInteger();
-        }catch(InputMismatchException e){
-            System.out.println("유효하지 않은 값입니다. 다시 값을 입력해주세요.");
-        }
+        System.out.println("보너스 볼을 입력해주세요. ");
+        this.bonusBall = userConsole.enterInteger();
         return bonusBall;
     }
 
