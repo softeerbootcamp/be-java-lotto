@@ -1,6 +1,7 @@
-package kr.codesquad.lotto;
+package kr.codesquad.lotto.factory;
 
 import kr.codesquad.io.Console;
+import kr.codesquad.lotto.Lotto;
 
 import java.util.List;
 
