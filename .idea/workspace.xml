@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : 수동 구매 로또 수 0 이상이어야 하는 ManualLottoCntException 생성">
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoViewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Money.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Money.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/exception/ManualLottoCntException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/exception/ManualLottoCntException.java" afterDir="false" />
-    </list>
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (x)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -269,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672902102254</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (x)">
+      <created>1672903064893</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1672903064893</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,7 +290,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: Rank enum 생성, 클래스 formatting, 간단한 오타 수정" />
     <MESSAGE value=".gitignore 원상복귀" />
     <MESSAGE value="feat: Row values print 기능 추가" />
     <MESSAGE value="refactor: Row class 필드명 result -&gt; match 수정, 수익률 소수점 두자리 출력" />
@@ -312,7 +314,8 @@
     <MESSAGE value="refactor: ManualLottoGenerator객체에 로또 수동 발급 역할 부여&#10;## What&#10;기존의 코드에서 수동발급을 Row 자체에서 static 메서드로 사용하는 방식에서 ManualLottoGenerator를 거쳐 발급하는 방식으로 수정함.&#10;## Why&#10;기존 방식에서는 콘솔에서 입력받는 String에 대한 다양한 예외상황을 처리하기에 적절하지 못하다는 점에서 Generator의 validation처리를 거쳐 Generator에 의해 Manually generate될 수 있도록 설계를 수정하여 확장에 용이하도록 수정함.&#10;## How&#10;이를 위해서는 ManualLottoGenerator의 generate() 는 Auto와는 달리 input값을 파라미터로 받아야 한다는 문제를 해결해야 함. overloading을 활용하게 되면 interface로의 추상화의 의미가 줄어든다는 문제가 있음. 현재는 이를 위해 수동 입력된 inputString을 ManualLottoGenerator가 받아서 예외 처리를 거쳐 가지고 있다가 Lotto 객체의 callback에 의해 generate되어 add되는 방식으로 수정&#10;&#10;## Todo&#10;수동 발급의 다양한 예외 상황에 대한 validation 처리 필요" />
     <MESSAGE value="feat: NumberNotValidException 및 LottoNumber 구현&#10;## What&#10;부적절한 숫자를 로또 입력값으로 받은 경우에 대한 예외 처리를 위해 LottoException을 상속받는 NumberNotValidException을 구현하였으며, 기존의 Integer로 받았던 로또 숫자를 LottoNumber라는 객체로 바꿈.&#10;## Why&#10;LottoNumber 객체를 구현함으로써 현재까지 두 가지 이점이 생김.&#10;1. NumberNotValidException 등 로또 숫자와 관련된 예외 처리를 일관적으로 수행할 수 있음.&#10;2. Primitive 타입이 아닌 정의된 객체를 사용함으로써 외부로부터 로또 숫자 자체를 안전하게 보호할 수 있어 객체지향의 이점을 살릴 수 있음.&#10;&#10;## todo&#10;통계 출력 때 3개 미만의 경우도 출력되는 것을 확인하여 수정 예정." />
     <MESSAGE value="feat : 수동 구매 로또 수 0 이상이어야 하는 ManualLottoCntException 생성" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : 수동 구매 로또 수 0 이상이어야 하는 ManualLottoCntException 생성" />
+    <MESSAGE value="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (x)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (x)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_lotto$Main.ic" NAME="Main Coverage Results" MODIFIED="1672722343647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

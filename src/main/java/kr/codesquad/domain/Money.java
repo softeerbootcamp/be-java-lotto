@@ -15,14 +15,9 @@ public class Money {
     }
 
     public static void checkInputValid(int inputMoney) {
-        if (inputMoney < SINGLE_PRICE) {
+        if (inputMoney < SINGLE_PRICE || inputMoney % SINGLE_PRICE > 0) {
             throw new MoneyNotValidException();
         }
-
-//        if(inputMoney / SINGLE_PRICE == int);
-        //천원 단위로 나누어 떨어져야 함.
-
-
     }
 
     public int checkManualCntValid(int manualCnt) {
