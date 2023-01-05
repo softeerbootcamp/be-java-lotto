@@ -10,8 +10,9 @@ public class Lotto {
     private static final int LOTTO_MAX_NUMBER = 45;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_SIZE = 6;
+    private static final int BONUS_COUNT = 5;
 
-    List<Integer> lotto;
+    private List<Integer> lotto;
 
     public Lotto() {
         this(choiceNumbers());
@@ -35,6 +36,24 @@ public class Lotto {
         return IntStream.range(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER + 1)
                 .boxed()
                 .collect(Collectors.toList());
+    }
+
+    public boolean contains(int number) {
+        return lotto.contains(number);
+    }
+
+    public Rank getRank(WinLotto winLotto) {
+        int matchCount = getMatchCount(winLotto.getWinLotto());
+        if (matchCount == BONUS_COUNT && lotto.contains(winLotto.getBonusBall())) {
+            return Rank.getRank(matchCount, true);
+        }
+        return Rank.getRank(matchCount, false);
+    }
+
+    private int getMatchCount(Lotto targetLotto) {
+        return (int)lotto.stream()
+                .filter(targetLotto::contains)
+                .count();
     }
 
     public List<Integer> getLotto() {
