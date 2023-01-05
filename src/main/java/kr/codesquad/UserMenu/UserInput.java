@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserInput {
-    private InputHandler inputHandler;
-    private UserLotto userLotto;
-    private Utility utility;
+    private final InputHandler inputHandler;
+    private final UserLotto userLotto;
+    private final Utility utility;
 
     public UserInput() {
         inputHandler = new InputHandler();
@@ -25,12 +25,12 @@ public class UserInput {
     }
 
     public int userHowManyManual() throws CustomException {
-        System.out.printf("수동으로 구매할 로또 수를 입력해 주세요\n");
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요\n");
         return inputHandler.getIntegerInput();
     }
 
     public List<EmptyLotto> userInputManual() throws CustomException {
-        System.out.printf("수동으로 구매할 번호를 입력해 주세요\n");
+        System.out.println("수동으로 구매할 번호를 입력해 주세요\n");
         List<EmptyLotto> userLottoList = new ArrayList<>();
         for (int i = 0; i < userLotto.getUserManualLottoCount(); i++) {
             EmptyLotto emptyLotto = new EmptyLotto(
