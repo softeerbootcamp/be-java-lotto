@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 import kr.codesquad.domain.lotto.Lotto;
 
-public class WinningResult {
+public class RankResult {
 
-  private final Map<WinningAmount, Integer> map;
+  private final Map<Rank, Integer> map;
 
   public String getStatistics() {
     return map.keySet()
@@ -23,38 +23,38 @@ public class WinningResult {
   public long getTotalWinningMoney() {
     return map.keySet()
               .stream()
-              .mapToLong(winningAmount -> (long)winningAmount.getPrice() * map.get(winningAmount))
+              .mapToLong(rank -> (long)rank.getPrice() * map.get(rank))
               .sum();
   }
 
-  public static WinningResult createResult(
+  public static RankResult createResult(
       List<Lotto> lottos,
-      WinningLotto winningLotto
+      WinnerLotto winnerLotto
   ) {
-    WinningResult winningResult = new WinningResult();
-    winningResult.calculateResult(lottos, winningLotto);
-    return winningResult;
+    RankResult rankResult = new RankResult();
+    rankResult.calculateResult(lottos, winnerLotto);
+    return rankResult;
   }
 
-  private WinningResult() {
-    this.map = Arrays.stream(WinningAmount.values())
+  private RankResult() {
+    this.map = Arrays.stream(Rank.values())
                      .collect(Collectors.toMap(w -> w, w -> 0, (a, b) -> b));
   }
 
   private void calculateResult(
       List<Lotto> lottos,
-      WinningLotto winningLotto
+      WinnerLotto winnerLotto
   ) {
     lottos.stream()
-          .map(winningLotto::check)
+          .map(winnerLotto::check)
           .filter(Optional::isPresent)
           .map(Optional::get)
           .filter(map::containsKey)
-          .forEach(winningAmount -> map.put(winningAmount, map.get(winningAmount) + 1));
+          .forEach(rank -> map.put(rank, map.get(rank) + 1));
   }
 
-  private String getWinningAmountStatics(WinningAmount winningAmount) {
-    return winningAmount.toString() + String.format(" %d개\n", map.get(winningAmount));
+  private String getWinningAmountStatics(Rank rank) {
+    return rank.toString() + String.format(" %d개\n", map.get(rank));
   }
 
 }

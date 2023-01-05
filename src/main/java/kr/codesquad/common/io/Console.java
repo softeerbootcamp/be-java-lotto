@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.lotto.LottoShopPurchaseResult;
-import kr.codesquad.domain.winningLotto.WinningResult;
+import kr.codesquad.domain.winningLotto.RankResult;
 
 public class Console {
 
@@ -39,7 +39,7 @@ public class Console {
                  .collect(Collectors.toList());
   }
 
-  public void printWinningResult(WinningResult result) {
+  public void printWinningResult(RankResult result) {
     System.out.println("당첨 통계");
     System.out.println("---------");
     System.out.println(result.getStatistics());

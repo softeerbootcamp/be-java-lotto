@@ -7,8 +7,8 @@ import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.lotto.LottoShop;
 import kr.codesquad.domain.lotto.LottoShopPurchaseResult;
-import kr.codesquad.domain.winningLotto.WinningLotto;
-import kr.codesquad.domain.winningLotto.WinningResult;
+import kr.codesquad.domain.winningLotto.WinnerLotto;
+import kr.codesquad.domain.winningLotto.RankResult;
 
 public class ConsoleLottoApp extends App {
 
@@ -20,11 +20,11 @@ public class ConsoleLottoApp extends App {
     LottoShopPurchaseResult response = purchaseLotto();
     console.printPurchaseResult(response);
 
-    WinningLotto winningLotto = inputWinningLotto();
-    WinningResult winningResult = WinningResult.createResult(response.getAllLotto(), winningLotto);
-    console.printWinningResult(winningResult);
+    WinnerLotto winnerLotto = inputWinningLotto();
+    RankResult rankResult = RankResult.createResult(response.getAllLotto(), winnerLotto);
+    console.printWinningResult(rankResult);
 
-    EarningRate earningRate = EarningRate.of(winningResult.getTotalWinningMoney(), response.getTotalPrice());
+    EarningRate earningRate = EarningRate.of(rankResult.getTotalWinningMoney(), response.getTotalPrice());
     console.printEarningRate(earningRate);
   }
 
@@ -38,11 +38,11 @@ public class ConsoleLottoApp extends App {
     return lottoShop.purchase(autoLottoCount, manualLottoCount);
   }
 
-  private WinningLotto inputWinningLotto() {
+  private WinnerLotto inputWinningLotto() {
     List<Integer> winningNumbers = console.inputWinningNumbers();
     Lotto winningLottoNumbers = Lotto.from(winningNumbers);
     int bonusNumber = console.inputBonusNumber();
-    return new WinningLotto(winningLottoNumbers, bonusNumber);
+    return new WinnerLotto(winningLottoNumbers, bonusNumber);
   }
 
 }
