@@ -12,10 +12,10 @@ public class LottoController {
 
 
     public void play() {
-        User user = getUserWithPurchase();
+        User user = purchaseLotto();
 
         //수동구매 입력받은 후 user객제체에 로또번호 업데이트
-        updateManualLottos(user);
+        enterManualLottoNumbers(user);
 
         printBuyLotto(user);
         WinningLotto winningLotto = getWinningLotto();
@@ -29,7 +29,7 @@ public class LottoController {
         PrintView.generatedLottos(user);
     }
 
-    private void updateManualLottos(User user) {
+    private void enterManualLottoNumbers(User user) {
         PrintView.enterManualLottos();
         for (int count = 0; count < user.getTicket().getManualTicketsCount(); count++) {
             List<Integer> manualLotto = ReceiveView.enterManualLottos();
@@ -63,7 +63,7 @@ public class LottoController {
         return winningNumbers;
     }
 
-    private User getUserWithPurchase() {
+    private User purchaseLotto() {
         Money money = new Money(enterPurchaseAmount());
         Ticket ticket = makeTicket(money);
         User user = new User(money,ticket);

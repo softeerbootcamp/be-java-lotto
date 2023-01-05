@@ -4,7 +4,6 @@ import kr.codesquad.model.lotto.Lotto;
 import kr.codesquad.model.Result;
 import kr.codesquad.model.User;
 import kr.codesquad.util.CommonMessage;
-import kr.codesquad.util.error.ErrorMessage;
 
 import java.util.HashMap;
 
@@ -24,9 +23,7 @@ public class PrintView {
         }
     }
 
-    public static void error(String errorMessage) {
-        System.out.println(ErrorMessage.ERROR_TAG+errorMessage);
-    }
+
 
     public static void enterWinningNumber() {
         System.out.println(CommonMessage.ENTER_WINNING_NUMBER);
