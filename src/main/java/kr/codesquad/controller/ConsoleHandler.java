@@ -49,8 +49,12 @@ public class ConsoleHandler {
     }
 
     public ArrayList<Integer> enterSudongLottoList(){
-        String lottoStr = userConsole.enterSudongLottoList();
-        Set<Integer> lottoLists = parseString(lottoStr);
+        Set<Integer> lottoLists;
+        try {
+            String lottoStr = userConsole.enterSudongLottoList();
+            lottoLists = parseString(lottoStr);}
+        catch (NumberFormatException e){
+            throw new InputCountException("숫자형으로 입력해주세요");}
         if(lottoLists.size() != 6)
             throw new InputCountException("올바르지 않은 입력입니다");
         ArrayList<Integer> givenResult = new ArrayList<>(lottoLists);
