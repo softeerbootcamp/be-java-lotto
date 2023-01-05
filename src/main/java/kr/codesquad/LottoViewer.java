@@ -34,12 +34,11 @@ public class LottoViewer {
     public Money inputMoney() throws IOException {
         System.out.println("구입 금액을 입력해 주세요.");
         int totalMoney = Integer.parseInt(br.readLine());
+        Money.checkInputValid(totalMoney);
 
         System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
         int manualCnt = Integer.parseInt(br.readLine());
-        if (manualCnt < 0) {
-            throw new ManualLottoCntException();
-        }
+
         return new Money(totalMoney, manualCnt);
     }
 

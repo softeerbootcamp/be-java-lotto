@@ -1,5 +1,8 @@
 package kr.codesquad.domain;
 
+import kr.codesquad.exception.ManualLottoCntException;
+import kr.codesquad.exception.MoneyNotValidException;
+
 public class Money {
 
     public static final int SINGLE_PRICE = 1000; //로또 한 장의 가격은 1000원이다.
@@ -8,7 +11,25 @@ public class Money {
 
     public Money(int totalMoney, int manualCnt) {
         this.totalMoney = totalMoney;
-        this.manualCnt = manualCnt;
+        this.manualCnt = checkManualCntValid(manualCnt);
+    }
+
+    public static void checkInputValid(int inputMoney) {
+        if (inputMoney < SINGLE_PRICE) {
+            throw new MoneyNotValidException();
+        }
+
+//        if(inputMoney / SINGLE_PRICE == int);
+        //천원 단위로 나누어 떨어져야 함.
+
+
+    }
+
+    public int checkManualCntValid(int manualCnt) {
+        if (manualCnt < 0 || manualCnt > countOfRowICanBuy(totalMoney)) {
+            throw new ManualLottoCntException(countOfRowICanBuy(totalMoney));
+        }
+        return manualCnt;
     }
 
     public void printStatus() {
@@ -24,9 +45,7 @@ public class Money {
     }
 
     public static int countOfRowICanBuy(int inputMoney) {
-        if (inputMoney < SINGLE_PRICE) {
-            throw new IllegalArgumentException("금액 1000미만임.");
-        }
+        checkInputValid(inputMoney);
         return inputMoney / SINGLE_PRICE;
     }
 
