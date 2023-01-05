@@ -1,5 +1,9 @@
 package kr.codesquad.domain;
 
+import kr.codesquad.factory.ManualLottoFactory;
+import kr.codesquad.factory.RandomLottoFactory;
+import kr.codesquad.view.InputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +14,7 @@ public class Lottos {
     public Lottos(int amount) {
         lottoList = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
-            lottoList.add(new Lotto());
+            lottoList.add(new Lotto(new RandomLottoFactory()));
         }
     }
 

@@ -18,6 +18,4 @@ public class LottoNumber {
     public int getLottoNumber() {
         return lottoNumber;
     }
-
-
 }
