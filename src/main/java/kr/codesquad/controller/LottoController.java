@@ -1,6 +1,7 @@
 package kr.codesquad.controller;
 
 import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.lotto.LottoShop;
 import kr.codesquad.domain.lotto.Lottos;
 import kr.codesquad.domain.Result;
 import kr.codesquad.domain.lotto.WinLotto;
@@ -49,11 +50,7 @@ public class LottoController {
     }
 
     private Lotto getWinLotto() {
-        List<Integer> newList = InputView.inputWinLotto()
-                .stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        return new Lotto(newList);
+        return new Lotto(InputView.inputLotto());
     }
 
     private void calculateResult(

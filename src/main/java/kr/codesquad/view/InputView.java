@@ -3,6 +3,7 @@ package kr.codesquad.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -21,10 +22,10 @@ public class InputView {
         return input();
     }
 
-    public static List<String> inputWinLotto() {
-        return Arrays.asList(
-                input().trim().split(DELIMITER)
-        );
+    public static List<Integer> inputLotto() {
+            return Arrays.stream(input().split(DELIMITER))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
     }
 
     public static String inputBonusBall() {

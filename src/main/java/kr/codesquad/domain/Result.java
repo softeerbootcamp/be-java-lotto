@@ -9,10 +9,14 @@ import java.util.Map;
 
 public class Result {
 
+    private static final int DEFAULT_SUM = 0;
+
+    private static final int DEFAULT_COUNT = 0;
+
     private final Map<Rank, Integer> result = new HashMap<>();
 
     public Result() {
-        Arrays.stream(Rank.values()).forEach(rank -> result.put(rank, 0));
+        Arrays.stream(Rank.values()).forEach(rank -> result.put(rank, DEFAULT_COUNT));
     }
 
     public Map<Rank, Integer> getResult() {
@@ -30,7 +34,7 @@ public class Result {
     }
 
     public double getProfit() {
-        double sum = 0;
+        double sum = DEFAULT_SUM;
 
         for (Rank rank : Rank.values()) {
             int prizeMoney = rank.getWinningAmount();

@@ -4,9 +4,11 @@ import kr.codesquad.domain.lotto.factory.RandomLottoFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Lottos {
 
+    private static final int MIN_LOTTO_COUNT = 0;
     private final List<Lotto> lottoList;
 
     public Lottos (List<Lotto> lottoList) {
@@ -15,9 +17,9 @@ public class Lottos {
 
     public Lottos(int totalLottoCount) {
         lottoList = new ArrayList<>();
-        for (int i = 0; i < totalLottoCount; i++) {
-            lottoList.add(new Lotto(new RandomLottoFactory()));
-        }
+        IntStream.range(MIN_LOTTO_COUNT, totalLottoCount)
+                .mapToObj(i -> new Lotto(new RandomLottoFactory()))
+                .forEach(lottoList::add);
     }
 
     public Lottos addLottos(Lottos lottosBeCombined) {
