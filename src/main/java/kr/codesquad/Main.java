@@ -48,6 +48,7 @@ public class Main {
         LottoGenerator lottoGenerator = new LottoGenerator();
         lottoGenerator.manualGenerate(userLotto);
         lottoGenerator.autoGenerate(userLotto);
+        ut.printUserLotto(userLotto);
 
         LottoJackpotManager lottoJackpotManager = new LottoJackpotManager();
         lottoJackpotManager.setJACKPOT_NUM();

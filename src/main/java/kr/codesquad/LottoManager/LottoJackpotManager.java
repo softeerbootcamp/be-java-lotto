@@ -25,7 +25,7 @@ public class LottoJackpotManager extends UserInput {
     }
     public int addIndexIfchecked(List<Integer> userOneLotto,int number,int index){
         if(checkNumberIsContained(userOneLotto,number)){
-            return index++;
+            return ++index;
         }else return index;
     }
     public void checkAllUserLottoPrize(UserLotto userLotto){
@@ -36,7 +36,7 @@ public class LottoJackpotManager extends UserInput {
     // prize 가 user lotto 내부에 있어서 어쩔수 없이 매개변수 2개 사용됬는데, 개선하고 싶음.
     public void checkEachLottoPrize(List<Integer> userOneLotto,UserLotto userLotto) {
         int index = 0;
-        for (int oneNumber : userOneLotto) {
+        for (int oneNumber : JACKPOT_NUM) {
             index=addIndexIfchecked(userOneLotto,oneNumber,index);
         }
         if(index==6){
