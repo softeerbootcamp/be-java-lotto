@@ -18,10 +18,6 @@ public class InputView {
         return Integer.parseInt(input());
     }
 
-    public static String inputManualLotto() {
-        return input();
-    }
-
     public static List<Integer> inputLotto() {
             return Arrays.stream(input().split(DELIMITER))
                     .map(Integer::parseInt)

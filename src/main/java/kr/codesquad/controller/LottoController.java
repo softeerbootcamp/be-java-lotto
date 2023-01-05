@@ -42,15 +42,11 @@ public class LottoController {
 
     private WinLotto makeWinLotto() {
         OutputView.showRequestWinNumber();
-        Lotto winLotto = getWinLotto();
+        Lotto winLotto = new Lotto(InputView.inputLotto());
 
         OutputView.showRequestBonusball();
         int bonusBall = Integer.parseInt(InputView.inputBonusBall());
         return new WinLotto(winLotto, bonusBall);
-    }
-
-    private Lotto getWinLotto() {
-        return new Lotto(InputView.inputLotto());
     }
 
     private void calculateResult(

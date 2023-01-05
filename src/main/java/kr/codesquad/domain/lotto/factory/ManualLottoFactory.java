@@ -13,12 +13,7 @@ public class ManualLottoFactory implements LottoFactory{
 
     @Override
     public List<Integer> generateLottoNumbers() {
-        return convertToLottoNumbers(InputView.inputManualLotto());
+        return InputView.inputLotto();
     }
 
-    private List<Integer> convertToLottoNumbers(String input) {
-        return Arrays.stream(input.split(DELIMITER))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-    }
 }
