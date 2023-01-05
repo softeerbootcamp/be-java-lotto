@@ -3,6 +3,7 @@ package kr.codesquad.View;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,9 +13,10 @@ public class LottoScanner {
         try {
             Scanner sc = new Scanner(System.in);
             BigInteger money = sc.nextBigInteger();
+            System.out.println(money);
             return money;
-        } catch (Exception e) {
-            System.out.println("Input error");
+        } catch (InputMismatchException iee) {
+            System.out.println("Money should be Integer");
             System.exit(0);
             return null;
         }
@@ -32,6 +34,7 @@ public class LottoScanner {
             return winNum;
         }catch (Exception e){
             System.out.println("LottoNumber Input Error");
+            e.printStackTrace();
             System.exit(0);
             return null;
         }
@@ -44,6 +47,7 @@ public class LottoScanner {
         }
         catch (Exception e){
             System.out.println("Wrong Bonus Input");
+            e.printStackTrace();
             System.exit(0);
             return -1;
         }
@@ -55,6 +59,7 @@ public class LottoScanner {
             return sc.nextInt();
         }catch (Exception e){
             System.out.println("Wrong manual count input");
+            e.printStackTrace();
             System.exit(0);
             return -1;
         }
