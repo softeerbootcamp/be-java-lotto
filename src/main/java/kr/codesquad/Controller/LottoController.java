@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import kr.codesquad.Model.Lotto;
-import kr.codesquad.Model.LottoGenerator;
+import kr.codesquad.Model.AutoLottoGenerator;
 import kr.codesquad.Model.User;
 import kr.codesquad.Model.WinLotto;
 import kr.codesquad.Model.WinnerCalculator;
@@ -23,7 +23,7 @@ public class LottoController {
     LottoScanner lottoScanner = new LottoScanner();
     Printer lottoPrinter = new LottoPrinter();
     MessageGenerator mg = new MessageGenerator();
-    LottoGenerator lottoGenerator = new LottoGenerator();
+    AutoLottoGenerator autoLottoGenerator = new AutoLottoGenerator();
     WinnerCalculator winnerCalculator = new WinnerCalculator();
 
     public LottoController() {
@@ -32,7 +32,7 @@ public class LottoController {
     public void start() {
         Lotto.initLotto();
         User user = new User(this.getInitMoney());
-        user.buyLotto(this.lottoGenerator);
+        user.buyLotto(this.autoLottoGenerator);
         this.getBuyResult(user);
         WinLotto winLotto = new WinLotto(this.getWinNumber(), this.getBonusNumber());
         this.winnerCalculator.initWinnerCount();
