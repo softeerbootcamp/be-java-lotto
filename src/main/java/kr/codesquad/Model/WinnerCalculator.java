@@ -39,9 +39,10 @@ public class WinnerCalculator {
     }
 
     private void updateResult(Price price, User user){
-        if (price != null)
+        if (price != null) {
             updateWinnerCount(price);
             user.updateEarn(price);
+        }
     }
 
     public void updateWinnerCount(Price price) {
