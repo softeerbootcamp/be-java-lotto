@@ -1,5 +1,7 @@
 package kr.codesquad.View;
 
+import kr.codesquad.Model.Lotto;
+
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class LottoScanner {
             String winStr = sc.nextLine();
             List<Integer> winNum = new ArrayList();
             String[] winStrArr = winStr.split(",");
-            for(int i = 0; i < 6; ++i) {
+            for(int i = 0; i < Lotto.LOTTO_NUM_LENGTH; ++i) {
                 winNum.add(Integer.parseInt(winStrArr[i].trim()));
             }
             return winNum;
