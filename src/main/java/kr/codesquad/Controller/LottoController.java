@@ -1,17 +1,23 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package kr.codesquad.Controller;
 
-
-import kr.codesquad.Model.*;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import kr.codesquad.Model.Lotto;
+import kr.codesquad.Model.LottoGenerator;
+import kr.codesquad.Model.User;
+import kr.codesquad.Model.WinLotto;
+import kr.codesquad.Model.WinnerCalculator;
 import kr.codesquad.View.LottoPrinter;
 import kr.codesquad.View.LottoScanner;
 import kr.codesquad.View.MessageGenerator;
 import kr.codesquad.View.Printer;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 public class LottoController {
     LottoScanner lottoScanner = new LottoScanner();
@@ -19,66 +25,44 @@ public class LottoController {
     MessageGenerator mg = new MessageGenerator();
     LottoGenerator lottoGenerator = new LottoGenerator();
     WinnerCalculator winnerCalculator = new WinnerCalculator();
-    public void start(){
-        Lotto.initLotto();  //로또 번호 1~45 초기화
-        User user = new User(getInitMoney());
-        user.buyLotto(lottoGenerator);      //유저 로또 구입
-        getBuyResult(user);  //유저가 구입한 로또 리스트 출력
-        WinLotto winLotto = new WinLotto(getWinNumber(), getBonusNumber());    //당첨 로또 설정
-        winnerCalculator.initWinnerCount(); //당첨자수 초기화
-        winnerCalculator.calcResult(user,winLotto);
-        lottoPrinter.print(mg.getResultMsg(winnerCalculator));
-        /*
-        user.setMoney(getInitMoney());
-        winnerCalculator.initWinnerCount();
-        lottoService.init();
-        lottoPrinter.print(buyLotto(lottoService));
-        lottoService.setWinNum(getWinNumber());
-        lottoService.calcResult();
-        lottoPrinter.print(mg.getResultMsg(lottoService));
-         */
+
+    public LottoController() {
     }
 
-    private List<Integer> getWinNumber(){
-        lottoPrinter.print(mg.getWinRequestMsg());
-        return lottoScanner.scanWinNum();
+    public void start() {
+        Lotto.initLotto();
+        User user = new User(this.getInitMoney());
+        user.buyLotto(this.lottoGenerator);
+        this.getBuyResult(user);
+        WinLotto winLotto = new WinLotto(this.getWinNumber(), this.getBonusNumber());
+        this.winnerCalculator.initWinnerCount();
+        this.winnerCalculator.calcResult(user, winLotto);
+        this.lottoPrinter.print(this.mg.getResultMsg(this.winnerCalculator));
     }
 
-    private int getBonusNumber(){
-        lottoPrinter.print(mg.getBonusReqMsg());
-        return lottoScanner.scanBonus();
+    private List<Integer> getWinNumber() {
+        this.lottoPrinter.print(this.mg.getWinRequestMsg());
+        return this.lottoScanner.scanWinNum();
     }
 
-    private BigInteger getInitMoney(){
-        lottoPrinter.print(mg.getMoneyReqMsg());
-        return lottoScanner.scanMoney();
+    private int getBonusNumber() {
+        this.lottoPrinter.print(this.mg.getBonusReqMsg());
+        return this.lottoScanner.scanBonus();
     }
 
-    private void getBuyResult(User user){
-        lottoPrinter.print(mg.getBuyMsg(user.getLottoAmount()));
+    private BigInteger getInitMoney() {
+        this.lottoPrinter.print(this.mg.getMoneyReqMsg());
+        return this.lottoScanner.scanMoney();
+    }
+
+    private void getBuyResult(User user) {
+        this.lottoPrinter.print(this.mg.getBuyMsg(user.getLottoAmount()));
         Iterator<Lotto> iterator = user.lottoList.listIterator();
-        while (iterator.hasNext()){
-            Lotto lotto = iterator.next();
-            lottoPrinter.print(Arrays.asList(lotto.num).toString());
+
+        while(iterator.hasNext()) {
+            Lotto lotto = (Lotto)iterator.next();
+            this.lottoPrinter.print(Arrays.asList(lotto.num).toString());
         }
-    }
-    /*
-
-    private BigInteger getInitMoney(){
-        lottoPrinter.print(mg.getMoneyReqMsg());
-        BigInteger money = lottoScanner.setMoney();
-        return money;
-    }
-
-    private String buyLotto(LottoService lottoService){
-        return mg.getBuyMsg(lottoService.buyLotto());
-    }
-
-    public void calcResult(){
 
     }
-
-    private
-
-     */
 }

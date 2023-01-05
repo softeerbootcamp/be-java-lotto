@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package kr.codesquad.View;
 
 import kr.codesquad.Model.Price;
@@ -13,38 +18,50 @@ public class MessageGenerator {
     private static final String moneyMsg = "(%d원) - %d개";
     private static final String buyMsg = "%d개를 구매했습니다.";
     private static final String bonusReqMsg = "보너스 볼을 입력해 주세요.";
-    public String getResultMsg(WinnerCalculator winnerCalculator){
+
+    public MessageGenerator() {
+    }
+
+    public String getResultMsg(WinnerCalculator winnerCalculator) {
         String rtnMsg = "";
-        for (Price price:Price.values()){
-            rtnMsg += String.format(sameMsg,price.getCountOfMatch());
-            rtnMsg += getBonusPostfix(price);
-            rtnMsg += String.format(moneyMsg,(int)price.getWinningMoney(),winnerCalculator.winnerCount.get(price))+"\n";
+        Price[] var3 = Price.values();
+        int var4 = var3.length;
+
+        for(int var5 = 0; var5 < var4; ++var5) {
+            Price price = var3[var5];
+            rtnMsg = rtnMsg + String.format("%d개 일치", price.getCountOfMatch());
+            rtnMsg = rtnMsg + this.getBonusPostfix(price);
+            rtnMsg = rtnMsg + String.format("(%d원) - %d개", (int)price.getWinningMoney(), winnerCalculator.winnerCount.get(price)) + "\n";
         }
+
         return rtnMsg;
     }
 
-    public String getBonusReqMsg(){
-        return bonusReqMsg;
-    }
-    public String getMoneyReqMsg(){
-        return moneyReqMsg;
-    }
-    public String getBuyMsg(int num){
-        return String.format(buyMsg, num);
-    }
-    public String getHeaderMsg(){
-        return headerMsg;
+    public String getBonusReqMsg() {
+        return "보너스 볼을 입력해 주세요.";
     }
 
-    public String getWinRequestMsg(){
-        return winRequestMsg;
+    public String getMoneyReqMsg() {
+        return "구입금액을 입력해 주세요.";
     }
 
-    public String getEarnMsg(){
-        return earnMsg;
+    public String getBuyMsg(int num) {
+        return String.format("%d개를 구매했습니다.", num);
     }
 
-    private String getBonusPostfix(Price price){
-        return price == Price.BONUS?bonusPostfix:"";
+    public String getHeaderMsg() {
+        return "당첨 통계\n---------";
+    }
+
+    public String getWinRequestMsg() {
+        return "당첨 번호를 입력해 주세요.";
+    }
+
+    public String getEarnMsg() {
+        return "총 수익률은 .2f%%입니다.";
+    }
+
+    private String getBonusPostfix(Price price) {
+        return price == Price.BONUS ? ", 보너스 볼 일치" : "";
     }
 }
