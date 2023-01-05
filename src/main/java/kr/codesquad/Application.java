@@ -26,7 +26,9 @@ public class Application {
 
     public void start() {
         int money = console.inputMoney();
+        int manualAmount = console.inputManualLottoAmount();
         int lottoAmount = money / LOTTO_PRICE;
+        List<Lotto> manualLottos = console.inputManualLottoNum(manualAmount);
         console.printAmount(lottoAmount);
         List<Lotto> lottos = lottoService.buyLotto(money);
         console.printLottoNum(lottos);

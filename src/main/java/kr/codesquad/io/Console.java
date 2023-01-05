@@ -3,23 +3,46 @@ package kr.codesquad.io;
 import kr.codesquad.lotto.Lotto;
 import kr.codesquad.winLotto.WinCount;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Console {
     public static Scanner sc = new Scanner(System.in);
 
     public int inputMoney() {
-        printInputMoney();
+        System.out.println("구입금액을 입력해 주세요.");
         int money = sc.nextInt();
         return money;
     }
 
     public Lotto inputWinNum() {
-        printInputWinNum();
+        System.out.println("당첨 번호를 입력해 주세요.");
         sc.nextLine();
+        return lottoNumStringToInt();
+    }
+
+    public int inputBonusNum() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+        int bonus = sc.nextInt();
+        return bonus;
+    }
+
+    public int inputManualLottoAmount() {
+        System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
+        int manualAmount = sc.nextInt();
+        return manualAmount;
+    }
+
+    public List<Lotto> inputManualLottoNum(int amount) {
+        System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
+        sc.nextLine();
+        List<Lotto> manualLottos = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            manualLottos.add(lottoNumStringToInt());
+        }
+        return manualLottos;
+    }
+
+    private Lotto lottoNumStringToInt() {
         String winNumInput = sc.nextLine();
         Lotto lotto = new Lotto();
         String[] strList = winNumInput.split(", ");
@@ -27,24 +50,6 @@ public class Console {
             lotto.getNumberList().add(Integer.parseInt(strList[i]));
         }
         return lotto;
-    }
-
-    public int inputBonusNum() {
-        printInputBonusNum();
-        int bonus = sc.nextInt();
-        return bonus;
-    }
-
-    public void printInputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
-    }
-
-    public void printInputWinNum() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-    }
-
-    public void printInputBonusNum() {
-        System.out.println("보너스 볼을 입력해 주세요.");
     }
 
     public void printAmount(int amount) {
