@@ -17,12 +17,8 @@ public class Lotto {
         return new Lotto(list);
     }
 
-    public int contains(List<LottoNumber> lottoNumbers) {
-        int count = 0;
-        for(LottoNumber lottoNumber : lottoNumbers) {
-            count += this.lottoNumbers.contains(lottoNumber) ? 1 : 0;
-        }
-        return count;
+    public int contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber) ? 1 : 0;
     }
 
     public boolean containsBonus(int bonus) {
