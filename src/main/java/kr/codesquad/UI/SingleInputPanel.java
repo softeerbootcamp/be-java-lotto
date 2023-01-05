@@ -10,7 +10,7 @@ import java.util.List;
 
 
 // class AWTExample2 directly creates instance of Frame class
-class SingleInputPanel extends Panel implements CustomPanel{
+class SingleInputPanel extends CustomPanel  {
 
     UserInputHandler inputHandler;
     // initializing using constructor

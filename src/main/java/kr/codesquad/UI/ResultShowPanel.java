@@ -1,11 +1,12 @@
 package kr.codesquad.UI;
 
 import kr.codesquad.InputManager.AwtInputHandler;
+import kr.codesquad.InputManager.UserInputHandler;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class ResultShowPanel extends Panel {
+public class ResultShowPanel extends CustomPanel {
     private Label errLabel;
     private Label instLabel;
     private String instruction;
@@ -33,5 +34,10 @@ public class ResultShowPanel extends Panel {
         add(instLabel);
         add(txt);
         add(btn);
+    }
+
+    @Override
+    public UserInputHandler getUserInputHandler() {
+        return new AwtInputHandler(btn, txt, null, errLabel);
     }
 }

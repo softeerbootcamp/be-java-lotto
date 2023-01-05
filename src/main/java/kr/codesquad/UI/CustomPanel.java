@@ -4,6 +4,7 @@ import kr.codesquad.InputManager.UserInputHandler;
 
 import java.awt.*;
 
-public interface CustomPanel {
-    public UserInputHandler getUserInputHandler();
+public abstract class CustomPanel extends Panel {
+
+    public abstract UserInputHandler getUserInputHandler();
 }

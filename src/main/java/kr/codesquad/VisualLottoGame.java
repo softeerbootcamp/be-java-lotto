@@ -16,7 +16,6 @@ public class VisualLottoGame {
     WindowManager windowManager;
     private final List<Lotto> lottos;
     private WinLotto winLotto;
-    private UserInputHandler inputHandler;
     private int nTotalLotto;
     private int nManualLotto;
 
@@ -40,17 +39,17 @@ public class VisualLottoGame {
     }
 
     public void getMoney() {
-        nTotalLotto = inputHandler.getMoney();
+        nTotalLotto = windowManager.getInputHandler().getMoney();
         windowManager.setAmountOfManualLottoPanel(nTotalLotto);
     }
 
     public void getAmountOfManualLotto() {
-        nManualLotto = inputHandler.getManualLottoAmount(nTotalLotto);
+        nManualLotto = windowManager.getInputHandler().getManualLottoAmount(nTotalLotto);
         windowManager.setOneManualLottoPanel(nManualLotto);
     }
 
     public void buyOneManualLotto() {
-        List<Integer> lottoNum = inputHandler.getSixLottoNumber();
+        List<Integer> lottoNum = windowManager.getInputHandler().getSixLottoNumber();
         lottos.add(new Lotto(lottoNum));
         if (lottos.size() != nManualLotto) {
             windowManager.setOneManualLottoPanel(nManualLotto - lottos.size());
@@ -67,8 +66,8 @@ public class VisualLottoGame {
     }
 
     public void getWiningLotto() {
-        List<Integer> winningNums = inputHandler.getSixLottoNumber();
-        int bonus = inputHandler.getBonusNumber(winningNums);
+        List<Integer> winningNums = windowManager.getInputHandler().getSixLottoNumber();
+        int bonus = windowManager.getInputHandler().getBonusNumber(winningNums);
         winLotto = new WinLotto(winningNums, bonus);
         LottoStat lottoStat = new LottoStat(lottos, winLotto);
         String result = lottoStat.getResult();
@@ -79,7 +78,4 @@ public class VisualLottoGame {
         System.exit(0);
     }
 
-    public void setInputHandler(UserInputHandler inputHandler){
-        this.inputHandler = inputHandler;
-    }
 }

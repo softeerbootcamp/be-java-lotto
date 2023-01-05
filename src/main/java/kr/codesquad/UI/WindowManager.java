@@ -1,5 +1,6 @@
 package kr.codesquad.UI;
 
+import kr.codesquad.InputManager.UserInputHandler;
 import kr.codesquad.Lotto.Lotto;
 import kr.codesquad.VisualLottoGame;
 import java.util.List;
@@ -7,8 +8,7 @@ import java.awt.*;
 
 public class WindowManager extends Frame{
 
-    private Panel currentPanel;
-    private CustomPanel customPanel;
+    private CustomPanel currentPanel;
 
     public WindowManager (){
         super();
@@ -20,8 +20,6 @@ public class WindowManager extends Frame{
 
     public void setMoneyPanel(){
         currentPanel = new SingleInputPanel("구매 금액을 입력해 주세요.", e->VisualLottoGame.getVisualLottoGame().getMoney());
-        customPanel = (SingleInputPanel) currentPanel;
-        VisualLottoGame.getVisualLottoGame().setInputHandler((customPanel.getUserInputHandler());
         add(currentPanel);
         currentPanel.setVisible(true);
     }
@@ -45,13 +43,16 @@ public class WindowManager extends Frame{
             result += lotto + "\n";
         }
         setPanel(
-                new WinNumberPanel(e->VisualLottoGame.getVisualLottoGame().getWiningLotto())
+                new ResultShowPanel(result, e -> VisualLottoGame.getVisualLottoGame().haltAll())
         );
 
         //TODO : 구매한 로또 판낼 작성
     }
 
     public void setWinLottoPanel() {
+        setPanel(
+                new WinNumberPanel(e->VisualLottoGame.getVisualLottoGame().showGeneratedLotto())
+        );
         //TODO : 승리 로또 입력 판넬 작성
     }
 
@@ -62,7 +63,7 @@ public class WindowManager extends Frame{
         );
     }
 
-    private void setPanel(Panel nextPanel){
+    private void setPanel(CustomPanel nextPanel){
         currentPanel.setVisible(false);
         remove(currentPanel);
         currentPanel = nextPanel;
@@ -70,4 +71,7 @@ public class WindowManager extends Frame{
         nextPanel.setVisible(true);
     }
 
+    public UserInputHandler getInputHandler(){
+        return currentPanel.getUserInputHandler();
+    }
 }

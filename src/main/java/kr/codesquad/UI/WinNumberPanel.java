@@ -6,7 +6,7 @@ import kr.codesquad.InputManager.UserInputHandler;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class WinNumberPanel extends Panel{
+public class WinNumberPanel extends CustomPanel{
 
     private UserInputHandler inputHandler;
     // initializing using constructor
@@ -46,4 +46,8 @@ public class WinNumberPanel extends Panel{
         add(btn);
     }
 
+    @Override
+    public UserInputHandler getUserInputHandler() {
+        return new AwtInputHandler(btn, txt, bonus, errLabel);
+    }
 }
