@@ -1,12 +1,12 @@
 package kr.codesquad;
 
 import kr.codesquad.io.Console;
-import kr.codesquad.lotto.Lotto;
-import kr.codesquad.lotto.LottoService;
-import kr.codesquad.lotto.Lottos;
+import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.lotto.LottoService;
+import kr.codesquad.domain.lotto.Lottos;
 import kr.codesquad.util.LottoUtil;
-import kr.codesquad.winLotto.WinCount;
-import kr.codesquad.winLotto.WinLotto;
+import kr.codesquad.domain.winLotto.WinCount;
+import kr.codesquad.domain.winLotto.WinLotto;
 
 import java.util.List;
 import java.util.Map;
@@ -29,7 +29,7 @@ public class Application {
         int money = console.inputMoney();
         Lottos lottos = new Lottos(buyLotto(money));
 
-        WinLotto winLotto = inputWinLotto();
+        WinLotto winLotto = new WinLotto(console.inputWinLottoNum(), console.inputBonusNum());
         Map<WinCount, Integer> lottoResult = lottoService.makeLottoResult(lottos, winLotto);
         console.printLottoResult(money, lottoResult);
     }
@@ -44,8 +44,5 @@ public class Application {
         return lottos;
     }
 
-    private WinLotto inputWinLotto() {
-        return new WinLotto(console.inputWinLottoNum(), console.inputBonusNum());
-    }
 
 }

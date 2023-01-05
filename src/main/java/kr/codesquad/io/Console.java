@@ -1,11 +1,9 @@
 package kr.codesquad.io;
 
-import kr.codesquad.lotto.Lotto;
-import kr.codesquad.winLotto.WinCount;
+import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.winLotto.WinCount;
 
 import java.util.*;
-import java.util.Map.Entry;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

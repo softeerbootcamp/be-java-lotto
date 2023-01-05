@@ -1,8 +1,8 @@
-package kr.codesquad.lotto;
+package kr.codesquad.domain.lotto;
 
-import kr.codesquad.winLotto.WinCount;
-import kr.codesquad.winLotto.WinLotto;
-import kr.codesquad.winLotto.WinResult;
+import kr.codesquad.domain.winLotto.WinCount;
+import kr.codesquad.domain.winLotto.WinLotto;
+import kr.codesquad.domain.winLotto.WinResult;
 
 import java.util.List;
 import java.util.Map;

@@ -1,6 +1,4 @@
-package kr.codesquad.winLotto;
-
-import kr.codesquad.lotto.Lotto;
+package kr.codesquad.domain.winLotto;
 
 import java.util.List;
 

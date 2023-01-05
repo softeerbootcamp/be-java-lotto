@@ -1,7 +1,7 @@
-package kr.codesquad.winLotto;
+package kr.codesquad.domain.winLotto;
 
-import kr.codesquad.lotto.Lotto;
-import kr.codesquad.lotto.Lottos;
+import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.lotto.Lottos;
 
 import java.util.*;
 

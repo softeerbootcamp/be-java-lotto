@@ -1,6 +1,6 @@
-package kr.codesquad.lotto.factory;
+package kr.codesquad.domain.lotto.factory;
 
-import kr.codesquad.lotto.Lotto;
+import kr.codesquad.domain.lotto.Lotto;
 
 import java.util.List;
 
