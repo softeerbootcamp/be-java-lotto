@@ -23,6 +23,13 @@ public class WindowManager extends Frame{
         currentPanel.setVisible(true);
     }
 
+    public void setAmountOfManulLottoPanel(int maxAmount){
+        setPanel(
+                new SingleInputPanel(
+                        String.format("수동 개수를 입력해 주세요(최대 %d개)", maxAmount),
+                        e->VisualLottoGame.getVisualLottoGame().getAmountOfManualLotto()));
+    }
+
     public void setManualLottoPanel(int nManualLeft) {
         setPanel(
                 new SingleInputPanel(
