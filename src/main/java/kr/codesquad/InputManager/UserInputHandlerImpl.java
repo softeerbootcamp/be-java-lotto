@@ -14,8 +14,7 @@ public class UserInputHandlerImpl implements UserInputHandler {
         s1 = new Scanner(System.in);
     }
 
-    @Override
-    public int getOneNumber(int lower_bound, int upper_bound) {
+    private int getOneNumber(int lower_bound, int upper_bound) {
         String userInputStr = s1.nextLine();
         return Utility.parseIntWithRange(userInputStr, lower_bound, upper_bound);
     }
