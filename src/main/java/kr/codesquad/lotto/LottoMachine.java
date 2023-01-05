@@ -47,13 +47,7 @@ public class LottoMachine {
 
 
     public LottoResult checkWin(LottoTicket lottoTicket) {
-        WinningLotto winningLotto = getWinningLotto();
+        WinningLotto winningLotto = lottoIOManager.readWinningLottoNumber();
         return lottoTicket.match(winningLotto);
-    }
-
-    private WinningLotto getWinningLotto() {
-        Lotto winningLotto = new Lotto(lottoIOManager.readLottoNumberSet("\n당첨 번호를 입력하세요."));
-        LottoNumber bonus = lottoIOManager.readLottoNumber("보너스 번호를 입력하세요.");
-        return new WinningLotto(winningLotto, bonus);
     }
 }

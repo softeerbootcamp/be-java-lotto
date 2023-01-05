@@ -1,6 +1,8 @@
 package kr.codesquad.lotto.io;
 
+import kr.codesquad.lotto.Lotto;
 import kr.codesquad.lotto.LottoNumber;
+import kr.codesquad.lotto.WinningLotto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -61,6 +63,13 @@ public class LottoIOManagerImpl implements LottoIOManager {
         } catch (IOException e) {
             throw new RuntimeException("숫자만 입력 가능합니다.");
         }
+    }
+
+    @Override
+    public WinningLotto readWinningLottoNumber() {
+        Set<LottoNumber> lottoNumbers = readLottoNumberSet("\n당첨 번호를 입력하세요.");
+        LottoNumber bonusNumber = readLottoNumber("보너스 번호를 입력하세요.");
+        return new WinningLotto(new Lotto(lottoNumbers), bonusNumber);
     }
 
     @Override
