@@ -1,4 +1,4 @@
-package kr.codesquad.Factory;
+package kr.codesquad.factory;
 
 import java.util.List;
 

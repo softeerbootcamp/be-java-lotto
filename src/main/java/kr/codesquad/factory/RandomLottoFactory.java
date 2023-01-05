@@ -1,6 +1,4 @@
-package kr.codesquad.Factory;
-
-import kr.codesquad.domain.Lottos;
+package kr.codesquad.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
