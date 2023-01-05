@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import kr.codesquad.exception.CustomException;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -54,6 +56,8 @@ public class UserInput {
         try {
             num = sc.nextInt();
             sc.nextLine();
+
+            if(num < 0) throw new CustomException("음수가 입력되었습니다.");
         } catch(InputMismatchException e) {
             System.out.println("잘못된 입력입니다.");
             e.printStackTrace();
