@@ -33,12 +33,15 @@ public class WinnerCalculator {
             lottoNum.retainAll(winList);
             int countOfMatch = lottoNum.size();
             Price price = Price.valueOf(countOfMatch, this.bonusMatch(lotto, winLotto));
-            if (price != null) {
-                this.updateWinnerCount(price);
-                user.updateEarn(price);
-            }
+            updateResult(price,user);
         }
 
+    }
+
+    private void updateResult(Price price, User user){
+        if (price != null)
+            updateWinnerCount(price);
+            user.updateEarn(price);
     }
 
     public void updateWinnerCount(Price price) {
