@@ -20,4 +20,7 @@ public class Money {
     public double calculateEarningRate(double earnMoney) {
         return (earnMoney - (double) money) / (double) money * 100;
     }
+    public void buyManualLotto(int LottoCount) {
+        this.money -= LottoCount * LOTTO_PRICE;
+    }
 }
