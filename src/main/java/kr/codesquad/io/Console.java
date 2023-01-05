@@ -36,15 +36,6 @@ public class Console {
                  .collect(Collectors.toList());
   }
 
-  public void printPurchaseCount(int purchaseCount) {
-    System.out.println(purchaseCount + "개를 구입했습니다. ");
-  }
-
-  public void printLottoNumbersList(List<Lotto> numbersList) {
-    numbersList.forEach(System.out::println);
-    System.out.println();
-  }
-
   public void printWinningResult(WinningResult result) {
     System.out.println("당첨 통계");
     System.out.println("---------");
