@@ -43,39 +43,32 @@ public class OutputView {
     }
 
     public void printResult(Map<Rank, Integer> result, double profitRate) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("당첨 통계\n----------\n");
+        System.out.println("당첨 통계\n----------");
 
         List<Rank> ranks = Arrays.stream(Rank.values())
+                .filter(rank -> rank != Rank.NOTHING)
                 .sorted(Collections.reverseOrder())
                 .collect(Collectors.toList());
 
-        makeWinningResultWithStringBuffer(sb, ranks, result);
-        makeProfitRateMessageWithStringBuffer(sb, profitRate);
-
-        System.out.println(sb);
+        printWinningResultMessage(ranks, result);
+        printProfitRateMessage(profitRate);
     }
 
-    private void makeWinningResultWithStringBuffer(StringBuffer sb, List<Rank> ranks, Map<Rank, Integer> result) {
-        ranks.stream()
-                .filter(rank -> rank != Rank.NOTHING)
-                .forEach(rank -> {
-                    sb.append(rank.getCount())
-                            .append("개 일치");
-                    if (rank == Rank.SECOND) {
-                        sb.append(", 보너스 볼 일치");
-                    }
-                    sb.append(" (")
-                            .append(rank.getPrize())
-                            .append("원)- ")
-                            .append(result.getOrDefault(rank, 0))
-                            .append("개\n");
-                });
+    private void printWinningResultMessage(List<Rank> ranks, Map<Rank, Integer> result) {
+        ranks.forEach(rank -> {
+            System.out.print(rank.getCount()+"개 일치");
+            printBonusBallMessage(rank);
+            System.out.println(" " + rank.getPrize() + "원)- " + result.getOrDefault(rank, 0) + "개");
+        });
     }
 
-    private void makeProfitRateMessageWithStringBuffer(StringBuffer sb, double profitRate) {
-        sb.append("총 수익률은 ")
-                .append(String.format("%.2f", profitRate))
-                .append("%입니다.");
+    private void printBonusBallMessage(Rank rank) {
+        if (rank.isBonus()) {
+            System.out.print(", 보너스 볼 일치");
+        }
+    }
+
+    private void printProfitRateMessage(double profitRate) {
+        System.out.println("총 수익률은 " + String.format("%.2f", profitRate) + "%입니다.");
     }
 }
