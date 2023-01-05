@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import kr.codesquad.exception.CustomException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,6 +20,8 @@ public class LottoMachine {
 
     public Lotto buyLotto() {
         int money = ui.inputMoney();
+
+        if(money < 0) throw new CustomException("입력된 구입금액이 음수입니다.");
 
         int manualLottoCount = ui.inputManualLottoCount();
         List<List<Integer>> manualLottoList = ui.inputManualLottoList(manualLottoCount);
