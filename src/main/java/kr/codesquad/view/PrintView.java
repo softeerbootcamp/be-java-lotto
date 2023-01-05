@@ -1,6 +1,6 @@
 package kr.codesquad.view;
 
-import kr.codesquad.model.Lotto;
+import kr.codesquad.model.lotto.Lotto;
 import kr.codesquad.model.Result;
 import kr.codesquad.model.User;
 import kr.codesquad.util.CommonMessage;
@@ -13,8 +13,8 @@ public class PrintView {
         System.out.println(CommonMessage.ENTER_PURCHASE_AMOUNT);
     }
 
-    public static void resultPurchaseAmount(int purchaseTicket) {
-        System.out.println(purchaseTicket + CommonMessage.PURCHASE_TICKETS);
+    public static void resultPurchaseAmount(int manualTicket,int purchaseTicket) {
+        System.out.printf(CommonMessage.PURCHASE_TICKETS+'\n',manualTicket,purchaseTicket);
     }
 
     public static void generatedLottos(User user) {
@@ -60,5 +60,12 @@ public class PrintView {
         System.out.println(CommonMessage.ENTER_BONUS_BALL);
     }
 
+    public static void enterManualTickets() {
+        System.out.println(CommonMessage.ENTER_MANUAL_TICKETS);
+    }
+
+    public static void enterManualLottos() {
+        System.out.println(CommonMessage.ENTER_MANUAL_LOTTOS);
+    }
 
 }

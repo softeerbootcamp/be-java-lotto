@@ -1,14 +1,13 @@
 package kr.codesquad.model;
 
-import org.assertj.core.api.Assertions;
-import org.assertj.core.api.NumberAssert;
+import kr.codesquad.model.lotto.AutoLotto;
+import kr.codesquad.model.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-class LottoTest {
+class AutoLottoTest {
 
     @Test
     @DisplayName("로또 생성 시 사이즈 6체크")
@@ -16,7 +15,7 @@ class LottoTest {
         //given
         int lottoSize=6;
         //when
-        Lotto lotto = new Lotto();
+        Lotto lotto = new AutoLotto();
         //then
         assertThat(lotto.getNumbers().size()).isEqualTo(lottoSize);
     }
@@ -28,7 +27,7 @@ class LottoTest {
         int startNumber=1;
         int endNumber=45;
         //when
-        Lotto lotto = new Lotto();
+        Lotto lotto = new AutoLotto();
         //then
         for (Integer number : lotto.getNumbers()) {
             assertThat(number).isBetween(startNumber, endNumber);
