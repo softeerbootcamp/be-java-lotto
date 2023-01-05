@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class Lotto {
+public abstract class Lotto {
     private final List<List<Integer>> lottoList;
     private final Lotto nextLotto;
 
