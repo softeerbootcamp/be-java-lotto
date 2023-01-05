@@ -4,11 +4,8 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import kr.codesquad.Model.Lotto;
-import kr.codesquad.Model.AutoLottoGenerator;
-import kr.codesquad.Model.User;
-import kr.codesquad.Model.WinLotto;
-import kr.codesquad.Model.WinnerCalculator;
+
+import kr.codesquad.Model.*;
 import kr.codesquad.View.LottoPrinter;
 import kr.codesquad.View.LottoScanner;
 import kr.codesquad.View.MessageGenerator;
@@ -18,7 +15,7 @@ public class LottoController {
     LottoScanner lottoScanner = new LottoScanner();
     Printer lottoPrinter = new LottoPrinter();
     MessageGenerator mg = new MessageGenerator();
-    AutoLottoGenerator autoLottoGenerator = new AutoLottoGenerator();
+    LottoGenerator lottoGenerator = new LottoGenerator();
     WinnerCalculator winnerCalculator = new WinnerCalculator();
 
     public LottoController() {
@@ -27,8 +24,7 @@ public class LottoController {
     public void start() {
         Lotto.initLotto();
         User user = new User(getInitMoney());
-        user.buyLotto(autoLottoGenerator);
-        getBuyResult(user);
+        sellManualLotto(user);
         WinLotto winLotto = new WinLotto(getWinNumber(), getBonusNumber());
         winnerCalculator.initWinnerCount();
         winnerCalculator.calcResult(user, winLotto);
@@ -37,7 +33,7 @@ public class LottoController {
 
     private List<Integer> getWinNumber() {
         lottoPrinter.print(mg.winRequestMsg);
-        return lottoScanner.scanWinNum();
+        return lottoScanner.scanLottoNumbers();
     }
 
     private int getBonusNumber() {
@@ -55,9 +51,20 @@ public class LottoController {
         Iterator<Lotto> iterator = user.lottoList.listIterator();
 
         while(iterator.hasNext()) {
-            Lotto lotto = (Lotto)iterator.next();
+            Lotto lotto = iterator.next();
             lottoPrinter.print(Arrays.asList(lotto.num).toString());
         }
+    }
 
+    private void sellManualLotto(User user){
+        lottoPrinter.print(mg.manualAmountReqMsg);
+        int manualAmount = lottoScanner.scanManualAmount();
+        lottoPrinter.print(mg.manualNumberReqMsg);
+        for (int i=0; i<manualAmount; i++){
+            List<Integer> lottoNumbers = lottoScanner.scanLottoNumbers();
+            user.buyLotto(lottoGenerator, lottoNumbers);  //인자로 로또생성기와 수동 번호 주기
+        }
+        user.buyLotto(lottoGenerator);
+        getBuyResult(user);
     }
 }

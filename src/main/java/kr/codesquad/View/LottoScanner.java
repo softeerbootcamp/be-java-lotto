@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LottoScanner {
-    public LottoScanner() {
-    }
 
     public BigInteger scanMoney() {
         try {
@@ -21,7 +19,7 @@ public class LottoScanner {
         }
     }
 
-    public List<Integer> scanWinNum() {
+    public List<Integer> scanLottoNumbers() {
         Scanner sc = new Scanner(System.in);
         String winStr = sc.nextLine();
         List<Integer> winNum = new ArrayList();
@@ -38,4 +36,10 @@ public class LottoScanner {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
+
+    public int scanManualAmount(){
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+    }
+
 }

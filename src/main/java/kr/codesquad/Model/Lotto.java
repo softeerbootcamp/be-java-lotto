@@ -21,7 +21,7 @@ public class Lotto {
 
     Lotto(List<Integer> lottoNum) {
         for(int i = 0; i < LOTTO_NUM_LENGTH; ++i) {
-            this.num[i] = (Integer)lottoNum.get(i);
+            this.num[i] = lottoNum.get(i);
         }
 
         Arrays.sort(num);
