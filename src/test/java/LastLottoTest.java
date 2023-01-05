@@ -1,2 +1,35 @@
-package PACKAGE_NAME;public class LastLottoTest {
+import kr.codesquad.LastLotto;
+import kr.codesquad.UserConsole;
+import kr.codesquad.exception.CustomException;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
+class LastLottoTest {
+
+    private UserConsole userConsole = new UserConsole();
+
+//    @BeforeEach
+//    void init(){
+//        this.userConsole = new UserConsole();
+//    }
+
+    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
+    @Test
+    void createLottoByOverSize(){
+        String inputNumbers = "1, 2, 3, 4, 5, 6, 7";
+        //assertThatThrownBy -> 예외가 발생해야 테스트 통과됨
+        assertThatThrownBy(() -> new LastLotto(this.userConsole,inputNumbers))
+                .isInstanceOf(CustomException.class);
+    }
+
+    @DisplayName("로또 번호의 수가 6개보다 적으면 예외가 발생한다.")
+    @Test
+    void createLottoBySmallSize(){
+        String inputNumbers = "1, 2, 3, 4, 5";
+        //assertThatThrownBy -> 예외가 발생해야 테스트 통과됨
+        assertThatThrownBy(() -> new LastLotto(this.userConsole,inputNumbers))
+                .isInstanceOf(CustomException.class);
+    }
 }
