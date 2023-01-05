@@ -4,7 +4,7 @@ import kr.codesquad.domain.Lotto;
 import kr.codesquad.domain.LottoResult;
 import kr.codesquad.domain.Money;
 import kr.codesquad.domain.WinningLotto;
-import kr.codesquad.enums.Rank2;
+import kr.codesquad.enums.Rank;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class LottoMachine {
         LottoResult lottoResult = new LottoResult();
         //로또 비교 기능
         for (Lotto lotto : lottos) {
-            Rank2 rank = winningLotto.compareLotto(lotto);
+            Rank rank = winningLotto.compareLotto(lotto);
             lottoResult.increaseCountOfRank(rank);
         }
         return lottoResult;

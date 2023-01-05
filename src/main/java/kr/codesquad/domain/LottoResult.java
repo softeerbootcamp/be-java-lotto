@@ -1,22 +1,22 @@
 package kr.codesquad.domain;
 
 
-import kr.codesquad.enums.Rank2;
+import kr.codesquad.enums.Rank;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResult {
-    private Map<Rank2, Integer> resultMap;
+    private Map<Rank, Integer> resultMap;
 
     public LottoResult() {
         resultMap = new HashMap<>();
-        for (Rank2 value : Rank2.values()) {
+        for (Rank value : Rank.values()) {
             resultMap.put(value, 0);
         }
     }
 
-    public void increaseCountOfRank(Rank2 rank) {
+    public void increaseCountOfRank(Rank rank) {
         resultMap.put(rank, resultMap.get(rank) + 1);
     }
 
@@ -27,7 +27,7 @@ public class LottoResult {
 
     private long calculateEarnedMoney() {
         long earnMoney = 0;
-        for (Rank2 rank : Rank2.values()) {
+        for (Rank rank : Rank.values()) {
             earnMoney += rank.getMoney() * resultMap.get(rank);
         }
         return earnMoney;
@@ -38,14 +38,14 @@ public class LottoResult {
         sb.append("당첨 통계\n");
         sb.append("---------\n");
 
-        for (Rank2 rank : Rank2.values()) {
+        for (Rank rank : Rank.values()) {
             sb.append(matchDetailToString(rank, resultMap.get(rank)));
         }
         return sb.toString();
     }
 
-    private String matchDetailToString(Rank2 rank, int count) {
-        if (rank == Rank2.SECOND) {
+    private String matchDetailToString(Rank rank, int count) {
+        if (rank == Rank.SECOND) {
             return rank.getScore() + "개 일치, 보너스 볼 일치(" + rank.getMoney() + "원)- " + count + "개\n";
         }
         return rank.getScore() + "개 일치 (" + rank.getMoney() + "원)- " + count + "개\n";

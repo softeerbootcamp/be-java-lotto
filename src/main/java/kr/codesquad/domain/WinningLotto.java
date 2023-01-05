@@ -1,6 +1,6 @@
 package kr.codesquad.domain;
 
-import kr.codesquad.enums.Rank2;
+import kr.codesquad.enums.Rank;
 
 public class WinningLotto {
     private Lotto winningLotto;
@@ -10,9 +10,9 @@ public class WinningLotto {
         winningLotto = lotto;
         this.bonusBall = bonusBall;
     }
-    public Rank2 compareLotto(Lotto lotto) {
+    public Rank compareLotto(Lotto lotto) {
         int count = winningLotto.match(lotto);
         boolean bonus = lotto.isContainsBonusBall(bonusBall);
-        return Rank2.valueOf(count, bonus);
+        return Rank.valueOf(count, bonus);
     }
 }

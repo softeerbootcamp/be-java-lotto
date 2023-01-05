@@ -1,6 +1,6 @@
 package kr.codesquad.enums;
 
-public enum Rank2 {
+public enum Rank {
     NOTHING(0, 0),
     FIFTH(3, 5000),
     FORTH(4, 50000),
@@ -11,7 +11,7 @@ public enum Rank2 {
     private int score;
     private int money;
 
-    Rank2(int score, int money) {
+    Rank(int score, int money) {
         this.score = score;
         this.money = money;
     }
@@ -24,14 +24,14 @@ public enum Rank2 {
         return money;
     }
 
-    public static Rank2 valueOf(int score, boolean bonus) {
+    public static Rank valueOf(int score, boolean bonus) {
         if (score < WIN_MINIMUM) {
             return NOTHING;
         }
         if (score == SECOND.score && bonus) {
             return SECOND;
         }
-        for (Rank2 value : values()) {
+        for (Rank value : values()) {
             if (value.score == score) {
                 return value;
             }
