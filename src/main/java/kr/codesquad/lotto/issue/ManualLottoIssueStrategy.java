@@ -1,7 +1,6 @@
 package kr.codesquad.lotto.issue;
 
 import kr.codesquad.lotto.Lotto;
-import kr.codesquad.lotto.LottoNumber;
 import kr.codesquad.lotto.io.LottoIOManager;
 
 import java.util.*;
@@ -21,8 +20,7 @@ public class ManualLottoIssueStrategy implements LottoIssueStrategy {
 
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
         for (int idx = 0; idx < lottoCnt; idx++) {
-            Set<LottoNumber> lottoNumberSet = lottoIOManager.readLottoNumbers("");
-            lottos.add(new Lotto(lottoNumberSet));
+            lottos.add(new Lotto(lottoIOManager.readLottoNumbers("")));
         }
 
         return lottos;
