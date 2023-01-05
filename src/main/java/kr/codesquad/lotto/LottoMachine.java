@@ -1,7 +1,8 @@
 package kr.codesquad.lotto;
 
 import kr.codesquad.lotto.io.LottoIOManager;
-import kr.codesquad.lotto.issue.*;
+import kr.codesquad.lotto.issue.LottoIssue;
+import kr.codesquad.lotto.issue.LottoIssueStrategy;
 
 import java.util.List;
 import java.util.Map;
@@ -13,10 +14,14 @@ public class LottoMachine {
     private final int priceOfLotto;
     private final LottoIssue lottoIssue;
     private final Map<String, LottoIssueStrategy> issueStrategyMap;
-
     private final LottoIOManager lottoIOManager;
 
-    public LottoMachine(int priceOfLotto, LottoIssue lottoIssue, Map<String, LottoIssueStrategy> issueStrategyMap, LottoIOManager lottoIOManager) {
+    public LottoMachine(
+            int priceOfLotto,
+            LottoIssue lottoIssue, Map<String,
+            LottoIssueStrategy> issueStrategyMap,
+            LottoIOManager lottoIOManager
+    ) {
         this.priceOfLotto = priceOfLotto;
         this.lottoIssue = lottoIssue;
         this.issueStrategyMap = issueStrategyMap;

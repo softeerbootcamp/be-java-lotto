@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 public class LottoResult {
 
     private final Map<Rank, Integer> rankStatus;
-
     private final int money;
 
     public LottoResult(int money) {

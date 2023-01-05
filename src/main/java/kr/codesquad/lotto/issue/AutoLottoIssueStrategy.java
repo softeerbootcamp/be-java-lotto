@@ -11,7 +11,9 @@ public class AutoLottoIssueStrategy implements LottoIssueStrategy {
 
     public AutoLottoIssueStrategy() {
         this.lottoNumbers = new ArrayList<>(45);
-        for (int idx = 1; idx <= 45; idx++) lottoNumbers.add(new LottoNumber(idx));
+        for (int idx = 1; idx <= 45; idx++) {
+            lottoNumbers.add(new LottoNumber(idx));
+        }
     }
 
     @Override

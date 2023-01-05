@@ -30,7 +30,7 @@ public class Lotto {
     }
 
     public void print() {
-        List<Integer> numbers = lottoNumbers.stream().map(LottoNumber::getNumber).collect(Collectors.toList());
+        List<Integer> numbers = lottoNumbers.stream().map(LottoNumber::number).collect(Collectors.toList());
         System.out.println(numbers);
     }
 }

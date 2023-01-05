@@ -3,6 +3,7 @@ package kr.codesquad.lotto;
 import java.util.List;
 
 public class LottoTicket {
+
     private final List<Lotto> lottos;
     private final int money;
 
