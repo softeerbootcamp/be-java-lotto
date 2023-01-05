@@ -6,7 +6,6 @@ public class Statistic {
     private final double input;
     private double output;
     private double rate;
-    public static final int SINGLE_PRICE = 1000; //로또 한 장의 가격은 1000원이다.
 
     private static final Map<Rank, Integer> counts = new HashMap<>();
 
@@ -19,14 +18,6 @@ public class Statistic {
         counts.put(Rank.FIFTH, 0);
         counts.put(Rank.MISS, 0);
     }
-
-    public static int getRowCountICanBuy(int inputMoney) {
-        if (inputMoney < Statistic.SINGLE_PRICE) {
-            throw new IllegalArgumentException("금액 1000미만임.");
-        }
-        return inputMoney / SINGLE_PRICE;
-    }
-
 
     public void calculate(Lotto lotto) {
         List<Row> totalLotto = lotto.getTotalLotto();

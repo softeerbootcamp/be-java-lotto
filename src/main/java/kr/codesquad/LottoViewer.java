@@ -1,9 +1,6 @@
 package kr.codesquad;
 
-import kr.codesquad.domain.Lotto;
-import kr.codesquad.domain.Row;
-import kr.codesquad.domain.Statistic;
-import kr.codesquad.domain.WinningNumbers;
+import kr.codesquad.domain.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +21,7 @@ public class LottoViewer {
         System.out.println("구입 금액을 입력해 주세요.");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int inputMoney = Integer.parseInt(br.readLine());
-        int num = Statistic.getRowCountICanBuy(inputMoney);
+        int num = Money.getRowCountICanBuy(inputMoney);
         System.out.println(num + "개를 구매했습니다.");
         Lotto lotto = lottoController.createLotto(inputMoney);
         lotto.printTotalLotto();
