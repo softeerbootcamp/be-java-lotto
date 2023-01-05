@@ -1,10 +1,6 @@
 package kr.codesquad.view;
 
 import kr.codesquad.domain.Money;
-import kr.codesquad.enums.Rank;
-
-import java.util.List;
-import java.util.Map;
 
 public class OutputView {
     public void printInputMoneyText() {
