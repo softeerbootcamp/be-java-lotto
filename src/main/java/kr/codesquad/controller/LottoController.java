@@ -13,9 +13,10 @@ public class LottoController {
     private final OutputView outputView;
     private LottoMachine lottoMachine;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, LottoMachine lottoMachine) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lottoMachine = lottoMachine;
     }
 
     //money 받아오기

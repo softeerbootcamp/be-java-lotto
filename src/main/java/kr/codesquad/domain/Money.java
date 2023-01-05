@@ -24,8 +24,8 @@ public class Money {
         this.money -= LottoCount * LOTTO_PRICE;
     }
 
-    public int sum(Money ManualMoney) {
-        return this.money + ManualMoney.money;
+    public Money sum(Money ManualMoney) {
+        return new Money(this.money + ManualMoney.money);
     }
 
     public static Money from(int lottoCount) {
