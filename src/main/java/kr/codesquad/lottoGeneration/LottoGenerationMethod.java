@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.lottoGeneration;
 
 import kr.codesquad.lotto.Lotto;
 
