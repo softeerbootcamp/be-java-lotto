@@ -2,21 +2,23 @@ package kr.codesquad.winLotto;
 
 import kr.codesquad.lotto.Lotto;
 
+import java.util.List;
+
 public class WinLotto {
 
-    private final Lotto winLotto;
-    private final int bonusNum;
+    private List<Integer> numberList;
+    private int bonusNum;
 
     public WinLotto(
-            Lotto winLotto,
+            List<Integer> numberList,
             int bonusNum
     ) {
-        this.winLotto = winLotto;
+        this.numberList = numberList;
         this.bonusNum = bonusNum;
     }
 
-    public Lotto getWinLotto() {
-        return winLotto;
+    public List<Integer> getWinLotto() {
+        return numberList;
     }
 
     public int getBonusNum() {

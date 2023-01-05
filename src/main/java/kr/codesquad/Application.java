@@ -43,9 +43,7 @@ public class Application {
     }
 
     private WinLotto inputWinLotto() {
-        Lotto winNum = console.inputLottoNum();
-        int bonusNum = console.inputBonusNum();
-        return new WinLotto(winNum, bonusNum);
+        return new WinLotto(console.inputLottoNum(), console.inputBonusNum());
     }
 
 }

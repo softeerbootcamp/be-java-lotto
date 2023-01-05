@@ -32,19 +32,19 @@ public class Console {
         }
         List<Lotto> manualLottos = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
-            manualLottos.add(inputLottoNum());
+            manualLottos.add(new Lotto(inputLottoNum()));
         }
         return manualLottos;
     }
 
-    public Lotto inputLottoNum() {
+    public List<Integer> inputLottoNum() {
         String winNumInput = sc.nextLine();
         List<Integer> lottoNum = new ArrayList<>();
         String[] strList = winNumInput.split(", ");
         for (int i = 0; i < strList.length; i++) {
             lottoNum.add(Integer.parseInt(strList[i]));
         }
-        return new Lotto(lottoNum);
+        return lottoNum;
     }
 
     public void printAmount(int manualAmount, int autoAmount) {
