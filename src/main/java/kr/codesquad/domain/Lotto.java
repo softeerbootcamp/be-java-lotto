@@ -1,0 +1,44 @@
+package kr.codesquad.domain;
+
+import java.util.List;
+
+public class Lotto {
+
+    private List<Integer> lottoNumbers;
+
+    public Lotto(List<Integer> lotto) {
+        this.lottoNumbers = lotto;
+    }
+
+    public static Lotto of(List<Integer> lotto) {
+        return new Lotto(lotto);
+    }
+
+    public int match(Lotto another) {
+        int count = 0;
+        for (Integer lottoNumber : another.lottoNumbers) {
+            count += isContains(lottoNumber);
+        }
+        return count;
+    }
+
+    private int isContains(int number) {
+        if (lottoNumbers.contains(number)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public boolean isContainsBonusBall(int bonusBall) {
+        return lottoNumbers.contains(bonusBall);
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < lottoNumbers.size() - 1; i++) {
+            sb.append(lottoNumbers.get(i) + ", ");
+        }
+        sb.append(lottoNumbers.get(lottoNumbers.size() - 1));
+        return sb.toString();
+    }
+}

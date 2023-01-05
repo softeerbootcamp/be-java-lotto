@@ -1,5 +1,7 @@
 package kr.codesquad.view;
 
+import kr.codesquad.domain.Lotto;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,21 +15,20 @@ public class InputView {
         br = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public long inputMoney() throws IOException {
-        long money = Long.parseLong(br.readLine());
-        return money;
+    public String inputMoney() throws IOException {
+        return br.readLine();
     }
 
-    public List<Integer> inputWinningNumbers() throws IOException {
+    public int inputBonusNumber() throws IOException {
+        return Integer.parseInt(br.readLine());
+    }
+
+    public Lotto inputWinningLotto() throws IOException {
         String[] input = br.readLine().split(", ");
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < input.length; i++) {
             list.add(Integer.parseInt(input[i]));
         }
-        return list;
-    }
-
-    public int inputBonusNumber() throws IOException {
-        return Integer.parseInt(br.readLine());
+        return Lotto.of(list);
     }
 }

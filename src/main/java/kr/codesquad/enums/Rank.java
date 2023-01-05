@@ -1,19 +1,19 @@
 package kr.codesquad.enums;
 
 public enum Rank {
-    FIFTH(3, 5000, false),
-    FORTH(4, 50000, false),
-    THIRD(5, 1500000, false),
-    SECOND(5, 30000000, true),
-    FIRST(6, 2000000000, false);
+    NOTHING(0, 0),
+    FIFTH(3, 5000),
+    FORTH(4, 50000),
+    THIRD(5, 1500000),
+    SECOND(5, 30000000),
+    FIRST(6, 2000000000);
+    private static final int WIN_MINIMUM = 3;
     private int score;
     private int money;
-    private boolean bonus;
 
-    Rank(int score, int money, boolean bonus) {
+    Rank(int score, int money) {
         this.score = score;
         this.money = money;
-        this.bonus = bonus;
     }
 
     public int getScore() {
@@ -24,19 +24,18 @@ public enum Rank {
         return money;
     }
 
-    public static Rank getRankByScoreAndBonus(int score, boolean bonus) {
-        if (score < 3) return null;
-        Rank rank = null;
+    public static Rank valueOf(int score, boolean bonus) {
+        if (score < WIN_MINIMUM) {
+            return NOTHING;
+        }
+        if (score == SECOND.score && bonus) {
+            return SECOND;
+        }
         for (Rank value : values()) {
-            rank = findRank(score, bonus, value, rank);
+            if (value.score == score) {
+                return value;
+            }
         }
-        return rank;
-    }
-
-    private static Rank findRank(int score, boolean bonus, Rank value, Rank rank) {
-        if (value.score == score && value.bonus == bonus) {
-            return value;
-        }
-        return rank;
+        return null;
     }
 }

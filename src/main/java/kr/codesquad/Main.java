@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import kr.codesquad.controller.LottoController;
+import kr.codesquad.domain.Money;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 
@@ -7,9 +9,9 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        LottoService lottoService = new LottoService(new InputView(), new OutputView(), new Lotto(new NumberGenerator()));
-        lottoService.buyLotto();
-        lottoService.inputWinningNumber();
-        lottoService.calculateTotal();
+        LottoController lottoController = new LottoController(new InputView(), new OutputView());
+        Money money = lottoController.inputMoney();
+        lottoController.issueLotto(money);
+        lottoController.printResult(lottoController.inputWinningLotto(), money);
     }
 }
