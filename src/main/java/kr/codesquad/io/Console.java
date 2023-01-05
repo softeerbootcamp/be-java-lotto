@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import kr.codesquad.domain.earningRate.EarningRate;
+import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.lotto.LottoShopPurchaseesult;
 import kr.codesquad.domain.winningLotto.WinningResult;
 
 public class Console {
@@ -16,7 +18,9 @@ public class Console {
 
   public int inputPurchaseMoney() {
     System.out.println("구입 금액을 입력해 주세요");
-    return Integer.parseInt(commandLineInput());
+    int result = Integer.parseInt(commandLineInput());
+    System.out.println();
+    return result;
   }
 
   public List<Integer> inputWinningNumbers() {
@@ -41,18 +45,32 @@ public class Console {
     System.out.println(result.getStatistics());
   }
 
+  public void printPurchaseResult(LottoShopPurchaseesult result) {
+    List<Lotto> manualLotto = result.getManualLotto();
+    List<Lotto> autoLottos = result.getAutoLottos();
+
+    String str = String.format("수동으로 %d장, 자동으로 %d장을 구매했습니다.", manualLotto.size(), autoLottos.size());
+    System.out.println(str);
+    autoLottos.forEach(System.out::println);
+    System.out.println();
+  }
+
   public void printEarningRate(EarningRate earningRate) {
     System.out.println("총 수익률은 " + earningRate.toString() + "입니다");
   }
 
   public int inputBonusNumber() {
     System.out.println("보너스 번호를 입력해 주세요");
-    return Integer.parseInt(commandLineInput());
+    int result = Integer.parseInt(commandLineInput());
+    System.out.println();
+    return result;
   }
 
   public int inputManualLottoPurchaseCount() {
     System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
-    return Integer.parseInt(commandLineInput());
+    int result = Integer.parseInt(commandLineInput());
+    System.out.println();
+    return result;
   }
 
   private String commandLineInput() {
@@ -65,14 +83,6 @@ public class Console {
 
   public void printInputManualLottoNumbers() {
     System.out.println("수동으로 구매할 번호를 입력해 주세요.");
-  }
-
-  public void printLottoPurchaseCount(
-      int autoCount,
-      int manualCount
-  ) {
-    String print = String.format("수동으로 %d장, 자동으로 %d장을 구매했습니다.", manualCount, autoCount);
-    System.out.println(print);
   }
 
 }
