@@ -5,6 +5,7 @@ import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -34,17 +35,14 @@ public class LottoController {
 
     private User createUser() {
         int money = createLottoMoney();
-
         int manualLottoCount = createManualLottoCount(money);
         int autoLottoCount = money / Lotto.PRICE - manualLottoCount;
 
         outputView.printUserManualLottoReadMessage();
 
         List<Lotto> lottos = new ArrayList<>();
-        for (int count = 0; count < manualLottoCount; count++) {
-            lottos.add(new Lotto(inputView.readLottoNumbers()));
-        }
-        lottos.addAll(lottoMachine.createLottos(autoLottoCount));
+        createManualLottos(manualLottoCount, lottos);
+        createAutoLottos(autoLottoCount, lottos);
         return new User(money, manualLottoCount, autoLottoCount, lottos);
     }
 
@@ -56,6 +54,18 @@ public class LottoController {
     private int createManualLottoCount(int money) {
         outputView.printManualLottoCountReadMessage();
         return inputView.readManualLottoCount(money);
+    }
+
+    private void createManualLottos(int manualLottoCount, List<Lotto> lottos) {
+        for (int count = 0; count < manualLottoCount; count++) {
+            List<Integer> numbers = inputView.readLottoNumbers();
+            Collections.sort(numbers);
+            lottos.add(new Lotto(numbers));
+        }
+    }
+
+    private void createAutoLottos(int autoLottoCount, List<Lotto> lottos) {
+        lottos.addAll(lottoMachine.createLottos(autoLottoCount));
     }
 
     private WinningLotto createWinningLotto() {
