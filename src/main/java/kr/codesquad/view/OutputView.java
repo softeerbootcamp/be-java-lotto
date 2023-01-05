@@ -23,15 +23,6 @@ public class OutputView {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    private void printDetailText(Rank rank, int count) {
-        if (rank == Rank.SECOND) {
-            System.out.println(rank.getScore() + "개 일치, 보너스 볼 일치(" + rank.getMoney() + "원)- " + count + "개");
-            return;
-        }
-        System.out.println(rank.getScore() + "개 일치 (" + rank.getMoney() + "원)- " + count + "개");
-    }
-
-
     public void printBonusBallText() {
         System.out.println("보너스 볼을 입력해 주세요.");
     }
