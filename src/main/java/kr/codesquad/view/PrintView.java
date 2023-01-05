@@ -13,8 +13,8 @@ public class PrintView {
         System.out.println(CommonMessage.ENTER_PURCHASE_AMOUNT);
     }
 
-    public static void resultPurchaseAmount(int manualTicket,int purchaseTicket) {
-        System.out.printf(CommonMessage.PURCHASE_TICKETS+'\n',manualTicket,purchaseTicket);
+    public static void resultPurchaseAmount(int manualTicketCount,int autoTicketCount) {
+        System.out.printf(CommonMessage.PURCHASE_TICKETS+'\n',manualTicketCount,autoTicketCount);
     }
 
     public static void generatedLottos(User user) {
