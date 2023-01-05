@@ -51,6 +51,10 @@ public class MachineLotto extends BaseLotto{
         Collections.shuffle(numList); //1에서 46까지를 셔플
         ArrayList<Integer> shuffledNumList =  new ArrayList<>(numList.subList(0,6));
         Collections.sort(shuffledNumList);
+        if(this.lottoList.contains(shuffledNumList)) {
+            getLottoByShuffle();
+            return;
+        }
         this.lottoList.add(shuffledNumList);
     }
 
