@@ -6,15 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    private int inputMoney;
+    private final Money money;
     private final List<Row> totalLotto = new ArrayList<>();
 
-    public void addRowToLotto(int num, LottoGenerator lottoGenerator) {
-        for (int i = 0; i < num; i++) {
+    public Lotto(Money money, LottoGenerator autoLottoGenerator) {
+        this.money = money;
+        this.addRowToLotto(money.countOfAutoRows(), autoLottoGenerator);
+    }
+
+    public void addRowToLotto(int count, LottoGenerator lottoGenerator) {
+        for (int i = 0; i < count; i++) {
             this.totalLotto.add(lottoGenerator.generateRow());
         }
     }
-
+    public void addRowToLotto(Row row) {
+            this.totalLotto.add(row);
+    }
 
     public void printTotalLotto() {
         for (Row row : totalLotto) {
@@ -33,7 +40,8 @@ public class Lotto {
         return totalLotto;
     }
 
-    public int getInputMoney() {
-        return inputMoney;
+    public Money getMoney() {
+        return money;
     }
+
 }

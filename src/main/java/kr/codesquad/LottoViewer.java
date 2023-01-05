@@ -21,11 +21,31 @@ public class LottoViewer {
 
     public Lotto home() throws IOException {
         System.out.println("구입 금액을 입력해 주세요.");
-        int inputMoney = Integer.parseInt(br.readLine());
-        int num = Money.getRowCountICanBuy(inputMoney);
-        System.out.println(num + "개를 구매했습니다.");
-        Lotto lotto = lottoController.createLotto(num);
+        int totalMoney = Integer.parseInt(br.readLine());
+
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+        int manualCnt = Integer.parseInt(br.readLine());
+        if (manualCnt < 0) {
+            throw new IllegalArgumentException("수동 로또 수 0이상이어야 함.");
+        }
+        Money money = new Money(totalMoney, manualCnt);
+
+        Lotto lotto = inputLotto(money);
+
+        money.printStatus();
         lotto.printTotalLotto();
+        return lotto;
+    }
+
+    public Lotto inputLotto(Money money) throws IOException {
+        Lotto lotto = lottoController.createLotto(money);
+
+        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+        for (int i = 0; i < money.countOfManualRows(); i++) {
+            String manualRowString = br.readLine();
+            Row row = Row.convertStringToRow(manualRowString);
+            lotto.addRowToLotto(row);
+        }
         return lotto;
     }
 

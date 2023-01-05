@@ -1,9 +1,6 @@
 package kr.codesquad.domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Row {
 
@@ -54,5 +51,14 @@ public class Row {
 
     public boolean isBonus() {
         return isBonus;
+    }
+
+    public static Row convertStringToRow(String rowByString) {
+        StringTokenizer st = new StringTokenizer(rowByString);
+        List<Integer> numbers = new ArrayList<>();
+        while (st.hasMoreTokens()) {
+            numbers.add(Integer.valueOf(st.nextToken()));
+        }
+        return createRow(numbers);
     }
 }

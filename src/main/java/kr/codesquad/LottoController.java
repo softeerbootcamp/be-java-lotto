@@ -1,24 +1,26 @@
 package kr.codesquad;
 
 import kr.codesquad.domain.Lotto;
+import kr.codesquad.domain.Money;
 import kr.codesquad.domain.Statistic;
 
 public class LottoController {
-    private final AutoLottoGenerator autoLottoGenerator;
+    private final LottoGenerator autoLottoGenerator;
+    private final LottoGenerator manualLottoGenerator;
 
     public LottoController() {
         this.autoLottoGenerator = new AutoLottoGenerator();
+        this.manualLottoGenerator = new ManualLottoGenerator();
     }
 
-    public Lotto createLotto(int num) {
-        //todo: 랜덤 숫자, 수동 숫자 결정
-        Lotto lotto = new Lotto();
-        lotto.addRowToLotto(num, autoLottoGenerator);
+    public Lotto createLotto(Money money) {
+
+        Lotto lotto = new Lotto(money, autoLottoGenerator);
         return lotto;
     }
 
     public Statistic createStatistics(Lotto lotto) {
-        Statistic statistic = new Statistic(lotto.getInputMoney());
+        Statistic statistic = new Statistic(lotto.getMoney());
         statistic.calculate(lotto);
         return statistic;
     }

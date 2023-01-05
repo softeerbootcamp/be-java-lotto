@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat: Rank enum에 MISS에 대한 경우를 추가하고, Rank enum 자체에서 필요한 로직을 수행할 수 있도록 참고 자료에 제시된 방식으로 변경.&#10;&#10;## why&#10;기존의 방식은 valueOf()에서 depth1을 유지하기 어려워 각 항목의 당첨 금액을 기준으로 count 등을 구현하였으나, 금액에 대한 의존도가 높아져 Statistic 객체에서 Rank에 의존하게 된다는 단점이 있어 수정함.&#10;&#10;## todo&#10;Rank 클래스의 depth가 1이 아닌 만큼 더 나은 설계를 고려해야 하고, 이를 위해 MISS에 대한 경우를 enum에 추가하였기 때문에 수정 방안에 대해 생각해볼 만함.">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat: 자동 생성에 대한 AutoLottoGenerator가 한 Row만 발급되고 Lotto 객체에서 이를 가질 수 있도록 구현.&#10;&#10;## Why&#10;step3의 자동 수동 로또 발급을 구현하는 과정에서 AutoLottoGenerator가 List&lt;Row&gt;가 아닌 한 줄, 즉 Row를 발급하는 것이 부적절하게 List&lt;Row&gt;가 외부에 노출되지 않을 수 있고 유지 보수 면에서도 장점이 있음.&#10;&#10;## How&#10;Lotto 클래스의 addRowToLotto 메서드에서 LottoGenerator를 주입받아 처리. 인터페이스화 되어 있어 추후 자동 생성때에도 Generator 객체 주입만 바꾸어 주면 되도록 수정&#10;&#10;## Todo&#10;이 과정에서 Lotto를 생성하는 createLotto() 대신 default 생성자가 생겨 개선해볼 필요가 있음. 또한 수정 과정에서 Lotto 객체가 input money 필드를 가질 필요가 없는 것 같아 Money 객체로 옮겨야 함.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/ManualLottoGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Lotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Lotto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Money.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Money.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Row.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Statistic.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +57,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -232,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672822198757</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="feat: 자동 생성에 대한 AutoLottoGenerator가 한 Row만 발급되고 Lotto 객체에서 이를 가질 수 있도록 구현.&#10;&#10;## Why&#10;step3의 자동 수동 로또 발급을 구현하는 과정에서 AutoLottoGenerator가 List&lt;Row&gt;가 아닌 한 줄, 즉 Row를 발급하는 것이 부적절하게 List&lt;Row&gt;가 외부에 노출되지 않을 수 있고 유지 보수 면에서도 장점이 있음.&#10;&#10;## How&#10;Lotto 클래스의 addRowToLotto 메서드에서 LottoGenerator를 주입받아 처리. 인터페이스화 되어 있어 추후 자동 생성때에도 Generator 객체 주입만 바꾸어 주면 되도록 수정&#10;&#10;## Todo&#10;이 과정에서 Lotto를 생성하는 createLotto() 대신 default 생성자가 생겨 개선해볼 필요가 있음. 또한 수정 과정에서 Lotto 객체가 input money 필드를 가질 필요가 없는 것 같아 Money 객체로 옮겨야 함.">
+      <created>1672884895524</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1672884895524</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +285,8 @@
     <MESSAGE value="refactor: LottoService 삭제&#10;&#10;## why&#10;불필요한 서비스 계층을 두지 않고 도메인 내에서 문제를 해결하고자 LottoService는 삭제하였으며 Controller에서 도메인에 구현된 메서드를 callback하여 로직을 해결하고자 하였습니다.&#10;이에 따라 전체 구조를&#10;[starter] -&gt; [viewer] &lt;-&gt; [contoller]&#10;로 변경하였습니다." />
     <MESSAGE value="refactor: 구매한 total Lotto 출력 메서드를 Lotto 클래스 내로 옮김." />
     <MESSAGE value="refactor: 1000원 미만 금액 투입에 대한 예외처리를 Statistic 객체로 이동.&#10;[당첨 번호 입력] -&gt; [통계 출력]&#10;의 과정을 가독성을 위해 &#10;1. 당첨 번호와 입력된 Lotto 비교&#10;2. 통계 생성&#10;으로 나누었습니다." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: 1000원 미만 금액 투입에 대한 예외처리를 Statistic 객체로 이동.&#10;[당첨 번호 입력] -&gt; [통계 출력]&#10;의 과정을 가독성을 위해 &#10;1. 당첨 번호와 입력된 Lotto 비교&#10;2. 통계 생성&#10;으로 나누었습니다." />
+    <MESSAGE value="feat: 자동 생성에 대한 AutoLottoGenerator가 한 Row만 발급되고 Lotto 객체에서 이를 가질 수 있도록 구현.&#10;&#10;## Why&#10;step3의 자동 수동 로또 발급을 구현하는 과정에서 AutoLottoGenerator가 List&lt;Row&gt;가 아닌 한 줄, 즉 Row를 발급하는 것이 부적절하게 List&lt;Row&gt;가 외부에 노출되지 않을 수 있고 유지 보수 면에서도 장점이 있음.&#10;&#10;## How&#10;Lotto 클래스의 addRowToLotto 메서드에서 LottoGenerator를 주입받아 처리. 인터페이스화 되어 있어 추후 자동 생성때에도 Generator 객체 주입만 바꾸어 주면 되도록 수정&#10;&#10;## Todo&#10;이 과정에서 Lotto를 생성하는 createLotto() 대신 default 생성자가 생겨 개선해볼 필요가 있음. 또한 수정 과정에서 Lotto 객체가 input money 필드를 가질 필요가 없는 것 같아 Money 객체로 옮겨야 함." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 자동 생성에 대한 AutoLottoGenerator가 한 Row만 발급되고 Lotto 객체에서 이를 가질 수 있도록 구현.&#10;&#10;## Why&#10;step3의 자동 수동 로또 발급을 구현하는 과정에서 AutoLottoGenerator가 List&lt;Row&gt;가 아닌 한 줄, 즉 Row를 발급하는 것이 부적절하게 List&lt;Row&gt;가 외부에 노출되지 않을 수 있고 유지 보수 면에서도 장점이 있음.&#10;&#10;## How&#10;Lotto 클래스의 addRowToLotto 메서드에서 LottoGenerator를 주입받아 처리. 인터페이스화 되어 있어 추후 자동 생성때에도 Generator 객체 주입만 바꾸어 주면 되도록 수정&#10;&#10;## Todo&#10;이 과정에서 Lotto를 생성하는 createLotto() 대신 default 생성자가 생겨 개선해볼 필요가 있음. 또한 수정 과정에서 Lotto 객체가 input money 필드를 가질 필요가 없는 것 같아 Money 객체로 옮겨야 함." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_lotto$Main.ic" NAME="Main Coverage Results" MODIFIED="1672722343647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -3,14 +3,15 @@ package kr.codesquad.domain;
 import java.util.*;
 
 public class Statistic {
-    private final double input;
+
+    private final Money money;
     private double output;
     private double rate;
 
     private static final Map<Rank, Integer> counts = new HashMap<>();
 
-    public Statistic(int inputMoney) {
-        this.input = inputMoney;
+    public Statistic(Money money) {
+        this.money = money;
         counts.put(Rank.FIRST, 0);
         counts.put(Rank.SECOND, 0);
         counts.put(Rank.THIRD, 0);
@@ -28,7 +29,7 @@ public class Statistic {
     }
 
     public void calculateRate() {
-        this.rate = ((output - input) / input) * 100;
+        this.rate = ((output - money.getTotalMoney()) / money.getTotalMoney()) * 100;
     }
 
     public void calculateOutput(Row row) {
