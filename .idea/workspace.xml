@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (x)" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (o)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/exception/DuplicateLottoNumberException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/exception/WinningNumbersException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Statistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/WinningNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/WinningNumbers.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -272,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672903064893</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (o)">
+      <created>1672903296995</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1672903296995</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,7 +305,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=".gitignore 원상복귀" />
     <MESSAGE value="feat: Row values print 기능 추가" />
     <MESSAGE value="refactor: Row class 필드명 result -&gt; match 수정, 수익률 소수점 두자리 출력" />
     <MESSAGE value="fix: 오타 수정, Rank enum 필드값 final 처리" />
@@ -315,7 +329,8 @@
     <MESSAGE value="feat: NumberNotValidException 및 LottoNumber 구현&#10;## What&#10;부적절한 숫자를 로또 입력값으로 받은 경우에 대한 예외 처리를 위해 LottoException을 상속받는 NumberNotValidException을 구현하였으며, 기존의 Integer로 받았던 로또 숫자를 LottoNumber라는 객체로 바꿈.&#10;## Why&#10;LottoNumber 객체를 구현함으로써 현재까지 두 가지 이점이 생김.&#10;1. NumberNotValidException 등 로또 숫자와 관련된 예외 처리를 일관적으로 수행할 수 있음.&#10;2. Primitive 타입이 아닌 정의된 객체를 사용함으로써 외부로부터 로또 숫자 자체를 안전하게 보호할 수 있어 객체지향의 이점을 살릴 수 있음.&#10;&#10;## todo&#10;통계 출력 때 3개 미만의 경우도 출력되는 것을 확인하여 수정 예정." />
     <MESSAGE value="feat : 수동 구매 로또 수 0 이상이어야 하는 ManualLottoCntException 생성" />
     <MESSAGE value="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (x)" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (x)" />
+    <MESSAGE value="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (o)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (o)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_lotto$Main.ic" NAME="Main Coverage Results" MODIFIED="1672722343647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

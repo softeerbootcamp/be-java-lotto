@@ -47,16 +47,16 @@ public class Statistic {
         Rank[] ranks = Rank.values();
         Arrays.sort(ranks, Collections.reverseOrder());
         for (Rank rank : ranks) {
-            System.out.print(rank.getCountOfMatch() + "개 일치");
-            isBonusRank(rank);
-            System.out.println(" (" + rank.getWinningMoney() + "원)- " + counts.get(rank) + "개");
+           printEachRank(rank);
         }
         System.out.println("총 수익률은 " + String.format("%.2f", rate) + "% 입니다.");
     }
 
-    public void isBonusRank(Rank rank) {
+    public void printEachRank(Rank rank) {
+        System.out.print(rank.getCountOfMatch() + "개 일치");
         if (rank.getWinningMoney() == Rank.SECOND.getWinningMoney()) {
             System.out.print(", 보너스 볼 일치");
         }
+        System.out.println(" (" + rank.getWinningMoney() + "원)- " + counts.get(rank) + "개");
     }
 }

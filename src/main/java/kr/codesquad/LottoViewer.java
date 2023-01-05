@@ -70,7 +70,6 @@ public class LottoViewer {
         for (int i = 0; i < Row.COLUMN; i++) {
             answerList.add(new LottoNumber(st.nextToken()));
         }
-
         System.out.println("보너스 볼을 입력해 주세요.");
         LottoNumber bonusNumber = new LottoNumber(br.readLine());
 
