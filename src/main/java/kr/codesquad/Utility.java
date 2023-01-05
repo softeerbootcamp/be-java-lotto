@@ -39,11 +39,11 @@ public class Utility {
         return temp;
     }
 
-    public static List<Integer> stringToIntList(String target) {
+    public static List<Integer> str2IntListWithRange(String target, int lowerBound, int upperBound) {
         List<String> strSplit = List.of(target.split(","));
         List<Integer> numbers = new ArrayList<>();
         for (String num : strSplit) {
-            numbers.add(Utility.parseIntWithRange(num.trim(), 1, 45));
+            numbers.add(Utility.parseIntWithRange(num.trim(), lowerBound, upperBound));
         }
         return numbers;
     }
