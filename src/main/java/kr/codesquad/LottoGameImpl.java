@@ -43,7 +43,7 @@ public class LottoGameImpl implements LottoGame{
         //4.지난 주 당첨 번호 입력 받기
         List<Integer> inputs = lastLotto.getLastLotto();
         //5. 보너스 볼 입력 받기
-        Integer bonusBall = userLotto.getBonusLottoInput();
+        Integer bonusBall = userLotto.getBonusLottoInput(inputs);
         //6. 비교
         compareLottos(totalCnt,lottos,inputs,bonusBall);
         //7. 결과 출력
