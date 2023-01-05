@@ -7,6 +7,8 @@ import java.util.List;
 public class LottoMachine {
     private final int lottoPrice; // 로또 하나의 가격 정보
     private final List<Integer> numList;
+    
+    private static final UserInput ui = new UserInput();
 
     public LottoMachine(int lottoPrice) {
         this.lottoPrice = lottoPrice;
@@ -15,7 +17,6 @@ public class LottoMachine {
     }
 
     public Lotto buyLotto() {
-        UserInput ui = new UserInput();
         int money = ui.inputMoney();
         int lottoCount = money / this.lottoPrice;
         System.out.println(lottoCount + "개를 구매했습니다.");
