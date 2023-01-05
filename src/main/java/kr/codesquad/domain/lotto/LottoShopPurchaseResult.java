@@ -3,13 +3,13 @@ package kr.codesquad.domain.lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoShopPurchaseesult {
+public class LottoShopPurchaseResult {
 
   private final List<Lotto> autoLottos;
   private final List<Lotto> manualLotto;
   private final int totalPrice;
 
-  public LottoShopPurchaseesult(
+  public LottoShopPurchaseResult(
       List<Lotto> autoLottos,
       List<Lotto> manualLotto,
       int totalPrice
@@ -39,12 +39,12 @@ public class LottoShopPurchaseesult {
     return totalPrice;
   }
 
-  public static LottoShopPurchaseesult of(
+  public static LottoShopPurchaseResult of(
       List<Lotto> autoLottos,
       List<Lotto> manualLotto,
       int totalPrice
   ) {
-    return new LottoShopPurchaseesult(autoLottos, manualLotto, totalPrice);
+    return new LottoShopPurchaseResult(autoLottos, manualLotto, totalPrice);
   }
 
 }

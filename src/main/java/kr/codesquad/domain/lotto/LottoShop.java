@@ -10,14 +10,14 @@ public class LottoShop {
   private static final LottoAutoFactory lottoAutoFactory = new LottoAutoFactory();
   private static final LottoManualFactory lottoManualFactory = new LottoManualFactory();
 
-  public LottoShopPurchaseesult purchase(
+  public LottoShopPurchaseResult purchase(
       int autoPurchaseCount,
       int manualPurchaseCount
   ) {
     List<Lotto> autoLottos = lottoAutoFactory.generate(autoPurchaseCount);
     List<Lotto> manualLottos = lottoManualFactory.generate(manualPurchaseCount);
     int totalPrice = calculateTotalPrice(autoPurchaseCount, manualPurchaseCount);
-    return LottoShopPurchaseesult.of(autoLottos, manualLottos, totalPrice);
+    return LottoShopPurchaseResult.of(autoLottos, manualLottos, totalPrice);
   }
 
   private int calculateTotalPrice(
