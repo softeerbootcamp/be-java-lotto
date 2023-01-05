@@ -20,20 +20,11 @@ public class InputView {
         return br.readLine();
     }
 
-    public List<Integer> inputWinningNumbers() throws IOException {
-        String[] input = br.readLine().split(", ");
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < input.length; i++) {
-            list.add(Integer.parseInt(input[i]));
-        }
-        return list;
-    }
-
     public int inputBonusNumber() throws IOException {
         return Integer.parseInt(br.readLine());
     }
 
-    public Lotto2 inputWinningLotto() throws  IOException{
+    public Lotto2 inputWinningLotto() throws IOException {
         String[] input = br.readLine().split(", ");
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < input.length; i++) {
