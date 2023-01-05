@@ -31,7 +31,7 @@ public class UserInputHandlerImpl implements UserInputHandler {
     @Override
     public List<Integer> getSixLottoNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumber = Utility.stringToIntList(s1.nextLine());
+        List<Integer> winningNumber = Utility.str2IntListWithRange(s1.nextLine(), 1, 45);
         if (winningNumber.size() != 6)
             throw new CustomException("당첨 번호가 6개의 숫자가 아닙니다.");
         if (Utility.isDuplicated(winningNumber))
