@@ -41,4 +41,13 @@ class LastLottoTest {
         assertThatThrownBy(() -> new LastLotto(this.userConsole,inputNumbers))
                 .isInstanceOf(CustomException.class);
     }
+
+    @DisplayName("로또 번호의 개수가 6개이고, 구성 숫자의 범위도 맞지만 중복이 될 때")
+    @Test
+    void createLottoByDuplicatedNumber(){
+        String inputNumbers = "1, 2, 3, 4, 4, 6";
+        //assertThatThrownBy -> 예외가 발생해야 테스트 통과됨
+        assertThatThrownBy(() -> new LastLotto(this.userConsole,inputNumbers))
+                .isInstanceOf(CustomException.class);
+    }
 }
