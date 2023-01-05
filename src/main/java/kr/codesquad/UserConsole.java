@@ -2,6 +2,7 @@ package kr.codesquad;
 
 import kr.codesquad.exception.CustomException;
 import kr.codesquad.exception.ErrorCode;
+import kr.codesquad.utils.Utility;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -28,6 +29,8 @@ public class UserConsole {
         int inputNumber=0;
         try{
             inputNumber = sc.nextInt();
+            Utility.checkNumberError(inputNumber);
+            sc.nextLine();
         }catch(InputMismatchException e){
             System.out.println("정수만 입력 가능합니다");
         }catch(Exception e){

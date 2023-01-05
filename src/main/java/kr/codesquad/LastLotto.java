@@ -15,7 +15,7 @@ public class LastLotto {
     }
 
     public ArrayList<Integer> getLastLotto(){
-        System.out.println("당첨 번호를 입력해주세요.");
+        System.out.println("지난 주 로또 당첨 번호를 입력해주세요.");
         String inputNumbers = userConsole.enter6NumbersByString();
         this.lastLotto = Utility.getListFromInputBySplit(inputNumbers);
         return this.lastLotto;
