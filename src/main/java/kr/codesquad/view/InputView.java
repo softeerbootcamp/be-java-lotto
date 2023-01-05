@@ -1,11 +1,11 @@
 package kr.codesquad.view;
 
+import kr.codesquad.validator.InputValidator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
-import static kr.codesquad.validator.InputValidator.MoneyValidator;
 
 public class InputView {
 
@@ -14,10 +14,10 @@ public class InputView {
     private static final String NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해야 합니다.";
 
     public int readMoney() {
-        while(true) {
+        while (true) {
             try {
                 int money = readOneNumber();
-                MoneyValidator.validate(money);
+                InputValidator.MoneyValidator.validate(money);
                 return money;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -25,13 +25,20 @@ public class InputView {
         }
     }
 
-    public int readManualLottoCount() {
-        int count = readOneNumber();
-        return count;
+    public int readManualLottoCount(int money) {
+        while (true) {
+            try {
+                int manualLottoCount = readOneNumber();
+                InputValidator.ManualLottoCountValidator.validate(money, manualLottoCount);
+                return manualLottoCount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int readOneNumber() {
-        while(true) {
+        while (true) {
             try {
                 return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {

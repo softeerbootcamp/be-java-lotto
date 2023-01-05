@@ -23,7 +23,7 @@ public class LottoController {
     public void start() {
         int money = createLottoMoney();
 
-        int manualLottoCount = createManualLottoCount();
+        int manualLottoCount = createManualLottoCount(money);
         int autoLottoCount = money / 1000 - manualLottoCount;
 
         outputView.printUserManualLottoReadMessage();
@@ -43,10 +43,9 @@ public class LottoController {
         return inputView.readMoney();
     }
 
-
-    private int createManualLottoCount() {
+    private int createManualLottoCount(int money) {
         outputView.printManualLottoCountReadMessage();
-        return inputView.readManualLottoCount();
+        return inputView.readManualLottoCount(money);
     }
 
     private UserLotto createUserLotto(int manualLottoCount, int autoLottoCount) {
