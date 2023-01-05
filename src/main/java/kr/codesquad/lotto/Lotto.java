@@ -14,10 +14,6 @@ public class Lotto {
         this.numberList = numberList;
     }
 
-    public List<Integer> getNumberList() {
-        return numberList;
-    }
-
     public int countCorrectNum(WinLotto winLotto) {
         List<Integer> temp = new ArrayList<>(this.numberList);
         temp.retainAll(winLotto.getNumberList());
