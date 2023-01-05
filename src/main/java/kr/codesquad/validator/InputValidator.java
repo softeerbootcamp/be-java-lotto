@@ -1,6 +1,6 @@
 package kr.codesquad.validator;
 
-import kr.codesquad.model.Lotto;
+import kr.codesquad.model.lotto.Lotto;
 
 import java.util.HashSet;
 import java.util.List;
@@ -37,9 +37,9 @@ public class InputValidator {
 
     public static class LottoNumbersValidator {
 
-        private static final String LOTTO_NUMBER_RANGE_ERROR_MESSAGE = "로또 번호는 " + Lotto.MINIMUM_NUMBER + "부터 " + Lotto.MAXIMUM_NUMBER+ " 사이의 숫자여야 합니다.";
+        private static final String LOTTO_NUMBER_RANGE_ERROR_MESSAGE = "로또 번호는 " + Lotto.MINIMUM_NUMBER + "부터 " + Lotto.MAXIMUM_NUMBER + " 사이의 숫자여야 합니다.";
         private static final String LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE = "로또 번호는 서로 중복되지 않아야 합니다.";
-        private static final String LOTTO_NUMBERS_SIZE_ERROR_MESSAGE = "로또 번호의 개수는 " + Lotto.NUMBERS_SIZE +"개여야 합니다.";
+        private static final String LOTTO_NUMBERS_SIZE_ERROR_MESSAGE = "로또 번호의 개수는 " + Lotto.NUMBERS_SIZE + "개여야 합니다.";
 
         public static void validate(List<Integer> numbers) {
             validateRange(numbers);
@@ -70,7 +70,7 @@ public class InputValidator {
 
     public static class BonusNumberValidator {
 
-        private static final String LOTTO_NUMBER_RANGE_ERROR_MESSAGE = "로또 번호는 " + Lotto.MINIMUM_NUMBER + "부터 " + Lotto.MAXIMUM_NUMBER+ " 사이의 숫자여야 합니다.";
+        private static final String LOTTO_NUMBER_RANGE_ERROR_MESSAGE = "로또 번호는 " + Lotto.MINIMUM_NUMBER + "부터 " + Lotto.MAXIMUM_NUMBER + " 사이의 숫자여야 합니다.";
         private static final String BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE = "보너스 번호는 당첨 번호와 중복되지 않아야 합니다.";
 
         public static void validate(List<Integer> numbers, int bonusNumber) {

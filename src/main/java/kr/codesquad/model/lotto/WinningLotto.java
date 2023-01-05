@@ -1,4 +1,6 @@
-package kr.codesquad.model;
+package kr.codesquad.model.lotto;
+
+import kr.codesquad.model.Rank;
 
 import java.util.List;
 

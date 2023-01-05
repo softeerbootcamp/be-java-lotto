@@ -1,5 +1,8 @@
 package kr.codesquad.model;
 
+import kr.codesquad.model.lotto.Lotto;
+import kr.codesquad.model.lotto.WinningLotto;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -1,6 +1,10 @@
 package kr.codesquad.controller;
 
-import kr.codesquad.model.*;
+import kr.codesquad.model.LottoMachine;
+import kr.codesquad.model.Rank;
+import kr.codesquad.model.User;
+import kr.codesquad.model.lotto.Lotto;
+import kr.codesquad.model.lotto.WinningLotto;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 

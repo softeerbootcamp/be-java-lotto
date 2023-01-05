@@ -1,4 +1,4 @@
-package kr.codesquad.model;
+package kr.codesquad.model.lotto;
 
 import java.util.ArrayList;
 import java.util.List;

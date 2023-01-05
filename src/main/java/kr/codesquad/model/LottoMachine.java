@@ -1,5 +1,7 @@
 package kr.codesquad.model;
 
+import kr.codesquad.model.lotto.Lotto;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

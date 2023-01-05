@@ -1,8 +1,8 @@
 package kr.codesquad.view;
 
-import kr.codesquad.model.Lotto;
 import kr.codesquad.model.Rank;
 import kr.codesquad.model.User;
+import kr.codesquad.model.lotto.Lotto;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,8 +28,9 @@ public class OutputView {
         printLottoCount(user.getManualLottoCount(), user.getAutoLottoCount());
         printUserLotto(user.getLottos());
     }
+
     public void printLottoCount(int manualLottoCount, int autoLottoCount) {
-        System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 "+ autoLottoCount + "개를 구매했습니다.");
+        System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 " + autoLottoCount + "개를 구매했습니다.");
     }
 
     public void printUserLotto(List<Lotto> lottos) {
@@ -58,7 +59,7 @@ public class OutputView {
 
     private void printWinningResultMessage(List<Rank> ranks, Map<Rank, Integer> result) {
         ranks.forEach(rank -> {
-            System.out.print(rank.getCount()+"개 일치");
+            System.out.print(rank.getCount() + "개 일치");
             printBonusBallMessage(rank);
             System.out.println(" " + rank.getPrize() + "원)- " + result.getOrDefault(rank, 0) + "개");
         });

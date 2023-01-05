@@ -74,7 +74,7 @@ public class InputView {
     }
 
     public List<Integer> readNumbers() {
-        while(true) {
+        while (true) {
             try {
                 String[] numbersStr = scanner.nextLine().split(DELIMITER);
                 return Arrays.stream(numbersStr)
