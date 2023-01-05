@@ -1,15 +1,16 @@
 package kr.codesquad;
 
+import kr.codesquad.exception.CustomException;
+import kr.codesquad.utils.Utility;
+
 import java.util.*;
 
 public class MachineLotto extends BaseLotto{
     private List<Integer> numList;
-    private UserConsole userConsole;
 
     public MachineLotto(UserConsole userConsole) {
         this.lottoList = new ArrayList<>();
         numList = new ArrayList<>();
-        this.userConsole = new UserConsole();
         for(int j=1;j<46;j++) numList.add(j);
     }
 
@@ -17,9 +18,14 @@ public class MachineLotto extends BaseLotto{
         int amountOfMoney = 0;
         try {
             System.out.print("구입금액을 입력해주세요");
-            amountOfMoney = userConsole.enterInteger();
+            Scanner sc = new Scanner(System.in);
+            amountOfMoney = sc.nextInt();
+            Utility.checkAmountOfMoney(amountOfMoney);
+            sc.nextLine();
         }catch(InputMismatchException e){
             System.out.println("유효하지 않은 값입니다. 다시 값을 입력해주세요.");
+        }catch(CustomException e){
+            throw e;
         }catch(Exception e){
             System.out.println("입력에 에러가 발생했습니다. 다시 값을 입력해주세요");
         }
@@ -28,7 +34,6 @@ public class MachineLotto extends BaseLotto{
 
     @Override
     public Integer getLottoCnt(int amountOfMoney,int manualLottoCnt) {
-        //to-do : 금액에 따른 개수 제한 예외처리
         this.lottoCnt = amountOfMoney/1000; // 총 로또 개수
         this.lottoCnt -= manualLottoCnt;
         return this.lottoCnt;

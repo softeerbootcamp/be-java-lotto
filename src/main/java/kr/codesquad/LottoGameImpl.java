@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import kr.codesquad.utils.Utility;
+
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -35,11 +37,7 @@ public class LottoGameImpl implements LottoGame{
         Integer lottoCnt = machineLotto.getLottoCnt(amountOfMoney,manualLottoCnt);
         int totalCnt = manualLottoCnt+lottoCnt;
         //3. 최종 로또들 출력
-        //3-1.수동으로 구매한 로또반환
-        ArrayList<ArrayList<Integer>> manualLottos =userLotto.getLottoList();
-        //3-2.자동으로 구매한 로또 리스트 반환하기
-        ArrayList<ArrayList<Integer>> lottos = machineLotto.getLottoList();
-        lottos.addAll(manualLottos);
+        ArrayList<ArrayList<Integer>> lottos = getMergedLottos();
         System.out.println("수동으로 "+manualLottoCnt+"장, 자동으로 "+lottoCnt+"개를 구매했습니다. ");
         printLottos(lottos,totalCnt);
         //4.지난 주 당첨 번호 입력 받기
@@ -50,6 +48,13 @@ public class LottoGameImpl implements LottoGame{
         compareLottos(totalCnt,lottos,inputs,bonusBall);
         //7. 결과 출력
         printResult(lottoCnt);
+    }
+
+    public ArrayList<ArrayList<Integer>> getMergedLottos(){
+        ArrayList<ArrayList<Integer>> manualLottos =userLotto.getLottoList();
+        ArrayList<ArrayList<Integer>> autoLottos = machineLotto.getLottoList();
+        ArrayList<ArrayList<Integer>> lottos = Utility.mergeLists(manualLottos,autoLottos);
+        return lottos;
     }
 
     public void printLottos(ArrayList<ArrayList<Integer>> list, int totalCnt){
