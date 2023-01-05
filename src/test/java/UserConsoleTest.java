@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserConsoleTest {
 
@@ -29,7 +30,7 @@ public class UserConsoleTest {
     }
 
 
-    @DisplayName("구입 금액 입력 테스트")
+    @DisplayName("구입 금액 입력 테스트 - 정상 동작")
     @Test
     void enterPurchasePriceTest() {
 
@@ -45,7 +46,24 @@ public class UserConsoleTest {
         assertEquals(purchasePrice, returnedNum);
     }
 
-    @DisplayName("수동 로또 구매 수 입력 테스트")
+/*    @DisplayName("구입 금액 입력 테스트 - 정수형으로 입력하지 않을 경우")
+    @Test
+    void enterPurchasePrice_NoInt_Test() {
+
+        //given
+        String purchasePrice = "100"; //구입 금액
+        InputStream in = new ByteArrayInputStream(purchasePrice.getBytes());
+        System.setIn(in);
+
+        //when
+//        assertThrows()
+        int returnedNum = userConsole.enterPurchasePrice();
+
+        //then
+        assertEquals(purchasePrice, returnedNum);
+    } */
+
+    @DisplayName("수동 로또 구매 수 입력 테스트 - 정상 동작")
     @Test
     void enterSudongLottoNumberTest(){
 
@@ -61,7 +79,7 @@ public class UserConsoleTest {
         assertEquals(numOfSudong, returnedNum);
     }
 
-    @DisplayName("수동 로또 리스트 입력 테스트")
+    @DisplayName("수동 로또 리스트 입력 테스트 - 정상 동작")
     @Test
     void enterSudongLottoListTest(){
 
@@ -77,7 +95,7 @@ public class UserConsoleTest {
         assertEquals(lottoList, returnedList);
     }
 
-    @DisplayName("당첨 번호 입력 테스트")
+    @DisplayName("당첨 번호 입력 테스트 - 정상 동작")
     @Test
     void enterResultList(){
 
@@ -92,7 +110,7 @@ public class UserConsoleTest {
         assertEquals(resultList, returnedList);
     }
 
-    @DisplayName("보너스볼 입력 테스트")
+    @DisplayName("보너스볼 입력 테스트 - 정상 동작")
     @Test
     void enterBonusNumTest(){
 

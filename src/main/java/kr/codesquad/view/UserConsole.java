@@ -3,6 +3,7 @@ package kr.codesquad.view;
 import kr.codesquad.model.UserInfo;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserConsole {
@@ -18,9 +19,13 @@ public class UserConsole {
     //구매 금액 입력
     public int enterPurchasePrice(){
         Scanner scan = new Scanner(System.in);
-
+        int purchasedPrice = 0;
         System.out.println("구입 금액을 입력해 주세요.");
-        int purchasedPrice = scan.nextInt();
+        try{
+            purchasedPrice = scan.nextInt();
+        }catch (InputMismatchException e){
+            enterPurchasePrice();
+        }
         return purchasedPrice;
     }
 
