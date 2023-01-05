@@ -1,12 +1,14 @@
 package kr.codesquad.UI;
 
+import kr.codesquad.Lotto.Lotto;
 import kr.codesquad.VisualLottoGame;
-
+import java.util.List;
 import java.awt.*;
 
 public class WindowManager extends Frame{
 
     private Panel currentPanel;
+    private CustomPanel customPanel;
 
     public WindowManager (){
         super();
@@ -18,8 +20,9 @@ public class WindowManager extends Frame{
 
     public void setMoneyPanel(){
         currentPanel = new SingleInputPanel("구매 금액을 입력해 주세요.", e->VisualLottoGame.getVisualLottoGame().getMoney());
+        customPanel = (SingleInputPanel) currentPanel;
+        VisualLottoGame.getVisualLottoGame().setInputHandler((customPanel.getUserInputHandler());
         add(currentPanel);
-
         currentPanel.setVisible(true);
     }
 
@@ -36,6 +39,29 @@ public class WindowManager extends Frame{
                         String.format("구매 번호를 입력해 주세요.\n(남은 수동 개수 %d개)", nManualLeft),
                         e->VisualLottoGame.getVisualLottoGame().buyOneManualLotto()));
     }
+    public void setPurchasedLottoPanel(List<Lotto> lottos) {
+        String result="";
+        for(Lotto lotto : lottos){
+            result += lotto + "\n";
+        }
+        setPanel(
+                new WinNumberPanel(e->VisualLottoGame.getVisualLottoGame().getWiningLotto())
+        );
+
+        //TODO : 구매한 로또 판낼 작성
+    }
+
+    public void setWinLottoPanel() {
+        //TODO : 승리 로또 입력 판넬 작성
+    }
+
+    public void setResultLottoPanel(String result){
+        //TODO : 로또 결과 판낼 작성
+        setPanel(
+                new ResultShowPanel(result, e -> VisualLottoGame.getVisualLottoGame().haltAll())
+        );
+    }
+
     private void setPanel(Panel nextPanel){
         currentPanel.setVisible(false);
         remove(currentPanel);
@@ -44,11 +70,4 @@ public class WindowManager extends Frame{
         nextPanel.setVisible(true);
     }
 
-    public void setPurchasedLottoPanel() {
-        //TODO : 구매한 로또 판낼 작성
-    }
-
-    public void setLottoResultPanel() {
-        //TODO : 로또 결과 판낼 작성
-    }
 }

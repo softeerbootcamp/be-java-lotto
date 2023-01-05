@@ -10,7 +10,7 @@ import java.util.List;
 
 
 // class AWTExample2 directly creates instance of Frame class
-class SingleInputPanel extends Panel{
+class SingleInputPanel extends Panel implements CustomPanel{
 
     UserInputHandler inputHandler;
     // initializing using constructor
@@ -25,7 +25,7 @@ class SingleInputPanel extends Panel{
         setSize(200,360);
         setLayout(null);
         setElements();
-        inputHandler = new AwtInputHandler(btn, txt, errLabel);
+        inputHandler = new AwtInputHandler(btn, txt, null, errLabel);
         this.instruction = instruction;
         btn.addActionListener(act);
     }
@@ -36,7 +36,7 @@ class SingleInputPanel extends Panel{
         txt = new TextField();
         btn = new Button("확인");
 
-        instLabel.setBounds(30, 80, 140, 30);
+        errLabel.setBounds(30, 80, 140, 30);
         instLabel.setBounds(30, 130, 140, 30);
         txt.setBounds(10, 160, 180, 30);
         btn.setBounds(45, 200, 110, 30);
@@ -46,4 +46,8 @@ class SingleInputPanel extends Panel{
         add(btn);
     }
 
+    @Override
+    public UserInputHandler getUserInputHandler(){
+        return inputHandler;
+    }
 }
