@@ -1,6 +1,5 @@
 package kr.codesquad.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -41,6 +40,12 @@ public enum Rank {
                 .orElse(NOTHING);
     }
 
+    public static List<Rank> getSortedRanks() {
+        return Arrays.stream(values())
+                .sorted(Comparator.comparing(Rank::getWinningAmount))
+                .filter(rank -> rank != NOTHING).collect(Collectors.toList());
+    }
+
     public int getWinningAmount() {
         return winningAmount;
     }
@@ -51,12 +56,6 @@ public enum Rank {
 
     public boolean isBonus() {
         return isBounsBall;
-    }
-
-    public static List<Rank> getSortedRanks() {
-        return Arrays.stream(values())
-                .sorted(Comparator.comparing(Rank::getWinningAmount))
-                .filter(rank -> rank != NOTHING).collect(Collectors.toList());
     }
 
 }

@@ -12,7 +12,7 @@ public class Lotto {
     private static final int LOTTO_SIZE = 6;
     private static final int BONUS_COUNT = 5;
 
-    private List<Integer> lotto;
+    private final List<Integer> lotto;
 
     public Lotto() {
         this(choiceNumbers());
@@ -51,7 +51,7 @@ public class Lotto {
     }
 
     private int getMatchCount(Lotto targetLotto) {
-        return (int)lotto.stream()
+        return (int) lotto.stream()
                 .filter(targetLotto::contains)
                 .count();
     }

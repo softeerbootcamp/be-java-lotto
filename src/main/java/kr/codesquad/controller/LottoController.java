@@ -22,7 +22,7 @@ public class LottoController {
         totalPrice = requestMoney();
         amount = totalPrice / LOTTO_PRICE;
         Lottos lottos = purchaseLotto(amount);
-        WinLotto winLotto  = makeWinLotto();
+        WinLotto winLotto = makeWinLotto();
         calculateResult(lottos, winLotto);
     }
 
@@ -57,8 +57,8 @@ public class LottoController {
 
     private void calculateResult(
             Lottos lottos,
-            WinLotto winLotto)
-    {
+            WinLotto winLotto
+    ) {
         OutputView.showResultStatistics();
 
         Result result = new Result();

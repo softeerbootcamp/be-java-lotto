@@ -20,6 +20,7 @@ public class InputView {
     public static String inputBonusBall() {
         return input();
     }
+
     private static String input() {
         return sc.nextLine();
     }

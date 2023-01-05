@@ -1,6 +1,9 @@
 package kr.codesquad.domain;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Result {
 
     private final Map<Rank, Integer> result = new HashMap<>();
@@ -13,12 +16,16 @@ public class Result {
         return new HashMap<>(result);
     }
 
-    public void addMatchCount(Lottos lottos, WinLotto winLotto) {
-        for (Lotto lotto : lottos.getLottoList()) {
-            Rank rank = lotto.getRank(winLotto);
-            result.put(rank, result.get(rank) + 1);
-        }
+    public void addMatchCount(
+            Lottos lottos,
+            WinLotto winLotto
+    ) {
+        lottos.getLottoList()
+                .stream()
+                .map(lotto -> lotto.getRank(winLotto))
+                .forEach(rank -> result.put(rank, result.get(rank) + 1));
     }
+
     public double getProfit() {
         double sum = 0;
 
