@@ -12,16 +12,8 @@ import kr.codesquad.io.Console;
 
 public class App implements Runnable {
 
-  private final Console console;
-  private final LottoShop lottoShop;
-
-  public App(
-      Console console,
-      LottoShop lottoShop
-  ) {
-    this.console = console;
-    this.lottoShop = lottoShop;
-  }
+  private static final Console console = new Console();
+  private static final LottoShop lottoShop = new LottoShop();
 
   @Override
   public void run() {
