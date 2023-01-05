@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : User가 유효하지 않은 금액을 입력받으면 Exception을 발생시킴">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="delete : LottoResult의 getValue 메서드 삭제">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,13 +113,6 @@
       <workItem from="1672644019169" duration="26231000" />
       <workItem from="1672724915964" duration="54000" />
       <workItem from="1672724971960" duration="11965000" />
-    </task>
-    <task id="LOCAL-00010" summary="refactor : 인터페이스에서 변경한 메서드 이름 적용">
-      <created>1672695225873</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1672695225873</updated>
     </task>
     <task id="LOCAL-00011" summary="feat : printWinningLottos, setWinningNumbers, calculateEarningRate 메서드 구현">
       <created>1672695311294</created>
@@ -456,7 +450,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672906263267</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="delete : LottoResult의 getValue 메서드 삭제">
+      <created>1672906971149</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1672906971149</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,7 +475,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat : WinningLotto 클래스 구현" />
     <MESSAGE value="feat : LottoNumber 클래스 구현" />
     <MESSAGE value="feat : Lotto에 정적 팩토리 메서드 추가, 로또 매칭 메서드 추가" />
     <MESSAGE value="delete : manual 로또 입출력 관련 메서드들 삭제" />
@@ -499,7 +499,8 @@
     <MESSAGE value="feat : main 메서드 내부 구현을 App에게 넘겨서 구현" />
     <MESSAGE value="feat : Rank Enum에 matchCount 메서드를 추가하고 valueOf 메서드를 수정함" />
     <MESSAGE value="feat : User가 유효하지 않은 금액을 입력받으면 Exception을 발생시킴" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : User가 유효하지 않은 금액을 입력받으면 Exception을 발생시킴" />
+    <MESSAGE value="delete : LottoResult의 getValue 메서드 삭제" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete : LottoResult의 getValue 메서드 삭제" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
