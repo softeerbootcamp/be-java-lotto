@@ -21,11 +21,11 @@ public class LottoGenerator {
     }
 
     public List<Lotto> generateLottos(Input input) {
-        List<Lotto> lottos = new ArrayList<>();
-        for(int i=0;i<purchaseCount;i++) {
-            int lottoGenerationMethod = i < manualLottoPurchaseCount ?
-                    LottoGenerationMethod.MANUAL.getMethod() : LottoGenerationMethod.AUTO.getMethod();
-            lottos.add(LottoGenerationMethod.generateLotto(lottoGenerationMethod, input));
+        List<Lotto> lottos = new ArrayList<>(LottoGenerationImpl.of(manualLottoPurchaseCount, new ManualLottoGenerationMethodImpl(input), input).generate());
+        lottos.addAll(LottoGenerationImpl.of(purchaseCount - manualLottoPurchaseCount, new AutoLottoGenerationMethodImpl(), input).generate());
+        System.out.println("수동으로 " + manualLottoPurchaseCount + "개, 자동으로 " + (purchaseCount - manualLottoPurchaseCount) +"개를 구매했습니다");
+        for(Lotto lotto : lottos) {
+            System.out.println(lotto);
         }
         return lottos;
     }
