@@ -11,11 +11,13 @@ public class LottoTicket {
         this.money = money;
     }
 
-    public List<Lotto> getLottoList() {
-        return lottoList;
-    }
+    public LottoResult match(WinningLotto winningLotto) {
+        LottoResult lottoResult = new LottoResult(money);
 
-    public int getMoney() {
-        return money;
+        for (Lotto lotto: lottoList) {
+            lottoResult.putRank(winningLotto.match(lotto));
+        }
+
+        return lottoResult;
     }
 }

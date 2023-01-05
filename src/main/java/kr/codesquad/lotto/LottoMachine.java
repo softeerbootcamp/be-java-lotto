@@ -3,9 +3,10 @@ package kr.codesquad.lotto;
 import kr.codesquad.lotto.io.LottoIOManager;
 import kr.codesquad.lotto.issue.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoMachine {
 
@@ -35,26 +36,19 @@ public class LottoMachine {
     private List<Lotto> issueLotto(int lottoCnt) {
         lottoIssue.setLottoIssueStrategy(issueStrategyMap.get("MANUAL"));
         List<Lotto> manualLottoList = lottoIssue.issue(lottoCnt);
-        int autoLottoCnt = lottoCnt - manualLottoList.size();
 
         lottoIssue.setLottoIssueStrategy(issueStrategyMap.get("AUTO"));
-        List<Lotto> autoLottoList = lottoIssue.issue(autoLottoCnt);
-        manualLottoList.addAll(autoLottoList);
+        List<Lotto> autoLottoList = lottoIssue.issue(lottoCnt - manualLottoList.size());
 
-        return manualLottoList;
+        return Stream
+                .concat(manualLottoList.stream(), autoLottoList.stream())
+                .collect(Collectors.toList());
     }
 
 
-    public Map<Rank, Integer> checkWin(LottoTicket lottoTicket) {
+    public LottoResult checkWin(LottoTicket lottoTicket) {
         WinningLotto winningLotto = getWinningLotto();
-        Map<Rank, Integer> rankStatus = new HashMap<>(Rank.getInitRankStatus());
-        for (Lotto lotto: lottoTicket.getLottoList()) {
-            Rank match = winningLotto.match(lotto);
-            int matchCount = rankStatus.get(match);
-            rankStatus.put(match, matchCount + 1);
-        }
-
-        return rankStatus;
+        return lottoTicket.match(winningLotto);
     }
 
     private WinningLotto getWinningLotto() {
