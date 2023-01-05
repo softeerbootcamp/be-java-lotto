@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 
 public class ManualLottoFactory implements LottoFactory{
 
-    private static final String DELIMITER = ",";
-
     @Override
     public List<Integer> generateLottoNumbers() {
         return InputView.inputLotto();

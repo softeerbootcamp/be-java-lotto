@@ -15,13 +15,6 @@ public class Lottos {
         this.lottoList = new ArrayList<>(lottoList);
     }
 
-    public Lottos(int totalLottoCount) {
-        lottoList = new ArrayList<>();
-        IntStream.range(MIN_LOTTO_COUNT, totalLottoCount)
-                .mapToObj(i -> new Lotto(new RandomLottoFactory()))
-                .forEach(lottoList::add);
-    }
-
     public Lottos addLottos(Lottos lottosBeCombined) {
         this.lottoList.addAll(lottosBeCombined.lottoList);
         return this;

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
+
+    public static final int LOTTO_PRICE = 1000;
     private static final int BONUS_COUNT = 5;
 
     private final List<Integer> lotto;

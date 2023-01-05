@@ -5,21 +5,27 @@ import kr.codesquad.domain.lotto.Lottos;
 import kr.codesquad.domain.Rank;
 import kr.codesquad.domain.Result;
 
-public class OutputView {
+public final class OutputView {
+
+    private OutputView() {
+        throw new AssertionError();
+    }
     public static void showRequestTotalPrice() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
     public static void showRequestManualLottoAmount() {
-        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+        System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
     }
 
-    public static void showRequestManualLottoNumbers() {
-        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+    public static void showRequestManualLottoNumbers(int manualLottoCount) {
+        if(manualLottoCount != 0) {
+            System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
+        }
     }
 
-    public static void showLottoAmount(int amount) {
-        System.out.println(amount + "개를 구매했습니다.");
+    public static void showLottoAmount(int totalLottoCount, int manualLottoCount) {
+        System.out.printf("\n수동으로 %d장, 자동으로 %d개를 구매했습니다.\n", manualLottoCount, totalLottoCount - manualLottoCount);
     }
 
     public static void showLottoNumbers(Lottos lottos) {
@@ -29,15 +35,15 @@ public class OutputView {
     }
 
     public static void showRequestWinNumber() {
-        System.out.println("지난 주 당첨번호를 입력해 주세요.");
+        System.out.println("\n지난 주 당첨번호를 입력해 주세요.");
     }
 
-    public static void showRequestBonusball() {
+    public static void showRequestBonusBall() {
         System.out.println("보너스 볼을 입력해 주세요.");
     }
 
     public static void showResultStatistics() {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---------");
     }
 

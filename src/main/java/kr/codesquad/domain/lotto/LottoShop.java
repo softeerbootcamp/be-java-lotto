@@ -9,15 +9,12 @@ import java.util.stream.IntStream;
 
 public class LottoShop {
 
-    private static final int LOTTO_PRICE = 1000;
-
     private static final int MIN_LOTTO_COUNT = 0;
 
     public Lottos buyLotto(
-            int money,
+            int totalLottoCount,
             int manualLottoCount
     ) {
-        int totalLottoCount = money / LOTTO_PRICE;
         int autoLottoCount = totalLottoCount - manualLottoCount;
 
         Lottos manualLottos = generateManualLotto(manualLottoCount);
@@ -26,7 +23,7 @@ public class LottoShop {
         return manualLottos.addLottos(autoLottos);
     }
 
-    private Lottos generateManualLotto(int manualLottoCount) {
+    public Lottos generateManualLotto(int manualLottoCount) {
         List<Lotto> lottoList = IntStream.range(MIN_LOTTO_COUNT, manualLottoCount)
                 .mapToObj(i -> new Lotto(new ManualLottoFactory()))
                 .collect(Collectors.toList());
@@ -34,7 +31,7 @@ public class LottoShop {
         return new Lottos(lottoList);
     }
 
-    private Lottos generateAutoLotto(int autoLottoCount) {
+    public Lottos generateAutoLotto(int autoLottoCount) {
         List<Lotto> lottoList = IntStream.range(MIN_LOTTO_COUNT, autoLottoCount)
                 .mapToObj(i -> new Lotto(new RandomLottoFactory()))
                 .collect(Collectors.toList());
