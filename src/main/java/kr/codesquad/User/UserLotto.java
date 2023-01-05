@@ -21,14 +21,17 @@ public class UserLotto {
     }
 
     public void addPrizeResultsByIndex(int index) {
+
         this.prizeResults[index]++;
     }
 
     public int[] getPrizeResults() {
+
         return prizeResults;
     }
 
     public void setUserAllLottoCount(int userAllLottoCount) {
+
         this.userAllLottoCount = userAllLottoCount;
     }
 
@@ -43,6 +46,7 @@ public class UserLotto {
     }
 
     public List<EmptyLotto> getUserLottoList() {
+
         return this.userLottoList;
     }
 
