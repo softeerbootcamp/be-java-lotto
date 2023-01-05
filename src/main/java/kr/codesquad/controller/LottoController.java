@@ -6,14 +6,14 @@ import kr.codesquad.model.UserInfo;
 import kr.codesquad.model.lottos.RandomLotto;
 import kr.codesquad.model.lottos.ResultLotto;
 import kr.codesquad.model.lottos.Lotto;
-import kr.codesquad.view.UserConsole;
+import kr.codesquad.service.UserConsoleService;
 
 import java.util.ArrayList;
 
 public class LottoController {
 
     private UserInfo user;
-    private ConsoleHandler consoleHandler;
+    private UserConsoleService userConsoleService;
     private RandomLotto randomLotto = new RandomLotto();
     private Lotto myLotto = new Lotto();
     private ResultLotto resultLotto = new ResultLotto();
@@ -22,7 +22,7 @@ public class LottoController {
 
     public LottoController(UserInfo userInfo) {
         this.user = userInfo;
-        this.consoleHandler = new ConsoleHandler(user);
+        this.userConsoleService = new UserConsoleService(user);
     }
 
     public void start(){
@@ -40,7 +40,7 @@ public class LottoController {
 
     //로또 구매 로직 (구매 금액 + 수동 구매 로또 개수 입력)
     public void purchaseLotto(){
-        int purchasedPrice = consoleHandler.enterPurchasePrice();
+        int purchasedPrice = userConsoleService.enterPurchasePrice();
         int numOfLottoSudong = buyByHand(purchasedPrice);
         int numOfLottoAuto = (purchasedPrice / 1000) - numOfLottoSudong;
         user.insertInfos(purchasedPrice, numOfLottoAuto, numOfLottoSudong);
@@ -50,7 +50,7 @@ public class LottoController {
     public int buyByHand(int purchasedPrice){
         int numOfLottoSudong = 0;
         try{
-            numOfLottoSudong = consoleHandler.enterSudongLottoNumber(purchasedPrice / 1000);
+            numOfLottoSudong = userConsoleService.enterSudongLottoNumber(purchasedPrice / 1000);
         }catch (InputRangeException e){
             System.out.println(e.getMessage());
             buyByHand(purchasedPrice);
@@ -75,7 +75,7 @@ public class LottoController {
     public ArrayList<Integer> startGenerateSudong(){
         ArrayList<Integer> sudongLottoList = new ArrayList<>();
         try{
-            sudongLottoList = consoleHandler.enterSudongLottoList();}
+            sudongLottoList = userConsoleService.enterSudongLottoList();}
         catch (InputCountException e){
             System.out.println(e.getMessage());
             startGenerateSudong();
@@ -87,12 +87,12 @@ public class LottoController {
     public void generateResults(){
         ArrayList<Integer> givenResult = new ArrayList<>();
         try{
-            givenResult = consoleHandler.enterResultList();}
+            givenResult = userConsoleService.enterResultList();}
         catch(InputCountException e){
             e.getMessage();
             generateResults();}
         resultLotto.addLotto(givenResult);
-        resultLotto.setBonusNum(consoleHandler.enterBonusNum());
+        resultLotto.setBonusNum(userConsoleService.enterBonusNum());
     }
 
     //당첨 여부 조회

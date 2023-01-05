@@ -1,14 +1,14 @@
-import kr.codesquad.controller.ConsoleHandler;
+import kr.codesquad.service.UserConsoleService;
 import kr.codesquad.exception.InputCountException;
 import kr.codesquad.model.UserInfo;
 import org.junit.jupiter.api.*;
 
 import java.io.*;
 
-public class ConsoleHandlerTest {
+public class UserConsoleServiceTest {
 
     private UserInfo user;
-    private ConsoleHandler consoleHandler;
+    private UserConsoleService userConsoleService;
     private OutputStream out;
 
 
@@ -16,7 +16,7 @@ public class ConsoleHandlerTest {
     @BeforeEach
     void testSetUp(){
         user = new UserInfo();
-        consoleHandler = new ConsoleHandler(user);
+        userConsoleService = new UserConsoleService(user);
         out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
     }
@@ -37,7 +37,7 @@ public class ConsoleHandlerTest {
         System.setIn(in);
 
         //then
-        Assertions.assertThrows(InputCountException.class, ()->consoleHandler.enterSudongLottoList());
+        Assertions.assertThrows(InputCountException.class, ()-> userConsoleService.enterSudongLottoList());
 
     }
 
@@ -51,7 +51,7 @@ public class ConsoleHandlerTest {
         System.setIn(in);
 
         //then
-        Assertions.assertThrows(InputCountException.class, ()->consoleHandler.enterSudongLottoList());
+        Assertions.assertThrows(InputCountException.class, ()-> userConsoleService.enterSudongLottoList());
 
     }
 
@@ -65,7 +65,7 @@ public class ConsoleHandlerTest {
         System.setIn(in);
 
         //then
-        Assertions.assertThrows(InputCountException.class, ()->consoleHandler.enterSudongLottoList());
+        Assertions.assertThrows(InputCountException.class, ()-> userConsoleService.enterSudongLottoList());
 
     }
 
