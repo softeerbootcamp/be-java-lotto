@@ -4,6 +4,10 @@ import kr.codesquad.lotto.Lotto;
 import kr.codesquad.winLotto.WinCount;
 
 import java.util.*;
+import java.util.Map.Entry;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Console {
     public static Scanner sc = new Scanner(System.in);
@@ -32,11 +36,10 @@ public class Console {
         if(amount != 0) {
             inputView.inputManualLottoNumView();
         }
-        List<Lotto> manualLottos = new ArrayList<>();
-        for (int i = 0; i < amount; i++) {
-            manualLottos.add(new Lotto(inputLottoNum()));
-        }
-        return manualLottos;
+        return Stream.of(
+                new Lotto(inputLottoNum()))
+                .collect(Collectors.toList()
+                );
     }
 
     public List<Integer> inputWinLottoNum() {
@@ -45,13 +48,12 @@ public class Console {
     }
 
     public List<Integer> inputLottoNum() {
-        String winNumInput = sc.nextLine();
-        List<Integer> lottoNum = new ArrayList<>();
-        String[] strList = winNumInput.split(", ");
-        for (int i = 0; i < strList.length; i++) {
-            lottoNum.add(Integer.parseInt(strList[i]));
-        }
-        return lottoNum;
+        String lottoNumInput = sc.nextLine();
+        String[] strList = lottoNumInput.split(", ");
+        return Arrays.stream(strList)
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     public void printAmount(int manualAmount, int autoAmount) {
@@ -59,19 +61,15 @@ public class Console {
     }
 
     public void printLottoNum(List<Lotto> lottoList) {
-        for (int i = 0; i < lottoList.size(); i++) {
-            System.out.println(lottoList.get(i));
-        }
+        lottoList.stream().forEach(System.out::println);
         System.out.println();
     }
 
     public void printLottoResult(int money, Map<WinCount, Integer> lottoResult) {
         System.out.println("\n당첨 통계\n---------");
-
         Arrays.stream(WinCount.values())
                 .forEach(winCount -> {
                     printLottoResultByWinningCount(lottoResult, winCount);
-
                 });
         printProfit(lottoResult, money);
     }
@@ -87,10 +85,11 @@ public class Console {
     }
 
     public void printProfit(Map<WinCount, Integer> lottoResult, int money) {
-        int rewardSum = 0;
-        for (Map.Entry<WinCount, Integer> lotto : lottoResult.entrySet()) {
-            rewardSum += lotto.getKey().getPrice() * lotto.getValue();
-        }
+        int rewardSum = lottoResult
+                .entrySet()
+                .stream()
+                .mapToInt(lotto -> lotto.getKey().getPrice() * lotto.getValue())
+                .sum();
 
         double ans = (((double) (rewardSum - money)) / (double) money) * 100.0;
         System.out.println("총 수익률은 " + Math.floor(ans * 100) / 100.0 + "%입니다.");
