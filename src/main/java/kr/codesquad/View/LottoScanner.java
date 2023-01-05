@@ -1,10 +1,12 @@
 package kr.codesquad.View;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class LottoScanner {
-    public BigInteger setMoney() {
+    public BigInteger scanMoney() {
         try{
             Scanner sc = new Scanner(System.in);
             BigInteger money = sc.nextBigInteger();
@@ -16,9 +18,17 @@ public class LottoScanner {
         }
     }
 
-    public String scanWinNum(){
+    public List<Integer> scanWinNum(){
         Scanner sc = new Scanner(System.in);
         String winStr = sc.nextLine();
-        return winStr;
+        List<Integer> winNum = new ArrayList<>();
+        String[] winStrArr = winStr.split(",");
+        for (int i=0; i<6; i++)
+            winNum.add(Integer.parseInt(winStrArr[i].trim()));
+        return winNum;
+    }
+    public int scanBonus(){
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
     }
 }
