@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : 전체적인 구조 refactor">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : LottoResult를 출력하는 부분을 IOManager에 추가함">
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/IOManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/IOManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/IOManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/IOManagerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoIssue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,13 +111,6 @@
       <workItem from="1672644019169" duration="26231000" />
       <workItem from="1672724915964" duration="54000" />
       <workItem from="1672724971960" duration="11965000" />
-    </task>
-    <task id="LOCAL-00015" summary="feat : import Rank">
-      <created>1672715655509</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1672715655509</updated>
     </task>
     <task id="LOCAL-00016" summary="feat : enum Rank에 winningCount 추가, Console에 inputBonusNumber 구현">
       <created>1672717590081</created>
@@ -459,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672932395232</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="refactor : LottoResult를 출력하는 부분을 IOManager에 추가함">
+      <created>1672934125019</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1672934125019</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +473,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat : ofComma 구현, getMatchRank 삭제" />
     <MESSAGE value="feat : 수동로또 생성부분 구현" />
     <MESSAGE value="feat : 수동로또 생성 구현" />
     <MESSAGE value="feat : LottoNumber로 숫자가 들어오지 않은 경우 Exception 발생" />
@@ -502,7 +497,8 @@
     <MESSAGE value="refactor : App에서 수동, 자동 로또를 리턴하는 것을 LottoStore 내부로 옮김" />
     <MESSAGE value="feature : Lotto, LottoNumber 생성자에 Exception 문구 추가" />
     <MESSAGE value="refactor : 전체적인 구조 refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor : 전체적인 구조 refactor" />
+    <MESSAGE value="refactor : LottoResult를 출력하는 부분을 IOManager에 추가함" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : LottoResult를 출력하는 부분을 IOManager에 추가함" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

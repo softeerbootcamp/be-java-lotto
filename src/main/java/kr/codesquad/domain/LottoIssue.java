@@ -5,12 +5,12 @@ import kr.codesquad.view.IOManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoStore {
+public class LottoIssue {
     private final LottoFactory lottoFactory;
     private final User user;
     private final IOManager ioManager;
 
-    public LottoStore(User user, LottoFactory lottoFactory, IOManager ioManager) {
+    public LottoIssue(User user, LottoFactory lottoFactory, IOManager ioManager) {
         this.user = user;
         this.lottoFactory = lottoFactory;
         this.ioManager = ioManager;
