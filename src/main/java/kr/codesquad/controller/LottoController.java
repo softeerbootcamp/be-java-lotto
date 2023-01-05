@@ -21,21 +21,31 @@ public class LottoController {
     }
 
     public void start() {
-        int money = createLottoMoney();
-
-        int manualLottoCount = createManualLottoCount(money);
-        int autoLottoCount = money / 1000 - manualLottoCount;
-
-        outputView.printUserManualLottoReadMessage();
-        User user = createUserLotto(manualLottoCount, autoLottoCount);
-        outputView.printLottoCount(manualLottoCount, autoLottoCount);
+        User user = createUser();
+        outputView.printLottoCount(user.getManualLottoCount(), user.getAutoLottoCount());
         outputView.printUserLotto(user);
 
         WinningLotto winningLotto = createWinningLotto();
 
         Map<Rank, Integer> result = calculateResult(user, winningLotto);
-        double profitRate = calculateProfitRate(result, money);
+        double profitRate = calculateProfitRate(result, user.getPurchaseMoney());
         outputView.printResult(result, profitRate);
+    }
+
+    private User createUser() {
+        int money = createLottoMoney();
+
+        int manualLottoCount = createManualLottoCount(money);
+        int autoLottoCount = money / Lotto.PRICE - manualLottoCount;
+
+        outputView.printUserManualLottoReadMessage();
+
+        List<Lotto> lottos = new ArrayList<>();
+        for (int count = 0; count < manualLottoCount; count++) {
+            lottos.add(new Lotto(inputView.readLottoNumbers()));
+        }
+        lottos.addAll(lottoMachine.createLottos(autoLottoCount));
+        return new User(money, manualLottoCount, autoLottoCount, lottos);
     }
 
     private int createLottoMoney() {
@@ -46,15 +56,6 @@ public class LottoController {
     private int createManualLottoCount(int money) {
         outputView.printManualLottoCountReadMessage();
         return inputView.readManualLottoCount(money);
-    }
-
-    private User createUserLotto(int manualLottoCount, int autoLottoCount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int count = 0; count < manualLottoCount; count++) {
-            lottos.add(new Lotto(inputView.readLottoNumbers()));
-        }
-        lottos.addAll(lottoMachine.createLottos(autoLottoCount));
-        return new User(lottos);
     }
 
     private WinningLotto createWinningLotto() {
