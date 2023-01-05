@@ -2,7 +2,6 @@ package kr.codesquad.View;
 
 import kr.codesquad.LottoService.Lotto;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface IOManager {
@@ -15,6 +14,7 @@ public interface IOManager {
 
     int inputBonusNumber();
     void printLottoCount(int lottoAutoCount, int lottoManualCount);
-    void printLottoList(List<Lotto> lottoList);
+    void printEarningRate(float earningRate);
 
+    void printLottos(List<Lotto> lottos);
 }
