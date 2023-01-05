@@ -20,7 +20,7 @@ public class Lotto {
 
     public int countCorrectNum(WinLotto winLotto) {
         List<Integer> temp = new ArrayList<>(this.numberList);
-        temp.retainAll(winLotto.getWinLotto().getNumberList());
+        temp.retainAll(winLotto.getNumberList());
         return temp.size();
     }
 

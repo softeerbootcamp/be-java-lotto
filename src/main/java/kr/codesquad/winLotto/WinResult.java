@@ -1,6 +1,7 @@
 package kr.codesquad.winLotto;
 
 import kr.codesquad.lotto.Lotto;
+import kr.codesquad.lotto.Lottos;
 
 import java.util.*;
 
@@ -24,8 +25,8 @@ public class WinResult {
 
     }
 
-    public Map<WinCount, Integer> makeLottoResult(List<Lotto> lottoList, WinLotto winLotto) {
-        for (Lotto lotto : lottoList) {
+    public Map<WinCount, Integer> makeLottoResult(Lottos lottos, WinLotto winLotto) {
+        for (Lotto lotto : lottos.getLottos()) {
             makeLottoResultCount(lotto, winLotto);
         }
         return winResult;

@@ -8,33 +8,40 @@ import java.util.*;
 public class Console {
     public static Scanner sc = new Scanner(System.in);
 
+    public static InputView inputView = new InputView();
+
     public int inputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        inputView.inputMoneyView();
         int money = Integer.parseInt(sc.nextLine());
         return money;
     }
 
     public int inputBonusNum() {
-        System.out.println("보너스 볼을 입력해 주세요.");
+        inputView.inputBonusNumView();
         int bonus = Integer.parseInt(sc.nextLine());
         return bonus;
     }
 
     public int inputManualLottoAmount() {
-        System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
+        inputView.inputManualLottoAmountView();
         int manualAmount = Integer.parseInt(sc.nextLine());
         return manualAmount;
     }
 
     public List<Lotto> inputManualLottoNum(int amount) {
         if(amount != 0) {
-            System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
+            inputView.inputManualLottoNumView();
         }
         List<Lotto> manualLottos = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             manualLottos.add(new Lotto(inputLottoNum()));
         }
         return manualLottos;
+    }
+
+    public List<Integer> inputWinLottoNum() {
+        inputView.inputWinLottoNumView();
+        return inputLottoNum();
     }
 
     public List<Integer> inputLottoNum() {

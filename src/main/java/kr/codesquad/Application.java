@@ -3,6 +3,7 @@ package kr.codesquad;
 import kr.codesquad.io.Console;
 import kr.codesquad.lotto.Lotto;
 import kr.codesquad.lotto.LottoService;
+import kr.codesquad.lotto.Lottos;
 import kr.codesquad.winLotto.WinCount;
 import kr.codesquad.winLotto.WinLotto;
 
@@ -25,7 +26,7 @@ public class Application {
 
     public void start() {
         int money = console.inputMoney();
-        List<Lotto> lottos = buyLotto(money);
+        Lottos lottos = new Lottos(buyLotto(money));
 
         WinLotto winLotto = inputWinLotto();
         Map<WinCount, Integer> lottoResult = lottoService.makeLottoResult(lottos, winLotto);
@@ -43,7 +44,7 @@ public class Application {
     }
 
     private WinLotto inputWinLotto() {
-        return new WinLotto(console.inputLottoNum(), console.inputBonusNum());
+        return new WinLotto(console.inputWinLottoNum(), console.inputBonusNum());
     }
 
 }

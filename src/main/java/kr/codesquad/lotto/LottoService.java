@@ -17,8 +17,8 @@ public class LottoService {
         return lottoPurchase.buyLotto(manualAmount, autoAmount);
     }
 
-    public Map<WinCount, Integer> makeLottoResult(List<Lotto> lottoList, WinLotto winLotto) {
-        return winResult.makeLottoResult(lottoList, winLotto);
+    public Map<WinCount, Integer> makeLottoResult(Lottos lottos, WinLotto winLotto) {
+        return winResult.makeLottoResult(lottos, winLotto);
     }
 
 }

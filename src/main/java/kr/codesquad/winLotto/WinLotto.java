@@ -17,7 +17,7 @@ public class WinLotto {
         this.bonusNum = bonusNum;
     }
 
-    public List<Integer> getWinLotto() {
+    public List<Integer> getNumberList() {
         return numberList;
     }
 
