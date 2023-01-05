@@ -13,7 +13,7 @@ public class ExceptionHandler {
   public void runWithHandler(Runnable runnable) {
     try {
       runnable.run();
-    } catch (IllegalArgumentException e) {
+    } catch (RuntimeException e) {
       console.printErrorMessage(e);
     }
   }
