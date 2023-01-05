@@ -53,7 +53,7 @@ public class LottoProcedure {
             takeActualInput();  // 로또 번호, 보너스 번호 입력
             // TODO: 입력 로또번호 parameter로 주입받는 method로 분리하기
 
-            matchLottoSequences(this.lottos, this.winningLotto);
+            matchLottoSequences(this.winningLotto, this.lottos);
 
             printStatistics();
         } catch(IllegalArgumentException e) {
@@ -129,7 +129,7 @@ public class LottoProcedure {
         }
     }
 
-    int matchLotto (Lotto winning, Lotto given) {  // 실제 당첨번호(입력), 생성된 번호
+    int matchLotto (final Lotto winning, Lotto given) {  // 실제 당첨번호(입력), 생성된 번호
         // TODO: 로또 매칭 담당하는 클래스로 분리
         int cnt = 0;
         matchBonus = false;
