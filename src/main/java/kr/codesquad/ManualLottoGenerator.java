@@ -17,9 +17,10 @@ public class ManualLottoGenerator implements LottoGenerator {
         return convertStringToRow(manualRowString);
     }
 
-    public void checkValidation(String manualRowString) {
-        convertStringToRow(manualRowString);
+    public Row checkValidation(String manualRowString) {
+        Row row = convertStringToRow(manualRowString);
         this.manualRowString = manualRowString;
+        return row;
     }
 
     private Row convertStringToRow(String rowByString) {

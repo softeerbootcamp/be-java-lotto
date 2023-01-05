@@ -1,6 +1,7 @@
 package kr.codesquad;
 
 import kr.codesquad.domain.Lotto;
+import kr.codesquad.domain.Row;
 import kr.codesquad.domain.Statistic;
 
 public class LottoController {
@@ -25,5 +26,9 @@ public class LottoController {
 
     public void addAutoRowsToLotto(Lotto lotto, int countOfAutoRows) {
         lotto.addRowToLotto(countOfAutoRows, autoLottoGenerator);
+    }
+
+    public Row createManualRow(String input) {
+        return manualLottoGenerator.checkValidation(input);
     }
 }

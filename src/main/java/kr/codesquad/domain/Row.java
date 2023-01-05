@@ -35,6 +35,7 @@ public class Row {
     }
 
 
+
     public void compare(WinningNumbers winningNumbers) {
         List<LottoNumber> answers = winningNumbers.getRow().values;
         for (LottoNumber answer : answers) {

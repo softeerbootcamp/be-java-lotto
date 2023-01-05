@@ -62,19 +62,11 @@ public class LottoViewer {
 
     public WinningNumbers inputWinningNumbers() throws IOException {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-
-        /*** 추가 개선 가능??***/
-        List<LottoNumber> answerList = new ArrayList<>();
-        for (int i = 0; i < Row.COLUMN; i++) {
-            answerList.add(new LottoNumber(st.nextToken()));
-        }
-        Row row = Row.createRow(answerList);
+        Row winningRow = lottoController.createManualRow(br.readLine());
         System.out.println("보너스 볼을 입력해 주세요.");
         LottoNumber bonusNumber = new LottoNumber(br.readLine());
 
-        return new WinningNumbers(row, bonusNumber);
+        return new WinningNumbers(winningRow, bonusNumber);
     }
 
     public void result(Lotto lotto, WinningNumbers winningNumbers) {

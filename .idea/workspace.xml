@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (o)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/exception/DuplicateLottoNumberException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/exception/WinningNumbersException.java" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat: 당첨번호 입력시에도 중복된 경우에 대한 DuplicateLottoNumberException 처리&#10;&#10;## How&#10;당첨 번호와 보너스 숫자를 입력하는 로직과 수동 로또를 생성하는 로직이 달라 당첨번호 입력시에도 ManualLottoGenerator를 사용하여 일괄적으로 처리하도록 개선.&#10;&#10;## Todo&#10;그 과정에서 LottoNumber -&gt; Integer 타입으로 다시 deserialize하는 메서드를 만들었기 때문에 불필요한 이 과정을 refactoring 할 예정.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoViewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Statistic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/WinningNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/WinningNumbers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/ManualLottoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/ManualLottoGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Row.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,7 +285,21 @@
       <option name="project" value="LOCAL" />
       <updated>1672903296995</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="feat: DuplicateLottoNumberException &amp; WinningNumbersException 구현&#10;&#10;## What&#10;한 로또에 중복된 숫자를 입력하는 경우에 대한 DuplicateLottoNumberException 와&#10;보너스 숫자와 당첨번호가 달라야 하는 WinningNumbersException 구현&#10;&#10;## Todo&#10;당첨 번호와 보너스 숫자를 입력하는 로직과 수동 로또를 생성하는 로직이 달라 당첨번호 입력시에도 ManualLottoGenerator를 사용하여 일괄적으로 처리하도록 개선할 예정">
+      <created>1672905384186</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1672905384186</updated>
+    </task>
+    <task id="LOCAL-00030" summary="feat: 당첨번호 입력시에도 중복된 경우에 대한 DuplicateLottoNumberException 처리&#10;&#10;## How&#10;당첨 번호와 보너스 숫자를 입력하는 로직과 수동 로또를 생성하는 로직이 달라 당첨번호 입력시에도 ManualLottoGenerator를 사용하여 일괄적으로 처리하도록 개선.&#10;&#10;## Todo&#10;그 과정에서 LottoNumber -&gt; Integer 타입으로 다시 deserialize하는 메서드를 만들었기 때문에 불필요한 이 과정을 refactoring 할 예정.">
+      <created>1672907225018</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1672907225018</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,8 +317,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: Row values print 기능 추가" />
-    <MESSAGE value="refactor: Row class 필드명 result -&gt; match 수정, 수익률 소수점 두자리 출력" />
     <MESSAGE value="fix: 오타 수정, Rank enum 필드값 final 처리" />
     <MESSAGE value="refactor: 컨트롤러와 서비스 레벨을 두어 계층적으로 처리하도록 구조 수정" />
     <MESSAGE value="fix: 랜덤 로또번호 발급방식 shuffle()과 sort()를 활용하는 걸로 수정" />
@@ -330,7 +340,9 @@
     <MESSAGE value="feat : 수동 구매 로또 수 0 이상이어야 하는 ManualLottoCntException 생성" />
     <MESSAGE value="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (x)" />
     <MESSAGE value="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (o)" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : 부적절한 입력 금액에 대한 MoneyNotValidException 처리&#10;&#10;- 1000원 미만의 금액 (o)&#10;- 1500원 등 1000원 단위로 나누어 떨어지지 않는 금액 (o)" />
+    <MESSAGE value="feat: DuplicateLottoNumberException &amp; WinningNumbersException 구현&#10;&#10;## What&#10;한 로또에 중복된 숫자를 입력하는 경우에 대한 DuplicateLottoNumberException 와&#10;보너스 숫자와 당첨번호가 달라야 하는 WinningNumbersException 구현&#10;&#10;## Todo&#10;당첨 번호와 보너스 숫자를 입력하는 로직과 수동 로또를 생성하는 로직이 달라 당첨번호 입력시에도 ManualLottoGenerator를 사용하여 일괄적으로 처리하도록 개선할 예정" />
+    <MESSAGE value="feat: 당첨번호 입력시에도 중복된 경우에 대한 DuplicateLottoNumberException 처리&#10;&#10;## How&#10;당첨 번호와 보너스 숫자를 입력하는 로직과 수동 로또를 생성하는 로직이 달라 당첨번호 입력시에도 ManualLottoGenerator를 사용하여 일괄적으로 처리하도록 개선.&#10;&#10;## Todo&#10;그 과정에서 LottoNumber -&gt; Integer 타입으로 다시 deserialize하는 메서드를 만들었기 때문에 불필요한 이 과정을 refactoring 할 예정." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 당첨번호 입력시에도 중복된 경우에 대한 DuplicateLottoNumberException 처리&#10;&#10;## How&#10;당첨 번호와 보너스 숫자를 입력하는 로직과 수동 로또를 생성하는 로직이 달라 당첨번호 입력시에도 ManualLottoGenerator를 사용하여 일괄적으로 처리하도록 개선.&#10;&#10;## Todo&#10;그 과정에서 LottoNumber -&gt; Integer 타입으로 다시 deserialize하는 메서드를 만들었기 때문에 불필요한 이 과정을 refactoring 할 예정." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_lotto$Main.ic" NAME="Main Coverage Results" MODIFIED="1672722343647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
