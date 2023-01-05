@@ -41,9 +41,11 @@ public class UserLotto extends BaseLotto{
         return manualLotto;
     }
 
-    public Integer getBonusLottoInput() {
+    public Integer getBonusLottoInput(List<Integer> lastLotto) {
         System.out.println("보너스 볼을 입력해주세요. ");
         this.bonusBall = userConsole.enterInteger();
+        //to-do : 지난 주 당첨 번호와 보너스 볼이 중복되지 않도록 예외 해야 함
+        if(lastLotto.contains(this.bonusBall)) throw new CustomException(ErrorCode.NUMBER_ALREADY_EXIST);
         return bonusBall;
     }
 
