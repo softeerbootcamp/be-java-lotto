@@ -9,14 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserInput {
-    private final InputHandler inputHandler;
-    private final UserLotto userLotto;
-    private final Utility utility;
+    private static InputHandler inputHandler = new InputHandler();
+    private static UserLotto userLotto = new UserLotto();
+    private static Utility utility = new Utility();
 
     public UserInput() {
-        inputHandler = new InputHandler();
-        userLotto = new UserLotto();
-        utility = new Utility();
+
     }
 
     public int userHowManyLotto() throws CustomException {
@@ -37,13 +35,23 @@ public class UserInput {
             userLotto.getUserLottoList().add(emptyLotto);
         }
     }
+
     public List<Integer> userInputJackpotNum() throws CustomException {
         System.out.printf("당첨 번호를 입력해 주세요.\n");
         String[] userInputString = inputHandler.getStringInput().split(",");
         List<Integer> userInputJackpotNum = new ArrayList<>();
-        for (String num:userInputString){
+        for (String num : userInputString) {
             userInputJackpotNum.add(Integer.parseInt(num));
         }
         return userInputJackpotNum;
+    }
+
+    public int userSetBonusNum(List<Integer> JACKPOT_NUM) throws CustomException {
+        System.out.printf("보너스 번호를 입력해 주세요.\n");
+        int bonus = inputHandler.getIntegerInput();
+        if (JACKPOT_NUM.contains(bonus)) {
+            throw new CustomException("보너스 번호는 원개 번호들과 중복돠어선 안된다.");
+        }
+        return bonus;
     }
 }
