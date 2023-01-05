@@ -1,27 +1,42 @@
 package kr.codesquad;
 
-import kr.codesquad.input.Input;
+import kr.codesquad.IO.Input;
+import kr.codesquad.IO.Output;
 import kr.codesquad.lotto.Lotto;
+import kr.codesquad.lotto.WinningLotto;
 import kr.codesquad.lottoGeneration.LottoGenerator;
-import kr.codesquad.lottoStatistic.LottoResult;
-import kr.codesquad.lottoStatistic.LottoStatisticImpl;
+import kr.codesquad.lottoStatistic.StatisticImpl;
 
 import java.util.List;
 import java.util.Map;
 
 public class LottoGame {
     private final Input input;
+    private final Output output;
 
-    private final List<Lotto> lottos;
-
-    private LottoGame(Input input) {
+    private LottoGame(Input input, Output output) {
         this.input = input;
-        lottos = LottoGenerator.of(input.moneyInput(), input.manualLottoCountInput()).generateLottos(input);
-        Map<Rank, Integer> lottoResult = LottoResult.of(new LottoStatisticImpl()).calculate(input.jackpotNumberInput()
-                , input.bonusNumberInput(), lottos);
+        this.output = output;
+
+        int money = this.input.moneyInput();
+        int manualCount = this.input.manualLottoCountInput();
+
+        List<Lotto> lottos = new LottoGenerator().generate(money, manualCount);
+
+        output.generatedLottoResultOutput(manualCount, money/Lotto.PRICE, lottos);
+
+        WinningLotto winningLotto = WinningLotto.of(input.jackpotNumberInput(), input.bonusNumberInput());
+
+        Map<Rank, Integer> lottoResult = winningLotto.getLottoResult(lottos);
+
+        output.lottoResultOutput(lottoResult);
+
+        output.lottoProfitOutput(new StatisticImpl(), money, lottoResult);
     }
 
-    public static LottoGame of(Input input) {
-        return new LottoGame(input);
+
+
+    public static LottoGame of(Input Input, Output output) {
+        return new LottoGame(Input, output);
     }
 }
