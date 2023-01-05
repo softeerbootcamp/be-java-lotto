@@ -49,6 +49,16 @@ public class InputView {
         }
     }
 
+    public List<Integer> readManualLottoNumbers() {
+        List<Integer> numbers = readLottoNumbers();
+        return numbers;
+    }
+
+    public List<Integer> readWinningLottoNumbers() {
+        List<Integer> numbers = readLottoNumbers();
+        return numbers;
+    }
+
     public List<Integer> readLottoNumbers() {
         while(true) {
             try {
