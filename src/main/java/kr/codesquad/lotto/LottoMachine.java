@@ -46,7 +46,7 @@ public class LottoMachine {
     }
 
 
-    public LottoResult checkWin(LottoTicket lottoTicket) {
+    public LottoResult check(LottoTicket lottoTicket) {
         WinningLotto winningLotto = lottoIOManager.readWinningLottoNumber();
         return lottoTicket.match(winningLotto);
     }

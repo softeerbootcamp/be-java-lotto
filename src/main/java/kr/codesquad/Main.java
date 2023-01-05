@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         LottoMachine lottoMachine = LottoMachineFactory.createLottoMachine();
         LottoTicket lottoTicket = lottoMachine.buy();
-        LottoResult lottoResult = lottoMachine.checkWin(lottoTicket);
+        LottoResult lottoResult = lottoMachine.check(lottoTicket);
         lottoResult.print();
     }
 }
