@@ -23,14 +23,14 @@ public class WindowManager extends Frame{
         currentPanel.setVisible(true);
     }
 
-    public void setAmountOfManulLottoPanel(int maxAmount){
+    public void setAmountOfManualLottoPanel(int maxAmount){
         setPanel(
                 new SingleInputPanel(
                         String.format("수동 개수를 입력해 주세요(최대 %d개)", maxAmount),
                         e->VisualLottoGame.getVisualLottoGame().getAmountOfManualLotto()));
     }
 
-    public void setManualLottoPanel(int nManualLeft) {
+    public void setOneManualLottoPanel(int nManualLeft) {
         setPanel(
                 new SingleInputPanel(
                         String.format("구매 번호를 입력해 주세요.\n(남은 수동 개수 %d개)", nManualLeft),
@@ -46,5 +46,9 @@ public class WindowManager extends Frame{
 
     public void setPurchasedLottoPanel() {
         //TODO : 구매한 로또 판낼 작성
+    }
+
+    public void setLottoResultPanel() {
+        //TODO : 로또 결과 판낼 작성
     }
 }
