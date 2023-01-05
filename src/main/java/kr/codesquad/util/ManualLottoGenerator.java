@@ -7,7 +7,7 @@ import kr.codesquad.view.InputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManualLottoGenerator implements LottoGenerator{
+public class ManualLottoGenerator implements LottoGenerator {
 
     @Override
     public List<Lotto> generate(Money money) {
@@ -26,6 +26,7 @@ public class ManualLottoGenerator implements LottoGenerator{
         }
         return new Lotto(numberList);
     }
+
     private int convertInputNumber(String inputNumber) {
         //NumberFormatException 생각해야함
         return Integer.parseInt(inputNumber);

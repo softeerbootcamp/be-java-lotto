@@ -21,7 +21,7 @@ public class LottoResult {
     }
 
     public double calculateEarningRate(Money money) {
-        double earnMoney = (double)calculateEarnedMoney();
+        double earnMoney = (double) calculateEarnedMoney();
         return money.calculateEarningRate(earnMoney);
     }
 

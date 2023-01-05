@@ -26,6 +26,7 @@ public class LottoController {
         Money money = new Money(Money.convertStringToMoney(inputView.inputMoney()));
         return money;
     }
+
     public Money issueManualLotto(Money money) throws IOException {
         outputView.printMaulLottoBuyText();
         int manualLottoCount = inputView.inputCountOfManualLotto();
@@ -35,6 +36,7 @@ public class LottoController {
         lottoMachine.issueLotto(manualLottoMoney, new ManualLottoGenerator());
         return manualLottoMoney;
     }
+
     //로또 초기화 및 발급
     public void issueLotto(Money money, Money manualLottoMoney) {
         lottoMachine.issueLotto(money, new AutoLottoGenerator());

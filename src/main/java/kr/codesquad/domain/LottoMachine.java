@@ -13,6 +13,7 @@ public class LottoMachine {
     public LottoMachine() {
         lottos = new ArrayList<>();
     }
+
     //로또 금액에 맞는 로또 금액 초기화
     public LottoMachine(Money money, LottoGenerator lottoGenerator) {
         this.lottos = lottoGenerator.generate(money);
@@ -21,6 +22,7 @@ public class LottoMachine {
     public void issueLotto(Money money, LottoGenerator lottoGenerator) {
         lottos.addAll(lottoGenerator.generate(money));
     }
+
     //로또 결과를 알려준다.
     public LottoResult calculateResult(WinningLotto winningLotto) {
         LottoResult lottoResult = new LottoResult();
