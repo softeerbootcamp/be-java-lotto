@@ -10,13 +10,12 @@ public class LottoPurchase {
 
     public final LottoManualFactory lottoManualFactory = new LottoManualFactory();
 
-    public List<Lotto> buyLotto(int money) {
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < money / LOTTO_PRICE; i++) {
+    public List<Lotto> buyLotto(int amount , List<Lotto> lottos) {
+        for (int i = 0; i < amount; i++) {
             Lotto lotto = lottoAutoFactory.makeLotto();
-            lottoList.add(lotto);
+            lottos.add(lotto);
         }
-        return lottoList;
+        return lottos;
     }
 
 }

@@ -10,31 +10,31 @@ public class Console {
 
     public int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        int money = sc.nextInt();
+        int money = Integer.parseInt(sc.nextLine());
         return money;
     }
 
     public Lotto inputWinNum() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        sc.nextLine();
         return lottoNumStringToInt();
     }
 
     public int inputBonusNum() {
         System.out.println("보너스 볼을 입력해 주세요.");
-        int bonus = sc.nextInt();
+        int bonus = Integer.parseInt(sc.nextLine());
         return bonus;
     }
 
     public int inputManualLottoAmount() {
         System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
-        int manualAmount = sc.nextInt();
+        int manualAmount = Integer.parseInt(sc.nextLine());
         return manualAmount;
     }
 
     public List<Lotto> inputManualLottoNum(int amount) {
-        System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
-        sc.nextLine();
+        if(amount != 0) {
+            System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
+        }
         List<Lotto> manualLottos = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             manualLottos.add(lottoNumStringToInt());
@@ -52,8 +52,8 @@ public class Console {
         return lotto;
     }
 
-    public void printAmount(int amount) {
-        System.out.println(amount + "개를 구입했습니다. ");
+    public void printAmount(int manualAmount, int autoAmount) {
+        System.out.println("수동으로 " + manualAmount + "장, 자동으로 " + autoAmount + "개를 구매했습니다.");
     }
 
     public void printLottoNum(List<Lotto> lottoList) {

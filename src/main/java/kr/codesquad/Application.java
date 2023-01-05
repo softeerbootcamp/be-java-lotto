@@ -29,8 +29,8 @@ public class Application {
         int manualAmount = console.inputManualLottoAmount();
         int lottoAmount = money / LOTTO_PRICE;
         List<Lotto> manualLottos = console.inputManualLottoNum(manualAmount);
-        console.printAmount(lottoAmount);
-        List<Lotto> lottos = lottoService.buyLotto(money);
+        console.printAmount(manualAmount, lottoAmount - manualAmount);
+        List<Lotto> lottos = lottoService.buyLotto(lottoAmount - manualAmount, manualLottos);
         console.printLottoNum(lottos);
         WinLotto winLotto = new WinLotto(console.inputWinNum(), console.inputBonusNum());
         Map<WinCount, Integer> lottoResult = lottoService.makeLottoResult(lottos, winLotto);
