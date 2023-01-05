@@ -9,7 +9,7 @@ public class Lotto {
 
     private Lotto(Set<LottoNumber> lotto) {
         if (lotto.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또에는 6개의 숫자가 필요합니다.");
         }
 
         this.lotto = lotto;

@@ -19,7 +19,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     private LottoNumber(int no) {
         if (no < LOTTO_START_NUMBER || no > LOTTO_END_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("유효한 범위 내의 로또 넘버가 아닙니다.");
         }
 
         this.no = no;
