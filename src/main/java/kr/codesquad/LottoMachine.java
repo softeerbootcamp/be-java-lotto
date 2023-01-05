@@ -19,14 +19,17 @@ public class LottoMachine {
     }
 
     public Lotto buyLotto() {
-        int money = ui.inputMoney();
+        int money = ui.inputMoney(); // 구입금액 입력
 
-        if(money < 0) throw new CustomException("입력된 구입금액이 음수입니다.");
-
+        int possibleLottoCount = money / lottoPrice;
+        // 수동으로 구매할 로또 개수 입력
         int manualLottoCount = ui.inputManualLottoCount();
+        if(manualLottoCount > possibleLottoCount) throw new CustomException("금액이 충분하지 않습니다.");
+
+        // 수동으로 구매할 로또 번호 입력
         List<List<Integer>> manualLottoList = ui.inputManualLottoList(manualLottoCount);
 
-        int autoLottoCount = money / this.lottoPrice - manualLottoCount;
+        int autoLottoCount = possibleLottoCount - manualLottoCount;
         System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 " + autoLottoCount + "개를 구매했습니다.");
 
         return new ManualLotto(manualLottoList, new AutoLotto(shuffle(autoLottoCount), null));
