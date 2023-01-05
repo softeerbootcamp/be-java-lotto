@@ -43,6 +43,7 @@ public class LottoController {
         return inputView.readMoney();
     }
 
+
     private int createManualLottoCount() {
         outputView.printManualLottoCountReadMessage();
         return inputView.readManualLottoCount();
