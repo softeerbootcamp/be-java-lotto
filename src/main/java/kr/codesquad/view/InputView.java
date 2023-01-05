@@ -25,7 +25,7 @@ public class InputView {
                 MoneyValidator.validate(money);
                 return money;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -37,7 +37,7 @@ public class InputView {
                 ManualLottoCountValidator.validate(money, manualLottoCount);
                 return manualLottoCount;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -49,7 +49,7 @@ public class InputView {
                 BonusNumberValidator.validate(numbers, bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -59,7 +59,7 @@ public class InputView {
             try {
                 return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println(NUMBER_FORMAT_ERROR_MESSAGE);
+                OutputView.printErrorMessage(NUMBER_FORMAT_ERROR_MESSAGE);
             }
         }
     }
@@ -71,7 +71,7 @@ public class InputView {
                 LottoNumbersValidator.validate(numbers);
                 return numbers;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -84,7 +84,7 @@ public class InputView {
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
             } catch (NumberFormatException e) {
-                System.out.println(LOTTO_NUMBERS_FORMAT_ERROR_MESSAGE);
+                OutputView.printErrorMessage(LOTTO_NUMBERS_FORMAT_ERROR_MESSAGE);
             }
         }
     }

@@ -12,6 +12,10 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    public static void printErrorMessage(String message) {
+        System.out.println("[ERROR] " + message);
+    }
+
     public void printMoneyReadMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
@@ -46,7 +50,7 @@ public class OutputView {
     }
 
     public void printResult(Map<Rank, Integer> result, double profitRate) {
-        System.out.println("당첨 통계\n----------");
+        System.out.println("\n당첨 통계\n----------");
 
         List<Rank> ranks = Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.NOTHING)
