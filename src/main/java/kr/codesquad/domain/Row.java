@@ -1,5 +1,6 @@
 package kr.codesquad.domain;
 
+import kr.codesquad.exception.ColumnOverflowException;
 import kr.codesquad.exception.DuplicateLottoNumberException;
 
 import java.util.*;
@@ -12,28 +13,35 @@ public class Row {
     private boolean isBonus;
     public static final int COLUMN = 6;
 
+    protected Row(List<LottoNumber> numbers) {
+        this.addValues(numbers);
+    }
 
     public static Row createRow(List<LottoNumber> numbers) {
         lottoIntegersDuplicateCheck(extractIntegersList(numbers));
-        Row row = new Row();
-        row.addValues(numbers);
-        return row;
+        checkValuesOverColumn(numbers);
+        return new Row(numbers);
     }
 
-    public static List<Integer> extractIntegersList(List<LottoNumber> numbers) {
+    private static List<Integer> extractIntegersList(List<LottoNumber> numbers) {
         return numbers.stream()
                 .map(LottoNumber::getNumber)
                 .collect(Collectors.toList());
     }
 
-    public static void lottoIntegersDuplicateCheck(List<Integer> numList) {
-        Set<Integer> numSet = new HashSet<>(numList);
-
-        if(numSet.size()!= numList.size()){
-            throw new DuplicateLottoNumberException();
+    private static void checkValuesOverColumn(List<LottoNumber> numbers) {
+        if (numbers.size() != COLUMN) {
+            throw new ColumnOverflowException();
         }
     }
 
+    public static void lottoIntegersDuplicateCheck(List<Integer> numList) {
+        Set<Integer> numSet = new HashSet<>(numList);
+
+        if (numSet.size() != numList.size()) {
+            throw new DuplicateLottoNumberException();
+        }
+    }
 
 
     public void compare(WinningNumbers winningNumbers) {
