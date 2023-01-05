@@ -11,6 +11,8 @@ public class ConsoleHandlerTest {
     private ConsoleHandler consoleHandler;
     private OutputStream out;
 
+
+    //테스트 환경 세팅
     @BeforeEach
     void testSetUp(){
         user = new UserInfo();
@@ -19,9 +21,11 @@ public class ConsoleHandlerTest {
         System.setOut(new PrintStream(out));
     }
 
+    //인풋 스트림 설정
     protected void systemIn(String input){
         System.setIn(new ByteArrayInputStream(input.getBytes()));
     }
+
 
     @DisplayName("수동 구매 로직 테스트 - 이상한 형태로 입력 시")
     @Test

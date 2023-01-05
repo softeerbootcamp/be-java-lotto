@@ -19,6 +19,7 @@ public class UserConsoleTest {
     private UserInfo user;
     private ByteArrayOutputStream out;
 
+    //테스트 환경 세팅
     @BeforeEach
     void testSetUp() {
         user = new UserInfo();
@@ -27,6 +28,8 @@ public class UserConsoleTest {
         System.setOut(new PrintStream(out));
     }
 
+
+    //인풋 스트림 설정
     protected void systemIn(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
     }
