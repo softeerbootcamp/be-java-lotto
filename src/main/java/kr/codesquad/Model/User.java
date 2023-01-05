@@ -23,7 +23,12 @@ public class User {
         autoLottoAmount = money.divide(new BigInteger(Lotto.LOTTO_PRICE)).intValue();
     }
     public int getLottoAmount() {
+<<<<<<< HEAD
         return lottoAmount;
+=======
+        this.lottoAmount = this.money.divide(new BigInteger(Lotto.LOTTO_PRICE)).intValue();
+        return this.lottoAmount;
+>>>>>>> cbaed76 (변수명 변경 및 코드 정리)
     }
 
     public int getAutoLottoAmount(){

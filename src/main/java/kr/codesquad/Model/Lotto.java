@@ -21,7 +21,11 @@ public class Lotto {
 
     Lotto(List<Integer> lottoNum) {
         for(int i = 0; i < LOTTO_NUM_LENGTH; ++i) {
+<<<<<<< HEAD
             this.num[i] = lottoNum.get(i);
+=======
+            this.num[i] = (Integer)lottoNum.get(i);
+>>>>>>> cbaed76 (변수명 변경 및 코드 정리)
         }
 
         Arrays.sort(num);

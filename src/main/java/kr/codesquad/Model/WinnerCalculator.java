@@ -11,8 +11,15 @@ public class WinnerCalculator {
     public Map<Price, Integer> winnerCount = new HashMap<>();
 
     public void initWinnerCount() {
+<<<<<<< HEAD
         for(Price price: Price.values()) {
             winnerCount.put(price, 0);
+=======
+        Price[] prices = Price.values();
+        for(int i = 0; i < prices.length; ++i) {
+            Price price = prices[i];
+            this.winnerCount.put(price, 0);
+>>>>>>> cbaed76 (변수명 변경 및 코드 정리)
         }
     }
 

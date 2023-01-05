@@ -28,6 +28,7 @@ public class LottoController {
         lottoPrinter.print(mg.getResultMsg(lottoService));
     }
 
+<<<<<<< HEAD
     private BigInteger getInitMoney(){
         lottoPrinter.print(mg.getMoneyReqMsg());
         BigInteger money = lottoScanner.setMoney();
@@ -53,6 +54,42 @@ public class LottoController {
             if (price == null) continue;
             winnerCalculator.updateWinnerCount(price);
             user.updateEarn(price);
+=======
+    public void start() {
+        Lotto.initLotto();
+        User user = new User(getInitMoney());
+        user.buyLotto(autoLottoGenerator);
+        getBuyResult(user);
+        WinLotto winLotto = new WinLotto(getWinNumber(), getBonusNumber());
+        winnerCalculator.initWinnerCount();
+        winnerCalculator.calcResult(user, winLotto);
+        lottoPrinter.print(mg.getResultMsg(winnerCalculator));
+        lottoPrinter.print(mg.bonusReqMsg);
+    }
+
+    private List<Integer> getWinNumber() {
+        lottoPrinter.print(mg.winRequestMsg);
+        return lottoScanner.scanWinNum();
+    }
+
+    private int getBonusNumber() {
+        lottoPrinter.print(mg.bonusReqMsg);
+        return lottoScanner.scanBonus();
+    }
+
+    private BigInteger getInitMoney() {
+        lottoPrinter.print(mg.moneyReqMsg);
+        return lottoScanner.scanMoney();
+    }
+
+    private void getBuyResult(User user) {
+        lottoPrinter.print(mg.getBuyMsg(user.getLottoAmount()));
+        Iterator<Lotto> iterator = user.lottoList.listIterator();
+
+        while(iterator.hasNext()) {
+            Lotto lotto = (Lotto)iterator.next();
+            lottoPrinter.print(Arrays.asList(lotto.num).toString());
+>>>>>>> cbaed76 (변수명 변경 및 코드 정리)
         }
     }
 }

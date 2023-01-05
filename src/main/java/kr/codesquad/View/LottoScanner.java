@@ -11,7 +11,11 @@ public class LottoScanner {
             Scanner sc = new Scanner(System.in);
             BigInteger money = sc.nextBigInteger();
             return money;
+<<<<<<< HEAD
         } catch (Exception e){
+=======
+        } catch (Exception e) {
+>>>>>>> cbaed76 (변수명 변경 및 코드 정리)
             System.out.println("error");
             System.exit(1);
             return null;
