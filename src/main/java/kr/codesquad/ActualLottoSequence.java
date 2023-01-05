@@ -9,11 +9,12 @@ public class ActualLottoSequence extends Lotto {
 
     private final int bonus;
 
-
     public ActualLottoSequence(List<Integer> myLotto, int bonus) {
-        super(myLotto);
+        super(myLotto);  // 실제 로또 번호
         this.bonus = bonus;
-    }
 
+        if(myLotto.contains(bonus))
+            throw new IllegalArgumentException("보너스 번호와 로또 번호가 중복됩니다.");
+    }
 
 }
