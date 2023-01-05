@@ -33,6 +33,7 @@ public class UserConsole {
             Utility.checkNumberError(inputNumber);
         }catch(InputMismatchException e){
             System.out.println("정수만 입력 가능합니다");
+            throw e;
         }catch(CustomException e){
             //e.printStackTrace(); //이렇게 해주면 중단되지 않음
             throw e;
