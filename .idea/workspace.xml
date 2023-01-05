@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : io하는 부분을 Controller로 변경">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : automatic을 auto로 변경">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoGameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoIssue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoIssue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,13 +112,6 @@
       <workItem from="1672644019169" duration="26231000" />
       <workItem from="1672724915964" duration="54000" />
       <workItem from="1672724971960" duration="11965000" />
-    </task>
-    <task id="LOCAL-00019" summary="refactor : LottoService를 LottoStore로 변경">
-      <created>1672732676144</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1672732676144</updated>
     </task>
     <task id="LOCAL-00020" summary="feat : printWinningLottos 구현">
       <created>1672732697228</created>
@@ -456,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672961043118</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="refactor : automatic을 auto로 변경">
+      <created>1672961185521</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1672961185521</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,7 +474,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat : LottoResult 클래스 추가" />
     <MESSAGE value="feat : User 클래스 구현" />
     <MESSAGE value="feat : Main 클래스에 IOManger 추가" />
     <MESSAGE value="gitignore에 workspace.xml 추가" />
@@ -499,7 +498,8 @@
     <MESSAGE value="refactor : LottoStore로 LottoIssue로 변경" />
     <MESSAGE value="refactor : EarningRate를 구할 수 있는 메서드를 LottoResult에 추가" />
     <MESSAGE value="refactor : io하는 부분을 Controller로 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor : io하는 부분을 Controller로 변경" />
+    <MESSAGE value="refactor : automatic을 auto로 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : automatic을 auto로 변경" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

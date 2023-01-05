@@ -7,24 +7,21 @@ import java.util.List;
 
 public class LottoIssue {
     private final LottoFactory lottoFactory;
-    private final User user;
     private final IOManager ioManager;
 
-    public LottoIssue(User user, LottoFactory lottoFactory, IOManager ioManager) {
-        this.user = user;
+    public LottoIssue(LottoFactory lottoFactory, IOManager ioManager) {
         this.lottoFactory = lottoFactory;
         this.ioManager = ioManager;
     }
 
-    public List<Lotto> issueLotto(int manualLottoCount){
+    public List<Lotto> issueLotto(int manualLottoCount, int autoLottoCount){
         List<Lotto> lottos = new ArrayList<>();
         System.out.println("\n수동으로 구매할 번호를 입력해주세요.");
 
         for (int i = 0 ; i < manualLottoCount ; i++) {
             lottos.add(lottoFactory.generateLotto("manual"));
         }
-        int automaticCount = user.countOfBuying() - manualLottoCount;
-        for (int i = 0 ; i < automaticCount ; i++) {
+        for (int i = 0 ; i < autoLottoCount ; i++) {
             lottos.add(lottoFactory.generateLotto("auto"));
         }
         return lottos;
