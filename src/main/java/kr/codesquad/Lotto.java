@@ -1,13 +1,11 @@
 package kr.codesquad;
 
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Lotto {
 	private final static int NUMBER_COUNT = 6;
-
 
 	private Set<LottoNumber> numbers;
 
@@ -27,10 +25,6 @@ public class Lotto {
 		return new Lotto(lottoNumberList);
 	}
 
-	public Set<LottoNumber> getNumbers() {
-		return numbers;
-	}
-
 	public int match(Lotto lotto) {
 		int match = 0;
 		for (LottoNumber lottoNumber : numbers) {
@@ -44,10 +38,6 @@ public class Lotto {
 			return 1;
 		}
 		return 0;
-	}
-
-	public int getNumbersSize() {
-		return numbers.size();
 	}
 
 	public String toString() {
