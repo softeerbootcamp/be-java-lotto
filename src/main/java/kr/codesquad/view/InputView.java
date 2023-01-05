@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
+    private static final Scanner scanner = new Scanner(System.in);
+
     public int readOneNumber() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public List<Integer> readLottoNumbers() {
-        Scanner scanner = new Scanner(System.in);
         String[] numbersStr = scanner.nextLine().split(", ");
         return Arrays.stream(numbersStr)
                 .map(Integer::parseInt)
