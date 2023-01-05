@@ -45,6 +45,9 @@ public class LottoResult {
     }
 
     private String matchDetailToString(Rank rank, int count) {
+        if (rank == Rank.NOTHING) {
+            return "";
+        }
         if (rank == Rank.SECOND) {
             return rank.getScore() + "개 일치, 보너스 볼 일치(" + rank.getMoney() + "원)- " + count + "개\n";
         }
