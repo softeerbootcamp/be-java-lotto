@@ -1,9 +1,5 @@
 package kr.codesquad.LottoService;
 
-import kr.codesquad.LottoService.Lotto;
-import kr.codesquad.LottoService.LottoNumber;
-import kr.codesquad.Rank;
-
 public class WinningLotto {
     private final Lotto lotto;
     private final LottoNumber bonusNo;

@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : Rank Enum에 matchCount 메서드를 추가하고 valueOf 메서드를 수정함">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/LottoStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Rank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Rank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/WinningLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/LottoService/WinningLotto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +79,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="kr.codesquad.LottoService" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kr.codesquad.Main" />
@@ -109,62 +112,6 @@
       <workItem from="1672644019169" duration="26231000" />
       <workItem from="1672724915964" duration="54000" />
       <workItem from="1672724971960" duration="11965000" />
-    </task>
-    <task id="LOCAL-00001" summary="Changes">
-      <created>1672642544349</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1672642544349</updated>
-    </task>
-    <task id="LOCAL-00002" summary="feat : 입력 금액 받기">
-      <created>1672642584353</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1672642584353</updated>
-    </task>
-    <task id="LOCAL-00003" summary="feat : InputService 인터페이스 추가">
-      <created>1672652184596</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1672652184596</updated>
-    </task>
-    <task id="LOCAL-00004" summary="feat : getInputMoney, printLottoCount, getWonNumber, getWonNumberList 메서드 구현">
-      <created>1672652265751</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1672652265752</updated>
-    </task>
-    <task id="LOCAL-00005" summary="feat : LottoService interface 추가">
-      <created>1672652287930</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1672652287930</updated>
-    </task>
-    <task id="LOCAL-00006" summary="feat : LottoServiceImpl 메서드 구현(setLottoNumbers, printLottos, printWonLottos)">
-      <created>1672652337750</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1672652337750</updated>
-    </task>
-    <task id="LOCAL-00007" summary="feat : LottoServiceImpl 메서드 구현(setLottoNumbers, printLottos, printWonLottos)">
-      <created>1672652344710</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1672652344710</updated>
-    </task>
-    <task id="LOCAL-00008" summary="feat : main 함수 구현">
-      <created>1672652398460</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1672652398460</updated>
     </task>
     <task id="LOCAL-00009" summary="feat : input 인터페이스 메서드 이름 변경">
       <created>1672695059838</created>
@@ -425,7 +372,91 @@
       <option name="project" value="LOCAL" />
       <updated>1672853103212</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="gitignore에 workspace.xml 추가">
+      <created>1672883650003</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1672883650003</updated>
+    </task>
+    <task id="LOCAL-00047" summary="feat : Rank에 prize 추가">
+      <created>1672883662576</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1672883662576</updated>
+    </task>
+    <task id="LOCAL-00048" summary="feat : LottoResult 구현">
+      <created>1672883699619</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1672883699619</updated>
+    </task>
+    <task id="LOCAL-00049" summary="feat : User, lottoStore, LottoResult를 이용하여 run 메서드 구현">
+      <created>1672905928574</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1672905928574</updated>
+    </task>
+    <task id="LOCAL-00050" summary="refactor : Console.java를 IOManager로 refactor">
+      <created>1672905978090</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1672905978091</updated>
+    </task>
+    <task id="LOCAL-00051" summary="feat : Lotto에 equals 메서드 추가">
+      <created>1672905997628</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1672905997628</updated>
+    </task>
+    <task id="LOCAL-00052" summary="feat : LottoFactory에 winning 타입 로또 생성하는 조건문 추가">
+      <created>1672906033529</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1672906033529</updated>
+    </task>
+    <task id="LOCAL-00053" summary="feat : LottoGame에 match 메서드 추가하여 구현">
+      <created>1672906072487</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1672906072487</updated>
+    </task>
+    <task id="LOCAL-00054" summary="feat : LottoNumber에 equals와 hashCode 메서드 추가">
+      <created>1672906118949</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1672906118949</updated>
+    </task>
+    <task id="LOCAL-00055" summary="feat : LottoResult에 결과를 출력하는 함수 추가">
+      <created>1672906143185</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1672906143185</updated>
+    </task>
+    <task id="LOCAL-00056" summary="feat : main 메서드 내부 구현을 App에게 넘겨서 구현">
+      <created>1672906175555</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1672906175555</updated>
+    </task>
+    <task id="LOCAL-00057" summary="feat : Rank Enum에 matchCount 메서드를 추가하고 valueOf 메서드를 수정함">
+      <created>1672906208934</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1672906208934</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,18 +474,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat : LottoFactory 구현, type에 따라 Lotto 생성" />
-    <MESSAGE value="delete : LottoService를 Store와 Factory로 나누고 서비스 클래스 삭제" />
-    <MESSAGE value="feature : LottoStore 클래스 구현" />
-    <MESSAGE value="refactor : main 메서드에 구현된 부분들 app으로 넘김" />
-    <MESSAGE value="feat : Rank에 bonus 필드 추가" />
-    <MESSAGE value="refactor : 클래스 내에서 사용한 값들 상수화" />
-    <MESSAGE value="fix : HUNDRED 값 오류 수정" />
-    <MESSAGE value="refactor : ILLEGAL_ARGUMENT_MESSAGE 변수명 변경" />
-    <MESSAGE value="feat : Console에서 input을 받는 방식 변경" />
-    <MESSAGE value="refactor : AUTOMATIC, MANUAL 상수 삭제" />
-    <MESSAGE value="refactpr : 문자열 내용 변경, 변수명 변경" />
-    <MESSAGE value="feat : setManualLotto 구현" />
     <MESSAGE value="feat : exception 추가" />
     <MESSAGE value="feat : WinningLotto 클래스 구현" />
     <MESSAGE value="feat : LottoNumber 클래스 구현" />
@@ -468,6 +487,25 @@
     <MESSAGE value="feat : LottoResult 클래스 추가" />
     <MESSAGE value="feat : User 클래스 구현" />
     <MESSAGE value="feat : Main 클래스에 IOManger 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : Main 클래스에 IOManger 추가" />
+    <MESSAGE value="gitignore에 workspace.xml 추가" />
+    <MESSAGE value="feat : Rank에 prize 추가" />
+    <MESSAGE value="feat : LottoResult 구현" />
+    <MESSAGE value="feat : User, lottoStore, LottoResult를 이용하여 run 메서드 구현" />
+    <MESSAGE value="refactor : Console.java를 IOManager로 refactor" />
+    <MESSAGE value="feat : Lotto에 equals 메서드 추가" />
+    <MESSAGE value="feat : LottoFactory에 winning 타입 로또 생성하는 조건문 추가" />
+    <MESSAGE value="feat : LottoGame에 match 메서드 추가하여 구현" />
+    <MESSAGE value="feat : LottoNumber에 equals와 hashCode 메서드 추가" />
+    <MESSAGE value="feat : LottoResult에 결과를 출력하는 함수 추가" />
+    <MESSAGE value="feat : main 메서드 내부 구현을 App에게 넘겨서 구현" />
+    <MESSAGE value="feat : Rank Enum에 matchCount 메서드를 추가하고 valueOf 메서드를 수정함" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : Rank Enum에 matchCount 메서드를 추가하고 valueOf 메서드를 수정함" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="10000" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
