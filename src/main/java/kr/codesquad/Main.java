@@ -1,6 +1,11 @@
 package kr.codesquad;
 
 
+import kr.codesquad.LottoManager.LottoGenerator;
+import kr.codesquad.LottoManager.LottoJackpotManager;
+import kr.codesquad.User.UserInput;
+import kr.codesquad.User.UserLotto;
+
 import static kr.codesquad.Enum.Lotto_Info.LOTTO_PRICE;
 
 public class Main {
@@ -23,7 +28,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws CustomException {
-        Jackpot_Handler jh = new Jackpot_Handler();
+        //Jackpot_Handler jh = new Jackpot_Handler();
         Utility ut = new Utility();
 //        //1. 로또를 구매한다.
 //        buyLottoByMoney();
@@ -36,7 +41,19 @@ public class Main {
 //        jh.setBonusNum();
 //        //4. 당첨을 확인한다.
 //        jh.searchJackpotsInMyLottoList(gm);
-//        ut.printProfit(jh.PRIZE_CNT, money);
+//        ut.printProfit(jh.PRIZE_CNT, money)
+        UserInput userInput = new UserInput();
+        UserLotto userLotto = new UserLotto(userInput.userHowManyLotto());
 
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        lottoGenerator.manualGenerate(userLotto);
+        lottoGenerator.autoGenerate(userLotto);
+
+        LottoJackpotManager lottoJackpotManager = new LottoJackpotManager();
+        lottoJackpotManager.setJACKPOT_NUM();
+        lottoJackpotManager.setBONUS_NUM();
+        lottoJackpotManager.checkAllUserLottoPrize(userLotto);
+
+        ut.printProfit(userLotto.getPrizeResults(),userLotto.getUserAllLottoCount()*1000);
     }
 }

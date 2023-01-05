@@ -10,7 +10,6 @@ import java.util.List;
 
 public class UserInput {
     private static InputHandler inputHandler = new InputHandler();
-    private static UserLotto userLotto = new UserLotto();
     private static Utility utility = new Utility();
 
     public UserInput() {
@@ -27,7 +26,7 @@ public class UserInput {
         return inputHandler.getIntegerInput();
     }
 
-    public void userInputManual() throws CustomException {
+    public void userInputManual(UserLotto userLotto) throws CustomException {
         System.out.println("수동으로 구매할 번호를 입력해 주세요\n");
         for (int i = 0; i < userLotto.getUserManualLottoCount(); i++) {
             EmptyLotto emptyLotto = new EmptyLotto(
@@ -50,7 +49,7 @@ public class UserInput {
         System.out.printf("보너스 번호를 입력해 주세요.\n");
         int bonus = inputHandler.getIntegerInput();
         if (JACKPOT_NUM.contains(bonus)) {
-            throw new CustomException("보너스 번호는 원개 번호들과 중복돠어선 안된다.");
+            throw new CustomException("보너스 번호는 원래 번호들과 중복돠어선 안된다.");
         }
         return bonus;
     }

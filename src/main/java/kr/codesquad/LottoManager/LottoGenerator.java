@@ -20,6 +20,6 @@ public class LottoGenerator extends UserInput{
     }
     public void manualGenerate(UserLotto userLotto) throws CustomException {
         userLotto.setUserManualLottoCount();
-        userInputManual();
+        userInputManual(userLotto);
     }
 }

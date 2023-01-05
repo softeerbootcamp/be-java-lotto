@@ -10,7 +10,7 @@ public class LottoJackpotManager extends UserInput {
     private static List<Integer> JACKPOT_NUM;
     private static int BONUS_NUM;
 
-    public void setJACKPOT_NUM(List<Integer> JACKPOT_NUM) throws CustomException {
+    public void setJACKPOT_NUM() throws CustomException {
         this.JACKPOT_NUM = userInputJackpotNum();
     }
 
