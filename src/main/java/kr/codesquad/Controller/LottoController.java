@@ -1,16 +1,23 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package kr.codesquad.Controller;
 
-
-import kr.codesquad.Model.*;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import kr.codesquad.Model.Lotto;
+import kr.codesquad.Model.LottoGenerator;
+import kr.codesquad.Model.User;
+import kr.codesquad.Model.WinLotto;
+import kr.codesquad.Model.WinnerCalculator;
 import kr.codesquad.View.LottoPrinter;
 import kr.codesquad.View.LottoScanner;
 import kr.codesquad.View.MessageGenerator;
 import kr.codesquad.View.Printer;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class LottoController {
     LottoScanner lottoScanner = new LottoScanner();
@@ -18,42 +25,43 @@ public class LottoController {
     MessageGenerator mg = new MessageGenerator();
     LottoGenerator lottoGenerator = new LottoGenerator();
     WinnerCalculator winnerCalculator = new WinnerCalculator();
-    User user = new User();
-    public void start(){
-        user.setMoney(getInitMoney());
-        winnerCalculator.initWinnerCount();
-        lottoService.init();
-        lottoPrinter.print(buyLotto(lottoService));
-        lottoService.setWinNum(getWinNumber());
-        lottoService.calcResult();
-        lottoPrinter.print(mg.getResultMsg(lottoService));
+
+    public LottoController() {
     }
 
-    private BigInteger getInitMoney(){
-        lottoPrinter.print(mg.getMoneyReqMsg());
-        BigInteger money = lottoScanner.setMoney();
-        return money;
+    public void start() {
+        Lotto.initLotto();
+        User user = new User(this.getInitMoney());
+        user.buyLotto(this.lottoGenerator);
+        this.getBuyResult(user);
+        WinLotto winLotto = new WinLotto(this.getWinNumber(), this.getBonusNumber());
+        this.winnerCalculator.initWinnerCount();
+        this.winnerCalculator.calcResult(user, winLotto);
+        this.lottoPrinter.print(this.mg.getResultMsg(this.winnerCalculator));
     }
 
-    private String buyLotto(LottoService lottoService){
-        return mg.getBuyMsg(lottoService.buyLotto());
+    private List<Integer> getWinNumber() {
+        this.lottoPrinter.print(this.mg.getWinRequestMsg());
+        return this.lottoScanner.scanWinNum();
     }
 
-    private String getWinNumber(){
-        lottoPrinter.print(mg.getWinRequestMsg());
-        return lottoScanner.scanWinNum();
+    private int getBonusNumber() {
+        this.lottoPrinter.print(this.mg.getBonusReqMsg());
+        return this.lottoScanner.scanBonus();
     }
 
-    public void calcResult(){
-        List<Integer> winList = Arrays.asList(winnerCalculator.winLotto.num);
-        for (Lotto lotto : user.lottoList) {
-            List<Integer> lottoNum = new ArrayList<Integer>(Arrays.asList(lotto.num));
-            lottoNum.retainAll(winList);
-            int countOfMatch = lottoNum.size(); //일치 갯수
-            Price price = Price.valueOf(countOfMatch, lotto.bonusMatch());
-            if (price == null) continue;
-            winnerCalculator.updateWinnerCount(price);
-            user.updateEarn(price);
+    private BigInteger getInitMoney() {
+        this.lottoPrinter.print(this.mg.getMoneyReqMsg());
+        return this.lottoScanner.scanMoney();
+    }
+
+    private void getBuyResult(User user) {
+        this.lottoPrinter.print(this.mg.getBuyMsg(user.getLottoAmount()));
+        Iterator<Lotto> iterator = user.lottoList.listIterator();
+
+        while(iterator.hasNext()) {
+            Lotto lotto = (Lotto)iterator.next();
+            this.lottoPrinter.print(Arrays.asList(lotto.num).toString());
         }
 
     }
