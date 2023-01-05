@@ -19,7 +19,7 @@ public class AwtInputHandler implements UserInputHandler{
     @Override
     public int getMoney() {
         try {
-            int money = Utility.parseIntWithRange(textField.getText(), 1, 45);
+            int money = Utility.parseIntWithRange(textField.getText(), 0, Integer.MAX_VALUE);
             return money;
         }
         catch(Exception e){
