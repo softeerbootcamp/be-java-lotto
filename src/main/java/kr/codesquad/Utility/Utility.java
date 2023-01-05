@@ -54,10 +54,4 @@ public class Utility {
         System.out.printf("총 수익률은 : %.2f%%입니다\n", prof * 100);
     }
 
-    public void printUserLotto(UserLotto userLotto) {
-        System.out.printf("수동으로 %d장, 자동으로 %d개를 구매했습니다.\n", userLotto.getUserManualLottoCount(), userLotto.getUserAllLottoCount() - userLotto.getUserManualLottoCount());
-        for (EmptyLotto e : userLotto.getUserLottoList()) {
-            e.printNumbers();
-        }
-    }
 }

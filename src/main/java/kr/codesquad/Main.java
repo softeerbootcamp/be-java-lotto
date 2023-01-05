@@ -18,13 +18,12 @@ public class Main {
         LottoGenerator lottoGenerator = new LottoGenerator();
         lottoGenerator.manualGenerate(userLotto);
         lottoGenerator.autoGenerate(userLotto);
-        ut.printUserLotto(userLotto);
+        userLotto.printUserLotto();
 
         LottoJackpotManager lottoJackpotManager = new LottoJackpotManager();
         lottoJackpotManager.setJACKPOT_NUM();
         lottoJackpotManager.setBONUS_NUM();
         lottoJackpotManager.checkAllUserLottoPrize(userLotto);
-
         ut.printProfit(userLotto.getPrizeResults(), userLotto.getUserAllLottoCount() * Lotto_Info.LOTTO_PRICE.getValue());
     }
 }
