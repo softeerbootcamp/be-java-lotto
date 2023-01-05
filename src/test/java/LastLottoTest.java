@@ -32,4 +32,13 @@ class LastLottoTest {
         assertThatThrownBy(() -> new LastLotto(this.userConsole,inputNumbers))
                 .isInstanceOf(CustomException.class);
     }
+
+    @DisplayName("로또 번호의 개수가 6개는 맞기만 숫자 범위가 1이상 45이하가 아닐 때")
+    @Test
+    void createLottoByNotRangedNumber(){
+        String inputNumbers = "1, 2, 3, 4, 51, 6";
+        //assertThatThrownBy -> 예외가 발생해야 테스트 통과됨
+        assertThatThrownBy(() -> new LastLotto(this.userConsole,inputNumbers))
+                .isInstanceOf(CustomException.class);
+    }
 }
