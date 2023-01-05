@@ -30,6 +30,8 @@ public class MessageGenerator {
     public static final String moneyMsg = "(%d원) - %d개";
     public static final String buyMsg = "%d개를 구매했습니다.";
     public static final String bonusReqMsg = "보너스 볼을 입력해 주세요.";
+    public static final String manualAmountReqMsg = "수동으로 구매할 로또 수를 입력해 주세요.";
+    public static final String manualNumberReqMsg = "수동으로 구매할 번호를 입력해 주세요.";
 
     public String getResultMsg(WinnerCalculator winnerCalculator) {
         String rtnMsg = "";
