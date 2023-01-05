@@ -1,5 +1,7 @@
 package kr.codesquad.controller;
 
+import kr.codesquad.exception.InputCountException;
+import kr.codesquad.exception.InputRangeException;
 import kr.codesquad.model.UserInfo;
 import kr.codesquad.model.lottos.RandomLotto;
 import kr.codesquad.model.lottos.ResultLotto;
@@ -11,7 +13,6 @@ import java.util.ArrayList;
 public class LottoController {
 
     private UserInfo user;
-    private UserConsole userConsole;
     private ConsoleHandler consoleHandler;
     private RandomLotto randomLotto = new RandomLotto();
     private Lotto myLotto = new Lotto();
@@ -21,7 +22,7 @@ public class LottoController {
 
     public LottoController(UserInfo userInfo) {
         this.user = userInfo;
-        this.userConsole = new UserConsole(user);
+        this.consoleHandler = new ConsoleHandler(user);
     }
 
     public void start(){
@@ -40,11 +41,34 @@ public class LottoController {
     //로또 구매 로직
     public void purchaseLotto(){
         int purchasedPrice = consoleHandler.enterPurchasePrice();
-        int numOfLottoSudong = consoleHandler.enterSudongLottoNumber();
+        int numOfLottoSudong = sudongBuy(purchasedPrice);
         int numOfLottoAuto = (purchasedPrice / 1000) - numOfLottoSudong;
         user.insertInfos(purchasedPrice, numOfLottoAuto, numOfLottoSudong);
     }
 
+
+    //수동 구매 로직
+    public int sudongBuy(int purchasedPrice){
+        int numOfLottoSudong = 0;
+        try{
+            numOfLottoSudong = consoleHandler.enterSudongLottoNumber(purchasedPrice / 1000);
+        }catch (InputRangeException e){
+            System.out.println(e.getMessage());
+            sudongBuy(purchasedPrice);
+        }
+        return numOfLottoSudong;
+    }
+
+    public ArrayList<Integer> startGenerateSudong(){
+        ArrayList<Integer> sudongLottoList = new ArrayList<>();
+        try{
+            sudongLottoList = consoleHandler.enterSudongLottoList();}
+        catch (InputCountException e){
+            System.out.println(e.getMessage());
+            startGenerateSudong();
+        }
+        return sudongLottoList;
+    }
 
     //로또 생성 로직
     public void generateLottos(){
@@ -52,14 +76,19 @@ public class LottoController {
         randomLotto.startGeneration(user.getNumOfLottoAuto(), user.getNumOfLottoSudong());
         //수동 로또 생성
         for(int i = 0; i < user.getNumOfLottoSudong(); i++){
-            ArrayList<Integer> sudongLottoList = consoleHandler.enterSudongLottoList();
+            ArrayList<Integer> sudongLottoList = startGenerateSudong();
             myLotto.addLotto(sudongLottoList);
         }
     }
 
     //당첨 번호 생성
     public void generateResults(){
-        ArrayList<Integer> givenResult = consoleHandler.enterResultList();
+        ArrayList<Integer> givenResult = new ArrayList<>();
+        try{
+            givenResult = consoleHandler.enterResultList();}
+        catch(InputCountException e){
+            e.getMessage();
+            generateResults();}
         resultLotto.addLotto(givenResult);
         resultLotto.setBonusNum(consoleHandler.enterBonusNum());
     }

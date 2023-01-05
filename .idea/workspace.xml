@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day4 - (3) 유저의 입력에 관한 Exception을 나타내는 클래스 생성">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day4 - (5) LottoController에서 바로 콘솔에 접근하는 사이를 관장하는 ConsoleHanlder 클래스 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/UserConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/UserConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/UserConsoleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UserConsoleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/ConsoleHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/ConsoleHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +110,7 @@
       <recent name="kr.codesquad.templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.UserConsoleTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kr.codesquad.Main" />
       <module name="java-lotto.main" />
@@ -240,7 +240,7 @@
       <workItem from="1672817659467" duration="1284000" />
       <workItem from="1672818950266" duration="98000" />
       <workItem from="1672819055767" duration="4408000" />
-      <workItem from="1672883355314" duration="12148000" />
+      <workItem from="1672883355314" duration="17174000" />
     </task>
     <task id="LOCAL-00001" summary="day1 - lotto1">
       <created>1672648436251</created>
@@ -452,7 +452,21 @@
       <option name="project" value="LOCAL" />
       <updated>1672899631574</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="day4 - (4) 콘솔창에서 유저가 입력하는 상황에 대한 Test Code 생성 완료">
+      <created>1672900916545</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1672900916545</updated>
+    </task>
+    <task id="LOCAL-00032" summary="day4 - (5) LottoController에서 바로 콘솔에 접근하는 사이를 관장하는 ConsoleHanlder 클래스 추가">
+      <created>1672903658031</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1672903658031</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,8 +484,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="day2 - (5) 당첨 여부 판독, 당첨금 확인의 로직을 담당하는 CalculateMatch 클래스 생성" />
-    <MESSAGE value="day2 - (6) 특정 문자가 ArrayList안에 들어있는지 판독하는 메소드 생성" />
     <MESSAGE value="day3 - (1) 모든 로또의 종류를 포괄하여 로또의 기능을 제공하는 인터페이스 구현" />
     <MESSAGE value="day3 - (4) 모든 로또 구현체에 대하여 로또리스트를 리턴하는 메소드를 구현" />
     <MESSAGE value="day3 - (5) 기계가 생성하는 로또번호에 대해서 난수를 생성하고 이에 따라 로또 번호를 뽑아내는 메소드 구현" />
@@ -495,7 +507,9 @@
     <MESSAGE value="day4 - (1) Lotto 클래스가 더이상 인터페이스가 아니므로 Lottos 클래스에 자식 lotto클래스들과 함께 위치시키도록 변경" />
     <MESSAGE value="day4 - (2) UserConsole 클래스에 대한 JUnit 단위 테스트 구현 (정상 동작인 실행만 구현)" />
     <MESSAGE value="day4 - (3) 유저의 입력에 관한 Exception을 나타내는 클래스 생성" />
-    <option name="LAST_COMMIT_MESSAGE" value="day4 - (3) 유저의 입력에 관한 Exception을 나타내는 클래스 생성" />
+    <MESSAGE value="day4 - (4) 콘솔창에서 유저가 입력하는 상황에 대한 Test Code 생성 완료" />
+    <MESSAGE value="day4 - (5) LottoController에서 바로 콘솔에 접근하는 사이를 관장하는 ConsoleHanlder 클래스 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="day4 - (5) LottoController에서 바로 콘솔에 접근하는 사이를 관장하는 ConsoleHanlder 클래스 추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
