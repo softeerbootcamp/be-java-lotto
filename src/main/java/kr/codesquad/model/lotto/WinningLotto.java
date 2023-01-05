@@ -1,17 +1,21 @@
-package kr.codesquad.model;
+package kr.codesquad.model.lotto;
 
 import java.util.List;
 
-public class WinningLotto extends Lotto {
+public class WinningLotto extends ManualLotto {
 
     private final int bonusBall;
 
     public WinningLotto(List<Integer> winningNumbers, int bonusBall) {
+        super(winningNumbers);
         this.bonusBall = bonusBall;
-        this.numbers = winningNumbers;
     }
 
     public int getBonusBall() {
         return bonusBall;
     }
+
+
+
+
 }

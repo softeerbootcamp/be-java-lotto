@@ -1,19 +1,22 @@
 package kr.codesquad.model;
 
+import kr.codesquad.model.lotto.Lotto;
+import kr.codesquad.model.lotto.WinningLotto;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-public class WinningStatic {
+public class WinningStatistic {
 
     private double profit;
 
     private HashMap<Result, Integer> resultMatch = new HashMap<>();
 
-    public WinningStatic() {
+    public WinningStatistic() {
         this.profit = 0;
-        initialResult();
+        initResult();
     }
 
     public void updateProfit(Double profit) {
@@ -26,13 +29,13 @@ public class WinningStatic {
         resultMatch.put(result, winCount + 1);
     }
 
-    private void initialResult() {
+    private void initResult() {
         for (Result result : Result.values()) {
             resultMatch.put(result, 0);
         }
     }
 
-    public static void computeResult(User user,WinningLotto winningLotto) {
+    public static void computeResult(User user, WinningLotto winningLotto) {
         HashSet<Integer> winLottoSet = listToHashSet(winningLotto.getNumbers());
         for (Lotto usersLotto : user.getLottos()) {
             int matchCount = perComputeResult(user, winLottoSet, usersLotto);

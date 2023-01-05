@@ -1,19 +1,28 @@
 package kr.codesquad.model;
 
+import kr.codesquad.model.lotto.AutoLotto;
+import kr.codesquad.model.lotto.Lotto;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
 
     private final int purchaseAmount;
-    private final int purchaseTicketCount;
-    private final List<Lotto> lottos;
-    private WinningStatic winningStatic = new WinningStatic();
+    private final int manualTicketsCount;
+    private final int autoTicketsCount;
+    private List<Lotto> lottos;
+    private WinningStatistic winningStatistic = new WinningStatistic();
 
-    public User(int purchaseAmount, int purchaseTicketCount) {
+    public User(int purchaseAmount, int manualTicketsCount, int autoTicketsCount) {
         this.purchaseAmount = purchaseAmount;
-        this.purchaseTicketCount = purchaseTicketCount;
-        this.lottos=generateLottos(purchaseTicketCount);
+        this.manualTicketsCount=manualTicketsCount;
+        this.autoTicketsCount=autoTicketsCount;
+        this.lottos=generateLottos(autoTicketsCount);
+    }
+
+    public void insertLotto(Lotto lotto) {
+        lottos.add(lotto);
     }
 
 
@@ -21,7 +30,7 @@ public class User {
     private List<Lotto> generateLottos(int purchaseTickets) {
         List<Lotto> lottoList = new ArrayList<>();
         for (int count = 0; count < purchaseTickets; count++) {
-            lottoList.add(new Lotto());
+            lottoList.add(new AutoLotto());
         }
         return lottoList;
     }
@@ -36,7 +45,15 @@ public class User {
     }
 
 
-    public WinningStatic getWinningStatic() {
-        return winningStatic;
+    public WinningStatistic getWinningStatic() {
+        return winningStatistic;
+    }
+
+    public int getManualTicketsCount() {
+        return manualTicketsCount;
+    }
+
+    public int getAutoTicketsCount() {
+        return autoTicketsCount;
     }
 }
