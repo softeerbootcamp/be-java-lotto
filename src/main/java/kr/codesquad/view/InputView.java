@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
-    private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    ;
+    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public InputView() {
     }
