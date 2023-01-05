@@ -1,7 +1,7 @@
 package kr.codesquad.view;
 
 import kr.codesquad.model.Rank;
-import kr.codesquad.model.UserLotto;
+import kr.codesquad.model.User;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,8 +26,8 @@ public class OutputView {
         System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 "+ autoLottoCount + "개를 구매했습니다.");
     }
 
-    public void printUserLotto(UserLotto userLotto) {
-        userLotto.getLottos()
+    public void printUserLotto(User user) {
+        user.getLottos()
                 .forEach(System.out::println);
     }
 

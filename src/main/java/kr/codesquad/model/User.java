@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UserLotto {
+public class User {
 
     private final List<Lotto> lottos;
 
-    public UserLotto(List<Lotto> lottos) {
+    public User(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 

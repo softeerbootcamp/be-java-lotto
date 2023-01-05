@@ -27,13 +27,13 @@ public class LottoController {
         int autoLottoCount = money / 1000 - manualLottoCount;
 
         outputView.printUserManualLottoReadMessage();
-        UserLotto userLotto = createUserLotto(manualLottoCount, autoLottoCount);
+        User user = createUserLotto(manualLottoCount, autoLottoCount);
         outputView.printLottoCount(manualLottoCount, autoLottoCount);
-        outputView.printUserLotto(userLotto);
+        outputView.printUserLotto(user);
 
         WinningLotto winningLotto = createWinningLotto();
 
-        Map<Rank, Integer> result = calculateResult(userLotto, winningLotto);
+        Map<Rank, Integer> result = calculateResult(user, winningLotto);
         double profitRate = calculateProfitRate(result, money);
         outputView.printResult(result, profitRate);
     }
@@ -48,13 +48,13 @@ public class LottoController {
         return inputView.readManualLottoCount(money);
     }
 
-    private UserLotto createUserLotto(int manualLottoCount, int autoLottoCount) {
+    private User createUserLotto(int manualLottoCount, int autoLottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int count = 0; count < manualLottoCount; count++) {
             lottos.add(new Lotto(inputView.readLottoNumbers()));
         }
         lottos.addAll(lottoMachine.createLottos(autoLottoCount));
-        return new UserLotto(lottos);
+        return new User(lottos);
     }
 
     private WinningLotto createWinningLotto() {
@@ -67,8 +67,8 @@ public class LottoController {
         return new WinningLotto(numbers, bonusNumber);
     }
 
-    private Map<Rank, Integer> calculateResult(UserLotto userLotto, WinningLotto winningLotto) {
-        return userLotto.compare(winningLotto);
+    private Map<Rank, Integer> calculateResult(User user, WinningLotto winningLotto) {
+        return user.compare(winningLotto);
     }
 
     private double calculateProfitRate(Map<Rank, Integer> result, int money) {
