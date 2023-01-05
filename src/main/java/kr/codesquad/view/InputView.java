@@ -11,7 +11,9 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    private static final String DELIMITER = ", ";
     private static final String NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해야 합니다.";
+    private static final String LOTTO_NUMBERS_FORMAT_ERROR_MESSAGE = "[ERROR] 로또 번호는 \"" + DELIMITER + "\"를 기준으로 입력해야 합니다.";
 
     public int readMoney() {
         while (true) {
@@ -48,9 +50,15 @@ public class InputView {
     }
 
     public List<Integer> readLottoNumbers() {
-        String[] numbersStr = scanner.nextLine().split(", ");
-        return Arrays.stream(numbersStr)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        while(true) {
+            try {
+                String[] numbersStr = scanner.nextLine().split(DELIMITER);
+                return Arrays.stream(numbersStr)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+            } catch (NumberFormatException e) {
+                System.out.println(LOTTO_NUMBERS_FORMAT_ERROR_MESSAGE);
+            }
+        }
     }
 }
