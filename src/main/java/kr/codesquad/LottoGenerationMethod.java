@@ -19,12 +19,12 @@ public enum LottoGenerationMethod {
         return method;
     }
 
-    public static Lotto generateEmptyLotto(int method, Input input) {
+    public static Lotto generateLotto(int method, Input input) {
         if(method == AUTO.getMethod()) {
-            return new AutoLotto(input);
+            return new AutoLotto(null);
         }
         if(method == MANUAL.getMethod()) {
-            return new ManualLotto(input);
+            return new ManualLotto(input.manualLottoNumbersInput());
         }
         return null;
     }

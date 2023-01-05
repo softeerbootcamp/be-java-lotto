@@ -5,13 +5,13 @@ import kr.codesquad.lotto.LottoNumber;
 import java.util.List;
 
 public interface Input {
-    int MoneyInput();
+    int moneyInput();
 
-    int ManualLottoCountInput();
+    int manualLottoCountInput();
 
-    List<LottoNumber> ManualLottoNumbersInput();
+    List<LottoNumber> manualLottoNumbersInput();
 
-    List<LottoNumber> JackpotNumberInput();
+    List<LottoNumber> jackpotNumberInput();
 
-    int BonusNumberInput();
+    int bonusNumberInput();
 }

@@ -25,7 +25,7 @@ public class LottoGenerator {
         for(int i=0;i<purchaseCount;i++) {
             int lottoGenerationMethod = i < manualLottoPurchaseCount ?
                     LottoGenerationMethod.MANUAL.getMethod() : LottoGenerationMethod.AUTO.getMethod();
-            lottos.add(LottoGenerationMethod.generateEmptyLotto(lottoGenerationMethod, input));
+            lottos.add(LottoGenerationMethod.generateLotto(lottoGenerationMethod, input));
         }
         return lottos;
     }
