@@ -22,9 +22,14 @@ public class LottoResult {
         }
         return totalPrize;
     }
+
     public Map<Rank, Integer> getResult() {
         Map<Rank, Integer> rankResult = new EnumMap<>(result);
         return rankResult;
+    }
+
+    public double getEarningRate(int inputMoney){
+        return (getPrize() - inputMoney) / (double) inputMoney;
     }
 }
 
