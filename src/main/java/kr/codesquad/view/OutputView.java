@@ -15,14 +15,22 @@ public class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void printLottoCount(int lottoCount) {
-        System.out.println(lottoCount + "개를 구매했습니다.");
+    public void printManualLottoCountReadMessage() {
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+    }
+
+    public void printUserManualLottoReadMessage() {
+        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+    }
+    public void printLottoCount(int manualLottoCount, int autoLottoCount) {
+        System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 "+ autoLottoCount + "개를 구매했습니다.");
     }
 
     public void printUserLotto(UserLotto userLotto) {
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         userLotto.getLottos()
-                .forEach(lotto -> sb.append(lotto.toString()));
+                .forEach(lotto -> sb.append(lotto.toString())
+                        .append("\n"));
         System.out.println(sb);
     }
 
@@ -35,19 +43,20 @@ public class OutputView {
     }
 
     public void printResult(Map<Rank, Integer> result, double profitRate) {
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         sb.append("당첨 통계\n----------\n");
 
-        List<Rank> ranks = Arrays.stream(Rank.values()).collect(Collectors.toList());
-        Collections.sort(ranks, Collections.reverseOrder());
+        List<Rank> ranks = Arrays.stream(Rank.values())
+                .sorted(Collections.reverseOrder())
+                .collect(Collectors.toList());
 
-        printWinningResult(sb, ranks, result);
-        printProfitRate(sb, profitRate);
+        makeWinningResultWithStringBuffer(sb, ranks, result);
+        makeProfitRateMessageWithStringBuffer(sb, profitRate);
 
         System.out.println(sb);
     }
 
-    private void printWinningResult(StringBuilder sb, List<Rank> ranks, Map<Rank, Integer> result) {
+    private void makeWinningResultWithStringBuffer(StringBuffer sb, List<Rank> ranks, Map<Rank, Integer> result) {
         ranks.stream()
                 .filter(rank -> rank != Rank.NOTHING)
                 .forEach(rank -> {
@@ -64,7 +73,7 @@ public class OutputView {
                 });
     }
 
-    private void printProfitRate(StringBuilder sb, double profitRate) {
+    private void makeProfitRateMessageWithStringBuffer(StringBuffer sb, double profitRate) {
         sb.append("총 수익률은 ")
                 .append(String.format("%.2f", profitRate))
                 .append("%입니다.");
