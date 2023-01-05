@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Factory/RandomLottoFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Factory/ManualLottoFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Factory/LottoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Factory/LottoFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +90,7 @@
       <workItem from="1672642675382" duration="14500000" />
       <workItem from="1672706218674" duration="4031000" />
       <workItem from="1672881052201" duration="401000" />
-      <workItem from="1672881462104" duration="5107000" />
+      <workItem from="1672881462104" duration="6079000" />
     </task>
     <servers />
   </component>
