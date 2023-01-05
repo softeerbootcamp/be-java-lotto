@@ -8,13 +8,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-public class WinningStatistic {
+public class ResultStatistic {
 
     private double profit;
 
     private HashMap<Result, Integer> resultMatch = new HashMap<>();
 
-    public WinningStatistic() {
+    public ResultStatistic() {
         this.profit = 0;
         initResult();
     }
@@ -82,14 +82,20 @@ public class WinningStatistic {
     }
 
     public static double computeProfit(User user) {
+        int totalReward = sumReward(user);
+
+        int usersPurchaseAmount = user.getPurchase().getPurchaseAmount();
+        return (totalReward-usersPurchaseAmount) / (double) usersPurchaseAmount * 100;
+    }
+
+    private static int sumReward(User user) {
         int totalReward = 0;
         for (Map.Entry<Result, Integer> perResult : user.getWinningStatic().getResultMatch().entrySet()) {
             Integer winCount = perResult.getValue();
             int reward = perResult.getKey().getReward();
             totalReward += (reward * winCount);
         }
-
-        return (totalReward-user.getPurchaseAmount()) / (double) user.getPurchaseAmount() * 100;
+        return totalReward;
     }
 
     public double getProfit() {
