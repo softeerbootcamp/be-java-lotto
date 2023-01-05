@@ -43,7 +43,7 @@ public class InputView {
         while (true) {
             try {
                 int bonusNumber = readOneNumber();
-
+                InputValidator.BonusNumberValidator.validate(numbers, bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
