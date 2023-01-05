@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class LottoGameImpl implements LottoGame{
 
-    private User user;
-    private LottoMachine machine;
+    private UserLotto userLotto;
+    private MachineLotto machineLotto;
     private LastLotto lastLotto;
     private Map<Rank, Integer> rankMap = new EnumMap<>(Rank.class);
 
@@ -19,33 +19,33 @@ public class LottoGameImpl implements LottoGame{
         }
     }
 
-    public LottoGameImpl(LottoMachine machine, User user,LastLotto lastLotto) {
-        this.machine = machine;
-        this.user = user;
+    public LottoGameImpl(MachineLotto machine, UserLotto user,LastLotto lastLotto) {
+        this.machineLotto = machine;
+        this.userLotto = user;
         this.lastLotto = lastLotto;
         initialMap();
     }
 
     public void start(){
         //1. 구입 금액 입력 받기
-        Integer amountOfMoney = machine.getAmountOfMoney();
+        Integer amountOfMoney = machineLotto.getAmountOfMoney();
         //2. 수동으로 구매할 로또 수 입력받기
-        int manualLottoCnt = user.getLottoCnt(amountOfMoney,0);
+        int manualLottoCnt = userLotto.getLottoCnt(amountOfMoney,0);
         //2-1. 자동으로 구매할 로또 수 계산해서 저장
-        Integer lottoCnt = machine.getLottoCnt(amountOfMoney,manualLottoCnt);
+        Integer lottoCnt = machineLotto.getLottoCnt(amountOfMoney,manualLottoCnt);
         int totalCnt = manualLottoCnt+lottoCnt;
         //3. 최종 로또들 출력
         //3-1.수동으로 구매한 로또반환
-        ArrayList<ArrayList<Integer>> manualLottos =user.getLottoList();
+        ArrayList<ArrayList<Integer>> manualLottos =userLotto.getLottoList();
         //3-2.자동으로 구매한 로또 리스트 반환하기
-        ArrayList<ArrayList<Integer>> lottos = machine.getLottoList();
+        ArrayList<ArrayList<Integer>> lottos = machineLotto.getLottoList();
         lottos.addAll(manualLottos);
         System.out.println("수동으로 "+manualLottoCnt+"장, 자동으로 "+lottoCnt+"개를 구매했습니다. ");
         printLottos(lottos,totalCnt);
         //4.지난 주 당첨 번호 입력 받기
         List<Integer> inputs = lastLotto.getLastLotto();
         //5. 보너스 볼 입력 받기
-        Integer bonusBall = user.getBonusLottoInput();
+        Integer bonusBall = userLotto.getBonusLottoInput();
         //6. 비교
         compareLottos(totalCnt,lottos,inputs,bonusBall);
         //7. 결과 출력
