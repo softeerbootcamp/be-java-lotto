@@ -27,11 +27,8 @@ public class OutputView {
     }
 
     public void printUserLotto(UserLotto userLotto) {
-        StringBuffer sb = new StringBuffer();
         userLotto.getLottos()
-                .forEach(lotto -> sb.append(lotto.toString())
-                        .append("\n"));
-        System.out.println(sb);
+                .forEach(System.out::println);
     }
 
     public void printWinningLottoReadMessage() {
