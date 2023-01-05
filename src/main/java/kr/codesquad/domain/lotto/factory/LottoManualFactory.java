@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import kr.codesquad.domain.lotto.Lotto;
-import kr.codesquad.io.Console;
+import kr.codesquad.common.io.Console;
 
 public class LottoManualFactory implements LottoFactory {
 
