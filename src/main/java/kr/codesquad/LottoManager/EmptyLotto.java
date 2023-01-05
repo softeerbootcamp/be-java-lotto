@@ -8,6 +8,7 @@ public class EmptyLotto {
     private List<Integer> numbers;
 
     public EmptyLotto(List<Integer> numbers) {
+
         setNumbers(numbers);
     }
 

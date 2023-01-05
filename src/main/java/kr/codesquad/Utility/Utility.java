@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.Utility;
 
 import kr.codesquad.Enum.Lotto_Info;
 import kr.codesquad.Enum.Prizes_Info;

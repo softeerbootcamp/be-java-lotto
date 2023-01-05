@@ -7,6 +7,7 @@ public enum Lotto_Info {
     private int value;
 
     Lotto_Info(int value) {
+
         this.value = value;
     }
 

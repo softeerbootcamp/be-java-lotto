@@ -2,8 +2,8 @@ package kr.codesquad.User;
 
 import kr.codesquad.CustomException;
 import kr.codesquad.LottoManager.EmptyLotto;
-import kr.codesquad.InputHandler;
-import kr.codesquad.Utility;
+import kr.codesquad.Utility.InputHandler;
+import kr.codesquad.Utility.Utility;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -23,28 +23,31 @@ public class LottoJackpotManager extends UserInput {
             return true;
         } else return false;
     }
-    public int addIndexIfchecked(List<Integer> userOneLotto,int number,int index){
-        if(checkNumberIsContained(userOneLotto,number)){
+
+    public int addIndexIfChecked(List<Integer> userOneLotto, int number, int index) {
+        if (checkNumberIsContained(userOneLotto, number)) {
             return ++index;
-        }else return index;
+        } else return index;
     }
-    public void checkAllUserLottoPrize(UserLotto userLotto){
-        for (EmptyLotto eachLotto:userLotto.getUserLottoList()) {
-            checkEachLottoPrize(eachLotto.getNumbers(),userLotto);
+
+    public void checkAllUserLottoPrize(UserLotto userLotto) {
+        for (EmptyLotto eachLotto : userLotto.getUserLottoList()) {
+            checkEachLottoPrize(eachLotto.getNumbers(), userLotto);
         }
     }
+
     // prize 가 user lotto 내부에 있어서 어쩔수 없이 매개변수 2개 사용됬는데, 개선하고 싶음.
-    public void checkEachLottoPrize(List<Integer> userOneLotto,UserLotto userLotto) {
+    public void checkEachLottoPrize(List<Integer> userOneLotto, UserLotto userLotto) {
         int index = 0;
         for (int oneNumber : JACKPOT_NUM) {
-            index=addIndexIfchecked(userOneLotto,oneNumber,index);
+            index = addIndexIfChecked(userOneLotto, oneNumber, index);
         }
-        if(index==6){
-            userLotto.addPrizeResultsByIndex(index-2);
-        }else if(index==5 && checkNumberIsContained(userOneLotto,BONUS_NUM)){
-            userLotto.addPrizeResultsByIndex(index-2);
-        } else if (index>=3) {
-            userLotto.addPrizeResultsByIndex(index-3);
+        if (index == 6) {
+            userLotto.addPrizeResultsByIndex(index - 2);
+        } else if (index == 5 && checkNumberIsContained(userOneLotto, BONUS_NUM)) {
+            userLotto.addPrizeResultsByIndex(index - 2);
+        } else if (index >= 3) {
+            userLotto.addPrizeResultsByIndex(index - 3);
         }
     }
 }

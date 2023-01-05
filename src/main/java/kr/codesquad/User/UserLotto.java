@@ -12,7 +12,8 @@ public class UserLotto {
     private static int userManualLottoCount;
     private List<EmptyLotto> userLottoList;
     private int[] prizeResults = {0, 0, 0, 0, 0};
-    private  UserInput userInput;
+    private UserInput userInput;
+
     public UserLotto(int userAllLottoCount) {
         userInput = new UserInput();
         userLottoList = new ArrayList<>();
@@ -32,12 +33,15 @@ public class UserLotto {
     }
 
     public int getUserAllLottoCount() {
+
         return this.userAllLottoCount;
     }
 
     public int getUserManualLottoCount() {
+
         return this.userManualLottoCount;
     }
+
     public List<EmptyLotto> getUserLottoList() {
         return this.userLottoList;
     }
