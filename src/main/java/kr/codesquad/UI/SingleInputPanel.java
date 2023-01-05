@@ -25,7 +25,7 @@ class SingleInputPanel extends Panel{
         setSize(200,360);
         setLayout(null);
         setElements();
-        inputHandler = new AwtInputHandler();
+        inputHandler = new AwtInputHandler(btn, txt, errLabel);
         this.instruction = instruction;
         btn.addActionListener(act);
     }
