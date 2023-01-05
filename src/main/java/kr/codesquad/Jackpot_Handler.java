@@ -3,7 +3,6 @@ package kr.codesquad;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 import static kr.codesquad.Lotto_Info.LOTTO_SIZE;
 
@@ -31,7 +30,9 @@ public class Jackpot_Handler {
         for (int i = 0; i < LOTTO_SIZE.getValue(); i++) {
             cnt += isMyLottoContainsJackpots(i, my, jk);
         }
-        if (cnt >= 5 && isJackpotBonusCorrect(my)) {
+        if (cnt == 5 && isJackpotBonusCorrect(my)) {
+            PRIZE_CNT[cnt - 2]++;
+        } else if (cnt == 6) {
             PRIZE_CNT[cnt - 2]++;
         } else if (cnt >= 3) {
             PRIZE_CNT[cnt - 3]++;
@@ -39,27 +40,34 @@ public class Jackpot_Handler {
         ;
     }
 
-    public void searchJackpotsInMyLottoList(generateMyLottoByCount generateMyLottoByCount) {
-        for (EmptyLotto o : generateMyLottoByCount.getLottoList()
+    public void searchJackpotsInMyLottoList(GenerateMyLottoByCount myLottoByCount) {
+        for (EmptyLotto o : myLottoByCount.getLottoList()
         ) {
             List<Integer> eachLotto = o.getNumbers();
             countingJackpots(eachLotto, JACKPOT_NUM);
         }
     }
 
-    public void setJackpotNum() {
+    public void setJackpotNum() throws CustomException {
+        InputHandler inputHandler = new InputHandler();
         System.out.printf("당첨 번호를 입력해 주세요.\n");
-        Scanner s2 = new Scanner(System.in);
-        String str = s2.nextLine();
+        String str = inputHandler.getStringInput();
         String[] strArr = str.split(",");
         JACKPOT_NUM = new ArrayList<>(LOTTO_SIZE.getValue());
         for (int i = 0; i < LOTTO_SIZE.getValue(); i++) {
             JACKPOT_NUM.add(Integer.parseInt(strArr[i]));
         }
         Collections.sort(JACKPOT_NUM);
-        System.out.printf("보너스 번호를 입력해 주세요.\n");
-        int bonus = s2.nextInt();
-        JACKPOT_BONUS_NUM = bonus;
 
+    }
+
+    public void setBonusNum() throws CustomException {
+        InputHandler inputHandler = new InputHandler();
+        System.out.printf("보너스 번호를 입력해 주세요.\n");
+        int bonus = inputHandler.getIntegerInput();
+        if (JACKPOT_NUM.contains(bonus)) {
+            throw new CustomException("보너스 번호는 원개 번호들과 중복돠어선 안된다.");
+        }
+        JACKPOT_BONUS_NUM = bonus;
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public class EmptyLotto {
     private List<Integer> numbers;
 
-    public EmptyLotto(ArrayList<Integer> numbers) {
+    public EmptyLotto(List<Integer> numbers) {
         setNumbers(numbers);
     }
 
@@ -15,7 +15,7 @@ public class EmptyLotto {
         return this.numbers;
     }
 
-    public void setNumbers(ArrayList<Integer> numbers) {
+    public void setNumbers(List<Integer> numbers) {
         Collections.sort(numbers);
         this.numbers = numbers;
     }
