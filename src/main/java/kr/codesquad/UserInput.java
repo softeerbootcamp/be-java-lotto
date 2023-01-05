@@ -58,4 +58,15 @@ public class UserInput {
         sc.nextLine();
         return bonusNum;
     }
+
+    private void validateInputOneNumber(int num) {
+        try {
+            num = sc.nextInt();
+            sc.nextLine();
+        } catch(InputMismatchException e) {
+            System.out.println("잘못된 입력입니다.");
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
 }
