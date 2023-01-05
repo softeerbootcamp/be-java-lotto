@@ -11,10 +11,8 @@ import java.util.Scanner;
 public class UserConsole {
 
     private static Scanner scan;
-    private UserInfo user;
 
     public UserConsole(UserInfo user){
-        this.user = user;
         scan = new Scanner(System.in);
     }
 
@@ -41,7 +39,7 @@ public class UserConsole {
         catch (InputMismatchException e){
             throw new InputFormatException("구입 금액의 형식은 정수형으로 작성하셔야 합니다");}
         if(numOfLottoSudong < 0)
-            throw new InputRangeException("구입 금액은 0개 이상이어야 합니다");
+            throw new InputRangeException("구입 개수는 0개 이상이어야 합니다");
         return numOfLottoSudong;
     }
 
