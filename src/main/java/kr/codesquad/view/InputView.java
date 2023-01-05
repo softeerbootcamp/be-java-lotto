@@ -9,8 +9,21 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    private static final String NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해야 합니다.";
+
+    public int readMoney() {
+        int money = readOneNumber();
+        return money;
+    }
+
     public int readOneNumber() {
-        return Integer.parseInt(scanner.nextLine());
+        while(true) {
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println(NUMBER_FORMAT_ERROR_MESSAGE);
+            }
+        }
     }
 
     public List<Integer> readLottoNumbers() {
