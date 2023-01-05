@@ -20,6 +20,11 @@ public class Lottos {
         }
     }
 
+    public Lottos addLottos(Lottos lottosBeCombined) {
+        this.lottoList.addAll(lottosBeCombined.lottoList);
+        return this;
+    }
+
     public List<Lotto> getLottoList() {
         return new ArrayList<>(lottoList);
     }
