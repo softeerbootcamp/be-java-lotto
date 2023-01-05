@@ -1,5 +1,7 @@
 package kr.codesquad.lotto;
 
+import kr.codesquad.winLotto.WinLotto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,17 @@ public class Lotto {
     public List<Integer> getNumberList() {
         return numberList;
     }
+
+    public int countCorrectNum(WinLotto winLotto) {
+        List<Integer> temp = new ArrayList<>(this.numberList);
+        temp.retainAll(winLotto.getWinLotto().getNumberList());
+        return temp.size();
+    }
+
+    public boolean isContainBonusNum(int bonusNum) {
+        return this.numberList.contains(bonusNum);
+    }
+
 
     @Override
     public String toString() {

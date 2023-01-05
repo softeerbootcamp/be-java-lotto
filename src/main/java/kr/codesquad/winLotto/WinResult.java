@@ -31,22 +31,16 @@ public class WinResult {
         return winResult;
     }
 
-    public void makeLottoResultCount(Lotto lottoNumbers, WinLotto winLotto) {
-        int correctCnt = correctNumCnt(lottoNumbers, winLotto);
-        boolean isBonusWin = checkBonusWin(lottoNumbers, correctCnt, winLotto);
+    public void makeLottoResultCount(Lotto lotto, WinLotto winLotto) {
+        int correctCnt = lotto.countCorrectNum(winLotto);
+        boolean isBonusWin = checkBonusWin(lotto, correctCnt, winLotto);
         WinCount winCount = findWinningCount(correctCnt, isBonusWin);
         if (winCount != null) {
             addWinningCount(winCount);
         }
     }
 
-    public int correctNumCnt(Lotto lottoNumbers, WinLotto winLotto) {
-        List<Integer> temp = new ArrayList<>(lottoNumbers.getNumberList());
-        temp.retainAll(winLotto.getWinLotto().getNumberList());
-        return temp.size();
-    }
-
-    public boolean checkBonusWin(Lotto lottoNumbers, int correctCnt, WinLotto winLotto) {
-        return correctCnt == BONUS_WIN_NUM_COUNT && lottoNumbers.getNumberList().contains(winLotto.getBonusNum());
+    public boolean checkBonusWin(Lotto lotto, int correctCnt, WinLotto winLotto) {
+        return correctCnt == BONUS_WIN_NUM_COUNT && lotto.isContainBonusNum(winLotto.getBonusNum());
     }
 }
