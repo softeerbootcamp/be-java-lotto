@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class LottoIOManagerImpl implements LottoIOManager {
 
@@ -17,13 +18,13 @@ public class LottoIOManagerImpl implements LottoIOManager {
 	public int readPurchaseAmount() {
 		System.out.println("구입금액을 입력해주세요.");
 
-		return scanner.nextInt();
+		return Integer.parseInt(scanner.nextLine());
 	}
 
 	@Override
 	public int readManualLottoCount() {
 		System.out.println("수동으로 구매할 로또 수를 입력해주세요.");
-		return scanner.nextInt();
+		return Integer.parseInt(scanner.nextLine());
 	}
 
 	@Override
@@ -38,14 +39,16 @@ public class LottoIOManagerImpl implements LottoIOManager {
 
 	@Override
 	public void printLottos(List<Lotto> lottos) {
-		// TODO
+		for (Lotto lotto : lottos) {
+			System.out.println(lotto);
+		}
 	}
 
 	@Override
 	public int readBonusBall() {
 		System.out.println("보너스 볼을 입력해주세요.");
 
-		return scanner.nextInt();
+		return Integer.parseInt(scanner.nextLine());
 	}
 
 	@Override
@@ -66,8 +69,8 @@ public class LottoIOManagerImpl implements LottoIOManager {
 		List<Lotto> lottos = new ArrayList<Lotto>();
 		for (int i = 0; i < cnt; i++) {
 			String numbers = scanner.nextLine();
-			List<Integer> lottoNumbers = new ArrayList<Integer>();
-			Arrays.stream(numbers.split(", ")).map(n -> lottoNumbers.add(Integer.parseInt(n)));
+			List<Integer> lottoNumbers;
+			lottoNumbers = Arrays.stream(numbers.split(", ")).map(Integer::parseInt).collect(Collectors.toList());
 			lottos.add(Lotto.of(lottoNumbers));
 		}
 
