@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package kr.codesquad.View;
 
 import java.math.BigInteger;
@@ -19,7 +14,7 @@ public class LottoScanner {
             Scanner sc = new Scanner(System.in);
             BigInteger money = sc.nextBigInteger();
             return money;
-        } catch (Exception var3) {
+        } catch (Exception e) {
             System.out.println("error");
             System.exit(1);
             return null;

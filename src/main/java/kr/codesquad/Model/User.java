@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package kr.codesquad.Model;
 
 import java.math.BigDecimal;
@@ -22,7 +17,7 @@ public class User {
     }
 
     public int getLottoAmount() {
-        this.lottoAmount = this.money.divide(new BigInteger("1000")).intValue();
+        this.lottoAmount = this.money.divide(new BigInteger(Lotto.LOTTO_PRICE)).intValue();
         return this.lottoAmount;
     }
 

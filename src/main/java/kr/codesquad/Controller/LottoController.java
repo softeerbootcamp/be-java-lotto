@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package kr.codesquad.Controller;
 
 import java.math.BigInteger;
@@ -31,37 +26,38 @@ public class LottoController {
 
     public void start() {
         Lotto.initLotto();
-        User user = new User(this.getInitMoney());
-        user.buyLotto(this.autoLottoGenerator);
-        this.getBuyResult(user);
-        WinLotto winLotto = new WinLotto(this.getWinNumber(), this.getBonusNumber());
-        this.winnerCalculator.initWinnerCount();
-        this.winnerCalculator.calcResult(user, winLotto);
-        this.lottoPrinter.print(this.mg.getResultMsg(this.winnerCalculator));
+        User user = new User(getInitMoney());
+        user.buyLotto(autoLottoGenerator);
+        getBuyResult(user);
+        WinLotto winLotto = new WinLotto(getWinNumber(), getBonusNumber());
+        winnerCalculator.initWinnerCount();
+        winnerCalculator.calcResult(user, winLotto);
+        lottoPrinter.print(mg.getResultMsg(winnerCalculator));
+        lottoPrinter.print(mg.bonusReqMsg);
     }
 
     private List<Integer> getWinNumber() {
-        this.lottoPrinter.print(this.mg.getWinRequestMsg());
-        return this.lottoScanner.scanWinNum();
+        lottoPrinter.print(mg.winRequestMsg);
+        return lottoScanner.scanWinNum();
     }
 
     private int getBonusNumber() {
-        this.lottoPrinter.print(this.mg.getBonusReqMsg());
-        return this.lottoScanner.scanBonus();
+        lottoPrinter.print(mg.bonusReqMsg);
+        return lottoScanner.scanBonus();
     }
 
     private BigInteger getInitMoney() {
-        this.lottoPrinter.print(this.mg.getMoneyReqMsg());
-        return this.lottoScanner.scanMoney();
+        lottoPrinter.print(mg.moneyReqMsg);
+        return lottoScanner.scanMoney();
     }
 
     private void getBuyResult(User user) {
-        this.lottoPrinter.print(this.mg.getBuyMsg(user.getLottoAmount()));
+        lottoPrinter.print(mg.getBuyMsg(user.getLottoAmount()));
         Iterator<Lotto> iterator = user.lottoList.listIterator();
 
         while(iterator.hasNext()) {
             Lotto lotto = (Lotto)iterator.next();
-            this.lottoPrinter.print(Arrays.asList(lotto.num).toString());
+            lottoPrinter.print(Arrays.asList(lotto.num).toString());
         }
 
     }
