@@ -1,6 +1,7 @@
 package kr.codesquad;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,11 +13,19 @@ public class UserInput {
     }
 
     public int inputMoney() {
+        int money = 0;
         System.out.println("구입금액을 입력해 주세요.");
-        int money = sc.nextInt();
-        sc.nextLine();
+
+        try {
+            money = sc.nextInt();
+            sc.nextLine();
+        } catch(InputMismatchException e) {
+            System.out.println("잘못된 입력입니다.");
+            System.exit(0);
+        }
+
         return money;
-    }
+    }ㅇ
 
     public int inputManualLottoCount() {
         System.out.println("수동으로 구매할 로또 수를 입력해 주세요");
