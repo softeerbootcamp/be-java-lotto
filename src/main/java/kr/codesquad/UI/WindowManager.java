@@ -1,5 +1,7 @@
 package kr.codesquad.UI;
 
+import kr.codesquad.VisualLottoGame;
+
 import java.awt.*;
 
 public class WindowManager extends Frame{
@@ -12,13 +14,22 @@ public class WindowManager extends Frame{
         setLayout(null);
         setVisible(true);
         setTitle("로또 시뮬레이터");
+    }
 
-        currentPanel = new MoneyInputView(this);
+    public void setMoneyPanel(){
+        currentPanel = new SingleInputPanel("구매 금액을 입력해 주세요.", e->VisualLottoGame.getVisualLottoGame().getMoney());
         add(currentPanel);
+
         currentPanel.setVisible(true);
     }
 
-    public void setPanel(Panel nextPanel){
+    public void setManualLottoPanel(int nManualLeft) {
+        setPanel(
+                new SingleInputPanel(
+                        String.format("구매 번호를 입력해 주세요.\n(남은 수동 개수 %d개)", nManualLeft),
+                        e->VisualLottoGame.getVisualLottoGame().buyOneManualLotto()));
+    }
+    private void setPanel(Panel nextPanel){
         currentPanel.setVisible(false);
         remove(currentPanel);
         currentPanel = nextPanel;
@@ -26,7 +37,7 @@ public class WindowManager extends Frame{
         nextPanel.setVisible(true);
     }
 
-    public static void main(String[] args){
-        WindowManager manager = new WindowManager();
+    public void setPurchasedLottoPanel() {
+        //TODO : 구매한 로또 판낼 작성
     }
 }
