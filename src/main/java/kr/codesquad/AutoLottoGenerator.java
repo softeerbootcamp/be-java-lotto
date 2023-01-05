@@ -1,6 +1,6 @@
 package kr.codesquad;
 
-import kr.codesquad.domain.Lotto2;
+import kr.codesquad.domain.Lotto;
 import kr.codesquad.domain.Money;
 
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ public class AutoLottoGenerator implements LottoGenerator {
     }
 
     @Override
-    public List<Lotto2> generate(Money money) {
-        List<Lotto2> lottos = new ArrayList<>();
+    public List<Lotto> generate(Money money) {
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < money.calculateLottoCount(); i++) {
             lottos.add(lottoGenerate());
         }
@@ -28,9 +28,9 @@ public class AutoLottoGenerator implements LottoGenerator {
     }
 
 
-    public Lotto2 lottoGenerate() {
+    public Lotto lottoGenerate() {
         Collections.shuffle(kindOfNumbers);
         List<Integer> list = new ArrayList<>(kindOfNumbers.subList(0, 6));
-        return new Lotto2(list);
+        return new Lotto(list);
     }
 }

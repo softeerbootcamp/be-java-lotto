@@ -2,19 +2,19 @@ package kr.codesquad.domain;
 
 import java.util.List;
 
-public class Lotto2 {
+public class Lotto {
 
     private List<Integer> lottoNumbers;
 
-    public Lotto2(List<Integer> lotto) {
+    public Lotto(List<Integer> lotto) {
         this.lottoNumbers = lotto;
     }
 
-    public static Lotto2 of(List<Integer> lotto) {
-        return new Lotto2(lotto);
+    public static Lotto of(List<Integer> lotto) {
+        return new Lotto(lotto);
     }
 
-    public int match(Lotto2 another) {
+    public int match(Lotto another) {
         int count = 0;
         for (Integer lottoNumber : another.lottoNumbers) {
             count += isContains(lottoNumber);

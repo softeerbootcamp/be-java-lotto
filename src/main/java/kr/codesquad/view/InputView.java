@@ -1,6 +1,6 @@
 package kr.codesquad.view;
 
-import kr.codesquad.domain.Lotto2;
+import kr.codesquad.domain.Lotto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,12 +23,12 @@ public class InputView {
         return Integer.parseInt(br.readLine());
     }
 
-    public Lotto2 inputWinningLotto() throws IOException {
+    public Lotto inputWinningLotto() throws IOException {
         String[] input = br.readLine().split(", ");
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < input.length; i++) {
             list.add(Integer.parseInt(input[i]));
         }
-        return Lotto2.of(list);
+        return Lotto.of(list);
     }
 }

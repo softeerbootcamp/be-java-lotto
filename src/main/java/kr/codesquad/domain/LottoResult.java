@@ -1,7 +1,6 @@
 package kr.codesquad.domain;
 
 
-import kr.codesquad.enums.Rank;
 import kr.codesquad.enums.Rank2;
 
 import java.util.HashMap;

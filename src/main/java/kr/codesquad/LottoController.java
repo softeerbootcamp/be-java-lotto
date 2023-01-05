@@ -33,7 +33,7 @@ public class LottoController {
     }
     public WinningLotto inputWinningLotto() throws IOException{
         outputView.printWinningNumberText();
-        Lotto2 lotto = inputView.inputWinningLotto();
+        Lotto lotto = inputView.inputWinningLotto();
         outputView.printBonusBallText();
         int bonus = inputView.inputBonusNumber();
         return new WinningLotto(lotto, bonus);
