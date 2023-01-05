@@ -1,26 +1,21 @@
-package kr.codesquad;
+package kr.codesquad.lotto;
 
 import java.util.Map;
 
 public enum Rank {
-    FIRST(6, 2000000000, false),
-    SECOND(5, 30000000, true),
-    THIRD(5, 1500000, false),
-    FOURTH(4, 50000, false),
-    FIFTH(3, 5000, false);
+    FIRST(6, 2000000000),
+    SECOND(5, 30000000),
+    THIRD(5, 1500000),
+    FOURTH(4, 50000),
+    FIFTH(3, 5000),
+    MISS(0, 0);
 
-    Rank(int countOfMatch, int winningMoney, boolean isBonus) {
+    Rank(int countOfMatch, int winningMoney) {
         this.countOfMatch = countOfMatch;
         this.winningMoney = winningMoney;
-        this.isBonus = isBonus;
     }
     private final int countOfMatch;
     private final int winningMoney;
-    private final boolean isBonus;
-
-    public boolean isBonus() {
-        return isBonus;
-    }
 
     public int getCountOfMatch() {
         return this.countOfMatch;
@@ -31,12 +26,16 @@ public enum Rank {
     }
 
     public static Map<Rank, Integer> getInitRankStatus() {
-        return Map.of(Rank.FIRST, 0, Rank.SECOND, 0, Rank.THIRD, 0, Rank.FOURTH, 0, Rank.FIFTH, 0);
+        return Map.of(Rank.FIRST, 0, Rank.SECOND, 0, Rank.THIRD, 0, Rank.FOURTH, 0, Rank.FIFTH, 0, Rank.MISS, 0);
     }
 
     public static Rank valueOf(int countOfMatch, boolean matchBonus) {
         Rank[] ranks = values();
         for (Rank rank : ranks) {
+            if (countOfMatch < 3) {
+                return MISS;
+            }
+
             if (countOfMatch == SECOND.countOfMatch) {
                 return matchBonus ? SECOND : THIRD;
             }

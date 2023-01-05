@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.lotto;
 
 import java.util.Map;
 
