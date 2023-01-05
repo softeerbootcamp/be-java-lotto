@@ -11,29 +11,18 @@ public class LottoGame {
 
 	private final LottoGenerator lottoGenerator;
 
+	private final LottoCheck lottoCheck;
+
 	public final static int LOTTO_PRICE = 1000;
 
 	public final static int LOTTO_COUNT = 6;
 
-	public LottoGame(LottoIOManager lottoIOManager, LottoGenerator lottoGenerator,
+	public LottoGame(LottoCheck lottoCheck, LottoIOManager lottoIOManager, LottoGenerator lottoGenerator,
 		Map<String, LottoGeneratorStrategy> lottoGeneratorStrategies) {
+		this.lottoCheck = lottoCheck;
 		this.lottoGeneratorStrategies = lottoGeneratorStrategies;
 		this.lottoIOManager = lottoIOManager;
 		this.lottoGenerator = lottoGenerator;
-	}
-
-	public void compareEachLotto(Lotto purchasedLotto, WinningLotto winningLotto, LottoResult lottoResult) {
-		LottoMatchType lottoMatchType = winningLotto.matchLotto(purchasedLotto);
-		lottoResult.updateResult(lottoMatchType.getMatchCount(), 1);
-	}
-
-	public LottoResult checkMyLotto(List<Lotto> purchasedLottoList, WinningLotto winningLotto) {
-		LottoResult lottoResult = new LottoResult();
-		for (Lotto lotto : purchasedLottoList) {
-			compareEachLotto(lotto, winningLotto, lottoResult);
-		}
-
-		return lottoResult;
 	}
 
 	public List<Lotto> buy() {
@@ -51,6 +40,10 @@ public class LottoGame {
 		return lottos;
 	}
 
+	public LottoResult checkLotto(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
+		return lottoCheck.checkLotto(purchasedLottos, winningLotto);
+	}
+
 	public void printLottosInfo(int manualLottoCount, int autoLottoCount, List<Lotto> lottos) {
 		lottoIOManager.printLottoCount(manualLottoCount, autoLottoCount);
 		lottoIOManager.printLottos(lottos);
@@ -59,7 +52,6 @@ public class LottoGame {
 	public List<Lotto> generateLottos(int manualLottoCount, int autoLottoCount) {
 		lottoGenerator.setLottoGeneratorStrategy(lottoGeneratorStrategies.get("MANUAL"));
 		List<Lotto> lottos = lottoGenerator.generate(manualLottoCount);
-		// 자동
 		lottoGenerator.setLottoGeneratorStrategy(lottoGeneratorStrategies.get("AUTO"));
 		lottos.addAll(lottoGenerator.generate(autoLottoCount));
 		return lottos;
