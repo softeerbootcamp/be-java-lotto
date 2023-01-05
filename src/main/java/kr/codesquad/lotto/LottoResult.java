@@ -31,7 +31,7 @@ public class LottoResult {
     }
 
     public double profitRate() {
-        return (double)(prize() - money) / (double) money;
+        return ((double)(prize() - money) / (double) money) * 100;
     }
 
     public void print() {
