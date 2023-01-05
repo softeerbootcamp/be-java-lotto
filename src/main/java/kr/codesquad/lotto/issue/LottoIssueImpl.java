@@ -14,9 +14,9 @@ public class LottoIssueImpl implements LottoIssue {
 
     @Override
     public List<Lotto> issue(int cnt) {
-        List<Lotto> lottoList = this.strategy.issue(cnt);
-        lottoList.forEach(Lotto::print);
-        return lottoList;
+        List<Lotto> lottos = this.strategy.issue(cnt);
+        lottos.forEach(Lotto::print);
+        return lottos;
     }
 
     @Override

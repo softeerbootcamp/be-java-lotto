@@ -39,16 +39,16 @@ public class LottoIOManagerImpl implements LottoIOManager {
     }
 
     @Override
-    public Set<LottoNumber> readLottoNumberSet(String message) {
+    public Set<LottoNumber> readLottoNumbers(String message) {
         if (message.length() != 0) print(message);
         try {
-            Set<LottoNumber> numberSet = new HashSet<>(6);
+            Set<LottoNumber> numbers = new HashSet<>(6);
             String[] numbersOfString = br.readLine().replaceAll(" ", "").split(",");
             for (String numberOfString: numbersOfString) {
                 LottoNumber lottoNumber = new LottoNumber(Integer.parseInt(numberOfString));
-                numberSet.add(lottoNumber);
+                numbers.add(lottoNumber);
             }
-            return numberSet;
+            return numbers;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -67,7 +67,7 @@ public class LottoIOManagerImpl implements LottoIOManager {
 
     @Override
     public WinningLotto readWinningLottoNumber() {
-        Set<LottoNumber> lottoNumbers = readLottoNumberSet("\n당첨 번호를 입력하세요.");
+        Set<LottoNumber> lottoNumbers = readLottoNumbers("\n당첨 번호를 입력하세요.");
         LottoNumber bonusNumber = readLottoNumber("보너스 번호를 입력하세요.");
         return new WinningLotto(new Lotto(lottoNumbers), bonusNumber);
     }

@@ -27,21 +27,21 @@ public class LottoMachine {
         int money = lottoIOManager.readPurchasePrice();
         int lottoCnt = money / priceOfLotto;
 
-        List<Lotto> lottoList = issueLotto(lottoCnt);
+        List<Lotto> lottos = issueLotto(lottoCnt);
 
-        System.out.println(lottoList.size() + "개를 구매했습니다.");
-        return new LottoTicket(lottoList, lottoCnt * priceOfLotto);
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        return new LottoTicket(lottos, lottoCnt * priceOfLotto);
     }
 
     private List<Lotto> issueLotto(int lottoCnt) {
         lottoIssue.setLottoIssueStrategy(issueStrategyMap.get("MANUAL"));
-        List<Lotto> manualLottoList = lottoIssue.issue(lottoCnt);
+        List<Lotto> manualLottos = lottoIssue.issue(lottoCnt);
 
         lottoIssue.setLottoIssueStrategy(issueStrategyMap.get("AUTO"));
-        List<Lotto> autoLottoList = lottoIssue.issue(lottoCnt - manualLottoList.size());
+        List<Lotto> autoLottos = lottoIssue.issue(lottoCnt - manualLottos.size());
 
         return Stream
-                .concat(manualLottoList.stream(), autoLottoList.stream())
+                .concat(manualLottos.stream(), autoLottos.stream())
                 .collect(Collectors.toList());
     }
 
