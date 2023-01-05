@@ -6,12 +6,13 @@ import kr.codesquad.model.lottos.ResultLotto;
 import kr.codesquad.model.lottos.Lotto;
 import kr.codesquad.view.UserConsole;
 
-import static kr.codesquad.utils.Util.parseString;
+import java.util.ArrayList;
 
 public class LottoController {
 
     private UserInfo user;
     private UserConsole userConsole;
+    private ConsoleHandler consoleHandler;
     private RandomLotto randomLotto = new RandomLotto();
     private Lotto myLotto = new Lotto();
     private ResultLotto resultLotto = new ResultLotto();
@@ -38,8 +39,8 @@ public class LottoController {
 
     //로또 구매 로직
     public void purchaseLotto(){
-        int purchasedPrice = userConsole.enterPurchasePrice();
-        int numOfLottoSudong = userConsole.enterSudongLottoNumber();
+        int purchasedPrice = consoleHandler.enterPurchasePrice();
+        int numOfLottoSudong = consoleHandler.enterSudongLottoNumber();
         int numOfLottoAuto = (purchasedPrice / 1000) - numOfLottoSudong;
         user.insertInfos(purchasedPrice, numOfLottoAuto, numOfLottoSudong);
     }
@@ -51,18 +52,17 @@ public class LottoController {
         randomLotto.startGeneration(user.getNumOfLottoAuto(), user.getNumOfLottoSudong());
         //수동 로또 생성
         for(int i = 0; i < user.getNumOfLottoSudong(); i++){
-            String lottoStr = userConsole.enterSudongLottoList();
-            myLotto.addLotto(parseString(lottoStr));
+            ArrayList<Integer> sudongLottoList = consoleHandler.enterSudongLottoList();
+            myLotto.addLotto(sudongLottoList);
         }
     }
 
     //당첨 번호 생성
     public void generateResults(){
-        String givenResult = userConsole.enterResultList();
-        resultLotto.addLotto(parseString(givenResult));
-        resultLotto.setBonusNum(userConsole.enterBonusNum());
+        ArrayList<Integer> givenResult = consoleHandler.enterResultList();
+        resultLotto.addLotto(givenResult);
+        resultLotto.setBonusNum(consoleHandler.enterBonusNum());
     }
-
 
     //당첨 여부 조회
     public void calculateMatch(){
