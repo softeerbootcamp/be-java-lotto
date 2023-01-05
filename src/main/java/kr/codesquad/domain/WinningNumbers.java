@@ -2,11 +2,11 @@ package kr.codesquad.domain;
 
 public class WinningNumbers {
     private final Row row;
-    private final int bonusNum;
+    private final LottoNumber bonusNumber;
 
-    public WinningNumbers(Row row, int bonusNum) {
+    public WinningNumbers(Row row, LottoNumber bonusNumber) {
         this.row = row;
-        this.bonusNum = bonusNum;
+        this.bonusNumber = bonusNumber;
     }
 
     public Row getRow() {
@@ -14,6 +14,6 @@ public class WinningNumbers {
     }
 
     public int getBonusNum() {
-        return bonusNum;
+        return bonusNumber.getNumber();
     }
 }

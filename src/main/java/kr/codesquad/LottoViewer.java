@@ -1,6 +1,7 @@
 package kr.codesquad;
 
 import kr.codesquad.domain.*;
+import kr.codesquad.exception.ManualLottoCntException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class LottoViewer {
         System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
         int manualCnt = Integer.parseInt(br.readLine());
         if (manualCnt < 0) {
-            throw new IllegalArgumentException("수동 로또 수 0이상이어야 함.");
+            throw new ManualLottoCntException();
         }
         return new Money(totalMoney, manualCnt);
     }
@@ -45,37 +46,38 @@ public class LottoViewer {
     public Lotto inputLotto(Money money) throws IOException {
         Lotto lotto = new Lotto(money);
 
+        if (money.countOfManualRows() > 0) {
+            addManualRows(money, lotto);
+        }
+        lottoController.addAutoRowsToLotto(lotto, money.countOfAutoRows());
+        return lotto;
+    }
+
+    private void addManualRows(Money money, Lotto lotto) throws IOException {
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
         for (int i = 0; i < money.countOfManualRows(); i++) {
             String manualRowString = br.readLine();
             lottoController.addManualRowsToLotto(lotto, money.countOfManualRows(), manualRowString);
         }
-        lottoController.addAutoRowsToLotto(lotto, money.countOfAutoRows());
-        return lotto;
     }
 
     public WinningNumbers inputWinningNumbers() throws IOException {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        List<Integer> answerList = new ArrayList<>();
+
+        /*** 추가 개선 가능??***/
+        List<LottoNumber> answerList = new ArrayList<>();
         for (int i = 0; i < Row.COLUMN; i++) {
-            answerList.add(Integer.parseInt(st.nextToken()));
+            answerList.add(new LottoNumber(st.nextToken()));
         }
+
         System.out.println("보너스 볼을 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(br.readLine());
+        LottoNumber bonusNumber = new LottoNumber(br.readLine());
 
-        List<LottoNumber> lottoNumbers = LottoNumber.convertIntegersToLottoNumbers(answerList);
-
-        return new WinningNumbers(Row.createRow(lottoNumbers), bonusNumber);
+        return new WinningNumbers(Row.createRow(answerList), bonusNumber);
     }
 
-    /**
-     * Controlling Compare & create Statistics
-     *
-     * @param lotto
-     * @param winningNumbers
-     */
     public void result(Lotto lotto, WinningNumbers winningNumbers) {
         lotto.compareLotto(winningNumbers);
 
