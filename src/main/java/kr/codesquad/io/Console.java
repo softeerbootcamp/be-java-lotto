@@ -1,7 +1,7 @@
 package kr.codesquad.io;
 
 import kr.codesquad.lotto.Lotto;
-import kr.codesquad.winLotto.WinningCount;
+import kr.codesquad.winLotto.WinCount;
 
 import java.util.Arrays;
 import java.util.List;
@@ -58,30 +58,30 @@ public class Console {
         System.out.println();
     }
 
-    public void printLottoResult(int money, Map<WinningCount, Integer> lottoResult) {
+    public void printLottoResult(int money, Map<WinCount, Integer> lottoResult) {
         System.out.println("\n당첨 통계\n---------");
 
-        Arrays.stream(WinningCount.values())
-                .forEach(winningCount -> {
-                    printLottoResultByWinningCount(lottoResult, winningCount);
+        Arrays.stream(WinCount.values())
+                .forEach(winCount -> {
+                    printLottoResultByWinningCount(lottoResult, winCount);
 
                 });
         printProfit(lottoResult, money);
     }
 
-    public void printLottoResultByWinningCount(Map<WinningCount, Integer> lottoResult, WinningCount winningCount) {
-        String bonus = (winningCount.getIsBonus()) ? ", 보너스 볼 일치" : "";
-        if (lottoResult.containsKey(winningCount)) {
-            System.out.println(winningCount.getCount() + "개 일치" + bonus + "(" + winningCount.getPrice() + ") - " + lottoResult.get(winningCount) + "개");
+    public void printLottoResultByWinningCount(Map<WinCount, Integer> lottoResult, WinCount winCount) {
+        String bonus = (winCount.getIsBonus()) ? ", 보너스 볼 일치" : "";
+        if (lottoResult.containsKey(winCount)) {
+            System.out.println(winCount.getCount() + "개 일치" + bonus + "(" + winCount.getPrice() + ") - " + lottoResult.get(winCount) + "개");
         }
-        if (!lottoResult.containsKey(winningCount)) {
-            System.out.println(winningCount.getCount() + "개 일치" + bonus + "(" + winningCount.getPrice() + ") - " + "0개");
+        if (!lottoResult.containsKey(winCount)) {
+            System.out.println(winCount.getCount() + "개 일치" + bonus + "(" + winCount.getPrice() + ") - " + "0개");
         }
     }
 
-    public void printProfit(Map<WinningCount, Integer> lottoResult, int money) {
+    public void printProfit(Map<WinCount, Integer> lottoResult, int money) {
         int rewardSum = 0;
-        for (Map.Entry<WinningCount, Integer> lotto : lottoResult.entrySet()) {
+        for (Map.Entry<WinCount, Integer> lotto : lottoResult.entrySet()) {
             rewardSum += lotto.getKey().getPrice() * lotto.getValue();
         }
 

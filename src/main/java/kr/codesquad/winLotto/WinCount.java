@@ -1,6 +1,6 @@
 package kr.codesquad.winLotto;
 
-public enum WinningCount {
+public enum WinCount {
 
     THREE(3, 5000, false),
     FOUR(4, 50000, false),
@@ -12,7 +12,7 @@ public enum WinningCount {
     private int price;
     private final boolean isBonus;
 
-    WinningCount(
+    WinCount(
             int count,
             int price,
             boolean isBonus
