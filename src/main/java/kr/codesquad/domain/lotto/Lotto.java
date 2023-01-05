@@ -5,23 +5,26 @@ import kr.codesquad.domain.lotto.factory.LottoFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
     public static final int LOTTO_PRICE = 1000;
     private static final int BONUS_COUNT = 5;
 
-    private final List<Integer> lotto;
+    private final List<LottoNumber> lotto;
 
     public Lotto(LottoFactory lottoFactory) {
         lotto = new ArrayList<>(lottoFactory.generateLottoNumbers());
     }
 
     public Lotto(List<Integer> lottoNumbers) {
-        this.lotto = new ArrayList<>(new ArrayList<>(lottoNumbers));
+        this.lotto = lottoNumbers.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
     }
 
-    public boolean contains(int number) {
+    public boolean contains(LottoNumber number) {
         return lotto.contains(number);
     }
 
@@ -40,7 +43,9 @@ public class Lotto {
     }
 
     public List<Integer> getLotto() {
-        return new ArrayList<>(new ArrayList<>(lotto));
+        return lotto
+                .stream()
+                .map(LottoNumber::getLottoNumber).collect(Collectors.toList());
     }
 
 }

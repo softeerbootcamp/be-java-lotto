@@ -1,8 +1,5 @@
 package kr.codesquad.domain.lotto;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class LottoNumber {
 
     private static final int LOTTO_MIN_NUMBER = 1;
@@ -17,4 +14,12 @@ public class LottoNumber {
     public int getLottoNumber() {
         return lottoNumber;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null || this.getClass() != obj.getClass()) return false;
+        LottoNumber that = (LottoNumber) obj;
+        return lottoNumber == that.lottoNumber;
+    }
+
 }

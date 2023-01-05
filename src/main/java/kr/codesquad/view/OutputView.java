@@ -1,15 +1,22 @@
 package kr.codesquad.view;
 
-import kr.codesquad.domain.lotto.Lotto;
-import kr.codesquad.domain.lotto.Lottos;
 import kr.codesquad.domain.Rank;
 import kr.codesquad.domain.Result;
+import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.lotto.LottoNumber;
+import kr.codesquad.domain.lotto.Lottos;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public final class OutputView {
 
     private OutputView() {
         throw new AssertionError();
     }
+
     public static void showRequestTotalPrice() {
         System.out.println("구입금액을 입력해 주세요.");
     }
@@ -19,7 +26,7 @@ public final class OutputView {
     }
 
     public static void showRequestManualLottoNumbers(int manualLottoCount) {
-        if(manualLottoCount != 0) {
+        if (manualLottoCount != 0) {
             System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
         }
     }
@@ -29,9 +36,10 @@ public final class OutputView {
     }
 
     public static void showLottoNumbers(Lottos lottos) {
-        for (Lotto lotto : lottos.getLottoList()) {
-            System.out.println(lotto.getLotto().toString());
-        }
+        lottos.getLottoList()
+                .stream()
+                .map(lotto -> lotto.getLotto().toString())
+                .forEach(System.out::println);
     }
 
     public static void showRequestWinNumber() {

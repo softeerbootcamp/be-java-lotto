@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 
 public final class InputView {
 
+    private static final String DELIMITER = ", ";
+    private static final Scanner sc = new Scanner(System.in);
     private InputView() {
         throw new AssertionError();
     }
-    private static final String DELIMITER = ", ";
-    private static final Scanner sc = new Scanner(System.in);
 
     public static String inputTotalPrice() {
         return input();
@@ -22,13 +22,13 @@ public final class InputView {
     }
 
     public static List<Integer> inputLotto() {
-            return Arrays.stream(input().split(DELIMITER))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+        return Arrays.stream(input().split(DELIMITER))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
-    public static String inputBonusBall() {
-        return input();
+    public static int inputBonusBall() {
+        return Integer.parseInt(input());
     }
 
     private static String input() {

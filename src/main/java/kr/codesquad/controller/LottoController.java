@@ -1,10 +1,7 @@
 package kr.codesquad.controller;
 
-import kr.codesquad.domain.lotto.Lotto;
-import kr.codesquad.domain.lotto.LottoShop;
-import kr.codesquad.domain.lotto.Lottos;
 import kr.codesquad.domain.Result;
-import kr.codesquad.domain.lotto.WinLotto;
+import kr.codesquad.domain.lotto.*;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 
@@ -39,7 +36,7 @@ public class LottoController {
         Lotto winLotto = new Lotto(InputView.inputLotto());
 
         OutputView.showRequestBonusBall();
-        int bonusBall = Integer.parseInt(InputView.inputBonusBall());
+        LottoNumber bonusBall = new LottoNumber(InputView.inputBonusBall());
         return new WinLotto(winLotto, bonusBall);
     }
 
