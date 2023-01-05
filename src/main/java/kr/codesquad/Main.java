@@ -1,9 +1,6 @@
 package kr.codesquad;
 
-import kr.codesquad.domain.Lotto;
 import kr.codesquad.domain.Money;
-import kr.codesquad.domain.WinningLotto;
-import kr.codesquad.enums.Rank2;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 

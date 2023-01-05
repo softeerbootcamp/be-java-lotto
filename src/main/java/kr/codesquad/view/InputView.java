@@ -1,6 +1,5 @@
 package kr.codesquad.view;
 
-import kr.codesquad.domain.Lotto;
 import kr.codesquad.domain.Lotto2;
 
 import java.io.BufferedReader;
