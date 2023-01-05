@@ -10,6 +10,7 @@ import kr.codesquad.View.Printer;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class LottoController {
@@ -18,8 +19,16 @@ public class LottoController {
     MessageGenerator mg = new MessageGenerator();
     LottoGenerator lottoGenerator = new LottoGenerator();
     WinnerCalculator winnerCalculator = new WinnerCalculator();
-    User user = new User();
     public void start(){
+        Lotto.initLotto();  //로또 번호 1~45 초기화
+        User user = new User(getInitMoney());
+        user.buyLotto(lottoGenerator);      //유저 로또 구입
+        getBuyResult(user);  //유저가 구입한 로또 리스트 출력
+        WinLotto winLotto = new WinLotto(getWinNumber(), getBonusNumber());    //당첨 로또 설정
+        winnerCalculator.initWinnerCount(); //당첨자수 초기화
+        winnerCalculator.calcResult(user,winLotto);
+        lottoPrinter.print(mg.getResultMsg(winnerCalculator));
+        /*
         user.setMoney(getInitMoney());
         winnerCalculator.initWinnerCount();
         lottoService.init();
@@ -27,7 +36,33 @@ public class LottoController {
         lottoService.setWinNum(getWinNumber());
         lottoService.calcResult();
         lottoPrinter.print(mg.getResultMsg(lottoService));
+         */
     }
+
+    private List<Integer> getWinNumber(){
+        lottoPrinter.print(mg.getWinRequestMsg());
+        return lottoScanner.scanWinNum();
+    }
+
+    private int getBonusNumber(){
+        lottoPrinter.print(mg.getBonusReqMsg());
+        return lottoScanner.scanBonus();
+    }
+
+    private BigInteger getInitMoney(){
+        lottoPrinter.print(mg.getMoneyReqMsg());
+        return lottoScanner.scanMoney();
+    }
+
+    private void getBuyResult(User user){
+        lottoPrinter.print(mg.getBuyMsg(user.getLottoAmount()));
+        Iterator<Lotto> iterator = user.lottoList.listIterator();
+        while (iterator.hasNext()){
+            Lotto lotto = iterator.next();
+            lottoPrinter.print(Arrays.asList(lotto.num).toString());
+        }
+    }
+    /*
 
     private BigInteger getInitMoney(){
         lottoPrinter.print(mg.getMoneyReqMsg());
@@ -39,22 +74,11 @@ public class LottoController {
         return mg.getBuyMsg(lottoService.buyLotto());
     }
 
-    private String getWinNumber(){
-        lottoPrinter.print(mg.getWinRequestMsg());
-        return lottoScanner.scanWinNum();
-    }
-
     public void calcResult(){
-        List<Integer> winList = Arrays.asList(winnerCalculator.winLotto.num);
-        for (Lotto lotto : user.lottoList) {
-            List<Integer> lottoNum = new ArrayList<Integer>(Arrays.asList(lotto.num));
-            lottoNum.retainAll(winList);
-            int countOfMatch = lottoNum.size(); //일치 갯수
-            Price price = Price.valueOf(countOfMatch, lotto.bonusMatch());
-            if (price == null) continue;
-            winnerCalculator.updateWinnerCount(price);
-            user.updateEarn(price);
-        }
 
     }
+
+    private
+
+     */
 }

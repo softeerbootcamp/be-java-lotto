@@ -1,6 +1,7 @@
 package kr.codesquad.View;
 
 import kr.codesquad.Model.Price;
+import kr.codesquad.Model.WinnerCalculator;
 
 public class MessageGenerator {
     private static final String headerMsg = "당첨 통계\n---------";
@@ -11,17 +12,20 @@ public class MessageGenerator {
     private static final String sameMsg = "%d개 일치";
     private static final String moneyMsg = "(%d원) - %d개";
     private static final String buyMsg = "%d개를 구매했습니다.";
-
-    public String getResultMsg(LottoService lottoService){
+    private static final String bonusReqMsg = "보너스 볼을 입력해 주세요.";
+    public String getResultMsg(WinnerCalculator winnerCalculator){
         String rtnMsg = "";
         for (Price price:Price.values()){
             rtnMsg += String.format(sameMsg,price.getCountOfMatch());
             rtnMsg += getBonusPostfix(price);
-            rtnMsg += String.format(moneyMsg,(int)price.getWinningMoney(),lottoService.winnerCount.get(price))+"\n";
+            rtnMsg += String.format(moneyMsg,(int)price.getWinningMoney(),winnerCalculator.winnerCount.get(price))+"\n";
         }
         return rtnMsg;
     }
 
+    public String getBonusReqMsg(){
+        return bonusReqMsg;
+    }
     public String getMoneyReqMsg(){
         return moneyReqMsg;
     }

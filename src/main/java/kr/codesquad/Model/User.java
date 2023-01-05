@@ -12,19 +12,22 @@ public class User {
     private int lottoAmount;   //유저가 구입한 로또 갯수
     public List<Lotto> lottoList = new ArrayList<>();   //유저가 구입한 로또
     public BigDecimal earn = new BigDecimal("-100");    //유저의 수익
-    public void setMoney(BigInteger money) {
+    public User(BigInteger money){
         this.money = money;
+        getLottoAmount();
     }
 
 
-    public int buyLotto(){
+    public int getLottoAmount(){
         lottoAmount = money.divide(new BigInteger("1000")).intValue();
+        return lottoAmount;
+    }
+
+    public void buyLotto(LottoGenerator lottoGenerator){
         for (int i=0; i<lottoAmount; i++){
-            Lotto lotto = LottoGenerator.generateLotto();
-            lotto.print();
+            Lotto lotto = lottoGenerator.getNewLotto();
             lottoList.add(lotto);
         }
-        return lottoAmount;
     }
 
     public void updateEarn(Price price){
