@@ -8,8 +8,7 @@ import java.util.*;
 public class LottoStore {
     private final LottoFactory lottoFactory;
     private static final int LOTTO_PRICE=1000;
-    private static final int HUNDRED=1000;
-
+    private static final int HUNDRED=100;
 
     private List<Lotto> lottoList;
     private Map<Rank, Integer> winningLottoMap;
@@ -31,14 +30,17 @@ public class LottoStore {
     }
 
     public void setManualLotto(long manualLottoCount) {
-
+        for (long i = 0 ; i < manualLottoCount ; i++){
+            Lotto currLotto = lottoFactory.generateLotto("manual");
+            lottoList.add(currLotto);
+        }
     }
 
     public Map<Rank, Integer> getwinningLottoMap() {
         return winningLottoMap;
     }
 
-    public List<Lotto> getLottos() {
+    public List<Lotto> getLottoList() {
         return lottoList;
     }
 
