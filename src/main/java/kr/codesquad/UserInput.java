@@ -28,9 +28,10 @@ public class UserInput {
         return winNumList;
     }
 
-    public List<Integer> inputBonusNum(List<Integer> winNumList) {
+    public int inputBonusNum() {
         System.out.println("보너스 볼을 입력해 주세요.");
-        winNumList.add(sc.nextInt());
-        return winNumList;
+        int bonusNum = sc.nextInt();
+        sc.nextLine();
+        return bonusNum;
     }
 }
