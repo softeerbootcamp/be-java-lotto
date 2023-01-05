@@ -27,4 +27,10 @@ public class LottoNumber {
 	public static LottoNumber of(int number) {
 		return numberMap.get(number);
 	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(number);
+	}
+
 }
