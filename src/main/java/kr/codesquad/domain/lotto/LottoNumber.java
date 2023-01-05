@@ -1,4 +1,4 @@
-package kr.codesquad.domain;
+package kr.codesquad.domain.lotto;
 
 import java.util.HashMap;
 import java.util.Map;

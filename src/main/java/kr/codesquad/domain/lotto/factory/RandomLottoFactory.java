@@ -1,4 +1,4 @@
-package kr.codesquad.factory;
+package kr.codesquad.domain.lotto.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;

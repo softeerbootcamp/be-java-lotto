@@ -1,9 +1,6 @@
-package kr.codesquad.domain;
+package kr.codesquad.domain.lotto;
 
-import kr.codesquad.factory.LottoFactory;
-import kr.codesquad.factory.ManualLottoFactory;
-import kr.codesquad.factory.RandomLottoFactory;
-import kr.codesquad.view.InputView;
+import kr.codesquad.domain.lotto.factory.RandomLottoFactory;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package kr.codesquad.view;
 
-import kr.codesquad.domain.Lotto;
-import kr.codesquad.domain.Lottos;
+import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.lotto.Lottos;
 import kr.codesquad.domain.Rank;
 import kr.codesquad.domain.Result;
 

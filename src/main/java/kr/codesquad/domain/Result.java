@@ -1,5 +1,8 @@
 package kr.codesquad.domain;
 
+import kr.codesquad.domain.lotto.Lottos;
+import kr.codesquad.domain.lotto.WinLotto;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

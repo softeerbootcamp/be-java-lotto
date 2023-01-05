@@ -1,12 +1,10 @@
-package kr.codesquad.domain;
+package kr.codesquad.domain.lotto;
 
-import kr.codesquad.factory.LottoFactory;
+import kr.codesquad.domain.Rank;
+import kr.codesquad.domain.lotto.factory.LottoFactory;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Lotto {
     private static final int BONUS_COUNT = 5;
