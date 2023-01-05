@@ -30,7 +30,9 @@ public class LottoResult {
 
 	public double getEarningRate(int purchaseAmount) {
 		int input = getProfit();
-
+		if (purchaseAmount <= 0) {
+			throw new IllegalArgumentException("구입 금액이 0보다 작을 수 없습니다.");
+		}
 		return ((input - purchaseAmount) / purchaseAmount) * 100;
 	}
 
