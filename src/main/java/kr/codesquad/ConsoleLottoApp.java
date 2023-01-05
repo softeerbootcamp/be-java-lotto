@@ -10,7 +10,7 @@ import kr.codesquad.domain.lotto.LottoShopPurchaseResult;
 import kr.codesquad.domain.winningLotto.WinningLotto;
 import kr.codesquad.domain.winningLotto.WinningResult;
 
-public class Engine extends App {
+public class ConsoleLottoApp extends App {
 
   private static final Console console = new Console();
   private static final LottoShop lottoShop = new LottoShop();
