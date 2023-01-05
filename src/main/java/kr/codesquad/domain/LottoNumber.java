@@ -1,11 +1,8 @@
 package kr.codesquad.domain;
 
 import kr.codesquad.exception.NumberNotValidException;
-import kr.codesquad.exception.DuplicateLottoNumberException;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LottoNumber implements Comparable<LottoNumber>{
@@ -37,19 +34,11 @@ public class LottoNumber implements Comparable<LottoNumber>{
 
     public static List<LottoNumber> convertIntegersToLottoNumbers(List<Integer> integerList) {
 
-        lottoNumbersDuplicateCheck(integerList);
+        Row.lottoIntegersDuplicateCheck(integerList);
 
         return integerList.stream()
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
-    }
-
-    private static void lottoNumbersDuplicateCheck(List<Integer> numList) {
-        Set<Integer> numSet = new HashSet<>(numList);
-
-        if(numSet.size()!= numList.size()){
-            throw new DuplicateLottoNumberException();
-        }
     }
 
 

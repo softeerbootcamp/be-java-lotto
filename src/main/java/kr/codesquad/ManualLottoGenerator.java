@@ -17,9 +17,8 @@ public class ManualLottoGenerator implements LottoGenerator {
         return convertStringToRow(manualRowString);
     }
 
-    //todo : 예외 처리 필요 (숫자 맞는지, 6개 맞는지)
     public void checkValidation(String manualRowString) {
-
+        convertStringToRow(manualRowString);
         this.manualRowString = manualRowString;
     }
 

@@ -70,10 +70,11 @@ public class LottoViewer {
         for (int i = 0; i < Row.COLUMN; i++) {
             answerList.add(new LottoNumber(st.nextToken()));
         }
+        Row row = Row.createRow(answerList);
         System.out.println("보너스 볼을 입력해 주세요.");
         LottoNumber bonusNumber = new LottoNumber(br.readLine());
 
-        return new WinningNumbers(Row.createRow(answerList), bonusNumber);
+        return new WinningNumbers(row, bonusNumber);
     }
 
     public void result(Lotto lotto, WinningNumbers winningNumbers) {
