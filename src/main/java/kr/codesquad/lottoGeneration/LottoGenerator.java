@@ -1,35 +1,24 @@
 package kr.codesquad.lottoGeneration;
 
-import kr.codesquad.input.Input;
 import kr.codesquad.lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LottoGenerator {
-    private final int purchaseCount;
+    public LottoGenerator() {}
 
-    private final int manualLottoPurchaseCount;
+    public List<Lotto> generate(int money, int manualCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.addAll(Objects.requireNonNull(generateLotto(manualCount, new ManualLottoFactory())));
+        lottos.addAll(Objects.requireNonNull(generateLotto(money / Lotto.PRICE - manualCount, new AutoLottoFactory())));
 
-    private LottoGenerator(int money, int manualLottoPurchaseCount) {
-        this.purchaseCount = money / Lotto.PRICE;
-        this.manualLottoPurchaseCount = manualLottoPurchaseCount;
-    }
-
-    public static LottoGenerator of(int money, int manualLottoPurchaseCount) {
-        return new LottoGenerator(money, manualLottoPurchaseCount);
-    }
-
-    public List<Lotto> generateLottos(Input input) {
-        List<Lotto> lottos = new ArrayList<>(LottoGenerationImpl.of(manualLottoPurchaseCount,
-                new ManualLottoGenerationMethodImpl(input), input).generate());
-        lottos.addAll(LottoGenerationImpl.of(purchaseCount - manualLottoPurchaseCount,
-                new AutoLottoGenerationMethodImpl(), input).generate());
-        System.out.println("수동으로 " + manualLottoPurchaseCount + "개, 자동으로 " + (purchaseCount - manualLottoPurchaseCount) +"개를 구매했습니다");
-        for(Lotto lotto : lottos) {
-            System.out.println(lotto);
-        }
         return lottos;
+    }
+
+    private List<Lotto> generateLotto(int count, LottoFactory lottoFactory) {
+        return lottoFactory.generate(count);
     }
 }
 
