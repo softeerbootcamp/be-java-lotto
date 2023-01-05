@@ -1,11 +1,12 @@
 package kr.codesquad.domain.lotto.factory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.common.io.Console;
+import kr.codesquad.domain.lotto.Lotto;
 
 public class LottoManualFactory implements LottoFactory {
 
@@ -13,6 +14,9 @@ public class LottoManualFactory implements LottoFactory {
 
   @Override
   public List<Lotto> generate(int count) {
+    if (count == 0) {
+      return new ArrayList<>();
+    }
     console.printInputManualLottoNumbers();
     return IntStream.range(0, count)
                     .mapToObj(i -> console.inputLottoNumbers())
