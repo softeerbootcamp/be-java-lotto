@@ -27,8 +27,6 @@ public class LottoIssue {
         for (int i = 0 ; i < automaticCount ; i++) {
             lottos.add(lottoFactory.generateLotto("automatic"));
         }
-        ioManager.printLottoCount(automaticCount, manualLottoCount);
-        ioManager.printLottos(lottos);
         return lottos;
     }
 

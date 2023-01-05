@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : LottoStore로 LottoIssue로 변경">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : EarningRate를 구할 수 있는 메서드를 LottoResult에 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Lotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Lotto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoIssue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoIssue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoNumber.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,13 +114,6 @@
       <workItem from="1672644019169" duration="26231000" />
       <workItem from="1672724915964" duration="54000" />
       <workItem from="1672724971960" duration="11965000" />
-    </task>
-    <task id="LOCAL-00017" summary="refactor : main 함수에서 직접 실행하던 console과 lottoService를 App class로 분리">
-      <created>1672724873299</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1672724873299</updated>
     </task>
     <task id="LOCAL-00018" summary="refactor : lotto 가격을 상수로 뺌">
       <created>1672724941329</created>
@@ -456,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672935248868</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="refactor : EarningRate를 구할 수 있는 메서드를 LottoResult에 추가">
+      <created>1672935426073</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1672935426073</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,7 +476,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat : 수동로또 생성 구현" />
     <MESSAGE value="feat : LottoNumber로 숫자가 들어오지 않은 경우 Exception 발생" />
     <MESSAGE value="feat : LottoResult 클래스 추가" />
     <MESSAGE value="feat : User 클래스 구현" />
@@ -499,7 +500,8 @@
     <MESSAGE value="refactor : 전체적인 구조 refactor" />
     <MESSAGE value="refactor : LottoResult를 출력하는 부분을 IOManager에 추가함" />
     <MESSAGE value="refactor : LottoStore로 LottoIssue로 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor : LottoStore로 LottoIssue로 변경" />
+    <MESSAGE value="refactor : EarningRate를 구할 수 있는 메서드를 LottoResult에 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : EarningRate를 구할 수 있는 메서드를 LottoResult에 추가" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
