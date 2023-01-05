@@ -16,7 +16,7 @@ public class InputImpl implements Input{
     }
 
     @Override
-    public int MoneyInput() {
+    public int moneyInput() {
         try {
             System.out.println("구입할 금액을 입력하세요");
             return Integer.parseInt(br.readLine());
@@ -25,8 +25,7 @@ public class InputImpl implements Input{
         }
     }
 
-    @Override
-    public int ManualLottoCountInput() {
+    public int manualLottoCountInput() {
         try {
             System.out.println("수동으로 구매할 개수을 입력하세요");
             return Integer.parseInt(br.readLine());
@@ -36,7 +35,7 @@ public class InputImpl implements Input{
     }
 
     @Override
-    public List<LottoNumber> ManualLottoNumbersInput() {
+    public List<LottoNumber> manualLottoNumbersInput() {
         try {
             List<LottoNumber> manualLottoNumbers = new ArrayList<>();
             StringTokenizer stringTokenizer = new StringTokenizer(br.readLine(),", ");
@@ -50,7 +49,7 @@ public class InputImpl implements Input{
     }
 
     @Override
-    public List<LottoNumber> JackpotNumberInput() {
+    public List<LottoNumber> jackpotNumberInput() {
         try {
             List<LottoNumber> jackpotLottoNumbers = new ArrayList<>();
             StringTokenizer stringTokenizer = new StringTokenizer(br.readLine(),", ");
@@ -64,7 +63,7 @@ public class InputImpl implements Input{
     }
 
     @Override
-    public int BonusNumberInput() {
+    public int bonusNumberInput() {
         try {
             return Integer.parseInt(br.readLine());
         } catch (IOException e) {

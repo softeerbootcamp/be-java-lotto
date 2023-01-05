@@ -12,10 +12,7 @@ public class LottoGame {
 
     private LottoGame(Input input) {
         this.input = input;
-        lottos = LottoGenerator.of(input.MoneyInput(), input.ManualLottoCountInput()).generateLottos(input);
-        for(Lotto lotto : lottos) {
-            lotto.fillLottoNumbers();
-        }
+        lottos = LottoGenerator.of(input.moneyInput(), input.manualLottoCountInput()).generateLottos(input);
     }
 
     public static LottoGame of(Input input) {

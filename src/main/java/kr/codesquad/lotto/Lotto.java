@@ -5,19 +5,14 @@ import kr.codesquad.input.Input;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Lotto {
-    private final Input input;
-
+public class Lotto {
     public static int PRICE = 1000;
 
     public static int NUMBER_COUNT = 6;
 
-    private List<LottoNumber> lottoNumbers;
+    private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(Input input) {
-        lottoNumbers = new ArrayList<>();
-        this.input = input;
+    public Lotto(List<LottoNumber> list) {
+        lottoNumbers = list;
     }
-
-    abstract public Lotto fillLottoNumbers();
 }

@@ -2,14 +2,11 @@ package kr.codesquad.lotto;
 
 import kr.codesquad.input.Input;
 
-public class AutoLotto extends Lotto{
-    public AutoLotto(Input input) {
-        super(input);
-    }
+import java.util.ArrayList;
+import java.util.List;
 
-    @Override
-    public Lotto fillLottoNumbers() {
-        //return shuffled list
-        return null;
+public class AutoLotto extends Lotto{
+    public AutoLotto(List<LottoNumber> list) {
+        super(list);
     }
 }
