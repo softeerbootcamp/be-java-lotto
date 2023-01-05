@@ -10,6 +10,6 @@ public abstract class Lotto {
     private final Lotto nextLotto;
 
     public List<List<Integer>> getLottoList() {
-        return this.lottoList;
+        return nextLotto == null ? lottoList : nextLotto.getLottoList();
     }
 }
