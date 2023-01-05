@@ -15,23 +15,14 @@ public class UserInput {
     public int inputMoney() {
         int money = 0;
         System.out.println("구입금액을 입력해 주세요.");
-
-        try {
-            money = sc.nextInt();
-            sc.nextLine();
-        } catch(InputMismatchException e) {
-            System.out.println("잘못된 입력입니다.");
-            e.printStackTrace();
-            System.exit(0);
-        }
-
+        validateInputOneNumber(money);
         return money;
     }
 
     public int inputManualLottoCount() {
+        int manualLottoCount = 0;
         System.out.println("수동으로 구매할 로또 수를 입력해 주세요");
-        int manualLottoCount = sc.nextInt();
-        sc.nextLine();
+        validateInputOneNumber(manualLottoCount);
         return manualLottoCount;
     }
 
@@ -53,9 +44,9 @@ public class UserInput {
     }
 
     public int inputBonusNum() {
+        int bonusNum = 0;
         System.out.println("보너스 볼을 입력해 주세요.");
-        int bonusNum = sc.nextInt();
-        sc.nextLine();
+        validateInputOneNumber(bonusNum);
         return bonusNum;
     }
 
