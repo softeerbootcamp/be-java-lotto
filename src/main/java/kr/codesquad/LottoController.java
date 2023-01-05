@@ -31,13 +31,15 @@ public class LottoController {
         lottoMachine = new LottoMachine(money, new AutoLottoGenerator());
         outputView.printString(lottoMachine.lottosToString());
     }
-    public WinningLotto inputWinningLotto() throws IOException{
+
+    public WinningLotto inputWinningLotto() throws IOException {
         outputView.printWinningNumberText();
         Lotto lotto = inputView.inputWinningLotto();
         outputView.printBonusBallText();
         int bonus = inputView.inputBonusNumber();
         return new WinningLotto(lotto, bonus);
     }
+
     //결과 출력
     public void printResult(WinningLotto winningLotto, Money money) {
         LottoResult lottoResult = lottoMachine.calculateResult(winningLotto);

@@ -10,6 +10,7 @@ public class WinningLotto {
         winningLotto = lotto;
         this.bonusBall = bonusBall;
     }
+
     public Rank compareLotto(Lotto lotto) {
         int count = winningLotto.match(lotto);
         boolean bonus = lotto.isContainsBonusBall(bonusBall);

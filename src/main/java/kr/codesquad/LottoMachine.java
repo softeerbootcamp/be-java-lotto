@@ -37,6 +37,7 @@ public class LottoMachine {
         }
         return sb.toString();
     }
+
     private String printLotto(Lotto lotto) {
         return lotto.toString();
     }
