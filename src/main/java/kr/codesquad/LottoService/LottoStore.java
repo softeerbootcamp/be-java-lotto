@@ -1,60 +1,39 @@
 package kr.codesquad.LottoService;
 
-import kr.codesquad.LottoService.LottoFactory.LottoFactory;
-import kr.codesquad.Rank;
+import kr.codesquad.User;
+import kr.codesquad.View.IOManager;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoStore {
     private final LottoFactory lottoFactory;
-    private static final int LOTTO_PRICE=1000;
-    private static final int HUNDRED=100;
+    private final User user;
+    private final IOManager ioManager;
 
-    private List<Lotto> lottoList;
-    private Map<Rank, Integer> winningLottoMap;
-
-    public LottoStore(LottoFactory lottoFactory, List<Lotto> lottoList, Map<Rank, Integer> winningLottoMap) {
+    public LottoStore(User user, LottoFactory lottoFactory, IOManager ioManager) {
+        this.user = user;
         this.lottoFactory = lottoFactory;
-        this.lottoList = lottoList;
-        this.winningLottoMap = winningLottoMap;
-        for (Rank rank : Rank.values()){
-            winningLottoMap.put(rank, 0);
-        }
+        this.ioManager = ioManager;
     }
 
-    public void setAutomaticLotto(long automaticLottoCount) {
-        for (long i = 0; i < automaticLottoCount; i++) {
-            Lotto currLotto = lottoFactory.generateLotto("automatic");
-            lottoList.add(currLotto);
+    public List<Lotto> issueLotto(int manualLottoCount){
+        List<Lotto> lottos = new ArrayList<>();
+        System.out.println("\n수동으로 구매할 번호를 입력해주세요.");
+
+        for (int i = 0 ; i < manualLottoCount ; i++) {
+            lottos.add(lottoFactory.generateLotto("manual"));
         }
+        int automaticCount = user.countOfBuying() - manualLottoCount;
+        for (int i = 0 ; i < automaticCount ; i++) {
+            lottos.add(lottoFactory.generateLotto("automatic"));
+        }
+        return lottos;
     }
 
-    public void setManualLotto(long manualLottoCount) {
-        for (long i = 0 ; i < manualLottoCount ; i++){
-            Lotto currLotto = lottoFactory.generateLotto("manual");
-            lottoList.add(currLotto);
-        }
-    }
-
-    public Map<Rank, Integer> getwinningLottoMap() {
-        return winningLottoMap;
-    }
-
-    public List<Lotto> getLottoList() {
-        return lottoList;
-    }
-
-
-    public void calculateEarningRate(long lottoCount){
-        long earningSum = 0;
-        for (Rank rank :Rank.values()){
-            earningSum += (long) rank.getWinningMoney() / LOTTO_PRICE * winningLottoMap.get(rank);
-        }
-        float earningRate = 0;
-        if (lottoCount != 0) {
-            earningRate = (earningSum - lottoCount)/(float)lottoCount * HUNDRED;
-        }
-        System.out.printf("총 수익률은 %.2f%%입니다.", Math.ceil(earningRate * HUNDRED)/HUNDRED);
+    public WinningLotto issueWinningLotto(){
+        Lotto lotto = lottoFactory.generateLotto("winning");
+        int bo = ioManager.inputBonusNumber();
+        return new WinningLotto(lotto, bo);
     }
 }
-
