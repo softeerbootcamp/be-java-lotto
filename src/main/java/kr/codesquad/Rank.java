@@ -3,28 +3,20 @@ package kr.codesquad;
 import static java.util.Objects.isNull;
 
 public enum Rank {
-    FIRST(6, 2000000000, "6개 일치"),
-    SECOND(5, 30000000, "5개 일치, 보너스 볼 일치"),
-    THIRD(5, 1500000, "5개 일치"),
-    FOURTH(4, 50000, "4개 일치"),
-    FIFTH(3, 5000, "3개 일치");
-
+    FIFTH(3, 5000),
+    FOURTH(4, 50000),
+    THIRD(5, 1500000),
+    SECOND(5, 30000000),
+    FIRST(6, 2000000000);
     private  final int cnt;
     private  final int prize;
-    private final String words;
-
-    Rank(int cnt, int prize, String words) {
+    Rank(int cnt, int prize) {
         this.cnt = cnt;
         this.prize = prize;
-        this.words = words;
-    }
-    public int getCnt(){
-        return cnt;
     }
     public int getPrize(){
         return prize;
     }
-    public String getWords(){ return words; }
     public static Rank valueOf(int cnt, boolean bonus) {
         Rank[] ranks = values();
         Rank value = null;
@@ -44,5 +36,10 @@ public enum Rank {
             return rank;
         }
         return null;
+    }
+    @Override
+    public String toString(){
+        if(this == SECOND) return this.cnt + "개 일치, 보너스 볼 일치" + "(" + this.prize + "원)";
+        return this.cnt + "개 일치" + "(" + this.prize + "원)";
     }
 }
