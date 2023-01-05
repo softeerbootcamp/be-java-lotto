@@ -1,6 +1,7 @@
 package kr.codesquad.IO;
 import kr.codesquad.Lotto.LottoStatus;
 import kr.codesquad.User;
+import kr.codesquad.customException.InvalidCashExeption;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,10 +21,19 @@ public class Console {
         try
         {
             cash = toInt(scanner.nextLine());
-        } catch(NumberFormatException e)
+        }
+        catch(InvalidCashExeption e)
         {
             System.out.println("유효한 숫자 입력이 아닙니다.");
-            System.out.printf("범위 안에 들어가는 숫자를 1000원 단위로 입력하세요 : %d ~ %d\n", 1000, Integer.MAX_VALUE - (Integer.MAX_VALUE%1000));
+            System.out.println("1000원 단위의 자연수로 금액을 입력하세요");
+            System.out.println("--------------------");
+            System.out.println("구입 금액을 입력하세요");
+            cash = scanCashAmount();
+        }
+        catch(NumberFormatException e)
+        {
+            System.out.println("유효한 숫자 입력이 아닙니다.");
+            System.out.printf("범위 안에 들어가는 숫자를 입력하세요 : %d ~ %d\n", 1000, Integer.MAX_VALUE - (Integer.MAX_VALUE%1000));
             System.out.println("--------------------");
             System.out.println("구입 금액을 입력하세요");
             cash = scanCashAmount();
@@ -34,7 +44,7 @@ public class Console {
     private int toInt(String str) throws NumberFormatException
     {
         int cash = Integer.parseInt(str);
-        if(cash <= 0 || cash % 1000 != 0) throw new NumberFormatException();
+        if(cash <= 0 || cash % 1000 != 0) throw new InvalidCashExeption("유효하지 않은 입력");
         return cash;
     }
 

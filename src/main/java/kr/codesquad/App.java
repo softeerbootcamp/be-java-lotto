@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class App {
     static Scanner scanner = new Scanner(System.in);
     private Console console;
-    private static User user = new User();
-    private static LottoMachine lottoMachine = new LottoMachine();
+    private User user = new User();
+    private LottoMachine lottoMachine = new LottoMachine();
 
     public App() {
         console = new Console();
