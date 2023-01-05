@@ -53,12 +53,4 @@ public class Row {
         return isBonus;
     }
 
-    public static Row convertStringToRow(String rowByString) {
-        StringTokenizer st = new StringTokenizer(rowByString);
-        List<Integer> numbers = new ArrayList<>();
-        while (st.hasMoreTokens()) {
-            numbers.add(Integer.valueOf(st.nextToken()));
-        }
-        return createRow(numbers);
-    }
 }

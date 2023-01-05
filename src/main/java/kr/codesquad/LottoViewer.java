@@ -38,14 +38,14 @@ public class LottoViewer {
     }
 
     public Lotto inputLotto(Money money) throws IOException {
-        Lotto lotto = lottoController.createLotto(money);
+        Lotto lotto = new Lotto(money);
 
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
         for (int i = 0; i < money.countOfManualRows(); i++) {
             String manualRowString = br.readLine();
-            Row row = Row.convertStringToRow(manualRowString);
-            lotto.addRowToLotto(row);
+            lottoController.addManualRowsToLotto(lotto, money.countOfManualRows(), manualRowString);
         }
+        lottoController.addAutoRowsToLotto(lotto, money.countOfAutoRows());
         return lotto;
     }
 

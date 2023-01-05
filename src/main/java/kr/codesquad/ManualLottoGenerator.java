@@ -2,15 +2,33 @@ package kr.codesquad;
 
 import kr.codesquad.domain.Row;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.StringTokenizer;
+
 public class ManualLottoGenerator implements LottoGenerator {
 
-    public Row generateRow(String rowString) {
-        //todo: 예외 처리 (갯수, 숫자여부 등등)
-        return Row.convertStringToRow(rowString);
-    }
-
+    private String manualRowString;
     @Override
     public Row generateRow() {
-        return null;
+        return convertStringToRow(manualRowString);
+    }
+    public void checkValidation(String manualRowString) {
+        /**
+         * 예외 처리 필요
+         */
+        this.manualRowString = manualRowString;
+    }
+
+    private Row convertStringToRow(String rowByString) {
+        StringTokenizer st = new StringTokenizer(rowByString);
+        List<Integer> numbers = new ArrayList<>();
+        while (st.hasMoreTokens()) {
+            numbers.add(Integer.valueOf(st.nextToken()));
+        }
+        Collections.sort(numbers);
+
+        return Row.createRow(numbers);
     }
 }
