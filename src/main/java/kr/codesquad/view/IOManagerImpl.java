@@ -1,15 +1,9 @@
-package kr.codesquad.View;
+package kr.codesquad.view;
 
-import kr.codesquad.LottoService.Lotto;
+import kr.codesquad.domain.Lotto;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.security.spec.ECField;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class IOManagerImpl implements IOManager {
     private static final int HUNDRED = 100;

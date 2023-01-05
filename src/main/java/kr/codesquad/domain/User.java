@@ -1,11 +1,5 @@
-package kr.codesquad;
+package kr.codesquad.domain;
 
-
-import kr.codesquad.LottoService.Lotto;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class User {
     private static final int MONEY_PER_LOTTO = 1_000;

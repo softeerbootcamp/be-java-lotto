@@ -1,13 +1,13 @@
-package kr.codesquad;
+package kr.codesquad.controller;
 
-import kr.codesquad.LottoService.*;
-import kr.codesquad.View.IOManager;
-import kr.codesquad.View.IOManagerImpl;
+import kr.codesquad.domain.*;
+import kr.codesquad.view.IOManager;
+import kr.codesquad.view.IOManagerImpl;
 
-public class App {
+public class LottoGameController {
     private IOManager ioManager;
 
-    public App() {
+    public LottoGameController() {
         ioManager = new IOManagerImpl();
     }
 

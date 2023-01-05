@@ -1,11 +1,11 @@
-package kr.codesquad.LottoService;
+package kr.codesquad.domain;
 
 public class WinningLotto {
     private final Lotto lotto;
     private final LottoNumber bonusNo;
 
-    public WinningLotto(Lotto lotto, int no) {
-        this.bonusNo = LottoNumber.of(no);
+    public WinningLotto(Lotto lotto, int number) {
+        this.bonusNo = LottoNumber.of(number);
         if (lotto.contains(bonusNo)) {
             throw new IllegalArgumentException();
         }

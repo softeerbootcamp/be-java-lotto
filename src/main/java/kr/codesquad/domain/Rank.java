@@ -1,4 +1,4 @@
-package kr.codesquad.LottoService;
+package kr.codesquad.domain;
 
 public enum Rank {
     FIFTH(3, 5_000),

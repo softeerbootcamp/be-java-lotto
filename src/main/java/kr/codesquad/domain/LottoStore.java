@@ -1,7 +1,6 @@
-package kr.codesquad.LottoService;
+package kr.codesquad.domain;
 
-import kr.codesquad.User;
-import kr.codesquad.View.IOManager;
+import kr.codesquad.view.IOManager;
 
 import java.util.ArrayList;
 import java.util.List;

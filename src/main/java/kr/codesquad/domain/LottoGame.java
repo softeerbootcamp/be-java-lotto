@@ -1,4 +1,4 @@
-package kr.codesquad.LottoService;
+package kr.codesquad.domain;
 
 import java.util.List;
 

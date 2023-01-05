@@ -1,6 +1,5 @@
-package kr.codesquad.LottoService;
+package kr.codesquad.domain;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -15,19 +14,19 @@ public class LottoNumber implements Comparable<LottoNumber> {
         }
     }
 
-    private final int no;
+    private final int number;
 
-    private LottoNumber(int no) {
-        if (no < LOTTO_START_NUMBER || no > LOTTO_END_NUMBER) {
+    private LottoNumber(int number) {
+        if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
             throw new IllegalArgumentException("유효한 범위 내의 로또 넘버가 아닙니다.");
         }
 
-        this.no = no;
+        this.number = number;
     }
 
     static LottoNumber of(String value) {
         if (Objects.isNull(value)) {
-            throw new IllegalArgumentException("비어있는 로또넘버가 존재합니다.");
+            throw new IllegalArgumentException("null값이 들어왔습니다.");
         }
         try {
             return lottoNos.get(Integer.parseInt(value.trim()));
@@ -45,21 +44,21 @@ public class LottoNumber implements Comparable<LottoNumber> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LottoNumber that = (LottoNumber) o;
-        return no == that.no;
+        return number == that.number;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(no);
+        return Objects.hash(number);
     }
 
     @Override
     public String toString() {
-        return String.valueOf(no);
+        return String.valueOf(number);
     }
 
     @Override
     public int compareTo(LottoNumber o) {
-        return this.no - o.no;
+        return this.number - o.number;
     }
 }

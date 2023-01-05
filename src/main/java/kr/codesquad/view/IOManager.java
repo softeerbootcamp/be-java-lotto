@@ -1,6 +1,6 @@
-package kr.codesquad.View;
+package kr.codesquad.view;
 
-import kr.codesquad.LottoService.Lotto;
+import kr.codesquad.domain.Lotto;
 
 import java.util.List;
 
