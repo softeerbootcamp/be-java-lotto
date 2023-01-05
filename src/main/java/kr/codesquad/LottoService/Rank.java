@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.LottoService;
 
 public enum Rank {
     FIFTH(3, 5_000),
@@ -6,7 +6,9 @@ public enum Rank {
     THIRD(5, 1_500_000),
     SECOND(5, 30_000_000),
     FIRST(6, 2_000_000_000),
-    ETC(0, 0);
+    MISS(0, 0);
+
+    private static final int WINNING_MIN_COUNT = 3;
 
     private final int countOfMatch;
     private final int winningMoney;
@@ -18,18 +20,18 @@ public enum Rank {
     }
 
     public static Rank valueOf(int countOfMatch, boolean matchBonus) {
-        Rank[] ranks = values();
-        for (Rank rank : ranks) {
-            if (countOfMatch == SECOND.countOfMatch) {
-                return matchBonus ? SECOND : THIRD;
-            }
-
-            if (rank.countOfMatch == countOfMatch) {
+        if (countOfMatch < WINNING_MIN_COUNT) {
+            return MISS;
+        }
+        if (SECOND.matchCount(countOfMatch) && matchBonus) {
+            return SECOND;
+        }
+        for (Rank rank : values()) {
+            if (rank.matchCount(countOfMatch)) {
                 return rank;
             }
         }
-
-        return null;
+        throw new IllegalArgumentException(countOfMatch + "는 유효하지 않은 값입니다.");
     }
 
     public int getCountOfMatch() {
@@ -43,6 +45,10 @@ public enum Rank {
     public int prize(int countOfMatchLotto) {
         return (countOfMatchLotto * winningMoney);
     }
+    private boolean matchCount(int countOfMatch) {
+        return this.countOfMatch == countOfMatch;
+    }
+
 }
 
 
