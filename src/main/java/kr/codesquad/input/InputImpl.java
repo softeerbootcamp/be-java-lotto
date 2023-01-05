@@ -40,7 +40,7 @@ public class InputImpl implements Input{
             List<LottoNumber> manualLottoNumbers = new ArrayList<>();
             StringTokenizer stringTokenizer = new StringTokenizer(br.readLine(),", ");
             while(stringTokenizer.hasMoreTokens()) {
-                manualLottoNumbers.add(LottoNumber.of(stringTokenizer.nextToken()));
+                manualLottoNumbers.add(LottoNumber.of(Integer.parseInt(stringTokenizer.nextToken())));
             }
             return manualLottoNumbers;
         } catch(IOException e) {
@@ -51,10 +51,11 @@ public class InputImpl implements Input{
     @Override
     public List<LottoNumber> jackpotNumberInput() {
         try {
+            System.out.println("당첨 번호를 입력하세요");
             List<LottoNumber> jackpotLottoNumbers = new ArrayList<>();
             StringTokenizer stringTokenizer = new StringTokenizer(br.readLine(),", ");
             while(stringTokenizer.hasMoreTokens()) {
-                jackpotLottoNumbers.add(LottoNumber.of(stringTokenizer.nextToken()));
+                jackpotLottoNumbers.add(LottoNumber.of(Integer.parseInt(stringTokenizer.nextToken())));
             }
             return jackpotLottoNumbers;
         } catch(IOException e) {
@@ -65,6 +66,7 @@ public class InputImpl implements Input{
     @Override
     public int bonusNumberInput() {
         try {
+            System.out.println("보너스 번호를 입력하세요");
             return Integer.parseInt(br.readLine());
         } catch (IOException e) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다");
