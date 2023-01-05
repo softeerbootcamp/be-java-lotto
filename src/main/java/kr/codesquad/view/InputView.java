@@ -50,13 +50,27 @@ public class InputView {
     }
 
     public List<Integer> readManualLottoNumbers() {
-        List<Integer> numbers = readLottoNumbers();
-        return numbers;
+        while (true) {
+            try {
+                List<Integer> numbers = readLottoNumbers();
+                InputValidator.LottoNumbersValidator.validate(numbers);
+                return numbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Integer> readWinningLottoNumbers() {
-        List<Integer> numbers = readLottoNumbers();
-        return numbers;
+        while (true) {
+            try {
+                List<Integer> numbers = readLottoNumbers();
+                InputValidator.LottoNumbersValidator.validate(numbers);
+                return numbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Integer> readLottoNumbers() {
