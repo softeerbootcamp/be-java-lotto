@@ -1,12 +1,19 @@
 package kr.codesquad.lotto;
 
-public class LottoAutoFactory {
+import java.util.ArrayList;
+import java.util.List;
+
+public class LottoAutoFactory implements LottoFactory {
 
     public final RandomNumFactory randomNumFactory = new RandomNumFactory();
 
-    public Lotto makeLotto() {
-        Lotto lotto = new Lotto();
-        lotto.getNumberList().addAll(randomNumFactory.makeRandomNum());
-        return lotto;
+    @Override
+    public List<Lotto> buyLotto(int amount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            Lotto lotto = new Lotto(randomNumFactory.makeRandomNum());
+            lottos.add(lotto);
+        }
+        return lottos;
     }
 }

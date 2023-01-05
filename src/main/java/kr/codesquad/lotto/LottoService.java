@@ -13,8 +13,8 @@ public class LottoService {
 
     public static final WinResult winResult = new WinResult();
 
-    public List<Lotto> buyLotto(int amount, List<Lotto> lottos) {
-        return lottoPurchase.buyLotto(amount, lottos);
+    public List<Lotto> buyLotto(int manualAmount, int autoAmount) {
+        return lottoPurchase.buyLotto(manualAmount, autoAmount);
     }
 
     public Map<WinCount, Integer> makeLottoResult(List<Lotto> lottoList, WinLotto winLotto) {

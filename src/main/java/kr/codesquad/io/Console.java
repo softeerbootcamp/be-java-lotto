@@ -44,12 +44,12 @@ public class Console {
 
     private Lotto lottoNumStringToInt() {
         String winNumInput = sc.nextLine();
-        Lotto lotto = new Lotto();
+        List<Integer> lottoNum = new ArrayList<>();
         String[] strList = winNumInput.split(", ");
         for (int i = 0; i < strList.length; i++) {
-            lotto.getNumberList().add(Integer.parseInt(strList[i]));
+            lottoNum.add(Integer.parseInt(strList[i]));
         }
-        return lotto;
+        return new Lotto(lottoNum);
     }
 
     public void printAmount(int manualAmount, int autoAmount) {

@@ -1,7 +1,6 @@
 package kr.codesquad.lotto;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,7 +9,7 @@ public class RandomNumFactory {
     public static final int LOTTO_NUM_MIN_BOUND = 1;
     public static final int LOTTO_NUM_MAX_BOUND = 45;
     public static final int LOTTO_NUM_COUNT = 6;
-    public Collection<Integer> makeRandomNum() {
+    public List<Integer> makeRandomNum() {
         List<Integer> allNumber = new ArrayList<>();
         for (int i = LOTTO_NUM_MIN_BOUND; i <= LOTTO_NUM_MAX_BOUND; i++) {
             allNumber.add(i);
