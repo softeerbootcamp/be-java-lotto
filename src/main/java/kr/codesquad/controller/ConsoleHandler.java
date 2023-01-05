@@ -16,6 +16,7 @@ public class ConsoleHandler {
     private UserConsole userConsole;
 
     public ConsoleHandler(UserInfo user){
+        user = user;
         userConsole = new UserConsole(user);
     }
 
@@ -24,24 +25,26 @@ public class ConsoleHandler {
         try{
             price = userConsole.enterPurchasePrice();}
         catch (InputFormatException e){
-            e.getMessage();
+            System.out.println(e.getMessage());
             enterPurchasePrice();}
         catch (InputRangeException e){
-            e.getMessage();
+            System.out.println(e.getMessage());
             enterPurchasePrice();}
         return price;
     }
 
-    public int enterSudongLottoNumber(){
+    public int enterSudongLottoNumber(int purchasedNum){
         int lottoNum = 0;
         try{
-            lottoNum = userConsole.enterSudongLottoNumber();}
+            lottoNum = userConsole.enterSudongLottoNumber();
+            if(lottoNum > purchasedNum)
+                throw new InputRangeException("구매 금액을 초과하였습니다.");}
         catch (InputFormatException e){
-            e.getMessage();
-            enterSudongLottoNumber();}
+            System.out.println(e.getMessage());
+            enterSudongLottoNumber(purchasedNum);}
         catch (InputRangeException e){
-            e.getMessage();
-            enterSudongLottoNumber();}
+            System.out.println(e.getMessage());
+            enterSudongLottoNumber(purchasedNum);}
         return lottoNum;
     }
 
@@ -55,7 +58,7 @@ public class ConsoleHandler {
     }
 
     public ArrayList<Integer> enterResultList(){
-        String lottoStr = userConsole.enterSudongLottoList();
+        String lottoStr = userConsole.enterResultList();
         Set<Integer> lottoLists = parseString(lottoStr);
         if(lottoLists.size() != 6)
             throw new InputCountException("올바르지 않은 입력입니다");
@@ -68,11 +71,11 @@ public class ConsoleHandler {
         try{
             bonusNum = userConsole.enterBonusNum();}
         catch (InputFormatException e){
-            e.getMessage();
-            enterSudongLottoNumber();}
+            System.out.println(e.getMessage());
+            enterBonusNum();}
         catch (InputRangeException e){
-            e.getMessage();
-            enterSudongLottoNumber();}
+            System.out.println(e.getMessage());
+            enterBonusNum();}
         return bonusNum;
     }
 }
