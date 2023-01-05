@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     public static void showRequestWinNumber() {
-        System.out.println("당첨번호를 입력해 주세요.");
+        System.out.println("지난 주 당첨번호를 입력해 주세요.");
     }
 
     public static void showRequestBonusball() {
