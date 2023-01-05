@@ -11,6 +11,14 @@ public class InputView {
         return input();
     }
 
+    public static int inputManualLottoAmount() {
+        return Integer.parseInt(input());
+    }
+
+    public static String inputManualLotto() {
+        return input();
+    }
+
     public static List<String> inputWinLotto() {
         return Arrays.asList(
                 input().trim().split(",")

@@ -34,6 +34,7 @@ public class LottoController {
     private Lottos purchaseLotto(int amount) {
         OutputView.showLottoAmount(amount);
         Lottos lottos = new Lottos(amount);
+
         OutputView.showLottoNumbers(lottos);
         return lottos;
     }
