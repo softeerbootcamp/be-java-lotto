@@ -1,15 +1,12 @@
 package kr.codesquad.LottoService;
 
-import kr.codesquad.Rank;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
-    List<Integer> numbers;
-
     private final Set<LottoNumber> lotto;
+
     private Lotto(Set<LottoNumber> lotto) {
         if (lotto.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
@@ -34,11 +31,6 @@ public class Lotto {
                         .collect(Collectors.toSet()));
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
-    }
-
     public boolean contains(LottoNumber lottoNumber) {
         return lotto.contains(lottoNumber);
     }
@@ -56,5 +48,22 @@ public class Lotto {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lotto lotto1 = (Lotto) o;
+        return Objects.equals(lotto, lotto1.lotto);
+    }
+
+    @Override
+    public String toString() {
+        return lotto.stream().sorted().collect(Collectors.toList()).toString();
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(lotto);
     }
 }
