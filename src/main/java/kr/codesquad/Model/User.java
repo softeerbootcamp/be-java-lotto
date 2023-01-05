@@ -26,9 +26,9 @@ public class User {
         return this.lottoAmount;
     }
 
-    public void buyLotto(AutoLottoGenerator autoLottoGenerator) {
+    public void buyLotto(LottoGenerator lottoGenerator) {
         for(int i = 0; i < this.lottoAmount; ++i) {
-            Lotto lotto = autoLottoGenerator.getNewLotto();
+            Lotto lotto = lottoGenerator.getNewLotto();
             this.lottoList.add(lotto);
         }
 
