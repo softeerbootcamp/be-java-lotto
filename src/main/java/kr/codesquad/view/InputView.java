@@ -31,4 +31,7 @@ public class InputView {
         }
         return Lotto.of(list);
     }
+    public int inputCountOfManualLotto() throws IOException{
+        return Integer.parseInt(br.readLine());
+    }
 }
