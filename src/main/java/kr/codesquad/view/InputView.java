@@ -39,6 +39,18 @@ public class InputView {
         }
     }
 
+    public int readBonusNumber(List<Integer> numbers) {
+        while (true) {
+            try {
+                int bonusNumber = readOneNumber();
+
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     public int readOneNumber() {
         while (true) {
             try {

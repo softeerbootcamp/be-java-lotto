@@ -72,7 +72,7 @@ public class LottoController {
         List<Integer> numbers = inputView.readLottoNumbers();
 
         outputView.printBonusNumberReadMessage();
-        int bonusNumber = inputView.readOneNumber();
+        int bonusNumber = inputView.readBonusNumber(numbers);
 
         return new WinningLotto(numbers, bonusNumber);
     }
