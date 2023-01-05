@@ -4,6 +4,7 @@ import kr.codesquad.domain.other.Bonus;
 import kr.codesquad.domain.winLotto.WinLotto;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Lotto {
@@ -14,16 +15,9 @@ public class Lotto {
         this.numberList = numberList;
     }
 
-    public int countCorrectNum(WinLotto winLotto) {
-        List<Integer> temp = new ArrayList<>(this.numberList);
-        temp.retainAll(winLotto.getNumberList());
-        return temp.size();
+    public List<Integer> getNumberList() {
+        return numberList;
     }
-
-    public boolean isContainBonusNum(Bonus bonus) {
-        return this.numberList.contains(bonus.getBonusNum());
-    }
-
 
     @Override
     public String toString() {
