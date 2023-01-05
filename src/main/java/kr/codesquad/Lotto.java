@@ -12,6 +12,7 @@ public abstract class Lotto {
     }
 
     public List<List<Integer>> getLottoList() {
-        return nextLotto == null ? lottoList : nextLotto.getLottoList();
+        lottoList.addAll(nextLotto.getLottoList());
+        return lottoList;
     }
 }
