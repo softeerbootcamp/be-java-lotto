@@ -44,6 +44,6 @@ public class WinResult {
     }
 
     public boolean checkBonusWin(Lotto lotto, int correctCnt, WinLotto winLotto) {
-        return correctCnt == BONUS_WIN_NUM_COUNT && lotto.isContainBonusNum(winLotto.getBonusNum());
+        return correctCnt == BONUS_WIN_NUM_COUNT && lotto.isContainBonusNum(winLotto.getBonus());
     }
 }

@@ -1,5 +1,6 @@
 package kr.codesquad.domain.lotto;
 
+import kr.codesquad.domain.other.Bonus;
 import kr.codesquad.domain.winLotto.WinLotto;
 
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public class Lotto {
         return temp.size();
     }
 
-    public boolean isContainBonusNum(int bonusNum) {
-        return this.numberList.contains(bonusNum);
+    public boolean isContainBonusNum(Bonus bonus) {
+        return this.numberList.contains(bonus.getBonusNum());
     }
 
 
