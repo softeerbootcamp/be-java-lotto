@@ -6,12 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-	private final static int NUMBER_COUNT = 6;
 
 	private final Set<LottoNumber> numbers;
 
 	private Lotto(Set<LottoNumber> lotto) {
-		if (lotto.size() != NUMBER_COUNT) {
+		if (lotto.size() != LottoGame.LOTTO_COUNT) {
 			throw new IllegalArgumentException("로또 숫자 개수가 맞지 않습니다.");
 		}
 		numbers = lotto;

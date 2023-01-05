@@ -11,7 +11,9 @@ public class LottoGame {
 
 	private final LottoGenerator lottoGenerator;
 
-	private final static int LOTTO_PRICE = 1000;
+	public final static int LOTTO_PRICE = 1000;
+
+	public final static int LOTTO_COUNT = 6;
 
 	public LottoGame(LottoIOManager lottoIOManager, LottoGenerator lottoGenerator,
 		Map<String, LottoGeneratorStrategy> lottoGeneratorStrategies) {
@@ -34,17 +36,13 @@ public class LottoGame {
 		return lottoResult;
 	}
 
-	public int getLottoCount(int purchaseAmount) {
-		return purchaseAmount / LOTTO_PRICE;
-	}
-
 	public List<Lotto> buy() {
 		// 금액 입력받기
 		int purchaseAmount = lottoIOManager.readPurchaseAmount();
 		// 수동 개수 입력
 		int manualLottoCount = lottoIOManager.readManualLottoCount();
 		// 자동 개수
-		int autoLottoCount = getLottoCount(purchaseAmount) - manualLottoCount;
+		int autoLottoCount = purchaseAmount / LOTTO_PRICE - manualLottoCount;
 		// 로또 발급
 		List<Lotto> lottos = generateLottos(manualLottoCount, autoLottoCount);
 		// 발급 결과 출력
@@ -69,6 +67,10 @@ public class LottoGame {
 
 	public WinningLotto createWinningLottery() {
 		return lottoIOManager.readWinningLotto();
+	}
+
+	public void printLottoResult(LottoResult lottoResult, int lottoCount) {
+		lottoIOManager.printResult(lottoResult, lottoCount * LOTTO_PRICE);
 	}
 
 }
