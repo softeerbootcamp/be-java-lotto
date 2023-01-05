@@ -11,8 +11,10 @@ public class WinResult {
     public static final Map<WinCount, Integer> winResult = new HashMap<>();
 
     private static WinCount findWinningCount(int correctCnt, boolean isBonusInclude) {
-        WinCount winCount = Arrays.stream(WinCount.values()).filter(count -> (count.getCount() == correctCnt && count.getIsBonus() == isBonusInclude)).findFirst().orElse(null);
-        return winCount;
+        return Arrays.stream(WinCount.values())
+                .filter(count -> (count.getCount() == correctCnt))
+                .filter(count -> (count.getIsBonus() == isBonusInclude))
+                .findFirst().orElse(null);
     }
 
     private static void addWinningCount(WinCount winCount) {
