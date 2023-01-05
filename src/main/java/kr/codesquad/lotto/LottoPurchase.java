@@ -5,7 +5,6 @@ import java.util.List;
 
 public class LottoPurchase {
 
-    public static final int LOTTO_PRICE = 1000;
     public final LottoAutoFactory lottoAutoFactory = new LottoAutoFactory();
 
     public final LottoManualFactory lottoManualFactory = new LottoManualFactory();

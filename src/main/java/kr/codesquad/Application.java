@@ -15,7 +15,6 @@ public class Application {
 
     private final LottoService lottoService;
 
-    public static final int LOTTO_PRICE = 1000;
     Application(
             Console console,
             LottoService lottoService
@@ -36,13 +35,13 @@ public class Application {
 
     private List<Lotto> buyLotto(int money) {
         int manualAmount = console.inputManualLottoAmount();
-        int autoAmount = money / LOTTO_PRICE - manualAmount;
+        int autoAmount = money / Lotto.LOTTO_PRICE - manualAmount;
         console.printAmount(manualAmount, autoAmount);
         return lottoService.buyLotto(manualAmount, autoAmount);
     }
 
     private WinLotto inputWinLotto() {
-        Lotto winNum = console.inputWinNum();
+        Lotto winNum = console.inputLottoNum();
         int bonusNum = console.inputBonusNum();
         return new WinLotto(winNum, bonusNum);
     }

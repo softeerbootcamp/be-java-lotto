@@ -14,11 +14,6 @@ public class Console {
         return money;
     }
 
-    public Lotto inputWinNum() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        return lottoNumStringToInt();
-    }
-
     public int inputBonusNum() {
         System.out.println("보너스 볼을 입력해 주세요.");
         int bonus = Integer.parseInt(sc.nextLine());
@@ -37,12 +32,12 @@ public class Console {
         }
         List<Lotto> manualLottos = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
-            manualLottos.add(lottoNumStringToInt());
+            manualLottos.add(inputLottoNum());
         }
         return manualLottos;
     }
 
-    private Lotto lottoNumStringToInt() {
+    public Lotto inputLottoNum() {
         String winNumInput = sc.nextLine();
         List<Integer> lottoNum = new ArrayList<>();
         String[] strList = winNumInput.split(", ");

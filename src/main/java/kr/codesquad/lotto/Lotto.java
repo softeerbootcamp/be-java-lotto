@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Lotto {
 
-    private List<Integer> numberList = new ArrayList<>();
+    public static final int LOTTO_PRICE = 1000;
+    private List<Integer> numberList;
 
     public Lotto(List<Integer> numberList) {
         this.numberList = numberList;
