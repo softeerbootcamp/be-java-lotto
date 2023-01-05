@@ -47,4 +47,8 @@ public enum Rank {
 
         return null;
     }
+
+    public static boolean isBonus(Rank rank) {
+        return rank == Rank.SECOND;
+    }
 }
