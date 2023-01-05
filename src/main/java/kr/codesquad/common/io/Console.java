@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import kr.codesquad.domain.earningRate.EarningRate;
+import kr.codesquad.domain.other.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.lotto.LottoShopPurchaseResult;
-import kr.codesquad.domain.winningLotto.RankResult;
+import kr.codesquad.domain.rank.RankResult;
 
 public class Console {
 

@@ -1,14 +1,14 @@
-package kr.codesquad;
+package kr.codesquad.app;
 
 import java.util.List;
 
 import kr.codesquad.common.io.Console;
-import kr.codesquad.domain.earningRate.EarningRate;
+import kr.codesquad.domain.other.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.lotto.LottoShop;
 import kr.codesquad.domain.lotto.LottoShopPurchaseResult;
-import kr.codesquad.domain.winningLotto.RankResult;
-import kr.codesquad.domain.winningLotto.WinnerLotto;
+import kr.codesquad.domain.rank.RankResult;
+import kr.codesquad.domain.rank.WinnerLotto;
 
 public class ConsoleLottoApp extends App {
 

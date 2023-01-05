@@ -1,4 +1,4 @@
-package kr.codesquad.domain.winningLotto;
+package kr.codesquad.domain.rank;
 
 public enum Rank {
 

@@ -1,4 +1,4 @@
-package kr.codesquad.domain.winningLotto;
+package kr.codesquad.domain.rank;
 
 import java.util.Arrays;
 import java.util.List;

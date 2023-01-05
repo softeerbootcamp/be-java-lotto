@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.app;
 
 import kr.codesquad.common.exception.ExceptionHandler;
 import kr.codesquad.common.io.Console;
