@@ -11,33 +11,31 @@ public class LottoResult {
 		result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0));
 	}
 
-	public List<Integer> getResult() {
-		return result;
+	public int getMatchLottoCount(LottoMatchType lottoMatchType) {
+		return result.get(lottoMatchType.getMatchCount());
 	}
 
 	public void updateResult(int index, int cnt) {
 		result.set(index, result.get(index) + cnt);
 	}
 
-	public void printResult(int purchaseAmount) {
-		System.out.println("당첨 통계");
-		System.out.println("-----");
-		System.out.println("3개 일치 (5000원) - " + result.get(LottoMatchType.THREE_MATCH.getMatchCount()));
-		System.out.println("4개 일치 (50000원) - " + result.get(LottoMatchType.FOUR_MATCH.getMatchCount()));
-		System.out.println("5개 일치 (1500000원) - " + result.get(LottoMatchType.FIVE_MATCH.getMatchCount()));
-		System.out.println("5개 일치, 보너스 볼 일치(30000000원) - " + result.get(LottoMatchType.BONUS_MATCH.getMatchCount()));
-		System.out.println("6개 일치 (2000000000원) - " + result.get(LottoMatchType.SIX_MATCH.getMatchCount()));
-		printEarningRate(purchaseAmount);
+	public int getProfit() {
+		int profit = 0;
+		for (int i = 0; i < LottoMatchType.values().length; i++) {
+			profit += getMatchMoney(LottoMatchType.values()[i]);
+		}
+
+		return profit;
 	}
 
-	public void printEarningRate(int purchaseAmount) {
-		double output = result.get(LottoMatchType.THREE_MATCH.getMatchCount()) * LottoMatchType.THREE_MATCH.getMoney()
-			+ result.get(LottoMatchType.FOUR_MATCH.getMatchCount()) * LottoMatchType.FOUR_MATCH.getMoney()
-			+ result.get(LottoMatchType.FIVE_MATCH.getMatchCount()) * LottoMatchType.FIVE_MATCH.getMoney()
-			+ result.get(LottoMatchType.SIX_MATCH.getMatchCount()) * LottoMatchType.SIX_MATCH.getMoney()
-			+ result.get(LottoMatchType.BONUS_MATCH.getMatchCount()) * LottoMatchType.BONUS_MATCH.getMoney();
-		double input = purchaseAmount * 1000;
-		System.out.println(String.format("%.2f", ((output - input) / input) * 100) + "%");
+	public double getEarningRate(int purchaseAmount) {
+		int input = getProfit();
+
+		return ((input - purchaseAmount) / purchaseAmount) * 100;
+	}
+
+	public int getMatchMoney(LottoMatchType lottoMatchType) {
+		return result.get(lottoMatchType.getMatchCount()) * lottoMatchType.getMoney();
 	}
 
 }

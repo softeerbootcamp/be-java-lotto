@@ -76,4 +76,21 @@ public class LottoIOManagerImpl implements LottoIOManager {
 
 		return lottos;
 	}
+
+	@Override
+	public void printResult(LottoResult lottoResult, int purchaseAmount) {
+		System.out.println("당첨 통계");
+		System.out.println("-----");
+		System.out.println("3개 일치 (5000원) - " + lottoResult.getMatchLottoCount(LottoMatchType.THREE_MATCH));
+		System.out.println("4개 일치 (50000원) - " + lottoResult.getMatchLottoCount(LottoMatchType.FOUR_MATCH));
+		System.out.println("5개 일치 (1500000원) - " + lottoResult.getMatchLottoCount(LottoMatchType.FIVE_MATCH));
+		System.out.println(
+			"5개 일치, 보너스 볼 일치(30000000원) - " + lottoResult.getMatchLottoCount(LottoMatchType.BONUS_MATCH));
+		System.out.println("6개 일치 (2000000000원) - " + lottoResult.getMatchLottoCount(LottoMatchType.SIX_MATCH));
+		printEarningRate(lottoResult, purchaseAmount);
+	}
+
+	public void printEarningRate(LottoResult lottoResult, int purchaseAmount) {
+		System.out.println(String.format("%.2f", lottoResult.getEarningRate(purchaseAmount)) + "%");
+	}
 }

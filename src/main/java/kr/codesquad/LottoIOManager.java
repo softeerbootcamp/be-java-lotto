@@ -19,4 +19,6 @@ public interface LottoIOManager {
 	public WinningLotto readWinningLotto();
 
 	public List<Lotto> readManualLotto(int cnt);
+
+	public void printResult(LottoResult lottoResult, int purchaseAmount);
 }
