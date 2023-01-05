@@ -18,10 +18,14 @@ public class LottoMachine {
 
     public Lotto buyLotto() {
         int money = ui.inputMoney();
-        int lottoCount = money / this.lottoPrice;
-        System.out.println(lottoCount + "개를 구매했습니다.");
 
-        return new Lotto(shuffle(lottoCount));
+        int manualLottoCount = ui.inputManualLottoCount();
+        List<List<Integer>> manualLottoList = ui.inputManualLottoList(manualLottoCount);
+
+        int autoLottoCount = money / this.lottoPrice - manualLottoCount;
+        System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 " + autoLottoCount + "개를 구매했습니다.");
+
+        return new ManualLotto(manualLottoList, new AutoLotto(shuffle(autoLottoCount), null));
     }
 
     public List<List<Integer>> shuffle(int lottoCount) {
