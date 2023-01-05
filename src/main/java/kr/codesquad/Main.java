@@ -11,11 +11,6 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        /*
-        LottoService lottoService = new LottoService(new InputView(), new OutputView(), new Lotto(new NumberGenerator()));
-        lottoService.buyLotto();
-        lottoService.inputWinningNumber();
-        lottoService.calculateTotal();*/
         LottoController lottoController = new LottoController(new InputView(), new OutputView());
         Money money = lottoController.inputMoney();
         lottoController.issueLotto(money);
