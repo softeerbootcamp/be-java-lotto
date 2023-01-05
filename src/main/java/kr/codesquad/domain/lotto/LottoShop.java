@@ -17,7 +17,7 @@ public class LottoShop {
       int manualLottoCount
   ) {
     int totalLottoCount = getPurchaseLottoCount(purchaseMoney);
-    int autoLottoCount = totalLottoCount - manualLottoCount;
+    int autoLottoCount = getAutoLottoCount(totalLottoCount, manualLottoCount);
 
     List<Lotto> autoLottos = lottoAutoFactory.generate(autoLottoCount);
     List<Lotto> manualLottos = lottoManualFactory.generate(manualLottoCount);
@@ -26,6 +26,16 @@ public class LottoShop {
 
   private int getPurchaseLottoCount(int money) {
     return money / LOTTO_PRICE;
+  }
+
+  private int getAutoLottoCount(
+      int totalLottoCount,
+      int manualLottoCount
+  ) {
+    if (totalLottoCount < manualLottoCount) {
+      throw new IllegalArgumentException("잘못된 구매 시도 입니다");
+    }
+    return totalLottoCount - manualLottoCount;
   }
 
   private int calculateTotalPrice(
