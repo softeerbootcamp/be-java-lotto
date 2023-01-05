@@ -8,18 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 public class WinnerCalculator {
-    public Map<Price, Integer> winnerCount = new HashMap();
-
-    public WinnerCalculator() {
-    }
+    public Map<Price, Integer> winnerCount = new HashMap<>();
 
     public void initWinnerCount() {
-        Price[] prices = Price.values();
-        for(int i = 0; i < prices.length; ++i) {
-            Price price = prices[i];
-            this.winnerCount.put(price, 0);
+        for(Price price: Price.values()) {
+            winnerCount.put(price, 0);
         }
-
     }
 
     public void calcResult(User user, WinLotto winLotto) {
@@ -32,7 +26,7 @@ public class WinnerCalculator {
             List<Integer> lottoNum = new ArrayList(Arrays.asList(lotto.num));
             lottoNum.retainAll(winList);
             int countOfMatch = lottoNum.size();
-            Price price = Price.valueOf(countOfMatch, this.bonusMatch(lotto, winLotto));
+            Price price = Price.valueOf(countOfMatch, bonusMatch(lotto, winLotto));
             updateResult(price,user);
         }
 
@@ -46,8 +40,7 @@ public class WinnerCalculator {
     }
 
     public void updateWinnerCount(Price price) {
-        int value = (Integer)this.winnerCount.get(price) + 1;
-        this.winnerCount.put(price, value);
+        winnerCount.put(price, winnerCount.get(price) + 1);
     }
 
     public boolean bonusMatch(Lotto lotto, WinLotto winLotto) {

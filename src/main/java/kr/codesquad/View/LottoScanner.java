@@ -1,5 +1,6 @@
 package kr.codesquad.View;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,33 +14,50 @@ public class LottoScanner {
             BigInteger money = sc.nextBigInteger();
             return money;
         } catch (Exception e) {
-            System.out.println("error");
-            System.exit(1);
+            System.out.println("Input error");
+            System.exit(0);
             return null;
         }
     }
 
     public List<Integer> scanLottoNumbers() {
         Scanner sc = new Scanner(System.in);
-        String winStr = sc.nextLine();
-        List<Integer> winNum = new ArrayList();
-        String[] winStrArr = winStr.split(",");
-
-        for(int i = 0; i < 6; ++i) {
-            winNum.add(Integer.parseInt(winStrArr[i].trim()));
+        try {
+            String winStr = sc.nextLine();
+            List<Integer> winNum = new ArrayList();
+            String[] winStrArr = winStr.split(",");
+            for(int i = 0; i < 6; ++i) {
+                winNum.add(Integer.parseInt(winStrArr[i].trim()));
+            }
+            return winNum;
+        }catch (Exception e){
+            System.out.println("LottoNumber Input Error");
+            System.exit(0);
+            return null;
         }
-
-        return winNum;
     }
 
     public int scanBonus() {
         Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+        try {
+            return sc.nextInt();
+        }
+        catch (Exception e){
+            System.out.println("Wrong Bonus Input");
+            System.exit(0);
+            return -1;
+        }
     }
 
     public int scanManualAmount(){
         Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+        try{
+            return sc.nextInt();
+        }catch (Exception e){
+            System.out.println("Wrong manual count input");
+            System.exit(0);
+            return -1;
+        }
     }
 
 }

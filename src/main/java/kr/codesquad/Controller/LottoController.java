@@ -18,9 +18,6 @@ public class LottoController {
     LottoGenerator lottoGenerator = new LottoGenerator();
     WinnerCalculator winnerCalculator = new WinnerCalculator();
 
-    public LottoController() {
-    }
-
     public void start() {
         Lotto.initLotto();
         User user = new User(getInitMoney());
