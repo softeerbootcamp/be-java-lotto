@@ -29,10 +29,13 @@ public class UserConsole {
         int inputNumber=0;
         try{
             inputNumber = sc.nextInt();
-            Utility.checkNumberError(inputNumber);
             sc.nextLine();
+            Utility.checkNumberError(inputNumber);
         }catch(InputMismatchException e){
             System.out.println("정수만 입력 가능합니다");
+        }catch(CustomException e){
+            //e.printStackTrace(); //이렇게 해주면 중단되지 않음
+            throw e;
         }catch(Exception e){
             throw new CustomException(ErrorCode.ILLEGAL_INPUT_FORMAT);
         }
