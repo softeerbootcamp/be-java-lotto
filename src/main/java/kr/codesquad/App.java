@@ -1,10 +1,12 @@
 package kr.codesquad;
 
 import kr.codesquad.common.exception.ExceptionHandler;
+import kr.codesquad.common.io.Console;
 
 public abstract class App implements Runnable {
 
-  private static final ExceptionHandler exceptionHandler = new ExceptionHandler();
+  private static final Console console = new Console();
+  private static final ExceptionHandler exceptionHandler = new ExceptionHandler(console);
 
   @Override
   public void run() {
