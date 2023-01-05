@@ -9,15 +9,15 @@ public class Lottos {
 
     private final List<Lotto> lottoList;
 
-    public Lottos(int amount) {
-        lottoList = new ArrayList<>();
-        for (int i = 0; i < amount; i++) {
-            lottoList.add(new Lotto(new RandomLottoFactory()));
-        }
+    public Lottos (List<Lotto> lottoList) {
+        this.lottoList = new ArrayList<>(lottoList);
     }
 
-    public Lottos(List<Lotto> lottoList) {
-        this.lottoList = lottoList;
+    public Lottos(int totalLottoCount) {
+        lottoList = new ArrayList<>();
+        for (int i = 0; i < totalLottoCount; i++) {
+            lottoList.add(new Lotto(new RandomLottoFactory()));
+        }
     }
 
     public List<Lotto> getLottoList() {
