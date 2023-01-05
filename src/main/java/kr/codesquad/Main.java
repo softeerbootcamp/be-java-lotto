@@ -1,7 +1,7 @@
 package kr.codesquad;
 
 
-import static kr.codesquad.Lotto_Info.LOTTO_PRICE;
+import static kr.codesquad.Enum.Lotto_Info.LOTTO_PRICE;
 
 public class Main {
     public static int money, cnt;

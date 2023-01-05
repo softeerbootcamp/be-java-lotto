@@ -1,8 +1,9 @@
 package kr.codesquad;
 
+import kr.codesquad.LottoManager.EmptyLotto;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class GenerateMyLottoByCount {
     private List<EmptyLotto> lottoList;

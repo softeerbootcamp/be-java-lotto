@@ -1,7 +1,7 @@
-package kr.codesquad.UserMenu;
+package kr.codesquad.User;
 
 import kr.codesquad.CustomException;
-import kr.codesquad.EmptyLotto;
+import kr.codesquad.LottoManager.EmptyLotto;
 import kr.codesquad.InputHandler;
 import kr.codesquad.Utility;
 
@@ -29,15 +29,13 @@ public class UserInput {
         return inputHandler.getIntegerInput();
     }
 
-    public List<EmptyLotto> userInputManual() throws CustomException {
+    public void userInputManual() throws CustomException {
         System.out.println("수동으로 구매할 번호를 입력해 주세요\n");
-        List<EmptyLotto> userLottoList = new ArrayList<>();
         for (int i = 0; i < userLotto.getUserManualLottoCount(); i++) {
             EmptyLotto emptyLotto = new EmptyLotto(
                     utility.transStringToIntegerList(inputHandler.getStringInput()));
-            userLottoList.add(emptyLotto);
+            userLotto.getUserLottoList().add(emptyLotto);
         }
-        return userLottoList;
     }
     public List<Integer> userInputJackpotNum() throws CustomException {
         System.out.printf("당첨 번호를 입력해 주세요.\n");

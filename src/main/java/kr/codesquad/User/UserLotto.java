@@ -1,6 +1,7 @@
-package kr.codesquad.UserMenu;
+package kr.codesquad.User;
 
-import kr.codesquad.EmptyLotto;
+import kr.codesquad.CustomException;
+import kr.codesquad.LottoManager.EmptyLotto;
 
 import java.util.List;
 
@@ -10,9 +11,8 @@ public class UserLotto {
     private int userManualLottoCount;
     private List<EmptyLotto> userLottoList;
     private int[] prizeResults = {0, 0, 0, 0, 0};
-
+    private UserInput userInput;
     public UserLotto() {
-
     }
 
     public void addPrizeResultsByIndex(int index) {
@@ -30,5 +30,7 @@ public class UserLotto {
         return this.userLottoList;
     }
 
-
+    public void setUserManualLottoCount() throws CustomException {
+        this.userManualLottoCount = userInput.userHowManyManual();
+    }
 }

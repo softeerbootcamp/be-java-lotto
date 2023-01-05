@@ -1,5 +1,8 @@
 package kr.codesquad;
 
+import kr.codesquad.Enum.Lotto_Info;
+import kr.codesquad.Enum.Prizes_Info;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

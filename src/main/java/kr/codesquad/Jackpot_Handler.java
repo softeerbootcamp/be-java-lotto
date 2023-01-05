@@ -1,10 +1,12 @@
 package kr.codesquad;
 
+import kr.codesquad.LottoManager.EmptyLotto;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static kr.codesquad.Lotto_Info.LOTTO_SIZE;
+import static kr.codesquad.Enum.Lotto_Info.LOTTO_SIZE;
 
 public class Jackpot_Handler {
     public static final int[] PRIZE_CNT = {0, 0, 0, 0, 0};
