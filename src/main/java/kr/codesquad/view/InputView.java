@@ -1,6 +1,9 @@
 package kr.codesquad.view;
 
-import kr.codesquad.validator.InputValidator;
+import kr.codesquad.validator.input.BonusNumberValidator;
+import kr.codesquad.validator.input.LottoNumbersValidator;
+import kr.codesquad.validator.input.ManualLottoCountValidator;
+import kr.codesquad.validator.input.MoneyValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +22,7 @@ public class InputView {
         while (true) {
             try {
                 int money = readOneNumber();
-                InputValidator.MoneyValidator.validate(money);
+                MoneyValidator.validate(money);
                 return money;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -31,7 +34,7 @@ public class InputView {
         while (true) {
             try {
                 int manualLottoCount = readOneNumber();
-                InputValidator.ManualLottoCountValidator.validate(money, manualLottoCount);
+                ManualLottoCountValidator.validate(money, manualLottoCount);
                 return manualLottoCount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -43,7 +46,7 @@ public class InputView {
         while (true) {
             try {
                 int bonusNumber = readOneNumber();
-                InputValidator.BonusNumberValidator.validate(numbers, bonusNumber);
+                BonusNumberValidator.validate(numbers, bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -65,7 +68,7 @@ public class InputView {
         while (true) {
             try {
                 List<Integer> numbers = readNumbers();
-                InputValidator.LottoNumbersValidator.validate(numbers);
+                LottoNumbersValidator.validate(numbers);
                 return numbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
