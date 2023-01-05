@@ -30,12 +30,7 @@ public class UserInput {
 
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
         for(int i = 0;i < manualLottoCount;i++) {
-            String[] eachManualLotto = sc.nextLine().split(", ");
-
-            int eachManualLottoCount = eachManualLotto.length;
-            List<Integer> manualLotto = new ArrayList<>(eachManualLottoCount);
-            for (String eachManualLottoNum : eachManualLotto) manualLotto.add(Integer.parseInt(eachManualLottoNum));
-
+            List<Integer> manualLotto = Util.parseInputNumString();
             manualLottoList.add(manualLotto);
         }
 
