@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+
+    private static final String DELIMITER = ",";
     private static final Scanner sc = new Scanner(System.in);
 
     public static String inputTotalPrice() {
@@ -21,7 +23,7 @@ public class InputView {
 
     public static List<String> inputWinLotto() {
         return Arrays.asList(
-                input().trim().split(",")
+                input().trim().split(DELIMITER)
         );
     }
 
