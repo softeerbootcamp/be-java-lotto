@@ -2,14 +2,7 @@ package kr.codesquad.view;
 
 import kr.codesquad.domain.Rank;
 import kr.codesquad.domain.Result;
-import kr.codesquad.domain.lotto.Lotto;
-import kr.codesquad.domain.lotto.LottoNumber;
 import kr.codesquad.domain.lotto.Lottos;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 public final class OutputView {
 

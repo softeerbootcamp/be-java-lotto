@@ -8,6 +8,7 @@ public class LottoNumber {
     private final int lottoNumber;
 
     public LottoNumber(int lottoNumber) {
+        checkLottoNumber(lottoNumber);
         this.lottoNumber = lottoNumber;
     }
 
@@ -15,9 +16,15 @@ public class LottoNumber {
         return lottoNumber;
     }
 
+    private void checkLottoNumber(int lottoNumber) {
+        if (lottoNumber < LOTTO_MIN_NUMBER || lottoNumber > LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException("로또 번호가 될 수 없는 숫자입니다.");
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
-        if(obj == null || this.getClass() != obj.getClass()) return false;
+        if (obj == null || this.getClass() != obj.getClass()) return false;
         LottoNumber that = (LottoNumber) obj;
         return lottoNumber == that.lottoNumber;
     }

@@ -9,6 +9,7 @@ public final class InputView {
 
     private static final String DELIMITER = ", ";
     private static final Scanner sc = new Scanner(System.in);
+
     private InputView() {
         throw new AssertionError();
     }
