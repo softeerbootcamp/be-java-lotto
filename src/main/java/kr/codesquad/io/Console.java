@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import kr.codesquad.domain.earningRate.EarningRate;
-import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.winningLotto.WinningResult;
 
 public class Console {
@@ -25,7 +24,7 @@ public class Console {
     return inputLottoNumbers();
   }
 
-  private List<Integer> inputLottoNumbers() {
+  public List<Integer> inputLottoNumbers() {
     String s = commandLineInput();
     System.out.println();
     String[] split = s.split(", ");
@@ -51,12 +50,29 @@ public class Console {
     return Integer.parseInt(commandLineInput());
   }
 
+  public int inputManualLottoPurchaseCount() {
+    System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+    return Integer.parseInt(commandLineInput());
+  }
+
   private String commandLineInput() {
     try {
       return br.readLine();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public void printInputManualLottoNumbers() {
+    System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+  }
+
+  public void printLottoPurchaseCount(
+      int autoCount,
+      int manualCount
+  ) {
+    String print = String.format("수동으로 %d장, 자동으로 %d장을 구매했습니다.", manualCount, autoCount);
+    System.out.println(print);
   }
 
 }
