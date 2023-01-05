@@ -1,26 +1,36 @@
 package kr.codesquad.InputManager;
 
 import kr.codesquad.Utility;
+import kr.codesquad.VisualLottoGame;
 
 import java.awt.*;
 import java.util.List;
 
 public class AwtInputHandler implements UserInputHandler{
+    private Label errLabel;
     private Button submit;
-    private List<TextField> textFields;
+    private TextField textField;
 
-    public AwtInputHandler (Button submit, List<TextField> textFields){
+    public AwtInputHandler (Button submit, TextField textField, TextField bonus, Label errLabel){
         this.submit = submit;
-        this.textFields  = textFields;
+        this.textField  = textField;
+        this.errLabel = errLabel;
     }
     @Override
     public int getMoney() {
-        return Utility.parseIntWithRange(textFields.get(0).getText(), 1, 45);
+        try {
+            int money = Utility.parseIntWithRange(textField.getText(), 1, 45);
+            return money;
+        }
+        catch(Exception e){
+            errLabel.setText(e.getMessage());
+        }
+        return 0;
     }
 
     @Override
     public List<Integer> getSixLottoNumber() {
-        return Utility.str2IntListWithRange(textFields.get(0).getText(), 1, 45);
+        return Utility.str2IntListWithRange(textField.getText(), 1, 45);
     }
 
     @Override
