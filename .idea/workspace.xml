@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/IO/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/IO/Console.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +77,7 @@
       <option name="MAIN_CLASS_NAME" value="kr.codesquad.Main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kr.codesquad.*" />
+          <option name="PATTERN" value="kr.codesquad.Lotto.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

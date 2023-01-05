@@ -1,4 +1,6 @@
 package kr.codesquad;
+import kr.codesquad.Lotto.LottoStatus;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -7,6 +9,8 @@ public class User {
 
     private int cash; // 구매 금액
     private int buyNum; // 구매 개수
+    private int autoCount;
+    private int manualCount;
     private ArrayList<ArrayList<Integer>> lottoTickets = new ArrayList<ArrayList<Integer>>();
 
     public int getCash() {
@@ -24,46 +28,44 @@ public class User {
     public void setBuyNum(int buyNum) {
         this.buyNum = buyNum;
     }
+    public int getAutoCount() {
+        return autoCount;
+    }
 
+    public int getManualCount() {
+        return manualCount;
+    }
 
     public ArrayList<ArrayList<Integer>> getLottoTickets() {
         return lottoTickets;
     }
 
-    public void MakeRandomLottoTickets() {
-        for(Integer i = 0; i < buyNum; i++)
-        {
-            // 임의의 6개의 번호 입력 후
-            lottoTickets.add(GetRandomSixNums());
-            // 오름차순으로 정렬
-            Collections.sort(lottoTickets.get(i));
-        }
-    }
-
-    private ArrayList<Integer> GetRandomSixNums()
+    public void setManualTickets(ArrayList<ArrayList<Integer>> Tickets)
     {
-        ArrayList<Integer> ret = new ArrayList<Integer>();
-
-        // 1부터 45까지의 정수를 담고 있는 arraylist
-        ArrayList<Integer> Numbers = new ArrayList<Integer>();
-        for(Integer i = 1; i <= 45; i++) Numbers.add(i);
-        Collections.shuffle(Numbers);
-
-        // 앞 6자리 추출
-        for(int i = 0; i < 6; i++) {
-            ret.add(Numbers.get(i));
+        for(int i = 0; i < manualCount; i++)
+        {
+            Collections.sort(Tickets.get(i));
+            lottoTickets.add(Tickets.get(i));
         }
-
-        return ret;
     }
 
-    public void CalculateBuyNum()
+    public void setAutoTickets(ArrayList<ArrayList<Integer>> Tickets)
+    {
+        for(int i = 0; i < Tickets.size(); i++)
+        {
+            lottoTickets.add(Tickets.get(i));
+        }
+    }
+
+    public void calculateBuyNum(int manuals)
     {
         // 구매 개수 구하기
         buyNum = cash / 1000;
+        manualCount = manuals;
+        autoCount = buyNum - manualCount;
     }
 
-    public void PrintResult(ArrayList<Integer> Result)
+    public void calculateRateOfRetrun(ArrayList<Integer> Result)
     {
         System.out.println();
         System.out.println("당첨 통계");
