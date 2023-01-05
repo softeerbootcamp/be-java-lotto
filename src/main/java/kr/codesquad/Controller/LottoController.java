@@ -82,7 +82,7 @@ public class LottoController {
     }
 
     private void getBuyResult(User user) {
-        lottoPrinter.print(mg.getBuyMsg(user.getLottoAmount()));
+        lottoPrinter.print(mg.getBuyMsg(user.getManualLottoAmount(),user.getAutoLottoAmount()));
         Iterator<Lotto> iterator = user.lottoList.listIterator();
 
         while(iterator.hasNext()) {
