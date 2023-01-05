@@ -38,27 +38,40 @@ public class LottoController {
         printResult();
     }
 
-    //로또 구매 로직
+    //로또 구매 로직 (구매 금액 + 수동 구매 로또 개수 입력)
     public void purchaseLotto(){
         int purchasedPrice = consoleHandler.enterPurchasePrice();
-        int numOfLottoSudong = sudongBuy(purchasedPrice);
+        int numOfLottoSudong = buyByHand(purchasedPrice);
         int numOfLottoAuto = (purchasedPrice / 1000) - numOfLottoSudong;
         user.insertInfos(purchasedPrice, numOfLottoAuto, numOfLottoSudong);
     }
 
-
-    //수동 구매 로직
-    public int sudongBuy(int purchasedPrice){
+    //수동 로또 구매 개수 입력 로직
+    public int buyByHand(int purchasedPrice){
         int numOfLottoSudong = 0;
         try{
             numOfLottoSudong = consoleHandler.enterSudongLottoNumber(purchasedPrice / 1000);
         }catch (InputRangeException e){
             System.out.println(e.getMessage());
-            sudongBuy(purchasedPrice);
+            buyByHand(purchasedPrice);
         }
         return numOfLottoSudong;
     }
 
+
+    //로또 생성 로직 (자동 + 수동)
+    public void generateLottos(){
+        //자동 로또 생성
+        randomLotto.startGeneration(user.getNumOfLottoAuto(), user.getNumOfLottoSudong());
+        //수동 로또 생성
+        for(int i = 0; i < user.getNumOfLottoSudong(); i++){
+            ArrayList<Integer> sudongLottoList = startGenerateSudong();
+            myLotto.addLotto(sudongLottoList);
+        }
+    }
+
+
+    //수동 구매 로직 (각 리스트 입력)
     public ArrayList<Integer> startGenerateSudong(){
         ArrayList<Integer> sudongLottoList = new ArrayList<>();
         try{
@@ -68,17 +81,6 @@ public class LottoController {
             startGenerateSudong();
         }
         return sudongLottoList;
-    }
-
-    //로또 생성 로직
-    public void generateLottos(){
-        //자동 로또 생성
-        randomLotto.startGeneration(user.getNumOfLottoAuto(), user.getNumOfLottoSudong());
-        //수동 로또 생성
-        for(int i = 0; i < user.getNumOfLottoSudong(); i++){
-            ArrayList<Integer> sudongLottoList = startGenerateSudong();
-            myLotto.addLotto(sudongLottoList);
-        }
     }
 
     //당첨 번호 생성
