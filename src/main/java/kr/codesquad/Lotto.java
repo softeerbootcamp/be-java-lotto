@@ -1,6 +1,10 @@
 package kr.codesquad;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public abstract class Lotto {
     private final List<List<Integer>> lottoList;
@@ -12,7 +16,10 @@ public abstract class Lotto {
     }
 
     public List<List<Integer>> getLottoList() {
-        lottoList.addAll(nextLotto.getLottoList());
-        return lottoList;
+        return nextLotto == null ?
+                lottoList :
+                Stream.of(lottoList, nextLotto.getLottoList())
+                        .flatMap(Collection::stream)
+                        .collect(Collectors.toList());
     }
 }
