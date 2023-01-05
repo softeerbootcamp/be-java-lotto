@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import static kr.codesquad.validator.InputValidator.MoneyValidator;
+
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -12,8 +14,15 @@ public class InputView {
     private static final String NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해야 합니다.";
 
     public int readMoney() {
-        int money = readOneNumber();
-        return money;
+        while(true) {
+            try {
+                int money = readOneNumber();
+                MoneyValidator.validate(money);
+                return money;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int readManualLottoCount() {
