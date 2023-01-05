@@ -21,8 +21,7 @@ public class Lotto {
 
     public void printTotalLotto() {
         for (Row row : totalLotto) {
-            List<Integer> values = row.getValues();
-            System.out.println(values);
+            row.printValues();
         }
     }
 

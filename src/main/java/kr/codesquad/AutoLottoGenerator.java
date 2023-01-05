@@ -1,5 +1,6 @@
 package kr.codesquad;
 
+import kr.codesquad.domain.LottoNumber;
 import kr.codesquad.domain.Row;
 
 import java.util.Collections;
@@ -15,7 +16,11 @@ public class AutoLottoGenerator implements LottoGenerator {
         Collections.shuffle(randomNumberList);
         List<Integer> generatedNums = randomNumberList.subList(0, 6);
         Collections.sort(generatedNums);
-        return Row.createRow(generatedNums);
+
+        List<LottoNumber> LottoNumbers = generatedNums.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
+        return Row.createRow(LottoNumbers);
     }
 
     private static List<Integer> createSeed() {

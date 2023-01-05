@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 public class LottoViewer {
 
@@ -20,6 +21,16 @@ public class LottoViewer {
     }
 
     public Lotto home() throws IOException {
+        Money money = inputMoney();
+        Lotto lotto = inputLotto(money);
+
+        money.printStatus();
+        lotto.printTotalLotto();
+
+        return lotto;
+    }
+
+    public Money inputMoney() throws IOException {
         System.out.println("구입 금액을 입력해 주세요.");
         int totalMoney = Integer.parseInt(br.readLine());
 
@@ -28,13 +39,7 @@ public class LottoViewer {
         if (manualCnt < 0) {
             throw new IllegalArgumentException("수동 로또 수 0이상이어야 함.");
         }
-        Money money = new Money(totalMoney, manualCnt);
-
-        Lotto lotto = inputLotto(money);
-
-        money.printStatus();
-        lotto.printTotalLotto();
-        return lotto;
+        return new Money(totalMoney, manualCnt);
     }
 
     public Lotto inputLotto(Money money) throws IOException {
@@ -59,7 +64,10 @@ public class LottoViewer {
         }
         System.out.println("보너스 볼을 입력해 주세요.");
         int bonusNumber = Integer.parseInt(br.readLine());
-        return new WinningNumbers(Row.createRow(answerList), bonusNumber);
+
+        List<LottoNumber> lottoNumbers = LottoNumber.convertIntegersToLottoNumbers(answerList);
+
+        return new WinningNumbers(Row.createRow(lottoNumbers), bonusNumber);
     }
 
     /**

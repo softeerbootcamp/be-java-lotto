@@ -1,8 +1,6 @@
 package kr.codesquad;
 
 import kr.codesquad.domain.Lotto;
-import kr.codesquad.domain.Money;
-import kr.codesquad.domain.Row;
 import kr.codesquad.domain.Statistic;
 
 public class LottoController {

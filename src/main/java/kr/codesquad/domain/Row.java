@@ -4,32 +4,32 @@ import java.util.*;
 
 public class Row {
 
-    private final List<Integer> values = new ArrayList<>();
+    private final List<LottoNumber> values = new ArrayList<>();
     private int match;
     private boolean isBonus;
     public static final int COLUMN = 6;
 
 
-    public static Row createRow(List<Integer> numbers) {
+    public static Row createRow(List<LottoNumber> numbers) {
         Row row = new Row();
         row.addValues(numbers);
         return row;
     }
 
-    /**
-     * 각 list 별 정답과 일치하는 갯수 반환
-     */
     public void compare(WinningNumbers winningNumbers) {
-        List<Integer> answers = winningNumbers.getRow().values;
-        for (int answer : answers) {
+        List<LottoNumber> answers = winningNumbers.getRow().values;
+        for (LottoNumber answer : answers) {
             compareNumber(answer);
         }
+
         compareBonusNumber(winningNumbers.getBonusNum());
     }
 
-    public void compareNumber(int answer) {
-        if (this.values.contains(answer)) {
-            this.match++;
+    public void compareNumber(LottoNumber answer) {
+        for (LottoNumber value : values) {
+            if (value.getNumber() == answer.getNumber()) {
+                this.match++;
+            }
         }
     }
 
@@ -37,7 +37,7 @@ public class Row {
         this.isBonus = this.values.contains(bonusNumber);
     }
 
-    public void addValues(List<Integer> num) {
+    public void addValues(List<LottoNumber> num) {
         values.addAll(num);
     }
 
@@ -45,7 +45,7 @@ public class Row {
         return match;
     }
 
-    public List<Integer> getValues() {
+    public List<LottoNumber> getValues() {
         return values;
     }
 
@@ -53,4 +53,7 @@ public class Row {
         return isBonus;
     }
 
+    public void printValues() {
+        System.out.println(values);
+    }
 }
