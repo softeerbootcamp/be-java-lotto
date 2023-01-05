@@ -1,4 +1,4 @@
-package kr.codesquad.templates;
+package kr.codesquad.model.lottos;
 
 import kr.codesquad.view.UserConsole;
 

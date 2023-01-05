@@ -1,9 +1,9 @@
 package kr.codesquad.controller;
 
 import kr.codesquad.model.UserInfo;
-import kr.codesquad.model.lottoImpl.RandomLotto;
-import kr.codesquad.model.lottoImpl.ResultLotto;
-import kr.codesquad.templates.Lotto;
+import kr.codesquad.model.lottos.RandomLotto;
+import kr.codesquad.model.lottos.ResultLotto;
+import kr.codesquad.model.lottos.Lotto;
 import kr.codesquad.view.UserConsole;
 
 import static kr.codesquad.utils.Util.parseString;

@@ -1,6 +1,4 @@
-package kr.codesquad.model.lottoImpl;
-
-import kr.codesquad.templates.Lotto;
+package kr.codesquad.model.lottos;
 
 import java.util.ArrayList;
 import java.util.Collections;
