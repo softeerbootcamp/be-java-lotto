@@ -4,6 +4,7 @@ import kr.codesquad.io.Console;
 import kr.codesquad.lotto.Lotto;
 import kr.codesquad.lotto.LottoService;
 import kr.codesquad.lotto.Lottos;
+import kr.codesquad.util.LottoUtil;
 import kr.codesquad.winLotto.WinCount;
 import kr.codesquad.winLotto.WinLotto;
 
@@ -35,7 +36,7 @@ public class Application {
 
     private List<Lotto> buyLotto(int money) {
         int manualAmount = console.inputManualLottoAmount();
-        int autoAmount = money / Lotto.LOTTO_PRICE - manualAmount;
+        int autoAmount = money / LottoUtil.LOTTO_PRICE - manualAmount;
         List<Lotto> lottos = lottoService.buyLotto(manualAmount, autoAmount);
 
         console.printLottoNum(lottos);
