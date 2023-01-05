@@ -23,4 +23,8 @@ public class Money {
     public void buyManualLotto(int LottoCount) {
         this.money -= LottoCount * LOTTO_PRICE;
     }
+
+    public int sum(Money ManualMoney) {
+        return this.money + ManualMoney.money;
+    }
 }
