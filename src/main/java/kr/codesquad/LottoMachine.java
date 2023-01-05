@@ -41,4 +41,8 @@ public class LottoMachine {
 
         return lottoList;
     }
+
+    public void printLottoList(List<List<Integer>> lottoList) {
+        for(List<Integer> eachLotto : lottoList) System.out.println(eachLotto);
+    }
 }
