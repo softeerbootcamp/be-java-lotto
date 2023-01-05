@@ -24,22 +24,26 @@ public class App implements Runnable {
 
   @Override
   public void run() {
-    int purchaseMoney = console.inputPurchaseMoney();
-    List<Lotto> lottos = purchaseLotto(purchaseMoney);
+    List<Lotto> lottos = purchaseLotto();
+    int totalPurchasedLottoPrice = lottos.size() * Lotto.LOTTO_PRICE;
+    console.printInputManualLottoNumbers();
 
     WinningLotto winningLotto = inputWinningLotto();
     WinningResult winningResult = WinningResult.createResult(lottos, winningLotto);
     console.printWinningResult(winningResult);
 
-    EarningRate earningRate = EarningRate.of(winningResult.getTotalWinningMoney(), purchaseMoney);
+    EarningRate earningRate = EarningRate.of(winningResult.getTotalWinningMoney(), totalPurchasedLottoPrice);
     console.printEarningRate(earningRate);
   }
 
-  private List<Lotto> purchaseLotto(int money) {
-    List<Lotto> lottos = lottoShop.purchase(money);
-    console.printPurchaseCount(lottos.size());
-    console.printLottoNumbersList(lottos);
-    return lottos;
+  private List<Lotto> purchaseLotto() {
+    int purchaseMoney = console.inputPurchaseMoney();
+    int manualLottoCount = console.inputManualLottoPurchaseCount();
+
+    int totalLottoCount = purchaseMoney / Lotto.LOTTO_PRICE;
+    int autoLottoCount = totalLottoCount - manualLottoCount;
+
+    return lottoShop.purchase(autoLottoCount, manualLottoCount);
   }
 
   private WinningLotto inputWinningLotto() {
