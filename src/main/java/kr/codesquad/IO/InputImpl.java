@@ -1,4 +1,4 @@
-package kr.codesquad.input;
+package kr.codesquad.IO;
 
 import kr.codesquad.lotto.LottoNumber;
 import java.io.BufferedReader;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class InputImpl implements Input{
+public class InputImpl implements Input {
     private final BufferedReader br;
 
     public InputImpl(){
@@ -35,14 +35,22 @@ public class InputImpl implements Input{
     }
 
     @Override
-    public List<LottoNumber> manualLottoNumbersInput() {
+    public List<List<LottoNumber>> manualLottoNumbersInput(int count) {
         try {
-            List<LottoNumber> manualLottoNumbers = new ArrayList<>();
-            StringTokenizer stringTokenizer = new StringTokenizer(br.readLine(),", ");
-            while(stringTokenizer.hasMoreTokens()) {
-                manualLottoNumbers.add(LottoNumber.of(Integer.parseInt(stringTokenizer.nextToken())));
+            List<List<LottoNumber>> manualLottoNumberLists = new ArrayList<>();
+            if(count > 0) {
+                System.out.println("수동으로 구입할 숫자를 입력하세요");
+
+                for (int i = 0; i < count; i++) {
+                    StringTokenizer stringTokenizer = new StringTokenizer(br.readLine(), ", ");
+                    List<LottoNumber> list = new ArrayList<>();
+                    while (stringTokenizer.hasMoreTokens()) {
+                        list.add(LottoNumber.of(Integer.parseInt(stringTokenizer.nextToken())));
+                    }
+                    manualLottoNumberLists.add(list);
+                }
             }
-            return manualLottoNumbers;
+            return manualLottoNumberLists;
         } catch(IOException e) {
             throw new IllegalArgumentException();
         }
@@ -72,4 +80,6 @@ public class InputImpl implements Input{
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다");
         }
     }
+
+
 }

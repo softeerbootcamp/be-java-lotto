@@ -1,4 +1,4 @@
-package kr.codesquad.input;
+package kr.codesquad.IO;
 
 import kr.codesquad.lotto.LottoNumber;
 
@@ -9,7 +9,7 @@ public interface Input {
 
     int manualLottoCountInput();
 
-    List<LottoNumber> manualLottoNumbersInput();
+    List<List<LottoNumber>> manualLottoNumbersInput(int count);
 
     List<LottoNumber> jackpotNumberInput();
 
