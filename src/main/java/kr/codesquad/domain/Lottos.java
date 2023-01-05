@@ -1,5 +1,6 @@
 package kr.codesquad.domain;
 
+import kr.codesquad.factory.LottoFactory;
 import kr.codesquad.factory.ManualLottoFactory;
 import kr.codesquad.factory.RandomLottoFactory;
 import kr.codesquad.view.InputView;
