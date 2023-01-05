@@ -57,7 +57,7 @@ public class LottoController {
 
     private void createManualLottos(int manualLottoCount, List<Lotto> lottos) {
         for (int count = 0; count < manualLottoCount; count++) {
-            List<Integer> numbers = inputView.readManualLottoNumbers();
+            List<Integer> numbers = inputView.readLottoNumbers();
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
@@ -69,7 +69,7 @@ public class LottoController {
 
     private WinningLotto createWinningLotto() {
         outputView.printWinningLottoReadMessage();
-        List<Integer> numbers = inputView.readWinningLottoNumbers();
+        List<Integer> numbers = inputView.readLottoNumbers();
 
         outputView.printBonusNumberReadMessage();
         int bonusNumber = inputView.readOneNumber();
