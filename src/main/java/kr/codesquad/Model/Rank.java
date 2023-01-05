@@ -25,17 +25,21 @@ public enum Rank {
         return winningMoney;
     }
 
-    public static final Map<Integer, List<Integer>> map = new HashMap<>();
+    public static final Map<Integer, List<Rank>> map = new HashMap<>();
     static{
-        map.put(FIRST.getCountOfMatch(), List.of(FIRST.winningMoney));
-        map.put(SECOND.getCountOfMatch(), List.of(SECOND.winningMoney, THIRD.winningMoney));
-        map.put(FOURTH.getCountOfMatch(), List.of(FOURTH.winningMoney));
-        map.put(FIFTH.getCountOfMatch(), List.of(FIFTH.winningMoney));
+        map.put(FIRST.getCountOfMatch(), List.of(FIRST));
+        map.put(SECOND.getCountOfMatch(), List.of(SECOND, THIRD));
+        map.put(FOURTH.getCountOfMatch(), List.of(FOURTH));
+        map.put(FIFTH.getCountOfMatch(), List.of(FIFTH));
     }
 
-    public static int valueOf(int countOfMatch, boolean matchBonus) {
-        if(map.get(countOfMatch) == null) return 0;
+    public static Rank valueOf(int countOfMatch, boolean matchBonus) {
+        if(map.get(countOfMatch) == null) return null;
         return countOfMatch == SECOND.countOfMatch && !matchBonus? map.get(countOfMatch).get(1) : map.get(countOfMatch).get(0);
+    }
+
+    public Money prize(int countOfMatchLotto) {
+        return new Money(countOfMatchLotto * winningMoney);
     }
 
 }

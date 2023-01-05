@@ -3,40 +3,60 @@ package kr.codesquad.Model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Set;
 
 public class Lotto {
-    private List<Integer> lottoNumbers;
+    private List<LottoNumber> lotto;
     int bonusBall;
+
     public Lotto(){
-        lottoNumbers = new ArrayList<>();
+        lotto = new ArrayList<>();
         bonusBall = 0;
     }
 
-    public Lotto(List<Integer> lottoNumList){
-        bonusBall = 0;
-        lottoNumbers = lottoNumList;
-    }
-    public void setLottoNumbers(List<Integer> ln){
-        lottoNumbers = ln;
-    }
-    public List<Integer> getLottoNumbers() {
-        return lottoNumbers;
+    public Lotto(List<LottoNumber> lotto){
+        if(lotto.size() != 6){
+            throw new IllegalArgumentException();
+        }
+        this.lotto = lotto;
     }
 
-    public void sortNumbers(){
-        Collections.sort(lottoNumbers);
+    public static Lotto of(List<Integer> lottoNumbers){
+        List<LottoNumber> lotto = new ArrayList<>();
+        for(Integer number : lottoNumbers){
+            lotto.add(LottoNumber.of(number));
+        }
+        return new Lotto(lotto);
+    }
+
+    public List<Integer> toListInteger(){
+        List<Integer> integerList = new ArrayList<>();
+        for(int i = 0;i <6;i++){
+            integerList.add(lotto.get(i).getNo());
+        }
+        return integerList;
+    }
+
+    boolean contains(LottoNumber lottoNumber) {
+        return lotto.contains(lottoNumber);
+    }
+
+    public int match(Lotto target) {
+        int count = 0;
+        for (LottoNumber lottoNumber : lotto) {
+            count += target.increment(lottoNumber);
+        }
+        return count;
+    }
+
+    int increment(LottoNumber lottoNumber) {
+        if (contains(lottoNumber)) {
+            return 1;
+        }
+        return 0;
     }
 
     public void addLottoNum(int num){
-        lottoNumbers.add(num);
-    }
-
-    public void setBonusBall(int b){
-        bonusBall = b;
-    }
-
-    public int getBonusBall(){
-        return bonusBall;
+        lotto.add(LottoNumber.of(num));
     }
 }
