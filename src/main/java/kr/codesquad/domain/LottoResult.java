@@ -21,7 +21,7 @@ public class LottoResult {
     }
 
     public double calculateEarningRate(Money money) {
-        double earnMoney = calculateEarnedMoney();
+        double earnMoney = (double)calculateEarnedMoney();
         return money.calculateEarningRate(earnMoney);
     }
 
@@ -56,10 +56,6 @@ public class LottoResult {
 
     public String earnedRateToString(Money money) {
         double rate = calculateEarningRate(money);
-        double rateOfIncome = Math.floor(rate * 100) / 100;
-        if (rate < 0) {
-            rateOfIncome = Math.ceil(rate * 100) / 100;
-        }
-        return "총 수익률은 " + rateOfIncome + "%입니다.\n";
+        return "총 수익률은 " + String.format("%.2f", rate) + "%입니다.\n";
     }
 }
