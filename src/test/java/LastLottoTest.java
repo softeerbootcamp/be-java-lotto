@@ -4,7 +4,12 @@ import kr.codesquad.exception.CustomException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.assertj.core.api.Assertions;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
 
 class LastLottoTest {
 
@@ -14,6 +19,16 @@ class LastLottoTest {
 //    void init(){
 //        this.userConsole = new UserConsole();
 //    }
+
+    @DisplayName("정상 입력일 때 숫자 배열이 잘 저장되는지")
+    @Test
+    void createLotto(){
+        String inputNumbers = "1, 2, 3, 4, 5, 6";
+        ArrayList<Integer> expectedList = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        LastLotto lastLotto = new LastLotto(this.userConsole,inputNumbers);
+        ArrayList<Integer> myList = lastLotto.getLastLottoList();
+        Assertions.assertThat(myList.equals(expectedList));
+    }
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
