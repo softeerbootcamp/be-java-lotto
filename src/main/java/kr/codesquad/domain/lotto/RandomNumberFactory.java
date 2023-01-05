@@ -6,14 +6,19 @@ public class RandomNumberFactory {
 
   private static final Random random = new Random();
 
-  private final int bound;
+  private final int lowerBound;
+  private final int upperBound;
 
-  public RandomNumberFactory(int bound) {
-    this.bound = bound;
+  public RandomNumberFactory(
+      int lowerBound,
+      int upperBound
+  ) {
+    this.lowerBound = lowerBound;
+    this.upperBound = upperBound;
   }
 
   public int generate() {
-    return random.nextInt(bound) + 1;
+    return random.nextInt(upperBound) + lowerBound;
   }
 
 }

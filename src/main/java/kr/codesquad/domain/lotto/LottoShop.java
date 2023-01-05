@@ -1,25 +1,31 @@
 package kr.codesquad.domain.lotto;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
+import kr.codesquad.domain.lotto.factory.LottoAutoFactory;
+import kr.codesquad.domain.lotto.factory.LottoManualFactory;
 
 public class LottoShop {
 
-  private final LottoFactory lottoFactory;
+  private static final LottoAutoFactory lottoAutoFactory = new LottoAutoFactory();
+  private static final LottoManualFactory lottoManualFactory = new LottoManualFactory();
 
-  private static final int LOTTO_PRICE = 1_000;
-
-  public LottoShop(LottoFactory lottoFactory) {
-    this.lottoFactory = lottoFactory;
+  public LottoShopPurchaseResult purchase(
+      int autoPurchaseCount,
+      int manualPurchaseCount
+  ) {
+    List<Lotto> autoLottos = lottoAutoFactory.generate(autoPurchaseCount);
+    List<Lotto> manualLottos = lottoManualFactory.generate(manualPurchaseCount);
+    int totalPrice = calculateTotalPrice(autoPurchaseCount, manualPurchaseCount);
+    return LottoShopPurchaseResult.of(autoLottos, manualLottos, totalPrice);
   }
 
-  public List<Lotto> purchase(int money) {
-    int purchaseCount = money / LOTTO_PRICE;
-    return IntStream.range(0, purchaseCount)
-                    .mapToObj(i -> lottoFactory.generate())
-                    .collect(Collectors.toCollection(ArrayList::new));
+  private int calculateTotalPrice(
+      int autoPurchaseCount,
+      int manualPurchaseCount
+  ) {
+    int totalCount = autoPurchaseCount + manualPurchaseCount;
+    return totalCount * Lotto.LOTTO_PRICE;
   }
 
 }
