@@ -5,6 +5,9 @@ public class WinningLotto {
     private final LottoNumber bonus;
 
     public WinningLotto(Lotto lotto, LottoNumber bonus) {
+        if (lotto.contains(bonus)) {
+            throw new IllegalArgumentException("보너스 번호는 추첨되지 않은 번호만 선택 가능합니다.");
+        }
         this.lotto = lotto;
         this.bonus = bonus;
     }
