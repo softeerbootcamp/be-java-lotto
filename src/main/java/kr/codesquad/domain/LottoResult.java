@@ -1,5 +1,6 @@
 package kr.codesquad.domain;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,16 +22,9 @@ public class LottoResult {
         }
         return totalPrize;
     }
-
-    public void printResult(){
-        System.out.println("\n당첨 통계");
-        System.out.println("---------");
-        for (Rank rank : Rank.values()){
-            if (rank == Rank.MISS) continue;
-            System.out.print(rank.getCountOfMatch() + "개 일치");
-            if (rank == Rank.SECOND) System.out.print(", 보너스 볼 일치");
-            System.out.printf(" (%d원)- %d개\n",rank.getWinningMoney(), result.get(rank));
-        }
+    public Map<Rank, Integer> getResult() {
+        Map<Rank, Integer> rankResult = new EnumMap<>(result);
+        return rankResult;
     }
 }
 

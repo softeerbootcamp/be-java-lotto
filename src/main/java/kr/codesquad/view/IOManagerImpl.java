@@ -1,8 +1,10 @@
 package kr.codesquad.view;
 
 import kr.codesquad.domain.Lotto;
+import kr.codesquad.domain.Rank;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class IOManagerImpl implements IOManager {
@@ -28,7 +30,10 @@ public class IOManagerImpl implements IOManager {
     public int inputManualLottoCount() {
         System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
         try{
-            return Integer.parseInt(sc.nextLine());
+            int manualLottoCount = Integer.parseInt(sc.nextLine());
+            if (manualLottoCount < 0)
+                throw new IllegalArgumentException("음수는 입력할 수 없습니다.");
+            return manualLottoCount;
         }
         catch (NumberFormatException e){
             throw new IllegalArgumentException("숫자로 입력해주세요.");
@@ -63,7 +68,7 @@ public class IOManagerImpl implements IOManager {
     }
 
     @Override
-    public void printEarningRate(float earningRate) {
+    public void printEarningRate(double earningRate) {
         System.out.printf("\n총 수익률은 %.2f%%입니다.", Math.ceil(earningRate * HUNDRED * HUNDRED)/HUNDRED);
     }
 
@@ -73,4 +78,18 @@ public class IOManagerImpl implements IOManager {
             System.out.println(lotto);
         }
     }
+
+    @Override
+    public void printMatchResult(Map<Rank, Integer> result) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---------");
+        for (Rank rank : Rank.values()){
+            if (rank == Rank.MISS) continue;
+            System.out.print(rank.getCountOfMatch() + "개 일치");
+            if (rank == Rank.SECOND) System.out.print(", 보너스 볼 일치");
+            System.out.printf(" (%d원)- %d개\n",rank.getWinningMoney(), result.get(rank));
+        }
+    }
+
+
 }
