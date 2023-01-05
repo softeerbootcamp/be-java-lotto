@@ -6,11 +6,10 @@ import kr.codesquad.Utility;
 import java.util.List;
 
 public class Lotto {
-    private List<Integer> lottoNums;
+    private final List<Integer> lottoNums;
 
     public Lotto() {
         lottoNums = Utility.generateRandomSixNumbers();
-        System.out.println(lottoNums);
     }
 
     public Lotto(List<Integer> lottoNums) {

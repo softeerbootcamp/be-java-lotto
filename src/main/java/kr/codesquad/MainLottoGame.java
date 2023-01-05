@@ -11,9 +11,9 @@ import java.util.List;
 
 
 public class MainLottoGame {
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
     private WinLotto winLotto;
-    private UserInputHandler inputHandler;
+    private final UserInputHandler inputHandler;
 
     public MainLottoGame() {
         lottos = new ArrayList<>();
@@ -43,13 +43,15 @@ public class MainLottoGame {
 
     private void printResult() {
         LottoStat lottoStat = new LottoStat(lottos, winLotto);
-        lottoStat.printResult();
+        System.out.println(lottoStat.getResult());
     }
 
 
     private void buyAutoLotto(int n_lotto) {
         for (int i = 0; i < n_lotto; i++) {
-            lottos.add(new Lotto());
+            Lotto newLotto = new Lotto();
+            lottos.add(newLotto);
+            System.out.println(newLotto);
         }
     }
 
