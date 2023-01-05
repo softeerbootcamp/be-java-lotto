@@ -16,6 +16,11 @@ public class InputView {
         return money;
     }
 
+    public int readManualLottoCount() {
+        int count = readOneNumber();
+        return count;
+    }
+
     public int readOneNumber() {
         while(true) {
             try {
