@@ -1,5 +1,7 @@
 package kr.codesquad.domain;
 
+import kr.codesquad.LottoGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,17 +9,11 @@ public class Lotto {
     private int inputMoney;
     private final List<Row> totalLotto = new ArrayList<>();
 
-    public static Lotto createLotto(List<Row> rows, int inputMoney) {
-        Lotto lotto = new Lotto();
-        lotto.add(rows);
-        lotto.inputMoney = inputMoney;
-        return lotto;
+    public void addRowToLotto(int num, LottoGenerator lottoGenerator) {
+        for (int i = 0; i < num; i++) {
+            this.totalLotto.add(lottoGenerator.generateRow());
+        }
     }
-
-    public void add(List<Row> rows) {
-        this.totalLotto.addAll(rows);
-    }
-
 
 
     public void printTotalLotto() {

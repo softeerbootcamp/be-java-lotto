@@ -12,18 +12,19 @@ import java.util.StringTokenizer;
 public class LottoViewer {
 
     private final LottoController lottoController;
+    private final BufferedReader br;
 
     public LottoViewer() {
         this.lottoController = new LottoController();
+        br = new BufferedReader(new InputStreamReader(System.in));
     }
 
     public Lotto home() throws IOException {
         System.out.println("구입 금액을 입력해 주세요.");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int inputMoney = Integer.parseInt(br.readLine());
         int num = Money.getRowCountICanBuy(inputMoney);
         System.out.println(num + "개를 구매했습니다.");
-        Lotto lotto = lottoController.createLotto(inputMoney);
+        Lotto lotto = lottoController.createLotto(num);
         lotto.printTotalLotto();
         return lotto;
     }

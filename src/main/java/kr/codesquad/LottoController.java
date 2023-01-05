@@ -1,10 +1,7 @@
 package kr.codesquad;
 
 import kr.codesquad.domain.Lotto;
-import kr.codesquad.domain.Row;
 import kr.codesquad.domain.Statistic;
-
-import java.util.List;
 
 public class LottoController {
     private final AutoLottoGenerator autoLottoGenerator;
@@ -13,10 +10,11 @@ public class LottoController {
         this.autoLottoGenerator = new AutoLottoGenerator();
     }
 
-    public Lotto createLotto(int inputMoney) {
+    public Lotto createLotto(int num) {
         //todo: 랜덤 숫자, 수동 숫자 결정
-        List<Row> rows = autoLottoGenerator.generateRows(inputMoney);
-        return Lotto.createLotto(rows, inputMoney);
+        Lotto lotto = new Lotto();
+        lotto.addRowToLotto(num, autoLottoGenerator);
+        return lotto;
     }
 
     public Statistic createStatistics(Lotto lotto) {
