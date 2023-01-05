@@ -5,7 +5,7 @@ import java.util.List;
 import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.lotto.LottoShop;
-import kr.codesquad.domain.lotto.LottoShopPurchaseesult;
+import kr.codesquad.domain.lotto.LottoShopPurchaseResult;
 import kr.codesquad.domain.winningLotto.WinningLotto;
 import kr.codesquad.domain.winningLotto.WinningResult;
 import kr.codesquad.io.Console;
@@ -17,7 +17,7 @@ public class App implements Runnable {
 
   @Override
   public void run() {
-    LottoShopPurchaseesult response = purchaseLotto();
+    LottoShopPurchaseResult response = purchaseLotto();
     console.printPurchaseResult(response);
 
     WinningLotto winningLotto = inputWinningLotto();
@@ -28,7 +28,7 @@ public class App implements Runnable {
     console.printEarningRate(earningRate);
   }
 
-  private LottoShopPurchaseesult purchaseLotto() {
+  private LottoShopPurchaseResult purchaseLotto() {
     int purchaseMoney = console.inputPurchaseMoney();
     int manualLottoCount = console.inputManualLottoPurchaseCount();
 

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import kr.codesquad.domain.earningRate.EarningRate;
 import kr.codesquad.domain.lotto.Lotto;
-import kr.codesquad.domain.lotto.LottoShopPurchaseesult;
+import kr.codesquad.domain.lotto.LottoShopPurchaseResult;
 import kr.codesquad.domain.winningLotto.WinningResult;
 
 public class Console {
@@ -45,7 +45,7 @@ public class Console {
     System.out.println(result.getStatistics());
   }
 
-  public void printPurchaseResult(LottoShopPurchaseesult result) {
+  public void printPurchaseResult(LottoShopPurchaseResult result) {
     List<Lotto> manualLotto = result.getManualLotto();
     List<Lotto> autoLottos = result.getAutoLottos();
 
