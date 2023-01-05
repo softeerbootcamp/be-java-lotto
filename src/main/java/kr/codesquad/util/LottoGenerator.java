@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.util;
 
 import kr.codesquad.domain.Lotto;
 import kr.codesquad.domain.Money;

@@ -1,5 +1,7 @@
-package kr.codesquad;
+package kr.codesquad.controller;
 
+import kr.codesquad.util.AutoLottoGenerator;
+import kr.codesquad.domain.LottoMachine;
 import kr.codesquad.domain.*;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;

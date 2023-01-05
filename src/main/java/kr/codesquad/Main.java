@@ -1,5 +1,6 @@
 package kr.codesquad;
 
+import kr.codesquad.controller.LottoController;
 import kr.codesquad.domain.Money;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;

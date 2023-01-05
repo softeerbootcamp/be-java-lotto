@@ -1,9 +1,6 @@
-package kr.codesquad;
+package kr.codesquad.domain;
 
-import kr.codesquad.domain.Lotto;
-import kr.codesquad.domain.LottoResult;
-import kr.codesquad.domain.Money;
-import kr.codesquad.domain.WinningLotto;
+import kr.codesquad.util.LottoGenerator;
 import kr.codesquad.enums.Rank;
 
 import java.util.List;
