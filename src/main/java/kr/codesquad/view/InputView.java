@@ -9,11 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
-    private BufferedReader br;
+    private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));;
 
-    public InputView() {
-        br = new BufferedReader(new InputStreamReader(System.in));
-    }
+    public InputView() {}
 
     public String inputMoney() throws IOException {
         return br.readLine();
@@ -33,5 +31,12 @@ public class InputView {
     }
     public int inputCountOfManualLotto() throws IOException{
         return Integer.parseInt(br.readLine());
+    }
+    public static String[] inputManualLotto() {
+        try {
+            return br.readLine().split(", ");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
