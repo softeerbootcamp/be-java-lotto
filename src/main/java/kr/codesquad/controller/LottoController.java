@@ -41,7 +41,9 @@ public class LottoController {
         int manualLottoCount = createManualLottoCount(money);
         int autoLottoCount = money / Lotto.PRICE - manualLottoCount;
 
-        outputView.printUserManualLottoReadMessage();
+        if (manualLottoCount > 0) {
+            outputView.printUserManualLottoReadMessage();
+        }
 
         List<Lotto> lottos = new ArrayList<>();
         createManualLottos(manualLottoCount, lottos);
