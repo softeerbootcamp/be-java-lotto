@@ -37,7 +37,6 @@ public class LottoMachine {
 
             lottoList.add(subList);
             Collections.sort(lottoList.get(i));
-            System.out.println(lottoList.get(i));
         }
 
         return lottoList;
