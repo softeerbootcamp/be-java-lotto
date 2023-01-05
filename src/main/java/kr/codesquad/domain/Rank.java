@@ -18,16 +18,16 @@ public enum Rank {
 
     private final int count;
 
-    private final boolean isBounsBall;
+    private final boolean isBonusBall;
 
     Rank(
             int winningAmount,
             int count,
-            boolean isBounsBall
+            boolean isBonusBall
     ) {
         this.winningAmount = winningAmount;
         this.count = count;
-        this.isBounsBall = isBounsBall;
+        this.isBonusBall = isBonusBall;
     }
 
     public static Rank getRank(
@@ -35,7 +35,7 @@ public enum Rank {
             boolean isBonus
     ) {
         return Arrays.stream(values())
-                .filter(rank -> rank.count == matchCount && rank.isBounsBall == isBonus)
+                .filter(rank -> rank.count == matchCount && rank.isBonusBall == isBonus)
                 .findFirst()
                 .orElse(NOTHING);
     }
@@ -55,7 +55,7 @@ public enum Rank {
     }
 
     public boolean isBonus() {
-        return isBounsBall;
+        return isBonusBall;
     }
 
 }
