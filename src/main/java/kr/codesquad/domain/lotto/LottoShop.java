@@ -16,6 +16,9 @@ public class LottoShop {
       int purchaseMoney,
       int manualLottoCount
   ) {
+    if (purchaseMoney < 0 || manualLottoCount < 0) {
+      throw new IllegalArgumentException("잘못된 구매 정보입니다.");
+    }
     int totalLottoCount = getPurchaseLottoCount(purchaseMoney);
     int autoLottoCount = getAutoLottoCount(totalLottoCount, manualLottoCount);
 
@@ -33,7 +36,7 @@ public class LottoShop {
       int manualLottoCount
   ) {
     if (totalLottoCount < manualLottoCount) {
-      throw new IllegalArgumentException("잘못된 구매 시도 입니다");
+      throw new IllegalArgumentException("잘못된 구매 정보 입니다");
     }
     return totalLottoCount - manualLottoCount;
   }
