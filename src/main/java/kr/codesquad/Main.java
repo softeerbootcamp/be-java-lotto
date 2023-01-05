@@ -25,18 +25,18 @@ public class Main {
     public static void main(String[] args) throws CustomException {
         Jackpot_Handler jh = new Jackpot_Handler();
         Utility ut = new Utility();
-        //1. 로또를 구매한다.
-        buyLottoByMoney();
-        //2. 로또를 돈만큼 구매하고, 수동 자동을 입력한다.
-        GenerateMyLottoByCount gm = new GenerateMyLottoByCount(cnt);
-        gm.generateMyself();
-        gm.generateAuto();
-        //3. 당첨 번호와 보너스 번호를 입력한다.
-        jh.setJackpotNum();
-        jh.setBonusNum();
-        //4. 당첨을 확인한다.
-        jh.searchJackpotsInMyLottoList(gm);
-        ut.printProfit(jh.PRIZE_CNT, money);
+//        //1. 로또를 구매한다.
+//        buyLottoByMoney();
+//        //2. 로또를 돈만큼 구매하고, 수동 자동을 입력한다.
+//        GenerateMyLottoByCount gm = new GenerateMyLottoByCount(cnt);
+//        gm.generateMyself();
+//        gm.generateAuto();
+//        //3. 당첨 번호와 보너스 번호를 입력한다.
+//        jh.setJackpotNum();
+//        jh.setBonusNum();
+//        //4. 당첨을 확인한다.
+//        jh.searchJackpotsInMyLottoList(gm);
+//        ut.printProfit(jh.PRIZE_CNT, money);
 
     }
 }

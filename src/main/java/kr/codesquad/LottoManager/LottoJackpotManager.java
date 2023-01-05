@@ -40,11 +40,11 @@ public class LottoJackpotManager extends UserInput {
             index=addIndexIfchecked(userOneLotto,oneNumber,index);
         }
         if(index==6){
-
+            userLotto.addPrizeResultsByIndex(index-2);
         }else if(index==5 && checkNumberIsContained(userOneLotto,BONUS_NUM)){
-
+            userLotto.addPrizeResultsByIndex(index-2);
         } else if (index>=3) {
-
+            userLotto.addPrizeResultsByIndex(index-3);
         }
     }
 }
