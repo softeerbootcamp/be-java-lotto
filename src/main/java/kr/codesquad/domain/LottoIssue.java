@@ -25,7 +25,7 @@ public class LottoIssue {
         }
         int automaticCount = user.countOfBuying() - manualLottoCount;
         for (int i = 0 ; i < automaticCount ; i++) {
-            lottos.add(lottoFactory.generateLotto("automatic"));
+            lottos.add(lottoFactory.generateLotto("auto"));
         }
         return lottos;
     }

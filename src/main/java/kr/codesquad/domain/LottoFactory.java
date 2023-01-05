@@ -21,7 +21,7 @@ public class LottoFactory {
     }
 
     public Lotto generateLotto(String type) {
-        if (type.equals("automatic")) {
+        if (type.equals("auto")) {
             Collections.shuffle(numbers);
             return Lotto.of(numbers.subList(0,6));
         }
