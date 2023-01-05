@@ -5,9 +5,9 @@ import java.util.List;
 
 public class LottoPurchase {
 
-    public final LottoAutoFactory lottoAutoFactory = new LottoAutoFactory();
+    public final LottoFactory lottoAutoFactory = new LottoAutoFactory();
 
-    public final LottoManualFactory lottoManualFactory = new LottoManualFactory();
+    public final LottoFactory lottoManualFactory = new LottoManualFactory();
 
     public List<Lotto> buyLotto(int manualAmount, int autoAmount) {
         List<Lotto> lottos = new ArrayList<>();
