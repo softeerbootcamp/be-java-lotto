@@ -21,7 +21,7 @@ public class LottoController {
         this.outputView = new OutputView();
     }
 
-    public void start() {
+    public void run() {
         User user = createUserWithMoneyAndLottoCount();
         outputView.printUser(user);
 
