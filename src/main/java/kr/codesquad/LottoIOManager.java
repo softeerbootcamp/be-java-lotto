@@ -17,4 +17,6 @@ public interface LottoIOManager {
 	public int readBonusBall();
 
 	public WinningLotto readWinningLotto();
+
+	public List<Lotto> readManualLotto(int cnt);
 }
