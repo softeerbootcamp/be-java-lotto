@@ -1,5 +1,7 @@
 package kr.codesquad.Model;
 
+import kr.codesquad.Exception.InvalidLottoNumberException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -16,7 +18,7 @@ public class LottoNumber {
 
     private LottoNumber(int no) {
         if (no < 1 || no > 45) {
-            throw new IllegalArgumentException();
+            throw new InvalidLottoNumberException("로또번호가 아닌데요?\n");
         }
 
         this.no = no;
@@ -24,13 +26,13 @@ public class LottoNumber {
 
     static LottoNumber of(String value) {
         if (Objects.isNull(value)) {
-            throw new IllegalArgumentException();
+            throw new InvalidLottoNumberException("로또번호가 아닌데요?\n");
         }
 
         return lottoNos.get(Integer.parseInt(value.trim()));
     }
 
-    static LottoNumber of(int number) {
+    public static LottoNumber of(int number) {
         return new LottoNumber(number);
     }
 
