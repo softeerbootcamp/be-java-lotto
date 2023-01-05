@@ -1,26 +1,23 @@
 package kr.codesquad;
 
-import kr.codesquad.exception.CustomException;
-import kr.codesquad.exception.ErrorCode;
+import kr.codesquad.utils.Utility;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class LastLotto {
     private ArrayList<Integer> lastLotto; //저번 주 당첨 번호
+    private UserConsole userConsole;
 
-    public LastLotto(){
+    public LastLotto(UserConsole userConsole){
+
         this.lastLotto = new ArrayList<>();
+        this.userConsole = userConsole;
     }
 
     public ArrayList<Integer> getLastLotto(){
         System.out.println("당첨 번호를 입력해주세요.");
-        Scanner sc = new Scanner(System.in);
-        String inputNumbers = sc.nextLine();
-        if(inputNumbers.split(", ").length != 6) throw new CustomException(ErrorCode.ILLEGAL_LOTTO_NUM_COUNT);
-        for(String input : inputNumbers.split(", ")){
-            this.lastLotto.add(java.lang.Integer.valueOf(input));
-        }
+        String inputNumbers = userConsole.enter6NumbersByString();
+        this.lastLotto = Utility.getListFromInputBySplit(inputNumbers);
         return this.lastLotto;
     }
 }

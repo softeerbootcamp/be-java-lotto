@@ -1,37 +1,28 @@
 package kr.codesquad;
 
-import kr.codesquad.exception.CustomException;
-import kr.codesquad.exception.ErrorCode;
-
-import java.io.IOException;
 import java.util.*;
 
-public class LottoMachine extends BaseLotto{
+public class MachineLotto extends BaseLotto{
     private List<Integer> numList;
+    private UserConsole userConsole;
 
-    public LottoMachine() {
+    public MachineLotto(UserConsole userConsole) {
         this.lottoList = new ArrayList<>();
         numList = new ArrayList<>();
+        this.userConsole = new UserConsole();
         for(int j=1;j<46;j++) numList.add(j);
     }
 
     public Integer getAmountOfMoney(){
         int amountOfMoney = 0;
-        do {
+        try {
             System.out.print("구입금액을 입력해주세요");
-            try {
-                Scanner sc = new Scanner(System.in);
-                amountOfMoney = sc.nextInt();
-            }catch(InputMismatchException e){
-                System.out.println("유효하지 않은 값입니다. 다시 값을 입력해주세요.");
-                continue; //다시 반복문의 처음으로 돌아가 입력값을 다시 입력받음
-            }catch(Exception e){
-                System.out.println("입력에 에러가 발생했습니다. 다시 값을 입력해주세요");
-                continue;
-            }
-            break; // do-while을 통한 입력 벗어남
-        } while (true);
-
+            amountOfMoney = userConsole.enterInteger();
+        }catch(InputMismatchException e){
+            System.out.println("유효하지 않은 값입니다. 다시 값을 입력해주세요.");
+        }catch(Exception e){
+            System.out.println("입력에 에러가 발생했습니다. 다시 값을 입력해주세요");
+        }
         return amountOfMoney;
     }
 

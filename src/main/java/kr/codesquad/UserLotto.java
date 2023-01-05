@@ -2,17 +2,19 @@ package kr.codesquad;
 
 import kr.codesquad.exception.CustomException;
 import kr.codesquad.exception.ErrorCode;
+import kr.codesquad.utils.Utility;
 
 import java.util.*;
 
 
-public class User extends BaseLotto{
+public class UserLotto extends BaseLotto{
 
     private int bonusBall; //보너스 볼
+    private UserConsole userConsole;
 
-    public User() {
-        //this.inputs = new ArrayList<>();
+    public UserLotto(UserConsole userConsole) {
         this.lottoList=new ArrayList<>();
+        this.userConsole = userConsole;
     }
 
     @Override
@@ -27,35 +29,24 @@ public class User extends BaseLotto{
 
     @Override
     public Integer getLottoCnt(int amountOfMoney, int manualLottoCount) {
-        do {
+        try {
             System.out.print("수동으로 구매할 로또 수를 입력해 주세요. ");
-            try {
-                Scanner sc = new Scanner(System.in);
-                this.lottoCnt = sc.nextInt();
-                if(this.lottoCnt*1000>amountOfMoney) throw new CustomException(ErrorCode.MONEY_NOT_ENOUGH);
-            }catch(InputMismatchException e){
-                System.out.println("유효하지 않은 값입니다. 다시 값을 입력해주세요.");
-                continue; //다시 반복문의 처음으로 돌아가 입력값을 다시 입력받음
-            }catch(Exception e){
-                System.out.println("입력에 에러가 발생했습니다. 다시 값을 입력해주세요");
-                continue;
-            }
-            break; // do-while을 통한 입력 벗어남
-        } while (true);
+            this.lottoCnt = userConsole.enterInteger();
+            if(this.lottoCnt*1000 > amountOfMoney) throw new CustomException(ErrorCode.MONEY_NOT_ENOUGH);
+        }catch(InputMismatchException e){
+            System.out.println("유효하지 않은 값입니다. 다시 값을 입력해주세요.");
+        }catch(Exception e){
+            System.out.println("입력에 에러가 발생했습니다. 다시 값을 입력해주세요");
+        }
 
         return this.lottoCnt;
     }
 
     public ArrayList<Integer> getManualLotto(){
-        Scanner sc = new Scanner(System.in);
-        //to-do : input 넘버가 중복이 되면 안 됨
-        String inputNumbers = sc.nextLine();
+        String inputNumbers = userConsole.enter6NumbersByString();
         ArrayList<Integer> manualLotto=new ArrayList<>();
-        if(inputNumbers.split(", ").length != 6) throw new CustomException(ErrorCode.ILLEGAL_LOTTO_NUM_COUNT);
         try{
-            for(String input : inputNumbers.split(", ")){
-                manualLotto.add(Integer.valueOf(input));
-            }
+            manualLotto = Utility.getListFromInputBySplit(inputNumbers);
         }catch(Exception e){
             System.out.println("입력 양식을 다시 확인해주세요");
         }
@@ -64,10 +55,9 @@ public class User extends BaseLotto{
     }
 
     public Integer getBonusLottoInput() {
-        System.out.println("보너스 볼을 입력해주세요. ");
         try{
-            Scanner sc = new Scanner(System.in);
-            this.bonusBall = sc.nextInt();
+            System.out.println("보너스 볼을 입력해주세요. ");
+            this.bonusBall = userConsole.enterInteger();
         }catch(InputMismatchException e){
             System.out.println("유효하지 않은 값입니다. 다시 값을 입력해주세요.");
         }
