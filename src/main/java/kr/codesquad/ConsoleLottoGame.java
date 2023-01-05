@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainLottoGame {
+public class ConsoleLottoGame {
     private final List<Lotto> lottos;
     private WinLotto winLotto;
     private final UserInputHandler inputHandler;
 
-    public MainLottoGame() {
+    public ConsoleLottoGame() {
         lottos = new ArrayList<>();
         inputHandler = new UserInputHandlerImpl();
     }
@@ -46,7 +46,6 @@ public class MainLottoGame {
         System.out.println(lottoStat.getResult());
     }
 
-
     private void buyAutoLotto(int n_lotto) {
         for (int i = 0; i < n_lotto; i++) {
             Lotto newLotto = new Lotto();
@@ -74,7 +73,7 @@ public class MainLottoGame {
 
 
     public static void main(String[] args) {
-        MainLottoGame mainLottoGame = new MainLottoGame();
-        mainLottoGame.start();
+        ConsoleLottoGame consoleLottoGame = new ConsoleLottoGame();
+        consoleLottoGame.start();
     }
 }
