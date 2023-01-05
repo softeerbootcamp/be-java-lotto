@@ -1,41 +1,27 @@
 package kr.codesquad;
 
+import kr.codesquad.domain.Lotto;
+import kr.codesquad.domain.Row;
+import kr.codesquad.domain.Statistic;
+
 import java.util.List;
 
 public class LottoController {
-
-    public static final int SINGLE_PRICE = 1000; //로또 한 장의 가격은 1000원이다.
-    private final LottoService lottoService;
-
-    private int inputMoney;
-    private List<Row> rows;
+    private final AutoLottoGenerator autoLottoGenerator;
 
     public LottoController() {
-        this.lottoService = new LottoService();
+        this.autoLottoGenerator = new AutoLottoGenerator();
     }
 
-
-    public List<Row> receiveInput(int inputMoney) {
-        //로또 구입 금액을 입력하면
-        this.inputMoney = inputMoney;
-
-        int num = inputMoney / SINGLE_PRICE;
-        rows = lottoService.receiveRandomRows(num);
-
-        return rows;
+    public Lotto createLotto(int inputMoney) {
+        //todo: 랜덤 숫자, 수동 숫자 결정
+        List<Row> rows = autoLottoGenerator.generateRows(inputMoney);
+        return Lotto.createLotto(rows, inputMoney);
     }
 
-    /**
-     * 당첨 통계 내기
-     */
-    public Statistic getPrintStatistics(int[] answers, int bonusNumber) {
-        lottoService.compareLotto(rows, answers, bonusNumber);
-
-        Statistic statistic = new Statistic();
-        for (Row row : rows) {
-            statistic.calculateOutput(row);
-        }
-        statistic.calculateRate(inputMoney);
+    public Statistic createStatistics(Lotto lotto) {
+        Statistic statistic = new Statistic(lotto.getInputMoney());
+        statistic.calculate(lotto);
         return statistic;
     }
 }
