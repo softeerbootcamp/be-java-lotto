@@ -84,7 +84,7 @@ public class ResultStatistic {
     public static double computeProfit(User user) {
         int totalReward = sumReward(user);
 
-        int usersPurchaseAmount = user.getPurchase().getPurchaseAmount();
+        int usersPurchaseAmount = user.getMoney().getPurchaseMoney();
         return (totalReward-usersPurchaseAmount) / (double) usersPurchaseAmount * 100;
     }
 

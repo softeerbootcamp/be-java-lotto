@@ -1,10 +1,8 @@
 package kr.codesquad.controller;
 
-import kr.codesquad.model.Purchase;
-import kr.codesquad.model.User;
+import kr.codesquad.model.*;
 import kr.codesquad.model.lotto.ManualLotto;
 import kr.codesquad.model.lotto.WinningLotto;
-import kr.codesquad.model.ResultStatistic;
 import kr.codesquad.view.PrintView;
 import kr.codesquad.view.ReceiveView;
 
@@ -26,14 +24,14 @@ public class LottoController {
     }
 
     private void printBuyLotto(User user) {
-        Purchase usersPurchase = user.getPurchase();
-        PrintView.resultPurchaseAmount(usersPurchase.getManualTicketsCount(), usersPurchase.getAutoTicketsCount());
+        Ticket userTicket = user.getTicket();
+        PrintView.resultPurchaseAmount(userTicket.getManualTicketsCount(), userTicket.getAutoTicketsCount());
         PrintView.generatedLottos(user);
     }
 
     private void updateManualLottos(User user) {
         PrintView.enterManualLottos();
-        for (int count = 0; count < user.getPurchase().getManualTicketsCount(); count++) {
+        for (int count = 0; count < user.getTicket().getManualTicketsCount(); count++) {
             List<Integer> manualLotto = ReceiveView.enterManualLottos();
             user.insertManualLotto(new ManualLotto(manualLotto));
         }
@@ -66,19 +64,22 @@ public class LottoController {
     }
 
     private User getUserWithPurchase() {
-        int purchaseAmount = enterPurchaseAmount();
-        int manualTicketsCount = purchaseManualTickets();
-        int autoTicketsCount = Purchase.purchaseAutoTickets(purchaseAmount,manualTicketsCount);
-        User user = new User(new Purchase(purchaseAmount,manualTicketsCount,autoTicketsCount));
+        Money money = new Money(enterPurchaseAmount());
+        Ticket ticket = makeTicket(money);
+        User user = new User(money,ticket);
         return user;
+    }
+
+    private Ticket makeTicket(Money money) {
+        int manualTicketsCount = purchaseManualTickets();
+        int autoTicketsCount = Ticket.purchaseAutoTickets(money, manualTicketsCount);
+        return new Ticket(manualTicketsCount,autoTicketsCount);
     }
 
     private  int purchaseManualTickets() {
         PrintView.enterManualTickets();
         return ReceiveView.enterManualTickets();
     }
-
-
 
     private int enterPurchaseAmount() {
         PrintView.enterPurchaseAmount();

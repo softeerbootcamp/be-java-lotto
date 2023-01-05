@@ -15,12 +15,11 @@ class UserTest {
     public void checkMakeUser() {
         //given
         int purchaseMoney = 10000;
-        int autoTickets = 10;
         int manualTickets=0;
         //when
-        User user = new User(new Purchase(purchaseMoney,manualTickets,autoTickets));
+        User user = new User(new Money(purchaseMoney),new Ticket(manualTickets,10));
         //then
-        assertThat(user.getLottos().size()).isEqualTo(autoTickets+manualTickets);
+        assertThat(user.getLottos().size()).isEqualTo(10);
     }
 
 

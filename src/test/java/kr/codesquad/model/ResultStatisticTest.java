@@ -16,7 +16,9 @@ class ResultStatisticTest {
     @DisplayName("당첨번호 결과 로직 테스트")
     void computeResult() {
         //given
-        User user = new User(new Purchase(10000,0,10));
+        int purchaseMoney = 10000;
+        int manualTickets=0;
+        User user = new User(new Money(purchaseMoney),new Ticket(manualTickets,10));
 
         //첫번째 자동으로 생성된 로또번호와 같게 당첨번호를 설정
         List<Integer> winLotto = user.getLottos().get(0).getNumbers();
@@ -37,7 +39,7 @@ class ResultStatisticTest {
         int autoTickets = 10;
         int manualTickets=0;
         //when
-        User user = new User(new Purchase(purchaseMoney,manualTickets,autoTickets));
+        User user = new User(new Money(purchaseMoney),new Ticket(manualTickets,autoTickets));
         HashMap<Result, Integer> resultMatch = user.getWinningStatic().getResultMatch();
         //then
         for (Result result : Result.values()) {

@@ -7,13 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    private final Purchase purchase;
+    private final Money money;
+    private final Ticket ticket;
     private List<Lotto> lottos;
     private ResultStatistic resultStatistic = new ResultStatistic();
 
-    public User(Purchase purchase) {
-        this.purchase=purchase;
-        this.lottos=generateLottos(purchase.getAutoTicketsCount());
+    public User(Money money,Ticket ticket) {
+        this.money = money;
+        this.ticket = ticket;
+        this.lottos=generateLottos(ticket.getAutoTicketsCount());
     }
 
     public void insertManualLotto(Lotto manualLotto) {
@@ -42,7 +44,11 @@ public class User {
     }
 
 
-    public Purchase getPurchase() {
-        return purchase;
+    public Money getMoney() {
+        return money;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
     }
 }
