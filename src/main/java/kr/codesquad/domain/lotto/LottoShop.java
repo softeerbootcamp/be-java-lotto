@@ -1,6 +1,5 @@
 package kr.codesquad.domain.lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import kr.codesquad.domain.lotto.factory.LottoAutoFactory;
@@ -8,15 +7,25 @@ import kr.codesquad.domain.lotto.factory.LottoManualFactory;
 
 public class LottoShop {
 
-  public List<Lotto> purchase(
+  private static final LottoAutoFactory lottoAutoFactory = new LottoAutoFactory();
+  private static final LottoManualFactory lottoManualFactory = new LottoManualFactory();
+
+  public LottoShopPurchaseesult purchase(
       int autoPurchaseCount,
       int manualPurchaseCount
   ) {
-    List<Lotto> result = new ArrayList<>();
-    result.addAll(new LottoAutoFactory().generate(autoPurchaseCount));
-    result.addAll(new LottoManualFactory().generate(manualPurchaseCount));
+    List<Lotto> autoLottos = lottoAutoFactory.generate(autoPurchaseCount);
+    List<Lotto> manualLottos = lottoManualFactory.generate(manualPurchaseCount);
+    int totalPrice = calculateTotalPrice(autoPurchaseCount, manualPurchaseCount);
+    return LottoShopPurchaseesult.of(autoLottos, manualLottos, totalPrice);
+  }
 
-    return result;
+  private int calculateTotalPrice(
+      int autoPurchaseCount,
+      int manualPurchaseCount
+  ) {
+    int totalCount = autoPurchaseCount + manualPurchaseCount;
+    return totalCount * Lotto.LOTTO_PRICE;
   }
 
 }

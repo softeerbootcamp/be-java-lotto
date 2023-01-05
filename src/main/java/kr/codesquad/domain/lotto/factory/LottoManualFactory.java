@@ -13,6 +13,7 @@ public class LottoManualFactory implements LottoFactory {
 
   @Override
   public List<Lotto> generate(int count) {
+    console.printInputManualLottoNumbers();
     return IntStream.range(0, count)
                     .mapToObj(i -> console.inputLottoNumbers())
                     .map(Lotto::from)
