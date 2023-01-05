@@ -54,7 +54,6 @@ public class MachineLotto extends BaseLotto{
             shuffledNumList =  new ArrayList<>(numList.subList(0,6));
             Collections.sort(shuffledNumList);
         }while(this.lottoList.contains(shuffledNumList)); //만약 중복이라면 다시 돌아가서 새롭게 셔플, 없으면 while문 끝
-
         this.lottoList.add(shuffledNumList);
     }
 
