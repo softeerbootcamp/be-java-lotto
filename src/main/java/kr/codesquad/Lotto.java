@@ -1,13 +1,13 @@
 package kr.codesquad;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
+@RequiredArgsConstructor
 public class Lotto {
     private final List<List<Integer>> lottoList;
-
-    public Lotto(List<List<Integer>> lottoList) {
-        this.lottoList = lottoList;
-    }
+    private final Lotto nextLotto;
 
     public List<List<Integer>> getLottoList() {
         return this.lottoList;
