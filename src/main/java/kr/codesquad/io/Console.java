@@ -1,6 +1,8 @@
 package kr.codesquad.io;
 
 import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.other.Bonus;
+import kr.codesquad.domain.other.Money;
 import kr.codesquad.domain.winLotto.WinCount;
 
 import java.util.*;
@@ -12,16 +14,14 @@ public class Console {
 
     public static InputView inputView = new InputView();
 
-    public int inputMoney() {
+    public Money inputMoney() {
         inputView.inputMoneyView();
-        int money = Integer.parseInt(sc.nextLine());
-        return money;
+        return new Money(Integer.parseInt(sc.nextLine()));
     }
 
-    public int inputBonusNum() {
+    public Bonus inputBonusNum() {
         inputView.inputBonusNumView();
-        int bonus = Integer.parseInt(sc.nextLine());
-        return bonus;
+        return new Bonus(Integer.parseInt(sc.nextLine()));
     }
 
     public int inputManualLottoAmount() {
@@ -63,7 +63,7 @@ public class Console {
         System.out.println();
     }
 
-    public void printLottoResult(int money, Map<WinCount, Integer> lottoResult) {
+    public void printLottoResult(Money money, Map<WinCount, Integer> lottoResult) {
         System.out.println("\n당첨 통계\n---------");
         Arrays.stream(WinCount.values())
                 .forEach(winCount -> {
@@ -82,14 +82,14 @@ public class Console {
         }
     }
 
-    public void printProfit(Map<WinCount, Integer> lottoResult, int money) {
+    public void printProfit(Map<WinCount, Integer> lottoResult, Money money) {
         int rewardSum = lottoResult
                 .entrySet()
                 .stream()
                 .mapToInt(lotto -> lotto.getKey().getPrice() * lotto.getValue())
                 .sum();
 
-        double ans = (((double) (rewardSum - money)) / (double) money) * 100.0;
+        double ans = (((double) (rewardSum - money.getMoney())) / (double) money.getMoney()) * 100.0;
         System.out.println("총 수익률은 " + Math.floor(ans * 100) / 100.0 + "%입니다.");
     }
 }

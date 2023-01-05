@@ -1,26 +1,28 @@
 package kr.codesquad.domain.winLotto;
 
+import kr.codesquad.domain.other.Bonus;
+
 import java.util.List;
 
 public class WinLotto {
 
     private List<Integer> numberList;
-    private int bonusNum;
+    private Bonus bonus;
 
     public WinLotto(
             List<Integer> numberList,
-            int bonusNum
+            Bonus bonus
     ) {
         this.numberList = numberList;
-        this.bonusNum = bonusNum;
+        this.bonus = bonus;
     }
 
     public List<Integer> getNumberList() {
         return numberList;
     }
 
-    public int getBonusNum() {
-        return bonusNum;
+    public Bonus getBonus() {
+        return bonus;
     }
 
 

@@ -1,5 +1,6 @@
 package kr.codesquad;
 
+import kr.codesquad.domain.other.Money;
 import kr.codesquad.io.Console;
 import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.lotto.LottoService;
@@ -26,22 +27,22 @@ public class Application {
     }
 
     public void start() {
-        int money = console.inputMoney();
-        Lottos lottos = new Lottos(buyLotto(money));
+        Money money = console.inputMoney();
+        Lottos lottos = buyLotto(money);
 
-        WinLotto winLotto = new WinLotto(console.inputWinLottoNum(), console.inputBonusNum());
+        WinLotto winLotto = lottoService.makeWinLotto(console.inputWinLottoNum(), console.inputBonusNum());
         Map<WinCount, Integer> lottoResult = lottoService.makeLottoResult(lottos, winLotto);
         console.printLottoResult(money, lottoResult);
     }
 
-    private List<Lotto> buyLotto(int money) {
+    private Lottos buyLotto(Money money) {
         int manualAmount = console.inputManualLottoAmount();
-        int autoAmount = money / LottoUtil.LOTTO_PRICE - manualAmount;
+        int autoAmount = money.getMoney() / LottoUtil.LOTTO_PRICE - manualAmount;
         List<Lotto> lottos = lottoService.buyLotto(manualAmount, autoAmount);
 
         console.printLottoNum(lottos);
         console.printAmount(manualAmount, autoAmount);
-        return lottos;
+        return new Lottos(lottos);
     }
 
 

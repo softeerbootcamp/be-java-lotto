@@ -1,5 +1,6 @@
 package kr.codesquad.domain.lotto;
 
+import kr.codesquad.domain.other.Bonus;
 import kr.codesquad.domain.winLotto.WinCount;
 import kr.codesquad.domain.winLotto.WinLotto;
 import kr.codesquad.domain.winLotto.WinResult;
@@ -15,6 +16,10 @@ public class LottoService {
 
     public List<Lotto> buyLotto(int manualAmount, int autoAmount) {
         return lottoPurchase.buyLotto(manualAmount, autoAmount);
+    }
+
+    public WinLotto makeWinLotto(List<Integer> winLottoNum, Bonus bonus) {
+        return new WinLotto(winLottoNum, bonus);
     }
 
     public Map<WinCount, Integer> makeLottoResult(Lottos lottos, WinLotto winLotto) {
