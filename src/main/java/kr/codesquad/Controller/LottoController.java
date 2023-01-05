@@ -32,8 +32,7 @@ public class LottoController {
         WinLotto winLotto = new WinLotto(getWinNumber(), getBonusNumber());
         winnerCalculator.initWinnerCount();
         winnerCalculator.calcResult(user, winLotto);
-        lottoPrinter.print(mg.getResultMsg(winnerCalculator));
-        lottoPrinter.print(mg.bonusReqMsg);
+        lottoPrinter.print(mg.getResultMsg(winnerCalculator,user));
     }
 
     private List<Integer> getWinNumber() {
