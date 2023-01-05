@@ -13,7 +13,7 @@ public class ExceptionHandler {
   public void runWithHandler(Runnable runnable) {
     try {
       runnable.run();
-    } catch (NumberFormatException e) {
+    } catch (IllegalArgumentException e) {
       console.printErrorMessage(e);
     }
   }
