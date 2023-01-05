@@ -47,6 +47,7 @@ public class LottoResult {
             }
             System.out.println("(" + rank.getWinningMoney() + "원) - " + rankStatus.get(rank));
         }
-        System.out.println(profitRate() + "%");
+
+        System.out.println(String.format("%.2f", profitRate()) + "%");
     }
 }
