@@ -26,14 +26,25 @@ public class Application {
 
     public void start() {
         int money = console.inputMoney();
-        int manualAmount = console.inputManualLottoAmount();
-        int autoAmount = money / LOTTO_PRICE - manualAmount;
-        List<Lotto> lottos = lottoService.buyLotto(manualAmount, autoAmount);
-        console.printAmount(manualAmount, autoAmount);
+        List<Lotto> lottos = buyLotto(money);
         console.printLottoNum(lottos);
-        WinLotto winLotto = new WinLotto(console.inputWinNum(), console.inputBonusNum());
+
+        WinLotto winLotto = inputWinLotto();
         Map<WinCount, Integer> lottoResult = lottoService.makeLottoResult(lottos, winLotto);
         console.printLottoResult(money, lottoResult);
+    }
+
+    private List<Lotto> buyLotto(int money) {
+        int manualAmount = console.inputManualLottoAmount();
+        int autoAmount = money / LOTTO_PRICE - manualAmount;
+        console.printAmount(manualAmount, autoAmount);
+        return lottoService.buyLotto(manualAmount, autoAmount);
+    }
+
+    private WinLotto inputWinLotto() {
+        Lotto winNum = console.inputWinNum();
+        int bonusNum = console.inputBonusNum();
+        return new WinLotto(winNum, bonusNum);
     }
 
 }
