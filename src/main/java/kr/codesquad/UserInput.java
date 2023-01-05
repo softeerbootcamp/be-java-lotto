@@ -39,12 +39,7 @@ public class UserInput {
 
     public List<Integer> inputWinNum() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        String[] winNum = sc.nextLine().split(", ");
-
-        List<Integer> winNumList = new ArrayList<>();
-        for(int i = 0;i < 6;i++) winNumList.add(Integer.parseInt(winNum[i]));
-
-        return winNumList;
+        return Util.parseInputNumString();
     }
 
     public int inputBonusNum() {
