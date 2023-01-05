@@ -14,4 +14,9 @@ public class Lotto {
     public List<Integer> getNumberList() {
         return numberList;
     }
+
+    @Override
+    public String toString() {
+        return this.numberList.toString();
+    }
 }

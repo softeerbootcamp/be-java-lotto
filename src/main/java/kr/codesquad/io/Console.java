@@ -58,7 +58,7 @@ public class Console {
 
     public void printLottoNum(List<Lotto> lottoList) {
         for (int i = 0; i < lottoList.size(); i++) {
-            System.out.println(lottoList.get(i).getNumberList());
+            System.out.println(lottoList.get(i));
         }
         System.out.println();
     }
