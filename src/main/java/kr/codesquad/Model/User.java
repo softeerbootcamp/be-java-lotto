@@ -15,15 +15,24 @@ public class User {
 
     public User(BigInteger money) {
         this.money = money;
-        getLottoAmount();
+        setLottoAmount();
     }
 
-    public int getLottoAmount() {
+    private void setLottoAmount(){
         lottoAmount = money.divide(new BigInteger(Lotto.LOTTO_PRICE)).intValue();
         autoLottoAmount = money.divide(new BigInteger(Lotto.LOTTO_PRICE)).intValue();
+    }
+    public int getLottoAmount() {
         return lottoAmount;
     }
 
+    public int getAutoLottoAmount(){
+        return autoLottoAmount;
+    }
+
+    public int getManualLottoAmount(){
+        return manualLottoAmount;
+    }
     public void buyLotto(LottoGenerator lottoGenerator) {
         for(int i = 0; i < autoLottoAmount; ++i) {
             Lotto lotto = lottoGenerator.getNewLotto();
