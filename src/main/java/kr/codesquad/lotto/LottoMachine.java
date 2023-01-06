@@ -19,7 +19,7 @@ public class LottoMachine {
 
     public LottoTicket buy() {
         int money = lottoIOManager.readPurchasePrice();
-        List<Lotto> lottos = this.lottosGenerator.generator(money);
+        List<Lotto> lottos = this.lottosGenerator.generate(money);
         lottos.forEach(Lotto::print);
         return new LottoTicket(lottos, money);
     }

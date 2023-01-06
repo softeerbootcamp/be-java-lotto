@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface LottosGenerator {
 
-    List<Lotto> generator(int money);
+    List<Lotto> generate(int money);
 }

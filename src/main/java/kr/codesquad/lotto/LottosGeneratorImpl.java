@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 public class LottosGeneratorImpl implements LottosGenerator {
 
     @Override
-    public List<Lotto> generator(int money) {
+    public List<Lotto> generate(int money) {
         int priceOfLotto = 1_000;
         int countOfLotto = money / priceOfLotto;
         List<Lotto> manualLottos = ManualLottoGenerator.generatorLottos(countOfLotto);
