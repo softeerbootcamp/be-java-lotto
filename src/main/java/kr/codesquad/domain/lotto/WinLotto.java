@@ -1,12 +1,12 @@
-package kr.codesquad.domain;
+package kr.codesquad.domain.lotto;
 
 public class WinLotto {
 
     private final Lotto winLotto;
 
-    private final int bonusBall;
+    private final LottoNumber bonusBall;
 
-    public WinLotto(Lotto winLotto, int bonusBall) {
+    public WinLotto(Lotto winLotto, LottoNumber bonusBall) {
         this.winLotto = winLotto;
         this.bonusBall = bonusBall;
     }
@@ -15,7 +15,7 @@ public class WinLotto {
         return winLotto;
     }
 
-    public int getBonusBall() {
+    public LottoNumber getBonusBall() {
         return bonusBall;
     }
 

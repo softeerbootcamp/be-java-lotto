@@ -1,6 +1,5 @@
 package kr.codesquad.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -19,16 +18,16 @@ public enum Rank {
 
     private final int count;
 
-    private final boolean isBounsBall;
+    private final boolean isBonusBall;
 
     Rank(
             int winningAmount,
             int count,
-            boolean isBounsBall
+            boolean isBonusBall
     ) {
         this.winningAmount = winningAmount;
         this.count = count;
-        this.isBounsBall = isBounsBall;
+        this.isBonusBall = isBonusBall;
     }
 
     public static Rank getRank(
@@ -36,9 +35,15 @@ public enum Rank {
             boolean isBonus
     ) {
         return Arrays.stream(values())
-                .filter(rank -> rank.count == matchCount && rank.isBounsBall == isBonus)
+                .filter(rank -> rank.count == matchCount && rank.isBonusBall == isBonus)
                 .findFirst()
                 .orElse(NOTHING);
+    }
+
+    public static List<Rank> getSortedRanks() {
+        return Arrays.stream(values())
+                .sorted(Comparator.comparing(Rank::getWinningAmount))
+                .filter(rank -> rank != NOTHING).collect(Collectors.toList());
     }
 
     public int getWinningAmount() {
@@ -50,13 +55,7 @@ public enum Rank {
     }
 
     public boolean isBonus() {
-        return isBounsBall;
-    }
-
-    public static List<Rank> getSortedRanks() {
-        return Arrays.stream(values())
-                .sorted(Comparator.comparing(Rank::getWinningAmount))
-                .filter(rank -> rank != NOTHING).collect(Collectors.toList());
+        return isBonusBall;
     }
 
 }
