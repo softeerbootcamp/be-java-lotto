@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LottoMachine {
     private final int lottoPrice; // 로또 하나의 가격 정보
-    private final List<Integer> numList;
+    private final List<Integer> numList; // 1 ~ 45 까지의 정수 저장
     
     private static final UserInput ui = new UserInput();
 
