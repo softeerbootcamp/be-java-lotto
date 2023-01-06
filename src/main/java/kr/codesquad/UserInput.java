@@ -1,6 +1,9 @@
 package kr.codesquad;
 
+import kr.codesquad.exception.CustomException;
+
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,26 +15,55 @@ public class UserInput {
     }
 
     public int inputMoney() {
+        int money = 0;
         System.out.println("구입금액을 입력해 주세요.");
-        int money = sc.nextInt();
-        sc.nextLine();
+        money = validateInputOneNumber(money);
         return money;
+    }
+
+    public int inputManualLottoCount() {
+        int manualLottoCount = 0;
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요");
+        manualLottoCount = validateInputOneNumber(manualLottoCount);
+        return manualLottoCount;
+    }
+
+    public List<List<Integer>> inputManualLottoList(int manualLottoCount) {
+        List<List<Integer>> manualLottoList = new ArrayList<>(manualLottoCount);
+
+        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+        for(int i = 0;i < manualLottoCount;i++) {
+            List<Integer> manualLotto = Util.parseInputNumString();
+            manualLottoList.add(manualLotto);
+        }
+
+        return manualLottoList;
     }
 
     public List<Integer> inputWinNum() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        String[] winNum = sc.nextLine().split(", ");
-
-        List<Integer> winNumList = new ArrayList<>();
-        for(int i = 0;i < 6;i++) winNumList.add(Integer.parseInt(winNum[i]));
-
-        return winNumList;
+        return Util.parseInputNumString();
     }
 
     public int inputBonusNum() {
+        int bonusNum = 0;
         System.out.println("보너스 볼을 입력해 주세요.");
-        int bonusNum = sc.nextInt();
-        sc.nextLine();
+        bonusNum = validateInputOneNumber(bonusNum);
         return bonusNum;
+    }
+
+    private int validateInputOneNumber(int num) {
+        try {
+            num = sc.nextInt();
+            sc.nextLine();
+
+            if(num < 0) throw new CustomException("음수가 입력되었습니다.");
+        } catch(InputMismatchException e) {
+            System.out.println("잘못된 입력입니다.");
+            e.printStackTrace();
+            System.exit(0);
+        }
+
+        return num;
     }
 }

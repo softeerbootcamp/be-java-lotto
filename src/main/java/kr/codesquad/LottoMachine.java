@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import kr.codesquad.exception.CustomException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,6 +9,8 @@ import java.util.List;
 public class LottoMachine {
     private final int lottoPrice; // 로또 하나의 가격 정보
     private final List<Integer> numList;
+    
+    private static final UserInput ui = new UserInput();
 
     public LottoMachine(int lottoPrice) {
         this.lottoPrice = lottoPrice;
@@ -15,12 +19,20 @@ public class LottoMachine {
     }
 
     public Lotto buyLotto() {
-        UserInput ui = new UserInput();
-        int money = ui.inputMoney();
-        int lottoCount = money / this.lottoPrice;
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        int money = ui.inputMoney(); // 구입금액 입력
 
-        return new Lotto(shuffle(lottoCount));
+        int possibleLottoCount = money / lottoPrice;
+        // 수동으로 구매할 로또 개수 입력
+        int manualLottoCount = ui.inputManualLottoCount();
+        if(manualLottoCount > possibleLottoCount) throw new CustomException("금액이 충분하지 않습니다.");
+
+        // 수동으로 구매할 로또 번호 입력
+        List<List<Integer>> manualLottoList = ui.inputManualLottoList(manualLottoCount);
+
+        int autoLottoCount = possibleLottoCount - manualLottoCount;
+        System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 " + autoLottoCount + "개를 구매했습니다.");
+
+        return new ManualLotto(manualLottoList, new AutoLotto(shuffle(autoLottoCount), null));
     }
 
     public List<List<Integer>> shuffle(int lottoCount) {
@@ -32,9 +44,12 @@ public class LottoMachine {
 
             lottoList.add(subList);
             Collections.sort(lottoList.get(i));
-            System.out.println(lottoList.get(i));
         }
 
         return lottoList;
+    }
+
+    public void printLottoList(List<List<Integer>> lottoList) {
+        for(List<Integer> eachLotto : lottoList) System.out.println(eachLotto);
     }
 }
