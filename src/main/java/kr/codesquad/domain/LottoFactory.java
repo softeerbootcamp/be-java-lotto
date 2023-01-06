@@ -1,17 +1,14 @@
-package kr.codesquad.LottoService.LottoFactory;
+package kr.codesquad.domain;
 
-import kr.codesquad.LottoService.Lotto;
-import kr.codesquad.View.IOManager;
-import kr.codesquad.View.IOManagerImpl;
+import kr.codesquad.view.IOManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoFactory{
+public class LottoFactory {
     private static final int LOTTO_START_NUMBER = 1;
     private static final int LOTTO_LAST_NUMBER = 45;
-    private static final String ILLEGAL_ARGUMENT_MESSAGE = "유효하지 않은 로또 종류입니다";
     private final List<Integer> numbers;
     private final IOManager ioManager;
 
@@ -24,13 +21,16 @@ public class LottoFactory{
     }
 
     public Lotto generateLotto(String type) {
-        if (type.equals("automatic")) {
+        if (type.equals("auto")) {
             Collections.shuffle(numbers);
-            return Lotto.of(numbers);
+            return Lotto.of(numbers.subList(0,6));
         }
         if (type.equals("manual")) {
             return Lotto.ofComma(ioManager.inputManualNumber());
         }
-        throw new IllegalArgumentException(ILLEGAL_ARGUMENT_MESSAGE);
+        if (type.equals("winning")){
+            return Lotto.ofComma(ioManager.inputWinningNumber());
+        }
+        throw new IllegalArgumentException("유효하지 않은 로또 종류입니다");
     }
 }

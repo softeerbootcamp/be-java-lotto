@@ -1,9 +1,10 @@
-package kr.codesquad.View;
+package kr.codesquad.view;
 
-import kr.codesquad.LottoService.Lotto;
+import kr.codesquad.domain.Lotto;
+import kr.codesquad.domain.Rank;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface IOManager {
     int inputMoney();
@@ -15,6 +16,9 @@ public interface IOManager {
 
     int inputBonusNumber();
     void printLottoCount(int lottoAutoCount, int lottoManualCount);
-    void printLottoList(List<Lotto> lottoList);
+    void printEarningRate(double earningRate);
+    void printLottos(List<Lotto> lottos);
+    void printMatchResult(Map<Rank, Integer> result);
+
 
 }
