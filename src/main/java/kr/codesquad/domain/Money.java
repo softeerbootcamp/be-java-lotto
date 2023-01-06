@@ -2,7 +2,7 @@ package kr.codesquad.domain;
 
 public class Money {
 
-    private final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_PRICE = 1000;
     private int money;
 
     public Money(int money) {
@@ -19,5 +19,17 @@ public class Money {
 
     public double calculateEarningRate(double earnMoney) {
         return (earnMoney - (double) money) / (double) money * 100;
+    }
+
+    public void buyManualLotto(int LottoCount) {
+        this.money -= LottoCount * LOTTO_PRICE;
+    }
+
+    public Money sum(Money ManualMoney) {
+        return new Money(this.money + ManualMoney.money);
+    }
+
+    public static Money from(int lottoCount) {
+        return new Money(lottoCount * LOTTO_PRICE);
     }
 }
