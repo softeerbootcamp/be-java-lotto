@@ -17,10 +17,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
     private final int number;
 
     private LottoNumber(int number) {
-        if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
-            throw new IllegalArgumentException("유효한 범위 내의 로또 넘버가 아닙니다.");
-        }
-
+        validateNumberRange(number);
         this.number = number;
     }
 
@@ -29,6 +26,8 @@ public class LottoNumber implements Comparable<LottoNumber> {
             throw new IllegalArgumentException("null값이 들어왔습니다.");
         }
         try {
+            int key = Integer.parseInt(value.trim());
+            validateNumberRange(key);
             return cachedLottoNum.get(Integer.parseInt(value.trim()));
         }
         catch (NumberFormatException e){
@@ -36,7 +35,13 @@ public class LottoNumber implements Comparable<LottoNumber> {
         }
     }
     static LottoNumber of(int number) {
-        return new LottoNumber(number);
+        validateNumberRange(number);
+        return cachedLottoNum.get(number);
+    }
+
+    static void validateNumberRange(int number){
+        if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER)
+            throw new IllegalArgumentException("유효한 범위 내의 로또 넘버가 아닙니다.");
     }
 
     @Override
