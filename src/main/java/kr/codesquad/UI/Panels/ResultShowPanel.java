@@ -1,7 +1,8 @@
-package kr.codesquad.UI;
+package kr.codesquad.UI.Panels;
 
 import kr.codesquad.InputManager.AwtInputHandler;
 import kr.codesquad.InputManager.UserInputHandler;
+import kr.codesquad.UI.Panels.CustomPanel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;

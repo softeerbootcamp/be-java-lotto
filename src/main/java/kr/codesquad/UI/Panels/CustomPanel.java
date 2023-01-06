@@ -1,4 +1,4 @@
-package kr.codesquad.UI;
+package kr.codesquad.UI.Panels;
 
 import kr.codesquad.InputManager.UserInputHandler;
 
