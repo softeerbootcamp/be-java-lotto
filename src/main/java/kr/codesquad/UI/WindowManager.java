@@ -19,7 +19,9 @@ public class WindowManager extends Frame{
     }
 
     public void setMoneyPanel(){
-        currentPanel = new SingleInputPanel("구매 금액을 입력해 주세요.", e->VisualLottoGame.getVisualLottoGame().getMoney());
+        currentPanel = new SingleInputPanel(
+                "구매 금액을 입력해 주세요.",
+                e->VisualLottoGame.getVisualLottoGame().getMoney());
         add(currentPanel);
         currentPanel.setVisible(true);
     }
@@ -38,20 +40,22 @@ public class WindowManager extends Frame{
                         e->VisualLottoGame.getVisualLottoGame().buyOneManualLotto()));
     }
     public void setPurchasedLottoPanel(List<Lotto> lottos) {
-        String result="";
+        StringBuilder result= new StringBuilder();
         for(Lotto lotto : lottos){
-            result += lotto + "\n";
+            result.append(lotto).append("\n");
         }
+        System.out.println(result);
         setPanel(
-                new ResultShowPanel(result, e -> VisualLottoGame.getVisualLottoGame().haltAll())
+                new ResultShowPanel(
+                        result.toString(),
+                        e -> VisualLottoGame.getVisualLottoGame().showGeneratedLotto())
         );
-
-        //TODO : 구매한 로또 판낼 작성
     }
 
     public void setWinLottoPanel() {
         setPanel(
-                new WinNumberPanel(e->VisualLottoGame.getVisualLottoGame().showGeneratedLotto())
+                new WinNumberPanel(
+                        e->VisualLottoGame.getVisualLottoGame().getWiningLotto())
         );
         //TODO : 승리 로또 입력 판넬 작성
     }
@@ -59,7 +63,9 @@ public class WindowManager extends Frame{
     public void setResultLottoPanel(String result){
         //TODO : 로또 결과 판낼 작성
         setPanel(
-                new ResultShowPanel(result, e -> VisualLottoGame.getVisualLottoGame().haltAll())
+                new ResultShowPanel(
+                        result,
+                        e -> VisualLottoGame.getVisualLottoGame().haltAll())
         );
     }
 
