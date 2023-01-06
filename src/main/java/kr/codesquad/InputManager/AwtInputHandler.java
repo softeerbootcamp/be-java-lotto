@@ -1,5 +1,6 @@
 package kr.codesquad.InputManager;
 
+import kr.codesquad.Exceptions.CustomException;
 import kr.codesquad.Utility;
 import kr.codesquad.VisualLottoGame;
 
@@ -10,11 +11,13 @@ public class AwtInputHandler implements UserInputHandler{
     private Label errLabel;
     private Button submit;
     private TextField textField;
+    private TextField bonus;
 
     public AwtInputHandler (Button submit, TextField textField, TextField bonus, Label errLabel){
         this.submit = submit;
         this.textField  = textField;
         this.errLabel = errLabel;
+        this.bonus = bonus;
     }
     @Override
     public int getMoney() {
@@ -35,11 +38,15 @@ public class AwtInputHandler implements UserInputHandler{
 
     @Override
     public int getBonusNumber(List<Integer> winningNumbers) {
-        return 0;
+        int bonus = Utility.parseIntWithRange(this.bonus.getText(),1, 45);
+        if (winningNumbers.contains(bonus)) {
+            throw new CustomException("Bonus와 winningNumbers 중복발생");
+        }
+        return bonus;
     }
 
     @Override
     public int getManualLottoAmount(int max) {
-        return 0;
+        return Utility.parseIntWithRange(textField.getText(), 0, max);
     }
 }
