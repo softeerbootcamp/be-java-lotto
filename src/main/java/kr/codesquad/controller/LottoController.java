@@ -33,7 +33,6 @@ public class LottoController {
 
         WinningLotto winningLotto = createWinningLotto();
 
-
         WinningResult winningResult = calculateResult(user, winningLotto);
         double profitRate = winningResult.calculateProfitRate(user.getPurchaseMoney());
         outputView.printResult(winningResult.getResult(), profitRate);
