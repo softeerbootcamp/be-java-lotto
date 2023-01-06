@@ -10,7 +10,6 @@ import java.util.List;
 
 
 public class VisualLottoGame {
-    private static VisualLottoGame lottoGame;
     WindowManager windowManager;
     private final List<Lotto> lottos;
     private WinLotto winLotto;
@@ -18,18 +17,13 @@ public class VisualLottoGame {
     private int nManualLotto;
 
     public static void main(String[] args) {
-        getVisualLottoGame().start();
+        VisualLottoGame lottoGame = new VisualLottoGame();
+        lottoGame.start();
     }
 
     private VisualLottoGame() {
         this.windowManager = new WindowManager();
         lottos = new ArrayList<>();
-    }
-
-    public static VisualLottoGame getVisualLottoGame() {
-        if (lottoGame == null)
-            lottoGame = new VisualLottoGame();
-        return lottoGame;
     }
 
     public void start() {
@@ -48,7 +42,7 @@ public class VisualLottoGame {
         windowManager.setOneManualLottoPanel(nManualLotto, e -> buyOneManualLotto());
         if (nManualLotto == 0) {
             buyAutoLottos();
-            windowManager.setPurchasedLottoPanel(lottos, e -> VisualLottoGame.getVisualLottoGame().buyOneManualLotto());
+            windowManager.setPurchasedLottoPanel(lottos, e -> showGeneratedLotto());
         }
     }
 
@@ -77,9 +71,12 @@ public class VisualLottoGame {
     public void getWiningLotto() {
         List<Integer> winningNums = windowManager.getInputHandler().getSixLottoNumber();
         int bonus = windowManager.getInputHandler().getBonusNumber(winningNums);
+
         winLotto = new WinLotto(winningNums, bonus);
+
         LottoStat lottoStat = new LottoStat(lottos, winLotto);
         String result = lottoStat.getResult();
+
         windowManager.setResultLottoPanel(result, e -> haltAll());
     }
 
