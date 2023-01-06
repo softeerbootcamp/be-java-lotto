@@ -43,6 +43,17 @@ class UserLottoTest {
         return bonusBall;
     }
 
+    @DisplayName("기존 당첨 번호와 보너스 볼 중복 확인 테스트")
+    @Test
+    void checkManualLotto(){
+
+        ArrayList<Integer> list = new ArrayList<>(List.of(1,2,3,4,5,6));
+        //checkDuplicate(list,6);
+
+        assertThatThrownBy(() -> checkDuplicate(list,6))
+                .isInstanceOf(CustomException.class);
+
+    }
 
 
 
