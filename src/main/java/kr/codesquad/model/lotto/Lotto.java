@@ -22,7 +22,7 @@ public abstract class Lotto {
         return numbers;
     }
 
-    protected void validLotto(List<Integer> numbers) {
+    protected void validLotto() {
         long distinctSize = numbers.stream().distinct().count();
         if (distinctSize != NUMBER_SIZE) {
             throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_NUMBER);

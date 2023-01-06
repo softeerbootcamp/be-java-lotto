@@ -5,8 +5,8 @@ import java.util.List;
 public class ManualLotto extends Lotto {
 
     public ManualLotto(List<Integer> manualGeneratedNumbers) {
-        validLotto(manualGeneratedNumbers);
         this.numbers = makeLotto(manualGeneratedNumbers);
+        validLotto();
     }
 
     /**
