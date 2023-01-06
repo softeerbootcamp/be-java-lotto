@@ -11,16 +11,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
     @Test
-    @DisplayName("사용자가 구매한 로또 총 개수 성공 테스트")
+    @DisplayName("사용자가 구매한 로또 총 개수 성공 테스트(수동 미포함)")
     public void checkMakeUser() {
         //given
         int purchaseMoney = 10000;
-        int autoTickets = 10;
         int manualTickets=0;
         //when
-        User user = new User(purchaseMoney, manualTickets, autoTickets);
+        User user = new User(new Money(purchaseMoney),new Ticket(manualTickets,10));
         //then
-        assertThat(user.getLottos().size()).isEqualTo(autoTickets+manualTickets);
+        assertThat(user.getLottos().size()).isEqualTo(10);
     }
 
 

@@ -7,22 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-
-    private final int purchaseAmount;
-    private final int manualTicketsCount;
-    private final int autoTicketsCount;
+    private final Money money;
+    private final Ticket ticket;
     private List<Lotto> lottos;
-    private WinningStatistic winningStatistic = new WinningStatistic();
+    private ResultStatistic resultStatistic = new ResultStatistic();
 
-    public User(int purchaseAmount, int manualTicketsCount, int autoTicketsCount) {
-        this.purchaseAmount = purchaseAmount;
-        this.manualTicketsCount=manualTicketsCount;
-        this.autoTicketsCount=autoTicketsCount;
-        this.lottos=generateLottos(autoTicketsCount);
+    public User(Money money,Ticket ticket) {
+        this.money = money;
+        this.ticket = ticket;
+        this.lottos=generateLottos(ticket.getAutoTicketsCount());
     }
 
-    public void insertLotto(Lotto lotto) {
-        lottos.add(lotto);
+    public void insertManualLotto(Lotto manualLotto) {
+        lottos.add(manualLotto);
     }
 
 
@@ -35,9 +32,6 @@ public class User {
         return lottoList;
     }
 
-    public int getPurchaseAmount() {
-        return purchaseAmount;
-    }
 
 
     public List<Lotto> getLottos() {
@@ -45,15 +39,16 @@ public class User {
     }
 
 
-    public WinningStatistic getWinningStatic() {
-        return winningStatistic;
+    public ResultStatistic getWinningStatic() {
+        return resultStatistic;
     }
 
-    public int getManualTicketsCount() {
-        return manualTicketsCount;
+
+    public Money getMoney() {
+        return money;
     }
 
-    public int getAutoTicketsCount() {
-        return autoTicketsCount;
+    public Ticket getTicket() {
+        return ticket;
     }
 }
