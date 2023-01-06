@@ -43,6 +43,7 @@ public class WinNumberPanel extends CustomPanel{
 
         add(errLabel);
         add(instLabel);
+        add(bonus);
         add(txt);
         add(btn);
     }

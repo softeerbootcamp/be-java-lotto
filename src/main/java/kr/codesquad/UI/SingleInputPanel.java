@@ -41,6 +41,7 @@ class SingleInputPanel extends CustomPanel  {
         txt.setBounds(10, 160, 180, 30);
         btn.setBounds(45, 200, 110, 30);
 
+        add(errLabel);
         add(instLabel);
         add(txt);
         add(btn);
