@@ -13,6 +13,7 @@ public class Util {
         throw new InstantiationException();
     }
 
+    // 수동으로 로또를 구매하거나 당첨 번호를 입력하는 경우, String으로 받아 와서 parsing하는 기능의 함수
     public static List<Integer> parseInputNumString() {
         Scanner sc = new Scanner(System.in);
         String[] parseNumList = sc.nextLine().split(", ");
