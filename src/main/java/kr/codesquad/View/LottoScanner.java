@@ -1,5 +1,6 @@
 package kr.codesquad.View;
 
+import kr.codesquad.Exception.MoneyValidator;
 import kr.codesquad.Model.Lotto;
 
 import java.io.IOException;
@@ -12,15 +13,16 @@ import java.util.Scanner;
 public class LottoScanner {
 
     public BigInteger scanMoney() {
-        try {
-            Scanner sc = new Scanner(System.in);
-            BigInteger money = sc.nextBigInteger();
-            System.out.println(money);
-            return money;
-        } catch (InputMismatchException iee) {
-            System.out.println("Money should be Integer");
-            System.exit(0);
-            return null;
+        while (true) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                String moneyStr = sc.nextLine();
+                MoneyValidator.isValid(moneyStr);
+                System.out.println(moneyStr);
+                return new BigInteger(moneyStr);;
+            } catch (NumberFormatException e) {
+                System.out.println("Money should be Integer");
+            }
         }
     }
 
