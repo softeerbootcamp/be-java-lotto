@@ -80,7 +80,7 @@ public class LottoController {
         outputView.printBonusNumberReadMessage();
         int bonusNumber = inputView.readBonusNumber(numbers);
 
-        return new WinningLotto(numbers, bonusNumber);
+        return new WinningLotto(new Lotto(numbers), bonusNumber);
     }
 
     private Map<Rank, Integer> calculateResult(User user, WinningLotto winningLotto) {

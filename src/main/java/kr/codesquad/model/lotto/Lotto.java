@@ -1,6 +1,5 @@
 package kr.codesquad.model.lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -9,16 +8,16 @@ public class Lotto {
     public static final int MINIMUM_NUMBER = 1;
     public static final int MAXIMUM_NUMBER = 45;
     public static final int NUMBERS_SIZE = 6;
-    protected final List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
-    public int compare(List<Integer> otherLottoNumbers) {
-        List<Integer> temp = new ArrayList<>(otherLottoNumbers);
-        temp.retainAll(numbers);
-        return temp.size();
+    public int compare(Lotto other) {
+        return (int)numbers.stream()
+                .filter(other::contains)
+                .count();
     }
 
     public boolean contains(int number) {
