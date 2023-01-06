@@ -77,11 +77,11 @@ public class VisualLottoGame {
         LottoStat lottoStat = new LottoStat(lottos, winLotto);
         String result = lottoStat.getResult();
 
-        windowManager.setResultLottoPanel(result, e -> haltAll());
+        windowManager.setResultLottoPanel(result, e -> close());
     }
 
-    public void haltAll() {
-        System.exit(0);
+    public void close() {
+        windowManager.close();
     }
 
 }

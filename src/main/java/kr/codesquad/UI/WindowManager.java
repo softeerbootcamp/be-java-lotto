@@ -77,4 +77,8 @@ public class WindowManager extends Frame {
     public UserInputHandler getInputHandler() {
         return currentPanel.getUserInputHandler();
     }
+
+    public void close() {
+        this.setVisible(false);
+    }
 }
