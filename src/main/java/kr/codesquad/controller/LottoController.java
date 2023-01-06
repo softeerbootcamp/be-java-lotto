@@ -29,7 +29,7 @@ public class LottoController {
         int money = createLottoMoney();
         int manualLottoCount = createManualLottoCount(money);
 
-        User user = createUser(money, manualLottoCount);
+        User user = createUserLotto(money, manualLottoCount);
         outputView.printUser(user);
 
         WinningLotto winningLotto = createWinningLotto();
@@ -49,7 +49,7 @@ public class LottoController {
         return inputView.readManualLottoCount(money);
     }
 
-    private User createUser(int money, int manualLottoCount) {
+    private User createUserLotto(int money, int manualLottoCount) {
         int autoLottoCount = money / Lotto.PRICE - manualLottoCount;
 
         if (manualLottoCount > 0) {
