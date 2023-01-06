@@ -24,10 +24,10 @@ class SingleInputPanel extends CustomPanel  {
         super();
         setSize(200,360);
         setLayout(null);
-        setElements();
-        inputHandler = new AwtInputHandler(btn, txt, null, errLabel);
         this.instruction = instruction;
+        setElements();
         btn.addActionListener(act);
+        inputHandler = new AwtInputHandler(btn, txt, null, errLabel);
     }
 
     private void setElements(){

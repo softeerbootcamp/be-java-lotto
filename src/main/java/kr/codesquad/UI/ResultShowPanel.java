@@ -16,8 +16,8 @@ public class ResultShowPanel extends CustomPanel {
         super();
         setSize(200,360);
         setLayout(null);
-        setElements();
         this.instruction = message;
+        setElements();
         btn.addActionListener(act);
     }
 

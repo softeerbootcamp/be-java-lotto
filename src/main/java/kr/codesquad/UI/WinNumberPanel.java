@@ -21,10 +21,10 @@ public class WinNumberPanel extends CustomPanel{
         super();
         setSize(200,360);
         setLayout(null);
-        setElements();
-        inputHandler = new AwtInputHandler(btn, txt, null, errLabel);
         this.instruction = instruction;
+        setElements();
         btn.addActionListener(act);
+        inputHandler = new AwtInputHandler(btn, txt, null, errLabel);
     }
 
     private void setElements(){
@@ -41,6 +41,7 @@ public class WinNumberPanel extends CustomPanel{
         bonus.setBounds(140, 160, 30, 30);
         btn.setBounds(45, 200, 110, 30);
 
+        add(errLabel);
         add(instLabel);
         add(txt);
         add(btn);
