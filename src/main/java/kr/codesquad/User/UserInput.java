@@ -11,15 +11,22 @@ import java.util.List;
 public class UserInput {
     private InputHandler inputHandler;
     private Utility utility;
+    public static UserInput USERINPUT = new UserInput();
 
     public UserInput() {
         inputHandler = new InputHandler();
         utility = new Utility();
     }
-
+    public static UserInput getUSERINPUT() {
+        return USERINPUT;
+    }
     public int userHowManyLotto() throws CustomException {
         System.out.println("구입 금액을 입력해 주세요.");
-        return inputHandler.getIntegerInput() / 1000;
+        int lottoCnt = inputHandler.getIntegerInput() / 1000;
+        if(lottoCnt%1000!=0){
+            throw new CustomException("1000원 단위로 입력해 주세요");
+        }
+        return lottoCnt;
     }
 
     public int userHowManyManual() throws CustomException {

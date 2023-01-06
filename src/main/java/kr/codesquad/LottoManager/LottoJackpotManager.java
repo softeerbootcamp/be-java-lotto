@@ -7,8 +7,8 @@ import kr.codesquad.User.UserLotto;
 import java.util.List;
 
 public class LottoJackpotManager extends UserInput {
-    private static List<Integer> JACKPOT_NUM;
-    private static int BONUS_NUM;
+    static List<Integer> JACKPOT_NUM;
+    static int BONUS_NUM;
 
     public void setJACKPOT_NUM() throws CustomException {
         this.JACKPOT_NUM = userInputJackpotNum();
