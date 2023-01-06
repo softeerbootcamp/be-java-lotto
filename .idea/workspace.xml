@@ -6,12 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day4 - (12) UserConsole에서 User를 의존하지 않도록 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/model/lottos/Lotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/model/lottos/Lotto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/model/lottos/RandomLotto.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/UserConsoleService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/utils/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/utils/Util.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/UserConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/UserConsole.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +103,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
+
     "last_opened_file_path": "/Users/rentalhub/things/lotto/src/main/java/kr/codesquad/view",
+
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -137,6 +141,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+
     </configuration>
     <configuration name="ConsoleHandlerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -232,11 +237,15 @@
     </configuration>
     <recent_temporary>
       <list>
+
         <item itemvalue="Application.Main" />
+
         <item itemvalue="Gradle.UserConsoleTest" />
         <item itemvalue="Gradle.ConsoleHandlerTest" />
         <item itemvalue="Gradle.LottoControllerTest" />
         <item itemvalue="Gradle.UserConsoleTest.enterPurchasePrice_NoInt_Test" />
+
+
       </list>
     </recent_temporary>
   </component>
@@ -577,6 +586,13 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+
+          <url>file://$PROJECT_DIR$/src/test/java/UserConsoleTest.java</url>
+          <line>160</line>
+          <option name="timeStamp" value="11" />
+
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/UserConsoleTest.java</url>
           <line>160</line>

@@ -2,6 +2,7 @@ package kr.codesquad.utils;
 
 import kr.codesquad.exception.InputCountException;
 import kr.codesquad.exception.InputFormatException;
+
 import kr.codesquad.model.lottos.Lotto;
 
 import java.util.*;

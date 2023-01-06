@@ -8,6 +8,7 @@ import kr.codesquad.model.lottos.ResultLotto;
 import kr.codesquad.model.lottos.Lotto;
 import kr.codesquad.view.UserConsoleHandler;
 
+
 public class LottoController {
 
     private UserInfo user;
@@ -15,6 +16,7 @@ public class LottoController {
     private SudongGenerator sudongGenerator;
     private UserConsoleHandler userConsoleHandler;
     private Lotto randomLotto = new Lotto();
+
     private Lotto myLotto = new Lotto();
     private ResultLotto resultLotto = new ResultLotto();
     private MatchController matchController = new MatchController();
@@ -25,6 +27,7 @@ public class LottoController {
         this.userConsoleHandler = new UserConsoleHandler(user);
         this.sudongGenerator = new SudongGenerator(userConsoleHandler);
         this.autoGenerator = new AutoGenerator();
+
     }
 
     public void start(){
@@ -42,7 +45,9 @@ public class LottoController {
 
     //로또 구매 로직 (구매 금액 + 수동 구매 로또 개수 입력)
     public void purchaseLotto(){
+
         int purchasedPrice = userConsoleHandler.enterPurchasePrice();
+
         int numOfLottoSudong = buyByHand(purchasedPrice);
         int numOfLottoAuto = (purchasedPrice / 1000) - numOfLottoSudong;
         user.insertInfos(purchasedPrice, numOfLottoAuto, numOfLottoSudong);
@@ -61,6 +66,7 @@ public class LottoController {
     }
 
 
+
     //로또 생성 로직 (자동 + 수동)
     public void generateLottos(){
         int sudong = user.getNumOfLottoSudong();
@@ -70,9 +76,11 @@ public class LottoController {
         for(int i = 0 ; i < jadong; i++)
             randomLotto.addLotto(autoGenerator.generateLotto());
         //수동 로또 생성
+
         sudongGenerator.setType(1);  //generator를 수동으로 변경
         for(int i = 0; i < sudong; i++)
             myLotto.addLotto(sudongGenerator.generateLotto());
+
     }
 
     //당첨 번호 생성
@@ -80,6 +88,7 @@ public class LottoController {
         sudongGenerator.setType(2);   //generator를 자동으로 변경
         resultLotto.addLotto(sudongGenerator.generateLotto());
         resultLotto.setBonusNum(userConsoleHandler.enterBonusNum());
+
     }
 
     //당첨 여부 조회
