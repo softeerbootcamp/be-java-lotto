@@ -13,7 +13,7 @@ public class LottoService {
         return lottoPurchase.buyLotto(manualAmount, autoAmount);
     }
 
-    public WinLotto makeWinLotto(List<Integer> winLottoNum, Bonus bonus) {
-        return new WinLotto(winLottoNum, bonus);
+    public WinLotto makeWinLotto(Lotto winLotto, Bonus bonus) {
+        return new WinLotto(winLotto, bonus);
     }
 }

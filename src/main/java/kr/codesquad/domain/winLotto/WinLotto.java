@@ -10,19 +10,19 @@ import java.util.Optional;
 
 public class WinLotto {
 
-    private List<Integer> numberList;
+    private Lotto winLotto;
     private Bonus bonus;
 
     public WinLotto(
-            List<Integer> numberList,
+            Lotto winLotto,
             Bonus bonus
     ) {
-        this.numberList = numberList;
+        this.winLotto = winLotto;
         this.bonus = bonus;
     }
 
     public int countCorrectNum(Lotto lotto) {
-        List<Integer> temp = new ArrayList<>(this.numberList);
+        List<Integer> temp = new ArrayList<>(this.winLotto.getNumberList());
         temp.retainAll(lotto.getNumberList());
         return temp.size();
     }
