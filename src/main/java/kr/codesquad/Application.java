@@ -1,10 +1,14 @@
 package kr.codesquad;
 
+import kr.codesquad.domain.other.Money;
+import kr.codesquad.domain.winLotto.WinResult;
 import kr.codesquad.io.Console;
-import kr.codesquad.lotto.Lotto;
-import kr.codesquad.lotto.LottoService;
-import kr.codesquad.winLotto.WinCount;
-import kr.codesquad.winLotto.WinLotto;
+import kr.codesquad.domain.lotto.Lotto;
+import kr.codesquad.domain.lotto.LottoService;
+import kr.codesquad.domain.lotto.Lottos;
+import kr.codesquad.util.LottoUtil;
+import kr.codesquad.domain.winLotto.WinCount;
+import kr.codesquad.domain.winLotto.WinLotto;
 
 import java.util.List;
 import java.util.Map;
@@ -15,7 +19,6 @@ public class Application {
 
     private final LottoService lottoService;
 
-    public static final int LOTTO_PRICE = 1000;
     Application(
             Console console,
             LottoService lottoService
@@ -25,14 +28,23 @@ public class Application {
     }
 
     public void start() {
-        int money = console.inputMoney();
-        int lottoAmount = money / LOTTO_PRICE;
-        console.printAmount(lottoAmount);
-        List<Lotto> lottos = lottoService.buyLotto(money);
-        console.printLottoNum(lottos);
-        WinLotto winLotto = new WinLotto(console.inputWinNum(), console.inputBonusNum());
-        Map<WinCount, Integer> lottoResult = lottoService.makeLottoResult(lottos, winLotto);
-        console.printLottoResult(money, lottoResult);
+        Money money = console.inputMoney();
+        Lottos lottos = buyLotto(money);
+
+        WinLotto winLotto = lottoService.makeWinLotto(console.inputWinLottoNum(), console.inputBonusNum());
+        WinResult winResult = WinResult.createWinResult(lottos, winLotto);
+        console.printLottoResult(money, winResult);
     }
+
+    private Lottos buyLotto(Money money) {
+        int manualAmount = console.inputManualLottoAmount();
+        int autoAmount = money.getMoney() / LottoUtil.LOTTO_PRICE - manualAmount;
+        List<Lotto> lottos = lottoService.buyLotto(manualAmount, autoAmount);
+
+        console.printLottoNum(lottos);
+        console.printAmount(manualAmount, autoAmount);
+        return new Lottos(lottos);
+    }
+
 
 }

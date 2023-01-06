@@ -1,4 +1,4 @@
-package kr.codesquad.winLotto;
+package kr.codesquad.domain.winLotto;
 
 public enum WinCount {
 

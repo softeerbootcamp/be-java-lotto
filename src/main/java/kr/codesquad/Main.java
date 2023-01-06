@@ -1,7 +1,7 @@
 package kr.codesquad;
 
 import kr.codesquad.io.Console;
-import kr.codesquad.lotto.LottoService;
+import kr.codesquad.domain.lotto.LottoService;
 
 public class Main {
 
