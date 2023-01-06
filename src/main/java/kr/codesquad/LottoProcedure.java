@@ -22,9 +22,11 @@ public class LottoProcedure {
     private LottosGenerator generator = new ShuffleSequenceGenerator();
 
     private int bonus;
+
+    private int ticketsLeftToGenerate;  // 생성할 로또 티켓 수
+
     private int manualCnt;  // 수동으로 구매할 로또 번호의 수
     private int shuffleCnt;  // 자동으로 구매할 로또 번호의 수
-    private int ticketsLeftToGenerate;
 
     public LottoProcedure(LottosGenerator sequenceGenerator) {
         this.generator = sequenceGenerator;
@@ -34,12 +36,12 @@ public class LottoProcedure {
     public void run() {
         // 구매 금액 입력
         takeMoney();
-        this.ticketsLeftToGenerate = money.numOfTickets;
 
         takeManualInput();  // 수동 로또 번호 입력
-
+        this.shuffleCnt = this.ticketsLeftToGenerate;
         // 로또 번호 생성
-        this.lottos.addAll(generator.generate(ticketsLeftToGenerate));
+        this.lottos.addAll(generator.generate(this.shuffleCnt));
+        issueLottos(this.shuffleCnt);
 
         printLottoSequence();
 
@@ -50,12 +52,14 @@ public class LottoProcedure {
     }
 
     public void takeMoney() {
-
         // 구입 금액 입려
+
         System.out.println("구입금액을 입력해 주세요.");
         int m = sc.nextInt();  // 구입금액 입력
 
         this.money = new Money(m);
+
+        this.ticketsLeftToGenerate = money.numOfTickets;  // 생성할 티켓 수
     }
 
     public void printLottoSequence() {
@@ -69,6 +73,7 @@ public class LottoProcedure {
     }
 
     public void takeActualInput() {
+        this.shuffleCnt = ticketsLeftToGenerate;  // 자동으로 구매할 로또 수
 
         System.out.println("\n지난 주 당첨 번호를 입력해 주세요.");
         String str = sc.nextLine();  // 당첨번호 입력
@@ -86,11 +91,7 @@ public class LottoProcedure {
         this.manualCnt = sc.nextInt();  // 수동으로 구매할 로또 번호 수 입력
         sc.nextLine();
 
-        if(ticketsLeftToGenerate < manualCnt)
-            throw new IllegalArgumentException("구매할 수 있는 로또보다 구매하고자 하는 로또가 더 많습니다");
-
-        this.ticketsLeftToGenerate -= manualCnt;  // 수동으로 구매한 로또 만큼 적게 자동 생성
-        this.shuffleCnt = ticketsLeftToGenerate;  // 수동으로 구매한 로또 만큼 적게 자동 생성
+        issueLottos(this.manualCnt);
 
         System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
         for(int i=0;i<this.manualCnt;++i) {
@@ -107,6 +108,13 @@ public class LottoProcedure {
                 .map(Integer::parseInt)
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    public void issueLottos(int lottoCnt) {
+        if (this.ticketsLeftToGenerate < lottoCnt)
+            throw new IllegalArgumentException("구매할 수 있는 로또보다 구매하고자 하는 로또가 더 많습니다");
+
+        this.ticketsLeftToGenerate -= lottoCnt;
     }
 
     public Lotto getWinningLotto() {
