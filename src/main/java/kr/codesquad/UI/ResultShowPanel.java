@@ -14,7 +14,6 @@ public class ResultShowPanel extends CustomPanel {
     private Button btn;
     public ResultShowPanel(String message, ActionListener act){
         super();
-        System.out.println(message);
         setSize(400,360);
         setLayout(null);
         this.instruction = message;
