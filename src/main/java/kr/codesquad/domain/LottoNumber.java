@@ -1,5 +1,6 @@
 package kr.codesquad.domain;
 
+import kr.codesquad.LottoController;
 import kr.codesquad.exception.NumberNotValidException;
 
 import java.util.List;
@@ -40,8 +41,6 @@ public class LottoNumber implements Comparable<LottoNumber>{
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
     }
-
-
 
     @Override
     public String toString() {

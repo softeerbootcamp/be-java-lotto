@@ -25,12 +25,12 @@ public class ManualLottoGenerator implements LottoGenerator {
 
     private Row convertStringToRow(String rowByString) {
         StringTokenizer st = new StringTokenizer(rowByString);
-        List<Integer> numbers = new ArrayList<>();
+        List<LottoNumber> numbers = new ArrayList<>();
         while (st.hasMoreTokens()) {
-            numbers.add(Integer.valueOf(st.nextToken()));
+            numbers.add(new LottoNumber(st.nextToken()));
         }
         Collections.sort(numbers);
 
-        return Row.createRow(LottoNumber.convertIntegersToLottoNumbers(numbers));
+        return Row.createRow((numbers));
     }
 }
