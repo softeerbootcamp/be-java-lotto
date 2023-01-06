@@ -1,8 +1,8 @@
 package kr.codesquad.lotto.io;
 
+import kr.codesquad.lotto.Lotto;
 import kr.codesquad.lotto.LottoNumber;
-import kr.codesquad.lotto.LottoResult;
-import kr.codesquad.lotto.Rank;
+import kr.codesquad.lotto.WinningLotto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,16 +39,16 @@ public class LottoIOManagerImpl implements LottoIOManager {
     }
 
     @Override
-    public Set<LottoNumber> readLottoNumberSet(String message) {
+    public Set<LottoNumber> readLottoNumbers(String message) {
         if (message.length() != 0) print(message);
         try {
-            Set<LottoNumber> numberSet = new HashSet<>(6);
+            Set<LottoNumber> numbers = new HashSet<>(6);
             String[] numbersOfString = br.readLine().replaceAll(" ", "").split(",");
             for (String numberOfString: numbersOfString) {
                 LottoNumber lottoNumber = new LottoNumber(Integer.parseInt(numberOfString));
-                numberSet.add(lottoNumber);
+                numbers.add(lottoNumber);
             }
-            return numberSet;
+            return numbers;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -66,16 +66,14 @@ public class LottoIOManagerImpl implements LottoIOManager {
     }
 
     @Override
-    public void print(String message) {
-        System.out.println(message);
+    public WinningLotto readWinningLottoNumber() {
+        Set<LottoNumber> lottoNumbers = readLottoNumbers("\n당첨 번호를 입력하세요.");
+        LottoNumber bonusNumber = readLottoNumber("보너스 번호를 입력하세요.");
+        return new WinningLotto(new Lotto(lottoNumbers), bonusNumber);
     }
 
     @Override
-    public void printLottoResult(LottoResult lottoResult) {
-        for (Rank rank: Rank.values()) {
-            String stringOfBonus = rank == Rank.SECOND  ? ", 보너스 볼 일치" : "";
-            System.out.println(rank.getCountOfMatch() + "개 일치" + stringOfBonus + "(" + rank.getWinningMoney() + "원) - " + lottoResult.getRankStatus().get(rank) + "개");
-        }
-        System.out.println("총 수익률은 " + String.format("%.2f", lottoResult.getRate()) + "%입니다.");
+    public void print(String message) {
+        System.out.println(message);
     }
 }

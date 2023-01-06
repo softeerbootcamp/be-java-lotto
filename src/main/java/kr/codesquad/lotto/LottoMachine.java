@@ -1,21 +1,27 @@
 package kr.codesquad.lotto;
 
 import kr.codesquad.lotto.io.LottoIOManager;
-import kr.codesquad.lotto.issue.*;
+import kr.codesquad.lotto.issue.LottoIssue;
+import kr.codesquad.lotto.issue.LottoIssueStrategy;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoMachine {
 
     private final int priceOfLotto;
     private final LottoIssue lottoIssue;
     private final Map<String, LottoIssueStrategy> issueStrategyMap;
-
     private final LottoIOManager lottoIOManager;
 
-    public LottoMachine(int priceOfLotto, LottoIssue lottoIssue, Map<String, LottoIssueStrategy> issueStrategyMap, LottoIOManager lottoIOManager) {
+    public LottoMachine(
+            int priceOfLotto,
+            LottoIssue lottoIssue, Map<String,
+            LottoIssueStrategy> issueStrategyMap,
+            LottoIOManager lottoIOManager
+    ) {
         this.priceOfLotto = priceOfLotto;
         this.lottoIssue = lottoIssue;
         this.issueStrategyMap = issueStrategyMap;
@@ -26,40 +32,27 @@ public class LottoMachine {
         int money = lottoIOManager.readPurchasePrice();
         int lottoCnt = money / priceOfLotto;
 
-        List<Lotto> lottoList = issueLotto(lottoCnt);
+        List<Lotto> lottos = issueLotto(lottoCnt);
 
-        System.out.println(lottoList.size() + "개를 구매했습니다.");
-        return new LottoTicket(lottoList, lottoCnt * priceOfLotto);
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        return new LottoTicket(lottos, lottoCnt * priceOfLotto);
     }
 
     private List<Lotto> issueLotto(int lottoCnt) {
         lottoIssue.setLottoIssueStrategy(issueStrategyMap.get("MANUAL"));
-        List<Lotto> manualLottoList = lottoIssue.issue(lottoCnt);
-        int autoLottoCnt = lottoCnt - manualLottoList.size();
+        List<Lotto> manualLottos = lottoIssue.issue(lottoCnt);
 
         lottoIssue.setLottoIssueStrategy(issueStrategyMap.get("AUTO"));
-        List<Lotto> autoLottoList = lottoIssue.issue(autoLottoCnt);
-        manualLottoList.addAll(autoLottoList);
+        List<Lotto> autoLottos = lottoIssue.issue(lottoCnt - manualLottos.size());
 
-        return manualLottoList;
+        return Stream
+                .concat(manualLottos.stream(), autoLottos.stream())
+                .collect(Collectors.toList());
     }
 
 
-    public Map<Rank, Integer> checkWin(LottoTicket lottoTicket) {
-        WinningLotto winningLotto = getWinningLotto();
-        Map<Rank, Integer> rankStatus = new HashMap<>(Rank.getInitRankStatus());
-        for (Lotto lotto: lottoTicket.getLottoList()) {
-            Rank match = winningLotto.match(lotto);
-            int matchCount = rankStatus.get(match);
-            rankStatus.put(match, matchCount + 1);
-        }
-
-        return rankStatus;
-    }
-
-    private WinningLotto getWinningLotto() {
-        Lotto winningLotto = new Lotto(lottoIOManager.readLottoNumberSet("\n당첨 번호를 입력하세요."));
-        LottoNumber bonus = lottoIOManager.readLottoNumber("보너스 번호를 입력하세요.");
-        return new WinningLotto(winningLotto, bonus);
+    public LottoResult check(LottoTicket lottoTicket) {
+        WinningLotto winningLotto = lottoIOManager.readWinningLottoNumber();
+        return lottoTicket.match(winningLotto);
     }
 }

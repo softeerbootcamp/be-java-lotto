@@ -7,28 +7,29 @@ import java.util.*;
 
 public class AutoLottoIssueStrategy implements LottoIssueStrategy {
 
-    private final List<LottoNumber> numList;
+    private final List<LottoNumber> lottoNumbers;
 
     public AutoLottoIssueStrategy() {
-        this.numList = new ArrayList<>(45);
-        for (int idx = 1; idx <= 45; idx++) numList.add(new LottoNumber(idx));
+        this.lottoNumbers = new ArrayList<>(45);
+        for (int idx = 1; idx <= 45; idx++) {
+            lottoNumbers.add(new LottoNumber(idx));
+        }
     }
 
     @Override
     public List<Lotto> issue(int cnt) {
-        List<Lotto> lottoList = new ArrayList<>(cnt);
+        List<Lotto> lottos = new ArrayList<>(cnt);
 
         for (int idx = 0; idx < cnt; idx++) {
-            Lotto lotto = new Lotto(shuffle());
-            lottoList.add(lotto);
+            lottos.add(new Lotto(shuffle()));
         }
 
-        return lottoList;
+        return lottos;
     }
 
     private Set<LottoNumber> shuffle() {
-        List<LottoNumber> numberList = new ArrayList<>(numList);
-        Collections.shuffle(numberList);
-        return new HashSet<>(numberList.subList(0, 6));
+        List<LottoNumber> newLottoNumbers = new ArrayList<>(lottoNumbers);
+        Collections.shuffle(newLottoNumbers);
+        return new HashSet<>(newLottoNumbers.subList(0, 6));
     }
 }

@@ -14,6 +14,7 @@ public enum Rank {
         this.countOfMatch = countOfMatch;
         this.winningMoney = winningMoney;
     }
+
     private final int countOfMatch;
     private final int winningMoney;
 
@@ -46,5 +47,9 @@ public enum Rank {
         }
 
         return null;
+    }
+
+    public static boolean isBonus(Rank rank) {
+        return rank == Rank.SECOND;
     }
 }
