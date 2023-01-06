@@ -18,9 +18,9 @@ public class Console {
         return new Money(Integer.parseInt(sc.nextLine()));
     }
 
-    public Bonus inputBonusNum() {
+    public int inputBonusNum() {
         System.out.println("보너스 볼을 입력해 주세요.");
-        return new Bonus(Integer.parseInt(sc.nextLine()));
+        return Integer.parseInt(sc.nextLine());
     }
 
     public int inputManualLottoAmount() {
@@ -29,9 +29,9 @@ public class Console {
         return manualAmount;
     }
 
-    public Lotto inputWinLottoNum() {
+    public List<Integer> inputWinLottoNum() {
         System.out.println("\n지난 주 당첨 번호를 입력해 주세요.");
-        return new Lotto(inputLottoNum());
+        return inputLottoNum();
     }
 
     public List<Integer> inputLottoNum() {

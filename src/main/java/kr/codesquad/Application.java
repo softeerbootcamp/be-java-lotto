@@ -1,6 +1,7 @@
 package kr.codesquad;
 
 import kr.codesquad.domain.other.Amount;
+import kr.codesquad.domain.other.Bonus;
 import kr.codesquad.domain.other.Money;
 import kr.codesquad.domain.winLotto.WinResult;
 import kr.codesquad.io.Console;
@@ -32,7 +33,7 @@ public class Application {
         Money money = console.inputMoney();
         Lottos lottos = buyLotto(money);
 
-        WinLotto winLotto = lottoService.makeWinLotto(console.inputWinLottoNum(), console.inputBonusNum());
+        WinLotto winLotto = inputWinLotto();
         WinResult winResult = WinResult.createWinResult(lottos, winLotto);
         console.printLottoResult(money, winResult);
     }
@@ -46,6 +47,13 @@ public class Application {
         console.printLottoNum(lottos);
         console.printAmount(manualAmount.getAmount(), autoAmount.getAmount());
         return new Lottos(lottos);
+    }
+
+    private WinLotto inputWinLotto() {
+        Lotto lotto = new Lotto(console.inputWinLottoNum());
+        Bonus bonusNum = new Bonus(console.inputBonusNum(), lotto);
+
+        return lottoService.makeWinLotto(lotto, bonusNum);
     }
 
 
