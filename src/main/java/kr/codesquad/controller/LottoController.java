@@ -1,8 +1,8 @@
 package kr.codesquad.controller;
 
 import kr.codesquad.model.LottoMachine;
-import kr.codesquad.model.Rank;
 import kr.codesquad.model.User;
+import kr.codesquad.model.WinningResult;
 import kr.codesquad.model.lotto.Lotto;
 import kr.codesquad.model.lotto.WinningLotto;
 import kr.codesquad.view.InputView;
@@ -11,7 +11,6 @@ import kr.codesquad.view.OutputView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class LottoController {
 
@@ -34,9 +33,10 @@ public class LottoController {
 
         WinningLotto winningLotto = createWinningLotto();
 
-        Map<Rank, Integer> result = calculateResult(user, winningLotto);
-        double profitRate = calculateProfitRate(result, user.getPurchaseMoney());
-        outputView.printResult(result, profitRate);
+
+        WinningResult winningResult = calculateResult(user, winningLotto);
+        double profitRate = winningResult.calculateProfitRate(user.getPurchaseMoney());
+        outputView.printResult(winningResult.getResult(), profitRate);
     }
 
     private int createLottoMoney() {
@@ -84,17 +84,7 @@ public class LottoController {
         return new WinningLotto(new Lotto(numbers), bonusNumber);
     }
 
-    private Map<Rank, Integer> calculateResult(User user, WinningLotto winningLotto) {
-        return user.compare(winningLotto);
-    }
-
-    private double calculateProfitRate(Map<Rank, Integer> result, int money) {
-        double profit = result.entrySet()
-                .stream()
-                .map(entry ->
-                        entry.getKey().getPrize() * entry.getValue())
-                .reduce(0, Integer::sum);
-
-        return (profit - money) / money * 100;
+    private WinningResult calculateResult(User user, WinningLotto winningLotto) {
+        return new WinningResult(user.compare(winningLotto));
     }
 }
