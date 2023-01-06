@@ -20,11 +20,13 @@ public class LottoNumber {
 		this.number = number;
 	}
 
-	public static LottoNumber of(String number) {
-		return numberMap.get(Integer.parseInt(number));
-	}
-
 	public static LottoNumber of(int number) {
 		return numberMap.get(number);
 	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(number);
+	}
+
 }
