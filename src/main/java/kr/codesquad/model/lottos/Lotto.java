@@ -1,7 +1,5 @@
 package kr.codesquad.model.lottos;
 
-import kr.codesquad.view.UserConsole;
-
 import java.util.ArrayList;
 
 public class Lotto {

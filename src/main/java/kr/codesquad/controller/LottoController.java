@@ -1,20 +1,20 @@
 package kr.codesquad.controller;
 
-import kr.codesquad.exception.InputCountException;
+import kr.codesquad.generator.AutoGenerator;
+import kr.codesquad.generator.SudongGenerator;
 import kr.codesquad.exception.InputRangeException;
 import kr.codesquad.model.UserInfo;
-import kr.codesquad.model.lottos.RandomLotto;
 import kr.codesquad.model.lottos.ResultLotto;
 import kr.codesquad.model.lottos.Lotto;
-import kr.codesquad.service.UserConsoleService;
-
-import java.util.ArrayList;
+import kr.codesquad.view.UserConsoleHandler;
 
 public class LottoController {
 
     private UserInfo user;
-    private UserConsoleService userConsoleService;
-    private RandomLotto randomLotto = new RandomLotto();
+    private AutoGenerator autoGenerator;
+    private SudongGenerator sudongGenerator;
+    private UserConsoleHandler userConsoleHandler;
+    private Lotto randomLotto = new Lotto();
     private Lotto myLotto = new Lotto();
     private ResultLotto resultLotto = new ResultLotto();
     private MatchController matchController = new MatchController();
@@ -22,7 +22,9 @@ public class LottoController {
 
     public LottoController(UserInfo userInfo) {
         this.user = userInfo;
-        this.userConsoleService = new UserConsoleService(user);
+        this.userConsoleHandler = new UserConsoleHandler(user);
+        this.sudongGenerator = new SudongGenerator(userConsoleHandler);
+        this.autoGenerator = new AutoGenerator();
     }
 
     public void start(){
@@ -40,7 +42,7 @@ public class LottoController {
 
     //로또 구매 로직 (구매 금액 + 수동 구매 로또 개수 입력)
     public void purchaseLotto(){
-        int purchasedPrice = userConsoleService.enterPurchasePrice();
+        int purchasedPrice = userConsoleHandler.enterPurchasePrice();
         int numOfLottoSudong = buyByHand(purchasedPrice);
         int numOfLottoAuto = (purchasedPrice / 1000) - numOfLottoSudong;
         user.insertInfos(purchasedPrice, numOfLottoAuto, numOfLottoSudong);
@@ -50,10 +52,10 @@ public class LottoController {
     public int buyByHand(int purchasedPrice){
         int numOfLottoSudong = 0;
         try{
-            numOfLottoSudong = userConsoleService.enterSudongLottoNumber(purchasedPrice / 1000);
+            numOfLottoSudong = userConsoleHandler.enterSudongLottoNumber(purchasedPrice / 1000);
         }catch (InputRangeException e){
             System.out.println(e.getMessage());
-            buyByHand(purchasedPrice);
+            return buyByHand(purchasedPrice);
         }
         return numOfLottoSudong;
     }
@@ -61,38 +63,23 @@ public class LottoController {
 
     //로또 생성 로직 (자동 + 수동)
     public void generateLottos(){
+        int sudong = user.getNumOfLottoSudong();
+        int jadong = user.getNumOfLottoAuto();
+        System.out.printf("수동으로 %d장, 자동으로 %d장을 구매했습니다\n", jadong, sudong);
         //자동 로또 생성
-        randomLotto.startGeneration(user.getNumOfLottoAuto(), user.getNumOfLottoSudong());
+        for(int i = 0 ; i < jadong; i++)
+            randomLotto.addLotto(autoGenerator.generateLotto());
         //수동 로또 생성
-        for(int i = 0; i < user.getNumOfLottoSudong(); i++){
-            ArrayList<Integer> sudongLottoList = startGenerateSudong();
-            myLotto.addLotto(sudongLottoList);
-        }
-    }
-
-
-    //수동 구매 로직 (각 리스트 입력)
-    public ArrayList<Integer> startGenerateSudong(){
-        ArrayList<Integer> sudongLottoList = new ArrayList<>();
-        try{
-            sudongLottoList = userConsoleService.enterSudongLottoList();}
-        catch (InputCountException e){
-            System.out.println(e.getMessage());
-            startGenerateSudong();
-        }
-        return sudongLottoList;
+        sudongGenerator.setType(1);  //generator를 수동으로 변경
+        for(int i = 0; i < sudong; i++)
+            myLotto.addLotto(sudongGenerator.generateLotto());
     }
 
     //당첨 번호 생성
     public void generateResults(){
-        ArrayList<Integer> givenResult = new ArrayList<>();
-        try{
-            givenResult = userConsoleService.enterResultList();}
-        catch(InputCountException e){
-            e.getMessage();
-            generateResults();}
-        resultLotto.addLotto(givenResult);
-        resultLotto.setBonusNum(userConsoleService.enterBonusNum());
+        sudongGenerator.setType(2);   //generator를 자동으로 변경
+        resultLotto.addLotto(sudongGenerator.generateLotto());
+        resultLotto.setBonusNum(userConsoleHandler.enterBonusNum());
     }
 
     //당첨 여부 조회
