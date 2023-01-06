@@ -11,11 +11,6 @@ public enum LottoMatchType {
 
 	BONUS_MATCH(7, 30000000);
 
-	LottoMatchType(int matchCount, int money) {
-		this.matchCount = matchCount;
-		this.money = money;
-	}
-
 	public static LottoMatchType getLottoMatchTypeByMatchCount(int matchCount) {
 		if (matchCount < 3) {
 			return MISS_MATCH;
@@ -24,6 +19,11 @@ public enum LottoMatchType {
 			.filter(matchType -> matchType.matchCount == matchCount)
 			.findFirst()
 			.orElseThrow(IllegalArgumentException::new);
+	}
+
+	LottoMatchType(int matchCount, int money) {
+		this.matchCount = matchCount;
+		this.money = money;
 	}
 
 	public int getMatchCount() {

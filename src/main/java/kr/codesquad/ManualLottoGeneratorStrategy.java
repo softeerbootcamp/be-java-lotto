@@ -12,8 +12,6 @@ public class ManualLottoGeneratorStrategy implements LottoGeneratorStrategy {
 
 	@Override
 	public List<Lotto> generate(int cnt) {
-		List<Lotto> lottos = lottoIOManager.readManualLotto(cnt);
-
-		return lottos;
+		return lottoIOManager.readManualLotto(cnt);
 	}
 }

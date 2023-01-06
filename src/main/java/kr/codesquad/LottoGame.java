@@ -5,6 +5,10 @@ import java.util.Map;
 
 public class LottoGame {
 
+	public final static int LOTTO_PRICE = 1000;
+
+	public final static int LOTTO_COUNT = 6;
+
 	private final LottoIOManager lottoIOManager;
 
 	private final Map<String, LottoGeneratorStrategy> lottoGeneratorStrategies;
@@ -13,12 +17,12 @@ public class LottoGame {
 
 	private final LottoCheck lottoCheck;
 
-	public final static int LOTTO_PRICE = 1000;
-
-	public final static int LOTTO_COUNT = 6;
-
-	public LottoGame(LottoCheck lottoCheck, LottoIOManager lottoIOManager, LottoGenerator lottoGenerator,
-		Map<String, LottoGeneratorStrategy> lottoGeneratorStrategies) {
+	public LottoGame(
+		LottoCheck lottoCheck,
+		LottoIOManager lottoIOManager,
+		LottoGenerator lottoGenerator,
+		Map<String, LottoGeneratorStrategy> lottoGeneratorStrategies
+	) {
 		this.lottoCheck = lottoCheck;
 		this.lottoGeneratorStrategies = lottoGeneratorStrategies;
 		this.lottoIOManager = lottoIOManager;
