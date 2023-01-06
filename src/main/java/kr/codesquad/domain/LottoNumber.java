@@ -33,15 +33,6 @@ public class LottoNumber implements Comparable<LottoNumber>{
         return number;
     }
 
-    public static List<LottoNumber> convertIntegersToLottoNumbers(List<Integer> integerList) {
-
-        Row.lottoIntegersDuplicateCheck(integerList);
-
-        return integerList.stream()
-                .map(LottoNumber::new)
-                .collect(Collectors.toList());
-    }
-
     @Override
     public String toString() {
         return String.valueOf(number);
