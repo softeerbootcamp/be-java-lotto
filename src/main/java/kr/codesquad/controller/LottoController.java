@@ -9,6 +9,9 @@ public class LottoController {
 
     public void run() {
         int money = requestMoney();
+        if(money < Lotto.LOTTO_PRICE) {
+            throw new RuntimeException("1000원 이상을 지불해 주세요.");
+        }
         LottoShop lottoShop = new LottoShop();
         Lottos lottos = purchaseLotto(lottoShop, money);
         WinLotto winLotto = makeWinLotto();
@@ -52,6 +55,9 @@ public class LottoController {
 
         OutputView.showRequestBonusBall();
         LottoNumber bonusBall = new LottoNumber(InputView.inputBonusBall());
+        if(winLotto.contains(bonusBall)){
+            throw new RuntimeException("당첨 로또 번호안에 보너스 번호가 중복됩니다.");
+        }
         return new WinLotto(winLotto, bonusBall);
     }
 

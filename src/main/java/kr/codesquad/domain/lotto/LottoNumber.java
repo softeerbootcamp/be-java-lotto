@@ -29,4 +29,5 @@ public class LottoNumber {
         LottoNumber that = (LottoNumber) obj;
         return lottoNumber == that.lottoNumber;
     }
+
 }
