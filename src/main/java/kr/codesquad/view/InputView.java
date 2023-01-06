@@ -54,7 +54,7 @@ public class InputView {
         }
     }
 
-    public int readOneNumber() {
+    private int readOneNumber() {
         while (true) {
             try {
                 return Integer.parseInt(scanner.nextLine());
@@ -76,7 +76,7 @@ public class InputView {
         }
     }
 
-    public List<Integer> readNumbers() {
+    private List<Integer> readNumbers() {
         while (true) {
             try {
                 String[] numbersStr = scanner.nextLine().split(DELIMITER);
