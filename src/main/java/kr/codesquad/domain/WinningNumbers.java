@@ -2,8 +2,6 @@ package kr.codesquad.domain;
 
 import kr.codesquad.exception.WinningNumbersException;
 
-import java.util.List;
-
 public class WinningNumbers {
     private final Row row;
     private final LottoNumber bonusNumber;
@@ -14,12 +12,10 @@ public class WinningNumbers {
     }
 
     private LottoNumber isValidBonusNumber(LottoNumber bonusNumber) {
-        List<LottoNumber> values = row.getValues();
         for (LottoNumber value : row.getValues()) {
             if (value.compareTo(bonusNumber) == 0) {
                 throw new WinningNumbersException();
             }
-
         }
         return bonusNumber;
     }
@@ -29,7 +25,7 @@ public class WinningNumbers {
         return row;
     }
 
-    public int getBonusNum() {
-        return bonusNumber.getNumber();
+    public LottoNumber getBonusNumber() {
+        return bonusNumber;
     }
 }

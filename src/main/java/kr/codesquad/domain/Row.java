@@ -3,8 +3,13 @@ package kr.codesquad.domain;
 import kr.codesquad.exception.ColumnNotValidException;
 import kr.codesquad.exception.DuplicateLottoNumberException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import static kr.codesquad.domain.Row.RowValidator.*;
 
 public class Row {
 
@@ -23,34 +28,13 @@ public class Row {
         return new Row(numbers);
     }
 
-    private static List<Integer> extractIntegersList(List<LottoNumber> numbers) {
-        return numbers.stream()
-                .map(LottoNumber::getNumber)
-                .collect(Collectors.toList());
-    }
-
-    private static void checkValuesOverColumn(List<LottoNumber> numbers) {
-        if (numbers.size() != COLUMN) {
-            throw new ColumnNotValidException();
-        }
-    }
-
-    public static void lottoIntegersDuplicateCheck(List<Integer> numList) {
-        Set<Integer> numSet = new HashSet<>(numList);
-
-        if (numSet.size() != numList.size()) {
-            throw new DuplicateLottoNumberException();
-        }
-    }
-
-
     public void compare(WinningNumbers winningNumbers) {
         List<LottoNumber> answers = winningNumbers.getRow().values;
         for (LottoNumber answer : answers) {
             compareNumber(answer);
         }
 
-        compareBonusNumber(winningNumbers.getBonusNum());
+        compareBonusNumber(winningNumbers.getBonusNumber());
     }
 
     public void compareNumber(LottoNumber answer) {
@@ -61,7 +45,7 @@ public class Row {
         }
     }
 
-    public void compareBonusNumber(int bonusNumber) {
+    public void compareBonusNumber(LottoNumber bonusNumber) {
         this.isBonus = this.values.contains(bonusNumber);
     }
 
@@ -84,4 +68,26 @@ public class Row {
     public void printValues() {
         System.out.println(values);
     }
+
+    static class RowValidator {
+        static List<Integer> extractIntegersList(List<LottoNumber> numbers) {
+            return numbers.stream()
+                    .map(LottoNumber::getNumber)
+                    .collect(Collectors.toList());
+        }
+
+        static void lottoIntegersDuplicateCheck(List<Integer> numList) {
+            Set<Integer> numSet = new HashSet<>(numList);
+            if (numSet.size() != numList.size()) {
+                throw new DuplicateLottoNumberException();
+            }
+        }
+
+        static void checkValuesOverColumn(List<LottoNumber> numbers) {
+            if (numbers.size() != COLUMN) {
+                throw new ColumnNotValidException();
+            }
+        }
+    }
+
 }

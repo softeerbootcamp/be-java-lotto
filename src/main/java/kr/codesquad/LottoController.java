@@ -19,9 +19,9 @@ public class LottoController {
         return statistic;
     }
 
-    public void addManualRowsToLotto(Lotto lotto, int countOfManualRows, String manualRowString) {
-        manualLottoGenerator.convertStringToRow(manualRowString);
-        lotto.addRowToLotto(countOfManualRows, manualLottoGenerator);
+    public void addManualRowsToLotto(Lotto lotto, String manualRowString) {
+            manualLottoGenerator.convertStringToRow(manualRowString);
+            lotto.addRowToLotto(1, manualLottoGenerator);
     }
 
     public void addAutoRowsToLotto(Lotto lotto, int countOfAutoRows) {
