@@ -2,6 +2,7 @@ package kr.codesquad.lottoGeneration;
 
 import kr.codesquad.IO.Input;
 import kr.codesquad.IO.InputImpl;
+import kr.codesquad.exception.DuplicateLottoNumberException;
 import kr.codesquad.lotto.Lotto;
 import kr.codesquad.lotto.LottoNumber;
 

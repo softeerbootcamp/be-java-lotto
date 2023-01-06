@@ -2,6 +2,7 @@ package kr.codesquad;
 
 import kr.codesquad.IO.InputImpl;
 import kr.codesquad.IO.OutputImpl;
+import kr.codesquad.exception.InputExceptionHandlerImpl;
 
 public class Main{
 
