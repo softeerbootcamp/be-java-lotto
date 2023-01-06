@@ -36,29 +36,25 @@ public class LottoProcedure {
     }
 
     public void run() {
-        try {
-            // 구매 금액 입력
-            takeMoney();
-            this.ticketsLeftToGenerate = money.numOfTickets;
+        // 구매 금액 입력
+        takeMoney();
+        this.ticketsLeftToGenerate = money.numOfTickets;
 
-            takeManualInput();  // 수동 로또 번호 입력
+        takeManualInput();  // 수동 로또 번호 입력
 
-            // 로또 번호 생성
-            this.lottos.addAll(generator.generate(ticketsLeftToGenerate));
+        // 로또 번호 생성
+        this.lottos.addAll(generator.generate(ticketsLeftToGenerate));
 
-            printLottoSequence();
+        printLottoSequence();
 
-            // ---------------------------------------------------------- TODO: 로직 입력부, 계산부로 분리
+        // ---------------------------------------------------------- TODO: 로직 입력부, 계산부로 분리
 
-            takeActualInput();  // 로또 번호, 보너스 번호 입력
-            // TODO: 입력 로또번호 parameter로 주입받는 method로 분리하기
+        takeActualInput();  // 로또 번호, 보너스 번호 입력
+        // TODO: 입력 로또번호 parameter로 주입받는 method로 분리하기
 
-            matchLottoSequences(this.winningLotto, this.lottos);
+        matchLottoSequences(this.winningLotto, this.lottos);
 
-            printStatistics();
-        } catch(IllegalArgumentException e) {
-            e.printStackTrace();
-        }
+        printStatistics();
     }
 
     public void takeMoney() {
