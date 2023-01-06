@@ -32,7 +32,6 @@ public class LottoProcedure {
     }
 
     public void run() {
-        final int MANUAL = -1;
         // 구매 금액 입력
         takeMoney();
 
@@ -98,23 +97,6 @@ public class LottoProcedure {
 
         System.out.println("보너스 볼을 입력해 주세요.");
         this.bonus = sc.nextInt();  // 보너스 번호 입력
-    }
-
-    public List<List<Integer>> takeManualInput() {
-        List<List<Integer>> numbers = new ArrayList<>();
-        // 수동으로 구매할 로또 처리
-        System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
-        this.manualCnt = sc.nextInt();  // 수동으로 구매할 로또 번호 수 입력
-        sc.nextLine();
-
-        System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
-
-        for(int i=0;i<this.manualCnt;++i) {
-            String str = sc.nextLine();
-            numbers.add(parseCommaSeparatedLineInput(str));  // 구매한 로또 번호
-        }
-
-        return numbers;
     }
 
     public static List<Integer> parseCommaSeparatedLineInput(String str) {

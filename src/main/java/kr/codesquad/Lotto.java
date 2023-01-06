@@ -6,9 +6,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
-
-    final static int LOTTO_LENGTH = 6;  // 로또 번호 조합의 길이
-
     private Set<Integer> lotto;
 
     public Lotto(Set<Integer> lotto) {
@@ -31,12 +28,6 @@ public class Lotto {
 
     public boolean contains(Integer lottoNum) {
         return lotto.contains(lottoNum);
-    }
-
-    public static void printSequence(List<Lotto> lottoList) {
-        for (Lotto lotto : lottoList) {  // 생성된 로또 번호 출력
-            System.out.println(lotto);
-        }
     }
 
     @Override

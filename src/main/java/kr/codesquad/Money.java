@@ -7,7 +7,6 @@ public class Money {
 
     final static int TICKET_PRICE = 1000;
 
-
     private final int money;
     public final int numOfTickets;
 
@@ -15,7 +14,7 @@ public class Money {
         this.money = money;
         this.numOfTickets = money / TICKET_PRICE;  // 구매한 로또 수
     }
-    double returnRate(long prizeTotal) {
+    public double returnRate(long prizeTotal) {
         /*
          * 수익률을 계산하는 메서드
          */

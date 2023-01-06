@@ -40,7 +40,7 @@ public class LottoResult {
         printStatistics();
     }
 
-    public void matchLottos() {
+    private void matchLottos() {
 
         for(Lotto lotto: this.lottos) {
 
