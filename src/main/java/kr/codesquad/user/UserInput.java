@@ -1,9 +1,9 @@
-package kr.codesquad.User;
+package kr.codesquad.user;
 
 import kr.codesquad.CustomException;
-import kr.codesquad.LottoManager.LottoPaper;
-import kr.codesquad.Utility.InputHandler;
-import kr.codesquad.Utility.Utility;
+import kr.codesquad.lottoManager.LottoPaper;
+import kr.codesquad.utility.InputHandler;
+import kr.codesquad.utility.Utility;
 
 import java.util.ArrayList;
 import java.util.List;

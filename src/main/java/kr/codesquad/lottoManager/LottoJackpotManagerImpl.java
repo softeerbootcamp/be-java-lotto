@@ -1,7 +1,7 @@
-package kr.codesquad.LottoManager;
+package kr.codesquad.lottoManager;
 
 import kr.codesquad.CustomException;
-import kr.codesquad.User.UserLotto;
+import kr.codesquad.user.UserLotto;
 
 import java.util.List;
 
@@ -20,14 +20,14 @@ public class LottoJackpotManagerImpl implements LottoJackpotManager {
     public boolean checkNumberIsContained(List<Integer> userOneLotto, int number) {
         if (userOneLotto.contains(number)) {
             return true;
-        } else return false;
+        } return false;
     }
 
     @Override
     public int addIndexIfChecked(List<Integer> userOneLotto, int number, int index) {
         if (checkNumberIsContained(userOneLotto, number)) {
             return ++index;
-        } else return index;
+        } return index;
     }
 
     @Override

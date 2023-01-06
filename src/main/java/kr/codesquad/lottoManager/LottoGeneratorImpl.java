@@ -1,9 +1,8 @@
-package kr.codesquad.LottoManager;
+package kr.codesquad.lottoManager;
 
-import kr.codesquad.CustomException;
-import kr.codesquad.User.UserInput;
-import kr.codesquad.User.UserLotto;
-import kr.codesquad.Utility.Utility;
+import kr.codesquad.user.UserInput;
+import kr.codesquad.user.UserLotto;
+import kr.codesquad.utility.Utility;
 
 public class LottoGeneratorImpl implements LottoGenerator {
     private Utility utility;
@@ -16,7 +15,7 @@ public class LottoGeneratorImpl implements LottoGenerator {
             userLotto.getUserLottoList().add(emptyLotto);
         }
     }
-
+    @Override
     public void manualGenerate(UserLotto userLotto) {
         userLotto.setUserManualLottoCount();
         UserInput.USERINPUT.userInputManual(userLotto);

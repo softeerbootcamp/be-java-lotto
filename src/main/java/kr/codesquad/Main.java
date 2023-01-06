@@ -1,13 +1,13 @@
 package kr.codesquad;
 
 
-import kr.codesquad.LottoManager.LottoGenerator;
-import kr.codesquad.LottoManager.LottoGeneratorImpl;
-import kr.codesquad.LottoManager.LottoJackpotManager;
-import kr.codesquad.LottoManager.LottoJackpotManagerImpl;
-import kr.codesquad.User.UserInput;
-import kr.codesquad.User.UserLotto;
-import kr.codesquad.Utility.Utility;
+import kr.codesquad.lottoManager.LottoGenerator;
+import kr.codesquad.lottoManager.LottoGeneratorImpl;
+import kr.codesquad.lottoManager.LottoJackpotManager;
+import kr.codesquad.lottoManager.LottoJackpotManagerImpl;
+import kr.codesquad.user.UserInput;
+import kr.codesquad.user.UserLotto;
+import kr.codesquad.utility.Utility;
 
 public class Main {
 

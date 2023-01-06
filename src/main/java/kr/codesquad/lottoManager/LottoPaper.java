@@ -1,4 +1,4 @@
-package kr.codesquad.LottoManager;
+package kr.codesquad.lottoManager;
 
 import java.util.Collections;
 import java.util.List;

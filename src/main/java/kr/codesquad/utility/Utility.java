@@ -1,7 +1,7 @@
-package kr.codesquad.Utility;
+package kr.codesquad.utility;
 
 import kr.codesquad.CustomException;
-import kr.codesquad.Enum.Prizes_Info;
+import kr.codesquad.infoEnum.Prizes_Info;
 
 import java.util.ArrayList;
 import java.util.Collections;
