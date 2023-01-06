@@ -46,16 +46,16 @@ public class ConsoleLottoGame {
         System.out.println(lottoStat.getResult());
     }
 
-    private void buyAutoLotto(int n_lotto) {
-        for (int i = 0; i < n_lotto; i++) {
+    private void buyAutoLotto(int nLotto) {
+        for (int i = 0; i < nLotto; i++) {
             Lotto newLotto = new Lotto();
             lottos.add(newLotto);
             System.out.println(newLotto);
         }
     }
 
-    private int buyManualLotto(int max_lotto) {
-        int nManualLotto = inputHandler.getManualLottoAmount(max_lotto);
+    private int buyManualLotto(int maxLotto) {
+        int nManualLotto = inputHandler.getManualLottoAmount(maxLotto);
         List<Lotto> manualLotto = new ArrayList<>();
         for (int i = 0; i < nManualLotto; i++) {
             List<Integer> sixNumber = inputHandler.getSixLottoNumber();
