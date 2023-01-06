@@ -1,7 +1,6 @@
 package kr.codesquad.LottoManager;
 
 import kr.codesquad.CustomException;
-import kr.codesquad.User.UserInput;
 import kr.codesquad.User.UserLotto;
 
 import java.util.List;
@@ -9,13 +8,11 @@ import java.util.List;
 public class LottoJackpotManagerImpl implements LottoJackpotManager {
     private final List<Integer> JACKPOT_NUM;
     private final int BONUS_NUM;
-
-    public LottoJackpotManagerImpl(List<Integer> jackpotNum,int bonusNum) throws CustomException {
+    CustomException customException = new CustomException();
+    public LottoJackpotManagerImpl(List<Integer> jackpotNum,int bonusNum){
         JACKPOT_NUM = jackpotNum;
         BONUS_NUM = bonusNum;
-        if (JACKPOT_NUM.contains(bonusNum)) {
-            throw new CustomException("보너스 번호는 원래 번호들과 중복돠어선 안된다.");
-        }
+        customException.checkBonusNumIsDuplicate(bonusNum,jackpotNum);
     }
 
 
@@ -35,7 +32,7 @@ public class LottoJackpotManagerImpl implements LottoJackpotManager {
 
     @Override
     public void checkAllUserLottoPrize(UserLotto userLotto) {
-        for (EmptyLotto eachLotto : userLotto.getUserLottoList()) {
+        for (LottoPaper eachLotto : userLotto.getUserLottoList()) {
             checkEachLottoPrize(eachLotto.getNumbers(), userLotto);
         }
     }

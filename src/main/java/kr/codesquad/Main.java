@@ -11,7 +11,7 @@ import kr.codesquad.Utility.Utility;
 
 public class Main {
 
-    public static void main(String[] args) throws CustomException {
+    public static void main(String[] args) {
         Utility ut = new Utility();
         UserLotto userLotto = new UserLotto(UserInput.USERINPUT.userHowManyLotto());
 

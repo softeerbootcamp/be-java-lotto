@@ -9,7 +9,7 @@ import kr.codesquad.Utility.Utility;
 public interface LottoGenerator {
     public void autoGenerate(UserLotto userLotto);
 
-    public void manualGenerate(UserLotto userLotto) throws CustomException;
+    public void manualGenerate(UserLotto userLotto);
 
-    public void lottoGenerate(UserLotto userLotto) throws CustomException;
+    public void lottoGenerate(UserLotto userLotto);
 }

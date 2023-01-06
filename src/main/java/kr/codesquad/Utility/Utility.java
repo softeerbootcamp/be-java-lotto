@@ -1,12 +1,13 @@
 package kr.codesquad.Utility;
 
+import kr.codesquad.CustomException;
 import kr.codesquad.Enum.Prizes_Info;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Utility {
+public class Utility extends CustomException{
     private static ArrayList<Integer> allLottoNum;
 
     static int LOTTO_PRICE = 1000;
@@ -37,8 +38,9 @@ public class Utility {
         return lottoNums;
     }
 
-    public List<Integer> transStringToIntegerList(String str) {
+    public List<Integer> transManualInputToLottoList(String str) {
         String[] strArr = str.split(",");
+        numberCountSix(strArr);
         List<Integer> integerList = new ArrayList<>();
         for (int i = 0; i < strArr.length; i++) {
             integerList.add(Integer.parseInt(strArr[i]));

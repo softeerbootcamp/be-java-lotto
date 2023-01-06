@@ -1,13 +1,12 @@
 package kr.codesquad.LottoManager;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EmptyLotto {
+public class LottoPaper {
     private List<Integer> numbers;
 
-    public EmptyLotto(List<Integer> numbers) {
+    public LottoPaper(List<Integer> numbers) {
 
         setNumbers(numbers);
     }
