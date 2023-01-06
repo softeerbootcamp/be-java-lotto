@@ -1,6 +1,8 @@
 package kr.codesquad;
 
+
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +16,7 @@ public class LottoIOManagerImpl implements LottoIOManager {
 	public LottoIOManagerImpl() {
 		this.scanner = new Scanner(System.in);
 	}
+
 
 	private int readNumber() {
 		try {
@@ -55,6 +58,7 @@ public class LottoIOManagerImpl implements LottoIOManager {
 
 	@Override
 	public WinningLotto readWinningLotto() throws IOException {
+
 		System.out.println("당첨 번호를 입력해주세요.");
 		String numbers = scanner.nextLine();
 		List<Integer> lottoNumbers = new ArrayList<Integer>();
@@ -72,6 +76,7 @@ public class LottoIOManagerImpl implements LottoIOManager {
 		for (int i = 0; i < cnt; i++) {
 			String numbers = scanner.nextLine();
 			List<Integer> lottoNumbers;
+
 			lottoNumbers = readNumbers(numbers);
 			lottos.add(Lotto.of(lottoNumbers));
 		}
@@ -88,7 +93,6 @@ public class LottoIOManagerImpl implements LottoIOManager {
 		}
 		return lottoNumbers;
 	}
-
 	@Override
 	public void printResult(LottoResult lottoResult, int purchaseAmount) {
 		System.out.println("당첨 통계");

@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface LottoIOManager {
 
+
 	public int readPurchaseAmount() throws IOException;
 
 	public int readManualLottoCount() throws IOException;
@@ -12,6 +13,7 @@ public interface LottoIOManager {
 	public void printLottoCount(int manualCount, int autoLottoCount);
 
 	public void printLottos(List<Lotto> lottos);
+
 
 	public int readBonusBall() throws IOException;
 

@@ -1,5 +1,6 @@
 package kr.codesquad;
 
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ public class LottoGame {
 	private final Map<String, LottoGeneratorStrategy> lottoGeneratorStrategies;
 
 	private final LottoGenerator lottoGenerator;
+
 
 	private final LottoCheck lottoCheck;
 
@@ -61,6 +63,7 @@ public class LottoGame {
 		lottos.addAll(lottoGenerator.generate(autoLottoCount));
 		return lottos;
 	}
+
 
 	public WinningLotto createWinningLottery() throws IOException {
 		return lottoIOManager.readWinningLotto();
