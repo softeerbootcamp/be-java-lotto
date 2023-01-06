@@ -15,11 +15,22 @@ public class Validator {
         if (!input.matches("^[0-9]*")) {
             throw new DefaultException(ExceptionMessage.INVALID_NUM);
         }
+        checkNotNull(input);
         return true;
     }
     public boolean checkNotNull(String input) {
         if (input.matches("^$")) {
             throw new DefaultException(ExceptionMessage.CANNOT_INPUT_NULL);
+        }
+        return true;
+    }
+    public boolean checkLottoNumbers(String[] input) {
+        if (input.length < 6) {
+            throw new DefaultException(ExceptionMessage.INVALID_LOTTO_NUM_COUNT);
+        }
+        for (String s : input) {
+            checkTransformabilityToNumber(s);
+            checkLottoNumBoundary(Integer.parseInt(s));
         }
         return true;
     }
