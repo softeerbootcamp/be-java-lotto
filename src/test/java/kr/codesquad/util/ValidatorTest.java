@@ -95,4 +95,33 @@ class ValidatorTest {
         });
         assertEquals(ExceptionMessage.INVALID_LOTTO_NUM_COUNT.getMessage(), exception.getMessage());
     }
+    @Test
+    void 구입금액_0원() {
+        Validator validator = new Validator();
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            validator.checkMoneyBoundary("0");
+        });
+        assertEquals(ExceptionMessage.INVALID_MONEY_BOUNDARY.getMessage(), exception.getMessage());
+    }
+    @Test
+    void 구입금액_1302원() {
+        Validator validator = new Validator();
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            validator.checkMoneyBoundary("1302");
+        });
+        assertEquals(ExceptionMessage.INVALID_MONEY_COUNT.getMessage(), exception.getMessage());
+    }
+    @Test
+    void 구입금액_1000원() {
+        Validator validator = new Validator();
+        assertThat(validator.checkMoneyBoundary("1000")).isEqualTo(true);
+    }
+    @Test
+    void 구입금액_공백() {
+        Validator validator = new Validator();
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            validator.checkMoneyBoundary("");
+        });
+        assertEquals(ExceptionMessage.CANNOT_INPUT_NULL.getMessage(), exception.getMessage());
+    }
 }
