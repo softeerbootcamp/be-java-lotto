@@ -1,5 +1,8 @@
 package kr.codesquad.utils;
 
+import kr.codesquad.exception.InputCountException;
+import kr.codesquad.exception.InputFormatException;
+
 import kr.codesquad.model.lottos.Lotto;
 
 import java.util.*;
@@ -31,4 +34,15 @@ public class Util {
         return lottoList1;
     }
 
+    public static ArrayList<Integer> stringToUniqueArrayList(String str){
+        Set<Integer> resultSet = new HashSet<>();
+        try {
+            resultSet = parseString(str);}
+        catch (NumberFormatException e){  //문자를 입력할 시
+            throw new InputFormatException("숫자형으로 입력해주세요");}
+        if(resultSet.size() != 6)   //로또 번호의 개수가 6개가 아닐 때
+            throw new InputCountException("올바르지 않은 입력입니다");
+        ArrayList<Integer> resultArrayList = new ArrayList<>(resultSet);
+        return resultArrayList;
+    }
 }

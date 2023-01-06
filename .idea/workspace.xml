@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day4 - (12) UserConsole에서 User를 의존하지 않도록 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/ConsoleHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/UserConsoleService.java" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ConsoleHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UserConsoleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/model/lottos/Lotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/model/lottos/Lotto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/model/lottos/RandomLotto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/UserConsoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/utils/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/utils/Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/UserConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/UserConsole.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +103,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/rentalhub/things/lotto",
+
+    "last_opened_file_path": "/Users/rentalhub/things/lotto/src/main/java/kr/codesquad/view",
+
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -110,11 +117,32 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/kr/codesquad/view" />
+      <recent name="$PROJECT_DIR$/src/main/java/kr/codesquad/model" />
+      <recent name="$PROJECT_DIR$/src/main/java/kr/codesquad/exception" />
+      <recent name="$PROJECT_DIR$/src/main/java/kr/codesquad/controller" />
+      <recent name="$PROJECT_DIR$/src/main/java/kr/codesquad/utils" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="kr.codesquad.templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.UserConsoleTest">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kr.codesquad.Main" />
+      <module name="java-lotto.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="kr.codesquad.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+
+    </configuration>
     <configuration name="ConsoleHandlerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -184,29 +212,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="UserConsoleTest.enterPurchasePriceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;UserConsoleTest.enterPurchasePriceTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="UserConsoleTest.enterPurchasePrice_NoInt_Test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -232,11 +237,15 @@
     </configuration>
     <recent_temporary>
       <list>
+
+        <item itemvalue="Application.Main" />
+
         <item itemvalue="Gradle.UserConsoleTest" />
         <item itemvalue="Gradle.ConsoleHandlerTest" />
         <item itemvalue="Gradle.LottoControllerTest" />
         <item itemvalue="Gradle.UserConsoleTest.enterPurchasePrice_NoInt_Test" />
-        <item itemvalue="Gradle.UserConsoleTest.enterPurchasePriceTest" />
+
+
       </list>
     </recent_temporary>
   </component>
@@ -578,9 +587,11 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/kr/codesquad/controller/MatchController.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="8" />
+
+          <url>file://$PROJECT_DIR$/src/test/java/UserConsoleTest.java</url>
+          <line>160</line>
+          <option name="timeStamp" value="11" />
+
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/UserConsoleTest.java</url>
