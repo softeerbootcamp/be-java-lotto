@@ -1,6 +1,6 @@
 package kr.codesquad.domain;
 
-import kr.codesquad.exception.ColumnOverflowException;
+import kr.codesquad.exception.ColumnNotValidException;
 import kr.codesquad.exception.DuplicateLottoNumberException;
 
 import java.util.*;
@@ -31,7 +31,7 @@ public class Row {
 
     private static void checkValuesOverColumn(List<LottoNumber> numbers) {
         if (numbers.size() != COLUMN) {
-            throw new ColumnOverflowException();
+            throw new ColumnNotValidException();
         }
     }
 
