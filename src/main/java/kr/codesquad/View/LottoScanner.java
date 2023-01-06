@@ -19,7 +19,7 @@ public class LottoScanner {
                 String moneyStr = sc.nextLine();
                 MoneyValidator.isValid(moneyStr);
                 System.out.println(moneyStr);
-                return new BigInteger(moneyStr);;
+                return new BigInteger(moneyStr);
             } catch (NumberFormatException e) {
                 System.out.println("Money should be Integer");
             }
