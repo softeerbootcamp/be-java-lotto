@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : DIP 수정사항들 추가">
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/generate/AutoLottoGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/generate/LottoGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/generate/LottoGeneratorImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/generate/ManualLottoGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/InputView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/OutputView.java" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : Controller에서 WinningLotto를 받아서 바로 생성하도록 변경">
+      <change afterPath="$PROJECT_DIR$/src/test/java/lotto/domain/LottoNumberTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/lotto/domain/LottoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoIssue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/IOManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/IOManagerImpl.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +84,7 @@
       <recent name="kr.codesquad.LottoService" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.LottoTest.of_중복_리스트">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kr.codesquad.Main" />
       <module name="java-lotto.main" />
@@ -108,6 +98,106 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LottoTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;lotto.domain.LottoTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="LottoTest.match_2_3등" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;lotto.domain.LottoTest.match_2_3등&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="LottoTest.match_3등" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;lotto.domain.LottoTest.match_3등&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="LottoTest.of_중복_리스트" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;lotto.domain.LottoTest.of_중복_리스트&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.LottoTest.of_중복_리스트" />
+        <item itemvalue="Gradle.LottoTest" />
+        <item itemvalue="Gradle.LottoTest.match_2_3등" />
+        <item itemvalue="Gradle.LottoTest.match_3등" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -122,34 +212,6 @@
       <workItem from="1672644019169" duration="26231000" />
       <workItem from="1672724915964" duration="54000" />
       <workItem from="1672724971960" duration="11965000" />
-    </task>
-    <task id="LOCAL-00020" summary="feat : printWinningLottos 구현">
-      <created>1672732697228</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1672732697228</updated>
-    </task>
-    <task id="LOCAL-00021" summary="feat : Rank.ETC일 때 출력에서 제외">
-      <created>1672738312190</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1672738312190</updated>
-    </task>
-    <task id="LOCAL-00022" summary="feat : Lotto 클래스 구현">
-      <created>1672738328704</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1672738328704</updated>
-    </task>
-    <task id="LOCAL-00023" summary="feat : LottoFactory 구현, type에 따라 Lotto 생성">
-      <created>1672738391380</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1672738391380</updated>
     </task>
     <task id="LOCAL-00024" summary="delete : LottoService를 Store와 Factory로 나누고 서비스 클래스 삭제">
       <created>1672738480292</created>
@@ -466,7 +528,35 @@
       <option name="project" value="LOCAL" />
       <updated>1672961185521</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="refactor : IOManager를 InputView, OutputView로 변경">
+      <created>1672977052749</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1672977052749</updated>
+    </task>
+    <task id="LOCAL-00070" summary="refactor : DIP를 고려하여 LottoGenerator를 새로 만듬">
+      <created>1672977103943</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1672977103943</updated>
+    </task>
+    <task id="LOCAL-00071" summary="delete : LottoFactory.java, LottoIssue.java 삭제">
+      <created>1672977150624</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1672977150624</updated>
+    </task>
+    <task id="LOCAL-00072" summary="refactor : Controller에서 WinningLotto를 받아서 바로 생성하도록 변경">
+      <created>1672977183391</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1672977183391</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,10 +574,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat : User 클래스 구현" />
-    <MESSAGE value="feat : Main 클래스에 IOManger 추가" />
-    <MESSAGE value="gitignore에 workspace.xml 추가" />
-    <MESSAGE value="feat : Rank에 prize 추가" />
     <MESSAGE value="feat : LottoResult 구현" />
     <MESSAGE value="feat : User, lottoStore, LottoResult를 이용하여 run 메서드 구현" />
     <MESSAGE value="refactor : Console.java를 IOManager로 refactor" />
@@ -509,7 +595,11 @@
     <MESSAGE value="refactor : EarningRate를 구할 수 있는 메서드를 LottoResult에 추가" />
     <MESSAGE value="refactor : io하는 부분을 Controller로 변경" />
     <MESSAGE value="refactor : automatic을 auto로 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor : automatic을 auto로 변경" />
+    <MESSAGE value="refactor : IOManager를 InputView, OutputView로 변경" />
+    <MESSAGE value="refactor : DIP를 고려하여 LottoGenerator를 새로 만듬" />
+    <MESSAGE value="delete : LottoFactory.java, LottoIssue.java 삭제" />
+    <MESSAGE value="refactor : Controller에서 WinningLotto를 받아서 바로 생성하도록 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : Controller에서 WinningLotto를 받아서 바로 생성하도록 변경" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
