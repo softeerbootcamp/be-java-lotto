@@ -11,6 +11,7 @@ public class Amount {
 
     public Amount(Amount totalAmount, int amount) {
         validateRange(totalAmount.getAmount() - amount);
+        validateRange(amount);
         this.amount = amount;
     }
 
