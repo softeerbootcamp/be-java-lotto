@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Money.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/lotto/Lotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/lotto/Lotto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/lotto/LottoNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/lotto/LottoNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/InputView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/view/InputView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +96,7 @@
       <workItem from="1672888126013" duration="29386000" />
       <workItem from="1672966195307" duration="1143000" />
       <workItem from="1672967347203" duration="1000" />
-      <workItem from="1672972275894" duration="8217000" />
+      <workItem from="1672972275894" duration="9242000" />
     </task>
     <servers />
   </component>
