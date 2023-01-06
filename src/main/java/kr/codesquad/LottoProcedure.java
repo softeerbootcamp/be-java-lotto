@@ -22,9 +22,10 @@ public class LottoProcedure {
 
     private List<Lotto> lottos;
 
+    private Money money;
+
     private LottosGenerator generator = new ShuffleSequenceGenerator();
 
-    private Money money;
     private int bonus;
     private int manualCnt;  // 수동으로 구매할 로또 번호의 수
     private int shuffleCnt;  // 자동으로 구매할 로또 번호의 수
@@ -47,14 +48,10 @@ public class LottoProcedure {
 
         printLottoSequence();
 
-        // ---------------------------------------------------------- TODO: 로직 입력부, 계산부로 분리
-
         takeActualInput();  // 로또 번호, 보너스 번호 입력
-        // TODO: 입력 로또번호 parameter로 주입받는 method로 분리하기
 
-        matchLottoSequences(this.winningLotto, this.lottos);
-
-        printStatistics();
+        LottoResult result = new LottoResult(this);
+        result.showResults();
     }
 
     public void takeMoney() {
@@ -163,5 +160,17 @@ public class LottoProcedure {
         double returnRate = money.returnRate(prizeTotal);
 
         System.out.println("총 수익률은 " + String.format("%.2f", returnRate) + "%입니다.)");
+    }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public Money getMoney() {
+        return money;
     }
 }
