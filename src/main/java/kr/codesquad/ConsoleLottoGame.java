@@ -1,7 +1,7 @@
 package kr.codesquad;
 
 import kr.codesquad.InputManager.UserInputHandler;
-import kr.codesquad.InputManager.UserInputHandlerImpl;
+import kr.codesquad.InputManager.ScannerInputHandler;
 import kr.codesquad.Lotto.Lotto;
 import kr.codesquad.Lotto.LottoStat;
 import kr.codesquad.Lotto.WinLotto;
@@ -17,7 +17,7 @@ public class ConsoleLottoGame {
 
     public ConsoleLottoGame() {
         lottos = new ArrayList<>();
-        inputHandler = new UserInputHandlerImpl();
+        inputHandler = new ScannerInputHandler();
     }
 
     public void start() {

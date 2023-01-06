@@ -6,11 +6,11 @@ import kr.codesquad.Utility;
 import java.util.List;
 import java.util.Scanner;
 
-public class UserInputHandlerImpl implements UserInputHandler {
+public class ScannerInputHandler implements UserInputHandler {
 
     private final Scanner s1;
 
-    public UserInputHandlerImpl() {
+    public ScannerInputHandler() {
         s1 = new Scanner(System.in);
     }
 
