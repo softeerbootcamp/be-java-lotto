@@ -25,21 +25,34 @@ public class LottoScanner {
     }
 
     public List<Integer> scanLottoNumbers() {
-        Scanner sc = new Scanner(System.in);
-        try {
-            String winStr = sc.nextLine();
-            List<Integer> winNum = new ArrayList();
-            String[] winStrArr = winStr.split(",");
-            for(int i = 0; i < Lotto.LOTTO_NUM_LENGTH; ++i) {
-                winNum.add(Integer.parseInt(winStrArr[i].trim()));
+        while(true){
+            try {
+                Scanner sc = new Scanner(System.in);
+                String[] winStrArr = parseLottoNumbers(sc.nextLine());
+                Validator.isValidLottoNumbers(winStrArr);
+                return getLottoNumbersList(winStrArr);
+            } catch (NumberFormatException ne){
+                System.out.println("You should only enter number");
+            } catch (IllegalArgumentException iae){
+                System.out.println("Enter 6 numbers");
+            } catch (Exception e){
+                System.out.println("LottoNumber Input Error");
             }
-            return winNum;
-        }catch (Exception e){
-            System.out.println("LottoNumber Input Error");
-            e.printStackTrace();
-            System.exit(0);
-            return null;
         }
+    }
+
+    private String[] parseLottoNumbers(String winStr){
+        if (winStr.contains(","))
+            return winStr.split(",");
+        return winStr.split(" ");
+    }
+
+    private List<Integer> getLottoNumbersList(String[] winStrArr){
+        List<Integer> winNum = new ArrayList<>();
+        for(int i = 0; i < Lotto.LOTTO_NUM_LENGTH; ++i) {
+            winNum.add(Integer.parseInt(winStrArr[i].trim()));
+        }
+        return winNum;
     }
 
     public int scanBonus() {
