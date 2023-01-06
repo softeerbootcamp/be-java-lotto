@@ -42,4 +42,18 @@ class ValidatorTest {
         Validator validator = new Validator();
         assertThat(validator.checkTransformabilityToNumber("231231")).isEqualTo(true);
     }
+    @Test
+    void null_체크() {
+        Validator validator = new Validator();
+
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            validator.checkNotNull("");
+        });
+        assertEquals(ExceptionMessage.CANNOT_INPUT_NULL.getMessage(), exception.getMessage());
+    }
+    @Test
+    void null_아닐때_체크() {
+        Validator validator = new Validator();
+        assertThat(validator.checkNotNull("something")).isEqualTo(true);
+    }
 }
