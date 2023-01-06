@@ -6,7 +6,7 @@ import kr.codesquad.User.UserInput;
 import kr.codesquad.User.UserLotto;
 import kr.codesquad.Utility.Utility;
 
-public class LottoGenerator extends UserInput {
+public class LottoGenerator {
     // 유틸리티나 인풋 핸들러들을 일일이 계속 선언해주고있는데, 개선 하고 싶음. user inputt
     // 상속받는거도 걸림.
     private Utility utility;
@@ -24,6 +24,6 @@ public class LottoGenerator extends UserInput {
 
     public void manualGenerate(UserLotto userLotto) throws CustomException {
         userLotto.setUserManualLottoCount();
-        userInputManual(userLotto);
+        UserInput.USERINPUT.userInputManual(userLotto);
     }
 }

@@ -9,16 +9,15 @@ import java.util.List;
 public class LottoJackpotManagerImpl implements LottoJackpotManager {
     static List<Integer> JACKPOT_NUM;
     static int BONUS_NUM;
-    static UserInput userInput = new UserInput();
 
     @Override
     public void setJACKPOT_NUM() throws CustomException {
-        this.JACKPOT_NUM = userInput.userInputJackpotNum();
+        this.JACKPOT_NUM = UserInput.USERINPUT.userInputJackpotNum();
     }
 
     @Override
     public void setBONUS_NUM() throws CustomException {
-        this.BONUS_NUM = userInput.userSetBonusNum(this.JACKPOT_NUM);
+        this.BONUS_NUM = UserInput.USERINPUT.userSetBonusNum(this.JACKPOT_NUM);
     }
 
     @Override
