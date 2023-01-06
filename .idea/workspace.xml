@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : Controller에서 WinningLotto를 받아서 바로 생성하도록 변경">
-      <change afterPath="$PROJECT_DIR$/src/test/java/lotto/domain/LottoNumberTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/lotto/domain/LottoTest.java" afterDir="false" />
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : 정적 팩터리 메서드 파라미터로 들어온 값을 validate하는 메서드 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/lotto/domain/LottoNumberTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/lotto/domain/LottoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/lotto/domain/LottoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,28 +63,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/rentalhub/IdeaProjects/be-java-lotto&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/rentalhub/IdeaProjects/be-java-lotto",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="kr.codesquad.LottoService" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.LottoTest.of_중복_리스트">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kr.codesquad.Main" />
       <module name="java-lotto.main" />
@@ -212,20 +215,6 @@
       <workItem from="1672644019169" duration="26231000" />
       <workItem from="1672724915964" duration="54000" />
       <workItem from="1672724971960" duration="11965000" />
-    </task>
-    <task id="LOCAL-00024" summary="delete : LottoService를 Store와 Factory로 나누고 서비스 클래스 삭제">
-      <created>1672738480292</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1672738480292</updated>
-    </task>
-    <task id="LOCAL-00025" summary="feature : LottoStore 클래스 구현">
-      <created>1672738547804</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1672738547804</updated>
     </task>
     <task id="LOCAL-00026" summary="refactor : main 메서드에 구현된 부분들 app으로 넘김">
       <created>1672738634733</created>
@@ -556,7 +545,21 @@
       <option name="project" value="LOCAL" />
       <updated>1672977183391</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="test : Lotto match, 생성 테스트 구현">
+      <created>1672982781421</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1672982781421</updated>
+    </task>
+    <task id="LOCAL-00074" summary="feat : 정적 팩터리 메서드 파라미터로 들어온 값을 validate하는 메서드 추가">
+      <created>1672984405270</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1672984405271</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -574,8 +577,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat : LottoResult 구현" />
-    <MESSAGE value="feat : User, lottoStore, LottoResult를 이용하여 run 메서드 구현" />
     <MESSAGE value="refactor : Console.java를 IOManager로 refactor" />
     <MESSAGE value="feat : Lotto에 equals 메서드 추가" />
     <MESSAGE value="feat : LottoFactory에 winning 타입 로또 생성하는 조건문 추가" />
@@ -599,7 +600,9 @@
     <MESSAGE value="refactor : DIP를 고려하여 LottoGenerator를 새로 만듬" />
     <MESSAGE value="delete : LottoFactory.java, LottoIssue.java 삭제" />
     <MESSAGE value="refactor : Controller에서 WinningLotto를 받아서 바로 생성하도록 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor : Controller에서 WinningLotto를 받아서 바로 생성하도록 변경" />
+    <MESSAGE value="test : Lotto match, 생성 테스트 구현" />
+    <MESSAGE value="feat : 정적 팩터리 메서드 파라미터로 들어온 값을 validate하는 메서드 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : 정적 팩터리 메서드 파라미터로 들어온 값을 validate하는 메서드 추가" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import kr.codesquad.domain.Lotto;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -18,7 +17,7 @@ public class LottoTest {
     }
 
     @Test
-    public void create_문자열로또() {
+    public void create_문자열로또(){
         Lotto userLotto = Lotto.ofComma("1,2,3,4,5,6");
         Lotto winningLotto = Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6));
         int result = userLotto.match(winningLotto);
