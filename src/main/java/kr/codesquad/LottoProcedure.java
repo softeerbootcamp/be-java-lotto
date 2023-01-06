@@ -1,6 +1,7 @@
 package kr.codesquad;
 
 import kr.codesquad.sequence.LottosGenerator;
+import kr.codesquad.sequence.ManualSequenceGenerator;
 import kr.codesquad.sequence.ShuffleSequenceGenerator;
 
 import java.util.ArrayList;
@@ -19,8 +20,6 @@ public class LottoProcedure {
 
     private Money money;
 
-    private LottosGenerator generator = new ShuffleSequenceGenerator();
-
     private int bonus;
 
     private int ticketsLeftToGenerate;  // 생성할 로또 티켓 수
@@ -28,20 +27,22 @@ public class LottoProcedure {
     private int manualCnt;  // 수동으로 구매할 로또 번호의 수
     private int shuffleCnt;  // 자동으로 구매할 로또 번호의 수
 
-    public LottoProcedure(LottosGenerator sequenceGenerator) {
-        this.generator = sequenceGenerator;
+    public LottoProcedure() {
         this.lottos = new ArrayList<>();
     }
 
     public void run() {
+        final int MANUAL = -1;
         // 구매 금액 입력
         takeMoney();
 
-        takeManualInput();  // 수동 로또 번호 입력
+        takeManualLottoCount();
+
+        generateLottos(new ManualSequenceGenerator(), this.manualCnt);
+
         this.shuffleCnt = this.ticketsLeftToGenerate;
         // 로또 번호 생성
-        this.lottos.addAll(generator.generate(this.shuffleCnt));
-        issueLottos(this.shuffleCnt);
+        generateLottos(new ShuffleSequenceGenerator(), this.shuffleCnt);
 
         printLottoSequence();
 
@@ -51,7 +52,7 @@ public class LottoProcedure {
         result.showResults();
     }
 
-    public void takeMoney() {
+    private void takeMoney() {
         // 구입 금액 입려
 
         System.out.println("구입금액을 입력해 주세요.");
@@ -62,7 +63,21 @@ public class LottoProcedure {
         this.ticketsLeftToGenerate = money.numOfTickets;  // 생성할 티켓 수
     }
 
-    public void printLottoSequence() {
+    private void takeManualLottoCount() {
+        // 수동으로 구매할 로또 처리
+        System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
+        this.manualCnt = sc.nextInt();  // 수동으로 구매할 로또 번호 수 입력
+        sc.nextLine();
+    }
+
+    private void generateLottos(LottosGenerator generator, int ticketsToGenerate) {
+        List<Lotto> lottos = generator.generate(ticketsToGenerate);
+        this.lottos.addAll(lottos);
+
+        issueLottos(ticketsToGenerate);
+    }
+
+    private void printLottoSequence() {
         System.out.println("\n수동으로 " + this.manualCnt + "장, 자동으로 " + this.shuffleCnt + " 개를 구매했습니다.");
 
         // 구매한 로또 번호 출력
@@ -72,7 +87,7 @@ public class LottoProcedure {
         }
     }
 
-    public void takeActualInput() {
+    private void takeActualInput() {
         this.shuffleCnt = ticketsLeftToGenerate;  // 자동으로 구매할 로또 수
 
         System.out.println("\n지난 주 당첨 번호를 입력해 주세요.");
@@ -85,24 +100,24 @@ public class LottoProcedure {
         this.bonus = sc.nextInt();  // 보너스 번호 입력
     }
 
-    public void takeManualInput() {
+    public List<List<Integer>> takeManualInput() {
+        List<List<Integer>> numbers = new ArrayList<>();
         // 수동으로 구매할 로또 처리
         System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
         this.manualCnt = sc.nextInt();  // 수동으로 구매할 로또 번호 수 입력
         sc.nextLine();
 
-        issueLottos(this.manualCnt);
-
         System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
+
         for(int i=0;i<this.manualCnt;++i) {
             String str = sc.nextLine();
-            List<Integer> numbers = parseCommaSeparatedLineInput(str);  // 구매한 로또 번호
-
-            this.lottos.add(new Lotto(numbers));
+            numbers.add(parseCommaSeparatedLineInput(str));  // 구매한 로또 번호
         }
+
+        return numbers;
     }
 
-    public List<Integer> parseCommaSeparatedLineInput(String str) {
+    public static List<Integer> parseCommaSeparatedLineInput(String str) {
         return Stream.of(str.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -110,7 +125,7 @@ public class LottoProcedure {
                 .collect(Collectors.toList());
     }
 
-    public void issueLottos(int lottoCnt) {
+    private void issueLottos(int lottoCnt) {
         if (this.ticketsLeftToGenerate < lottoCnt)
             throw new IllegalArgumentException("구매할 수 있는 로또보다 구매하고자 하는 로또가 더 많습니다");
 
