@@ -16,6 +16,7 @@ class ValidatorTest {
         });
         assertEquals(ExceptionMessage.INVALID_LOTTO_NUM_BOUNDARY.getMessage(), exception.getMessage());
     }
+
     @Test
     void 로또_숫자_경계값_테스트_1이하() {
         Validator validator = new Validator();
@@ -24,11 +25,13 @@ class ValidatorTest {
         });
         assertEquals(ExceptionMessage.INVALID_LOTTO_NUM_BOUNDARY.getMessage(), exception.getMessage());
     }
+
     @Test
     void 로또_숫자_경계값_테스트_유효할때() {
         Validator validator = new Validator();
         assertThat(validator.checkLottoNumBoundary(1)).isEqualTo(true);
     }
+
     @Test
     void 숫자로_변환할_없는_문자입력() {
         Validator validator = new Validator();
@@ -37,11 +40,13 @@ class ValidatorTest {
         });
         assertEquals(ExceptionMessage.INVALID_NUM.getMessage(), exception.getMessage());
     }
+
     @Test
     void 입력한_문자로_숫자_변환() {
         Validator validator = new Validator();
         assertThat(validator.checkTransformabilityToNumber("231231")).isEqualTo(true);
     }
+
     @Test
     void null_체크() {
         Validator validator = new Validator();
@@ -51,9 +56,43 @@ class ValidatorTest {
         });
         assertEquals(ExceptionMessage.CANNOT_INPUT_NULL.getMessage(), exception.getMessage());
     }
+
     @Test
     void null_아닐때_체크() {
         Validator validator = new Validator();
         assertThat(validator.checkNotNull("something")).isEqualTo(true);
+    }
+
+    @Test
+    void 로또_번호_입력_테스트() {
+        Validator validator = new Validator();
+        assertThat(validator.checkLottoNumbers(new String[]{"1", "2", "3", "4", "5", "6"})).isEqualTo(true);
+    }
+
+    @Test
+    void 로또_번호_입력_테스트_문자입력시() {
+        Validator validator = new Validator();
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            validator.checkLottoNumbers(new String[]{"1", "2", "3", "4", "5", "ㅇㄹㅇㄹ"});
+        });
+        assertEquals(ExceptionMessage.INVALID_NUM.getMessage(), exception.getMessage());
+    }
+
+    @Test
+    void 로또_번호_입력_테스트_공백입력시() {
+        Validator validator = new Validator();
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            validator.checkLottoNumbers(new String[]{"1", "2", "3", "4", "5", ""});
+        });
+        assertEquals(ExceptionMessage.CANNOT_INPUT_NULL.getMessage(), exception.getMessage());
+    }
+
+    @Test
+    void 로또_번호_입력_테스트_6개미만() {
+        Validator validator = new Validator();
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            validator.checkLottoNumbers(new String[]{"1", "2", "3", "4"});
+        });
+        assertEquals(ExceptionMessage.INVALID_LOTTO_NUM_COUNT.getMessage(), exception.getMessage());
     }
 }
