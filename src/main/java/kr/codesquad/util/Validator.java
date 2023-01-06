@@ -11,4 +11,10 @@ public class Validator {
         }
         return num;
     }
+    public int convertInputToNumber(String input) {
+        if (!input.matches("^[0-9]*")) {
+            throw new DefaultException(ExceptionMessage.INVALID_NUM);
+        }
+        return Integer.parseInt(input);
+    }
 }
