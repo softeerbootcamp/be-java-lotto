@@ -19,9 +19,8 @@ public class WinNumberPanel extends CustomPanel{
     private Button btn;
     public WinNumberPanel( ActionListener act) {
         super();
-        setSize(200,360);
+        setSize(400,360);
         setLayout(null);
-        this.instruction = instruction;
         setElements();
         btn.addActionListener(act);
         inputHandler = new AwtInputHandler(btn, txt, null, errLabel);
@@ -29,17 +28,21 @@ public class WinNumberPanel extends CustomPanel{
 
     private void setElements(){
         errLabel = new Label();
-        instLabel = new Label(instruction);
+        instLabel = new Label("당첨번호를 입력해 주세요.");
         txt = new TextField();
         bonus = new TextField();
         btn = new Button("확인");
 
 
-        errLabel.setBounds(30, 80, 140, 30);
-        instLabel.setBounds(30, 130, 100, 30);
-        txt.setBounds(10, 160, 150, 30);
-        bonus.setBounds(140, 160, 30, 30);
-        btn.setBounds(45, 200, 110, 30);
+        errLabel.setBounds(100, 100, 200, 30);
+        instLabel.setBounds(100, 135, 200, 30);
+        txt.setBounds(80, 170, 200, 30);
+        bonus.setBounds(300, 170, 30, 30);
+        btn.setBounds(125, 230, 150, 30);
+
+
+        errLabel.setAlignment(Label.CENTER);
+        instLabel.setAlignment(Label.CENTER);
 
         add(errLabel);
         add(instLabel);

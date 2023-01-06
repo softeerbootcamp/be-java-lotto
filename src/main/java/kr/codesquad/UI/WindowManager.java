@@ -12,7 +12,7 @@ public class WindowManager extends Frame{
 
     public WindowManager (){
         super();
-        setSize(200,360);
+        setSize(400,360);
         setLayout(null);
         setVisible(true);
         setTitle("로또 시뮬레이터");

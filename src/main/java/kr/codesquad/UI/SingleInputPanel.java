@@ -22,7 +22,7 @@ class SingleInputPanel extends CustomPanel  {
     private Button btn;
     SingleInputPanel(String instruction, ActionListener act) {
         super();
-        setSize(200,360);
+        setSize(400,360);
         setLayout(null);
         this.instruction = instruction;
         setElements();
@@ -36,10 +36,13 @@ class SingleInputPanel extends CustomPanel  {
         txt = new TextField();
         btn = new Button("확인");
 
-        errLabel.setBounds(30, 80, 140, 30);
-        instLabel.setBounds(30, 130, 140, 30);
-        txt.setBounds(10, 160, 180, 30);
-        btn.setBounds(45, 200, 110, 30);
+        errLabel.setBounds(0, 100, 400, 30);
+        instLabel.setBounds(0, 135, 400, 30);
+        txt.setBounds(80, 170, 240, 30);
+        btn.setBounds(125, 230, 150, 30);
+
+        errLabel.setAlignment(Label.CENTER);
+        instLabel.setAlignment(Label.CENTER);
 
         add(errLabel);
         add(instLabel);
