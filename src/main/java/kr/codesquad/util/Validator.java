@@ -17,4 +17,10 @@ public class Validator {
         }
         return true;
     }
+    public boolean checkNotNull(String input) {
+        if (input.matches("^$")) {
+            throw new DefaultException(ExceptionMessage.CANNOT_INPUT_NULL);
+        }
+        return true;
+    }
 }
