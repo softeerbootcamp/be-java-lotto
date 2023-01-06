@@ -16,17 +16,15 @@ public class Main {
         userLotto.printUserLotto();
     }
 
-
-    // throws 하려면 new throw 받아주는거 있어야됨. main에는 없는게 맞다.
     public static void main(String[] args) throws CustomException {
         Utility ut = new Utility();
-        UserInput userInput = new UserInput();
-        UserLotto userLotto = new UserLotto(userInput.userHowManyLotto());
-
+        UserLotto userLotto = new UserLotto(UserInput.USERINPUT.userHowManyLotto());
         Main.lottoGenerate(userLotto);
 
-        LottoJackpotManager lottoJackpotManager = new LottoJackpotManagerImpl();
-        lottoJackpotManager.runJackpot(userLotto);
+        LottoJackpotManager lottoJackpotManager = new LottoJackpotManagerImpl(
+                UserInput.USERINPUT.userInputJackpotNum(),
+                UserInput.USERINPUT.userSetBonusNum());
+        lottoJackpotManager.checkAllUserLottoPrize(userLotto);
 
         ut.printProfit(userLotto.getPrizeResults(), userLotto.getUserAllLottoCount() * ut.getLottoPrice());
     }

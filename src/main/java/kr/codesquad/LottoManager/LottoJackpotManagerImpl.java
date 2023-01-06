@@ -7,18 +7,17 @@ import kr.codesquad.User.UserLotto;
 import java.util.List;
 
 public class LottoJackpotManagerImpl implements LottoJackpotManager {
-    static List<Integer> JACKPOT_NUM;
-    static int BONUS_NUM;
+    private final List<Integer> JACKPOT_NUM;
+    private final int BONUS_NUM;
 
-    @Override
-    public void setJACKPOT_NUM() throws CustomException {
-        this.JACKPOT_NUM = UserInput.USERINPUT.userInputJackpotNum();
+    public LottoJackpotManagerImpl(List<Integer> jackpotNum,int bonusNum) throws CustomException {
+        JACKPOT_NUM = jackpotNum;
+        BONUS_NUM = bonusNum;
+        if (JACKPOT_NUM.contains(bonusNum)) {
+            throw new CustomException("보너스 번호는 원래 번호들과 중복돠어선 안된다.");
+        }
     }
 
-    @Override
-    public void setBONUS_NUM() throws CustomException {
-        this.BONUS_NUM = UserInput.USERINPUT.userSetBonusNum(this.JACKPOT_NUM);
-    }
 
     @Override
     public boolean checkNumberIsContained(List<Integer> userOneLotto, int number) {
@@ -56,11 +55,4 @@ public class LottoJackpotManagerImpl implements LottoJackpotManager {
         }
     }
 
-    @Override
-    public void runJackpot(UserLotto userLotto) throws CustomException {
-        LottoJackpotManager lottoJackpotManager = new LottoJackpotManagerImpl();
-        lottoJackpotManager.setJACKPOT_NUM();
-        lottoJackpotManager.setBONUS_NUM();
-        lottoJackpotManager.checkAllUserLottoPrize(userLotto);
-    }
 }

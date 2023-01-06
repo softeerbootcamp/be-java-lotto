@@ -7,9 +7,7 @@ import kr.codesquad.User.UserLotto;
 import java.util.List;
 
 public interface LottoJackpotManager {
-    void setJACKPOT_NUM() throws CustomException;
 
-    void setBONUS_NUM() throws CustomException;
 
     boolean checkNumberIsContained(List<Integer> userOneLotto, int number);
 
@@ -19,5 +17,4 @@ public interface LottoJackpotManager {
 
     void checkEachLottoPrize(List<Integer> userOneLotto, UserLotto userLotto);
 
-    void runJackpot(UserLotto userLotto) throws CustomException;
 }

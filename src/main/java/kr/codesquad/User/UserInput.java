@@ -53,12 +53,10 @@ public class UserInput {
         return userInputJackpotNum;
     }
 
-    public int userSetBonusNum(List<Integer> JACKPOT_NUM) throws CustomException {
+    public int userSetBonusNum() throws CustomException {
         System.out.printf("보너스 번호를 입력해 주세요.\n");
         int bonus = inputHandler.getIntegerInput();
-        if (JACKPOT_NUM.contains(bonus)) {
-            throw new CustomException("보너스 번호는 원래 번호들과 중복돠어선 안된다.");
-        }
+
         return bonus;
     }
 }
