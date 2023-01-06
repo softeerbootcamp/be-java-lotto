@@ -1,5 +1,7 @@
 package kr.codesquad.domain.lotto.factory;
 
+import static kr.codesquad.domain.lotto.Lotto.*;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package kr.codesquad.domain.winningLotto;
+package kr.codesquad.domain.rank;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,12 +8,12 @@ import java.util.Set;
 
 import kr.codesquad.domain.lotto.Lotto;
 
-public class WinningLotto {
+public class WinnerLotto {
 
   private final Lotto lotto;
   private final int bonusNumber;
 
-  public WinningLotto(
+  public WinnerLotto(
       Lotto lotto,
       int bonusNumber
   ) {
@@ -33,10 +33,10 @@ public class WinningLotto {
     return target.isContainNumber(this.bonusNumber);
   }
 
-  public Optional<WinningAmount> check(Lotto target) {
-    return Arrays.stream(WinningAmount.values())
-                 .filter(winningAmount -> countMatch(target) == winningAmount.getCorrectCount())
-                 .filter(winningAmount -> isBonusMatch(target) == winningAmount.isBonusMatch())
+  public Optional<Rank> check(Lotto target) {
+    return Arrays.stream(Rank.values())
+                 .filter(rank -> countMatch(target) == rank.getCorrectCount())
+                 .filter(rank -> isBonusMatch(target) == rank.isBonusMatch())
                  .findFirst();
   }
 

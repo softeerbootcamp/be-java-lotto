@@ -1,4 +1,4 @@
-package kr.codesquad.domain.earningRate;
+package kr.codesquad.domain.other;
 
 public class EarningRate {
 
