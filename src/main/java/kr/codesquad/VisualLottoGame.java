@@ -39,7 +39,7 @@ public class VisualLottoGame {
     }
 
     public void getMoney() {
-        nTotalLotto = windowManager.getInputHandler().getMoney();
+        nTotalLotto = windowManager.getInputHandler().getMoney() / 1000;
         windowManager.setAmountOfManualLottoPanel(nTotalLotto);
     }
 
@@ -51,7 +51,7 @@ public class VisualLottoGame {
     public void buyOneManualLotto() {
         List<Integer> lottoNum = windowManager.getInputHandler().getSixLottoNumber();
         lottos.add(new Lotto(lottoNum));
-        if (lottos.size() != nManualLotto) {
+        if (lottos.size() < nManualLotto) {
             windowManager.setOneManualLottoPanel(nManualLotto - lottos.size());
             return;
         }
@@ -60,6 +60,7 @@ public class VisualLottoGame {
         }
         windowManager.setPurchasedLottoPanel(lottos);
     }
+
 
     public void showGeneratedLotto() {
         windowManager.setWinLottoPanel();
