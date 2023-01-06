@@ -7,7 +7,8 @@ public class LottoNumber {
 
     private final int lottoNumber;
 
-    public LottoNumber(int lottoNumber) {
+
+    public LottoNumber (int lottoNumber) {
         checkLottoNumber(lottoNumber);
         this.lottoNumber = lottoNumber;
     }
@@ -22,11 +23,14 @@ public class LottoNumber {
         }
     }
 
+    public boolean isNumeric(String input) {
+        return input.chars().allMatch(Character::isDigit);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null || this.getClass() != obj.getClass()) return false;
         LottoNumber that = (LottoNumber) obj;
         return lottoNumber == that.lottoNumber;
     }
-
 }

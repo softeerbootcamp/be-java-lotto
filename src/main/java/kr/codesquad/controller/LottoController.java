@@ -20,12 +20,24 @@ public class LottoController {
         return Integer.parseInt(InputView.inputTotalPrice());
     }
 
-    private Lottos purchaseLotto(LottoShop lottoShop, int money) {
+    private Lottos purchaseLotto(
+            LottoShop lottoShop,
+            int money
+    ) {
         OutputView.showRequestManualLottoAmount();
         int manualLottoCount = InputView.inputManualLottoAmount();
         OutputView.showRequestManualLottoNumbers(manualLottoCount);
         int totalLottoCount = money / Lotto.LOTTO_PRICE;
+        return printLottos(totalLottoCount, manualLottoCount, lottoShop);
+    }
+
+    private Lottos printLottos(
+            int totalLottoCount,
+            int manualLottoCount,
+            LottoShop lottoShop
+    ) {
         Lottos lottos = lottoShop.buyLotto(totalLottoCount, manualLottoCount);
+
         OutputView.showLottoAmount(totalLottoCount, manualLottoCount);
         OutputView.showLottoNumbers(lottos);
         return lottos;
@@ -56,7 +68,10 @@ public class LottoController {
 
     }
 
-    private void printTotalProfit(double sum, int money) {
+    private void printTotalProfit(
+            double sum,
+            int money
+    ) {
         OutputView.showProfitResult(sum, money);
     }
 
