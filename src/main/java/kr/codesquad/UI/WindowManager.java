@@ -47,6 +47,7 @@ public class WindowManager extends Frame{
         System.out.println(result);
         setPanel(
                 new ResultShowPanel(
+                        "구매하신 로또 번호는 다음과 같습니다.",
                         result.toString(),
                         e -> VisualLottoGame.getVisualLottoGame().showGeneratedLotto())
         );
@@ -64,6 +65,7 @@ public class WindowManager extends Frame{
         //TODO : 로또 결과 판낼 작성
         setPanel(
                 new ResultShowPanel(
+                        "로또 당첨 결과 확인",
                         result,
                         e -> VisualLottoGame.getVisualLottoGame().haltAll())
         );

@@ -7,38 +7,39 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class ResultShowPanel extends CustomPanel {
-    private Label errLabel;
+    private Label instLabel;
     private TextArea resultArea;
-    private String instruction;
-    private TextField txt;
+    private String instructionStr;
+    private String txtAreaStr;
     private Button btn;
-    public ResultShowPanel(String message, ActionListener act){
+    public ResultShowPanel(String inst, String message, ActionListener act){
         super();
         setSize(400,360);
         setLayout(null);
-        this.instruction = message;
+        this.instructionStr = inst;
+        this.txtAreaStr = message;
         setElements();
         btn.addActionListener(act);
     }
 
     private void setElements(){
-        errLabel = new Label();
-        resultArea = new TextArea(instruction);
+        instLabel = new Label(instructionStr);
+        resultArea = new TextArea(txtAreaStr);
         btn = new Button("확인");
 
-        errLabel.setBounds(130, 20, 140, 30);
+        instLabel.setBounds(130, 20, 140, 30);
         resultArea.setBounds(55, 55, 290, 215);
         btn.setBounds(137, 280, 125, 30);
 
-        errLabel.setAlignment(Label.CENTER);
+        instLabel.setAlignment(Label.CENTER);
 
-        add(errLabel);
+        add(instLabel);
         add(resultArea);
         add(btn);
     }
 
     @Override
     public UserInputHandler getUserInputHandler() {
-        return new AwtInputHandler(btn, txt, null, errLabel);
+        return new AwtInputHandler(btn, null, null, instLabel);
     }
 }
