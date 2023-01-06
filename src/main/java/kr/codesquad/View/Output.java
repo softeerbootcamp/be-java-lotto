@@ -6,11 +6,30 @@ import java.util.List;
 
 public class Output {
 
-    public static void printCount(int count){
-        // 구입 개수 출력
-        System.out.println(count + "개를 구매했습니다.");
+    public static void printGetPrice(){
+        System.out.println("구입금액을 입력해 주세요.");
     }
 
+    public static void printGetLastWinLottoNum(){
+        System.out.println("\n지난 주 당첨 번호를 입력해 주세요");
+    }
+
+    public static void printCount(int manualLottoCount, int autoLottocount){
+        // 구입 개수 출력
+        System.out.println("\n수동으로 " + manualLottoCount + "장, 자동으로 " + autoLottocount + "개를 구매했습니다.");
+    }
+
+    public static void printGetManuelLottoCount(){
+        System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
+    }
+
+    public static void printGetManuelLottoNum(){
+        System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
+    }
+
+    public static void printGetBonusBall(){
+        System.out.println("보너스 볼을 입력해 주세요.");
+    }
 
     public static void printLottoBuyList(LottoGame lottoGame) {
         for (Lotto lottoBuy : lottoGame.getLottoBuyList()) {

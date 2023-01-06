@@ -7,9 +7,15 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class AutoLottoGenerator implements LottosGenerator{
-    public List<Lotto> generate(Money money) {
+    int count;
+
+    public AutoLottoGenerator(int count){
+        this.count = count;
+    }
+
+    public List<Lotto> generate() {
         List<Lotto> lottoList = new ArrayList<>();
-        for(int i = 0;i < money.countLottos();i++){
+        for(int i = 0;i < count;i++){
             lottoList.add(generateAuto());
         }
         return lottoList;

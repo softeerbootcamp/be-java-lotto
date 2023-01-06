@@ -1,5 +1,7 @@
 package kr.codesquad.Model;
 
+import kr.codesquad.Exception.InvalidLottoNumberException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Lotto {
 
     public Lotto(List<LottoNumber> lotto){
         if(lotto.size() != 6){
-            throw new IllegalArgumentException();
+            throw new InvalidLottoNumberException("번호 개수가 안맞아요\n");
         }
         this.lotto = lotto;
     }
@@ -54,9 +56,5 @@ public class Lotto {
             return 1;
         }
         return 0;
-    }
-
-    public void addLottoNum(int num){
-        lotto.add(LottoNumber.of(num));
     }
 }
