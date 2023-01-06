@@ -26,7 +26,10 @@ public class LottoController {
     }
 
     public void run() {
-        User user = createUserWithMoneyAndLottoCount();
+        int money = createLottoMoney();
+        int manualLottoCount = createManualLottoCount(money);
+
+        User user = createUser(money, manualLottoCount);
         outputView.printUser(user);
 
         WinningLotto winningLotto = createWinningLotto();
@@ -34,21 +37,6 @@ public class LottoController {
         Map<Rank, Integer> result = calculateResult(user, winningLotto);
         double profitRate = calculateProfitRate(result, user.getPurchaseMoney());
         outputView.printResult(result, profitRate);
-    }
-
-    private User createUserWithMoneyAndLottoCount() {
-        int money = createLottoMoney();
-        int manualLottoCount = createManualLottoCount(money);
-        int autoLottoCount = money / Lotto.PRICE - manualLottoCount;
-
-        if (manualLottoCount > 0) {
-            outputView.printUserManualLottoReadMessage();
-        }
-
-        List<Lotto> lottos = new ArrayList<>();
-        createManualLottos(manualLottoCount, lottos);
-        createAutoLottos(autoLottoCount, lottos);
-        return new User(money, manualLottoCount, autoLottoCount, lottos);
     }
 
     private int createLottoMoney() {
@@ -59,6 +47,19 @@ public class LottoController {
     private int createManualLottoCount(int money) {
         outputView.printManualLottoCountReadMessage();
         return inputView.readManualLottoCount(money);
+    }
+
+    private User createUser(int money, int manualLottoCount) {
+        int autoLottoCount = money / Lotto.PRICE - manualLottoCount;
+
+        if (manualLottoCount > 0) {
+            outputView.printUserManualLottoReadMessage();
+        }
+
+        List<Lotto> lottos = new ArrayList<>();
+        createManualLottos(manualLottoCount, lottos);
+        createAutoLottos(autoLottoCount, lottos);
+        return new User(money, manualLottoCount, autoLottoCount, lottos);
     }
 
     private void createManualLottos(int manualLottoCount, List<Lotto> lottos) {
