@@ -7,17 +7,11 @@ public class LottoMachine {
     private ArrayList<Integer> winNums;
     private int bonusBall;
 
-    public ArrayList<Integer> getWinNums() {
-        return winNums;
-    }
 
     public void setWinNums(ArrayList<Integer> winNums) {
         this.winNums = winNums;
     }
 
-    public int getBonusBall() {
-        return bonusBall;
-    }
 
     public ArrayList<ArrayList<Integer>> getRandomLottoTickets(int count)
     {

@@ -1,71 +1,126 @@
 package kr.codesquad.IO;
 import kr.codesquad.Lotto.LottoStatus;
 import kr.codesquad.User;
-import kr.codesquad.customException.InvalidCashExeption;
+import kr.codesquad.customException.InvalidInputException;
+import kr.codesquad.utility.Util;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.lang.RuntimeException;
 
 public class Console {
     static Scanner scanner = new Scanner(System.in);
+
+    public enum ScanContext{ CASH, BONUS, MANUAL, MANUALBALL }
+
+    private class consoleMemory
+    {
+        public String lastWinNum;
+    }
+
+    private consoleMemory LOG = new consoleMemory();
+
+    public int scanCashAmount()
+    {
+        int cash = 0;
+        try {
+            cash = Util.toInt(scanner.nextLine(), ScanContext.CASH);
+            return cash;
+        } catch(InvalidInputException e) {
+            System.out.println(e.getMessage());
+        } catch(NumberFormatException e) {
+            System.out.println("입력값이 숫자가 아니거나, 범위를 벗어납니다.");
+            System.out.printf("범위 안에 들어가는 숫자를 입력하세요 : %d ~ %d\n", 1000, Integer.MAX_VALUE - (Integer.MAX_VALUE%1000));
+        }
+        printCashInstruction();
+        cash = scanCashAmount();
+        return cash;
+    }
+
+
+    public int scanManualTicketCount(int userCash)
+    {
+        int count;
+        try{
+            count = Util.toInt(scanner.nextLine(), ScanContext.MANUAL, userCash);
+            return count;
+        } catch(InvalidInputException e) {
+            System.out.println(e.getMessage());
+        } catch(NumberFormatException e) {
+            System.out.println("입력값이 숫자가 아니거나, 구매가능개수를 초과합니다. 다시 입력하세요");
+        }
+        printManualTicketCountInstruction();
+        count = scanManualTicketCount(userCash);
+        return count;
+    }
+
+
+    public ArrayList<Integer> scanManualTicket()
+    {
+        ArrayList<Integer> ticket;
+        try {
+            ticket = Util.splitTo6Integers(scanner.nextLine());
+            return ticket;
+        } catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("공 번호는 숫자만 가능합니다. 다시입력하세요");
+        }
+        printManualTicketInstruction();
+        ticket = scanManualTicket();
+        return ticket;
+    }
+
+    public int scanBonusBall()
+    {
+        int ret;
+        try{
+            ret = Util.toInt(scanner.nextLine(), ScanContext.BONUS);
+            Util.checkAlreadySelected(LOG.lastWinNum, ret);
+            Util.checkBallIsInRange(ret);
+            return ret;
+        }catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
+        }catch(NumberFormatException e) {
+            System.out.println("입력값이 숫자가 아닙니다. 올바른 값을 입력하세요");
+        }
+        printBonusBallInstruction();
+        ret = scanBonusBall();
+        return ret;
+    }
+
+    public ArrayList<Integer> scanWinNums()
+    {
+        String winNumStr = new String();
+        ArrayList<Integer> winNumArray = new ArrayList<Integer>();
+        try{
+            winNumStr = scanner.nextLine();
+            LOG.lastWinNum = winNumStr;
+            winNumArray = Util.splitTo6Integers(winNumStr);
+            return winNumArray;
+        }catch (InvalidInputException e){
+            System.out.println(e.getMessage());
+        }catch(NumberFormatException e) {
+            System.out.println("입력값이 숫자가 아닙니다. 올바른 값을 입력하세요");
+        }
+        printLastWinnumInstruction();
+        winNumArray = scanWinNums();
+        return winNumArray;
+    }
 
     public void printCashInstruction()
     {
         System.out.println("구입 금액을 입력하세요");
     }
 
-    public int scanCashAmount()
-    {
-        int cash = 0;
-        try
-        {
-            cash = toInt(scanner.nextLine());
-        }
-        catch(InvalidCashExeption e)
-        {
-            System.out.println("유효한 숫자 입력이 아닙니다.");
-            System.out.println("1000원 단위의 자연수로 금액을 입력하세요");
-            System.out.println("--------------------");
-            System.out.println("구입 금액을 입력하세요");
-            cash = scanCashAmount();
-        }
-        catch(NumberFormatException e)
-        {
-            System.out.println("유효한 숫자 입력이 아닙니다.");
-            System.out.printf("범위 안에 들어가는 숫자를 입력하세요 : %d ~ %d\n", 1000, Integer.MAX_VALUE - (Integer.MAX_VALUE%1000));
-            System.out.println("--------------------");
-            System.out.println("구입 금액을 입력하세요");
-            cash = scanCashAmount();
-        }
-        return cash;
-    }
-
-    private int toInt(String str) throws NumberFormatException
-    {
-        int cash = Integer.parseInt(str);
-        if(cash <= 0 || cash % 1000 != 0) throw new InvalidCashExeption("유효하지 않은 입력");
-        return cash;
-    }
 
     public void printManualTicketCountInstruction()
     {
         System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
     }
 
-    public String scanManualTicketCount()
-    {
-        return scanner.nextLine();
-    }
-
     public void printManualTicketInstruction()
     {
         System.out.println("수동으로 구매할 번호를 입력해주세요.");
-    }
-
-    public String scanManualTicket()
-    {
-        return scanner.nextLine();
     }
 
     public void printManualAndAutoCount(int m, int a)
@@ -100,20 +155,10 @@ public class Console {
         System.out.println("지난 주 당첨 번호를 입력해주세요");
     }
 
-    public String scanWinNums()
-    {
-        scanner.nextLine();
-        return scanner.nextLine();
-    }
 
     public void printBonusBallInstruction()
     {
         System.out.println("보너스 볼을 입력해주세요");
-    }
-
-    public int scanBonusBall()
-    {
-        return scanner.nextInt();
     }
 
     public void printResult(ArrayList<Integer> Result, int buyNum)
@@ -126,11 +171,6 @@ public class Console {
         {
             System.out.printf("%s, (%d)- %d개\n", stat.getStatusString(), stat.getWinningAmout(), Result.get(stat.ordinal()));
         }
-//          System.out.printf("3개 일치 (5000원)- %d개\n", Result.get(0));
-//          System.out.printf("4개 일치 (50000원)- %d개\n", Result.get(1));
-//          System.out.printf("5개 일치 (1500000원)- %d개\n", Result.get(2));
-//          System.out.printf("5개 일치, 보너스 볼 일치(30000000원)- %d개\n", Result.get(3));
-//          System.out.printf("6개 일치 (2000000000원)- %d개\n", Result.get(4));
 
         float rate = (float)(
                 LottoStatus.Fifth.getWinningAmout()*Result.get(0) +
