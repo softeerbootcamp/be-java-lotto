@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package kr.codesquad.Model;
 
 import java.util.ArrayList;
@@ -13,21 +8,22 @@ public class Lotto {
     public static final int LOTTO_NUM_LENGTH = 6;
     public static final int LOTTO_START_NUM = 1;
     public static final int LOTTO_END_NUM = 45;
-    public Integer[] num = new Integer[6];
+    public static final String LOTTO_PRICE = "1000";
+    public Integer[] num = new Integer[LOTTO_NUM_LENGTH];
     public static List<Integer> lottoNum = new ArrayList();
 
     public static void initLotto() {
-        for(int i = 1; i <= 45; ++i) {
+        for(int i = LOTTO_START_NUM; i <= LOTTO_END_NUM; ++i) {
             lottoNum.add(i);
         }
 
     }
 
     Lotto(List<Integer> lottoNum) {
-        for(int i = 0; i < 6; ++i) {
-            this.num[i] = (Integer)lottoNum.get(i);
+        for(int i = 0; i < LOTTO_NUM_LENGTH; ++i) {
+            this.num[i] = lottoNum.get(i);
         }
 
-        Arrays.sort(this.num);
+        Arrays.sort(num);
     }
 }

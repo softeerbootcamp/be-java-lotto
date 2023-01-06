@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package kr.codesquad.Model;
 
 import java.util.ArrayList;
@@ -21,11 +16,15 @@ public class LottoGenerator {
         return lotto;
     }
 
-    private List<Integer> setLottoNum(List<Integer> lottoNum) {
-        List<Integer> number = new ArrayList();
+    public Lotto getNewLotto(List<Integer> lottoNumbers){
+        return new Lotto(lottoNumbers);
+    }
+
+    public List<Integer> setLottoNum(List<Integer> lottoNum) {
+        List<Integer> number = new ArrayList<>();
 
         for(int i = 0; i < 6; ++i) {
-            number.add((Integer)lottoNum.get(i));
+            number.add(lottoNum.get(i));
         }
 
         return number;
