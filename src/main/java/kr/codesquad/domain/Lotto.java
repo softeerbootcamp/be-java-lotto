@@ -1,29 +1,27 @@
 package kr.codesquad.domain;
 
+import kr.codesquad.LottoGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    private int inputMoney;
+    private final Money money;
     private final List<Row> totalLotto = new ArrayList<>();
 
-    public static Lotto createLotto(List<Row> rows, int inputMoney) {
-        Lotto lotto = new Lotto();
-        lotto.add(rows);
-        lotto.inputMoney = inputMoney;
-        return lotto;
+    public Lotto(Money money) {
+        this.money = money;
     }
 
-    public void add(List<Row> rows) {
-        this.totalLotto.addAll(rows);
+    public void addRowToLotto(int count, LottoGenerator lottoGenerator) {
+        for (int i = 0; i < count; i++) {
+            this.totalLotto.add(lottoGenerator.generateRow());
+        }
     }
-
-
 
     public void printTotalLotto() {
         for (Row row : totalLotto) {
-            List<Integer> values = row.getValues();
-            System.out.println(values);
+            row.printValues();
         }
     }
 
@@ -37,7 +35,8 @@ public class Lotto {
         return totalLotto;
     }
 
-    public int getInputMoney() {
-        return inputMoney;
+    public Money getMoney() {
+        return money;
     }
+
 }

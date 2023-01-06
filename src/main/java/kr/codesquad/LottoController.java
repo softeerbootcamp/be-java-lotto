@@ -4,24 +4,31 @@ import kr.codesquad.domain.Lotto;
 import kr.codesquad.domain.Row;
 import kr.codesquad.domain.Statistic;
 
-import java.util.List;
-
 public class LottoController {
     private final AutoLottoGenerator autoLottoGenerator;
+    private final ManualLottoGenerator manualLottoGenerator;
 
     public LottoController() {
         this.autoLottoGenerator = new AutoLottoGenerator();
-    }
-
-    public Lotto createLotto(int inputMoney) {
-        //todo: 랜덤 숫자, 수동 숫자 결정
-        List<Row> rows = autoLottoGenerator.generateRows(inputMoney);
-        return Lotto.createLotto(rows, inputMoney);
+        this.manualLottoGenerator = new ManualLottoGenerator();
     }
 
     public Statistic createStatistics(Lotto lotto) {
-        Statistic statistic = new Statistic(lotto.getInputMoney());
+        Statistic statistic = new Statistic(lotto.getMoney());
         statistic.calculate(lotto);
         return statistic;
+    }
+
+    public void addManualRowsToLotto(Lotto lotto, int countOfManualRows, String manualRowString) {
+        manualLottoGenerator.checkValidation(manualRowString);
+        lotto.addRowToLotto(countOfManualRows, manualLottoGenerator);
+    }
+
+    public void addAutoRowsToLotto(Lotto lotto, int countOfAutoRows) {
+        lotto.addRowToLotto(countOfAutoRows, autoLottoGenerator);
+    }
+
+    public Row createManualRow(String input) {
+        return manualLottoGenerator.checkValidation(input);
     }
 }

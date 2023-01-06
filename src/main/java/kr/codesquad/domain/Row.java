@@ -1,38 +1,63 @@
 package kr.codesquad.domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import kr.codesquad.exception.ColumnNotValidException;
+import kr.codesquad.exception.DuplicateLottoNumberException;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Row {
 
-    private final List<Integer> values = new ArrayList<>();
+    private final List<LottoNumber> values = new ArrayList<>();
     private int match;
     private boolean isBonus;
     public static final int COLUMN = 6;
 
-
-    public static Row createRow(List<Integer> numbers) {
-        Row row = new Row();
-        row.addValues(numbers);
-        return row;
+    protected Row(List<LottoNumber> numbers) {
+        this.addValues(numbers);
     }
 
-    /**
-     * 각 list 별 정답과 일치하는 갯수 반환
-     */
+    public static Row createRow(List<LottoNumber> numbers) {
+        lottoIntegersDuplicateCheck(extractIntegersList(numbers));
+        checkValuesOverColumn(numbers);
+        return new Row(numbers);
+    }
+
+    private static List<Integer> extractIntegersList(List<LottoNumber> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::getNumber)
+                .collect(Collectors.toList());
+    }
+
+    private static void checkValuesOverColumn(List<LottoNumber> numbers) {
+        if (numbers.size() != COLUMN) {
+            throw new ColumnNotValidException();
+        }
+    }
+
+    public static void lottoIntegersDuplicateCheck(List<Integer> numList) {
+        Set<Integer> numSet = new HashSet<>(numList);
+
+        if (numSet.size() != numList.size()) {
+            throw new DuplicateLottoNumberException();
+        }
+    }
+
+
     public void compare(WinningNumbers winningNumbers) {
-        List<Integer> answers = winningNumbers.getRow().values;
-        for (int answer : answers) {
+        List<LottoNumber> answers = winningNumbers.getRow().values;
+        for (LottoNumber answer : answers) {
             compareNumber(answer);
         }
+
         compareBonusNumber(winningNumbers.getBonusNum());
     }
 
-    public void compareNumber(int answer) {
-        if (this.values.contains(answer)) {
-            this.match++;
+    public void compareNumber(LottoNumber answer) {
+        for (LottoNumber value : values) {
+            if (value.getNumber() == answer.getNumber()) {
+                this.match++;
+            }
         }
     }
 
@@ -40,7 +65,7 @@ public class Row {
         this.isBonus = this.values.contains(bonusNumber);
     }
 
-    public void addValues(List<Integer> num) {
+    public void addValues(List<LottoNumber> num) {
         values.addAll(num);
     }
 
@@ -48,11 +73,15 @@ public class Row {
         return match;
     }
 
-    public List<Integer> getValues() {
+    public List<LottoNumber> getValues() {
         return values;
     }
 
     public boolean isBonus() {
         return isBonus;
+    }
+
+    public void printValues() {
+        System.out.println(values);
     }
 }
