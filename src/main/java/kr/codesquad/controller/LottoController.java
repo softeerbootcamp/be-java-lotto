@@ -56,21 +56,24 @@ public class LottoController {
         }
 
         List<Lotto> lottos = new ArrayList<>();
-        createManualLottos(manualLottoCount, lottos);
-        createAutoLottos(autoLottoCount, lottos);
+        lottos.addAll(createManualLottos(manualLottoCount));
+        lottos.addAll(createAutoLottos(autoLottoCount));
         return new User(money, manualLottoCount, autoLottoCount, lottos);
     }
 
-    private void createManualLottos(int manualLottoCount, List<Lotto> lottos) {
+    private List<Lotto> createManualLottos(int manualLottoCount) {
+        List<Lotto> lottos = new ArrayList<>();
         for (int count = 0; count < manualLottoCount; count++) {
             List<Integer> numbers = inputView.readLottoNumbers();
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
+
+        return lottos;
     }
 
-    private void createAutoLottos(int autoLottoCount, List<Lotto> lottos) {
-        lottos.addAll(lottoMachine.createLottos(autoLottoCount));
+    private List<Lotto> createAutoLottos(int autoLottoCount) {
+        return lottoMachine.createLottos(autoLottoCount);
     }
 
     private WinningLotto createWinningLotto() {
