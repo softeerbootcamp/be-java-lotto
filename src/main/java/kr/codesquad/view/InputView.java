@@ -18,7 +18,7 @@ public final class InputView {
         return input();
     }
 
-    public static int inputManualLottoAmount() {
+    public static int inputManualLottoCount() {
         return Integer.parseInt(input());
     }
 

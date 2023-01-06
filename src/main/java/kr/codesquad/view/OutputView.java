@@ -14,17 +14,18 @@ public final class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public static void showRequestManualLottoAmount() {
+    public static void showRequestManualLottoCount() {
         System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
     }
 
     public static void showRequestManualLottoNumbers(int manualLottoCount) {
+
         if (manualLottoCount != 0) {
             System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
         }
     }
 
-    public static void showLottoAmount(int totalLottoCount, int manualLottoCount) {
+    public static void showLottoCount(int totalLottoCount, int manualLottoCount) {
         System.out.printf("\n수동으로 %d장, 자동으로 %d개를 구매했습니다.\n", manualLottoCount, totalLottoCount - manualLottoCount);
     }
 

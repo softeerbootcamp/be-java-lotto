@@ -8,9 +8,13 @@ import java.util.stream.Collectors;
 
 public class ManualLottoFactory implements LottoFactory {
 
+    private static final int COUNT = 6;
+
     @Override
     public List<LottoNumber> generateLottoNumbers() {
-        return convertToLottoNumber();
+        List<LottoNumber> lottoNumbers = convertToLottoNumber();
+        checkNumbers(lottoNumbers);
+        return lottoNumbers;
     }
 
     private List<LottoNumber> convertToLottoNumber() {
@@ -18,6 +22,15 @@ public class ManualLottoFactory implements LottoFactory {
         return lottoNumbers.stream()
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
+    }
+
+    private void checkNumbers(List<LottoNumber> inputNumbers) {
+        if (inputNumbers.size() != COUNT) {
+            throw new IllegalArgumentException("로또 숫자를 6개 입력해 주세요.");
+        }
+        if (inputNumbers.stream().distinct().count() != COUNT) {
+            throw new IllegalArgumentException("중복된 로또 번호가 있습니다.");
+        }
     }
 
 }

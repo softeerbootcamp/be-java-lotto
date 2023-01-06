@@ -23,10 +23,6 @@ public class LottoNumber {
         }
     }
 
-    public boolean isNumeric(String input) {
-        return input.chars().allMatch(Character::isDigit);
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null || this.getClass() != obj.getClass()) return false;

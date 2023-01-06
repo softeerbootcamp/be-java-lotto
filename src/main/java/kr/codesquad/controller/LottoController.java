@@ -24,10 +24,13 @@ public class LottoController {
             LottoShop lottoShop,
             int money
     ) {
-        OutputView.showRequestManualLottoAmount();
-        int manualLottoCount = InputView.inputManualLottoAmount();
-        OutputView.showRequestManualLottoNumbers(manualLottoCount);
         int totalLottoCount = money / Lotto.LOTTO_PRICE;
+        OutputView.showRequestManualLottoCount();
+        int manualLottoCount = InputView.inputManualLottoCount();
+        if(totalLottoCount < manualLottoCount) {
+            throw new IllegalArgumentException("로또를 지불하신 금액보다 많이 살 수 없습니다.");
+        }
+        OutputView.showRequestManualLottoNumbers(manualLottoCount);
         return printLottos(totalLottoCount, manualLottoCount, lottoShop);
     }
 
@@ -38,7 +41,7 @@ public class LottoController {
     ) {
         Lottos lottos = lottoShop.buyLotto(totalLottoCount, manualLottoCount);
 
-        OutputView.showLottoAmount(totalLottoCount, manualLottoCount);
+        OutputView.showLottoCount(totalLottoCount, manualLottoCount);
         OutputView.showLottoNumbers(lottos);
         return lottos;
     }
