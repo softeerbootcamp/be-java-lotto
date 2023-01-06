@@ -8,12 +8,13 @@ import java.awt.event.ActionListener;
 
 public class ResultShowPanel extends CustomPanel {
     private Label errLabel;
-    private Label instLabel;
+    private TextArea instLabel;
     private String instruction;
     private TextField txt;
     private Button btn;
     public ResultShowPanel(String message, ActionListener act){
         super();
+        System.out.println(message);
         setSize(200,360);
         setLayout(null);
         this.instruction = message;
@@ -23,16 +24,15 @@ public class ResultShowPanel extends CustomPanel {
 
     private void setElements(){
         errLabel = new Label();
-        instLabel = new Label(instruction);
-        txt = new TextField();
+        instLabel = new TextArea(instruction);
         btn = new Button("확인");
 
-        instLabel.setBounds(30, 50, 180, 215);
-        txt.setBounds(10, 160, 180, 30);
+        errLabel.setBounds(30, 20, 180, 30);
+        instLabel.setBounds(30, 50, 180, 100);
         btn.setBounds(45, 200, 110, 30);
 
+        add(errLabel);
         add(instLabel);
-        add(txt);
         add(btn);
     }
 
