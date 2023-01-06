@@ -14,10 +14,10 @@ public class ManualLottoGenerator implements LottoGenerator {
 
     @Override
     public Row generateRow() {
-        return generateStringToRow(manualRowString);
+        return convertStringToRow(manualRowString);
     }
 
-    public Row generateStringToRow(String rowByString) {
+    public Row convertStringToRow(String rowByString) {
         StringTokenizer st = new StringTokenizer(rowByString);
         List<LottoNumber> numbers = new ArrayList<>();
         while (st.hasMoreTokens()) {
