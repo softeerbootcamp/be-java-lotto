@@ -14,23 +14,19 @@ public class ManualLottoGenerator implements LottoGenerator {
 
     @Override
     public Row generateRow() {
-        return convertStringToRow(manualRowString);
+        return generateStringToRow(manualRowString);
     }
 
-    public Row checkValidation(String manualRowString) {
-        Row row = convertStringToRow(manualRowString);
-        this.manualRowString = manualRowString;
-        return row;
-    }
-
-    private Row convertStringToRow(String rowByString) {
+    public Row generateStringToRow(String rowByString) {
         StringTokenizer st = new StringTokenizer(rowByString);
         List<LottoNumber> numbers = new ArrayList<>();
         while (st.hasMoreTokens()) {
             numbers.add(new LottoNumber(st.nextToken()));
         }
         Collections.sort(numbers);
+        Row generatedRow = Row.createRow(numbers);
 
-        return Row.createRow((numbers));
+        this.manualRowString = rowByString;
+        return generatedRow;
     }
 }

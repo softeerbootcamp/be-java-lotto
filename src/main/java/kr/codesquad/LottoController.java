@@ -20,7 +20,7 @@ public class LottoController {
     }
 
     public void addManualRowsToLotto(Lotto lotto, int countOfManualRows, String manualRowString) {
-        manualLottoGenerator.checkValidation(manualRowString);
+        manualLottoGenerator.generateStringToRow(manualRowString);
         lotto.addRowToLotto(countOfManualRows, manualLottoGenerator);
     }
 
@@ -29,6 +29,6 @@ public class LottoController {
     }
 
     public Row createManualRow(String input) {
-        return manualLottoGenerator.checkValidation(input);
+        return manualLottoGenerator.generateStringToRow(input);
     }
 }
