@@ -1,4 +1,6 @@
-package kr.codesquad;
+package kr.codesquad.Utility;
+
+import kr.codesquad.CustomException;
 
 import java.util.Scanner;
 

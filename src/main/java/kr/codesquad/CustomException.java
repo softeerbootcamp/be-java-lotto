@@ -1,7 +1,7 @@
 package kr.codesquad;
 
-public class CustomException extends Exception{
-    public CustomException (String moneyNotDividedClearly){
-        super(moneyNotDividedClearly);
+public class CustomException extends Exception {
+    public CustomException(String message) {
+        super(message);
     }
 }

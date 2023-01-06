@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.LottoManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,6 +8,7 @@ public class EmptyLotto {
     private List<Integer> numbers;
 
     public EmptyLotto(List<Integer> numbers) {
+
         setNumbers(numbers);
     }
 

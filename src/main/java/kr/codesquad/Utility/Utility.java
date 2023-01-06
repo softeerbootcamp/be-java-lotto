@@ -1,4 +1,9 @@
-package kr.codesquad;
+package kr.codesquad.Utility;
+
+import kr.codesquad.Enum.Lotto_Info;
+import kr.codesquad.Enum.Prizes_Info;
+import kr.codesquad.LottoManager.EmptyLotto;
+import kr.codesquad.User.UserLotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +22,7 @@ public class Utility {
             this.allLottoNum.add(i);
         }
     }
+
     public List<Integer> retRandLottoNum() {
         Collections.shuffle(this.allLottoNum);
         ArrayList<Integer> lottoNums = new ArrayList<>(Lotto_Info.LOTTO_SIZE.getValue());
@@ -25,14 +31,16 @@ public class Utility {
         }
         return lottoNums;
     }
-    public List<Integer> transStringToIntegerList(String str){
+
+    public List<Integer> transStringToIntegerList(String str) {
         String[] strArr = str.split(",");
         List<Integer> integerList = new ArrayList<>();
-        for(int i=0;i< strArr.length;i++){
+        for (int i = 0; i < strArr.length; i++) {
             integerList.add(Integer.parseInt(strArr[i]));
         }
         return integerList;
     }
+
     public void printProfit(int[] jk, int money) {
         double prof, sum = 0;
         int flag = 0;
@@ -45,4 +53,5 @@ public class Utility {
         prof = (double) ((sum - money) / money);
         System.out.printf("총 수익률은 : %.2f%%입니다\n", prof * 100);
     }
+
 }

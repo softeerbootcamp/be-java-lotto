@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.Enum;
 
 public enum Lotto_Info {
     LOTTO_PRICE(1000),
@@ -7,6 +7,7 @@ public enum Lotto_Info {
     private int value;
 
     Lotto_Info(int value) {
+
         this.value = value;
     }
 
