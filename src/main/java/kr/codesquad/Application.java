@@ -39,9 +39,9 @@ public class Application {
     }
 
     private Lottos buyLotto(Money money) {
-        Amount totalAmount = new Amount(money.getMoney() / LottoUtil.LOTTO_PRICE);
-        Amount manualAmount = new Amount(console.inputManualLottoAmount());
-        Amount autoAmount = new Amount(totalAmount.getAmount() - manualAmount.getAmount());
+        Amount totalAmount = lottoService.makeAmount(money.getMoney() / LottoUtil.LOTTO_PRICE);
+        Amount manualAmount = lottoService.makeAmount(totalAmount, console.inputManualLottoAmount());
+        Amount autoAmount = lottoService.makeAmount(totalAmount.getAmount() - manualAmount.getAmount());
         List<Lotto> lottos = lottoService.buyLotto(manualAmount.getAmount(), autoAmount.getAmount());
 
         console.printLottoNum(lottos);
@@ -50,8 +50,8 @@ public class Application {
     }
 
     private WinLotto inputWinLotto() {
-        Lotto lotto = new Lotto(console.inputWinLottoNum());
-        Bonus bonusNum = new Bonus(console.inputBonusNum(), lotto);
+        Lotto lotto = lottoService.makeLotto(console.inputWinLottoNum());
+        Bonus bonusNum = lottoService.makeBonus(console.inputBonusNum(), lotto);
 
         return lottoService.makeWinLotto(lotto, bonusNum);
     }
