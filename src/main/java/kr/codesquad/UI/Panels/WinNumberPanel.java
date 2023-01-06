@@ -2,7 +2,6 @@ package kr.codesquad.UI.Panels;
 
 import kr.codesquad.InputManager.AwtInputHandler;
 import kr.codesquad.InputManager.UserInputHandler;
-import kr.codesquad.UI.Panels.CustomPanel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -24,7 +23,7 @@ public class WinNumberPanel extends CustomPanel {
         setLayout(null);
         setElements();
         btn.addActionListener(act);
-        inputHandler = new AwtInputHandler(btn, txt, null, errLabel);
+        inputHandler = new AwtInputHandler(txt, null, errLabel);
     }
 
     private void setElements(){
@@ -54,6 +53,6 @@ public class WinNumberPanel extends CustomPanel {
 
     @Override
     public UserInputHandler getUserInputHandler() {
-        return new AwtInputHandler(btn, txt, bonus, errLabel);
+        return new AwtInputHandler(txt, bonus, errLabel);
     }
 }

@@ -1,7 +1,5 @@
 package kr.codesquad;
 
-import kr.codesquad.InputManager.AwtInputHandler;
-import kr.codesquad.InputManager.UserInputHandler;
 import kr.codesquad.Lotto.Lotto;
 import kr.codesquad.Lotto.LottoStat;
 import kr.codesquad.Lotto.WinLotto;
@@ -29,48 +27,51 @@ public class VisualLottoGame {
     }
 
     public static VisualLottoGame getVisualLottoGame() {
-        if(lottoGame == null)
+        if (lottoGame == null)
             lottoGame = new VisualLottoGame();
         return lottoGame;
     }
 
     public void start() {
-        windowManager.setMoneyPanel();
+        windowManager.setMoneyPanel(e -> getMoney());
     }
 
     public void getMoney() {
         nTotalLotto = windowManager.getInputHandler().getMoney() / 1000;
-        windowManager.setAmountOfManualLottoPanel(nTotalLotto);
+        windowManager.setAmountOfManualLottoPanel(
+                nTotalLotto, e -> getAmountOfManualLotto()
+        );
     }
 
     public void getAmountOfManualLotto() {
         nManualLotto = windowManager.getInputHandler().getManualLottoAmount(nTotalLotto);
-        windowManager.setOneManualLottoPanel(nManualLotto);
-        if(nManualLotto == 0){
+        windowManager.setOneManualLottoPanel(nManualLotto, e -> buyOneManualLotto());
+        if (nManualLotto == 0) {
             buyAutoLottos();
-            windowManager.setPurchasedLottoPanel(lottos);
+            windowManager.setPurchasedLottoPanel(lottos, e -> VisualLottoGame.getVisualLottoGame().buyOneManualLotto());
         }
     }
 
-    public void buyAutoLottos(){
-        while(lottos.size() < nTotalLotto){
+    public void buyAutoLottos() {
+        while (lottos.size() < nTotalLotto) {
             lottos.add(new Lotto());
         }
     }
+
     public void buyOneManualLotto() {
         List<Integer> lottoNum = windowManager.getInputHandler().getSixLottoNumber();
         lottos.add(new Lotto(lottoNum));
         if (lottos.size() < nManualLotto) {
-            windowManager.setOneManualLottoPanel(nManualLotto - lottos.size());
+            windowManager.setOneManualLottoPanel(nManualLotto - lottos.size(), e -> buyOneManualLotto());
             return;
         }
         buyAutoLottos();
-        windowManager.setPurchasedLottoPanel(lottos);
+        windowManager.setPurchasedLottoPanel(lottos, e -> showGeneratedLotto());
     }
 
 
     public void showGeneratedLotto() {
-        windowManager.setWinLottoPanel();
+        windowManager.setWinLottoPanel(e -> getWiningLotto());
     }
 
     public void getWiningLotto() {
@@ -79,10 +80,10 @@ public class VisualLottoGame {
         winLotto = new WinLotto(winningNums, bonus);
         LottoStat lottoStat = new LottoStat(lottos, winLotto);
         String result = lottoStat.getResult();
-        windowManager.setResultLottoPanel(result);
+        windowManager.setResultLottoPanel(result, e -> haltAll());
     }
 
-    public void haltAll(){
+    public void haltAll() {
         System.exit(0);
     }
 

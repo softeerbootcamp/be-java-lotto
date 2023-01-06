@@ -2,7 +2,6 @@ package kr.codesquad.UI.Panels;
 
 import kr.codesquad.InputManager.AwtInputHandler;
 import kr.codesquad.InputManager.UserInputHandler;
-import kr.codesquad.UI.Panels.CustomPanel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -23,7 +22,7 @@ public class SingleInputPanel extends CustomPanel {
         this.instruction = instruction;
         setElements();
         btn.addActionListener(act);
-        inputHandler = new AwtInputHandler(btn, txt, null, errLabel);
+        inputHandler = new AwtInputHandler(txt, null, errLabel);
     }
 
     private void setElements(){

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class UserInputHandlerImpl implements UserInputHandler {
 
-    private Scanner s1;
+    private final Scanner s1;
 
     public UserInputHandlerImpl() {
         s1 = new Scanner(System.in);
