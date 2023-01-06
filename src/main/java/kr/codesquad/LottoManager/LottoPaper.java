@@ -7,7 +7,6 @@ public class LottoPaper {
     private List<Integer> numbers;
 
     public LottoPaper(List<Integer> numbers) {
-
         setNumbers(numbers);
     }
 
