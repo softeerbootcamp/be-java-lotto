@@ -1,12 +1,10 @@
 package kr.codesquad.View;
 
-import kr.codesquad.Exception.MoneyValidator;
+import kr.codesquad.Exception.Validator;
 import kr.codesquad.Model.Lotto;
 
-import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,11 +15,11 @@ public class LottoScanner {
             try {
                 Scanner sc = new Scanner(System.in);
                 String moneyStr = sc.nextLine();
-                MoneyValidator.isValid(moneyStr);
+                Validator.isValidMoney(moneyStr);
                 System.out.println(moneyStr);
                 return new BigInteger(moneyStr);
             } catch (NumberFormatException e) {
-                System.out.println("Money should be Integer");
+                System.out.println("Money should be Positive Integer");
             }
         }
     }
