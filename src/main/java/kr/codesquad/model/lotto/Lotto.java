@@ -1,5 +1,7 @@
 package kr.codesquad.model.lotto;
 
+import kr.codesquad.util.error.LottoErrorMessage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,7 +22,12 @@ public abstract class Lotto {
         return numbers;
     }
 
-
+    protected void validLotto(List<Integer> numbers) {
+        long distinctSize = numbers.stream().distinct().count();
+        if (distinctSize != NUMBER_SIZE) {
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_NUMBER);
+        }
+    }
 
     public List<Integer> getNumbers() {
         return numbers;
