@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="feat : 정적 팩터리 메서드 파라미터로 들어온 값을 validate하는 메서드 추가">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="test : 테스트 파일 정리">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/lotto/domain/LottoNumberTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/lotto/domain/LottoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/lotto/domain/LottoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/LottoResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/generate/LottoGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/generate/LottoGeneratorImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +55,10 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/Assertions.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/Test.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -78,7 +83,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -215,13 +220,6 @@
       <workItem from="1672644019169" duration="26231000" />
       <workItem from="1672724915964" duration="54000" />
       <workItem from="1672724971960" duration="11965000" />
-    </task>
-    <task id="LOCAL-00026" summary="refactor : main 메서드에 구현된 부분들 app으로 넘김">
-      <created>1672738634733</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1672738634733</updated>
     </task>
     <task id="LOCAL-00027" summary="refactor : 클래스 내에서 사용한 값들 상수화">
       <created>1672802391666</created>
@@ -559,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672984405271</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="test : 테스트 파일 정리">
+      <created>1672984450879</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1672984450879</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +582,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor : Console.java를 IOManager로 refactor" />
     <MESSAGE value="feat : Lotto에 equals 메서드 추가" />
     <MESSAGE value="feat : LottoFactory에 winning 타입 로또 생성하는 조건문 추가" />
     <MESSAGE value="feat : LottoGame에 match 메서드 추가하여 구현" />
@@ -602,7 +606,8 @@
     <MESSAGE value="refactor : Controller에서 WinningLotto를 받아서 바로 생성하도록 변경" />
     <MESSAGE value="test : Lotto match, 생성 테스트 구현" />
     <MESSAGE value="feat : 정적 팩터리 메서드 파라미터로 들어온 값을 validate하는 메서드 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : 정적 팩터리 메서드 파라미터로 들어온 값을 validate하는 메서드 추가" />
+    <MESSAGE value="test : 테스트 파일 정리" />
+    <option name="LAST_COMMIT_MESSAGE" value="test : 테스트 파일 정리" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

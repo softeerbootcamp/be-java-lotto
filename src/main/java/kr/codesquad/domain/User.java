@@ -11,10 +11,6 @@ public class User {
         this.money = money;
     }
 
-    public int countOfBuying(){
-        return money / MONEY_PER_LOTTO;
-    }
-
     public int getMoney() {
         return money;
     }

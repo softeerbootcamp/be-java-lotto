@@ -13,14 +13,16 @@ public class LottoGeneratorImpl implements LottoGenerator {
     @Override
     public List<Lotto> generateLottos(int money) {
         int manualLottoCount = InputView.inputManualLottoCount();
+        int autoLottoCount = money / LOTTO_PRICE - manualLottoCount;
+        if (autoLottoCount < 0)
+            throw new IllegalArgumentException("입력한 금액보다 많은 로또를 발급할 수 없습니다.");
+
         OutputView.guideInputManual();
         List<Lotto> manualLottos = ManualLottoGenerator.generateLottos(manualLottoCount);
 
-        int autoLottoCount = money / LOTTO_PRICE - manualLottoCount;
         OutputView.printLottoCount(manualLottoCount, autoLottoCount);
         List<Lotto> autoLottos = AutoLottoGenerator.generateLottos(autoLottoCount);
 
-        List<Lotto> totalLottos = Stream.concat(manualLottos.stream(), autoLottos.stream()).collect(Collectors.toList());
-        return totalLottos;
+        return Stream.concat(manualLottos.stream(), autoLottos.stream()).collect(Collectors.toList());
     }
 }

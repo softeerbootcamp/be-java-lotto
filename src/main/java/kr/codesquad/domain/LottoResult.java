@@ -24,8 +24,7 @@ public class LottoResult {
     }
 
     public Map<Rank, Integer> getResult() {
-        Map<Rank, Integer> rankResult = new EnumMap<>(result);
-        return rankResult;
+        return new EnumMap<>(result);
     }
 
     public double getEarningRate(int inputMoney){
