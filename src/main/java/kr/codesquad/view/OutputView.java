@@ -1,7 +1,8 @@
 package kr.codesquad.view;
 
 import kr.codesquad.model.Rank;
-import kr.codesquad.model.UserLotto;
+import kr.codesquad.model.User;
+import kr.codesquad.model.lotto.Lotto;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,6 +11,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
+
+    public static void printErrorMessage(String message) {
+        System.out.println("[ERROR] " + message);
+    }
 
     public void printMoneyReadMessage() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -22,16 +27,18 @@ public class OutputView {
     public void printUserManualLottoReadMessage() {
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
     }
-    public void printLottoCount(int manualLottoCount, int autoLottoCount) {
-        System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 "+ autoLottoCount + "개를 구매했습니다.");
+
+    public void printUser(User user) {
+        printLottoCount(user.getManualLottoCount(), user.getAutoLottoCount());
+        printUserLotto(user.getLottos());
     }
 
-    public void printUserLotto(UserLotto userLotto) {
-        StringBuffer sb = new StringBuffer();
-        userLotto.getLottos()
-                .forEach(lotto -> sb.append(lotto.toString())
-                        .append("\n"));
-        System.out.println(sb);
+    public void printLottoCount(int manualLottoCount, int autoLottoCount) {
+        System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 " + autoLottoCount + "개를 구매했습니다.");
+    }
+
+    public void printUserLotto(List<Lotto> lottos) {
+        lottos.forEach(System.out::println);
     }
 
     public void printWinningLottoReadMessage() {
@@ -43,39 +50,32 @@ public class OutputView {
     }
 
     public void printResult(Map<Rank, Integer> result, double profitRate) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("당첨 통계\n----------\n");
+        System.out.println("\n당첨 통계\n----------");
 
         List<Rank> ranks = Arrays.stream(Rank.values())
+                .filter(rank -> rank != Rank.NOTHING)
                 .sorted(Collections.reverseOrder())
                 .collect(Collectors.toList());
 
-        makeWinningResultWithStringBuffer(sb, ranks, result);
-        makeProfitRateMessageWithStringBuffer(sb, profitRate);
-
-        System.out.println(sb);
+        printWinningResultMessage(ranks, result);
+        printProfitRateMessage(profitRate);
     }
 
-    private void makeWinningResultWithStringBuffer(StringBuffer sb, List<Rank> ranks, Map<Rank, Integer> result) {
-        ranks.stream()
-                .filter(rank -> rank != Rank.NOTHING)
-                .forEach(rank -> {
-                    sb.append(rank.getCount())
-                            .append("개 일치");
-                    if (rank == Rank.SECOND) {
-                        sb.append(", 보너스 볼 일치");
-                    }
-                    sb.append(" (")
-                            .append(rank.getPrize())
-                            .append("원)- ")
-                            .append(result.getOrDefault(rank, 0))
-                            .append("개\n");
-                });
+    private void printWinningResultMessage(List<Rank> ranks, Map<Rank, Integer> result) {
+        ranks.forEach(rank -> {
+            System.out.print(rank.getCount() + "개 일치");
+            printBonusBallMessage(rank);
+            System.out.println(" " + rank.getPrize() + "원)- " + result.getOrDefault(rank, 0) + "개");
+        });
     }
 
-    private void makeProfitRateMessageWithStringBuffer(StringBuffer sb, double profitRate) {
-        sb.append("총 수익률은 ")
-                .append(String.format("%.2f", profitRate))
-                .append("%입니다.");
+    private void printBonusBallMessage(Rank rank) {
+        if (rank.isBonus()) {
+            System.out.print(", 보너스 볼 일치");
+        }
+    }
+
+    private void printProfitRateMessage(double profitRate) {
+        System.out.println("총 수익률은 " + String.format("%.2f", profitRate) + "%입니다.");
     }
 }

@@ -1,12 +1,16 @@
 package kr.codesquad.controller;
 
-import kr.codesquad.model.*;
+import kr.codesquad.model.LottoMachine;
+import kr.codesquad.model.User;
+import kr.codesquad.model.WinningResult;
+import kr.codesquad.model.lotto.Lotto;
+import kr.codesquad.model.lotto.WinningLotto;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class LottoController {
 
@@ -20,37 +24,53 @@ public class LottoController {
         this.outputView = new OutputView();
     }
 
-    public void start() {
+    public void run() {
         int money = createLottoMoney();
+        int manualLottoCount = createManualLottoCount(money);
 
-        outputView.printManualLottoCountReadMessage();
-        int manualLottoCount = inputView.readOneNumber();
-        int autoLottoCount = money / 1000 - manualLottoCount;
-
-        outputView.printUserManualLottoReadMessage();
-        UserLotto userLotto = createUserLotto(manualLottoCount, autoLottoCount);
-        outputView.printLottoCount(manualLottoCount, autoLottoCount);
-        outputView.printUserLotto(userLotto);
+        User user = createUserLotto(money, manualLottoCount);
+        outputView.printUser(user);
 
         WinningLotto winningLotto = createWinningLotto();
 
-        Map<Rank, Integer> result = calculateResult(userLotto, winningLotto);
-        double profitRate = calculateProfitRate(result, money);
-        outputView.printResult(result, profitRate);
+        WinningResult winningResult = calculateResult(user, winningLotto);
+        double profitRate = winningResult.calculateProfitRate(user.getPurchaseMoney());
+        outputView.printResult(winningResult.getResult(), profitRate);
     }
 
     private int createLottoMoney() {
         outputView.printMoneyReadMessage();
-        return inputView.readOneNumber();
+        return inputView.readMoney();
     }
 
-    private UserLotto createUserLotto(int manualLottoCount, int autoLottoCount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int count = 0; count < manualLottoCount; count++) {
-            lottos.add(new Lotto(inputView.readLottoNumbers()));
+    private int createManualLottoCount(int money) {
+        outputView.printManualLottoCountReadMessage();
+        return inputView.readManualLottoCount(money);
+    }
+
+    private User createUserLotto(int money, int manualLottoCount) {
+        int autoLottoCount = money / Lotto.PRICE - manualLottoCount;
+
+        if (manualLottoCount > 0) {
+            outputView.printUserManualLottoReadMessage();
         }
+
+        List<Lotto> lottos = new ArrayList<>();
+        createManualLottos(manualLottoCount, lottos);
+        createAutoLottos(autoLottoCount, lottos);
+        return new User(money, manualLottoCount, autoLottoCount, lottos);
+    }
+
+    private void createManualLottos(int manualLottoCount, List<Lotto> lottos) {
+        for (int count = 0; count < manualLottoCount; count++) {
+            List<Integer> numbers = inputView.readLottoNumbers();
+            Collections.sort(numbers);
+            lottos.add(new Lotto(numbers));
+        }
+    }
+
+    private void createAutoLottos(int autoLottoCount, List<Lotto> lottos) {
         lottos.addAll(lottoMachine.createLottos(autoLottoCount));
-        return new UserLotto(lottos);
     }
 
     private WinningLotto createWinningLotto() {
@@ -58,22 +78,12 @@ public class LottoController {
         List<Integer> numbers = inputView.readLottoNumbers();
 
         outputView.printBonusNumberReadMessage();
-        int bonusNumber = inputView.readOneNumber();
+        int bonusNumber = inputView.readBonusNumber(numbers);
 
-        return new WinningLotto(numbers, bonusNumber);
+        return new WinningLotto(new Lotto(numbers), bonusNumber);
     }
 
-    private Map<Rank, Integer> calculateResult(UserLotto userLotto, WinningLotto winningLotto) {
-        return userLotto.compare(winningLotto);
-    }
-
-    private double calculateProfitRate(Map<Rank, Integer> result, int money) {
-        double profit = result.entrySet()
-                .stream()
-                .map(entry ->
-                        entry.getKey().getPrize() * entry.getValue())
-                .reduce(0, Integer::sum);
-
-        return (profit - money) / money * 100;
+    private WinningResult calculateResult(User user, WinningLotto winningLotto) {
+        return new WinningResult(user.compare(winningLotto));
     }
 }
