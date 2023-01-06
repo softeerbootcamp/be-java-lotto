@@ -1,23 +1,32 @@
 package kr.codesquad.lotto;
 
-import kr.codesquad.input.Input;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Lotto {
-    private final Input input;
-
+public class Lotto {
     public static int PRICE = 1000;
 
     public static int NUMBER_COUNT = 6;
 
-    private List<LottoNumber> lottoNumbers;
+    private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(Input input) {
-        lottoNumbers = new ArrayList<>();
-        this.input = input;
+    private Lotto(List<LottoNumber> list) {
+        lottoNumbers = list;
     }
 
-    abstract public Lotto fillLottoNumbers();
+    public static Lotto of(List<LottoNumber> list) {
+        return new Lotto(list);
+    }
+
+    public int contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber) ? 1 : 0;
+    }
+
+    public boolean containsBonus(int bonus) {
+        return this.lottoNumbers.contains(LottoNumber.of(bonus));
+    }
+
+    @Override
+    public String toString() {
+        return lottoNumbers.toString();
+    }
 }

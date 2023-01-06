@@ -1,10 +1,11 @@
 package kr.codesquad;
 
-import kr.codesquad.input.InputImpl;
+import kr.codesquad.IO.InputImpl;
+import kr.codesquad.IO.OutputImpl;
 
 public class Main{
 
     public static void main(String[] args) {
-        LottoGame lottoGame = LottoGame.of(new InputImpl());
+        LottoGame.of(new InputImpl(), new OutputImpl());
     }
 }

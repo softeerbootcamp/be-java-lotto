@@ -16,18 +16,15 @@ public class LottoNumber {
 
     private final int number;
 
-    private LottoNumber(int number)
-    {
-        if(number > MAX_NUMBER || number < MIN_NUMBER)
-        {
+    private LottoNumber(int number) {
+        if(number > MAX_NUMBER || number < MIN_NUMBER) {
             throw new IllegalArgumentException("범위 밖에 있는 입력입니다");
         }
         this.number = number;
     }
 
-    public static LottoNumber of(String number)
-    {
-        return lottoNumbers.get(Integer.parseInt(number));
+    public static LottoNumber of(int number) {
+        return lottoNumbers.get(number);
     }
 
     @Override
