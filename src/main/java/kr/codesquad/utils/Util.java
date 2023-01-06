@@ -1,20 +1,16 @@
 package kr.codesquad.utils;
 
-import kr.codesquad.templates.Lotto;
+import kr.codesquad.model.lottos.Lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Util {
 
 
     //인풋 스트링을 정수형 배열로 변환
-    public static ArrayList<Integer> parseString(String str){
+    public static Set<Integer> parseString(String str){
         List<String> split = Arrays.asList(str.split(","));
-        ArrayList<Integer> tempList = new ArrayList<Integer>();
-        if(split.size() != 6)
-            throw new RuntimeException("올바르지 않은 입력입니다");
+        Set<Integer> tempList = new HashSet<>();
         split.forEach(item->tempList.add(Integer.parseInt(item)));
         return tempList;
     }

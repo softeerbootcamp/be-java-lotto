@@ -1,11 +1,4 @@
-package kr.codesquad.model.lottoImpl;
-
-import kr.codesquad.templates.Lotto;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+package kr.codesquad.model.lottos;
 
 public class ResultLotto extends Lotto {
 

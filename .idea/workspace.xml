@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day3 - (21) 코드 리팩토링 - static imports, 네이밍 수정">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="day4 - (12) UserConsole에서 User를 의존하지 않도록 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/ConsoleHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/UserConsoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ConsoleHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UserConsoleServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +23,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -55,12 +61,16 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="step3" />
-                    <option name="lastUsedInstant" value="1672795173" />
+                    <option name="branchName" value="step4" />
+                    <option name="lastUsedInstant" value="1672890232" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="i5046821854" />
-                    <option name="lastUsedInstant" value="1672723108" />
+                    <option name="lastUsedInstant" value="1672889766" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="step3" />
+                    <option name="lastUsedInstant" value="1672795173" />
                   </RecentBranch>
                 </list>
               </option>
@@ -82,42 +92,151 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/rentalhub/things/be-java-lotto&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/rentalhub/things/lotto",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="kr.codesquad.templates" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kr.codesquad.Main" />
-      <module name="java-lotto.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="kr.codesquad.templates.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="Gradle.UserConsoleTest">
+    <configuration name="ConsoleHandlerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ConsoleHandlerTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="LottoControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;LottoControllerTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserConsoleTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;UserConsoleTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserConsoleTest.enterPurchasePriceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;UserConsoleTest.enterPurchasePriceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserConsoleTest.enterPurchasePrice_NoInt_Test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;UserConsoleTest.enterPurchasePrice_NoInt_Test&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.UserConsoleTest" />
+        <item itemvalue="Gradle.ConsoleHandlerTest" />
+        <item itemvalue="Gradle.LottoControllerTest" />
+        <item itemvalue="Gradle.UserConsoleTest.enterPurchasePrice_NoInt_Test" />
+        <item itemvalue="Gradle.UserConsoleTest.enterPurchasePriceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -135,6 +254,7 @@
       <workItem from="1672817659467" duration="1284000" />
       <workItem from="1672818950266" duration="98000" />
       <workItem from="1672819055767" duration="4408000" />
+      <workItem from="1672883355314" duration="22110000" />
     </task>
     <task id="LOCAL-00001" summary="day1 - lotto1">
       <created>1672648436251</created>
@@ -325,7 +445,91 @@
       <option name="project" value="LOCAL" />
       <updated>1672822330958</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="day4 - (1) Lotto 클래스가 더이상 인터페이스가 아니므로 Lottos 클래스에 자식 lotto클래스들과 함께 위치시키도록 변경">
+      <created>1672890325487</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1672890325487</updated>
+    </task>
+    <task id="LOCAL-00029" summary="day4 - (2) UserConsole 클래스에 대한 JUnit 단위 테스트 구현 (정상 동작인 실행만 구현)">
+      <created>1672890371663</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1672890371663</updated>
+    </task>
+    <task id="LOCAL-00030" summary="day4 - (3) 유저의 입력에 관한 Exception을 나타내는 클래스 생성">
+      <created>1672899631574</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1672899631574</updated>
+    </task>
+    <task id="LOCAL-00031" summary="day4 - (4) 콘솔창에서 유저가 입력하는 상황에 대한 Test Code 생성 완료">
+      <created>1672900916545</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1672900916545</updated>
+    </task>
+    <task id="LOCAL-00032" summary="day4 - (5) LottoController에서 바로 콘솔에 접근하는 사이를 관장하는 ConsoleHanlder 클래스 추가">
+      <created>1672903658031</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1672903658031</updated>
+    </task>
+    <task id="LOCAL-00033" summary="day4 - (6) 메소드의 복잡도 제한을 지키기 위하여 여러 기능을 담당했던 단일 메소드를 분기시킴">
+      <created>1672905987725</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1672905987725</updated>
+    </task>
+    <task id="LOCAL-00034" summary="day4 - (7) 에러 발생 시 해당 에러 메시지를 print하도록 수정">
+      <created>1672906012899</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1672906012899</updated>
+    </task>
+    <task id="LOCAL-00035" summary="day4 - (8) ConsoleHandler 단에서 나타날 수 있는 Exception에 관한 테스트 클래스 작성">
+      <created>1672907620616</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1672907620616</updated>
+    </task>
+    <task id="LOCAL-00036" summary="day4 - (9) 수동 로또 리스트 생성 시 문자열으로 입력할 사항에 생기는 exception handling">
+      <created>1672907658404</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1672907658404</updated>
+    </task>
+    <task id="LOCAL-00037" summary="day4 - (10) 테스트 메소드 주석 작성">
+      <created>1672909724773</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1672909724773</updated>
+    </task>
+    <task id="LOCAL-00038" summary="day4 - (11) LottoController 메소드 순서, 네이밍 수정">
+      <created>1672909779702</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1672909779702</updated>
+    </task>
+    <task id="LOCAL-00039" summary="day4 - (12) UserConsole에서 User를 의존하지 않도록 수정">
+      <created>1672909806373</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1672909806373</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,18 +547,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="day2 - (2) Lotto 클래스 생성자/Getter/Setter" />
-    <MESSAGE value="day2 - (3) Main에서 Lotto클래스 주입하여 사용하도록 코드 리팩토링" />
-    <MESSAGE value="day2 - (4) 로또 당첨 시 각 등수의 상금, 맞춘 번호의 개수를 나타내는 Enum 정의" />
-    <MESSAGE value="day2 - (5) 당첨 여부 판독, 당첨금 확인의 로직을 담당하는 CalculateMatch 클래스 생성" />
-    <MESSAGE value="day2 - (6) 특정 문자가 ArrayList안에 들어있는지 판독하는 메소드 생성" />
-    <MESSAGE value="day3 - (1) 모든 로또의 종류를 포괄하여 로또의 기능을 제공하는 인터페이스 구현" />
-    <MESSAGE value="day3 - (4) 모든 로또 구현체에 대하여 로또리스트를 리턴하는 메소드를 구현" />
-    <MESSAGE value="day3 - (5) 기계가 생성하는 로또번호에 대해서 난수를 생성하고 이에 따라 로또 번호를 뽑아내는 메소드 구현" />
-    <MESSAGE value="day3 - (6) RandomLotto 주석 수정" />
-    <MESSAGE value="day3 - (7) RandomLotto에서 로또 번호 생성 플로우를 효율적으로 수정" />
-    <MESSAGE value="day3 - (8) ResultLotto에서 로또 리스트 ArrayList에 값을 저장하는 메소드 구현" />
-    <MESSAGE value="day3 - (9) MyLotto에서 로또 리스트 ArrayList에 값을 저장하는 메소드 구현" />
     <MESSAGE value="day3 - (10) ResultLotto에서 유저에게 인풋을 받고, 이를 addLotto에 넘겨주는 메소드 구현" />
     <MESSAGE value="day3 - (11) ResultLotto에서 유저에게 보너스 번호에 대한 인풋을 받는 메소드 구현" />
     <MESSAGE value="day3 - (12) MyLotto에서 유저의 인풋을 받아 이를 정수형 배열로 변환하여 ArrayList에 저장하는 로직 구현" />
@@ -368,15 +560,32 @@
     <MESSAGE value="day3 - (20) 코드 리팩토링, 오탈자 수정" />
     <MESSAGE value="day3 - (20) 코드 리팩토링 - static imports, 네이밍 수정" />
     <MESSAGE value="day3 - (21) 코드 리팩토링 - static imports, 네이밍 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="day3 - (21) 코드 리팩토링 - static imports, 네이밍 수정" />
+    <MESSAGE value="day4 - (1) Lotto 클래스가 더이상 인터페이스가 아니므로 Lottos 클래스에 자식 lotto클래스들과 함께 위치시키도록 변경" />
+    <MESSAGE value="day4 - (2) UserConsole 클래스에 대한 JUnit 단위 테스트 구현 (정상 동작인 실행만 구현)" />
+    <MESSAGE value="day4 - (3) 유저의 입력에 관한 Exception을 나타내는 클래스 생성" />
+    <MESSAGE value="day4 - (4) 콘솔창에서 유저가 입력하는 상황에 대한 Test Code 생성 완료" />
+    <MESSAGE value="day4 - (5) LottoController에서 바로 콘솔에 접근하는 사이를 관장하는 ConsoleHanlder 클래스 추가" />
+    <MESSAGE value="day4 - (6) 메소드의 복잡도 제한을 지키기 위하여 여러 기능을 담당했던 단일 메소드를 분기시킴" />
+    <MESSAGE value="day4 - (7) 에러 발생 시 해당 에러 메시지를 print하도록 수정" />
+    <MESSAGE value="day4 - (8) ConsoleHandler 단에서 나타날 수 있는 Exception에 관한 테스트 클래스 작성" />
+    <MESSAGE value="day4 - (9) 수동 로또 리스트 생성 시 문자열으로 입력할 사항에 생기는 exception handling" />
+    <MESSAGE value="day4 - (10) 테스트 메소드 주석 작성" />
+    <MESSAGE value="day4 - (11) LottoController 메소드 순서, 네이밍 수정" />
+    <MESSAGE value="day4 - (12) UserConsole에서 User를 의존하지 않도록 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="day4 - (12) UserConsole에서 User를 의존하지 않도록 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/kr/codesquad/controller/MatchController.java</url>
-          <line>47</line>
+          <line>46</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/UserConsoleTest.java</url>
+          <line>160</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

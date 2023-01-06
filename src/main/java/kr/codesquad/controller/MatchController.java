@@ -1,9 +1,8 @@
 package kr.codesquad.controller;
 
 import kr.codesquad.model.Prize;
-import kr.codesquad.templates.Lotto;
-import kr.codesquad.model.lottoImpl.ResultLotto;
-import kr.codesquad.utils.Util;
+import kr.codesquad.model.lottos.Lotto;
+import kr.codesquad.model.lottos.ResultLotto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
