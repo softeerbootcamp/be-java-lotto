@@ -1,4 +1,7 @@
-package kr.codesquad;
+package kr.codesquad.lottoSystem;
+
+import kr.codesquad.UserInput;
+import kr.codesquad.lotto.Lotto;
 
 import java.util.EnumMap;
 import java.util.List;

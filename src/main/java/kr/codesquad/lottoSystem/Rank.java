@@ -1,4 +1,4 @@
-package kr.codesquad;
+package kr.codesquad.lottoSystem;
 
 public enum Rank {
     FIFTH(3, 5000, false),

@@ -1,6 +1,10 @@
-package kr.codesquad;
+package kr.codesquad.lottoSystem;
 
+import kr.codesquad.UserInput;
 import kr.codesquad.exception.CustomException;
+import kr.codesquad.lotto.AutoLotto;
+import kr.codesquad.lotto.Lotto;
+import kr.codesquad.lotto.ManualLotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
