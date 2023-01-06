@@ -23,7 +23,7 @@ public class LottoGenerator {
     public List<Integer> setLottoNum(List<Integer> lottoNum) {
         List<Integer> number = new ArrayList<>();
 
-        for(int i = 0; i < 6; ++i) {
+        for(int i = 0; i < Lotto.LOTTO_NUM_LENGTH; ++i) {
             number.add(lottoNum.get(i));
         }
 
