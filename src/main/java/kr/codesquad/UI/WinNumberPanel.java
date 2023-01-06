@@ -34,7 +34,7 @@ public class WinNumberPanel extends CustomPanel{
         btn = new Button("확인");
 
 
-        errLabel.setBounds(100, 100, 200, 30);
+        errLabel.setBounds(0, 100, 400, 30);
         instLabel.setBounds(100, 135, 200, 30);
         txt.setBounds(80, 170, 200, 30);
         bonus.setBounds(300, 170, 30, 30);

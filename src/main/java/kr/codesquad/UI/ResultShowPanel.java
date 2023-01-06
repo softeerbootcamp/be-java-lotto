@@ -14,10 +14,10 @@ public class ResultShowPanel extends CustomPanel {
     private Button btn;
     public ResultShowPanel(String inst, String message, ActionListener act){
         super();
-        setSize(400,360);
-        setLayout(null);
         this.instructionStr = inst;
         this.txtAreaStr = message;
+        setSize(400,360);
+        setLayout(null);
         setElements();
         btn.addActionListener(act);
     }
@@ -27,9 +27,9 @@ public class ResultShowPanel extends CustomPanel {
         resultArea = new TextArea(txtAreaStr);
         btn = new Button("확인");
 
-        instLabel.setBounds(130, 20, 140, 30);
-        resultArea.setBounds(55, 55, 290, 215);
-        btn.setBounds(137, 280, 125, 30);
+        instLabel.setBounds(0, 50, 400, 30);
+        resultArea.setBounds(55, 85, 290, 215);
+        btn.setBounds(137, 310, 125, 30);
 
         instLabel.setAlignment(Label.CENTER);
 

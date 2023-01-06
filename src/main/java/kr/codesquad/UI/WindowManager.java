@@ -44,7 +44,6 @@ public class WindowManager extends Frame{
         for(Lotto lotto : lottos){
             result.append(lotto).append("\n");
         }
-        System.out.println(result);
         setPanel(
                 new ResultShowPanel(
                         "구매하신 로또 번호는 다음과 같습니다.",
