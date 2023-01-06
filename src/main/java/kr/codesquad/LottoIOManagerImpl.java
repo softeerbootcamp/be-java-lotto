@@ -1,5 +1,6 @@
 package kr.codesquad;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,23 +15,24 @@ public class LottoIOManagerImpl implements LottoIOManager {
 		this.scanner = new Scanner(System.in);
 	}
 
+	private int readNumber() {
+		try {
+			return Integer.parseInt(scanner.nextLine());
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("숫자를 입력해주세요");
+		}
+	}
+
 	@Override
-	public int readPurchaseAmount() {
+	public int readPurchaseAmount() throws IOException {
 		System.out.println("구입금액을 입력해주세요.");
-
-		return Integer.parseInt(scanner.nextLine());
+		return readNumber();
 	}
 
 	@Override
-	public int readManualLottoCount() {
+	public int readManualLottoCount() throws IOException {
 		System.out.println("수동으로 구매할 로또 수를 입력해주세요.");
-		
-		return Integer.parseInt(scanner.nextLine());
-	}
-
-	@Override
-	public int getAutoLottoCount(int purchaseAmount, int manualLottoCount) {
-		return 0;
+		return readNumber();
 	}
 
 	@Override
@@ -46,14 +48,13 @@ public class LottoIOManagerImpl implements LottoIOManager {
 	}
 
 	@Override
-	public int readBonusBall() {
+	public int readBonusBall() throws IOException {
 		System.out.println("보너스 볼을 입력해주세요.");
-
-		return Integer.parseInt(scanner.nextLine());
+		return readNumber();
 	}
 
 	@Override
-	public WinningLotto readWinningLotto() {
+	public WinningLotto readWinningLotto() throws IOException {
 		System.out.println("당첨 번호를 입력해주세요.");
 		String numbers = scanner.nextLine();
 		List<Integer> lottoNumbers = new ArrayList<Integer>();
@@ -71,11 +72,21 @@ public class LottoIOManagerImpl implements LottoIOManager {
 		for (int i = 0; i < cnt; i++) {
 			String numbers = scanner.nextLine();
 			List<Integer> lottoNumbers;
-			lottoNumbers = Arrays.stream(numbers.split(", ")).map(Integer::parseInt).collect(Collectors.toList());
+			lottoNumbers = readNumbers(numbers);
 			lottos.add(Lotto.of(lottoNumbers));
 		}
 
 		return lottos;
+	}
+
+	private List<Integer> readNumbers(String numbers) {
+		List<Integer> lottoNumbers;
+		try {
+			lottoNumbers = Arrays.stream(numbers.split(", ")).map(Integer::parseInt).collect(Collectors.toList());
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException("잘못된 입력입니다.");
+		}
+		return lottoNumbers;
 	}
 
 	@Override
