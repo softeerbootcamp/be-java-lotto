@@ -2,6 +2,7 @@ package kr.codesquad.view;
 
 import kr.codesquad.model.Rank;
 import kr.codesquad.model.User;
+import kr.codesquad.model.WinningResult;
 import kr.codesquad.model.lotto.Lotto;
 
 import java.util.Arrays;
@@ -57,8 +58,9 @@ public class OutputView {
         System.out.println(BONUS_NUMBER_READ_MESSAGE);
     }
 
-    public void printResult(Map<Rank, Integer> result, double profitRate) {
+    public void printResult(WinningResult winningResult, int money) {
         System.out.println(LOTTO_GAME_RESULT_START_MESSAGE);
+        Map<Rank, Integer> result = winningResult.getResult();
 
         List<Rank> ranks = Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.NOTHING)
@@ -66,6 +68,8 @@ public class OutputView {
                 .collect(Collectors.toList());
 
         printWinningResultMessage(ranks, result);
+
+        double profitRate = winningResult.calculateProfitRate(money);
         printProfitRateMessage(profitRate);
     }
 
