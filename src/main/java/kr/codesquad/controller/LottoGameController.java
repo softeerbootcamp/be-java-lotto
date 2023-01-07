@@ -15,16 +15,16 @@ public class LottoGameController {
     }
 
     public void play(){
-        User user = new User(InputView.inputMoney());
+        Money money = new Money(InputView.inputMoney());
 
-        List<Lotto> lottos = lottoGenerator.generateLottos(user.getMoney());
+        List<Lotto> lottos = lottoGenerator.generateLottos(money.getMoney());
         OutputView.printLottos(lottos);
 
         LottoGame lottoGame = new LottoGame(lottos);
         LottoResult result = lottoGame.match(issueWinningLotto());
 
         OutputView.printMatchResult(result.getResult());
-        OutputView.printEarningRate(result.getEarningRate(user.getMoney()));
+        OutputView.printEarningRate(result.getEarningRate(money.getMoney()));
     }
 
     private WinningLotto issueWinningLotto(){
