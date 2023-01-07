@@ -1,6 +1,7 @@
 package kr.codesquad.domain.generate;
 
 import kr.codesquad.domain.Lotto;
+import kr.codesquad.domain.Money;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
 
@@ -9,11 +10,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LottoGeneratorImpl implements LottoGenerator {
-    private static final int LOTTO_PRICE = 1000;
     @Override
-    public List<Lotto> generateLottos(int money) {
+    public List<Lotto> generateLottos(Money money) {
         int manualLottoCount = InputView.inputManualLottoCount();
-        int autoLottoCount = money / LOTTO_PRICE - manualLottoCount;
+        Money change = money.buyManual(manualLottoCount);
+        int autoLottoCount = change.getLottoCount();
         if (autoLottoCount < 0)
             throw new IllegalArgumentException("입력한 금액보다 많은 로또를 발급할 수 없습니다.");
 

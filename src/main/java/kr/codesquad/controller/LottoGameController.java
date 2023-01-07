@@ -17,7 +17,7 @@ public class LottoGameController {
     public void play(){
         Money money = new Money(InputView.inputMoney());
 
-        List<Lotto> lottos = lottoGenerator.generateLottos(money.getMoney());
+        List<Lotto> lottos = lottoGenerator.generateLottos(money);
         OutputView.printLottos(lottos);
 
         LottoGame lottoGame = new LottoGame(lottos);

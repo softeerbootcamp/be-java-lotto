@@ -11,6 +11,14 @@ public class Money {
         this.money = money;
     }
 
+    public Money buyManual(int manualLottoCount){
+        return new Money(money - manualLottoCount * MONEY_PER_LOTTO);
+    }
+
+    public int getLottoCount(){
+        return money / MONEY_PER_LOTTO;
+    }
+
     public int getMoney() {
         return money;
     }

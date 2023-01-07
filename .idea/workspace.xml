@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="exception : 입력한 금액보다 더 큰 수동 로또 개수를 입력하면 Exception 발생">
+    <list default="true" id="75cfef9c-bc50-442b-99d5-2d9016fefebb" name="Changes" comment="refactor : Money 클래스에 수동로또 구매 함수와 구매가능한 로또 개수를 리턴해주는 함수 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/controller/LottoGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Money.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Money.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Money.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/generate/LottoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/generate/LottoGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/generate/LottoGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/generate/LottoGeneratorImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,14 +224,7 @@
       <workItem from="1672644019169" duration="26231000" />
       <workItem from="1672724915964" duration="54000" />
       <workItem from="1672724971960" duration="11965000" />
-      <workItem from="1673070405870" duration="1252000" />
-    </task>
-    <task id="LOCAL-00028" summary="fix : HUNDRED 값 오류 수정">
-      <created>1672802435183</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1672802435183</updated>
+      <workItem from="1673070405870" duration="1873000" />
     </task>
     <task id="LOCAL-00029" summary="refactor : ILLEGAL_ARGUMENT_MESSAGE 변수명 변경">
       <created>1672803178099</created>
@@ -567,7 +562,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672990446735</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="refactor : User 클래스 Money 클래스로 변경">
+      <created>1673091294544</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1673091294544</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,8 +587,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat : LottoFactory에 winning 타입 로또 생성하는 조건문 추가" />
-    <MESSAGE value="feat : LottoGame에 match 메서드 추가하여 구현" />
     <MESSAGE value="feat : LottoNumber에 equals와 hashCode 메서드 추가" />
     <MESSAGE value="feat : LottoResult에 결과를 출력하는 함수 추가" />
     <MESSAGE value="feat : main 메서드 내부 구현을 App에게 넘겨서 구현" />
@@ -610,7 +610,9 @@
     <MESSAGE value="feat : 정적 팩터리 메서드 파라미터로 들어온 값을 validate하는 메서드 추가" />
     <MESSAGE value="test : 테스트 파일 정리" />
     <MESSAGE value="exception : 입력한 금액보다 더 큰 수동 로또 개수를 입력하면 Exception 발생" />
-    <option name="LAST_COMMIT_MESSAGE" value="exception : 입력한 금액보다 더 큰 수동 로또 개수를 입력하면 Exception 발생" />
+    <MESSAGE value="refactor : User 클래스 Money 클래스로 변경" />
+    <MESSAGE value="refactor : Money 클래스에 수동로또 구매 함수와 구매가능한 로또 개수를 리턴해주는 함수 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : Money 클래스에 수동로또 구매 함수와 구매가능한 로또 개수를 리턴해주는 함수 추가" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
