@@ -1,5 +1,6 @@
 package kr.codesquad.util;
 
+import kr.codesquad.domain.Money;
 import kr.codesquad.enums.ExceptionMessage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -123,5 +124,20 @@ class ValidatorTest {
             validator.checkMoneyBoundary("");
         });
         assertEquals(ExceptionMessage.CANNOT_INPUT_NULL.getMessage(), exception.getMessage());
+    }
+    @Test
+    void 수동로또_개수_입력금액보다_클때() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            Validator.checkManualLottoCount("4", new Money(3000));
+        });
+        assertEquals(ExceptionMessage.CANNOT_BUY_OVER_MONEY.getMessage(), exception.getMessage());
+    }
+    @Test
+    void 수동로또_개수_입력금액과_같을때() {
+        assertThat(Validator.checkManualLottoCount("4", new Money(4000))).isEqualTo(true);
+    }
+    @Test
+    void 수동로또_개수_입력금액보다_작을때() {
+        assertThat(Validator.checkManualLottoCount("3", new Money(4000))).isEqualTo(true);
     }
 }
