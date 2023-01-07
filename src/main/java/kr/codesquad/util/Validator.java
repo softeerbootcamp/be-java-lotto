@@ -1,5 +1,6 @@
 package kr.codesquad.util;
 
+import kr.codesquad.domain.Money;
 import kr.codesquad.enums.ExceptionMessage;
 import kr.codesquad.exception.DefaultException;
 
@@ -41,6 +42,14 @@ public class Validator {
             throw new DefaultException(ExceptionMessage.INVALID_MONEY_COUNT);
         } else if (intMoney < 1) {
             throw new DefaultException(ExceptionMessage.INVALID_MONEY_BOUNDARY);
+        }
+        return true;
+    }
+    public static boolean checkManualLottoCount(String input, Money money) {
+        checkTransformabilityToNumber(input);
+        int manualLottoCount = Integer.parseInt(input);
+        if (money.calculateLottoCount() < manualLottoCount) {
+            throw new DefaultException(ExceptionMessage.CANNOT_BUY_OVER_MONEY);
         }
         return true;
     }

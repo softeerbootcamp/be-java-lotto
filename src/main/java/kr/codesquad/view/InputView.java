@@ -1,6 +1,7 @@
 package kr.codesquad.view;
 
 import kr.codesquad.domain.Lotto;
+import kr.codesquad.domain.Money;
 import kr.codesquad.util.Validator;
 
 import java.io.BufferedReader;
@@ -38,8 +39,10 @@ public class InputView {
         return Lotto.of(list);
     }
 
-    public int inputCountOfManualLotto() throws IOException {
-        return Integer.parseInt(br.readLine());
+    public int inputCountOfManualLotto(Money money) throws IOException {
+        String input = br.readLine();
+        Validator.checkManualLottoCount(input, money);
+        return Integer.parseInt(input);
     }
 
     public static String[] inputManualLotto() {
