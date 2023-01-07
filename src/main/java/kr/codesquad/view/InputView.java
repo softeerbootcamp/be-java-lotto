@@ -2,6 +2,8 @@ package kr.codesquad.view;
 
 import kr.codesquad.domain.Lotto;
 import kr.codesquad.domain.Money;
+import kr.codesquad.enums.ExceptionMessage;
+import kr.codesquad.exception.DefaultException;
 import kr.codesquad.util.Validator;
 
 import java.io.BufferedReader;
@@ -45,11 +47,13 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public static String[] inputManualLotto() {
+    public static String[] inputManualLotto(){
         try {
-            return br.readLine().split(", ");
+            String[] input = br.readLine().split(", ");
+            Validator.checkLottoNumbers(input);
+            return input;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new DefaultException(e.getMessage());
         }
     }
 }
