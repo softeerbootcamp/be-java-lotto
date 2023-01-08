@@ -12,6 +12,8 @@ public class Money {
     }
 
     public Money buyManual(int manualLottoCount){
+        if (manualLottoCount > getLottoCount())
+            throw new IllegalArgumentException("가진 금액보다 더 많은 로또를 구매할 수 없습니다.");
         return new Money(money - manualLottoCount * MONEY_PER_LOTTO);
     }
 
