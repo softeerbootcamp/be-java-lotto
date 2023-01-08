@@ -1,6 +1,8 @@
 package kr.codesquad.domain.generate;
 
 import kr.codesquad.domain.Lotto;
+import kr.codesquad.domain.exception.LottoNumberException;
+import kr.codesquad.domain.exception.NumberCountException;
 import kr.codesquad.view.InputView;
 
 import java.util.ArrayList;
@@ -16,6 +18,12 @@ public final class ManualLottoGenerator {
     }
 
     public static Lotto generateManual(){
-        return Lotto.ofComma(InputView.inputManualNumber());
+        while (true) {
+            try {
+                return Lotto.ofComma(InputView.inputManualNumber());
+            } catch (NumberCountException | LottoNumberException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
