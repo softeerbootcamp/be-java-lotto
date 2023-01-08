@@ -12,12 +12,18 @@ import java.util.stream.Stream;
 public class LottoGeneratorImpl implements LottoGenerator {
     @Override
     public List<Lotto> generateLottos(Money money) {
-        int manualLottoCount = InputView.inputManualLottoCount();
-        Money change = money.buyManual(manualLottoCount);
-        int autoLottoCount = change.getLottoCount();
-        if (autoLottoCount < 0)
-            throw new IllegalArgumentException("입력한 금액보다 많은 로또를 발급할 수 없습니다.");
-        return detailGenerate(autoLottoCount, manualLottoCount);
+        while (true) {
+            try {
+                int manualLottoCount = InputView.inputManualLottoCount();
+                Money change = money.buyManual(manualLottoCount);
+                int autoLottoCount = change.getLottoCount();
+                return detailGenerate(autoLottoCount, manualLottoCount);
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("다시 입력해주세요.");
+            }
+        }
     }
 
     public List<Lotto> detailGenerate(int autoLottoCount, int manualLottoCount){
