@@ -21,7 +21,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
         this.number = number;
     }
 
-    static LottoNumber of(String value) {
+    public static LottoNumber of(String value) {
         if (Objects.isNull(value)) {
             throw new IllegalArgumentException("null값이 들어왔습니다.");
         }
@@ -34,7 +34,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
             throw new IllegalArgumentException("로또 인자로는 숫자만 가능합니다.");
         }
     }
-    static LottoNumber of(int number) {
+    public static LottoNumber of(int number) {
         validateNumberRange(number);
         return cachedLottoNum.get(number);
     }
