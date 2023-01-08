@@ -17,13 +17,16 @@ public class LottoGeneratorImpl implements LottoGenerator {
         int autoLottoCount = change.getLottoCount();
         if (autoLottoCount < 0)
             throw new IllegalArgumentException("입력한 금액보다 많은 로또를 발급할 수 없습니다.");
+        return detailGenerate(autoLottoCount, manualLottoCount);
+    }
 
-        OutputView.guideInputManual();
+    public List<Lotto> detailGenerate(int autoLottoCount, int manualLottoCount){
+        if (manualLottoCount != 0) {
+            OutputView.guideInputManual();
+        }
         List<Lotto> manualLottos = ManualLottoGenerator.generateLottos(manualLottoCount);
-
         OutputView.printLottoCount(manualLottoCount, autoLottoCount);
         List<Lotto> autoLottos = AutoLottoGenerator.generateLottos(autoLottoCount);
-
         return Stream.concat(manualLottos.stream(), autoLottos.stream()).collect(Collectors.toList());
     }
 }
