@@ -1,6 +1,8 @@
 package kr.codesquad.controller;
 
 import kr.codesquad.domain.*;
+import kr.codesquad.domain.exception.LottoNumberException;
+import kr.codesquad.domain.exception.NumberCountException;
 import kr.codesquad.domain.generate.LottoGenerator;
 import kr.codesquad.view.InputView;
 import kr.codesquad.view.OutputView;
@@ -28,6 +30,12 @@ public class LottoGameController {
     }
 
     private WinningLotto issueWinningLotto(){
-        return new WinningLotto(Lotto.ofComma(InputView.inputWinningNumber()), InputView.inputBonusNumber());
+        while (true) {
+            try {
+                return new WinningLotto(Lotto.ofComma(InputView.inputWinningNumber()), InputView.inputBonusNumber());
+            } catch (NumberCountException | LottoNumberException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
