@@ -1,5 +1,7 @@
 package kr.codesquad.domain;
 
+import kr.codesquad.domain.exception.LottoNumberException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -23,7 +25,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     public static LottoNumber of(String value) {
         if (Objects.isNull(value)) {
-            throw new IllegalArgumentException("null값이 들어왔습니다.");
+            throw new LottoNumberException(value);
         }
         try {
             int key = Integer.parseInt(value.trim());
@@ -31,7 +33,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
             return cachedLottoNum.get(Integer.parseInt(value.trim()));
         }
         catch (NumberFormatException e){
-            throw new IllegalArgumentException("로또 인자로는 숫자만 가능합니다.");
+            throw new LottoNumberException(value);
         }
     }
     public static LottoNumber of(int number) {
@@ -41,7 +43,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     static void validateNumberRange(int number){
         if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER)
-            throw new IllegalArgumentException("유효한 범위 내의 로또 넘버가 아닙니다.");
+            throw new LottoNumberException(number);
     }
 
     @Override
