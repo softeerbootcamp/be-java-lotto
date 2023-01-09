@@ -1,45 +1,58 @@
 package kr.codesquad.View;
 
+import kr.codesquad.Exception.Validator;
 import kr.codesquad.Model.Lotto;
 
-import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class LottoScanner {
 
     public BigInteger scanMoney() {
-        try {
-            Scanner sc = new Scanner(System.in);
-            BigInteger money = sc.nextBigInteger();
-            System.out.println(money);
-            return money;
-        } catch (InputMismatchException iee) {
-            System.out.println("Money should be Integer");
-            System.exit(0);
-            return null;
+        while (true) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                String moneyStr = sc.nextLine();
+                Validator.isValidMoney(moneyStr);
+                System.out.println(moneyStr);
+                return new BigInteger(moneyStr);
+            } catch (NumberFormatException e) {
+                System.out.println("Money should be Positive Integer");
+            }
         }
     }
 
     public List<Integer> scanLottoNumbers() {
-        Scanner sc = new Scanner(System.in);
-        try {
-            String winStr = sc.nextLine();
-            List<Integer> winNum = new ArrayList();
-            String[] winStrArr = winStr.split(",");
-            for(int i = 0; i < Lotto.LOTTO_NUM_LENGTH; ++i) {
-                winNum.add(Integer.parseInt(winStrArr[i].trim()));
+        while(true){
+            try {
+                Scanner sc = new Scanner(System.in);
+                String[] winStrArr = parseLottoNumbers(sc.nextLine());
+                Validator.isValidLottoNumbers(winStrArr);
+                return getLottoNumbersList(winStrArr);
+            } catch (NumberFormatException ne){
+                System.out.println("You should only enter number");
+            } catch (IllegalArgumentException iae){
+                System.out.println("Enter 6 numbers");
+            } catch (Exception e){
+                System.out.println("LottoNumber Input Error");
             }
-            return winNum;
-        }catch (Exception e){
-            System.out.println("LottoNumber Input Error");
-            e.printStackTrace();
-            System.exit(0);
-            return null;
         }
+    }
+
+    private String[] parseLottoNumbers(String winStr){
+        if (winStr.contains(","))
+            return winStr.split(",");
+        return winStr.split(" ");
+    }
+
+    private List<Integer> getLottoNumbersList(String[] winStrArr){
+        List<Integer> winNum = new ArrayList<>();
+        for(int i = 0; i < Lotto.LOTTO_NUM_LENGTH; ++i) {
+            winNum.add(Integer.parseInt(winStrArr[i].trim()));
+        }
+        return winNum;
     }
 
     public int scanBonus() {
