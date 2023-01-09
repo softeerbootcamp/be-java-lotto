@@ -24,12 +24,23 @@ public class LottoResult {
         }
     }
 
+    public LottoResult(final LottoProcedure procedure) {
+        this.winningLotto = (WinningLotto) procedure.getWinningLotto();
+        this.lottos = procedure.getLottos();
+        this.money = procedure.getMoney();
+
+        this.matches = new HashMap<>();
+        for(Prize prize : Prize.values()) {
+            matches.put(prize, 0);
+        }
+    }
+
     public void showResults() {
         matchLottos();
         printStatistics();
     }
 
-    public void matchLottos() {
+    private void matchLottos() {
 
         for(Lotto lotto: this.lottos) {
 

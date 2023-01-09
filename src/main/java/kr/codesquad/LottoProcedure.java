@@ -1,6 +1,7 @@
 package kr.codesquad;
 
 import kr.codesquad.sequence.LottosGenerator;
+import kr.codesquad.sequence.ManualSequenceGenerator;
 import kr.codesquad.sequence.ShuffleSequenceGenerator;
 
 import java.util.ArrayList;
@@ -10,67 +11,72 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LottoProcedure {
-    final static int LEAST_MATCH = 3;  // 로또 상금 수령을 위한 동일해야하는 최소 숫자의 개수
-    final static int LOTTO_LENGTH = 6;  // 로또 번호 조합의 길이
+
     final static Scanner sc = new Scanner(System.in);
-
-    static boolean matchBonus = false;  // 보너스 번호 존재하는지
-
-    static int[] matches = new int[7];  // 몇 개의 로또 번호가 일치하는지. matches[3] -> 3개 이상의 번호가 일치하는 경우를 셈
 
     private Lotto winningLotto;  // 실제 로또 번호
 
     private List<Lotto> lottos;
 
-    private LottosGenerator generator = new ShuffleSequenceGenerator();
-
     private Money money;
+
     private int bonus;
+
+    private int ticketsLeftToGenerate;  // 생성할 로또 티켓 수
+
     private int manualCnt;  // 수동으로 구매할 로또 번호의 수
     private int shuffleCnt;  // 자동으로 구매할 로또 번호의 수
-    private int ticketsLeftToGenerate;
 
-    public LottoProcedure(LottosGenerator sequenceGenerator) {
-        this.generator = sequenceGenerator;
+    public LottoProcedure() {
         this.lottos = new ArrayList<>();
     }
 
     public void run() {
-        try {
-            // 구매 금액 입력
-            takeMoney();
-            this.ticketsLeftToGenerate = money.numOfTickets;
+        // 구매 금액 입력
+        takeMoney();
 
-            takeManualInput();  // 수동 로또 번호 입력
+        takeManualLottoCount();
 
-            // 로또 번호 생성
-            this.lottos.addAll(generator.generate(ticketsLeftToGenerate));
+        generateLottos(new ManualSequenceGenerator(), this.manualCnt);
 
-            printLottoSequence();
+        this.shuffleCnt = this.ticketsLeftToGenerate;
+        // 로또 번호 생성
+        generateLottos(new ShuffleSequenceGenerator(), this.shuffleCnt);
 
-            // ---------------------------------------------------------- TODO: 로직 입력부, 계산부로 분리
+        printLottoSequence();
 
-            takeActualInput();  // 로또 번호, 보너스 번호 입력
-            // TODO: 입력 로또번호 parameter로 주입받는 method로 분리하기
+        takeActualInput();  // 로또 번호, 보너스 번호 입력
 
-            matchLottoSequences(this.winningLotto, this.lottos);
-
-            printStatistics();
-        } catch(IllegalArgumentException e) {
-            e.printStackTrace();
-        }
+        LottoResult result = new LottoResult(this);
+        result.showResults();
     }
 
-    public void takeMoney() {
-
+    private void takeMoney() {
         // 구입 금액 입려
+
         System.out.println("구입금액을 입력해 주세요.");
         int m = sc.nextInt();  // 구입금액 입력
 
         this.money = new Money(m);
+
+        this.ticketsLeftToGenerate = money.numOfTickets;  // 생성할 티켓 수
     }
 
-    public void printLottoSequence() {
+    private void takeManualLottoCount() {
+        // 수동으로 구매할 로또 처리
+        System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
+        this.manualCnt = sc.nextInt();  // 수동으로 구매할 로또 번호 수 입력
+        sc.nextLine();
+    }
+
+    private void generateLottos(LottosGenerator generator, int ticketsToGenerate) {
+        List<Lotto> lottos = generator.generate(ticketsToGenerate);
+        this.lottos.addAll(lottos);
+
+        issueLottos(ticketsToGenerate);
+    }
+
+    private void printLottoSequence() {
         System.out.println("\n수동으로 " + this.manualCnt + "장, 자동으로 " + this.shuffleCnt + " 개를 구매했습니다.");
 
         // 구매한 로또 번호 출력
@@ -80,7 +86,8 @@ public class LottoProcedure {
         }
     }
 
-    public void takeActualInput() {
+    private void takeActualInput() {
+        this.shuffleCnt = ticketsLeftToGenerate;  // 자동으로 구매할 로또 수
 
         System.out.println("\n지난 주 당첨 번호를 입력해 주세요.");
         String str = sc.nextLine();  // 당첨번호 입력
@@ -92,28 +99,7 @@ public class LottoProcedure {
         this.bonus = sc.nextInt();  // 보너스 번호 입력
     }
 
-    public void takeManualInput() {
-        // 수동으로 구매할 로또 처리
-        System.out.println("\n수동으로 구매할 로또 수를 입력해 주세요.");
-        this.manualCnt = sc.nextInt();  // 수동으로 구매할 로또 번호 수 입력
-        sc.nextLine();
-
-        if(ticketsLeftToGenerate < manualCnt)
-            throw new IllegalArgumentException("구매할 수 있는 로또보다 구매하고자 하는 로또가 더 많습니다");
-
-        this.ticketsLeftToGenerate -= manualCnt;  // 수동으로 구매한 로또 만큼 적게 자동 생성
-        this.shuffleCnt = ticketsLeftToGenerate;  // 수동으로 구매한 로또 만큼 적게 자동 생성
-
-        System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
-        for(int i=0;i<this.manualCnt;++i) {
-            String str = sc.nextLine();
-            List<Integer> numbers = parseCommaSeparatedLineInput(str);  // 구매한 로또 번호
-
-            this.lottos.add(new Lotto(numbers));
-        }
-    }
-
-    public List<Integer> parseCommaSeparatedLineInput(String str) {
+    public static List<Integer> parseCommaSeparatedLineInput(String str) {
         return Stream.of(str.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -121,51 +107,22 @@ public class LottoProcedure {
                 .collect(Collectors.toList());
     }
 
-     void matchLottoSequences(final Lotto winning, List<Lotto> given) {
-        // TODO: 로또 매칭 담당하는 클래스로 분리
-        for(Lotto lotto: given) {
-            int cnt = matchLotto(winning, lotto);  // 실제 당첨번호와 생성된 로또 번호 1대1 매칭 통해 대응되는 수의 쌍 개수 반환
-            matches[cnt] += 1;
-        }
+    private void issueLottos(int lottoCnt) {
+        if (this.ticketsLeftToGenerate < lottoCnt)
+            throw new IllegalArgumentException("구매할 수 있는 로또보다 구매하고자 하는 로또가 더 많습니다");
+
+        this.ticketsLeftToGenerate -= lottoCnt;
     }
 
-    int matchLotto (final Lotto winning, Lotto given) {  // 실제 당첨번호(입력), 생성된 번호
-        // TODO: 로또 매칭 담당하는 클래스로 분리
-        int cnt = 0;
-        matchBonus = false;
-
-        // 정렬된 로또 번호 기준으로, 실제 로또 번호와 비교
-        for(Integer num : given.getLotto()) {  // TODO: Lotto의 getter가 필요한가
-            cnt += winning.contains(num) ? 1:0;
-        }
-
-        // 보너스 조건 - 5개가 맞고 보너스 번호도 맞을 때
-        if(cnt == 5 && given.contains(bonus)) {
-            // 보너스이면 -> 2등
-            matchBonus = true;
-        }
-
-        return cnt;  // 동일한 번호의 갯수
+    public Lotto getWinningLotto() {
+        return winningLotto;
     }
 
-    void printStatistics() {
-        // TODO: 로또 매칭 담당하는 클래스로 분리
-        long prizeTotal = 0;
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 
-        System.out.println("\n당첨 통계");
-        System.out.println("---------");
-
-        // TODO: 이해 쉽게
-        for (int i = LEAST_MATCH; i <= LOTTO_LENGTH; ++i) {  // 최소 3개 이상, 6개 이하 매치
-            Prize prize = Prize.valueOf(matches[i] > 0?i:0, matchBonus);
-            prizeTotal += prize.calculatePrize(matches[i]); // 상금 총액
-
-            System.out.println(i + "개 일치 (" + prize.getWinningMoney() + "원)- " + matches[i] + "개");
-            // TODO: Prize가 Miss인 경우 WinningMoney = 0 반환되는 에러 해걸
-        }
-
-        double returnRate = money.returnRate(prizeTotal);
-
-        System.out.println("총 수익률은 " + String.format("%.2f", returnRate) + "%입니다.)");
+    public Money getMoney() {
+        return money;
     }
 }
