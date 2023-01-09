@@ -1,6 +1,10 @@
-package kr.codesquad;
+package kr.codesquad.lottoSystem;
 
+import kr.codesquad.UserInput;
 import kr.codesquad.exception.CustomException;
+import kr.codesquad.lotto.AutoLotto;
+import kr.codesquad.lotto.Lotto;
+import kr.codesquad.lotto.ManualLotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,7 +12,7 @@ import java.util.List;
 
 public class LottoMachine {
     private final int lottoPrice; // 로또 하나의 가격 정보
-    private final List<Integer> numList;
+    private final List<Integer> numList; // 1 ~ 45 까지의 정수 저장
     
     private static final UserInput ui = new UserInput();
 

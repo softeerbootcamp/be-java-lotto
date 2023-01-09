@@ -1,4 +1,6 @@
-package kr.codesquad;
+package kr.codesquad.lotto;
+
+import kr.codesquad.lotto.Lotto;
 
 import java.util.List;
 

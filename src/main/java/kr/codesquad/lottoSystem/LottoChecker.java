@@ -1,13 +1,16 @@
-package kr.codesquad;
+package kr.codesquad.lottoSystem;
+
+import kr.codesquad.UserInput;
+import kr.codesquad.lotto.Lotto;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoChecker {
-    private final List<Integer> winNumList;
-    private final int bonusNum;
-    private final Map<Rank, Integer> result = new EnumMap<>(Rank.class);
+    private final List<Integer> winNumList; // 당첨 번호 저장
+    private final int bonusNum; // 보너스 번호 저장
+    private final Map<Rank, Integer> result = new EnumMap<>(Rank.class); // 당첨 결과 저장
 
     public LottoChecker() {
         UserInput ui = new UserInput();
@@ -16,6 +19,7 @@ public class LottoChecker {
         for(Rank rank : Rank.values()) this.result.put(rank, 0);
     }
 
+    // 로또의 당첨 결과를 확인하는 기능의 함수
     public void checkLotto(Lotto lotto) {
         List<List<Integer>> lottoList = lotto.getLottoList();
 
@@ -25,6 +29,7 @@ public class LottoChecker {
         printResult(result, lottoList.size());
     }
 
+    // 하나의 로또에서 몇 개가 맞았는지 확인하는 기능의 함수
     public int countWinNum(List<Integer> eachLottoList) {
         int winNumCount = 0;
 
@@ -38,6 +43,7 @@ public class LottoChecker {
         return eachLottoList.contains(bonusNum);
     }
 
+    // 당첨 결과 저장하는 기능의 함수
     public void setResult(Map<Rank, Integer> result, int winNumCount, boolean isBonus) {
         for(Rank rank : result.keySet()) {
             if(winNumCount == rank.getCountOfMatch() && isBonus == rank.getIsBonus())
