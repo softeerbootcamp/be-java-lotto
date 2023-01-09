@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+import kr.codesquad.domain.other.Amount;
+import kr.codesquad.domain.other.Bonus;
 import kr.codesquad.domain.other.Money;
 import kr.codesquad.domain.winLotto.WinResult;
 import kr.codesquad.io.Console;
@@ -31,19 +33,27 @@ public class Application {
         Money money = console.inputMoney();
         Lottos lottos = buyLotto(money);
 
-        WinLotto winLotto = lottoService.makeWinLotto(console.inputWinLottoNum(), console.inputBonusNum());
+        WinLotto winLotto = inputWinLotto();
         WinResult winResult = WinResult.createWinResult(lottos, winLotto);
         console.printLottoResult(money, winResult);
     }
 
     private Lottos buyLotto(Money money) {
-        int manualAmount = console.inputManualLottoAmount();
-        int autoAmount = money.getMoney() / LottoUtil.LOTTO_PRICE - manualAmount;
-        List<Lotto> lottos = lottoService.buyLotto(manualAmount, autoAmount);
+        Amount totalAmount = lottoService.makeAmount(money.getMoney() / LottoUtil.LOTTO_PRICE);
+        Amount manualAmount = lottoService.makeAmount(totalAmount, console.inputManualLottoAmount());
+        Amount autoAmount = lottoService.makeAmount(totalAmount.getAmount() - manualAmount.getAmount());
+        List<Lotto> lottos = lottoService.buyLotto(manualAmount.getAmount(), autoAmount.getAmount());
 
         console.printLottoNum(lottos);
-        console.printAmount(manualAmount, autoAmount);
+        console.printAmount(manualAmount.getAmount(), autoAmount.getAmount());
         return new Lottos(lottos);
+    }
+
+    private WinLotto inputWinLotto() {
+        Lotto lotto = lottoService.makeLotto(console.inputWinLottoNum());
+        Bonus bonusNum = lottoService.makeBonus(console.inputBonusNum(), lotto);
+
+        return lottoService.makeWinLotto(lotto, bonusNum);
     }
 
 

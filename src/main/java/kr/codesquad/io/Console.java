@@ -18,9 +18,9 @@ public class Console {
         return new Money(Integer.parseInt(sc.nextLine()));
     }
 
-    public Bonus inputBonusNum() {
+    public int inputBonusNum() {
         System.out.println("보너스 볼을 입력해 주세요.");
-        return new Bonus(Integer.parseInt(sc.nextLine()));
+        return Integer.parseInt(sc.nextLine());
     }
 
     public int inputManualLottoAmount() {

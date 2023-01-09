@@ -5,8 +5,6 @@ import kr.codesquad.io.Console;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LottoManualFactory implements LottoFactory {
 
@@ -14,12 +12,14 @@ public class LottoManualFactory implements LottoFactory {
 
     @Override
     public List<Lotto> buyLotto(int amount) {
-        if(amount == 0) {
-            return new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>();
+        if (amount == 0) {
+            return lottos;
         }
         System.out.println("\n수동으로 구매할 번호를 입력해 주세요.");
-        return Stream.of(
-                        new Lotto(console.inputLottoNum()))
-                .collect(Collectors.toList());
+        for (int i = 0; i < amount; i++) {
+            lottos.add(new Lotto(console.inputLottoNum()));
+        }
+        return lottos;
     }
 }
