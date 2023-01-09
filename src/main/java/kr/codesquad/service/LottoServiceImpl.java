@@ -4,12 +4,19 @@ import kr.codesquad.domain.Result;
 import kr.codesquad.domain.lotto.AnswerLotto;
 import kr.codesquad.domain.lotto.Lotto;
 import kr.codesquad.domain.PurchaseRecord;
+import kr.codesquad.generator.condition.ConditionGeneratorProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoServiceImpl implements LottoService {
+
+    private final ConditionGeneratorProvider cgp;
+
+    public LottoServiceImpl(ConditionGeneratorProvider cgp) {
+        this.cgp = cgp;
+    }
 
     @Override
     public PurchaseRecord getPurchaseRecord(Integer money, Integer manualLottoCount) {
