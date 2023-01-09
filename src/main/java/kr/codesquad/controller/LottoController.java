@@ -29,7 +29,7 @@ public class LottoController {
 
     public Money issueManualLotto(Money money) throws IOException {
         outputView.printMaulLottoBuyText();
-        int manualLottoCount = inputView.inputCountOfManualLotto();
+        int manualLottoCount = inputView.inputCountOfManualLotto(money);
         money.buyManualLotto(manualLottoCount);
         Money manualLottoMoney = Money.from(manualLottoCount);
         outputView.printManualLottoNumber();
