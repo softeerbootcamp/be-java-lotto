@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface UserInputHandler {
 
-    public int getMoney();
+    int getMoney();
 
-    public List<Integer> getSixLottoNumber();
+    List<Integer> getSixLottoNumber();
 
-    public int getBonusNumber(List<Integer> winningNumbers);
+    int getBonusNumber(List<Integer> winningNumbers);
 
-    public int getManualLottoAmount(int max);
+    int getManualLottoAmount(int max);
 }

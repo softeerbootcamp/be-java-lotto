@@ -1,7 +1,7 @@
 package kr.codesquad;
 
 import kr.codesquad.InputManager.UserInputHandler;
-import kr.codesquad.InputManager.UserInputHandlerImpl;
+import kr.codesquad.InputManager.ScannerInputHandler;
 import kr.codesquad.Lotto.Lotto;
 import kr.codesquad.Lotto.LottoStat;
 import kr.codesquad.Lotto.WinLotto;
@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainLottoGame {
-    private List<Lotto> lottos;
+public class ConsoleLottoGame {
+    private final List<Lotto> lottos;
     private WinLotto winLotto;
-    private UserInputHandler inputHandler;
+    private final UserInputHandler inputHandler;
 
-    public MainLottoGame() {
+    public ConsoleLottoGame() {
         lottos = new ArrayList<>();
-        inputHandler = new UserInputHandlerImpl();
+        inputHandler = new ScannerInputHandler();
     }
 
     public void start() {
@@ -43,18 +43,19 @@ public class MainLottoGame {
 
     private void printResult() {
         LottoStat lottoStat = new LottoStat(lottos, winLotto);
-        lottoStat.printResult();
+        System.out.println(lottoStat.getResult());
     }
 
-
-    private void buyAutoLotto(int n_lotto) {
-        for (int i = 0; i < n_lotto; i++) {
-            lottos.add(new Lotto());
+    private void buyAutoLotto(int nLotto) {
+        for (int i = 0; i < nLotto; i++) {
+            Lotto newLotto = new Lotto();
+            lottos.add(newLotto);
+            System.out.println(newLotto);
         }
     }
 
-    private int buyManualLotto(int max_lotto) {
-        int nManualLotto = inputHandler.getManualLottoAmount(max_lotto);
+    private int buyManualLotto(int maxLotto) {
+        int nManualLotto = inputHandler.getManualLottoAmount(maxLotto);
         List<Lotto> manualLotto = new ArrayList<>();
         for (int i = 0; i < nManualLotto; i++) {
             List<Integer> sixNumber = inputHandler.getSixLottoNumber();
@@ -72,7 +73,7 @@ public class MainLottoGame {
 
 
     public static void main(String[] args) {
-        MainLottoGame mainLottoGame = new MainLottoGame();
-        mainLottoGame.start();
+        ConsoleLottoGame consoleLottoGame = new ConsoleLottoGame();
+        consoleLottoGame.start();
     }
 }

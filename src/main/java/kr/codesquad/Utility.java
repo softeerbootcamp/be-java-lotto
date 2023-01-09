@@ -18,14 +18,6 @@ public class Utility {
         return lotteryNumbers;
     }
 
-    public static int generateBonusNumber(List<Integer> random6Number) {
-        Random random = new Random();
-        int temp = random.nextInt() % 45 + 1;
-        while (random6Number.contains(temp))
-            temp = random.nextInt() % 45 + 1;
-        return temp;
-    }
-
     public static boolean isDuplicated(List<Integer> integerList) {
         Set<Integer> set = new HashSet<>(integerList);
         return set.size() != integerList.size();
@@ -39,17 +31,13 @@ public class Utility {
         return temp;
     }
 
-    public static List<Integer> stringToIntList(String target) {
+    public static List<Integer> str2IntListWithRange(String target, int lowerBound, int upperBound) {
         List<String> strSplit = List.of(target.split(","));
         List<Integer> numbers = new ArrayList<>();
         for (String num : strSplit) {
-            numbers.add(Utility.parseIntWithRange(num.trim(), 1, 45));
+            numbers.add(Utility.parseIntWithRange(num.trim(), lowerBound, upperBound));
         }
         return numbers;
     }
-    public static int countUpIfContains(List<Integer> arr, int target, int count) {
-        if (arr.contains(target))
-            count += 1;
-        return count;
-    }
+
 }

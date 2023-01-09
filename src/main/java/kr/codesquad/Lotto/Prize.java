@@ -1,9 +1,5 @@
 package kr.codesquad.Lotto;
 
-import kr.codesquad.Utility;
-
-import java.util.List;
-
 public enum Prize {
     FIRST(2000000000), SECOND(3000000), THIRD(1500000), FORTH(50000), FIFTH(5000), NOTHING(0);
     private static final Prize[] prizes = {NOTHING, NOTHING, NOTHING, FIFTH, FORTH, THIRD, FIRST};
@@ -20,7 +16,7 @@ public enum Prize {
 
 
     public static Prize calcPrize(WinLotto winning, Lotto lotto) {
-        int count = (int)lotto.getLottoNums().stream()
+        int count = (int) lotto.getLottoNums().stream()
                 .filter(num -> winning.getLottoNums().contains(num))
                 .count();
         boolean isBonusCorrect = lotto.getLottoNums().contains(winning.getBonusNo());
