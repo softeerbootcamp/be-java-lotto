@@ -46,7 +46,7 @@ public class App {
     private void setManualTicketInfo()
     {
         console.printManualTicketCountInstruction();
-        int manualTicketCount = Integer.parseInt(console.scanManualTicketCount());
+        int manualTicketCount = console.scanManualTicketCount(user.getCash());
         // 구매금액과 수동 개수를 바탕으로 전체 로또 개수와 자동/수동 개수 정보를 유저가 추론하게 함
         user.calculateBuyNum(manualTicketCount);
 
@@ -54,7 +54,7 @@ public class App {
         ArrayList<ArrayList<Integer>> manualTickets = new ArrayList<ArrayList<Integer>>();
         for(int i = 0; i < user.getManualCount(); i++)
         {
-            ArrayList<Integer> Ticket = splitTo6Integers(console.scanManualTicket());
+            ArrayList<Integer> Ticket = console.scanManualTicket();
             manualTickets.add(Ticket);
         }
         // 수동 로또 정보 저장
@@ -73,7 +73,7 @@ public class App {
     private void setUpLottoMachine()
     {
         console.printLastWinnumInstruction();
-        ArrayList<Integer> winNums = splitTo6Integers(console.scanWinNums());
+        ArrayList<Integer> winNums = console.scanWinNums();
         lottoMachine.setWinNums(winNums); // 로또 추첨기에 당첨 번호 넘기기
         console.printBonusBallInstruction();
         int bonus = console.scanBonusBall();
@@ -85,14 +85,5 @@ public class App {
         console.printResult(lottoMachine.getResult(user.getLottoTickets()), user.getBuyNum());
     }
 
-    private static ArrayList<Integer> splitTo6Integers(String beforeSplited)
-    {
-        String splitedNums[] = beforeSplited.split(", ");
-        ArrayList<Integer> afterSplited = new ArrayList<Integer>();
-        for(int i = 0; i < 6; i++)
-        {
-            afterSplited.add(Integer.parseInt(splitedNums[i]));
-        }
-        return afterSplited;
-    }
+
 }
