@@ -17,7 +17,7 @@ public class LottoController {
         // 구입 금액 입력 받고
         Money money = new Money(Input.inputPrice());
         // 수동 로또 개수, 수동 로또 입력 받기
-        int manualLottoCount = Input.inputManualLottoCount();
+        int manualLottoCount = Input.inputManualLottoCount(money.countLottos());
         int autoLottoCount = money.countLottos() - manualLottoCount;
         List<Lotto> manualLotto = Input.inputManuelLottoNum(manualLottoCount);
         // 자동, 수동 로또 개수 출력

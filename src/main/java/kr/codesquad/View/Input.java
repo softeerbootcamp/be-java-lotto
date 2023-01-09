@@ -1,6 +1,7 @@
 package kr.codesquad.View;
 
 import kr.codesquad.Exception.InvalidLottoNumberException;
+import kr.codesquad.Exception.InvalidManualLottoCountException;
 import kr.codesquad.Exception.InvalidPriceException;
 import kr.codesquad.Model.Lotto;
 import kr.codesquad.Model.LottoNumber;
@@ -43,7 +44,7 @@ public class Input {
         return inputLottoNum();
     }
 
-    public static int inputManualLottoCount(){
+    public static int inputManualLottoCount(int totalCount){
         // 예외처리 - 일단 개수이므로 0 이상이어야 하며 정수 이외 안됨
 
         int manualLottoCount = 0;
@@ -51,13 +52,14 @@ public class Input {
             try {
                 Output.printGetManuelLottoCount();
                 manualLottoCount = sc.nextInt();
-                if (manualLottoCount < 0) throw new InvalidPriceException("개수는 음수가 될 수 없습니다.");
+                if (manualLottoCount < 0) throw new InvalidManualLottoCountException("개수는 음수가 될 수 없습니다.");
+                if (manualLottoCount > totalCount) throw new InvalidManualLottoCountException("살 수 있는 개수를 초과했습니다.");
                 break;
             } catch (InputMismatchException inputMismatchException) {
                 System.out.println("정수가 아닙니다 !! 정수를 입력해 주세요 !");
                 sc.nextLine();
-            } catch (InvalidPriceException invalidPriceException) {
-                System.out.println(invalidPriceException.getMessage());
+            } catch (InvalidManualLottoCountException InvalidManualLottoCountException) {
+                System.out.println(InvalidManualLottoCountException.getMessage());
                 sc.nextLine();
             }
         }
