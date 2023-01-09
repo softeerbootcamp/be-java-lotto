@@ -7,6 +7,7 @@ public class LottoNumber {
 
     private final int lottoNumber;
 
+
     public LottoNumber(int lottoNumber) {
         checkLottoNumber(lottoNumber);
         this.lottoNumber = lottoNumber;

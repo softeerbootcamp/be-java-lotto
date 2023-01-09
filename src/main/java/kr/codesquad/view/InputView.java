@@ -14,11 +14,11 @@ public final class InputView {
         throw new AssertionError();
     }
 
-    public static String inputTotalPrice() {
-        return input();
+    public static int inputTotalPrice() {
+        return Integer.parseInt(input());
     }
 
-    public static int inputManualLottoAmount() {
+    public static int inputManualLottoCount() {
         return Integer.parseInt(input());
     }
 
