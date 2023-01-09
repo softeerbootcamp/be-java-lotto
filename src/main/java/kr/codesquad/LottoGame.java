@@ -1,5 +1,7 @@
 package kr.codesquad;
 
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +17,7 @@ public class LottoGame {
 
 	private final LottoGenerator lottoGenerator;
 
+
 	private final LottoCheck lottoCheck;
 
 	public LottoGame(
@@ -29,7 +32,7 @@ public class LottoGame {
 		this.lottoGenerator = lottoGenerator;
 	}
 
-	public List<Lotto> buy() {
+	public List<Lotto> buy() throws IOException {
 		// 금액 입력받기
 		int purchaseAmount = lottoIOManager.readPurchaseAmount();
 		// 수동 개수 입력
@@ -61,7 +64,8 @@ public class LottoGame {
 		return lottos;
 	}
 
-	public WinningLotto createWinningLottery() {
+
+	public WinningLotto createWinningLottery() throws IOException {
 		return lottoIOManager.readWinningLotto();
 	}
 

@@ -1,10 +1,11 @@
 package kr.codesquad;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		LottoGame lottoGame = LottoGameCreator.createLottoGame();
 		// 로또 사기
 		List<Lotto> buyLottos = lottoGame.buy();
