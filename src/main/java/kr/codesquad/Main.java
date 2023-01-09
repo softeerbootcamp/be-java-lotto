@@ -1,29 +1,28 @@
 package kr.codesquad;
 
 
-import kr.codesquad.Enum.Lotto_Info;
-import kr.codesquad.LottoManager.LottoGenerator;
-import kr.codesquad.LottoManager.LottoJackpotManager;
-import kr.codesquad.User.UserInput;
-import kr.codesquad.User.UserLotto;
-import kr.codesquad.Utility.Utility;
+import kr.codesquad.lottoManager.LottoGenerator;
+import kr.codesquad.lottoManager.LottoGeneratorImpl;
+import kr.codesquad.lottoManager.LottoJackpotManager;
+import kr.codesquad.lottoManager.LottoJackpotManagerImpl;
+import kr.codesquad.user.UserInput;
+import kr.codesquad.user.UserLotto;
+import kr.codesquad.utility.Utility;
 
 public class Main {
 
-    public static void main(String[] args) throws CustomException {
+    public static void main(String[] args) {
         Utility ut = new Utility();
-        UserInput userInput = new UserInput();
-        UserLotto userLotto = new UserLotto(userInput.userHowManyLotto());
+        UserLotto userLotto = new UserLotto(UserInput.USERINPUT.userHowManyLotto());
 
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        lottoGenerator.manualGenerate(userLotto);
-        lottoGenerator.autoGenerate(userLotto);
-        userLotto.printUserLotto();
+        LottoGenerator lottoGenerator = new LottoGeneratorImpl();
+        lottoGenerator.lottoGenerate(userLotto);
 
-        LottoJackpotManager lottoJackpotManager = new LottoJackpotManager();
-        lottoJackpotManager.setJACKPOT_NUM();
-        lottoJackpotManager.setBONUS_NUM();
+        LottoJackpotManager lottoJackpotManager = new LottoJackpotManagerImpl(
+                UserInput.USERINPUT.userInputJackpotNum(),
+                UserInput.USERINPUT.userSetBonusNum());
         lottoJackpotManager.checkAllUserLottoPrize(userLotto);
-        ut.printProfit(userLotto.getPrizeResults(), userLotto.getUserAllLottoCount() * Lotto_Info.LOTTO_PRICE.getValue());
+
+        ut.printProfit(userLotto.getPrizeResults(), userLotto.getUserAllLottoCount() * ut.getLottoPrice());
     }
 }

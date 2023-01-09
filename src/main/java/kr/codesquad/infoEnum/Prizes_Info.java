@@ -1,4 +1,4 @@
-package kr.codesquad.Enum;
+package kr.codesquad.infoEnum;
 
 public enum Prizes_Info {
 

@@ -1,42 +1,43 @@
-package kr.codesquad.LottoManager;
+package kr.codesquad.lottoManager;
 
 import kr.codesquad.CustomException;
-import kr.codesquad.User.UserInput;
-import kr.codesquad.User.UserLotto;
+import kr.codesquad.user.UserLotto;
 
 import java.util.List;
 
-public class LottoJackpotManager extends UserInput {
-    private static List<Integer> JACKPOT_NUM;
-    private static int BONUS_NUM;
-
-    public void setJACKPOT_NUM() throws CustomException {
-        this.JACKPOT_NUM = userInputJackpotNum();
+public class LottoJackpotManagerImpl implements LottoJackpotManager {
+    private final List<Integer> JACKPOT_NUM;
+    private final int BONUS_NUM;
+    CustomException customException = new CustomException();
+    public LottoJackpotManagerImpl(List<Integer> jackpotNum,int bonusNum){
+        JACKPOT_NUM = jackpotNum;
+        BONUS_NUM = bonusNum;
+        customException.checkBonusNumIsDuplicate(bonusNum,jackpotNum);
     }
 
-    public void setBONUS_NUM() throws CustomException {
-        this.BONUS_NUM = userSetBonusNum(this.JACKPOT_NUM);
-    }
 
+    @Override
     public boolean checkNumberIsContained(List<Integer> userOneLotto, int number) {
         if (userOneLotto.contains(number)) {
             return true;
-        } else return false;
+        } return false;
     }
 
+    @Override
     public int addIndexIfChecked(List<Integer> userOneLotto, int number, int index) {
         if (checkNumberIsContained(userOneLotto, number)) {
             return ++index;
-        } else return index;
+        } return index;
     }
 
+    @Override
     public void checkAllUserLottoPrize(UserLotto userLotto) {
-        for (EmptyLotto eachLotto : userLotto.getUserLottoList()) {
+        for (LottoPaper eachLotto : userLotto.getUserLottoList()) {
             checkEachLottoPrize(eachLotto.getNumbers(), userLotto);
         }
     }
 
-    // prize 가 user lotto 내부에 있어서 어쩔수 없이 매개변수 2개 사용됬는데, 개선하고 싶음.
+    @Override
     public void checkEachLottoPrize(List<Integer> userOneLotto, UserLotto userLotto) {
         int index = 0;
         for (int oneNumber : JACKPOT_NUM) {
@@ -50,4 +51,5 @@ public class LottoJackpotManager extends UserInput {
             userLotto.addPrizeResultsByIndex(index - 3);
         }
     }
+
 }

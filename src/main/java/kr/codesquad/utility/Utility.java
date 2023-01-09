@@ -1,19 +1,25 @@
-package kr.codesquad.Utility;
+package kr.codesquad.utility;
 
-import kr.codesquad.Enum.Lotto_Info;
-import kr.codesquad.Enum.Prizes_Info;
-import kr.codesquad.LottoManager.EmptyLotto;
-import kr.codesquad.User.UserLotto;
+import kr.codesquad.CustomException;
+import kr.codesquad.infoEnum.Prizes_Info;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Utility {
+public class Utility extends CustomException{
     private static ArrayList<Integer> allLottoNum;
+
+    static int LOTTO_PRICE = 1000;
+
+    static int LOTTO_SIZE = 6;
 
     public Utility() {
         setAllLottoNum();
+    }
+
+    public int getLottoPrice() {
+        return LOTTO_PRICE;
     }
 
     public void setAllLottoNum() {
@@ -25,15 +31,16 @@ public class Utility {
 
     public List<Integer> retRandLottoNum() {
         Collections.shuffle(this.allLottoNum);
-        ArrayList<Integer> lottoNums = new ArrayList<>(Lotto_Info.LOTTO_SIZE.getValue());
-        for (int i = 0; i < Lotto_Info.LOTTO_SIZE.getValue(); i++) {
+        ArrayList<Integer> lottoNums = new ArrayList<>(LOTTO_SIZE);
+        for (int i = 0; i < LOTTO_SIZE; i++) {
             lottoNums.add(this.allLottoNum.get(i));
         }
         return lottoNums;
     }
 
-    public List<Integer> transStringToIntegerList(String str) {
+    public List<Integer> transManualInputToLottoList(String str) {
         String[] strArr = str.split(",");
+        numberCountSix(strArr);
         List<Integer> integerList = new ArrayList<>();
         for (int i = 0; i < strArr.length; i++) {
             integerList.add(Integer.parseInt(strArr[i]));
