@@ -30,7 +30,7 @@ public class Ticket {
     }
 
     private static boolean isAvailBuyManualTicket(Money money, int manualTicketsCount) {
-        return money.getPurchaseMoney() > manualTicketsCount * Lotto.TICKET_PER_PRICE;
+        return money.getPurchaseMoney() >= manualTicketsCount * Lotto.TICKET_PER_PRICE;
     }
 
     private static boolean isTicketCountOverZero(int ticketCount) {

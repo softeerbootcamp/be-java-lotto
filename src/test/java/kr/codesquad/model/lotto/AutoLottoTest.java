@@ -1,4 +1,4 @@
-package kr.codesquad.model;
+package kr.codesquad.model.lotto;
 
 import kr.codesquad.model.lotto.AutoLotto;
 import kr.codesquad.model.lotto.Lotto;

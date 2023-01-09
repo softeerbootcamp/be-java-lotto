@@ -6,6 +6,7 @@ public class ManualLotto extends Lotto {
 
     public ManualLotto(List<Integer> manualGeneratedNumbers) {
         this.numbers = makeLotto(manualGeneratedNumbers);
+        validLotto();
     }
 
     /**
