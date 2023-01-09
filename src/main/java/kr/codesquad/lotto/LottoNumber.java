@@ -1,5 +1,7 @@
 package kr.codesquad.lotto;
 
+import kr.codesquad.exception.LottoNumberOutOfRangeException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,13 +19,13 @@ public class LottoNumber {
     private final int number;
 
     private LottoNumber(int number) {
-        if(number > MAX_NUMBER || number < MIN_NUMBER) {
-            throw new IllegalArgumentException("범위 밖에 있는 입력입니다");
-        }
         this.number = number;
     }
 
-    public static LottoNumber of(int number) {
+    public static LottoNumber of(int number) throws LottoNumberOutOfRangeException {
+        if(number > MAX_NUMBER || number < MIN_NUMBER) {
+            throw new LottoNumberOutOfRangeException();
+        }
         return lottoNumbers.get(number);
     }
 

@@ -11,7 +11,7 @@ public class OutputImpl implements Output {
     @Override
     public void generatedLottoResultOutput(int manualCount, int total, List<Lotto> lottos) {
         System.out.println("수동으로 "  + manualCount + "개, 자동으로 " + (total - manualCount) + "개 구매했습니다");
-        System.out.println(lottos);
+        printLottos(lottos);
     }
 
     @Override
@@ -27,6 +27,12 @@ public class OutputImpl implements Output {
     @Override
     public void lottoProfitOutput(Statistic statistic, int money, Map<Rank, Integer> result) {
         System.out.println("수익률은 " + String.format("%.2f", statistic.countProfit(money, result)) + "%입니다");
+    }
+
+    private void printLottos(List<Lotto> lottos) {
+        for(Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 
     private String generateResultString(Map<Rank, Integer> result, Rank rank) {

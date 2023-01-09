@@ -1,5 +1,8 @@
 package kr.codesquad.lotto;
 
+import kr.codesquad.exception.DuplicateLottoNumberException;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -9,7 +12,10 @@ public class Lotto {
 
     private final List<LottoNumber> lottoNumbers;
 
-    private Lotto(List<LottoNumber> list) {
+    private Lotto(List<LottoNumber> list) throws DuplicateLottoNumberException {
+        if(!verify(list)) {
+            throw new DuplicateLottoNumberException();
+        }
         lottoNumbers = list;
     }
 
@@ -17,12 +23,17 @@ public class Lotto {
         return new Lotto(list);
     }
 
-    public int contains(LottoNumber lottoNumber) {
-        return lottoNumbers.contains(lottoNumber) ? 1 : 0;
+    private boolean verify(List<LottoNumber> list) {
+        for(LottoNumber lottoNumber : list) {
+            if (Collections.frequency(list, lottoNumber) != 1 || list.size() != Lotto.NUMBER_COUNT) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public boolean containsBonus(int bonus) {
-        return this.lottoNumbers.contains(LottoNumber.of(bonus));
+    public int contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber) ? 1 : 0;
     }
 
     @Override

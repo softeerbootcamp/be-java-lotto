@@ -2,6 +2,7 @@ package kr.codesquad.IO;
 
 import kr.codesquad.lotto.LottoNumber;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface Input {
@@ -13,5 +14,5 @@ public interface Input {
 
     List<LottoNumber> jackpotNumberInput();
 
-    int bonusNumberInput();
+    LottoNumber bonusNumberInput();
 }

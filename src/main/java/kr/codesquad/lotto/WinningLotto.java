@@ -1,21 +1,36 @@
 package kr.codesquad.lotto;
 
 import kr.codesquad.Rank;
+import kr.codesquad.exception.DuplicateLottoNumberException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 public class WinningLotto {
     private final List<LottoNumber> lottoNumbers;
-    private final int bonus;
 
-    private WinningLotto(List<LottoNumber> lottoNumbers, int bonus) {
+    private final LottoNumber bonus;
+
+    private WinningLotto(List<LottoNumber> lottoNumbers, LottoNumber bonus) {
+        if(!verify(lottoNumbers, bonus)) {
+            throw new DuplicateLottoNumberException();
+        }
         this.lottoNumbers = lottoNumbers;
         this.bonus = bonus;
     }
 
-    public static WinningLotto of(List<LottoNumber> lottoNumbers, int bonus) {
+    public static WinningLotto of(List<LottoNumber> lottoNumbers, LottoNumber bonus) {
         return new WinningLotto(lottoNumbers, bonus);
+    }
+
+    private boolean verify(List<LottoNumber> list, LottoNumber bonus) {
+        for(LottoNumber lottoNumber : list) {
+            if (list.contains(bonus) || Collections.frequency(list, lottoNumber) != 1 || list.size() != Lotto.NUMBER_COUNT) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public Map<Rank, Integer> getLottoResult(List<Lotto> lottos) {
@@ -32,9 +47,9 @@ public class WinningLotto {
     private Rank getRank(Lotto lotto) {
         for(Rank rank : Rank.values()) {
             int matchCount = getMatchingCount(lotto);
-            boolean isBonusContained = isBonusContained(lotto);
+            int isBonusContained = isBonusContained(lotto);
             if(matchCount == Rank.SECOND.getCountOfMatch()) {
-                return isBonusContained ? Rank.SECOND : Rank.THIRD;
+                return isBonusContained == 1 ? Rank.SECOND : Rank.THIRD;
             }
             if(matchCount == rank.getCountOfMatch()) {
                 return rank;
@@ -52,7 +67,7 @@ public class WinningLotto {
         return count;
     }
 
-    private boolean isBonusContained(Lotto lotto) {
-        return lotto.containsBonus(bonus);
+    private int isBonusContained(Lotto lotto) {
+        return lotto.contains(bonus);
     }
 }

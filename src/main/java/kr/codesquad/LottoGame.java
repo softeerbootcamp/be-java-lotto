@@ -12,7 +12,9 @@ import java.util.Map;
 
 public class LottoGame {
     private final Input input;
+
     private final Output output;
+
 
     private LottoGame(Input input, Output output) {
         this.input = input;
@@ -36,7 +38,7 @@ public class LottoGame {
 
 
 
-    public static LottoGame of(Input Input, Output output) {
-        return new LottoGame(Input, output);
+    public static LottoGame of(Input input, Output output) {
+        return new LottoGame(input, output);
     }
 }

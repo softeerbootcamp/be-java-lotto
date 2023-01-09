@@ -1,5 +1,6 @@
 package kr.codesquad.lottoGeneration;
 
+import kr.codesquad.exception.DuplicateLottoNumberException;
 import kr.codesquad.lotto.Lotto;
 import kr.codesquad.lotto.LottoNumber;
 
