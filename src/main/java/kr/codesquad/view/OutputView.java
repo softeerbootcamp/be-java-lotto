@@ -2,6 +2,7 @@ package kr.codesquad.view;
 
 import kr.codesquad.model.Rank;
 import kr.codesquad.model.User;
+import kr.codesquad.model.WinningResult;
 import kr.codesquad.model.lotto.Lotto;
 
 import java.util.Arrays;
@@ -12,20 +13,28 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final String ERROR_MESSAGE = "[ERROR] ";
+    private static final String LOTTO_PURCHASE_MONEY_READ_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String MANUAL_LOTTO_COUNT_READ_MESSAGE = "수동으로 구매할 로또 수를 입력해 주세요.";
+    private static final String MANUAL_LOTTO_NUMBER_READ_MESSAGE = "수동으로 구매할 번호를 입력해 주세요.";
+    private static final String WINNING_NUMBER_READ_MESSAGE = "지난 주 당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_READ_MESSAGE = "보너스 볼을 입력해 주세요.";
+    private static final String LOTTO_GAME_RESULT_START_MESSAGE = "\n당첨 통계\n--------";
+
     public static void printErrorMessage(String message) {
-        System.out.println("[ERROR] " + message);
+        System.out.println(ERROR_MESSAGE + message);
     }
 
     public void printMoneyReadMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(LOTTO_PURCHASE_MONEY_READ_MESSAGE);
     }
 
     public void printManualLottoCountReadMessage() {
-        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+        System.out.println(MANUAL_LOTTO_COUNT_READ_MESSAGE);
     }
 
     public void printUserManualLottoReadMessage() {
-        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+        System.out.println(MANUAL_LOTTO_NUMBER_READ_MESSAGE);
     }
 
     public void printUser(User user) {
@@ -42,15 +51,16 @@ public class OutputView {
     }
 
     public void printWinningLottoReadMessage() {
-        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUMBER_READ_MESSAGE);
     }
 
     public void printBonusNumberReadMessage() {
-        System.out.println("보너스 볼을 입력해 주세요.");
+        System.out.println(BONUS_NUMBER_READ_MESSAGE);
     }
 
-    public void printResult(Map<Rank, Integer> result, double profitRate) {
-        System.out.println("\n당첨 통계\n----------");
+    public void printResult(WinningResult winningResult, int money) {
+        System.out.println(LOTTO_GAME_RESULT_START_MESSAGE);
+        Map<Rank, Integer> result = winningResult.getResult();
 
         List<Rank> ranks = Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.NOTHING)
@@ -58,6 +68,8 @@ public class OutputView {
                 .collect(Collectors.toList());
 
         printWinningResultMessage(ranks, result);
+
+        double profitRate = winningResult.calculateProfitRate(money);
         printProfitRateMessage(profitRate);
     }
 
