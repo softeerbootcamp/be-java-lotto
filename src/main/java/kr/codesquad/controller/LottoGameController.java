@@ -1,34 +1,41 @@
 package kr.codesquad.controller;
 
 import kr.codesquad.domain.*;
-import kr.codesquad.view.IOManager;
-import kr.codesquad.view.IOManagerImpl;
+import kr.codesquad.domain.exception.LottoNumberException;
+import kr.codesquad.domain.exception.NumberCountException;
+import kr.codesquad.domain.generate.LottoGenerator;
+import kr.codesquad.view.InputView;
+import kr.codesquad.view.OutputView;
 
 import java.util.List;
 
 public class LottoGameController {
-    private IOManager ioManager;
+    private final LottoGenerator lottoGenerator;
 
-    public LottoGameController() {
-        ioManager = new IOManagerImpl();
+    public LottoGameController(LottoGenerator lottoGenerator) {
+        this.lottoGenerator = lottoGenerator;
     }
 
     public void play(){
-        User user = new User(ioManager.inputMoney());
-        LottoIssue lottoIssue = new LottoIssue(new LottoFactory(ioManager), ioManager);
-        int manualLottoCount = ioManager.inputManualLottoCount();
-        int autoLottoCount = user.countOfBuying() - manualLottoCount;
-        List<Lotto> lottos = issueLottoTickets(manualLottoCount, autoLottoCount, lottoIssue);
+        Money money = new Money(InputView.inputMoney());
+
+        List<Lotto> lottos = lottoGenerator.generateLottos(money);
+        OutputView.printLottos(lottos);
+
         LottoGame lottoGame = new LottoGame(lottos);
-        LottoResult result = lottoGame.match(lottoIssue.issueWinningLotto());
-        ioManager.printMatchResult(result.getResult());
-        ioManager.printEarningRate(result.getEarningRate(user.getMoney()));
+        LottoResult result = lottoGame.match(issueWinningLotto());
+
+        OutputView.printMatchResult(result.getResult());
+        OutputView.printEarningRate(result.getEarningRate(money.getMoney()));
     }
 
-    private List<Lotto> issueLottoTickets (int manualLottoCount, int autoLottoCount, final LottoIssue lottoIssue){
-        List<Lotto> issuedLottos = lottoIssue.issueLotto(manualLottoCount, autoLottoCount);
-        ioManager.printLottoCount(autoLottoCount, manualLottoCount);
-        ioManager.printLottos(issuedLottos);
-        return issuedLottos;
+    private WinningLotto issueWinningLotto(){
+        while (true) {
+            try {
+                return new WinningLotto(Lotto.ofComma(InputView.inputWinningNumber()), InputView.inputBonusNumber());
+            } catch (NumberCountException | LottoNumberException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

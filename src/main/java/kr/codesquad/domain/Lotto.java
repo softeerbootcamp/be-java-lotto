@@ -1,5 +1,7 @@
 package kr.codesquad.domain;
 
+import kr.codesquad.domain.exception.NumberCountException;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -9,7 +11,7 @@ public class Lotto {
 
     private Lotto(Set<LottoNumber> lotto) {
         if (lotto.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("로또에는 서로 다른  6개의 숫자가 필요합니다.");
+            throw new NumberCountException(lotto.size());
         }
 
         this.lotto = lotto;
