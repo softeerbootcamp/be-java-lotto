@@ -36,6 +36,14 @@ public class Person {
         this.haveRobotLotto = cnt;
     }
 
+    public Integer getWinNumber(int i) {
+        return winNumberArr[i];
+    }
+
+    public void setWinNumber(int idx, int num) {
+        winNumberArr[idx] = num;
+    }
+
     public int getHaveHandLotto(){
         return this.haveHandLotto;
     }
@@ -89,7 +97,7 @@ public class Person {
         if(i == 1) System.out.println("4개 일치 (50000원) - " + winNumberArr[i] + "개");
         if(i == 2) System.out.println("5개 일치 (1500000원) - " + winNumberArr[i] + "개");
         if(i == 3) System.out.println("5개 일치 (30000000원), 보너스 볼 일치 - " + winNumberArr[i] + "개");
-        if(i == 4) System.out.println("6개 일치 (2000000000원) - " + winNumberArr[i] + "개");
+        if(i == 4) System.out.println("6개 일치 (2000000000원) - " +winNumberArr[i] + "개");
     }
 
     public String round(int originMoney) {

@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf264517-5440-4687-933c-bb5dd6a0bbaa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Lotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Lotto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/domain/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/exception/CustomException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/exception/CustomException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/Input/InputService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/Input/InputService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/Input/ScannerInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/Input/ScannerInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/Inteface/MakeLottoInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/Inteface/MakeLottoInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/MakeLottoPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/MakeLottoPerson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/MakeLottoRobot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/codesquad/service/MakeLottoRobot.java" afterDir="false" />
-    </list>
+    <list default="true" id="cf264517-5440-4687-933c-bb5dd6a0bbaa" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +41,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -94,6 +84,10 @@
       <workItem from="1672799320480" duration="693000" />
       <workItem from="1672800018920" duration="7919000" />
       <workItem from="1672819262256" duration="3438000" />
+      <workItem from="1672970327284" duration="1282000" />
+      <workItem from="1672972404710" duration="7000" />
+      <workItem from="1672972817350" duration="3009000" />
+      <workItem from="1672990307006" duration="654000" />
     </task>
     <servers />
   </component>

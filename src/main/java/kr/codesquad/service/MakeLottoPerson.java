@@ -1,7 +1,7 @@
 package kr.codesquad.service;
 
 import kr.codesquad.domain.Person;
-import kr.codesquad.exception.CustomException;
+import kr.codesquad.exception.CustomValideException;
 import kr.codesquad.service.Input.ScannerInput;
 import kr.codesquad.service.Inteface.MakeLottoInterface;
 
@@ -12,17 +12,17 @@ import java.util.List;
 public class MakeLottoPerson implements MakeLottoInterface {
 
     ScannerInput scannerInput = new ScannerInput();
-    CustomException customException = new CustomException();
+    CustomValideException customException = new CustomValideException();
 
     @Override
-    public void IssuedLotto(Person person) throws Exception{
+    public void issuedLotto(Person person) {
         for (int i = 0; i < person.getHaveHandLotto(); i++) {
-            person.addLotto(make()); // 사용자 로또 생성
+            person.addLotto(makeLottoNumber()); // 사용자 로또 생성
         }
     }
 
     @Override
-    public List<Integer> make() throws Exception {
+    public List<Integer> makeLottoNumber() {
         String numberLine = scannerInput.inputLine();
         String[] split = numberLine.split(",");
         customException.inputHanLottoCheck(split.length);
