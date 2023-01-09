@@ -17,20 +17,16 @@ public class ManualLottoGenerator implements LottoGenerator {
         return convertStringToRow(manualRowString);
     }
 
-    public Row checkValidation(String manualRowString) {
-        Row row = convertStringToRow(manualRowString);
-        this.manualRowString = manualRowString;
-        return row;
-    }
-
-    private Row convertStringToRow(String rowByString) {
+    public Row convertStringToRow(String rowByString) {
         StringTokenizer st = new StringTokenizer(rowByString);
-        List<Integer> numbers = new ArrayList<>();
+        List<LottoNumber> numbers = new ArrayList<>();
         while (st.hasMoreTokens()) {
-            numbers.add(Integer.valueOf(st.nextToken()));
+            numbers.add(new LottoNumber(st.nextToken()));
         }
         Collections.sort(numbers);
+        Row generatedRow = Row.createRow(numbers);
 
-        return Row.createRow(LottoNumber.convertIntegersToLottoNumbers(numbers));
+        this.manualRowString = rowByString;
+        return generatedRow;
     }
 }

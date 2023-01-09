@@ -2,9 +2,6 @@ package kr.codesquad.domain;
 
 import kr.codesquad.exception.NumberNotValidException;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class LottoNumber implements Comparable<LottoNumber>{
 
     private final int number;
@@ -31,17 +28,6 @@ public class LottoNumber implements Comparable<LottoNumber>{
     public int getNumber() {
         return number;
     }
-
-    public static List<LottoNumber> convertIntegersToLottoNumbers(List<Integer> integerList) {
-
-        Row.lottoIntegersDuplicateCheck(integerList);
-
-        return integerList.stream()
-                .map(LottoNumber::new)
-                .collect(Collectors.toList());
-    }
-
-
 
     @Override
     public String toString() {

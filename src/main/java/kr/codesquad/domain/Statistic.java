@@ -1,6 +1,7 @@
 package kr.codesquad.domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Statistic {
 
@@ -17,7 +18,6 @@ public class Statistic {
         counts.put(Rank.THIRD, 0);
         counts.put(Rank.FOURTH, 0);
         counts.put(Rank.FIFTH, 0);
-        counts.put(Rank.MISS, 0);
     }
 
     public void calculate(Lotto lotto) {
@@ -36,16 +36,18 @@ public class Statistic {
         int match = row.getMatch();
         boolean matchBonus = row.isBonus();
         Rank rank = Rank.valueOf(match, matchBonus);
-        int cnt = counts.get(rank);
-        counts.put(rank, ++cnt);
-        this.output += rank.getWinningMoney();
-
+        if (rank != Rank.MISS) {
+            int cnt = counts.get(rank);
+            counts.put(rank, ++cnt);
+            this.output += rank.getWinningMoney();
+        }
     }
 
     public void printStatistics() {
         System.out.println("당첨 통계\n" + "---------");
-        Rank[] ranks = Rank.values();
-        Arrays.sort(ranks, Collections.reverseOrder());
+        List<Rank> ranks = Arrays.stream(Rank.values())
+                .filter(rank -> !rank.equals(Rank.MISS)).sorted(Collections.reverseOrder()).collect(Collectors.toList());
+
         for (Rank rank : ranks) {
            printEachRank(rank);
         }
@@ -54,7 +56,7 @@ public class Statistic {
 
     public void printEachRank(Rank rank) {
         System.out.print(rank.getCountOfMatch() + "개 일치");
-        if (rank.getWinningMoney() == Rank.SECOND.getWinningMoney()) {
+        if (rank == Rank.SECOND) {
             System.out.print(", 보너스 볼 일치");
         }
         System.out.println(" (" + rank.getWinningMoney() + "원)- " + counts.get(rank) + "개");
